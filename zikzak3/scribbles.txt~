@@ -1,0 +1,47 @@
+Memory map..
+- assume 240x240 * 8bit == 57600/screen
+- assume dual buffer == 57600*2 == 115200/pair
+- leaving 12K for other
+12k splits up into..
+- RAM (8k?)
+- buffer pointer
+- sprite list?
+- audio buffer?
+- command queue to GPU
+- response queue from GPU
+
+
+Desired features..
+
+cpu1:
+reset   1
+power   4
+xtal    2
+led     1       --> 8 must haves
+isp     3 *share 
+
+== PB 8 avail
+== PD 7 avail
+serial  2 (tx/rx) pin14/15 (pd0, pd1; D = 0-6bits)
+== PA 8 avail
+== PC 8 avail
+
+
+
+cpu2:
+reset   1
+power   4
+xtal    2
+led     1       --> 8 must haves
+isp     3 *share
+
+serial  2 (tx/rx)
+VGA     8       (RRGGBB + 2sync)
+
+
+
+
+
+joy1    5-7 (2 via P->S shifter)
+joy2    5-7 (2 via P->S shifter)
+audio   4

@@ -1,0 +1,72 @@
+Memory map..
+- assume 240x240 * 8bit == 57600/screen
+- assume dual buffer == 57600*2 == 115200/pair
+- leaving 12K for other
+12k splits up into..
+- RAM (8k?)
+- buffer pointer
+- sprite list?
+- audio buffer?
+- command queue to GPU
+- response queue from GPU
+
+
+notes:
+- serial in C: http://www.evilmadscientist.com/2009/basics-serial-communication-with-avr-microcontrollers/
+
+
+options:
+- atmega1284 .. 100pin tqfp, but 16mhz (86 I/O pins!)
+
+
+
+
+unknown location:
+- cart slot (size? use?)
+- joy2    2shifted - 5-7 (2 via P->S shifter)
+- led     1
+
+
+
+
+cpu1:
+reset   1
+power   4
+aref    1
+xtal    2       --> 8 must haves
+isp     3 *share 
+
+== PB 8 avail
+isp     (free)
+address hi * 2 shifted (8 bits in shift); do I need 9bit shift (chained shifters? more pins, or no?) for 128K..
+lcd     6 (4 data, 2 control)
+== PD 8 avail
+serial  2 (tx/rx) pin14/15 (pd0, pd1; D = 0-6bits)
+audio   3       (3 bit audio ftw :P)
+control 3       (ram 3 control pins)
+== PA 8 avail
+address bus * 8
+== PC 8 avail
+data bus * 8
+
+
+
+cpu2:
+reset   1
+power   4
+aref    1
+xtal    2       --> 8 must haves
+isp     3 *share
+
+== PB 8 avail
+isp     (free)
+address hi * 2 shifted (8 bits in shift)
+led     1
+joy1    2shifted - 5-7 (2 via P->S shifter)
+control 3        (3 pins needed for ram control)
+== PD 8 avail
+data bus * 8
+== PA 8 avail
+address low * 8
+== PC 8 avail
+VGA     8       RRGGBB+sync*2
