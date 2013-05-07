@@ -15,6 +15,8 @@ int main( void )
   char s[sizeof("4294967295")];		// ASCII space for 32 bit number
   char textbuf [ 16 + 1 ];
 
+  //_delay_ms ( 5000 );
+
   lcd_init();
 
 #if 1
