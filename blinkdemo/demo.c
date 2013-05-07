@@ -1,0 +1,46 @@
+
+#include <inttypes.h>
+#include <avr/io.h>
+#include <avr/interrupt.h>
+#include <avr/sleep.h>
+
+#include "iocompat.h"           /* Note [1] */
+
+// install path: /usr/lib/avr/include/avr
+
+#if 1
+//#define F_CPU 1000000UL  /* 1 MHz CPU clock */
+#define F_CPU 20000000UL  /* 1 MHz CPU clock */
+
+#include <util/delay.h>
+#include <avr/io.h>
+
+// direction
+//   ADR (analog direction register) and DDR (digital direction register)
+//   DDRx -> set value to 1, sets dir to write; low is read
+//   PORTxn -> set high; if write, sets to high; if read, sets pull up resistor
+// interupts
+//   GIMSK = _BV (INT0); // int - Enable external interrupts int0
+//   MCUCR = _BV (ISC01); // int - INT0 is falling edge
+//   sei(); // int - Global enable interrupts
+
+int main ( void ) {
+  DDRB = _BV (PB2);               /* PC0 is digital output */
+
+  while ( 1 ) {
+
+    /* set PC0 on PORTC (digital high) and delay for 500mS */
+    PORTB &= ~_BV(PB2);
+    _delay_ms ( 100 );
+
+    /*  PC0 on PORTC (digital 0) and delay for 500mS */
+    PORTB |= _BV(PB2);
+    _delay_ms ( 100 );
+  }
+
+  return (0);
+}
+#endif
+
+#if 0
+#endif

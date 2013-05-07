@@ -1,0 +1,160 @@
+Tutorial for HD44780-LCD and similar.
+Following an easy, universal and code saving example.
+
+1.
+There are different ways to control the LCD. You can use the 8bit mode with busy testing or the 4bit mode with busy waiting.
+
+On busy waiting a character need about 50탎 to be transmitted. But nobody was able to read a character within 50탎.
+E.g. a digital meter display only up to 5 measurements per second, which was good readable. So a 200ms update rate was also an ergonomic value for our display.
+Then e.g. for a 2*16 LCD this result in a CPU load of:
+50탎 * 32 / 200ms = 0.8%.
+So the 4bit mode with busy waiting may cause no remarkable CPU load.
+But it need only 6 IO-pins, so there is no reason to waste 5 IO-pins more on using the 8bit mode with busy testing.
+
+Thus we need the following 6 LCD-lines connected to the AVR:
+DB7, DB6, DB5, DB4, RS and E.
+The RW-line must be connected to GND. Forget not the contrast input connected according to the datasheet of your LCD. On some LCD it can be connected to GND, but some others may need a negative voltage on it!
+The DB3, DB2, DB1 and DB0 lines may be connected to GND.
+
+
+2.
+The next point was, that the LCD should use any 6 IO-pins, even if not on the same 8bit port. Since it make the pcb easier and allow still to use special functions (UART, I2C, timer, ...) of certain IO-pins.
+To do so, we need a simple way to define single IO-pins.
+This can be done easily with the following macro:
+[code]
+struct bits {
+  uint8_t b0:1, b1:1, b2:1, b3:1, b4:1, b5:1, b6:1, b7:1;
+} __attribute__((__packed__));
+#define SBIT_(port,pin) ((*(volatile struct bits*)&port).b##pin)
+#define	SBIT(x,y)       SBIT_(x,y)
+[/code]
+The macro was described on another tutorial:
+http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&t=67368&start=all
+
+Now we can define the 6 needed IO-pins. We must also define the corresponding direction bits, since a macro can not generate a second macro inside:
+[code]
+#define LCD_D4          SBIT( PORTB, 0 )
+#define LCD_DDR_D4      SBIT( DDRB, 0 )
+
+#define LCD_D5          SBIT( PORTB, 4 )
+#define LCD_DDR_D5      SBIT( DDRB, 4 )
+
+#define LCD_D6          SBIT( PORTB, 3 )
+#define LCD_DDR_D6      SBIT( DDRB, 3 )
+
+#define LCD_D7          SBIT( PORTB, 5 )
+#define LCD_DDR_D7      SBIT( DDRB, 5 )
+
+#define LCD_RS          SBIT( PORTB, 2 )
+#define LCD_DDR_RS      SBIT( DDRB, 2 )
+
+#define LCD_E0          SBIT( PORTB, 1 )
+#define LCD_DDR_E0      SBIT( DDRB, 1 )
+[/code]
+
+3.
+Now we can start to do the code.
+On looking on the HD44780 datasheet, we can see, that we must send a nibble (4bit) and then pulse the E-line high and low. This was the basic step on all sending and thus we write our first function for it.
+We input a byte, where are only the upper 4 bits are used and set the 4 IO-lines to the LCD accordingly. Then the E-line was pulsed for about 1탎:
+[code]
+static void lcd_nibble( uint8_t d )
+{
+  LCD_D4 = 0; if( d & 1<<4 ) LCD_D4 = 1;
+  LCD_D5 = 0; if( d & 1<<5 ) LCD_D5 = 1;
+  LCD_D6 = 0; if( d & 1<<6 ) LCD_D6 = 1;
+  LCD_D7 = 0; if( d & 1<<7 ) LCD_D7 = 1;
+
+  LCD_E0 = 1;
+  _delay_us( 1 );                       // 1us
+  LCD_E0 = 0;
+[/code]
+
+
+But after initialization we need always to send a whole byte. And after every byte we need a busy waiting of about 50탎. So we need the next function:
+[code]
+static void lcd_byte( uint8_t d )
+{
+  lcd_nibble( d );
+  lcd_nibble( d<<4 );
+  _delay_us( 50 );                      // 50us
+}
+[/code]
+
+
+Also we must send instructions and data to the LCD. The only difference was the state of the RS line. And some instructions (Clear Dispay, Return Home) need a longer busy time of about 2ms:
+[code]
+void lcd_command( uint8_t d )
+{
+  LCD_RS = 0;
+  lcd_byte( d );
+  if( d <= 3 )
+    _delay_ms( 2 );                     // wait 2ms
+}
+
+void lcd_putchar( uint8_t d )
+{
+  LCD_RS = 1;
+  lcd_byte( d );
+}
+[/code]
+
+
+Now we are ready to intialize the LCD. At first we must set the 6 IO-pins as outputs. Then we should follow the order for initialization of the 4bit mode according to the data sheet. Why should we try to set the 8bit mode first?
+After a clean power on reset the LCD should be in the 8bit mode. But after slowly rising power or a reset by another source (manual knob, watchdog), the state was unknown.
+So the only chance to turn the LCD into a known state, was to set the 8bit mode first. Since this may fail, if the LCD was in the 4bit mode and awaiting the second nibble, it must be tried two times.
+[code]
+void lcd_init( void )
+{
+  LCD_DDR_D4 = 1;                               // enable output pins
+  LCD_DDR_D5 = 1;
+  LCD_DDR_D6 = 1;
+  LCD_DDR_D7 = 1;
+  LCD_DDR_RS = 1;
+  LCD_DDR_E0 = 1;
+  LCD_E0 = 0;
+  LCD_RS = 0;                                   // send commands
+
+  _delay_ms( 15 );
+  lcd_nibble( 0x30 );
+  _delay_ms( 4.1 );
+  lcd_nibble( 0x30 );
+  _delay_us( 100 );
+  lcd_nibble( 0x30 );
+  _delay_us( LCD_TIME_DAT );
+  lcd_nibble( 0x20 );                           // 4 bit mode
+  _delay_us( LCD_TIME_DAT );
+  lcd_command( 0x28 );                          // 2 lines 5*7
+  lcd_command( 0x08 );                          // display off
+  lcd_command( 0x01 );                          // display clear
+  lcd_command( 0x06 );                          // cursor increment
+  lcd_command( 0x0C );                          // on, no cursor, no blink
+[/code]
+
+
+Some additional functions:
+lcd_puts(): display a string until zero byte
+ldc_xy(): set the cursor to x (column), y (line)
+ldc_blank: overwrite a piece of the LCD with blanks
+
+Why lcd_xy was implemented as macro?
+Since typically the position was known at compile time, it's code saving, if the command was already calculated at compile time also.
+
+Why no clear command?
+On using the clear command you see always an annoying flicker until the text was written again. Thus it looks many more professional, if you omit this command and simple overwrite the old text with the new text.
+
+
+4.
+Finally we are ready to write our first LCD program:
+[code]
+int main( void )
+{
+  lcd_init();
+  lcd_xy( 2, 0 );
+  lcd_puts( "Hello Peter" );
+
+  for(;;){
+  }
+}
+[/code]
+
+Peter Dannegger
