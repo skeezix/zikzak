@@ -21,44 +21,17 @@ int main( void )
 
 #if 1
   char *p;
-  //p = malloc ( 20 );
 
   if ( 1 ) {
-#if 0
-    char  *bitches = "bitchesbecrazy";
+    char  *source = "punky brewster";
     unsigned int i;
-    for ( i = 0; i < /*strlen ( bitches )*/6; i++ ) {
-      textbuf [ i ] = bitches [ i ];
+    for ( i = 0; i < strlen ( source ); i++ ) {
+      textbuf [ i ] = source [ i ];
     }
     textbuf [ i ] = '\0';
-#endif
-    lcd_xy( 0, 1 );
-    unsigned int i;
-    i = 0;
-    textbuf [ i++ ] = 'b';
-    textbuf [ i++] = 'i';
-    textbuf [ i++] = 't';
-    textbuf [ i++] = 'c';
-    textbuf [ i++] = 'h';
-    textbuf [ i++] = 'e';
-    textbuf [ i++] = 's';
-    textbuf [ i++] = ' ';
-    textbuf [ i++] = 'b';
-    textbuf [ i++] = 'e';
-    textbuf [ i++] = ' ';
-    textbuf [ i++] = 'c';
-    textbuf [ i++] = 'r';
-    textbuf [ i++] = 'a';
-    textbuf [ i++] = 'z';
-    textbuf [ i++] = 'y';
-    textbuf [ i++ ] = '\0';
+    lcd_xy( 0, 0 );
     lcd_puts( textbuf );			// display number right adjusted
   }
-#endif
-
-#if 0
-  lcd_xy( 0, 1 );
-  lcd_puts( "Hello Peter" );
 #endif
 
 #if 0
