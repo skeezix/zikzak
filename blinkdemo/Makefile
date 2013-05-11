@@ -10,12 +10,11 @@ CFLAGS=-g -Os -mmcu=atmega644
 # sudo avrdude -p m644 -c avrispmkII -P usb -U demo.hex
 
 clean:
-	rm demo.o
-	rm demo.elf
-	rm demo.hex
-	rm demo.map
-
-	rm compat.o
+	rm -f demo.o
+	rm -f demo.elf
+	rm -f demo.hex
+	rm -f demo.map
+	rm -f compat.o
 
 demo:	demo.o compat.o
 	avr-gcc -g -mmcu=atmega8 -o demo.elf demo.o
