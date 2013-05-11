@@ -5,7 +5,8 @@ DEVICEDUDE=m644
 
 CC=avr-gcc
 LD=avr-gcc
-CFLAGS=-g -Os -mmcu=${DEVICE}
+CFLAGS=-Os -mmcu=${DEVICE} # -g
+LDFLAGS=-mmcu=${DEVICE} # -g
 
 OBJS=main.o
 
@@ -33,7 +34,7 @@ clean:
 	rm -f *~*
 
 vgatest:	${OBJS}
-	avr-gcc -g -mmcu=${DEVICE} -o vgatest.elf ${OBJS}
+	avr-gcc ${LDFLAGS} -o vgatest.elf ${OBJS}
 	avr-objcopy -j .text -j .data -O ihex vgatest.elf vgatest.hex
 
 deploy:

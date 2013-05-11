@@ -11,6 +11,7 @@
 #include <stdlib.h>
 
 #include "main.h"
+#include "nop.h"
 
 // skee board
 // PC 01 RR
@@ -19,11 +20,14 @@
 // PB 0 vsync (pin 1)
 // PB 1 hsync (pin 2)
 
-#define VSYNC_LOW    PORTB &= ~_BV(0)
-#define VSYNC_HIGH   PORTB |= _BV(0)
+#define LED_OFF      PORTB &= ~(1<<2)
+#define LED_ON       PORTB |= (1<<2)
 
-#define HSYNC_LOW    PORTB &= ~_BV(1)
-#define HSYNC_HIGH   PORTB |= _BV(1)
+#define VSYNC_LOW    PORTB &= ~_BV(1) /* sync pulse is LOW */
+#define VSYNC_HIGH   PORTB |= _BV(1)  /* should be high all the rest of the time */
+
+#define HSYNC_LOW    PORTB &= ~_BV(0) /* sync pulse is LOW */
+#define HSYNC_HIGH   PORTB |= _BV(0)  /* should be high all the rest of the time */
 
 #define RED_OFF      PORTC &= ~_BV(1)
 #define RED_ON       PORTC |= _BV(1)
@@ -34,6 +38,41 @@
 #define BLUE_OFF     PORTC &= ~_BV(5)
 #define BLUE_ON      PORTC |= _BV(5)
 
+#define CYCLE_ON     PORTC = i&0x3F
+#define CYCLE_OFF    PORTC &= ~0x3F
+
+#define RGBALL_OFF   PORTC = 0
+
+#define REGION(ymax,on,off)                                                                   \
+    i=0;                                                                                      \
+    /* 200 Lines */                                                                           \
+    while ( i < ymax ) {                                                                      \
+                                                                                              \
+      on;                                                                                     \
+                                                                                              \
+      /* 20uS Color Data */                                                                   \
+      _delay_us ( 20 ); /* 1uS */                                                             \
+                                                                                              \
+      off;                                                                                    \
+                                                                                              \
+      /* 1uS Front Porch */                                                                   \
+      _delay_us ( 1 ); /* 1uS */                                                              \
+                                                                                              \
+      /* 3.2uS Horizontal Sync */                                                             \
+      HSYNC_LOW;                                                                              \
+      _delay_us ( 3 );                                                                        \
+      NOP4;                                                                                   \
+                                                                                              \
+      /* 2.2uS Back Porch */                                                                  \
+      HSYNC_HIGH;                                                                             \
+      _delay_us ( 2 );                                                                        \
+      NOP4;                                                                                   \
+                                                                                              \
+      i++;                                                                                    \
+      /* 26.4uS Total */                                                                      \
+    }
+
+
 void main ( void ) {
   int i = 0;
 
@@ -41,161 +80,30 @@ void main ( void ) {
 
   DDRB = 0xFF; // B out
   DDRC = 0xFF; // C out
-  
-  //Loop Over-And-Over Again
+
+  HSYNC_HIGH;
+  VSYNC_HIGH;
+
   while ( 1 ) {
 
-    i=0;
-    //VSYNC Low
+    // -------------------------------------------------------------------------------
+    // Horizontal line business
+    // -------------------------------------------------------------------------------
+
+    REGION(150,RED_ON,RED_OFF);
+    REGION(150,GREEN_ON,GREEN_OFF);
+    REGION(150,BLUE_ON,BLUE_OFF);
+    REGION(150,CYCLE_ON,RGBALL_OFF);
+
+    // -------------------------------------------------------------------------------
+    // Vertical sync business
+    // -------------------------------------------------------------------------------
+
+    REGION(1,NOP,NOP); /* front porch -> 1 line */
     VSYNC_LOW;
-    //200 Lines Of Red
-    while ( i < 200 ) {
-
-      RED_ON;
-          
-      // 2.2uS Back Porch
-      _delay_us ( 2 );  
-      __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
-          
-      //20uS Color Data
-      _delay_us ( 20 ); // 1uS        
-          
-      RED_OFF;
-          
-      // 1uS Front Porch
-      _delay_us(1); // 1uS 
-
-      i++;
-          
-      // 3.2uS Horizontal Sync
-      HSYNC_HIGH;
-
-      _delay_us(3);
-      __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
-
-      HSYNC_LOW;
-          
-      // 26.4uS Total
-    }
-
-
-    i = 0;
-    // VSYNC Low 
-    VSYNC_LOW;
-    // 200 Lines Of Green
-    while ( i < 200 ) {
-
-      GREEN_ON;      
-            
-      // 2.2uS Back Porch
-      _delay_us(2);
-      __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
-          
-      // 20uS Color Data
-      _delay_us(20); // 1uS        
-          
-      GREEN_OFF;
-          
-      // 1uS Front Porch
-      _delay_us ( 1 ); // 1uS 
-      i++;
-          
-      // 3.2uS Horizontal Sync
-      HSYNC_HIGH;
-
-      _delay_us(3);
-      __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
-
-      HSYNC_LOW;
-          
-      // 26.4uS Total
-    }    
-  
-    i = 0;
-    // VSYNC Low 
-    VSYNC_LOW;
-    // 200 Lines Of Blue
-    while ( i < 200 ) {
-
-      BLUE_ON;
-
-      // 2.2uS Back Porch
-      _delay_us(2);
-      __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
-          
-      // 20uS Color Data
-      _delay_us ( 20 ); // 1uS        
-          
-      BLUE_OFF;
-          
-      // 1uS Front Porch
-      _delay_us ( 1 ); // 1uS 
-      i++;
-          
-      // 3.2uS Horizontal Sync
-      HSYNC_HIGH;
-      _delay_us ( 3 );
-      __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
-
-      HSYNC_LOW;
-          
-      //26.4uS Total
-    }    
-
-    i = 0;
-    // VSYNC High
+    REGION(4,NOP,NOP); /* sync pulse -> 4 lines */
     VSYNC_HIGH;
-    // 4 Lines Of VSYNC   
-    while ( i < 4 ) {         
-      // 2.2uS Back Porch    
-      _delay_us(2);
-      __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
-          
-      // 20 uS Of Color Data
-      _delay_us(20);// 20uS
-          
-      // 1uS Front Porch
-      _delay_us(1); // 1uS
-      i++;
-          
-      // HSYNC for 3.2uS
-      HSYNC_HIGH;
-
-      _delay_us(3);
-      __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
-
-      HSYNC_LOW;
-          
-      //26.4uS Total
-    }
-      
-    i = 0;
-    //VSYNC Low
-    VSYNC_LOW;
-    // 23 Lines Of Vertical Back Porch + 1 Line Of Front Porch
-    // This is very, very flexible...I'm setting it to 22 Lines!
-    while ( i < 22 ) {
-      // 2.2uS Back Porch
-      _delay_us(2);
-      __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
-    
-      // 20uS Color Data
-      _delay_us ( 20 );
-            
-      // 1uS Front Porch
-      _delay_us(1); // 1uS
-      i++;
-          
-      // HSYNC for 3.2uS
-      HSYNC_HIGH;
-
-      _delay_us(3);
-      __asm__("nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t""nop\n\t");
-
-      HSYNC_LOW;  //Low  
-          
-      // 26.4uS Total
-    }
+    REGION(23,NOP,NOP); /* back porch -> 23 lines */
 
   } // while forever
 
