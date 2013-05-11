@@ -23,7 +23,7 @@ int main( void )
   char *p;
 
   if ( 1 ) {
-    char  *source = "punky brewster";
+    char  *source = "68u65gujl";
     unsigned int i;
     for ( i = 0; i < strlen ( source ); i++ ) {
       textbuf [ i ] = source [ i ];
