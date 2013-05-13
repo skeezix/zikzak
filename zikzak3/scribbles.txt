@@ -11,6 +11,15 @@ Memory map..
 - response queue from GPU
 
 
+**
+** add a third chip, for I/O?
+** - lcd?
+** - cart? SD?
+** - joysticks
+** - serial?
+**
+
+
 notes:
 - serial in C: http://www.evilmadscientist.com/2009/basics-serial-communication-with-avr-microcontrollers/
 
@@ -25,6 +34,7 @@ unknown location:
 - cart slot (size? use?)
 - joy2    2shifted - 5-7 (2 via P->S shifter)
 - led     1
+- err led 1
 
 
 
