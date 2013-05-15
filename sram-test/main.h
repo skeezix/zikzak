@@ -26,6 +26,7 @@
 #define CE_LOW       PORTD &= ~(1<<6)
 
 #define DATABUS_DIR  DDRA
+#define DATABUS_PORT PORTA
 #define DIR_OUT      0xFF
 #define DIR_IN       0x00
 

@@ -24,27 +24,26 @@ void main ( void ) {
 
   LED_OFF;
 
-  CE_HIGH;     // disable chip
-  WE_HIGH;     // disable write
-  OE_LOW;      // enable read
+  sram_reset();
 
-#if 1 // pre clear ram
-  sram_write ( 0, 0 );
-  sram_write ( 1, 0 );
-  sram_write ( 2, 0 );
-  sram_write ( 3, 0 );
+#if 1
+  // clear all ram to zero
+  for ( i = 0; i < 0x0F; i++ ) {
+    sram_write ( i, 0 );
+  }
 #endif
 
 #if 1
-  sram_write ( 0, 1 );
-  sram_write ( 1, 1 );
-  sram_write ( 2, 1 );
+  // store some test values
+  sram_write (  0, 1 );
+  sram_write (  1, 1 );
+  sram_write (  2, 1 );
 #endif
 
   while ( 1 ) {
 
-#if 0
-    // LED blinker
+#if 0 // TEST AS NEEDED
+    // LED blinker -- works fine
     if ( i == (F_CPU/40) ) {
 
       if ( LEDPORT & LED ) {
@@ -58,21 +57,22 @@ void main ( void ) {
     i++;
 #endif
 
-#if 1 // sram test
-    if ( ( sram_read ( 0 ) == 1 ) &&
-         ( sram_read ( 1 ) == 1 ) )
+#if 0 // TEST TWO
+    // sram test - can we get back the expected values
+    if ( ( sram_read ( 9 ) == 1 ) &&
+         ( sram_read ( 10 ) == 1 ) )
     {
       LED_ON;
     }
 #endif
 
-#if 0 // sram test
-    if ( sram_read ( 1 ) == 1 ) {
+#if 1 // TEST ONE
+    // sram test - can we get back the expected values
+    if ( sram_read ( 0 ) == 1 ) {
       LED_ON;
     }
 #endif
 
-    // SRAM business
 
   } // while forever
 
