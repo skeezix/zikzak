@@ -27,6 +27,7 @@
 
 #define DATABUS_DIR  DDRA
 #define DATABUS_PORT PORTA
+#define DATABUS_PIN  PINA
 #define DIR_OUT      0xFF
 #define DIR_IN       0x00
 

@@ -14,7 +14,8 @@
 #include "nop.h"
 
 void main ( void ) {
-  long unsigned int i = 0;
+  unsigned int i = 0;
+  unsigned int j = 0;
 
   cli();
 
@@ -35,9 +36,22 @@ void main ( void ) {
 
 #if 1
   // store some test values
-  sram_write (  0, 1 );
-  sram_write (  1, 1 );
-  sram_write (  2, 1 );
+  for ( i = 0; i < 0x0F; i++ ) {
+    sram_write ( i, i );
+  }
+#endif
+
+#if 1
+  // sram test - can we get back the expected values
+  j = 0;
+  for ( i = 0; i < 0x0F; i++ ) {
+    if ( sram_read ( i ) != i ) {
+      j++;
+    }
+  }
+  if ( j == 0 ) {
+    LED_ON;
+  }
 #endif
 
   while ( 1 ) {
@@ -56,23 +70,6 @@ void main ( void ) {
     } // if counter is high
     i++;
 #endif
-
-#if 0 // TEST TWO
-    // sram test - can we get back the expected values
-    if ( ( sram_read ( 9 ) == 1 ) &&
-         ( sram_read ( 10 ) == 1 ) )
-    {
-      LED_ON;
-    }
-#endif
-
-#if 1 // TEST ONE
-    // sram test - can we get back the expected values
-    if ( sram_read ( 0 ) == 1 ) {
-      LED_ON;
-    }
-#endif
-
 
   } // while forever
 

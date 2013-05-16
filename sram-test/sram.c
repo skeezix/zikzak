@@ -9,6 +9,9 @@
 #include <avr/sleep.h>
 #include <util/delay.h>
 
+
+
+#if 1 // skeezix
 void sram_reset ( void ) {
   CE_HIGH;     // disable chip
   WE_HIGH;     // disable write
@@ -30,15 +33,15 @@ void sram_write ( unsigned int address, unsigned char data ) {
 
   // data
   DATABUS_DIR = DIR_OUT;            // set data to output
-  DATABUS_PORT = ( data & 0x0F );   // write data out
+  DATABUS_PORT = data;       // write data out
 
   OE_HIGH;                   // set read high (disabled)
   WE_LOW;                    // set write low (enabled)
   CE_LOW;                    // enable chip
-  NOP5;
+  NOP2;
 
   CE_HIGH;                   // disable chip
-  NOP5;
+  //NOP5;
 
   PORTA = 0;                 // clear the write-buffer
 
@@ -65,11 +68,12 @@ unsigned char sram_read ( unsigned int address ) {
   OE_LOW;                   // set read low (enabled)
   WE_HIGH;                    // set write high (disabled)
   CE_LOW;                    // enable chip
-  NOP5;
+  NOP2;
 
-  data = DATABUS_PORT & 0x0F;
+  data = DATABUS_PIN;
   CE_HIGH;                    // disable chip
-  NOP5;
+  //NOP5;
 
   return data;
 } 
+#endif

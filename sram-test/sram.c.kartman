@@ -1,0 +1,52 @@
+#if 0 // Kartman
+void sram_reset ( void )
+{
+  CE_HIGH;     // disable chip
+  WE_HIGH;     // disable write
+  OE_HIGH;      // disable read
+}
+
+void sram_write ( unsigned int address, unsigned char data )
+{
+
+  // address           
+  PORTD &= (~0x0F);          // we're using only half a port here
+  PORTD |= (address & 0x0F);
+
+  // data           
+  DATABUS_DIR = DIR_OUT;     // set data to output
+  PORTA = ( data & 0x0F );    // write data out
+
+  WE_LOW;                    // set write low (enabled)
+  CE_LOW;                    // enable chip
+  NOP5;
+  WE_HIGH;
+  CE_HIGH;                   // disable chip                                                                                               
+  NOP5;
+
+  DATABUS_DIR = DIR_IN;     // set data to input
+  return;
+}
+
+unsigned char sram_read ( unsigned int address ) {
+  // OE - low, WE - high
+  unsigned char data = 0;
+
+  PORTD &= (~0x0F);          // we're using only half a port here
+  PORTD |= (address & 0x0F);
+
+  // data           
+  DATABUS_DIR = DIR_IN;        // set data to input
+
+  OE_LOW;                   // set read low (enabled)
+  CE_LOW;                    // enable chip
+  NOP5;
+
+  data = PINA & 0x0F;         //***READ the PIN register!! **
+  CE_HIGH;                    // disable chip
+  OE_HIGH;
+  NOP5;
+
+  return data;
+} 
+#endif
