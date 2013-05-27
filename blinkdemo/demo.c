@@ -25,16 +25,16 @@
 //   sei(); // int - Global enable interrupts
 
 int main ( void ) {
-  DDRB = _BV (PB2);               /* PC0 is digital output */
+  DDRB = _BV (PB0);               /* PC0 is digital output */
 
   while ( 1 ) {
 
     /* set PC0 on PORTC (digital high) and delay for 500mS */
-    PORTB &= ~_BV(PB2);
+    PORTB &= ~_BV(PB0);
     _delay_ms ( 100 );
 
     /*  PC0 on PORTC (digital 0) and delay for 500mS */
-    PORTB |= _BV(PB2);
+    PORTB |= _BV(PB0);
     _delay_ms ( 100 );
   }
 
