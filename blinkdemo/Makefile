@@ -3,9 +3,6 @@ all:	demo
 ATMEGA=atmega128
 #ATMEGA=atmega644
 
-DUDEMEGA=m128
-#DUDEMEGA=m644
-
 CC=avr-gcc
 LD=avr-gcc
 #CFLAGS=-g -Os -mmcu=${ATMEGA}
@@ -29,4 +26,4 @@ demo:	demo.o# compat.o
 	avr-objcopy -j .text -j .data -O ihex demo.elf demo.hex
 
 deploy:
-	sudo avrdude -p ${DUDEMEGA} -c avrispmkII -P usb -U demo.hex
+	sudo avrdude -p ${ATMEGA} -c avrispmkII -P usb -U demo.hex
