@@ -1,0 +1,91 @@
+Assuming:
+
+- atmega128A 16MHz max -> 64 TQFP -> CPU
+  sram 4K
+  reserved: 
+  PEN 1
+  PB*3 MOSI SCK MISO - free
+  20 21 22 Reset, Vcc, GND
+  23 24 XTAL
+  52 53 Vcc GND
+  62 63 64 AREF AVcc GND
+  --> 11 used up = max 53 I/O pins
+  PE0 / PE1 - RX, TX serial
+
+- atmega644 20MHz max -> 40 DIP -> GPU
+  sram 4k
+  reserved:
+  reset   1
+  power   4
+  aref    1
+  xtal    2       --> 8 must haves
+
+  isp     3 *share 
+
+- dual 64KB or larger SRAMs for double buffering
+
+
+**
+** add a third chip, for I/O?
+** - lcd?
+** - cart? SD?
+** - joysticks
+** - serial?
+**
+unknown location:
+- cart slot (size? use?)
+- joy2    2shifted - 5-7 (2 via P->S shifter)
+- led     1
+- err led 1
+- LCD     6 (4data, 2 control)
+
+
+
+CPU (64pin):
+PE 8 including TX/RX
+  - 2 serial to MAX232 to PC
+  - 1 vblank signal
+  - 1 heartbeat LED (flash alive, solid or off when crashed?)
+  - 2*2 joystick fire
+PB 8 including ISP
+  - isp is free
+  - 4*2 joystick directions
+  note: joy2 is also tied to gpu, so can do communications.
+PF 8
+  - 8 audio
+PA 8
+  - 8 low address lines
+PG 3
+  - 2 control (WE, OE)
+  - 1 mem switch!
+PC 8
+  - 8 high address lines
+PD 8
+  - 8 data lines
+
+
+
+
+cpu2 (40pins, 32 usable):
+reset   1
+power   4
+aref    1
+xtal    2       --> 8 must haves
+isp     3 *share
+
+== PB 8 avail
+isp     (free)
+8 address hi
+0 control (free; tie OE to high, WE to low... we don't write ever.)
+== PD 8 avail
+0 data bus
+2 RX/TX serial (PD0, PD1)
+6 joy2 communications with cpu
+== PA 8 avail
+8 address low
+== PC 8 avail
+2 VGA Sync
+1 LED heartbeat
+1 VBLANK signal to cpu
+1 VGA OFF (buffer drop)
+3 FREE
