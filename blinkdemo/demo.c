@@ -4,13 +4,14 @@
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 
-#include "iocompat.h"           /* Note [1] */
+//#include "iocompat.h"           /* Note [1] */
 
 // install path: /usr/lib/avr/include/avr
 
 #if 1
 //#define F_CPU 1000000UL  /* 1 MHz CPU clock */
-#define F_CPU 20000000UL  /* 1 MHz CPU clock */
+#define F_CPU 8000000UL  /* 8 MHz CPU clock */
+//#define F_CPU 20000000UL  /* 20 MHz CPU clock */
 
 #include <util/delay.h>
 #include <avr/io.h>
@@ -25,17 +26,17 @@
 //   sei(); // int - Global enable interrupts
 
 int main ( void ) {
-  DDRB = _BV (PB0);               /* PC0 is digital output */
+  DDRE = _BV (PE0);               /* PC0 is digital output */
 
   while ( 1 ) {
 
     /* set PC0 on PORTC (digital high) and delay for 500mS */
-    PORTB &= ~_BV(PB0);
-    _delay_ms ( 100 );
+    PORTE &= ~_BV(PE0);
+    _delay_ms ( 200 );
 
     /*  PC0 on PORTC (digital 0) and delay for 500mS */
-    PORTB |= _BV(PB0);
-    _delay_ms ( 100 );
+    PORTE |= _BV(PE0);
+    _delay_ms ( 200 );
   }
 
   return (0);
