@@ -10007,8 +10007,6 @@ Based on the following sources:&lt;p&gt;
 <part name="R6" library="rcl" deviceset="R-US_" device="0204/2V"/>
 <part name="R7" library="rcl" deviceset="R-US_" device="0204/2V"/>
 <part name="R8" library="rcl" deviceset="R-US_" device="0204/2V"/>
-<part name="R9" library="rcl" deviceset="R-US_" device="0204/2V"/>
-<part name="R10" library="rcl" deviceset="R-US_" device="0204/2V"/>
 <part name="INVERTOR" library="74xx-us" deviceset="74*04" device="N" technology="LS"/>
 <part name="BUFFER3" library="74xx-us" deviceset="74*245" device="N" technology="LS"/>
 </parts>
@@ -10043,21 +10041,21 @@ Based on the following sources:&lt;p&gt;
 <instance part="LED1" gate="G$1" x="-203.2" y="-27.94"/>
 <instance part="P+1" gate="1" x="-322.58" y="124.46" rot="MR0"/>
 <instance part="GND1" gate="1" x="-322.58" y="114.3" rot="MR0"/>
-<instance part="X1" gate="-1" x="307.34" y="-238.76"/>
-<instance part="X1" gate="-2" x="307.34" y="-241.3"/>
-<instance part="X1" gate="-3" x="307.34" y="-243.84"/>
-<instance part="X1" gate="-4" x="307.34" y="-246.38"/>
-<instance part="X1" gate="-5" x="307.34" y="-248.92"/>
-<instance part="X1" gate="-6" x="307.34" y="-251.46"/>
-<instance part="X1" gate="-7" x="307.34" y="-254"/>
-<instance part="X1" gate="-8" x="307.34" y="-256.54"/>
-<instance part="X1" gate="-9" x="307.34" y="-259.08"/>
-<instance part="X1" gate="-10" x="307.34" y="-261.62"/>
-<instance part="X1" gate="-11" x="307.34" y="-264.16"/>
-<instance part="X1" gate="-12" x="307.34" y="-266.7"/>
-<instance part="X1" gate="-13" x="307.34" y="-269.24"/>
-<instance part="X1" gate="-14" x="307.34" y="-271.78"/>
-<instance part="X1" gate="-15" x="307.34" y="-274.32"/>
+<instance part="X1" gate="-1" x="299.72" y="-233.68"/>
+<instance part="X1" gate="-2" x="299.72" y="-236.22"/>
+<instance part="X1" gate="-3" x="299.72" y="-238.76"/>
+<instance part="X1" gate="-4" x="299.72" y="-241.3"/>
+<instance part="X1" gate="-5" x="299.72" y="-243.84"/>
+<instance part="X1" gate="-6" x="299.72" y="-246.38"/>
+<instance part="X1" gate="-7" x="299.72" y="-248.92"/>
+<instance part="X1" gate="-8" x="299.72" y="-251.46"/>
+<instance part="X1" gate="-9" x="299.72" y="-254"/>
+<instance part="X1" gate="-10" x="299.72" y="-256.54"/>
+<instance part="X1" gate="-11" x="299.72" y="-259.08"/>
+<instance part="X1" gate="-12" x="299.72" y="-261.62"/>
+<instance part="X1" gate="-13" x="299.72" y="-264.16"/>
+<instance part="X1" gate="-14" x="299.72" y="-266.7"/>
+<instance part="X1" gate="-15" x="299.72" y="-269.24"/>
 <instance part="IC1" gate="A" x="-302.26" y="132.08" rot="MR0"/>
 <instance part="GND2" gate="1" x="-302.26" y="50.8" rot="R270"/>
 <instance part="P+2" gate="1" x="-299.72" y="58.42" rot="R90"/>
@@ -10103,12 +10101,10 @@ Based on the following sources:&lt;p&gt;
 <instance part="GND14" gate="1" x="35.56" y="-154.94" rot="R180"/>
 <instance part="R3" gate="G$1" x="274.32" y="-236.22" rot="MR0"/>
 <instance part="R4" gate="G$1" x="274.32" y="-241.3" rot="MR0"/>
-<instance part="R5" gate="G$1" x="274.32" y="-251.46" rot="MR0"/>
-<instance part="R6" gate="G$1" x="274.32" y="-256.54" rot="MR0"/>
-<instance part="R7" gate="G$1" x="274.32" y="-269.24" rot="MR0"/>
-<instance part="R8" gate="G$1" x="274.32" y="-274.32" rot="MR0"/>
-<instance part="R9" gate="G$1" x="274.32" y="-284.48" rot="MR0"/>
-<instance part="R10" gate="G$1" x="274.32" y="-289.56" rot="MR0"/>
+<instance part="R5" gate="G$1" x="274.32" y="-248.92" rot="MR0"/>
+<instance part="R6" gate="G$1" x="274.32" y="-254" rot="MR0"/>
+<instance part="R7" gate="G$1" x="274.32" y="-261.62" rot="MR0"/>
+<instance part="R8" gate="G$1" x="274.32" y="-266.7" rot="MR0"/>
 <instance part="INVERTOR" gate="A" x="-167.64" y="-147.32" rot="R270"/>
 <instance part="BUFFER3" gate="A" x="233.68" y="-256.54"/>
 </instances>
@@ -11559,6 +11555,97 @@ Based on the following sources:&lt;p&gt;
 <wire x1="208.28" y1="-274.32" x2="208.28" y2="-261.62" width="0.1524" layer="91"/>
 <pinref part="BUFFER3" gate="A" pin="A8"/>
 <wire x1="208.28" y1="-261.62" x2="220.98" y2="-261.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$113" class="0">
+<segment>
+<pinref part="BUFFER3" gate="A" pin="B1"/>
+<wire x1="246.38" y1="-243.84" x2="251.46" y2="-243.84" width="0.1524" layer="91"/>
+<wire x1="251.46" y1="-243.84" x2="251.46" y2="-236.22" width="0.1524" layer="91"/>
+<pinref part="R3" gate="G$1" pin="2"/>
+<wire x1="251.46" y1="-236.22" x2="269.24" y2="-236.22" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$114" class="0">
+<segment>
+<pinref part="BUFFER3" gate="A" pin="B2"/>
+<wire x1="246.38" y1="-246.38" x2="254" y2="-246.38" width="0.1524" layer="91"/>
+<wire x1="254" y1="-246.38" x2="254" y2="-241.3" width="0.1524" layer="91"/>
+<pinref part="R4" gate="G$1" pin="2"/>
+<wire x1="254" y1="-241.3" x2="269.24" y2="-241.3" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$115" class="0">
+<segment>
+<pinref part="BUFFER3" gate="A" pin="B3"/>
+<wire x1="246.38" y1="-248.92" x2="269.24" y2="-248.92" width="0.1524" layer="91"/>
+<pinref part="R5" gate="G$1" pin="2"/>
+</segment>
+</net>
+<net name="N$116" class="0">
+<segment>
+<pinref part="BUFFER3" gate="A" pin="B4"/>
+<wire x1="246.38" y1="-251.46" x2="264.16" y2="-251.46" width="0.1524" layer="91"/>
+<wire x1="264.16" y1="-251.46" x2="264.16" y2="-254" width="0.1524" layer="91"/>
+<pinref part="R6" gate="G$1" pin="2"/>
+<wire x1="264.16" y1="-254" x2="269.24" y2="-254" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$117" class="0">
+<segment>
+<pinref part="BUFFER3" gate="A" pin="B5"/>
+<wire x1="246.38" y1="-254" x2="254" y2="-254" width="0.1524" layer="91"/>
+<wire x1="254" y1="-254" x2="254" y2="-261.62" width="0.1524" layer="91"/>
+<pinref part="R7" gate="G$1" pin="2"/>
+<wire x1="254" y1="-261.62" x2="269.24" y2="-261.62" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$118" class="0">
+<segment>
+<pinref part="BUFFER3" gate="A" pin="B6"/>
+<wire x1="246.38" y1="-256.54" x2="251.46" y2="-256.54" width="0.1524" layer="91"/>
+<wire x1="251.46" y1="-256.54" x2="251.46" y2="-266.7" width="0.1524" layer="91"/>
+<pinref part="R8" gate="G$1" pin="2"/>
+<wire x1="251.46" y1="-266.7" x2="269.24" y2="-266.7" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$119" class="0">
+<segment>
+<pinref part="R3" gate="G$1" pin="1"/>
+<wire x1="279.4" y1="-236.22" x2="284.48" y2="-236.22" width="0.1524" layer="91"/>
+<wire x1="284.48" y1="-236.22" x2="284.48" y2="-238.76" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-3" pin="F"/>
+<wire x1="284.48" y1="-238.76" x2="297.18" y2="-238.76" width="0.1524" layer="91"/>
+<pinref part="R4" gate="G$1" pin="1"/>
+<wire x1="279.4" y1="-241.3" x2="284.48" y2="-241.3" width="0.1524" layer="91"/>
+<wire x1="284.48" y1="-241.3" x2="284.48" y2="-238.76" width="0.1524" layer="91"/>
+<junction x="284.48" y="-238.76"/>
+</segment>
+</net>
+<net name="N$121" class="0">
+<segment>
+<pinref part="R5" gate="G$1" pin="1"/>
+<wire x1="279.4" y1="-248.92" x2="284.48" y2="-248.92" width="0.1524" layer="91"/>
+<wire x1="284.48" y1="-248.92" x2="284.48" y2="-251.46" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-8" pin="F"/>
+<wire x1="284.48" y1="-251.46" x2="297.18" y2="-251.46" width="0.1524" layer="91"/>
+<pinref part="R6" gate="G$1" pin="1"/>
+<wire x1="279.4" y1="-254" x2="284.48" y2="-254" width="0.1524" layer="91"/>
+<wire x1="284.48" y1="-254" x2="284.48" y2="-251.46" width="0.1524" layer="91"/>
+<junction x="284.48" y="-251.46"/>
+</segment>
+</net>
+<net name="N$123" class="0">
+<segment>
+<pinref part="R7" gate="G$1" pin="1"/>
+<wire x1="279.4" y1="-261.62" x2="284.48" y2="-261.62" width="0.1524" layer="91"/>
+<wire x1="284.48" y1="-261.62" x2="284.48" y2="-264.16" width="0.1524" layer="91"/>
+<pinref part="X1" gate="-13" pin="F"/>
+<wire x1="284.48" y1="-264.16" x2="297.18" y2="-264.16" width="0.1524" layer="91"/>
+<pinref part="R8" gate="G$1" pin="1"/>
+<wire x1="279.4" y1="-266.7" x2="284.48" y2="-266.7" width="0.1524" layer="91"/>
+<wire x1="284.48" y1="-266.7" x2="284.48" y2="-264.16" width="0.1524" layer="91"/>
+<junction x="284.48" y="-264.16"/>
 </segment>
 </net>
 </nets>
