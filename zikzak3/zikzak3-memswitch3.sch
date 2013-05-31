@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -10010,6 +10010,7 @@ Based on the following sources:&lt;p&gt;
 <part name="R9" library="rcl" deviceset="R-US_" device="0204/2V"/>
 <part name="R10" library="rcl" deviceset="R-US_" device="0204/2V"/>
 <part name="INVERTOR" library="74xx-us" deviceset="74*04" device="N" technology="LS"/>
+<part name="BUFFER3" library="74xx-us" deviceset="74*245" device="N" technology="LS"/>
 </parts>
 <sheets>
 <sheet>
@@ -10022,7 +10023,7 @@ Based on the following sources:&lt;p&gt;
 <text x="-246.38" y="86.36" size="6.4516" layer="91">CPU</text>
 <text x="243.84" y="63.5" size="6.4516" layer="91">GPU (Sync Gen)</text>
 <text x="302.26" y="-294.64" size="6.4516" layer="91">VGA</text>
-<text x="238.76" y="-294.64" size="6.4516" layer="91">DAC</text>
+<text x="266.7" y="-302.26" size="6.4516" layer="91">DAC</text>
 <text x="167.64" y="-299.72" size="6.4516" layer="91">VID SW</text>
 <text x="-170.18" y="-170.18" size="1.778" layer="91">INVERT</text>
 <text x="-109.22" y="114.3" size="6.4516" layer="91">JOY0</text>
@@ -10100,15 +10101,16 @@ Based on the following sources:&lt;p&gt;
 <instance part="GND13" gate="1" x="106.68" y="-205.74"/>
 <instance part="P+4" gate="1" x="30.48" y="-172.72"/>
 <instance part="GND14" gate="1" x="35.56" y="-154.94" rot="R180"/>
-<instance part="R3" gate="G$1" x="246.38" y="-228.6" rot="MR0"/>
-<instance part="R4" gate="G$1" x="246.38" y="-233.68" rot="MR0"/>
-<instance part="R5" gate="G$1" x="246.38" y="-243.84" rot="MR0"/>
-<instance part="R6" gate="G$1" x="246.38" y="-248.92" rot="MR0"/>
-<instance part="R7" gate="G$1" x="246.38" y="-261.62" rot="MR0"/>
-<instance part="R8" gate="G$1" x="246.38" y="-266.7" rot="MR0"/>
-<instance part="R9" gate="G$1" x="246.38" y="-276.86" rot="MR0"/>
-<instance part="R10" gate="G$1" x="246.38" y="-281.94" rot="MR0"/>
+<instance part="R3" gate="G$1" x="274.32" y="-236.22" rot="MR0"/>
+<instance part="R4" gate="G$1" x="274.32" y="-241.3" rot="MR0"/>
+<instance part="R5" gate="G$1" x="274.32" y="-251.46" rot="MR0"/>
+<instance part="R6" gate="G$1" x="274.32" y="-256.54" rot="MR0"/>
+<instance part="R7" gate="G$1" x="274.32" y="-269.24" rot="MR0"/>
+<instance part="R8" gate="G$1" x="274.32" y="-274.32" rot="MR0"/>
+<instance part="R9" gate="G$1" x="274.32" y="-284.48" rot="MR0"/>
+<instance part="R10" gate="G$1" x="274.32" y="-289.56" rot="MR0"/>
 <instance part="INVERTOR" gate="A" x="-167.64" y="-147.32" rot="R270"/>
+<instance part="BUFFER3" gate="A" x="233.68" y="-256.54"/>
 </instances>
 <busses>
 </busses>
@@ -11471,16 +11473,6 @@ Based on the following sources:&lt;p&gt;
 <junction x="-177.8" y="-68.58"/>
 </segment>
 </net>
-<net name="N$105" class="0">
-<segment>
-<wire x1="190.5" y1="-248.92" x2="236.22" y2="-248.92" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$106" class="0">
-<segment>
-<wire x1="259.08" y1="-248.92" x2="299.72" y2="-248.92" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$107" class="0">
 <segment>
 <pinref part="BUFFER2" gate="A" pin="G"/>
@@ -11497,6 +11489,76 @@ Based on the following sources:&lt;p&gt;
 <wire x1="-167.64" y1="-167.64" x2="-132.08" y2="-167.64" width="0.1524" layer="91"/>
 <pinref part="BUFFER1" gate="A" pin="G"/>
 <wire x1="-132.08" y1="-167.64" x2="-132.08" y2="-119.38" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$11" class="0">
+<segment>
+<pinref part="MUX10" gate="A" pin="4Y"/>
+<wire x1="187.96" y1="-238.76" x2="200.66" y2="-238.76" width="0.1524" layer="91"/>
+<wire x1="200.66" y1="-238.76" x2="200.66" y2="-251.46" width="0.1524" layer="91"/>
+<pinref part="BUFFER3" gate="A" pin="A4"/>
+<wire x1="200.66" y1="-251.46" x2="220.98" y2="-251.46" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$12" class="0">
+<segment>
+<pinref part="MUX10" gate="A" pin="3Y"/>
+<wire x1="187.96" y1="-233.68" x2="203.2" y2="-233.68" width="0.1524" layer="91"/>
+<wire x1="203.2" y1="-233.68" x2="203.2" y2="-248.92" width="0.1524" layer="91"/>
+<wire x1="203.2" y1="-248.92" x2="223.52" y2="-248.92" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$105" class="0">
+<segment>
+<pinref part="MUX10" gate="A" pin="2Y"/>
+<wire x1="187.96" y1="-228.6" x2="205.74" y2="-228.6" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="-228.6" x2="205.74" y2="-246.38" width="0.1524" layer="91"/>
+<pinref part="BUFFER3" gate="A" pin="A2"/>
+<wire x1="205.74" y1="-246.38" x2="220.98" y2="-246.38" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$106" class="0">
+<segment>
+<pinref part="MUX10" gate="A" pin="1Y"/>
+<wire x1="187.96" y1="-223.52" x2="208.28" y2="-223.52" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="-223.52" x2="208.28" y2="-243.84" width="0.1524" layer="91"/>
+<pinref part="BUFFER3" gate="A" pin="A1"/>
+<wire x1="208.28" y1="-243.84" x2="220.98" y2="-243.84" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$109" class="0">
+<segment>
+<pinref part="MUX9" gate="A" pin="1Y"/>
+<wire x1="200.66" y1="-259.08" x2="200.66" y2="-254" width="0.1524" layer="91"/>
+<pinref part="BUFFER3" gate="A" pin="A5"/>
+<wire x1="200.66" y1="-254" x2="220.98" y2="-254" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$110" class="0">
+<segment>
+<pinref part="MUX9" gate="A" pin="2Y"/>
+<wire x1="200.66" y1="-264.16" x2="203.2" y2="-264.16" width="0.1524" layer="91"/>
+<wire x1="203.2" y1="-264.16" x2="203.2" y2="-256.54" width="0.1524" layer="91"/>
+<pinref part="BUFFER3" gate="A" pin="A6"/>
+<wire x1="203.2" y1="-256.54" x2="220.98" y2="-256.54" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$111" class="0">
+<segment>
+<pinref part="MUX9" gate="A" pin="3Y"/>
+<wire x1="200.66" y1="-269.24" x2="205.74" y2="-269.24" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="-269.24" x2="205.74" y2="-259.08" width="0.1524" layer="91"/>
+<pinref part="BUFFER3" gate="A" pin="A7"/>
+<wire x1="205.74" y1="-259.08" x2="220.98" y2="-259.08" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$112" class="0">
+<segment>
+<pinref part="MUX9" gate="A" pin="4Y"/>
+<wire x1="200.66" y1="-274.32" x2="208.28" y2="-274.32" width="0.1524" layer="91"/>
+<wire x1="208.28" y1="-274.32" x2="208.28" y2="-261.62" width="0.1524" layer="91"/>
+<pinref part="BUFFER3" gate="A" pin="A8"/>
+<wire x1="208.28" y1="-261.62" x2="220.98" y2="-261.62" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>
