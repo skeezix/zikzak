@@ -20,25 +20,19 @@
 // PB 0 vsync (pin 1)
 // PB 1 hsync (pin 2)
 
-#define VSYNC_LOW    PORTB &= ~_BV(1) /* sync pulse is LOW */
-#define VSYNC_HIGH   PORTB |= _BV(1)  /* should be high all the rest of the time */
+#define LED_OFF      PORTA &= ~(1<<7)
+#define LED_ON       PORTA |= (1<<7)
+#define LED          (PORTA & (1<<7))
 
-#define HSYNC_LOW    PORTB &= ~_BV(0) /* sync pulse is LOW */
-#define HSYNC_HIGH   PORTB |= _BV(0)  /* should be high all the rest of the time */
 
-#define RED_OFF      PORTC &= ~_BV(1)
-#define RED_ON       PORTC |= _BV(1)
+#define VSYNC_LOW    PORTA &= ~_BV(2) /* sync pulse is LOW */
+#define VSYNC_HIGH   PORTA |= _BV(2)  /* should be high all the rest of the time */
 
-#define GREEN_OFF    PORTC &= ~_BV(3)
-#define GREEN_ON     PORTC |= _BV(3)
+#define HSYNC_LOW    PORTA &= ~_BV(1) /* sync pulse is LOW */
+#define HSYNC_HIGH   PORTA |= _BV(1)  /* should be high all the rest of the time */
 
-#define BLUE_OFF     PORTC &= ~_BV(5)
-#define BLUE_ON      PORTC |= _BV(5)
-
-#define CYCLE_ON     PORTC = i&0x3F
-#define CYCLE_OFF    PORTC &= ~0x3F
-
-#define RGBALL_OFF   PORTC = 0
+#define VGA_ON       PORTA &= ~_BV(0) /* sync pulse is LOW */
+#define VGA_OFF      PORTA |= _BV(0)  /* should be high all the rest of the time */
 
 #define REGION(ymax,on,off)                                                                   \
     i=0;                                                                                      \
@@ -75,11 +69,15 @@ void main ( void ) {
 
   cli();
 
+  DDRA = 0xFF; // B out
   DDRB = 0xFF; // B out
   DDRC = 0xFF; // C out
+  DDRD = 0xFF; // C out
 
   HSYNC_HIGH;
   VSYNC_HIGH;
+
+  PORTD = 29;
 
   while ( 1 ) {
 
@@ -87,10 +85,10 @@ void main ( void ) {
     // Horizontal line business
     // -------------------------------------------------------------------------------
 
-    REGION(150,RED_ON,RED_OFF);
-    REGION(150,GREEN_ON,GREEN_OFF);
-    REGION(150,BLUE_ON,BLUE_OFF);
-    REGION(150,CYCLE_ON,RGBALL_OFF);
+    REGION(150,VGA_ON,VGA_OFF);
+    REGION(150,VGA_ON,VGA_OFF);
+    REGION(150,VGA_ON,VGA_OFF);
+    REGION(150,VGA_ON,VGA_OFF);
 
     // -------------------------------------------------------------------------------
     // Vertical sync business

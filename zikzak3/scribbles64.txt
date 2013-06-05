@@ -73,19 +73,21 @@ aref    1
 xtal    2       --> 8 must haves
 isp     3 *share
 
-== PB 8 avail
+== PD 8 avail
 isp     (free)
 8 address hi
 0 control (free; tie OE to high, WE to low... we don't write ever.)
-== PD 8 avail
+== PB 8 avail
 0 data bus
 2 RX/TX serial (PD0, PD1)
 6 joy2 communications with cpu
-== PA 8 avail
-8 address low
 == PC 8 avail
+8 address low
+== PA 8 avail
 2 VGA Sync
+  HSync PA1
+  VSync PA2
 1 LED heartbeat
 1 VBLANK signal to cpu
-1 VGA OFF (buffer drop)
+1 VGA OFF (buffer drop) -> PA0
 3 FREE

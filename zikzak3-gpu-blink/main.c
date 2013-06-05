@@ -19,16 +19,16 @@
 // PB 0 vsync (pin 1)
 // PB 1 hsync (pin 2)
 
-#define LED_OFF      PORTC &= ~(1<<0)
-#define LED_ON       PORTC |= (1<<0)
-#define LED          (PORTC & (1<<0))
+#define LED_OFF      PORTA &= ~(1<<7)
+#define LED_ON       PORTA |= (1<<7)
+#define LED          (PORTA & (1<<7))
 
 void main ( void ) {
   int i = 0;
 
   cli();
 
-  DDRC = 0xFF; // C out
+  DDRA = 0xFF; // C out
 
   while ( 1 ) {
 
