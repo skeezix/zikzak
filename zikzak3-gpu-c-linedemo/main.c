@@ -42,7 +42,7 @@
       on;                                                                                     \
                                                                                               \
       /* 20uS Color Data */                                                                   \
-      _delay_us ( 20 ); /* 1uS */                                                             \
+      _delay_us ( 19 ); /* 1uS */                                                             \
                                                                                               \
       off;                                                                                    \
                                                                                               \
@@ -77,7 +77,7 @@ void main ( void ) {
   HSYNC_HIGH;
   VSYNC_HIGH;
 
-  PORTD = 29;
+  PORTD = 37;
 
   while ( 1 ) {
 

@@ -32,11 +32,11 @@ int main ( void ) {
 
     /* set PC0 on PORTC (digital high) and delay for 500mS */
     PORTE &= ~_BV(PE2);
-    _delay_ms ( 1000 );
+    _delay_ms ( 2000 );
 
     /*  PC0 on PORTC (digital 0) and delay for 500mS */
     PORTE |= _BV(PE2);
-    _delay_ms ( 1000 );
+    _delay_ms ( 2000 );
   }
 
   return (0);
