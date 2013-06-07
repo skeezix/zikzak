@@ -24,6 +24,8 @@
 #define LED_ON       PORTA |= (1<<7)
 #define LED          (PORTA & (1<<7))
 
+#define VBLANK_LOW   PORTA &= ~_BV(3)
+#define VBLANK_HIGH  PORTA |= _BV(3)
 
 #define VSYNC_LOW    PORTA &= ~_BV(2) /* sync pulse is LOW */
 #define VSYNC_HIGH   PORTA |= _BV(2)  /* should be high all the rest of the time */
@@ -31,8 +33,8 @@
 #define HSYNC_LOW    PORTA &= ~_BV(1) /* sync pulse is LOW */
 #define HSYNC_HIGH   PORTA |= _BV(1)  /* should be high all the rest of the time */
 
-#define VGA_ON       PORTA &= ~_BV(0) /* sync pulse is LOW */
-#define VGA_OFF      PORTA |= _BV(0)  /* should be high all the rest of the time */
+#define VGA_ON       PORTA &= ~_BV(0)
+#define VGA_OFF      PORTA |= _BV(0)
 
 #define REGION(ymax,on,off)                                                                   \
     i=0;                                                                                      \
@@ -79,6 +81,8 @@ void main ( void ) {
 
   PORTD = 37;
 
+  LED_ON;
+
   while ( 1 ) {
 
     // -------------------------------------------------------------------------------
@@ -98,7 +102,9 @@ void main ( void ) {
     VSYNC_LOW;
     REGION(4,NOP,NOP); /* sync pulse -> 4 lines */
     VSYNC_HIGH;
+    VBLANK_HIGH;
     REGION(23,NOP,NOP); /* back porch -> 23 lines */
+    VBLANK_LOW;
 
   } // while forever
 

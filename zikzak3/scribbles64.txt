@@ -44,8 +44,8 @@ unknown location:
 CPU (64pin):
 PE 8 including TX/RX
   - 2 serial to MAX232 to PC
-  - 1 vblank signal
-  - 1 heartbeat LED (flash alive, solid or off when crashed?)
+  - 1 vblank signal PE3 IN
+  - 1 heartbeat LED (flash alive, solid or off when crashed?)  PE2 OUT
   - 2*2 joystick fire
 PB 8 including ISP
   - isp is free
@@ -55,9 +55,10 @@ PF 8
   - 8 audio
 PA 8
   - 8 low address lines
-PG 3
+PG 4
   - 2 control (WE, OE)
-  - 1 mem switch!
+  - 1 mem switch!   PG4
+  1 FREE
 PC 8
   - 8 high address lines
 PD 8
@@ -66,7 +67,7 @@ PD 8
 
 
 
-cpu2 (40pins, 32 usable):
+cpu2 (40pins, 32 usable): gpu/sync-gen
 reset   1
 power   4
 aref    1
@@ -87,7 +88,7 @@ isp     (free)
 2 VGA Sync
   HSync PA1
   VSync PA2
-1 LED heartbeat
-1 VBLANK signal to cpu
+1 LED heartbeat  PA7
+1 VBLANK signal to cpu PA3
 1 VGA OFF (buffer drop) -> PA0
 3 FREE
