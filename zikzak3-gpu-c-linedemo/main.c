@@ -36,7 +36,7 @@
 #define VGA_ON       PORTA &= ~_BV(0)
 #define VGA_OFF      PORTA |= _BV(0)
 
-#define REGION(ymax,on,off)                                                                   \
+#define REGION2(ymax,on,off)                                                                   \
     i=0;                                                                                      \
     /* 200 Lines */                                                                           \
     while ( i < ymax ) {                                                                      \
@@ -62,6 +62,37 @@
       NOP4;                                                                                   \
                                                                                               \
       i++;                                                                                    \
+      /* 26.4uS Total */                                                                      \
+    }
+
+#define REGION(ymax,on,off)                                                                   \
+    i=0;                                                                                      \
+    PORTC=0;                                                                                  \
+    /* 200 Lines */                                                                           \
+    while ( i < ymax ) {                                                                      \
+                                                                                              \
+      on;                                                                                     \
+                                                                                              \
+      /* 20uS Color Data */                                                                   \
+      _delay_us ( 19 ); /* 1uS */                                                             \
+                                                                                              \
+      off;                                                                                    \
+                                                                                              \
+      /* 1uS Front Porch */                                                                   \
+      _delay_us ( 1 ); /* 1uS */                                                              \
+                                                                                              \
+      /* 3.2uS Horizontal Sync */                                                             \
+      HSYNC_LOW;                                                                              \
+      _delay_us ( 3 );                                                                        \
+      NOP4;                                                                                   \
+                                                                                              \
+      /* 2.2uS Back Porch */                                                                  \
+      HSYNC_HIGH;                                                                             \
+      _delay_us ( 2 );                                                                        \
+      NOP3;                                                                                   \
+                                                                                              \
+      i++;                                                                                    \
+      PORTC++;                                                                                \
       /* 26.4uS Total */                                                                      \
     }
 
