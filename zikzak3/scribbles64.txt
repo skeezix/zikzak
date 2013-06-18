@@ -55,10 +55,13 @@ PF 8
   - 8 audio
 PA 8
   - 8 low address lines
-PG 4
+PG 5
   - 2 control (WE, OE)
+    WE PG0
+    OE PG1
   - 1 mem switch!   PG4
-  1 FREE
+  ? 1 instantaneous switch for reset request, or switching something..   PG3
+  - 1 RAM I/O buffer dir  -> PG2
 PC 8
   - 8 high address lines
 PD 8
