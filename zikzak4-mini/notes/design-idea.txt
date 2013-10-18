@@ -1,0 +1,166 @@
+From forum:
+
+http://boards.openpandora.org/index.php/topic/13166-zikzak-crummiest-8bit-consolecomputer-ever-but-im-making-it/page-11#entry266066
+http://boards.openpandora.org/index.php/topic/13166-zikzak-crummiest-8bit-consolecomputer-ever-but-im-making-it/#entry273377
+
+Big RAM (say 64K or 128K or whatever), with reserved graphic banks; toggle a pin to get bank 0/1.. easy right? The problem again is the VGA reader eats up all your time.. its plowing through the reads, and your main cpu gets 0 time to actually read/write anything.
+
+ 
+
+Some points of interest..
+
+- using an avr, it has built in RAM (say 8K or 16K) .. fair amount of working space!
+
+- using an avr, you have a pretty sizable flash, for read-only tables or some small sprites. (more space than a C64 woudl give you, anyway)
+
+- updating the video ram then ... do it at hsync and vsync time.
+
+ 
+
+Hsync in my test code in C:
+
+  VGA_OFF;
+
+  /* 1uS Front Porch */
+  _delay_us ( 1 ); /* 1uS */
+
+  /* 3.2uS Horizontal Sync */
+  HSYNC_LOW;
+  _delay_us ( 3 );
+  NOP4;
+
+  /* 2.2uS Back Porch */
+  HSYNC_HIGH;
+  _delay_us ( 1 );
+ 
+
+About 6.4uS or so; sucks, about 15 ticks worth.. not a lot :)
+
+ 
+
+The vsync however is pretty good:
+
+ 
+
+    LINENOP(); /* front porch -> 1 line */
+    VSYNC_LOW;
+    LINENOP(); /* 1 - sync pulse -> 4 lines */
+    LINENOP(); /* 2 */
+    LINENOP(); /* 3 */
+    LINENOP(); /* 4 */
+    VSYNC_HIGH;
+    /* back porch -> 23 lines */
+    i = 0;
+    while ( i < 23 ) {
+      LINENOP();
+      i++;
+    } // while
+ 
+
+about 28 lines worth. I forget offhand, but I think a line was about 15 or 20uS + the hsync above.. so say about 25uS for sake of argument.
+
+ 
+
+28 * 25 is 700uS or about (say) 1400 20MHz ticks, if my brain is working right now (it may well not be :)
+
+ 
+
+Now, thats not bad, but say you want to clear a screen (a full screen change), and you're doing (say) 150x100 (15k display buffer), then we're talking a few full screen refreshes to get the time to do all of it.
+
+ 
+
+So this woudl give you (total guessing)..
+
+ 
+
+- a full screen update at say 15Hz
+
+- partial screen updates, you could probably still keep pretty full speed
+
+ 
+
+Also note: You could even keep a snapshot of the display in the avr RAM, and then do lots of updates there fast, and then sync it over to the framebuffer over a few frames (with tearing, ftw!).
+
+ 
+
+Heck, could still do the RAM toggle bit, to switch between two buffers..
+
+ 
+
+So - double buffering, no crazy pile of hardware, but much reduces update times.
+
+ 
+
+---> what do you think of them apples?
+
+ 
+
+I'm still thinking then.. for v1, it'd be:
+
+ 
+
+- an avr cpu
+
+- an avr gpu (v7 or whatever, swap it out with discrete logic for infnite faster updates)
+
+- ram chip
+
+-> ram wired to both the cpu avr, and to the VGA port; the gpu avr is just there to drive the VGA clock, more or less. (ie: it could toggle the buffer bit, or at least raise the vsync line so the cpu coudl switch it cleanly..)
+
+- avr gpu has the all important 'BUSY line' (or could just be the 'vsync' line); the main cpu on interupt, so when the pin changes to not busy, it burps out as much as it can and returns
+
+ 
+
+What do you think there?
+
+ 
+
+Coding should be pretty easy, just as long as you're careful how much you update at a time; you woudlnt' have to count cycles too much, but would have to think 'I can only update 20% of the screen at a time, if I want it in one frame'.
+
+ ----
+
+Strikes me theres a big gold mine of time there..
+
+ 
+
+I've rather been aiming around the 150x150 sort of display size, or 120*120, or 150*120 .. something piddly like that, with nice blocky pixels. Try to aim for say 16K per image, and double buffer in 32k; or if single buffering with harsdware buffer, a 32K chip would give you like 200x150 nicely, with a bit for external RAM, scrolling flags, sprites, etc.
+
+ 
+
+For low res like that, I've been doubling/tripling up on Y, since VGA is X*Y, wit Y of 480 minimum more or less; ie: just increment Y and wrap at bottom, or do each line 2-3 times.
+
+ 
+
+Now, the graphic subsystem has to care, since its not using its own framebuffer per se; just counting down addresses and having RAM point out to video during screen rendering time; so I can't do doubling etc and have the cpu messing around .. wouldnt' work out.
+
+ 
+
+But one option, if more time is needed, is to not double.. just say render the top 150 (or middle 150....) lines; say we're doing 200*150, and VGA is 480 high.. that frees up 480-150 lines for other stuff; the gpu could just black out the display, and suddenly we get 320 more lines of time (give or take signalling) to do cpu stuff against the RAM.
+
+ 
+
+So not only do we get about what was it, 28 lines of vblank+assorted (see above), we get another couple hundred lines worth. Or whatever amount we need. Could be configurable by the cpu, just set a flag in the video ram, and let the gpu deal with it.
+
+ 
+
+ie: _video modes_
+
+ 
+
+a 200*150 1:1 centered mode <- tonnes of cpu time talking to ram, can do full screen update every frame! <- games etc.
+
+a 200*150 doubled centered mode <- medium cpu time talking to ram
+
+a 200*150 tripled mode <- minimal cpu time talking to ram, takes a few screens of refreshes to do a full screen update (think, for slow stuff; tile games, applications, picture viewers, etc)
+
+ 
+
+Noooow we're talking :)
+
+ 
+
+I think this could result in a much simpler machine than the big zikzak I designed previously; like a handful of chips, much less elegant to code.. but cheap and simple to make!
+
+ 
+
+I'll get back to this guy when I get time.. just moved my home office into basement, everything in boxes, and not a lot of free time anyway.. but got my desk all set up, new variable power supply assembled from a kit, got my solder station and lamps and all that already going, a new armoir/thing that is my electroncisd parts locker all set up .. fun fun :)
