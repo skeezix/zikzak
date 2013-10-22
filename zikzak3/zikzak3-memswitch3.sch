@@ -10053,6 +10053,20 @@ these A&lt;-&gt;B</text>
 <text x="218.44" y="-289.56" size="1.778" layer="91">Always
 A -&gt; B</text>
 <text x="345.44" y="53.34" size="1.778" layer="91">VGA Blanker</text>
+<text x="-7.62" y="-139.7" size="1.778" layer="91">LOW</text>
+<text x="-45.72" y="-139.7" size="1.778" layer="91">LOW</text>
+<text x="-83.82" y="-139.7" size="1.778" layer="91">HIGH</text>
+<text x="-121.92" y="-139.7" size="1.778" layer="91">HIGH</text>
+<text x="160.02" y="-139.7" size="1.778" layer="91">LOW</text>
+<text x="121.92" y="-139.7" size="1.778" layer="91">LOW</text>
+<text x="48.26" y="-139.7" size="1.778" layer="91">HIGH</text>
+<text x="83.82" y="-139.7" size="1.778" layer="91">HIGH</text>
+<text x="269.24" y="-233.68" size="1.778" layer="91">1K</text>
+<text x="269.24" y="-246.38" size="1.778" layer="91">1K</text>
+<text x="269.24" y="-259.08" size="1.778" layer="91">1K</text>
+<text x="279.4" y="-243.84" size="1.778" layer="91">2K</text>
+<text x="279.4" y="-256.54" size="1.778" layer="91">2K</text>
+<text x="279.4" y="-269.24" size="1.778" layer="91">2K</text>
 </plain>
 <instances>
 <instance part="GPU" gate="G$1" x="274.32" y="30.48"/>
