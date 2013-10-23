@@ -1,0 +1,19 @@
+
+This is (currently) a single-chip VGA solution. (mono, textbuffer in mcu, font flahsed in and read-only)
+
+atmega644 was used; better to use atmega644p perhaps (dual serial), or maybe use i2c communications.
+
+- atmega644
+- currently 16MHz crystal (with the usual 22pF caps to ground)
+- ISP programmer is wired in as normal
+- PB0 -> LED for 'alive' check
+- PD1 (TX) is wired to pixel data; hook up red, green, blue, any two, all of them to it (through a current limiting resistor or it'll over draw)
+- vsync PD4 hsync PD6 - The timer OC (on compare) lines
+
+todo..
+
+- text gateway
+- commands (clear buffer, go-to)
+- modes? (graphic mode, however limited resolution)
+- maybe cutover to atmega1284 (16K ram) whenever I can get avr-gcc newer build working
+- or atmega128A or whatever for XMEM big memory interface
