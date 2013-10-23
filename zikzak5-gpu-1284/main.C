@@ -256,7 +256,8 @@ void doOneScanLine () {
 */
 
 #include <avr/pgmspace.h>
-#include "screen-font.h"
+//#include "screen-font.h"
+#include "screen-font-rev.h"
 #include <avr/sleep.h>
 
 const byte MSPIM_SCK = 4;    // <-- we aren't using it directly
@@ -331,8 +332,9 @@ ISR (TIMER2_OVF_vect)
 void setup() {
   
   // initial message ... change to suit
-  for (int i = 0; i < verticalLines; i++)
-    sprintf (message [i], "Line %03i - hello!", i);
+  for (int i = 0; i < verticalLines; i++) {
+    sprintf (message [i], "%02i pandora foo", i);
+  }
    
   // disable Timer 0
   TIMSK0 = 0;  // no interrupts on Timer 0
@@ -401,8 +403,9 @@ void doOneScanLine ()
   UCSR0B = bit (TXEN0);  // transmit enable (starts transmitting white)
 
   // blit pixel data to screen    
-  while (i--)
+  while (i--) {
     UDR0 = pgm_read_byte (linePtr + (* messagePtr++));
+  }
 
   // wait till done    
   while (!(UCSR0A & bit(TXC0))) 
