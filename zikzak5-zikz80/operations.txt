@@ -1,0 +1,30 @@
+
+For interupt handling:
+Note: IOREQ + M1 -> they both go active during INT ackowledge; be mindful for ioreq handling!
+            --> M1 is _wider_ and encompasses IOREQ .. so M1 is a good place to handle things
+During M1, IOREQ goes active _instead_ of MEMREQ; place interupt vector on data bus.
+
+Simulating chipselect to atmega (which could be a ACIA 6850 chip in normal life, say, or a VIA..)
+- during Z80 M1, opcode fetch is wanting to go on (or else interupt is going on)
+  --> atmega code should watch M1; if M1 goes low, it can check IOREQ; if no ioreq, then bus is busy so go remain high impede on data
+      - if ioreq goes low, and m1 is not also low, then it is an in/out request, check address0..7 for port
+
+
+On cominbing memory read/write/mreq into read/write dignals
+- note: mreq is active low
+- note: rd/wr are active low
+- at first thought I needed AND gate to join the mreq+rd/wr signals .. 'when mreq AND rd -> read' .. but since they're all
+  active low, we use OR gate for same effect
+  - ex: if mreq is high (neither read nor write), it enables the OR to pass a high (which means disable the ram/rom)
+  - ex: if mreq is low (read or write desired), then it is nolonger part of OR consideration
+    - then we check mreq-OR-read -> if read is high (a write is desired), then we have low mreq OR high read -> high, which disables read (correct!)
+    -                            -> if write is low (write is desired), then we have low mreq OR low write -> low, which enables write (correct!)
+--> so we can use OR gate to merge mreq and rd/wr signals into pure read/write signals for ram/rom!
+    -> I call them IS_READ and IS_WRITE
+
+
+Given IS_READ and IS_WRITE nets..
+-> send IS_WRITE to RAM only (can't write to ROM)
+-> send IS_READ to RAM and ROM
+----> the read/write signal is just to clue chip to operation
+----> the chip _Selection_ is purely address driven, not operation driven, since read is obviously ambiguous

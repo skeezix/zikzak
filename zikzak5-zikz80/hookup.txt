@@ -1,0 +1,46 @@
+
+Desired features
+----------------
+
+- VGA out (via microcontroller)
+  - text mode
+  - minimal graphics mode .. all up to atmega chip; cpu pushes requests to mcu via OUT instructions
+- keyboard input
+- usb/serial input/output
+  - via IN, OUT to atmega
+
+optiona: audio out
+--> need to pick audio chip
+  -> how do we map it and talk to it? depends on chip .. could OUT port,data and OR-gate to the audio chip
+     -- or drive it from mcu, if mcu can spare those moments for updates
+
+optional: cartridge handler
+--> with a cart, we can map out the entire ROM to cart, or try to be clever and map cart into
+    say 4k-16k ROM space and thus allowing first 4K to offer graphics/text/serial primitives
+    to whatever is in cart
+
+IN/OUT Port map
+---------------
+
+IN/OUT port 0
+  -> in/out: commands to push/pull atmega
+IN/OUT port 1
+  -> out: video channel (text, say, or perhaps graphics commands?)
+  -> in: query framebuffer (?)
+IN/OUT port 2
+  -> in/out: serial in/out to host PC
+IN port 3
+  -> in: pull from keyboard (if anything)
+
+OUT port 0 protocol:
+Atmega receive:
+       Command 0: heartbeat -> keep LED showing another second :P
+
+Interupt map
+------------
+INT data 0:
+    -> keyboard key received
+
+Memory map
+----------
+0x0000 - 0x03FF -> ROM (16k)
