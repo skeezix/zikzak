@@ -9,7 +9,11 @@ Desired features
 - usb/serial input/output
   - via IN, OUT to atmega
 
-optiona: audio out
+optional: long term storage
+--> could hang a SD or somethign off mcu? z80 IN/OUT to talk to it?
+  - could stick another EEPROM in as 'disk' :P
+
+optional: audio out
 --> need to pick audio chip
   -> how do we map it and talk to it? depends on chip .. could OUT port,data and OR-gate to the audio chip
      -- or drive it from mcu, if mcu can spare those moments for updates
