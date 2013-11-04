@@ -13698,7 +13698,6 @@ Source: www.kingbright.com</description>
 <part name="LED1" library="led" deviceset="LED" device="MINI-TOP"/>
 <part name="R1" library="rcl" deviceset="R-US_" device="0204/2V"/>
 <part name="R2" library="rcl" deviceset="R-US_" device="0204/2V"/>
-<part name="U$2" library="SparkFun" deviceset="5V" device=""/>
 <part name="R13" library="rcl" deviceset="R-US_" device="0204/7" value="10K"/>
 <part name="U$4" library="SparkFun" deviceset="5V" device=""/>
 <part name="X5" library="con-subd" deviceset="F15?S" device="HDV"/>
@@ -13724,6 +13723,7 @@ Source: www.kingbright.com</description>
 <part name="GND18" library="SparkFun" deviceset="GND" device=""/>
 <part name="U$13" library="adafruit" deviceset="PS603" device="SPK"/>
 <part name="GND19" library="SparkFun" deviceset="GND" device=""/>
+<part name="GND20" library="SparkFun" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13868,7 +13868,6 @@ cap 5v&lt;-&gt;gnd</text>
 <instance part="LED1" gate="G$1" x="369.57" y="176.53" rot="R180"/>
 <instance part="R1" gate="G$1" x="88.138" y="340.36" rot="MR0"/>
 <instance part="R2" gate="G$1" x="369.57" y="164.338" rot="MR270"/>
-<instance part="U$2" gate="G$1" x="369.57" y="186.69"/>
 <instance part="R13" gate="G$1" x="102.87" y="77.47" rot="R270"/>
 <instance part="U$4" gate="G$1" x="102.87" y="68.58" rot="R180"/>
 <instance part="X5" gate="-1" x="516.128" y="133.35"/>
@@ -13916,6 +13915,7 @@ cap 5v&lt;-&gt;gnd</text>
 <instance part="GND18" gate="1" x="353.06" y="8.89"/>
 <instance part="U$13" gate="G$1" x="435.61" y="69.85" rot="R180"/>
 <instance part="GND19" gate="1" x="444.5" y="58.42"/>
+<instance part="GND20" gate="1" x="369.57" y="187.96" rot="R180"/>
 </instances>
 <busses>
 <bus name="A[0..15]">
@@ -14151,6 +14151,13 @@ cap 5v&lt;-&gt;gnd</text>
 <wire x1="444.5" y1="60.96" x2="444.5" y2="59.69" width="0.1524" layer="91"/>
 <junction x="444.5" y="60.96"/>
 </segment>
+<segment>
+<pinref part="LED1" gate="G$1" pin="C"/>
+<wire x1="369.57" y1="181.61" x2="369.57" y2="185.42" width="0.1524" layer="91"/>
+<pinref part="GND20" gate="1" pin="GND"/>
+<wire x1="369.57" y1="185.42" x2="369.57" y2="186.69" width="0.1524" layer="91"/>
+<junction x="369.57" y="185.42"/>
+</segment>
 </net>
 <net name="USB_D-" class="0">
 <segment>
@@ -14275,11 +14282,6 @@ cap 5v&lt;-&gt;gnd</text>
 <pinref part="SRAM-128K" gate="G$1" pin="+3V@2"/>
 <wire x1="284.48" y1="110.49" x2="290.83" y2="110.49" width="0.1524" layer="91"/>
 <label x="290.83" y="110.49" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<pinref part="LED1" gate="G$1" pin="C"/>
-<pinref part="U$2" gate="G$1" pin="5V"/>
-<wire x1="369.57" y1="181.61" x2="369.57" y2="186.69" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="R13" gate="G$1" pin="2"/>

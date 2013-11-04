@@ -13709,6 +13709,7 @@ Source: www.kingbright.com</description>
 <part name="C10" library="rcl" deviceset="C-EU" device="025-050X050"/>
 <part name="GND11" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND12" library="SparkFun" deviceset="GND" device=""/>
+<part name="R14" library="rcl" deviceset="R-US_" device="0204/2V"/>
 </parts>
 <sheets>
 <sheet>
@@ -13755,6 +13756,11 @@ mcu)</text>
 cap 5v&lt;-&gt;gnd</text>
 <text x="467.36" y="129.54" size="1.016" layer="91">decoupling
 cap 5v&lt;-&gt;gnd</text>
+<text x="523.24" y="133.35" size="1.27" layer="91">R</text>
+<text x="523.24" y="130.81" size="1.27" layer="91">G</text>
+<text x="523.24" y="128.27" size="1.27" layer="91">B</text>
+<text x="524.51" y="102.87" size="1.27" layer="91">HSync</text>
+<text x="524.51" y="100.33" size="1.27" layer="91">VSync</text>
 </plain>
 <instances>
 <instance part="IC1" gate="1" x="160.02" y="129.54"/>
@@ -13863,6 +13869,7 @@ cap 5v&lt;-&gt;gnd</text>
 <instance part="C10" gate="G$1" x="393.7" y="67.31"/>
 <instance part="GND11" gate="1" x="378.46" y="57.15"/>
 <instance part="GND12" gate="1" x="393.7" y="57.15"/>
+<instance part="R14" gate="G$1" x="360.172" y="111.76" rot="MR180"/>
 </instances>
 <busses>
 <bus name="A[0..15]">
@@ -15152,6 +15159,39 @@ cap 5v&lt;-&gt;gnd</text>
 <junction x="393.7" y="69.85"/>
 <junction x="393.7" y="76.2"/>
 <label x="393.7" y="83.82" size="1.27" layer="95" rot="R90" xref="yes"/>
+</segment>
+</net>
+<net name="N$10" class="0">
+<segment>
+<wire x1="364.49" y1="111.76" x2="384.81" y2="111.76" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="SER2-TX" class="0">
+<segment>
+<wire x1="355.6" y1="111.76" x2="350.52" y2="111.76" width="0.1524" layer="91"/>
+<label x="350.52" y="111.76" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<wire x1="514.35" y1="130.81" x2="508" y2="130.81" width="0.1524" layer="91"/>
+<label x="505.46" y="130.81" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="508" y1="130.81" x2="505.46" y2="130.81" width="0.1524" layer="91"/>
+<wire x1="514.35" y1="133.35" x2="508" y2="133.35" width="0.1524" layer="91"/>
+<wire x1="508" y1="133.35" x2="508" y2="130.81" width="0.1524" layer="91"/>
+<wire x1="508" y1="130.81" x2="508" y2="128.27" width="0.1524" layer="91"/>
+<wire x1="514.35" y1="128.27" x2="508" y2="128.27" width="0.1524" layer="91"/>
+<junction x="508" y="130.81"/>
+<junction x="508" y="133.35"/>
+<junction x="508" y="128.27"/>
+</segment>
+</net>
+<net name="HSYNC" class="0">
+<segment>
+<wire x1="384.81" y1="104.14" x2="378.46" y2="104.14" width="0.1524" layer="91"/>
+<label x="378.46" y="104.14" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<wire x1="514.35" y1="102.87" x2="508" y2="102.87" width="0.1524" layer="91"/>
+<label x="508" y="102.87" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>

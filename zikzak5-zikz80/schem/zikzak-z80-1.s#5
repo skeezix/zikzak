@@ -13710,6 +13710,7 @@ Source: www.kingbright.com</description>
 <part name="GND11" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND12" library="SparkFun" deviceset="GND" device=""/>
 <part name="R14" library="rcl" deviceset="R-US_" device="0204/2V"/>
+<part name="X6" library="con-subd" deviceset="F15?S" device="HDV"/>
 </parts>
 <sheets>
 <sheet>
@@ -13761,6 +13762,8 @@ cap 5v&lt;-&gt;gnd</text>
 <text x="523.24" y="128.27" size="1.27" layer="91">B</text>
 <text x="524.51" y="102.87" size="1.27" layer="91">HSync</text>
 <text x="524.51" y="100.33" size="1.27" layer="91">VSync</text>
+<text x="427.99" y="38.1" size="5.08" layer="91">Joystick0</text>
+<text x="450.85" y="34.29" size="1.27" layer="91">R</text>
 </plain>
 <instances>
 <instance part="IC1" gate="1" x="160.02" y="129.54"/>
@@ -13870,6 +13873,15 @@ cap 5v&lt;-&gt;gnd</text>
 <instance part="GND11" gate="1" x="378.46" y="57.15"/>
 <instance part="GND12" gate="1" x="393.7" y="57.15"/>
 <instance part="R14" gate="G$1" x="360.172" y="111.76" rot="MR180"/>
+<instance part="X6" gate="-1" x="443.738" y="34.29"/>
+<instance part="X6" gate="-2" x="443.738" y="31.75"/>
+<instance part="X6" gate="-3" x="443.738" y="29.21"/>
+<instance part="X6" gate="-4" x="443.738" y="26.67"/>
+<instance part="X6" gate="-5" x="443.738" y="24.13"/>
+<instance part="X6" gate="-6" x="443.738" y="21.59"/>
+<instance part="X6" gate="-7" x="443.738" y="19.05"/>
+<instance part="X6" gate="-8" x="443.738" y="16.51"/>
+<instance part="X6" gate="-9" x="443.738" y="13.97"/>
 </instances>
 <busses>
 <bus name="A[0..15]">

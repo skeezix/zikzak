@@ -13775,7 +13775,7 @@ cap 5v&lt;-&gt;gnd</text>
 <text x="523.24" y="128.27" size="1.27" layer="91">B</text>
 <text x="524.51" y="102.87" size="1.27" layer="91">HSync</text>
 <text x="524.51" y="100.33" size="1.27" layer="91">VSync</text>
-<text x="391.16" y="38.1" size="5.08" layer="91">Joystick0</text>
+<text x="384.81" y="38.1" size="5.08" layer="91">Atari Joystick</text>
 <text x="450.85" y="34.29" size="1.27" layer="91">Up</text>
 <text x="450.85" y="31.75" size="1.27" layer="91">Down</text>
 <text x="450.85" y="29.21" size="1.27" layer="91">Left</text>
