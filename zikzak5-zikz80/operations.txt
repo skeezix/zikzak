@@ -28,3 +28,50 @@ Given IS_READ and IS_WRITE nets..
 -> send IS_READ to RAM and ROM
 ----> the read/write signal is just to clue chip to operation
 ----> the chip _Selection_ is purely address driven, not operation driven, since read is obviously ambiguous
+
+
+On considering each i/o operation, will they work..
+- serial out to vga
+  - set2-tx -> feeds out to vga; known to work
+- serial usb
+  - using ser2cpu and serfromcpu; presumes atmega644p (or something that has 2 or more usarts); shoudl work fine, done it before
+- ps/2 keyboard
+  - be mindful of 'open collector'; need to be gound (sending data) or pulled up to Vcc (or is that high impedence?)
+    http://www.computer-engineering.org/ps2protocol/
+  - data + clock -> both high == nothing going on
+  - clock must be 10khz to 16khz; nice and slow. Data is written/read on rising/falling edge, so be careful.
+  -> hopefully we have another timer left, or can simulate with a counter in existing timer handler or something, so we can
+     do the keyboard stuff
+  -> trick is interupting the z80, to send data.. see below
+- joystick
+  - joy siilar to keyboard; collect data in the mcu, send interupt to z80, and protocol data up
+  -> the trick is can we do all this on VGA-occupied mcu
+- speaker
+  - purely driven by 1 wire from mcu; protocol from z80 to mcu shoudl set the tones up or something.. as long as we have
+    cycles and timer, should be okay
+    -> test in advance
+
+On mcu or peripherals interupting the z80:
+  - for keyboard, or protocol transmission, or whatever..
+  - theory is sound.. raise interupt from mcu on readyness, or z80 could just poll IN and ignore interupts entirely?
+
+Perhaps should hook up speaker, joystick and keyboard to atmega, and convert from atmega644 to atmega644p, and breadboard it up
+o also, add protocol handler on second uart too, for testing ..
+-- testing
+  - atmega644p cutover
+  - speaker test
+  - joystick test
+  - keyboard test
+  - text-mode test
+    - update text buffer in place with 'display-add()' type code
+    - update text buffer with display-clear(), display-goto()
+
+On IN and OUT port handling..
+  - okay, so when IN/OUT goes off, IOREQ goes low and MEMREQ is high; if memreq is high, then both is_Read and is_write will be high
+    so ROM/RAM should be inactive, so bus should be okay
+  - mcu has opfetch (M1) in case it needs to care, and also has IOREQ so it knows when IO is going on; ie: if not IO, leave the bus
+    on high impedence!
+  --> we may need to hook up BUSREQ or WAIT to mcu (we have a couple spare pins), so that mcu can take over bus for pure bus-to-bus
+    action, but so far is not necessary
+
+Design looks pretty solid, if not proven, so far..
