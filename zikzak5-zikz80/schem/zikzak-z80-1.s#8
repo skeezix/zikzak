@@ -15194,6 +15194,16 @@ cap 5v&lt;-&gt;gnd</text>
 <label x="508" y="102.87" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
+<net name="VSYNC" class="0">
+<segment>
+<wire x1="384.81" y1="109.22" x2="378.46" y2="109.22" width="0.1524" layer="91"/>
+<label x="378.46" y="109.22" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<wire x1="514.35" y1="100.33" x2="508" y2="100.33" width="0.1524" layer="91"/>
+<label x="508" y="100.33" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>

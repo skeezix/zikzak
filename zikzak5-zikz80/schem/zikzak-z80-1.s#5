@@ -13711,6 +13711,7 @@ Source: www.kingbright.com</description>
 <part name="GND12" library="SparkFun" deviceset="GND" device=""/>
 <part name="R14" library="rcl" deviceset="R-US_" device="0204/2V"/>
 <part name="X6" library="con-subd" deviceset="F15?S" device="HDV"/>
+<part name="GND13" library="SparkFun" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13763,7 +13764,11 @@ cap 5v&lt;-&gt;gnd</text>
 <text x="524.51" y="102.87" size="1.27" layer="91">HSync</text>
 <text x="524.51" y="100.33" size="1.27" layer="91">VSync</text>
 <text x="427.99" y="38.1" size="5.08" layer="91">Joystick0</text>
-<text x="450.85" y="34.29" size="1.27" layer="91">R</text>
+<text x="450.85" y="34.29" size="1.27" layer="91">Up</text>
+<text x="450.85" y="31.75" size="1.27" layer="91">Down</text>
+<text x="450.85" y="29.21" size="1.27" layer="91">Left</text>
+<text x="450.85" y="26.67" size="1.27" layer="91">Right</text>
+<text x="450.85" y="21.59" size="1.27" layer="91">Button</text>
 </plain>
 <instances>
 <instance part="IC1" gate="1" x="160.02" y="129.54"/>
@@ -13882,6 +13887,7 @@ cap 5v&lt;-&gt;gnd</text>
 <instance part="X6" gate="-7" x="443.738" y="19.05"/>
 <instance part="X6" gate="-8" x="443.738" y="16.51"/>
 <instance part="X6" gate="-9" x="443.738" y="13.97"/>
+<instance part="GND13" gate="1" x="434.34" y="7.62"/>
 </instances>
 <busses>
 <bus name="A[0..15]">
@@ -14067,6 +14073,13 @@ cap 5v&lt;-&gt;gnd</text>
 <junction x="510.54" y="120.65"/>
 <junction x="510.54" y="123.19"/>
 <label x="505.46" y="123.19" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<wire x1="441.96" y1="16.51" x2="434.34" y2="16.51" width="0.1524" layer="91"/>
+<wire x1="434.34" y1="16.51" x2="434.34" y2="10.16" width="0.1524" layer="91"/>
+<pinref part="GND13" gate="1" pin="GND"/>
+<junction x="434.34" y="10.16"/>
+<wire x1="434.34" y1="10.16" x2="434.34" y2="8.89" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="USB_D-" class="0">
@@ -15231,6 +15244,36 @@ cap 5v&lt;-&gt;gnd</text>
 <segment>
 <wire x1="514.35" y1="100.33" x2="508" y2="100.33" width="0.1524" layer="91"/>
 <label x="508" y="100.33" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="JOYU" class="0">
+<segment>
+<wire x1="441.96" y1="34.29" x2="434.34" y2="34.29" width="0.1524" layer="91"/>
+<label x="434.34" y="34.29" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="JOYD" class="0">
+<segment>
+<wire x1="441.96" y1="31.75" x2="434.34" y2="31.75" width="0.1524" layer="91"/>
+<label x="434.34" y="31.75" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="JOYL" class="0">
+<segment>
+<wire x1="441.96" y1="29.21" x2="434.34" y2="29.21" width="0.1524" layer="91"/>
+<label x="434.34" y="29.21" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="JOYR" class="0">
+<segment>
+<wire x1="441.96" y1="26.67" x2="434.34" y2="26.67" width="0.1524" layer="91"/>
+<label x="434.34" y="26.67" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="JOYB" class="0">
+<segment>
+<wire x1="441.96" y1="21.59" x2="434.34" y2="21.59" width="0.1524" layer="91"/>
+<label x="434.34" y="21.59" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>

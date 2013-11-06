@@ -173,6 +173,12 @@ void setup() {
   DDRD |= (1<<PD1); // green
   DDRD |= (1<<PD2); // blue
 
+  // JOY: set up pin change interupts
+  EICRA &= ~ ( (1 << ISC11) | (1 << ISC10) ); // reset: clear ISC11+ISC10 (ISC1x for vect1 which we need for joy)
+  EICRA |= ( (1 << ISC10) ); // 00 set and 01 unset means any edge will make event
+  PCMSK1 |= ( (1 << PCINT10) | (1 << PCINT11) | (1 << PCINT12) | (1 << PCINT13) | (1 << PCINT14) ); // Pins to monitor
+  PCICR |= (1 << PCIE1); // PB is monitored
+
   // enable interupts or waking from sleep won't happen
   sei();
  
@@ -237,5 +243,31 @@ int main ( void ) {
   }
 
 }  // end of loop
+
+volatile unsigned char _g_pin_state = 0; // so we can know which pins changed since last interupt
+#define JOYMASK ( (1<<PB2) | (1<<PB3) | (1<<PB4) | (1<<PB5) | (1<<PB6) )
+ISR(PCINT1_vect)
+{
+  unsigned char delta = _g_pin_state ^ PINB;
+
+  if ( delta & (1<<PB2) ) {
+
+    // CH1: edge has gone up, or down?
+    if ( PINB & ( 1 << PB2 ) ) {
+      // JOY UP: edge has gone high (nolonger pointing up)
+      textbuf [ 0 ][ 0 ] = ' ';
+
+    } else {
+      // JOY UP: edge has gone low - joy is pointing up!
+      textbuf [ 0 ][ 0 ] = 'X';
+
+    }
+
+  } // PA0 changed?
+
+  // store current pin state
+  _g_pin_state = PINB;
+
+} // PCINT1_vect
 
 #endif

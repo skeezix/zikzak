@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -13716,14 +13716,14 @@ Source: www.kingbright.com</description>
 <part name="R17" library="rcl" deviceset="R-US_" device="0204/2V"/>
 <part name="R18" library="rcl" deviceset="R-US_" device="0204/2V"/>
 <part name="R19" library="rcl" deviceset="R-US_" device="0204/2V"/>
-<part name="GND14" library="SparkFun" deviceset="GND" device=""/>
-<part name="GND15" library="SparkFun" deviceset="GND" device=""/>
-<part name="GND16" library="SparkFun" deviceset="GND" device=""/>
-<part name="GND17" library="SparkFun" deviceset="GND" device=""/>
-<part name="GND18" library="SparkFun" deviceset="GND" device=""/>
 <part name="U$13" library="adafruit" deviceset="PS603" device="SPK"/>
 <part name="GND19" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND20" library="SparkFun" deviceset="GND" device=""/>
+<part name="U$2" library="SparkFun" deviceset="5V" device=""/>
+<part name="U$15" library="SparkFun" deviceset="5V" device=""/>
+<part name="U$16" library="SparkFun" deviceset="5V" device=""/>
+<part name="U$17" library="SparkFun" deviceset="5V" device=""/>
+<part name="U$18" library="SparkFun" deviceset="5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13908,14 +13908,14 @@ cap 5v&lt;-&gt;gnd</text>
 <instance part="R17" gate="G$1" x="385.572" y="29.21" rot="MR180"/>
 <instance part="R18" gate="G$1" x="414.782" y="26.67" rot="MR180"/>
 <instance part="R19" gate="G$1" x="400.812" y="21.59" rot="MR180"/>
-<instance part="GND14" gate="1" x="393.7" y="8.89"/>
-<instance part="GND15" gate="1" x="383.54" y="8.89"/>
-<instance part="GND16" gate="1" x="373.38" y="8.89"/>
-<instance part="GND17" gate="1" x="363.22" y="8.89"/>
-<instance part="GND18" gate="1" x="353.06" y="8.89"/>
 <instance part="U$13" gate="G$1" x="435.61" y="69.85" rot="R180"/>
 <instance part="GND19" gate="1" x="444.5" y="58.42"/>
 <instance part="GND20" gate="1" x="369.57" y="187.96" rot="R180"/>
+<instance part="U$2" gate="G$1" x="353.06" y="12.7" rot="R180"/>
+<instance part="U$15" gate="G$1" x="363.22" y="12.7" rot="R180"/>
+<instance part="U$16" gate="G$1" x="373.38" y="12.7" rot="R180"/>
+<instance part="U$17" gate="G$1" x="383.54" y="12.7" rot="R180"/>
+<instance part="U$18" gate="G$1" x="393.7" y="12.7" rot="R180"/>
 </instances>
 <busses>
 <bus name="A[0..15]">
@@ -14110,40 +14110,6 @@ cap 5v&lt;-&gt;gnd</text>
 <wire x1="434.34" y1="10.16" x2="434.34" y2="8.89" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="GND18" gate="1" pin="GND"/>
-<wire x1="412.75" y1="34.29" x2="353.06" y2="34.29" width="0.1524" layer="91"/>
-<wire x1="353.06" y1="34.29" x2="353.06" y2="11.43" width="0.1524" layer="91"/>
-<junction x="353.06" y="11.43"/>
-</segment>
-<segment>
-<wire x1="397.51" y1="31.75" x2="363.22" y2="31.75" width="0.1524" layer="91"/>
-<wire x1="363.22" y1="31.75" x2="363.22" y2="11.43" width="0.1524" layer="91"/>
-<pinref part="GND17" gate="1" pin="GND"/>
-<junction x="363.22" y="11.43"/>
-<wire x1="363.22" y1="11.43" x2="363.22" y2="10.16" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<wire x1="381" y1="29.21" x2="373.38" y2="29.21" width="0.1524" layer="91"/>
-<wire x1="373.38" y1="29.21" x2="373.38" y2="11.43" width="0.1524" layer="91"/>
-<pinref part="GND16" gate="1" pin="GND"/>
-<junction x="373.38" y="11.43"/>
-<wire x1="373.38" y1="11.43" x2="373.38" y2="10.16" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<wire x1="411.48" y1="26.67" x2="383.54" y2="26.67" width="0.1524" layer="91"/>
-<wire x1="383.54" y1="26.67" x2="383.54" y2="11.43" width="0.1524" layer="91"/>
-<pinref part="GND15" gate="1" pin="GND"/>
-<junction x="383.54" y="11.43"/>
-<wire x1="383.54" y1="11.43" x2="383.54" y2="10.16" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<wire x1="396.24" y1="21.59" x2="393.7" y2="21.59" width="0.1524" layer="91"/>
-<wire x1="393.7" y1="21.59" x2="393.7" y2="11.43" width="0.1524" layer="91"/>
-<pinref part="GND14" gate="1" pin="GND"/>
-<junction x="393.7" y="11.43"/>
-<wire x1="393.7" y1="11.43" x2="393.7" y2="10.16" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="U$13" gate="G$1" pin="1"/>
 <wire x1="440.69" y1="69.85" x2="444.5" y2="69.85" width="0.1524" layer="91"/>
 <wire x1="444.5" y1="69.85" x2="444.5" y2="60.96" width="0.1524" layer="91"/>
@@ -14295,6 +14261,40 @@ cap 5v&lt;-&gt;gnd</text>
 <segment>
 <wire x1="444.5" y1="127" x2="452.12" y2="127" width="0.1524" layer="91"/>
 <label x="452.12" y="127" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<wire x1="412.75" y1="34.29" x2="353.06" y2="34.29" width="0.1524" layer="91"/>
+<wire x1="353.06" y1="34.29" x2="353.06" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="U$2" gate="G$1" pin="5V"/>
+<junction x="353.06" y="12.7"/>
+</segment>
+<segment>
+<wire x1="397.51" y1="31.75" x2="363.22" y2="31.75" width="0.1524" layer="91"/>
+<wire x1="363.22" y1="31.75" x2="363.22" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="U$15" gate="G$1" pin="5V"/>
+<wire x1="363.22" y1="12.7" x2="363.22" y2="10.16" width="0.1524" layer="91"/>
+<junction x="363.22" y="12.7"/>
+</segment>
+<segment>
+<wire x1="381" y1="29.21" x2="373.38" y2="29.21" width="0.1524" layer="91"/>
+<wire x1="373.38" y1="29.21" x2="373.38" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="U$16" gate="G$1" pin="5V"/>
+<wire x1="373.38" y1="12.7" x2="373.38" y2="10.16" width="0.1524" layer="91"/>
+<junction x="373.38" y="12.7"/>
+</segment>
+<segment>
+<wire x1="411.48" y1="26.67" x2="383.54" y2="26.67" width="0.1524" layer="91"/>
+<wire x1="383.54" y1="26.67" x2="383.54" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="U$17" gate="G$1" pin="5V"/>
+<wire x1="383.54" y1="12.7" x2="383.54" y2="10.16" width="0.1524" layer="91"/>
+<junction x="383.54" y="12.7"/>
+</segment>
+<segment>
+<wire x1="396.24" y1="21.59" x2="393.7" y2="21.59" width="0.1524" layer="91"/>
+<wire x1="393.7" y1="21.59" x2="393.7" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="U$18" gate="G$1" pin="5V"/>
+<wire x1="393.7" y1="12.7" x2="393.7" y2="10.16" width="0.1524" layer="91"/>
+<junction x="393.7" y="12.7"/>
 </segment>
 </net>
 <net name="AT_MOSI" class="0">
