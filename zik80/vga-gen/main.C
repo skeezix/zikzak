@@ -115,6 +115,7 @@ volatile int messageLine;
 volatile byte backPorchLinesToGo;
 
 char textbuf [verticalLines]  [horizontalBytes];
+volatile unsigned char _g_keyb_int = 0; // ping! keyb clock ticked down
 
 // ISR: Vsync pulse
 volatile unsigned char _g_blankcount;
@@ -123,12 +124,17 @@ ISR (TIMER1_OVF_vect) {
   messageLine = 0;
   backPorchLinesToGo = verticalBackPorchLines;
 
+  PCICR |= (1 << PCIE2); // PC is monitored
+
+  // delete this
+#if 1
   _g_blankcount++;
   if ( _g_blankcount == 60 ) {
     textbuf [ 0 ][ 2 ] = '_';
     textbuf [ 0 ][ 4 ] = '_';
     _g_blankcount = 0;
   }
+#endif
 
 } // end of TIMER1_OVF_vect
   
@@ -187,13 +193,15 @@ void setup() {
   PCICR |= (1 << PCIE1); // PB is monitored
   DDRB = 0x00; // all input
 
+#if 1
   // KEYB: set up pin change interupts
   EICRA &= ~ ( (1 << ISC21) | (1 << ISC20) ); // reset: clear ISC11+ISC10 (ISC1x for vect1 which we need for joy)
   //EICRA |= ( (1 << ISC20) ); // 00 set and 01 unset means any edge will make event
   EICRA |= ( (1 << ISC21) ); // x1 set and x0 unset means falling edge will trigger
   PCMSK2 |= ( (1 << PCINT22) ); // Pins to monitor
-  PCICR |= (1 << PCIE2); // PC is monitored
+  //PCICR |= (1 << PCIE2); // PC is monitored
   DDRC = 0x00; // all input
+#endif
 
   // enable interupts or waking from sleep won't happen
   sei();
@@ -206,6 +214,13 @@ void doOneScanLine ( void ) {
   // after vsync we do the back porch
   if (backPorchLinesToGo) {
     backPorchLinesToGo--;
+
+
+    if ( ! backPorchLinesToGo ) { // ;;;
+      PCICR &= ~(1 << PCIE2); // PC is monitored
+    }
+
+
     return;   
   }  // end still doing back porch
     
@@ -256,7 +271,21 @@ int main ( void ) {
     // sleep to ensure we start up in a predictable way
     sleep_mode ();
     doOneScanLine ();
-  }
+
+    //
+#if 1
+    if ( _g_keyb_int ) {
+      _g_keyb_int = 0;
+
+      textbuf [ 0 ][ 4 ] = 'C';
+      if ( PINC & ( 1 << PC5 ) ) {
+        textbuf [ 0 ][ 2 ] = 'K';
+      }
+
+    }
+#endif
+
+  } // while forever
 
 }  // end of loop
 
@@ -294,10 +323,6 @@ ISR(PCINT2_vect) {
   // which we don't bother with); as such, when we start getting interupted, we know a
   // piece of data is inbound, just need to collect it up.
 
-  textbuf [ 0 ][ 4 ] = 'C';
-
-  if ( PINC & ( 1 << PC5 ) ) {
-    textbuf [ 0 ][ 2 ] = 'K';
-  }
+  _g_keyb_int = 1;
 
 } // PCINT2_vect
