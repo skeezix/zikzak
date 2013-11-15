@@ -13775,8 +13775,7 @@ cap 5v&lt;-&gt;gnd</text>
 cap 5v&lt;-&gt;gnd</text>
 <text x="417.83" y="100.33" size="5.08" layer="91">VGA Gen</text>
 <text x="405.13" y="228.6" size="5.08" layer="91">IO/CLK/SID</text>
-<text x="513.08" y="267.97" size="6.4516" layer="91">TODO:
-- review IO and Z80 interupt/comms
+<text x="419.1" y="121.92" size="6.4516" layer="91">TODO:
 - color VGA DAC
 -   color / mono switch via buffer IC?
 - audio DAC</text>

@@ -13775,7 +13775,7 @@ cap 5v&lt;-&gt;gnd</text>
 cap 5v&lt;-&gt;gnd</text>
 <text x="417.83" y="100.33" size="5.08" layer="91">VGA Gen</text>
 <text x="405.13" y="228.6" size="5.08" layer="91">IO/CLK/SID</text>
-<text x="513.08" y="267.97" size="6.4516" layer="91">TODO:
+<text x="412.75" y="116.84" size="6.4516" layer="91">TODO:
 - review IO and Z80 interupt/comms
 - color VGA DAC
 -   color / mono switch via buffer IC?
@@ -15364,10 +15364,7 @@ cap 5v&lt;-&gt;gnd</text>
 </segment>
 <segment>
 <wire x1="394.97" y1="195.58" x2="394.208" y2="195.58" width="0.1524" layer="91"/>
-<label x="388.62" y="195.58" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="IC16" gate="G$1" pin="XTAL2"/>
-<wire x1="394.208" y1="195.58" x2="388.62" y2="195.58" width="0.1524" layer="91"/>
-<junction x="394.208" y="195.58"/>
 </segment>
 </net>
 <net name="XTAL1" class="0">
@@ -15391,10 +15388,7 @@ cap 5v&lt;-&gt;gnd</text>
 </segment>
 <segment>
 <wire x1="394.97" y1="193.04" x2="394.208" y2="193.04" width="0.1524" layer="91"/>
-<label x="388.62" y="193.04" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="IC16" gate="G$1" pin="XTAL1"/>
-<wire x1="394.208" y1="193.04" x2="388.62" y2="193.04" width="0.1524" layer="91"/>
-<junction x="394.208" y="193.04"/>
 </segment>
 </net>
 <net name="N$10" class="0">
