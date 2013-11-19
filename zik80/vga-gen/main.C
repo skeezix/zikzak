@@ -267,6 +267,8 @@ int main ( void ) {
 
   setup();
 
+  PORTB |= (1<<PB0); // turn LED on
+
   while ( 1 ) {
     // sleep to ensure we start up in a predictable way
     sleep_mode ();
