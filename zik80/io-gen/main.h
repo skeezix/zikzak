@@ -11,7 +11,7 @@
 
 
 
-void blinkit ( void );
+void blink_forever ( void );
 
 
 #endif
