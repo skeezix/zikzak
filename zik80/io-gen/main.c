@@ -73,7 +73,7 @@ int main ( void ) {
     unsigned char keycode;
     char c;
     if ( keyb_fetch_nonblocking ( &c, &keycode ) ) {
-      if ( keycode == KEYCODE_ENTER ) {
+      if ( keycode == KEYCODE_ENTER || c == 'p' ) {
         blink_forever();
       }
     }
