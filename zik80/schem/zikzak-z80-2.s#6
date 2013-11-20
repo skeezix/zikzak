@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -13723,6 +13723,7 @@ Source: www.kingbright.com</description>
 <part name="C11" library="rcl" deviceset="C-EU" device="025-050X050"/>
 <part name="GND14" library="SparkFun" deviceset="GND" device=""/>
 <part name="C12" library="rcl" deviceset="C-EU" device="025-050X050"/>
+<part name="JP1" library="pinhead" deviceset="PINHD-1X6" device="" value="ISP"/>
 </parts>
 <sheets>
 <sheet>
@@ -13745,10 +13746,10 @@ mcu)</text>
 <text x="273.05" y="82.55" size="1.27" layer="91">/</text>
 <text x="273.05" y="80.01" size="1.27" layer="91">/</text>
 <text x="273.05" y="77.47" size="1.27" layer="91">/</text>
-<rectangle x1="5.08" y1="116.84" x2="36.83" y2="143.51" layer="203"/>
+<rectangle x1="5.08" y1="157.48" x2="36.83" y2="184.15" layer="203"/>
 <text x="320.04" y="45.72" size="5.08" layer="91">VGA</text>
 <text x="15.24" y="29.21" size="5.08" layer="91">PS/2 Keyb</text>
-<text x="7.62" y="146.05" size="5.08" layer="91">ISP Progr.</text>
+<text x="7.62" y="186.69" size="5.08" layer="91">ISP Progr. VGA</text>
 <text x="76.2" y="191.77" size="5.08" layer="91">Serial &lt;-&gt; USB</text>
 <text x="354.33" y="72.39" size="1.016" layer="91">decoupling
 cap 5v&lt;-&gt;gnd</text>
@@ -13775,10 +13776,14 @@ cap 5v&lt;-&gt;gnd</text>
 cap 5v&lt;-&gt;gnd</text>
 <text x="417.83" y="100.33" size="5.08" layer="91">VGA Gen</text>
 <text x="405.13" y="228.6" size="5.08" layer="91">IO/CLK/SID</text>
-<text x="419.1" y="121.92" size="6.4516" layer="91">TODO:
+<text x="445.77" y="129.54" size="3.81" layer="94">TODO:
 - color VGA DAC
 -   color / mono switch via buffer IC?
-- audio DAC .. mnaybe via Shift Register?</text>
+- audio DAC .. mnaybe via Shift Register?
+-   or move joy0 onto shift-reg?
+- add pull up on avr /RESET * 2</text>
+<rectangle x1="3.81" y1="109.22" x2="35.56" y2="135.89" layer="203"/>
+<text x="6.35" y="138.43" size="5.08" layer="91">ISP Progr. IO</text>
 </plain>
 <instances>
 <instance part="IC1" gate="1" x="160.02" y="129.54"/>
@@ -13797,7 +13802,7 @@ cap 5v&lt;-&gt;gnd</text>
 <instance part="GND7" gate="1" x="28.194" y="220.472"/>
 <instance part="GND8" gate="1" x="38.354" y="220.472"/>
 <instance part="U$3" gate="G$1" x="56.134" y="250.952"/>
-<instance part="JP2" gate="A" x="9.398" y="131.572" rot="R180"/>
+<instance part="JP2" gate="A" x="9.398" y="172.212" rot="R180"/>
 <instance part="GND6" gate="1" x="112.014" y="256.032" rot="R180"/>
 <instance part="IC2" gate="G$1" x="428.498" y="72.39"/>
 <instance part="SRAM-128K" gate="G$1" x="269.24" y="92.71"/>
@@ -13909,6 +13914,7 @@ cap 5v&lt;-&gt;gnd</text>
 <instance part="C11" gate="G$1" x="361.188" y="200.152"/>
 <instance part="GND14" gate="1" x="379.73" y="259.08" rot="R180"/>
 <instance part="C12" gate="G$1" x="483.108" y="198.882"/>
+<instance part="JP1" gate="A" x="8.128" y="123.952" rot="R180"/>
 </instances>
 <busses>
 <bus name="A[0..15]">
@@ -14001,8 +14007,8 @@ cap 5v&lt;-&gt;gnd</text>
 </segment>
 <segment>
 <pinref part="JP2" gate="A" pin="6"/>
-<wire x1="11.938" y1="136.652" x2="22.098" y2="136.652" width="0.1524" layer="91"/>
-<label x="22.098" y="136.652" size="1.27" layer="95" xref="yes"/>
+<wire x1="11.938" y1="177.292" x2="22.098" y2="177.292" width="0.1524" layer="91"/>
+<label x="22.098" y="177.292" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <wire x1="101.854" y1="238.252" x2="112.014" y2="238.252" width="0.1524" layer="91"/>
@@ -14157,6 +14163,11 @@ cap 5v&lt;-&gt;gnd</text>
 <wire x1="379.73" y1="256.54" x2="379.73" y2="257.81" width="0.1524" layer="91"/>
 <junction x="379.73" y="256.54"/>
 </segment>
+<segment>
+<pinref part="JP1" gate="A" pin="6"/>
+<wire x1="10.668" y1="129.032" x2="20.828" y2="129.032" width="0.1524" layer="91"/>
+<label x="20.828" y="129.032" size="1.27" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="USB_D-" class="0">
 <segment>
@@ -14267,8 +14278,8 @@ cap 5v&lt;-&gt;gnd</text>
 </segment>
 <segment>
 <pinref part="JP2" gate="A" pin="2"/>
-<wire x1="11.938" y1="126.492" x2="22.098" y2="126.492" width="0.1524" layer="91"/>
-<label x="22.098" y="126.492" size="1.27" layer="95" xref="yes"/>
+<wire x1="11.938" y1="167.132" x2="22.098" y2="167.132" width="0.1524" layer="91"/>
+<label x="22.098" y="167.132" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="X4" gate="G$1" pin="4"/>
@@ -14372,12 +14383,17 @@ cap 5v&lt;-&gt;gnd</text>
 <wire x1="455.168" y1="198.12" x2="462.28" y2="198.12" width="0.1524" layer="91"/>
 <junction x="455.168" y="198.12"/>
 </segment>
+<segment>
+<pinref part="JP1" gate="A" pin="2"/>
+<wire x1="10.668" y1="118.872" x2="20.828" y2="118.872" width="0.1524" layer="91"/>
+<label x="20.828" y="118.872" size="1.27" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="AT_MOSI" class="0">
 <segment>
 <pinref part="JP2" gate="A" pin="4"/>
-<wire x1="11.938" y1="131.572" x2="22.098" y2="131.572" width="0.1524" layer="91"/>
-<label x="22.098" y="131.572" size="1.27" layer="95" xref="yes"/>
+<wire x1="11.938" y1="172.212" x2="22.098" y2="172.212" width="0.1524" layer="91"/>
+<label x="22.098" y="172.212" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <wire x1="398.78" y1="82.55" x2="398.018" y2="82.55" width="0.1524" layer="91"/>
@@ -14396,19 +14412,12 @@ cap 5v&lt;-&gt;gnd</text>
 <wire x1="253.492" y1="26.67" x2="252.73" y2="26.67" width="0.1524" layer="91"/>
 <junction x="253.492" y="26.67"/>
 </segment>
-<segment>
-<wire x1="394.97" y1="210.82" x2="394.208" y2="210.82" width="0.1524" layer="91"/>
-<label x="388.62" y="210.82" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="IC16" gate="G$1" pin="PCINT13/MOSI_PB5"/>
-<wire x1="394.208" y1="210.82" x2="388.62" y2="210.82" width="0.1524" layer="91"/>
-<junction x="394.208" y="210.82"/>
-</segment>
 </net>
 <net name="AT_SCK" class="0">
 <segment>
 <pinref part="JP2" gate="A" pin="3"/>
-<wire x1="11.938" y1="129.032" x2="22.098" y2="129.032" width="0.1524" layer="91"/>
-<label x="22.098" y="129.032" size="1.27" layer="95" xref="yes"/>
+<wire x1="11.938" y1="169.672" x2="22.098" y2="169.672" width="0.1524" layer="91"/>
+<label x="22.098" y="169.672" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <wire x1="398.78" y1="77.47" x2="398.018" y2="77.47" width="0.1524" layer="91"/>
@@ -14417,19 +14426,12 @@ cap 5v&lt;-&gt;gnd</text>
 <wire x1="398.018" y1="77.47" x2="392.43" y2="77.47" width="0.1524" layer="91"/>
 <junction x="398.018" y="77.47"/>
 </segment>
-<segment>
-<wire x1="394.97" y1="205.74" x2="394.208" y2="205.74" width="0.1524" layer="91"/>
-<label x="388.62" y="205.74" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="IC16" gate="G$1" pin="PCINT15/SCK_PB7"/>
-<wire x1="394.208" y1="205.74" x2="388.62" y2="205.74" width="0.1524" layer="91"/>
-<junction x="394.208" y="205.74"/>
-</segment>
 </net>
 <net name="AT_MISO" class="0">
 <segment>
 <pinref part="JP2" gate="A" pin="1"/>
-<wire x1="11.938" y1="123.952" x2="22.098" y2="123.952" width="0.1524" layer="91"/>
-<label x="22.098" y="123.952" size="1.27" layer="95" xref="yes"/>
+<wire x1="11.938" y1="164.592" x2="22.098" y2="164.592" width="0.1524" layer="91"/>
+<label x="22.098" y="164.592" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <wire x1="398.78" y1="80.01" x2="398.018" y2="80.01" width="0.1524" layer="91"/>
@@ -14447,13 +14449,6 @@ cap 5v&lt;-&gt;gnd</text>
 <pinref part="R19" gate="G$1" pin="2"/>
 <wire x1="239.522" y1="21.59" x2="238.76" y2="21.59" width="0.1524" layer="91"/>
 <junction x="239.522" y="21.59"/>
-</segment>
-<segment>
-<wire x1="394.97" y1="208.28" x2="394.208" y2="208.28" width="0.1524" layer="91"/>
-<label x="388.62" y="208.28" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="IC16" gate="G$1" pin="PCINT14/MISO_PB6"/>
-<wire x1="394.208" y1="208.28" x2="388.62" y2="208.28" width="0.1524" layer="91"/>
-<junction x="394.208" y="208.28"/>
 </segment>
 </net>
 <net name="+5V" class="0">
@@ -15120,15 +15115,8 @@ cap 5v&lt;-&gt;gnd</text>
 </segment>
 <segment>
 <pinref part="JP2" gate="A" pin="5"/>
-<wire x1="11.938" y1="134.112" x2="22.098" y2="134.112" width="0.1524" layer="91"/>
-<label x="22.098" y="134.112" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
-<wire x1="394.97" y1="203.2" x2="394.208" y2="203.2" width="0.1524" layer="91"/>
-<label x="388.62" y="203.2" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="IC16" gate="G$1" pin="!RESET"/>
-<wire x1="394.208" y1="203.2" x2="388.62" y2="203.2" width="0.1524" layer="91"/>
-<junction x="394.208" y="203.2"/>
+<wire x1="11.938" y1="174.752" x2="22.098" y2="174.752" width="0.1524" layer="91"/>
+<label x="22.098" y="174.752" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="KEY_DATA" class="0">
@@ -15677,6 +15665,62 @@ cap 5v&lt;-&gt;gnd</text>
 <wire x1="455.168" y1="177.8" x2="454.66" y2="177.8" width="0.1524" layer="91"/>
 <wire x1="455.168" y1="177.8" x2="461.01" y2="177.8" width="0.1524" layer="91"/>
 <label x="461.01" y="177.8" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="IO_RESET" class="0">
+<segment>
+<pinref part="JP1" gate="A" pin="5"/>
+<wire x1="10.668" y1="126.492" x2="20.828" y2="126.492" width="0.1524" layer="91"/>
+<label x="20.828" y="126.492" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<wire x1="394.97" y1="203.2" x2="394.208" y2="203.2" width="0.1524" layer="91"/>
+<label x="388.62" y="203.2" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="IC16" gate="G$1" pin="!RESET"/>
+<wire x1="394.208" y1="203.2" x2="388.62" y2="203.2" width="0.1524" layer="91"/>
+<junction x="394.208" y="203.2"/>
+</segment>
+</net>
+<net name="IO_MOSI" class="0">
+<segment>
+<pinref part="JP1" gate="A" pin="4"/>
+<wire x1="10.668" y1="123.952" x2="20.828" y2="123.952" width="0.1524" layer="91"/>
+<label x="20.828" y="123.952" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<wire x1="394.97" y1="210.82" x2="394.208" y2="210.82" width="0.1524" layer="91"/>
+<label x="388.62" y="210.82" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="IC16" gate="G$1" pin="PCINT13/MOSI_PB5"/>
+<wire x1="394.208" y1="210.82" x2="388.62" y2="210.82" width="0.1524" layer="91"/>
+<junction x="394.208" y="210.82"/>
+</segment>
+</net>
+<net name="IO_SCK" class="0">
+<segment>
+<pinref part="JP1" gate="A" pin="3"/>
+<wire x1="10.668" y1="121.412" x2="20.828" y2="121.412" width="0.1524" layer="91"/>
+<label x="20.828" y="121.412" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<wire x1="394.97" y1="205.74" x2="394.208" y2="205.74" width="0.1524" layer="91"/>
+<label x="388.62" y="205.74" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="IC16" gate="G$1" pin="PCINT15/SCK_PB7"/>
+<wire x1="394.208" y1="205.74" x2="388.62" y2="205.74" width="0.1524" layer="91"/>
+<junction x="394.208" y="205.74"/>
+</segment>
+</net>
+<net name="IO_MISO" class="0">
+<segment>
+<pinref part="JP1" gate="A" pin="1"/>
+<wire x1="10.668" y1="116.332" x2="20.828" y2="116.332" width="0.1524" layer="91"/>
+<label x="20.828" y="116.332" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<wire x1="394.97" y1="208.28" x2="394.208" y2="208.28" width="0.1524" layer="91"/>
+<label x="388.62" y="208.28" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="IC16" gate="G$1" pin="PCINT14/MISO_PB6"/>
+<wire x1="394.208" y1="208.28" x2="388.62" y2="208.28" width="0.1524" layer="91"/>
+<junction x="394.208" y="208.28"/>
 </segment>
 </net>
 </nets>
