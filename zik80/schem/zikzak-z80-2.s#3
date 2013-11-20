@@ -13787,7 +13787,8 @@ cap 5v&lt;-&gt;gnd</text>
 <text x="6.35" y="138.43" size="5.08" layer="91">ISP Progr. IO</text>
 <text x="478.79" y="40.64" size="3.81" layer="94">TODO: Check if VBL is needed.. 
 VSYNC may be sufficient, and can be
-connected to both VGA and to IO mcu..</text>
+connected to both VGA and to IO mcu..
+--&gt; free a pin!</text>
 </plain>
 <instances>
 <instance part="IC1" gate="1" x="160.02" y="129.54"/>

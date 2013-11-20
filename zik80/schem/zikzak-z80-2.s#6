@@ -13724,6 +13724,7 @@ Source: www.kingbright.com</description>
 <part name="GND14" library="SparkFun" deviceset="GND" device=""/>
 <part name="C12" library="rcl" deviceset="C-EU" device="025-050X050"/>
 <part name="JP1" library="pinhead" deviceset="PINHD-1X6" device="" value="ISP"/>
+<part name="U$8" library="SparkFun" deviceset="5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -13915,6 +13916,7 @@ cap 5v&lt;-&gt;gnd</text>
 <instance part="GND14" gate="1" x="379.73" y="259.08" rot="R180"/>
 <instance part="C12" gate="G$1" x="483.108" y="198.882"/>
 <instance part="JP1" gate="A" x="8.128" y="123.952" rot="R180"/>
+<instance part="U$8" gate="G$1" x="257.81" y="11.43" rot="R180"/>
 </instances>
 <busses>
 <bus name="A[0..15]">
@@ -14387,6 +14389,13 @@ cap 5v&lt;-&gt;gnd</text>
 <pinref part="JP1" gate="A" pin="2"/>
 <wire x1="10.668" y1="118.872" x2="20.828" y2="118.872" width="0.1524" layer="91"/>
 <label x="20.828" y="118.872" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<wire x1="275.59" y1="19.05" x2="257.81" y2="19.05" width="0.1524" layer="91"/>
+<wire x1="257.81" y1="19.05" x2="257.81" y2="11.43" width="0.1524" layer="91"/>
+<pinref part="U$8" gate="G$1" pin="5V"/>
+<wire x1="257.81" y1="11.43" x2="257.81" y2="10.16" width="0.1524" layer="91"/>
+<junction x="257.81" y="11.43"/>
 </segment>
 </net>
 <net name="AT_MOSI" class="0">
