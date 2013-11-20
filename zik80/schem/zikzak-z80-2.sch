@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -13772,7 +13772,6 @@ cap 5v&lt;-&gt;gnd</text>
 <text x="350.52" y="200.66" size="1.016" layer="91">decoupling
 cap 5v&lt;-&gt;gnd</text>
 <text x="373.38" y="210.82" size="1.016" layer="91">JOYR</text>
-<text x="373.38" y="208.28" size="1.016" layer="91">JOYB</text>
 <text x="472.44" y="199.39" size="1.016" layer="91">decoupling
 cap 5v&lt;-&gt;gnd</text>
 <text x="417.83" y="100.33" size="5.08" layer="91">VGA Gen</text>
@@ -13889,7 +13888,7 @@ connected to both VGA and to IO mcu..
 <instance part="C10" gate="G$1" x="93.98" y="19.05"/>
 <instance part="GND11" gate="1" x="78.74" y="8.89"/>
 <instance part="GND12" gate="1" x="93.98" y="8.89"/>
-<instance part="R14" gate="G$1" x="374.142" y="54.61" rot="MR180"/>
+<instance part="R14" gate="G$1" x="376.682" y="59.69" rot="MR180"/>
 <instance part="X6" gate="-1" x="277.368" y="34.29"/>
 <instance part="X6" gate="-2" x="277.368" y="31.75"/>
 <instance part="X6" gate="-3" x="277.368" y="29.21"/>
@@ -14226,10 +14225,6 @@ connected to both VGA and to IO mcu..
 <pinref part="U2" gate="G$1" pin="RXD"/>
 </segment>
 <segment>
-<wire x1="398.78" y1="59.69" x2="398.018" y2="59.69" width="0.1524" layer="91"/>
-<pinref part="IC2" gate="G$1" pin="PCINT25/TXD0_PD1"/>
-</segment>
-<segment>
 <wire x1="394.97" y1="187.96" x2="394.208" y2="187.96" width="0.1524" layer="91"/>
 <label x="388.62" y="187.96" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="IC16" gate="G$1" pin="PCINT25/TXD0_PD1"/>
@@ -14452,16 +14447,6 @@ connected to both VGA and to IO mcu..
 <pinref part="IC2" gate="G$1" pin="PCINT14/MISO_PB6"/>
 <wire x1="398.018" y1="80.01" x2="392.43" y2="80.01" width="0.1524" layer="91"/>
 <junction x="398.018" y="80.01"/>
-</segment>
-<segment>
-<wire x1="275.59" y1="21.59" x2="274.828" y2="21.59" width="0.1524" layer="91"/>
-<label x="267.97" y="21.59" size="1.27" layer="95" rot="R180" xref="yes"/>
-<wire x1="274.828" y1="21.59" x2="239.522" y2="21.59" width="0.1524" layer="91"/>
-<pinref part="X6" gate="-6" pin="F"/>
-<junction x="274.828" y="21.59"/>
-<pinref part="R19" gate="G$1" pin="2"/>
-<wire x1="239.522" y1="21.59" x2="238.76" y2="21.59" width="0.1524" layer="91"/>
-<junction x="239.522" y="21.59"/>
 </segment>
 </net>
 <net name="+5V" class="0">
@@ -15323,10 +15308,6 @@ connected to both VGA and to IO mcu..
 <label x="95.25" y="127" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="394.97" y1="220.98" x2="394.208" y2="220.98" width="0.1524" layer="91"/>
-<pinref part="IC16" gate="G$1" pin="PCINT9/CLKO/T1_PB1"/>
-</segment>
-<segment>
 <wire x1="454.66" y1="190.5" x2="455.168" y2="190.5" width="0.1524" layer="91"/>
 <label x="461.01" y="190.5" size="1.27" layer="95" xref="yes"/>
 <pinref part="IC16" gate="G$1" pin="PCINT21/TDI_PC5"/>
@@ -15384,13 +15365,8 @@ connected to both VGA and to IO mcu..
 </net>
 <net name="N$10" class="0">
 <segment>
-<wire x1="378.46" y1="54.61" x2="379.222" y2="54.61" width="0.1524" layer="91"/>
 <pinref part="IC2" gate="G$1" pin="PCINT27/INT1_PD3"/>
-<wire x1="379.222" y1="54.61" x2="398.018" y2="54.61" width="0.1524" layer="91"/>
 <wire x1="398.018" y1="54.61" x2="398.78" y2="54.61" width="0.1524" layer="91"/>
-<junction x="398.018" y="54.61"/>
-<pinref part="R14" gate="G$1" pin="2"/>
-<junction x="379.222" y="54.61"/>
 </segment>
 </net>
 <net name="HSYNC" class="0">
@@ -15496,10 +15472,6 @@ connected to both VGA and to IO mcu..
 </net>
 <net name="SPKR" class="0">
 <segment>
-<wire x1="398.78" y1="57.15" x2="398.018" y2="57.15" width="0.1524" layer="91"/>
-<pinref part="IC2" gate="G$1" pin="PCINT26/INT0_PD2"/>
-</segment>
-<segment>
 <wire x1="148.59" y1="24.13" x2="147.32" y2="24.13" width="0.1524" layer="91"/>
 <wire x1="147.32" y1="24.13" x2="142.24" y2="24.13" width="0.1524" layer="91"/>
 <wire x1="142.24" y1="24.13" x2="142.24" y2="34.29" width="0.1524" layer="91"/>
@@ -15579,7 +15551,7 @@ connected to both VGA and to IO mcu..
 <junction x="455.168" y="205.74"/>
 </segment>
 </net>
-<net name="N$13" class="0">
+<net name="JOYB" class="0">
 <segment>
 <wire x1="394.97" y1="223.52" x2="394.208" y2="223.52" width="0.1524" layer="91"/>
 <wire x1="394.208" y1="223.52" x2="379.73" y2="223.52" width="0.1524" layer="91"/>
@@ -15589,6 +15561,22 @@ connected to both VGA and to IO mcu..
 <pinref part="R20" gate="G$1" pin="2"/>
 <wire x1="379.73" y1="230.378" x2="379.73" y2="231.14" width="0.1524" layer="91"/>
 <junction x="379.73" y="230.378"/>
+</segment>
+<segment>
+<wire x1="394.97" y1="220.98" x2="394.208" y2="220.98" width="0.1524" layer="91"/>
+<pinref part="IC16" gate="G$1" pin="PCINT9/CLKO/T1_PB1"/>
+<wire x1="394.208" y1="220.98" x2="388.62" y2="220.98" width="0.1524" layer="91"/>
+<label x="388.62" y="220.98" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<wire x1="275.59" y1="21.59" x2="274.828" y2="21.59" width="0.1524" layer="91"/>
+<label x="267.97" y="21.59" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="274.828" y1="21.59" x2="239.522" y2="21.59" width="0.1524" layer="91"/>
+<pinref part="X6" gate="-6" pin="F"/>
+<junction x="274.828" y="21.59"/>
+<pinref part="R19" gate="G$1" pin="2"/>
+<wire x1="239.522" y1="21.59" x2="238.76" y2="21.59" width="0.1524" layer="91"/>
+<junction x="239.522" y="21.59"/>
 </segment>
 </net>
 <net name="N$14" class="0">
@@ -15615,11 +15603,11 @@ connected to both VGA and to IO mcu..
 </net>
 <net name="SER2-VID-TX" class="0">
 <segment>
-<wire x1="369.57" y1="54.61" x2="369.062" y2="54.61" width="0.1524" layer="91"/>
-<label x="364.49" y="54.61" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="372.11" y1="59.69" x2="371.602" y2="59.69" width="0.1524" layer="91"/>
+<label x="367.03" y="59.69" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="R14" gate="G$1" pin="1"/>
-<wire x1="369.062" y1="54.61" x2="364.49" y2="54.61" width="0.1524" layer="91"/>
-<junction x="369.062" y="54.61"/>
+<wire x1="371.602" y1="59.69" x2="367.03" y2="59.69" width="0.1524" layer="91"/>
+<junction x="371.602" y="59.69"/>
 </segment>
 <segment>
 <wire x1="322.58" y1="39.37" x2="321.818" y2="39.37" width="0.1524" layer="91"/>
@@ -15731,14 +15719,30 @@ connected to both VGA and to IO mcu..
 <segment>
 <pinref part="IC2" gate="G$1" pin="PCINT18/TCK_PC2"/>
 <wire x1="458.978" y1="54.61" x2="458.47" y2="54.61" width="0.1524" layer="91"/>
-<wire x1="458.978" y1="54.61" x2="466.09" y2="54.61" width="0.1524" layer="91"/>
-<label x="466.09" y="54.61" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
 <pinref part="IC16" gate="G$1" pin="PCINT18/TCK_PC2"/>
 <wire x1="455.168" y1="182.88" x2="454.66" y2="182.88" width="0.1524" layer="91"/>
 <wire x1="455.168" y1="182.88" x2="461.01" y2="182.88" width="0.1524" layer="91"/>
 <label x="461.01" y="182.88" size="1.27" layer="95" xref="yes"/>
+</segment>
+<segment>
+<wire x1="398.78" y1="59.69" x2="398.018" y2="59.69" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="G$1" pin="PCINT25/TXD0_PD1"/>
+</segment>
+<segment>
+<wire x1="398.78" y1="57.15" x2="398.018" y2="57.15" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="G$1" pin="PCINT26/INT0_PD2"/>
+<wire x1="398.018" y1="57.15" x2="392.43" y2="57.15" width="0.1524" layer="91"/>
+<label x="392.43" y="57.15" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<wire x1="381" y1="59.69" x2="381.762" y2="59.69" width="0.1524" layer="91"/>
+<pinref part="R14" gate="G$1" pin="2"/>
+<wire x1="381.762" y1="59.69" x2="398.78" y2="59.69" width="0.1524" layer="91"/>
+<wire x1="400.05" y1="59.69" x2="398.78" y2="59.69" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

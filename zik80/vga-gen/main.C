@@ -126,16 +126,6 @@ ISR (TIMER1_OVF_vect) {
 
   PCICR |= (1 << PCIE2); // PC is monitored
 
-  // delete this
-#if 1
-  _g_blankcount++;
-  if ( _g_blankcount == 60 ) {
-    textbuf [ 0 ][ 2 ] = '_';
-    textbuf [ 0 ][ 4 ] = '_';
-    _g_blankcount = 0;
-  }
-#endif
-
 } // end of TIMER1_OVF_vect
   
 // ISR: Hsync pulse ... this interrupt merely wakes us up
@@ -185,23 +175,6 @@ void setup() {
   DDRD |= (1<<PD0); // red
   DDRD |= (1<<PD1); // green
   DDRD |= (1<<PD2); // blue
-
-  // JOY: set up pin change interupts
-  EICRA &= ~ ( (1 << ISC11) | (1 << ISC10) ); // reset: clear ISC11+ISC10 (ISC1x for vect1 which we need for joy)
-  EICRA |= ( (1 << ISC10) ); // 00 set and 01 unset means any edge will make event
-  PCMSK1 |= ( (1 << PCINT10) | (1 << PCINT11) | (1 << PCINT12) | (1 << PCINT13) | (1 << PCINT14) ); // Pins to monitor
-  PCICR |= (1 << PCIE1); // PB is monitored
-  DDRB = 0x00; // all input
-
-#if 1
-  // KEYB: set up pin change interupts
-  EICRA &= ~ ( (1 << ISC21) | (1 << ISC20) ); // reset: clear ISC11+ISC10 (ISC1x for vect1 which we need for joy)
-  //EICRA |= ( (1 << ISC20) ); // 00 set and 01 unset means any edge will make event
-  EICRA |= ( (1 << ISC21) ); // x1 set and x0 unset means falling edge will trigger
-  PCMSK2 |= ( (1 << PCINT22) ); // Pins to monitor
-  //PCICR |= (1 << PCIE2); // PC is monitored
-  DDRC = 0x00; // all input
-#endif
 
   // enable interupts or waking from sleep won't happen
   sei();
@@ -273,58 +246,6 @@ int main ( void ) {
     // sleep to ensure we start up in a predictable way
     sleep_mode ();
     doOneScanLine ();
-
-    //
-#if 1
-    if ( _g_keyb_int ) {
-      _g_keyb_int = 0;
-
-      textbuf [ 0 ][ 4 ] = 'C';
-      if ( PINC & ( 1 << PC5 ) ) {
-        textbuf [ 0 ][ 2 ] = 'K';
-      }
-
-    }
-#endif
-
   } // while forever
 
 }  // end of loop
-
-volatile unsigned char _g_joy_state = 0; // so we can know which pins changed since last interupt
-#define JOYMASK ( (1<<PB2) | (1<<PB3) | (1<<PB4) | (1<<PB5) | (1<<PB6) )
-ISR(PCINT1_vect)
-{
-  unsigned char delta = _g_joy_state ^ PINB;
-
-  if ( delta & (1<<PB2) ) {
-
-    // CH1: edge has gone up, or down?
-    if ( PINB & ( 1 << PB2 ) ) {
-      // JOY UP: edge has gone high (nolonger pointing up)
-      textbuf [ 0 ][ 0 ] = ' ';
-
-    } else {
-      // JOY UP: edge has gone low - joy is pointing up!
-      textbuf [ 0 ][ 0 ] = 'X';
-
-    }
-
-  } // changed?
-
-  // store current pin state
-  _g_joy_state = PINB;
-
-} // PCINT1_vect
-
-ISR(PCINT2_vect) {
-  // ps/2 protocol is: http://www.computer-engineering.org/ps2keyboard/
-
-  // no delta/state is needed here; we're only triggered on falling edge of clock
-  // ps/2 protocol has clock only when its sending us data (or when we're sending it data,
-  // which we don't bother with); as such, when we start getting interupted, we know a
-  // piece of data is inbound, just need to collect it up.
-
-  _g_keyb_int = 1;
-
-} // PCINT2_vect

@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -13780,6 +13780,7 @@ cap 5v&lt;-&gt;gnd</text>
 - color VGA DAC
 -   color / mono switch via buffer IC?
 - audio DAC .. mnaybe via Shift Register?
+-   or move joy0 onto shift-reg?
 - add pull up on avr /RESET * 2</text>
 <rectangle x1="3.81" y1="109.22" x2="35.56" y2="135.89" layer="203"/>
 <text x="6.35" y="138.43" size="5.08" layer="91">ISP Progr. IO</text>
@@ -14724,10 +14725,6 @@ cap 5v&lt;-&gt;gnd</text>
 <wire x1="458.978" y1="57.15" x2="458.47" y2="57.15" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="IC16" gate="G$1" pin="PCINT19/TMS_PC3"/>
-<wire x1="455.168" y1="185.42" x2="454.66" y2="185.42" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <wire x1="394.97" y1="175.26" x2="394.208" y2="175.26" width="0.1524" layer="91"/>
 <pinref part="IC16" gate="G$1" pin="PCINT30/OC2B/ICP_PD6"/>
 <wire x1="388.62" y1="175.26" x2="394.208" y2="175.26" width="0.1524" layer="91"/>
@@ -15129,11 +15126,10 @@ cap 5v&lt;-&gt;gnd</text>
 <pinref part="IC2" gate="G$1" pin="PCINT21/TDI_PC5"/>
 </segment>
 <segment>
-<wire x1="454.66" y1="190.5" x2="455.168" y2="190.5" width="0.1524" layer="91"/>
-<label x="461.01" y="190.5" size="1.27" layer="95" xref="yes"/>
-<pinref part="IC16" gate="G$1" pin="PCINT21/TDI_PC5"/>
-<wire x1="455.168" y1="190.5" x2="461.01" y2="190.5" width="0.1524" layer="91"/>
-<junction x="455.168" y="190.5"/>
+<pinref part="IC16" gate="G$1" pin="PCINT19/TMS_PC3"/>
+<wire x1="455.168" y1="185.42" x2="454.66" y2="185.42" width="0.1524" layer="91"/>
+<wire x1="455.168" y1="185.42" x2="462.28" y2="185.42" width="0.1524" layer="91"/>
+<label x="462.28" y="185.42" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="KEY_CLOCK" class="0">
@@ -15147,11 +15143,11 @@ cap 5v&lt;-&gt;gnd</text>
 <pinref part="IC2" gate="G$1" pin="PCINT22/TOSC1_PC6"/>
 </segment>
 <segment>
-<wire x1="454.66" y1="193.04" x2="455.168" y2="193.04" width="0.1524" layer="91"/>
-<label x="461.01" y="193.04" size="1.27" layer="95" xref="yes"/>
-<pinref part="IC16" gate="G$1" pin="PCINT22/TOSC1_PC6"/>
-<wire x1="455.168" y1="193.04" x2="461.01" y2="193.04" width="0.1524" layer="91"/>
-<junction x="455.168" y="193.04"/>
+<wire x1="454.66" y1="187.96" x2="455.168" y2="187.96" width="0.1524" layer="91"/>
+<label x="461.01" y="187.96" size="1.27" layer="95" xref="yes"/>
+<pinref part="IC16" gate="G$1" pin="PCINT20/TDO_PC4"/>
+<wire x1="455.168" y1="187.96" x2="461.01" y2="187.96" width="0.1524" layer="91"/>
+<junction x="455.168" y="187.96"/>
 </segment>
 </net>
 <net name="OPFETCH" class="0">
@@ -15165,11 +15161,11 @@ cap 5v&lt;-&gt;gnd</text>
 <pinref part="IC2" gate="G$1" pin="PCINT20/TDO_PC4"/>
 </segment>
 <segment>
-<wire x1="454.66" y1="187.96" x2="455.168" y2="187.96" width="0.1524" layer="91"/>
-<label x="461.01" y="187.96" size="1.27" layer="95" xref="yes"/>
-<pinref part="IC16" gate="G$1" pin="PCINT20/TDO_PC4"/>
-<wire x1="455.168" y1="187.96" x2="461.01" y2="187.96" width="0.1524" layer="91"/>
-<junction x="455.168" y="187.96"/>
+<wire x1="454.66" y1="193.04" x2="455.168" y2="193.04" width="0.1524" layer="91"/>
+<label x="461.01" y="193.04" size="1.27" layer="95" xref="yes"/>
+<pinref part="IC16" gate="G$1" pin="PCINT22/TOSC1_PC6"/>
+<wire x1="455.168" y1="193.04" x2="461.01" y2="193.04" width="0.1524" layer="91"/>
+<junction x="455.168" y="193.04"/>
 </segment>
 </net>
 <net name="MREQ" class="0">
@@ -15323,10 +15319,14 @@ cap 5v&lt;-&gt;gnd</text>
 </segment>
 <segment>
 <wire x1="394.97" y1="220.98" x2="394.208" y2="220.98" width="0.1524" layer="91"/>
-<label x="388.62" y="220.98" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="IC16" gate="G$1" pin="PCINT9/CLKO/T1_PB1"/>
-<wire x1="394.208" y1="220.98" x2="388.62" y2="220.98" width="0.1524" layer="91"/>
-<junction x="394.208" y="220.98"/>
+</segment>
+<segment>
+<wire x1="454.66" y1="190.5" x2="455.168" y2="190.5" width="0.1524" layer="91"/>
+<label x="461.01" y="190.5" size="1.27" layer="95" xref="yes"/>
+<pinref part="IC16" gate="G$1" pin="PCINT21/TDI_PC5"/>
+<wire x1="455.168" y1="190.5" x2="461.01" y2="190.5" width="0.1524" layer="91"/>
+<junction x="455.168" y="190.5"/>
 </segment>
 </net>
 <net name="XTAL2" class="0">
