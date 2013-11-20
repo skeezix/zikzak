@@ -1,7 +1,7 @@
 
 // install path: /usr/lib/avr/include/avr
 
-#include "main.h"
+#include "config.h"
 
 #include <inttypes.h>
 #include <avr/io.h>
@@ -11,6 +11,9 @@
 #include <util/delay.h>
 #include <avr/io.h>
 #include <stdio.h>
+
+#include "main.h"
+#include "lib_keyb.h"
 
 // direction
 //   ADR (analog direction register) and DDR (digital direction register)
@@ -39,9 +42,10 @@ int main ( void ) {
   PCICR |= (1 << PCIE1); // PB is monitored
   //
   DDRB = 0x00; // all input
+  DDRB |= (1<<PB0); // LED out
 
-
-
+  // KEYBOARD
+  init_keyboard(); 
 
   /*
    * doit
@@ -57,11 +61,23 @@ int main ( void ) {
 
   while ( 1 ) {
 
+#if 0 // joystick blink
     if ( _g_joy_state & (1<<PB2) ) {
       PORTB &= ~(1<<PB0);
     } else {
       PORTB |= (1<<PB0);
     }
+#endif
+
+#if 1 // keyboard blink
+    unsigned char keycode;
+    char c;
+    if ( keyb_fetch_nonblocking ( &c, &keycode ) ) {
+      if ( keycode == KEYCODE_ENTER ) {
+        blink_forever();
+      }
+    }
+#endif
 
   } // while forever
 

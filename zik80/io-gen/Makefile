@@ -12,7 +12,7 @@ CFLAGS=-g -Os -mcall-prologues -mmcu=${ATMEGA}
 # avr-objcopy -j .text -j .data -O ihex demo.elf demo.hex
 # sudo avrdude -p m644 -c avrispmkII -P usb -U demo.hex
 
-LIBOBJS=
+LIBOBJS=lib_keyb.o
 OBJS=main.o ${LIBOBJS}
 
 clean:
