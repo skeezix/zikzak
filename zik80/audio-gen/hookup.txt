@@ -21,7 +21,12 @@ pin 19 bc2 -> +5V (hold high, ignore it)
 pin 18 bdir -> avr PD1
 pin 17 A8 -> +5V (hold Address A8 high, ignore it)
 pin 16 /reset -> +5V (hold high, not reset)
-pin 15 clock -> OSCILATOR TBD
+pin 15 clock -> OSCILATOR; currently using 2.5MHz oscilator (4 pin, not crystal)
+
+speaker: using stereo headphone or desktop computer speakers, say (with volume control!)
+--> pin base == ground
+--> pin tip is left, pin middle is right
+(if more slots on pin, they're for mic etc. google)
 
 So .. full top edge of ay-3-8912 is hooked up, buttom edge is just power and a speaker like
 
