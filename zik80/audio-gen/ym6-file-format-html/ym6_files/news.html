@@ -1,0 +1,1131 @@
+<html><!-- #BeginTemplate "/Templates/Page simple.dwt" --><head>
+<title>Modele de page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<style>a:hover { color:#00FFFF; }body {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: xx-small; font-style: normal; line-height: normal; font-weight: normal; font-variant: normal; text-transform: none}
+</style></head>
+
+<body alink="#CCCCCC" background="news_data/fondpageblanc.gif" bgcolor="#ABABC7" link="#000099" vlink="#000098">
+<table border="0" width="100%" height="60">
+  <tbody><tr bgcolor="#505078" valign="top"> 
+    <td colspan="2" height="19"> 
+      <title></title>
+      <div align="center"><font color="#FFFF90" face="Verdana, Arial, Helvetica, sans-serif"><!-- #BeginEditable "titre" -->Nostalgia: 
+        ST-Sound<br>
+        <font size="2" color="#FFFFFF">YM File format</font><!-- #EndEditable --></font></div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan="2" height="3">&nbsp;</td>
+  </tr>
+  <tr valign="top"> 
+    <td colspan="2" height="2"><!-- #BeginEditable "texte" --> 
+      <table border="0" width="100%" height="100%">
+        <tbody><tr bgcolor="#980030"> 
+          <td> 
+            <p align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif"><b>Legal 
+              notes: YM file format was created for ST-Sound by Arnaud Carré. 
+              The file format is freeware, so everybody can use, read or produce 
+              YM file.</b></font></p>
+            <p align="center"><b><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">WARNING: 
+              If you're not programmer, you can skip that page. It contains technical 
+              information and it's totally unusefull if you only want to listen 
+              YM tunes.</font></b></p>
+          </td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td height="79"> 
+            <p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">YM 
+              file are specific file to use with ST-Sound or any ST-Sound based 
+              player. You can find some ".ym" files for the amiga but 
+              both formats are really different. If you're looking for a great 
+              collection of real ST-Sound YM file, go to the biggest YM database 
+              on the internet.</font></p>
+            <p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">YM 
+              file format is a "multi format". Basically, YM file are 
+              made to produces some classic ATARI chip tune. But YM can produce 
+              some strange and custom music too.</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td height="10">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <table bgcolor="#302050" border="1" width="100%">
+              <tbody><tr bgcolor="#990033"> 
+                <td width="25%"><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif"><b>YM 
+                  Header type</b></font></td>
+                <td width="75%"><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif"><b>Music 
+                  type </b></font></td>
+              </tr>
+              <tr> 
+                <td width="25%"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif"><a href="#ymchip">YM3 
+                  to YM6</a></font></td>
+                <td width="75%"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif">Classic 
+                  YM-2149 chip tunes. Differents formats are made to support some 
+                  "extended" chip tune effects as digidrum, SID-Voice,etc... 
+                  </font></td>
+              </tr>
+              <tr> 
+                <td width="25%"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif">MIX</font></td>
+                <td width="75%"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif">Sample 
+                  remix. Many ATARI demos feature music wich is just sample remix. 
+                  (Ex: Union Demo "1 Mb Beat Dis Screen" by The Carebears)</font></td>
+              </tr>
+              <tr> 
+                <td width="25%"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif">YMT</font></td>
+                <td width="75%"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif">Universal 
+                  YM Tracker. This is a universal tracker format. (Tracker is 
+                  a music in wich instruments uses real sample, no YM-2149 tone 
+                  synthesis). Use it to replay all custom soundtracker music from 
+                  ATARI, AMIGA etc...</font></td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#505078"> 
+          <td height="13"> 
+            <div align="center"><font color="#FFFF90" face="Verdana, Arial, Helvetica, sans-serif"><a name="ymchip"></a>YM6 
+              Chiptune format</font></div>
+          </td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td height="45"> 
+            <p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">As 
+              you probably know, YM is only an YM2149 Chip emulator, not a true 
+              MC68000 emulator. (For the moment !). YM-Files does not contain 
+              any 68000 code routine. A music-file is composed of YM2149 registers 
+              dump generated by the original play-routine (from the original machine: 
+              ATARI, AMSTRAD, SPECTRUM and all kind of machine with an Yamaha 
+              YM2149 sound chip). <font color="#993333">WARNING: </font></font><font size="2" color="#993333" face="Verdana, Arial, Helvetica, sans-serif">YM3 
+              trought YM5 are now old format, so if you want information about 
+              it, just write me. Next things are YM6 specific !</font></p>
+            <p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">So 
+              YM6 is just a register dump file. In chip music, sound registers 
+              are usually updated once per frame. A frame is generally updated 
+              at 50Hz. An YM6 file frame is a 16 bytes lenght frame. So just imagine 
+              you have a 6 minutes songs, in wich registers are updated at 50Hz 
+              (let's call this the "frame rate" now), you need 288000 
+              bytes (282Kb) to store all YM registers. Quite big for a soundchip 
+              format don't you think ? Yes, but data are "interleaved" 
+              in the file, then packed with a great packer. Finally, if you look 
+              at all the YM file on the internet, you'll see that YM file is generally 
+              from 1 to 10Kb.</font></p>
+            <p><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><b>About 
+              the packer:</b> The YM file can be stored on your hard disk in two 
+              ways: without or with packing. To pack an YM file, you just have 
+              to use the freeware packer "LHA" written by Haruyazu Yoshizaki. 
+              Almost all YM file spreaded around the web are packed. So if you 
+              want to look inside an YM packed file, just use the command: "lha 
+              e music1.ym".<font color="#993333">WARNING: </font></font><font size="2" color="#993333" face="Verdana, Arial, Helvetica, sans-serif">The 
+              ST-Sound player only support LZH file with header 0, so don't forget 
+              to use the "-h0" flag when packing a YM file you just 
+              create !</font></p>
+            <p><font size="2" face="Verdana, Arial, Helvetica, sans-serif"><b>About 
+              an YM data frame: </b>An YM data frame is composed of 16 bytes. 
+              14 first bytes contains YM2149 data registers, and the two last 
+              ones contains extended information. To improve the compression ratio, 
+              an YM data frame can be interleaved or not. Let's call the 16 bytes 
+              of a frame r0,r1,r2,...,r15. In a non-interleaved format, the YM 
+              file contains: r0,r1,....,r15 of frame 0, then r0,r1,...,r15 of 
+              frame 1 and so on. This is quite easy to enderstand but not easy 
+              to pack :-) That's why there is an interleaved format: file contains 
+              all r0 for all frames, then all r1 for all frame on so on. Almost 
+              all YM file spreaded on the web are interleaved files.</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td height="131"> 
+            <table align="center" bgcolor="#302050" border="1" width="50%">
+              <tbody><tr bgcolor="#980030"> 
+                <td colspan="2" height="25"> 
+                  <div align="center"><b><font size="3" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Type 
+                    used in YM File</font></b></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">BYTE</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">unsigned 
+                    8 bits integer</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">WORD</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">unsigned 
+                    16 bits integer (Big Endian format)</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">LWORD</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">unsigned 
+                    32 bits integer (Big Endian format)</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">STRING[n]</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Ascci 
+                    text string of n characters</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">NT-String</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Null 
+                    terminated string.</font></div>
+                </td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td height="185"> 
+            <table bgcolor="#302050" border="0" width="100%">
+              <tbody><tr bgcolor="#980030"> 
+                <td colspan="4" height="25"> 
+                  <div align="center"><font size="3" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif"><b>YM6 
+                    File header structure</b></font></div>
+                  </td>
+              </tr>
+              <tr bgcolor="#980030"> 
+                <td width="4%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Offset</font></b></div>
+                </td>
+                <td width="10%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Type</font></b></div>
+                </td>
+                <td width="8%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Size</font></b></div>
+                </td>
+                <td width="78%" height="14"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Description</font></b></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%" height="13"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">0</font></b></div>
+                </td>
+                <td width="10%" height="13"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">LWORD</font></div>
+                </td>
+                <td width="8%" height="13"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">4</font></div>
+                </td>
+                <td width="78%" height="13"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">File 
+                  ID "YM6!"</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">4</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">STRING[8]</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">8</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Check 
+                  string "LeOnArD!"</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">12</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">LWORD</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">4</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Nb 
+                  of frame in the file</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">16</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">LWORD</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">4</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Song 
+                  attributes </font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">20</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">WORD</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">2</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Nb 
+                  of digidrum samples in file (can be 0)</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">22</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">LWORD</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">4</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">YM 
+                  master clock implementation in Hz .(ex:2000000 for ATARI-ST 
+                  version, 1773400 for ZX-SPECTRUM)</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">26</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">WORD</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">2</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Original 
+                  player frame in Hz (traditionnaly 50)</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">28</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">LWORD</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">4</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Loop 
+                  frame (traditionnaly 0 to loop at the beginning)</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">32</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">WORD</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">2</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Size, 
+                  in bytes, of futur additionnal data. You have to skip these 
+                  bytes. (always 0 for the moment)</font></td>
+              </tr>
+              <tr> 
+                <td colspan="4" bgcolor="#980030" height="12"> 
+                  <div align="center"><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Then, 
+                    for each digidrum: (nothing if no digidrum)</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">34</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">LWORD</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">4</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Sample 
+                  size </font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">38</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">BYTES</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">n</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Sample 
+                  data (8 bits sample)</font></td>
+              </tr>
+              <tr> 
+                <td colspan="4" bgcolor="#980030" height="14"> 
+                  <div align="center"><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Then 
+                    some additionnal informations</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">?</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">NT-String</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">?</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Song 
+                  name </font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">?</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">NT-String</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">?</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Author 
+                  name </font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">?</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">NT-String</font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">?</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Song 
+                  comment </font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">?</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">BYTES 
+                    </font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">?</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">YM 
+                  register data bytes. (r0,r1,r2....,r15 for each frame). Order 
+                  depend on the "interleaved" bit. It takes 16*nbFrame 
+                  bytes. </font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="4%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">?</font></b></div>
+                </td>
+                <td width="10%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">LWORD 
+                    </font></div>
+                </td>
+                <td width="8%"> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">4</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">End 
+                  ID marker. Must be "End!"</font></td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <table bgcolor="#302050" border="0" width="100%">
+              <tbody><tr bgcolor="#980030"> 
+                <td colspan="10" width="100%" height="25"> 
+                  <div align="center"><font size="3" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif"><b>Frame 
+                    register detail</b></font></div>
+                </td>
+              </tr>
+              <tr bgcolor="#980030"> 
+                <td width="7%" height="14">&nbsp; </td>
+                <td width="1%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">b7</font></b></div>
+                </td>
+                <td width="2%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">b6</font></b></div>
+                </td>
+                <td width="2%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">b5</font></b></div>
+                </td>
+                <td width="2%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">b4</font></b></div>
+                </td>
+                <td width="2%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">b3</font></b></div>
+                </td>
+                <td width="2%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">b2</font></b></div>
+                </td>
+                <td width="2%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">b1</font></b></div>
+                </td>
+                <td width="2%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">b0</font></b></div>
+                </td>
+                <td width="78%" height="14">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r0</font></b></div>
+                </td>
+                <td width="1%"> 
+                  <div align="center"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Period 
+                  voice A</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r1</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Fine 
+                  period voice A</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r2</font></b></div>
+                </td>
+                <td width="1%"> 
+                  <div align="center"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Period 
+                  voice B</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r3</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Fine 
+                  period voice B</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r4</font></b></div>
+                </td>
+                <td width="1%"> 
+                  <div align="center"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Period 
+                  voice C</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r5</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Fine 
+                  Period voice C</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r6</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Noise 
+                  period </font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r7</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Mixer 
+                  control </font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r8</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Volume 
+                  control A</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r9</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Volume 
+                  control B</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r10</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Volume 
+                  control C</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r11</font></b></div>
+                </td>
+                <td width="1%"> 
+                  <div align="center"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Envelope 
+                  high period</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r12</font></b></div>
+                </td>
+                <td width="1%"> 
+                  <div align="center"><font size="2" color="#F8C8E8" face="Verdana, Arial, Helvetica, sans-serif">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Envelope 
+                  low period</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r13</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="2%"> 
+                  <div align="center"><font color="#F8C8E8">x</font></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Envelope 
+                  shape </font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r14</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Extended 
+                  data </font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">r15</font></b></div>
+                </td>
+                <td width="1%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="2%">&nbsp; </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Extended 
+                  data </font></td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">Almost 
+              all ATARI game tunes are very classic chip-tune music, using only 
+              the original YM2149 features. These music sounds quite poor but 
+              are very simple to generate. For that kind of tune, you only have 
+              to fill the "<font color="#F8C8E8">x</font>" bits with 
+              the original chip value, and set all other bits to 0. </font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr bgcolor="#505078"> 
+          <td height="13"> 
+            <div align="center"><font color="#FFFF90" face="Verdana, Arial, Helvetica, sans-serif">Extended 
+              YM effects</font></div>
+          </td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td> 
+            <p><font size="2" face="Verdana, Arial, Helvetica, sans-serif">YM6 
+              format support some ATARI specific tricks to produce complex sound. 
+              These tricks will be now called "special effects". YM6 
+              supports 4 special effects, and can start two of these each frame. 
+              All these effects use the ATARI software timer interrupts. ATARI 
+              timer routine can be resumed with only two values: The timer predivisor 
+              (<font color="#CC0033"><b>TP</b></font>) and the timer count (<font color="#CC0033"><b>TC</b></font>). 
+              The ATARI interrupts system has a master clock of 2457600 Hz. The 
+              predivisor is a 3 bits value, wich divide the master clock. Then 
+              period is divided by the timer count. As an example, let's say you 
+              write 1 in <font color="#CC0033"><b>TP</b></font> and 28 in <font color="#CC0033"><b>TC</b></font>, 
+              you obtain a 21492 Hz interrupts routine. ((2457600/4)/28)</font></p>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <table align="center" bgcolor="#302050" border="1" width="50%">
+              <tbody><tr bgcolor="#980030"> 
+                <td colspan="2" height="25"> 
+                  <div align="center"><b><font size="3" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">YM 
+                    timer period coding table</font></b></div>
+                  </td>
+              </tr>
+              <tr bgcolor="#980030"> 
+                <td> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Predivisor 
+                    register</font></b></div>
+                </td>
+                <td> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Real 
+                    predivisor value</font></b></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">000</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Timer 
+                    is stopped</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">001</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">4</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">010</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">10</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">011</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">16</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">100</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">50</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">101</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">64</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">110</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">100</font></div>
+                </td>
+              </tr>
+              <tr> 
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">111</font></div>
+                </td>
+                <td> 
+                  <div align="center"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">200</font></div>
+                </td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+        <tr> 
+          <td><font size="2" face="Verdana, Arial, Helvetica, sans-serif">Here 
+            are the special effects list:</font></td>
+        </tr>
+        <tr> 
+          <td height="154"> 
+            <table bgcolor="#302050" border="1" width="100%">
+              <tbody><tr bgcolor="#980030"> 
+                <td colspan="2" width="85%" height="25"> 
+                  <div align="center"><b><font size="3" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">YM6 
+                    Special effects supported</font></b></div>
+                  </td>
+              </tr>
+              <tr bgcolor="#980030"> 
+                <td width="7%" height="14"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Effect</font></b></div>
+                </td>
+                <td width="78%" height="14"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Description</font></b></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Digidrum</font></b></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">Digidrum 
+                  is a very little 4bits sample played on a voice. Tradionnaly 
+                  used to add more realistic drums in music, musicians called 
+                  it "Digi(t) Drum".</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">SID-Voice</font></b></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">SID-Voice 
+                  is a great sound trick on the ATARI, because of low CPU consuming 
+                  and great sound effects. It sounds a bit like C64 so that's 
+                  why musicians call it "SID-Voice". On a real ATARI, 
+                  SID-Voice uses a CPU interrupts to produce a square tone, wich 
+                  is mixed to the original YM2149 tone.</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Sinus-Sid</font></b></div>
+                </td>
+                <td width="78%"><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">This 
+                  is bad name for an effect wich is closer to the Digidrum technic 
+                  than the SID-Voice. Only used by the musician TAO, this is only 
+                  a little 4bits sample producing a sinus wave.</font></td>
+              </tr>
+              <tr> 
+                <td bgcolor="#980030" width="7%" height="52"> 
+                  <div align="center"><b><font size="2" color="#FFFF98" face="Verdana, Arial, Helvetica, sans-serif">Sync-Buzzer</font></b></div>
+                </td>
+                <td width="78%" height="52"> 
+                  <p><font size="2" color="#FFFFFF" face="Verdana, Arial, Helvetica, sans-serif">I 
+                    think this is one of the coolest special effect, with SID-Voice. 
+                    It was used first by the musician TAO. Sync-Buzzer uses an 
+                    external CPU interrupts to write values in the Envelope shape 
+                    register. (YM2149 register 13). As you probably know, writing 
+                    in r13 set the new shape waveform AND reset the envelope ! 
+                    So you can produce some very nice sound effect.</font></p>
+                </td>
+              </tr>
+            </tbody></table>
+          </td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td>&nbsp;</td>
+        </tr>
+      </tbody></table>
+      <!-- #EndEditable --> </td>
+  </tr>
+</tbody></table>
+<p>&nbsp;</p>
+<p>&nbsp; </p>
+
+
+</body><!-- #EndTemplate --></html>
