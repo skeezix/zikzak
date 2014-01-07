@@ -12,7 +12,10 @@ CFLAGS=-g -Os -mcall-prologues -mmcu=${ATMEGA}
 # avr-objcopy -j .text -j .data -O ihex demo.elf demo.hex
 # sudo avrdude -p m644 -c avrispmkII -P usb -U demo.hex
 
-LIBOBJS=lib_ay-3-8912.o
+# generate song dump
+# xxd -i -l 500  song_hacked.ym  > ../song-hacked.c
+
+LIBOBJS=lib_ay-3-8912.o song_hacked.o
 OBJS=main.o ${LIBOBJS}
 
 clean:

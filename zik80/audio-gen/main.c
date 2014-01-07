@@ -11,6 +11,7 @@
 #include <util/delay.h>
 #include <avr/io.h>
 #include <stdio.h>
+#include <avr/pgmspace.h> 
 
 #include "main.h"
 
@@ -18,6 +19,7 @@
 void ay_set_chA ( int i );
 void ay_set_chB ( int i );
 void delay_ms_spin ( unsigned int ms );
+extern unsigned char song_hacked_ym[];
 
 int tp[] = {//Frequencies related to MIDI note numbers
   15289, 14431, 13621, 12856, 12135, 11454, 10811, 10204,//0-o7
@@ -136,6 +138,25 @@ int main ( void ) {
   ay_write ( 0x08, 0x0f );
 
   while ( 1 ) {
+
+    // song-hack
+#if 0
+    int i, j, k;
+    unsigned char *p = song_hacked_ym;
+
+    // not interleaved
+    for ( i=0; i< 500; i++ ) {
+
+      for ( j = 0; j < 16; j++ ) {
+        ay_write ( j & 0x0F, pgm_read_byte(p) );
+        p++;
+      }
+
+      delay_ms_spin ( 16 ); // 20
+
+    }
+
+#endif
 
     // test song
 #if 0
