@@ -1,4 +1,4 @@
-all:	pokey
+all:	pokey ym-hack
 
 ATMEGA=atmega644
 
@@ -14,12 +14,13 @@ CFLAGS=-g -Os -mcall-prologues -mmcu=${ATMEGA}
 
 # generate song dump
 # xxd -i -l 500  song_hacked.ym  > ../song-hacked.c
+# ./ym-hack ./ym/song_000.ym  > song_hacked.c
 
 LIBOBJS=lib_ay-3-8912.o song_hacked.o
 OBJS=main.o ${LIBOBJS}
 
 clean:
-	rm -f pokey.o
+	rm -f pokey.o ym-hack
 	rm -f pokey.elf
 	rm -f pokey.hex
 	rm -f pokey.map
@@ -36,3 +37,6 @@ deploy:
 
 fuses: # remove CKDIV, remove JTAG
 	sudo avrdude -v -e -p atmega644 -c avrispmkII -P usb -U lfuse:w:0xe2:m -U hfuse:w:0xd9:m -U efuse:w:0xff:m
+
+ym-hack: ym-hack.c
+	gcc -o ym-hack ym-hack.c

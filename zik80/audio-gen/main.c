@@ -20,6 +20,7 @@ void ay_set_chA ( int i );
 void ay_set_chB ( int i );
 void delay_ms_spin ( unsigned int ms );
 extern unsigned char song_hacked_ym[];
+extern unsigned int framelimit;
 
 int tp[] = {//Frequencies related to MIDI note numbers
   15289, 14431, 13621, 12856, 12135, 11454, 10811, 10204,//0-o7
@@ -119,6 +120,7 @@ int main ( void ) {
 
   //DDRC = 0xFF; // all output // unused
 
+  _delay_ms ( 500 );
 
   /*
    * doit
@@ -144,15 +146,15 @@ int main ( void ) {
     int i, j, k;
     unsigned char *p = song_hacked_ym;
 
-    // not interleaved
-    for ( i=0; i< 500; i++ ) {
+    // not interleaved or 'as is'
+    for ( i=0; i < framelimit; i++ ) {
 
       for ( j = 0; j < 16; j++ ) {
         ay_write ( j & 0x0F, pgm_read_byte(p) );
         p++;
       }
 
-      delay_ms_spin ( 16 ); // 20
+      delay_ms_spin ( 10 ); // 20
 
     }
 

@@ -62,26 +62,31 @@ void ay_write ( unsigned char address, unsigned char data ) {
 
   // signal all clear
   ay_mode_inactive();  
+  _delay_us ( 2 );
 
   // set bus to address
   PORTA = address & 0x0F; // bottom 4 bits only; top 4+ bits are 'chip select' and must be 0000
 
   // tell Pokey to latch the address on the bus
   ay_mode_latch();  
+  _delay_us ( 2 );
 
 
   // go inactive so Pokey knows that one is done
   ay_mode_inactive();
+  _delay_us ( 2 );
 
   // set data to bus
   PORTA = data;
 
   // set up Pokey to take data for given address
   ay_mode_write();  
+  _delay_us ( 2 );
 
 
   // go inactive so Pokey knows transmission is done
   ay_mode_inactive(); 
+  _delay_us ( 2 );
 
   return;
 }
