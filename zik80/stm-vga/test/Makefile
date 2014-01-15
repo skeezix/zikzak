@@ -1,0 +1,11 @@
+
+# refering to libopencm3-examples Makefiles/ld-script
+LCM3EX_BASE=/home/skeezix/archive/devo/toolkits/stm32/libopencm3-examples/examples/stm32/f2/
+
+BINARY = miniblink
+
+LDSCRIPT = ${LCM3EX_BASE}/jobygps/jobygps.ld
+
+# copied libopencm3 Makefile.include into a local copy, hacked it up a touch
+#include ${LCM3EX_BASE}/Makefile.include
+include Makefile.libopencm3
