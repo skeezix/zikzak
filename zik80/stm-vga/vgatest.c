@@ -35,6 +35,7 @@
 // wiring:
 // vsync PC4 -> pin 24
 // hsync PC5 -> pin 25
+// red   PC6 -> pin 37
 
 //
 // at 120MHz..
@@ -63,9 +64,13 @@ static void gpio_setup ( void ) {
   /* Blinky LED: Set GPIO3 to 'output push-pull'. */
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO3 );
 
+  // VGA
+  //
   // sync lines
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO4 ); // vsync pin24
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5 ); // hsync pin25
+  // colour
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO6 ); // red pin37
 
 }
 
@@ -75,6 +80,25 @@ static void vsync_go_high ( void ) {
 
 static void vsync_go_low ( void ) {
   gpio_clear ( GPIOC, GPIO4 );
+}
+
+static void hsync_go_high ( void ) {
+  gpio_set ( GPIOC, GPIO5 );
+}
+
+static void hsync_go_low ( void ) {
+  gpio_clear ( GPIOC, GPIO5 );
+}
+
+static inline void red_go_level ( unsigned char intensity ) {
+
+  // for now, just on/off :)
+  if ( intensity ) {
+    gpio_set ( GPIOC, GPIO6 );
+  } else {
+    gpio_clear ( GPIOC, GPIO6 );
+  }
+
 }
 
 static void nvic_setup(void) {
@@ -94,10 +118,10 @@ static void timer2_setup ( void ) {
   TIM_CNT(TIM2) = 1;
 
   /* Set timer prescaler. 72MHz/1440 => 50000 counts per second. */
-  TIM_PSC(TIM2) = 540; // 120M/2000 = 60k/second
+  TIM_PSC(TIM2) = 541; // 120M/2000 = 60k/second   ## 540
 
   /* End timer value. If this is reached an interrupt is generated. */
-  TIM_ARR(TIM2) = 2;
+  TIM_ARR(TIM2) = 2; // ## 2
 
   // o-scope reports:
   // prescale 2000, 1->600 should be 100/sec; in fact, we're exactly 20ms between which is exactly 50 .. so callback is 60MHz, not 120MHz
@@ -118,6 +142,8 @@ static void timer2_setup ( void ) {
   return;
 }
 
+volatile unsigned int some_toggle = 0;
+volatile unsigned char framebuffer [ 240 * 240 ];
 void tim2_isr ( void ) {
 
   //TIM2_SR &= ~TIM_SR_UIF;    //clearing update interrupt flag
@@ -141,9 +167,9 @@ void tim2_isr ( void ) {
   // line2
   // ..
   // line600
-  // front porch blank
-  // vsync pulse
-  // back porch blank
+  // front porch blank            1 line
+  // vsync pulse                  4 lines
+  // back porch blank             23 lines
   // \__> back to top
   //
 
@@ -186,9 +212,82 @@ void tim2_isr ( void ) {
 
   // actual line data
   //
+  // line data on/off/on/off..
+  // off for hsync/porch business!
+#if 0 // this fills almost a full line
+  red_go_level ( 0xFF ); // full on
+
+  unsigned int i = 500;
+  while ( i-- ) {
+    __asm__("nop");
+  }
+
+  red_go_level ( 0x00 ); // full off
+#endif
+#if 0 // vertical stripes -> we get about 8-9 stripes of 20 pixels, or about 180px wide
+  unsigned int i = 180;
+  unsigned int r = 1;
+  while ( i-- ) {
+    if ( i % 20 == 0 ) {
+      r ^= 1;
+      red_go_level ( r );
+    }
+    __asm__("nop");
+  }
+  red_go_level ( 0x00 ); // full off
+#endif
+#if 0 // horizontal stripes --> we get 600 lines (duh, thats the resolution we're building here)
+  if ( line_count % 20 == 0 ) {
+    some_toggle ^= 1;
+  }
+  if ( some_toggle ) {
+    red_go_level ( 0xFF ); // full on
+  } else {
+    red_go_level ( 0x00 ); // full off
+  }
+
+  unsigned int i = 450;
+  while ( i-- ) {
+    __asm__("nop");
+  }
+
+  red_go_level ( 0x00 ); // full off
+#endif
+#if 1 // pull from array
+  unsigned char *p = framebuffer + ( (line_count%240) * 240 );
+
+  unsigned int i = 120;
+  while ( i-- ) {
+    red_go_level ( *p++ );
+  }
+
+  red_go_level ( 0x00 ); // full off
+#endif
 
   // hsync period..
+  // should use timer/interupt to 'end the line' and go hsync?
   //
+
+  /* 1uS Front Porch */
+  /* 1uS */
+  i = 16;
+  while ( i-- ) {
+    __asm__("nop");
+  }
+
+  /* 3.2uS Horizontal Sync */
+  hsync_go_low();
+  i = 80;
+  while ( i-- ) {
+    __asm__("nop");
+  }
+
+  /* 2.2uS Back Porch */
+  hsync_go_high();
+  i = 40;
+  while ( i-- ) {
+    __asm__("nop");
+  }
 
   // entering vblank period?
   //
@@ -207,6 +306,29 @@ int main ( void ) {
 #if 1 // go for 120MHz, built into libopencm3
   // requires: external 8MHz crystal on pin5/6 with associated caps to ground
   rcc_clock_setup_hse_3v3 ( &hse_8mhz_3v3 [ CLOCK_3V3_120MHZ ] );
+#endif
+
+#if 1 // fill framebuffer
+  unsigned char i;
+  unsigned int x, y;
+  for ( y = 0; y < 240; y++ ) {
+
+    if ( (y / 10) % 1 == 0 ) {
+      i = 1;
+    } else {
+      i = 0;
+    }
+
+    for ( x = 0; x < 240; x++ ) {
+
+      if ( x % 10 == 0 ) {
+        i ^= 1;
+      }
+
+      *( framebuffer + ( y * 240 ) + x ) = i;
+
+    }
+  }
 #endif
 
   gpio_setup();
