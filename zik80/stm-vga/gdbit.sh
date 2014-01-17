@@ -8,7 +8,7 @@ openocd -f interface/stlink-v2.cfg \
                     $(NULL)
 
 # now, to connect from gdb..
-# arm-none-eabi-gdb miniblink.elf
+# arm-none-eabi-gdb vgatest.elf
 # > tar extended-remote localhost:3333
 # can also load code and run it:
 # > load

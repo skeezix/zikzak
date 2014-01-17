@@ -42,18 +42,19 @@ endif
 #CFLAGS += -I/home/skeezix/archive/devo/toolkits/stm32/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/CMSIS/Device/ST/STM32F2xx/Include/
 #CFLAGS += -I/home/skeezix/archive/devo/toolkits/stm32/STM32F2xx_StdPeriph_Lib_V1.1.0/Libraries/CMSIS/Include
 CFLAGS += -Os
+CFLAGS += -I./cmsis
 CFLAGS		+= -g \
 		   -Wall -Wextra -Wimplicit-function-declaration \
 		   -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes \
 		   -Wundef -Wshadow \
 		   -I$(TOOLCHAIN_DIR)/include \
-		   -fno-common -mcpu=cortex-m3 -mthumb -msoft-float -MD -DSTM32F2
+		   -fno-common -mcpu=cortex-m3 -mthumb -msoft-float -MD -DSTM32F2 -DUSE_STDPERIPH_DRIVER
 LDSCRIPT	?= $(BINARY).ld
 LDFLAGS		+= --static -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group \
 		   -L$(TOOLCHAIN_DIR)/lib -L$(TOOLCHAIN_DIR)/lib/stm32/f2 \
 		   -T$(LDSCRIPT) -nostartfiles -Wl,--gc-sections \
 		   -mthumb -march=armv7 -mfix-cortex-m3-ldrd -msoft-float -Wl,--no-print-gc-sections
-OBJS		+= $(BINARY).o
+OBJS		+= $(BINARY).o dma_memcpy.o stm32f2xx_dma.o stm32f2xx_rcc.o stm32f2_misc.o stm32f2xx_gpio.o
 
 OOCD		?= openocd
 OOCD_INTERFACE	?= stlink-v2

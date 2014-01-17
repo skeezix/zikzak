@@ -8,6 +8,8 @@
 
 #include <libopencm3/cm3/cortex.h>
 
+#include "dma_memcpy.h"
+
 //#include <stm32f2xx_rcc.h>
 
 // VGA
@@ -323,6 +325,9 @@ void tim2_isr ( void ) {
   //p = framebuffer + ( (line_count%240) * 240 );
   unsigned int px;
 
+#if 1
+  dma_memcpy ( p, 150 );
+#endif
 #if 0
   i = 120; // 120
   while ( i-- ) {
@@ -334,7 +339,7 @@ void tim2_isr ( void ) {
     //GPIO_BSRR(GPIOC) = 1<<6;
   }
 #endif
-#if 1
+#if 0
     rgb_go_level ( (*p++) << 4 );
     rgb_go_level ( (*p++) << 4 );
     rgb_go_level ( (*p++) << 4 );
@@ -555,7 +560,9 @@ int main ( void ) {
         v = GPIO8;
       }
 
-      *( framebuffer + ( y * 240 ) + x ) = (v>>4);
+      //*( framebuffer + ( y * 240 ) + x ) = (v>>4);
+      //*( framebuffer + ( y * 240 ) + x ) = v;
+      *( framebuffer + ( y * 240 ) + x ) = 0xFF;
 #endif
 
 #if 0
@@ -582,6 +589,8 @@ int main ( void ) {
   nvic_setup();
 
   timer2_setup();
+
+  dma_setup();
 
   TIM_SR(TIM2) &= ~TIM_SR_UIF; /* Clear interrrupt flag. */
 
