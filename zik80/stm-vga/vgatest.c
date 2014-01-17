@@ -37,8 +37,8 @@
 // colour is 0v through 0.7v for each analog brightness level
 
 // wiring:
-// vsync PC4 -> pin 24
-// hsync PC5 -> pin 25
+// vsync PB10 -> pin 29
+// hsync PB11 -> pin 30
 // red   PC6 -> pin 37
 // green PC7 -> pin 38
 // blue  PC8 -> pin 39
@@ -65,6 +65,7 @@ volatile unsigned int line_count = 0;      // how many lines done so far this pa
 static void gpio_setup ( void ) {
 
   /* Enable GPIOC clock. */
+  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPBEN );
   rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPCEN );
 
   /* Blinky LED: Set GPIO3 to 'output push-pull'. */
@@ -73,18 +74,23 @@ static void gpio_setup ( void ) {
   // VGA
   //
   // sync lines
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO4 ); // vsync pin24
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5 ); // hsync pin25
+  //gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO4 ); // vsync pin24
+  //gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5 ); // hsync pin25
+  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO10 ); // vsync
+  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO11 ); // hsync
   // colour
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO6 ); // red pin37
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO7 ); // green pin38
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO8 ); // blue pin39
+  // speed
+  gpio_set_output_options ( GPIOB, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO10 | GPIO11 );
+  gpio_set_output_options ( GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO6 | GPIO7 | GPIO8 );
 
   // reset
   //
   gpio_set ( GPIOC, GPIO3 );
-  gpio_set ( GPIOC, GPIO4 );
-  gpio_set ( GPIOC, GPIO5 );
+  gpio_set ( GPIOB, GPIO10 );
+  gpio_set ( GPIOB, GPIO11 );
   gpio_clear ( GPIOC, GPIO6 );
   gpio_clear ( GPIOC, GPIO7 );
   gpio_clear ( GPIOC, GPIO8 );
@@ -92,19 +98,22 @@ static void gpio_setup ( void ) {
 }
 
 static void vsync_go_high ( void ) {
-  gpio_set ( GPIOC, GPIO4 );
+  gpio_set ( GPIOB, GPIO10 );
 }
 
 static void vsync_go_low ( void ) {
-  gpio_clear ( GPIOC, GPIO4 );
+  //gpio_clear ( GPIOC, GPIO4 );
+  gpio_clear ( GPIOB, GPIO10 );
 }
 
 static void hsync_go_high ( void ) {
-  gpio_set ( GPIOC, GPIO5 );
+  //gpio_set ( GPIOC, GPIO5 );
+  gpio_set ( GPIOB, GPIO11 );
 }
 
 static void hsync_go_low ( void ) {
-  gpio_clear ( GPIOC, GPIO5 );
+  //gpio_clear ( GPIOC, GPIO5 );
+  gpio_clear ( GPIOB, GPIO11 );
 }
 
 static inline void red_go_level ( unsigned char intensity ) {
@@ -118,8 +127,9 @@ static inline void red_go_level ( unsigned char intensity ) {
 
 }
 
-static inline void rgb_go_level ( unsigned char rgb ) {
-  gpio_set ( GPIOC, rgb );
+static inline void rgb_go_level ( unsigned int rgb ) {
+  //gpio_set ( GPIOC, rgb );
+  gpio_port_write ( GPIOC, rgb );
 }
 
 
@@ -311,19 +321,20 @@ void tim2_isr ( void ) {
   i = line_count % 240;
   unsigned char *p = framebuffer + ( i * 240 );
   //p = framebuffer + ( (line_count%240) * 240 );
+  unsigned int px;
 
-  i = 120;
+  i = 120; // 120
   while ( i-- ) {
-    red_go_level ( *p++ );
-    //rgb_go_level ( *p++ );
+    //red_go_level ( *p++ );
+    rgb_go_level ( (*p++) << 4 );
+
     //gpio_set ( GPIOC, *p++ );
     //GPIO_BSRR(GPIOC) = *p++;
     //GPIO_BSRR(GPIOC) = 1<<6;
   }
 
-  gpio_set ( GPIOC, 0x00 );
+  gpio_clear ( GPIOC, GPIO6 | GPIO7 | GPIO8 );
   //GPIO_BSRR(GPIOC) = 0x00;
-  //red_go_level ( 0x00 );
 #endif
 
 
@@ -347,8 +358,9 @@ int main ( void ) {
 #endif
 
 #if 1 // fill framebuffer
-  unsigned char i;
+  //unsigned char i;
   unsigned int x, y;
+  unsigned int v;
   for ( y = 0; y < 240; y++ ) {
 
     i = 0;
@@ -358,7 +370,7 @@ int main ( void ) {
       *( framebuffer + ( y * 240 ) + x ) = 1;
 #endif
 
-#if 0
+#if 1
       if ( x % 10 == 0 ) {
         i++;
         if ( i == 3 ) {
@@ -367,19 +379,22 @@ int main ( void ) {
       }
 
       if ( i == 0 ) {
-        *( framebuffer + ( y * 240 ) + x ) = GPIO6;
+        v = GPIO6;
       } else if ( i == 1 ) {
-        *( framebuffer + ( y * 240 ) + x ) = GPIO7;
+        v = GPIO7;
       } else if ( i == 2 ) {
-        *( framebuffer + ( y * 240 ) + x ) = GPIO8;
+        v = GPIO8;
       }
+
+      *( framebuffer + ( y * 240 ) + x ) = (v>>4);
 #endif
 
-#if 1
+#if 0
       if ( x % 10 == 0 ) {
         i ^= 1;
       }
       *( framebuffer + ( y * 240 ) + x ) = i;
+      //*( framebuffer + ( y * 240 ) + x ) = 1;
       //framebuffer [ ( y * 240 ) + x ] = i;
 #endif
 
