@@ -11,6 +11,10 @@
 //#include <stm32f2xx_rcc.h>
 
 // VGA
+//
+// 800x600 60hz, see timings:
+// http://tinyvga.com/vga-timing/800x600@60Hz
+//
 // Remember that VGA is line-oriented.
 //
 // Each line is line-data plus a horizontal pulse at the end (or begin) of each line (not per pixel)
@@ -36,6 +40,8 @@
 // vsync PC4 -> pin 24
 // hsync PC5 -> pin 25
 // red   PC6 -> pin 37
+// green PC7 -> pin 38
+// blue  PC8 -> pin 39
 
 //
 // at 120MHz..
@@ -53,7 +59,7 @@ volatile unsigned int front_porch_togo = 0; // remaining lines of front porch
 volatile unsigned int vsync_togo = 0;       // remaining lines of vsync
 // etc
 volatile unsigned int line_count = 0;      // how many lines done so far this page
-#define VISIBLE_ROWS 600
+#define VISIBLE_ROWS 640
 
 
 static void gpio_setup ( void ) {
@@ -71,6 +77,17 @@ static void gpio_setup ( void ) {
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5 ); // hsync pin25
   // colour
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO6 ); // red pin37
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO7 ); // green pin38
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO8 ); // blue pin39
+
+  // reset
+  //
+  gpio_set ( GPIOC, GPIO3 );
+  gpio_set ( GPIOC, GPIO4 );
+  gpio_set ( GPIOC, GPIO5 );
+  gpio_clear ( GPIOC, GPIO6 );
+  gpio_clear ( GPIOC, GPIO7 );
+  gpio_clear ( GPIOC, GPIO8 );
 
 }
 
@@ -100,6 +117,12 @@ static inline void red_go_level ( unsigned char intensity ) {
   }
 
 }
+
+static inline void rgb_go_level ( unsigned char rgb ) {
+  gpio_set ( GPIOC, rgb );
+}
+
+
 
 static void nvic_setup(void) {
   /* Without this the timer interrupt routine will never be called. */
@@ -144,6 +167,7 @@ static void timer2_setup ( void ) {
 
 volatile unsigned int some_toggle = 0;
 volatile unsigned char framebuffer [ 240 * 240 ];
+unsigned int i = 0;
 void tim2_isr ( void ) {
 
   //TIM2_SR &= ~TIM_SR_UIF;    //clearing update interrupt flag
@@ -156,9 +180,10 @@ void tim2_isr ( void ) {
   // -- another way to do it, is to do a SR read (which blocks until its 'set' finishes), thus stalling until the ISR is 'done':
   //void SPI2_IRQHandler(void)                                                                                                                                                              {                                                                                                                                                                                         volatile unsigned int dummy;                                                                                                                                                         ... some code...                                                                                                                                                                              SPI2_CR2 &= ~SPI_CR2_RXNEIE;  // Turn off RXE interrupt enable                                                                                                                    ...some code...                                                                                                                                                                              dummy = SPI2_SR; // Prevent tail-chaining.                                                                                                                                            return;                                                                                                                                                                        }         
   */
+#if 0
   __asm__("nop");
-
   gpio_toggle(GPIOC, GPIO3); /* LED on/off. */
+#endif
 
 
   // VGA line logic
@@ -210,6 +235,35 @@ void tim2_isr ( void ) {
     return; // do nothing..
   }
 
+
+  // hsync period..
+  // should use timer/interupt to 'end the line' and go hsync?
+  //
+
+  /* 1uS Front Porch */
+  /* 1uS */
+  i = 22;
+  while ( i-- ) {
+    __asm__("nop");
+  }
+
+  /* 3.2uS Horizontal Sync */
+  hsync_go_low();
+  i = 80;
+  while ( i-- ) {
+    __asm__("nop");
+  }
+
+  /* 2.2uS Back Porch */
+  hsync_go_high();
+  i = 45;
+  while ( i-- ) {
+    __asm__("nop");
+  }
+
+
+
+
   // actual line data
   //
   // line data on/off/on/off..
@@ -225,7 +279,7 @@ void tim2_isr ( void ) {
   red_go_level ( 0x00 ); // full off
 #endif
 #if 0 // vertical stripes -> we get about 8-9 stripes of 20 pixels, or about 180px wide
-  unsigned int i = 180;
+  i = 180;
   unsigned int r = 1;
   while ( i-- ) {
     if ( i % 20 == 0 ) {
@@ -254,40 +308,24 @@ void tim2_isr ( void ) {
   red_go_level ( 0x00 ); // full off
 #endif
 #if 1 // pull from array
-  unsigned char *p = framebuffer + ( (line_count%240) * 240 );
+  i = line_count % 240;
+  unsigned char *p = framebuffer + ( i * 240 );
+  //p = framebuffer + ( (line_count%240) * 240 );
 
-  unsigned int i = 120;
+  i = 120;
   while ( i-- ) {
     red_go_level ( *p++ );
+    //rgb_go_level ( *p++ );
+    //gpio_set ( GPIOC, *p++ );
+    //GPIO_BSRR(GPIOC) = *p++;
+    //GPIO_BSRR(GPIOC) = 1<<6;
   }
 
-  red_go_level ( 0x00 ); // full off
+  gpio_set ( GPIOC, 0x00 );
+  //GPIO_BSRR(GPIOC) = 0x00;
+  //red_go_level ( 0x00 );
 #endif
 
-  // hsync period..
-  // should use timer/interupt to 'end the line' and go hsync?
-  //
-
-  /* 1uS Front Porch */
-  /* 1uS */
-  i = 16;
-  while ( i-- ) {
-    __asm__("nop");
-  }
-
-  /* 3.2uS Horizontal Sync */
-  hsync_go_low();
-  i = 80;
-  while ( i-- ) {
-    __asm__("nop");
-  }
-
-  /* 2.2uS Back Porch */
-  hsync_go_high();
-  i = 40;
-  while ( i-- ) {
-    __asm__("nop");
-  }
 
   // entering vblank period?
   //
@@ -313,26 +351,43 @@ int main ( void ) {
   unsigned int x, y;
   for ( y = 0; y < 240; y++ ) {
 
-    if ( (y / 10) % 1 == 0 ) {
-      i = 1;
-    } else {
-      i = 0;
-    }
+    i = 0;
 
     for ( x = 0; x < 240; x++ ) {
+#if 0
+      *( framebuffer + ( y * 240 ) + x ) = 1;
+#endif
 
+#if 0
+      if ( x % 10 == 0 ) {
+        i++;
+        if ( i == 3 ) {
+          i = 0;
+        }
+      }
+
+      if ( i == 0 ) {
+        *( framebuffer + ( y * 240 ) + x ) = GPIO6;
+      } else if ( i == 1 ) {
+        *( framebuffer + ( y * 240 ) + x ) = GPIO7;
+      } else if ( i == 2 ) {
+        *( framebuffer + ( y * 240 ) + x ) = GPIO8;
+      }
+#endif
+
+#if 1
       if ( x % 10 == 0 ) {
         i ^= 1;
       }
-
       *( framebuffer + ( y * 240 ) + x ) = i;
+      //framebuffer [ ( y * 240 ) + x ] = i;
+#endif
 
     }
   }
 #endif
 
   gpio_setup();
-  gpio_set ( GPIOC, GPIO3 );
 
   /* Enable TIM2 clock. */
   rcc_peripheral_enable_clock(&RCC_APB1ENR, RCC_APB1ENR_TIM2EN);

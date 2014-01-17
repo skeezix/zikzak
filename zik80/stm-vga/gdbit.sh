@@ -3,7 +3,7 @@ openocd -f interface/stlink-v2.cfg \
                     -f target/stm32f2x_stlink.cfg \
                     -c "init" -c "reset init" \
                     -c "stm32f2x mass_erase 0" \
-                    -c "flash write_image miniblink.hex" \
+                    -c "flash write_image vgatest.hex" \
                     -c "reset" \
                     $(NULL)
 
