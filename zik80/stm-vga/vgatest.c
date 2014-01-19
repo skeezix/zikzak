@@ -175,8 +175,8 @@ static void timer2_setup ( void ) {
 
 volatile unsigned int some_toggle = 0;
 
-#define FBWIDTH 800 /* 256 */
-#define FBHEIGHT 64 /* 256 */
+#define FBWIDTH 320 /* 256 */
+#define FBHEIGHT 200 /* 256 */
 volatile unsigned char framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
 volatile unsigned int i = 0;
 void tim2_isr ( void ) {
@@ -265,6 +265,12 @@ void tim2_isr ( void ) {
     __asm__("nop");
   }
 
+#if 1
+  i = (line_count/3);
+  unsigned char *p = framebuffer + ( i * FBWIDTH ); // 240
+  dma_memcpy ( p, 320 );
+#endif
+
   /* 2.2uS Back Porch */
   hsync_go_high();
   i = 45;
@@ -279,53 +285,15 @@ void tim2_isr ( void ) {
   //
   // line data on/off/on/off..
   // off for hsync/porch business!
-#if 0 // this fills almost a full line
-  red_go_level ( 0xFF ); // full on
 
-  unsigned int i = 500;
-  while ( i-- ) {
-    __asm__("nop");
-  }
-
-  red_go_level ( 0x00 ); // full off
-#endif
-#if 0 // vertical stripes -> we get about 8-9 stripes of 20 pixels, or about 180px wide
-  i = 180;
-  unsigned int r = 1;
-  while ( i-- ) {
-    if ( i % 20 == 0 ) {
-      r ^= 1;
-      red_go_level ( r );
-    }
-    __asm__("nop");
-  }
-  red_go_level ( 0x00 ); // full off
-#endif
-#if 0 // horizontal stripes --> we get 600 lines (duh, thats the resolution we're building here)
-  if ( line_count % 20 == 0 ) {
-    some_toggle ^= 1;
-  }
-  if ( some_toggle ) {
-    red_go_level ( 0xFF ); // full on
-  } else {
-    red_go_level ( 0x00 ); // full off
-  }
-
-  unsigned int i = 450;
-  while ( i-- ) {
-    __asm__("nop");
-  }
-
-  red_go_level ( 0x00 ); // full off
-#endif
-#if 1 // pull from array
+#if 0 // pull from array
   i = line_count % FBHEIGHT;
   unsigned char *p = framebuffer + ( i * FBWIDTH ); // 240
   //p = framebuffer + ( (line_count%240) * 240 );
   unsigned int px;
 
-#if 1
-  dma_memcpy ( p, 512 );
+#if 0
+  dma_memcpy ( p, 352 );
 #endif
 #if 0
   i = 60; // 120
@@ -537,6 +505,8 @@ int main ( void ) {
   for ( y = 0; y < FBHEIGHT; y++ ) {
 
     i = 0;
+
+    i = ( y / 10 ) % 2;
 
     for ( x = 0; x < FBWIDTH; x++ ) {
 
