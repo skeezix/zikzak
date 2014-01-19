@@ -261,7 +261,7 @@ void tim2_isr ( void ) {
 
   /* 3.2uS Horizontal Sync */
   hsync_go_low();
-  i = 80;
+  i = 60;
   while ( i-- ) {
     __asm__("nop");
   }
@@ -326,7 +326,7 @@ void tim2_isr ( void ) {
   unsigned int px;
 
 #if 1
-  dma_memcpy ( p, 150 );
+  dma_memcpy ( p, 120 );
 #endif
 #if 0
   i = 120; // 120
