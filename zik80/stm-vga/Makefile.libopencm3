@@ -54,7 +54,7 @@ LDFLAGS		+= --static -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group \
 		   -L$(TOOLCHAIN_DIR)/lib -L$(TOOLCHAIN_DIR)/lib/stm32/f2 \
 		   -T$(LDSCRIPT) -nostartfiles -Wl,--gc-sections \
 		   -mthumb -march=armv7 -mfix-cortex-m3-ldrd -msoft-float -Wl,--no-print-gc-sections
-OBJS		+= $(BINARY).o dma_memcpy.o stm32f2xx_dma.o stm32f2xx_rcc.o stm32f2_misc.o stm32f2xx_gpio.o
+OBJS		+= $(BINARY).o stm32f2xx_dma.o stm32f2xx_rcc.o stm32f2_misc.o stm32f2xx_gpio.o dma_memcpy.o
 
 OOCD		?= openocd
 OOCD_INTERFACE	?= stlink-v2
