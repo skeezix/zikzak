@@ -39,11 +39,12 @@
 // colour is 0v through 0.7v for each analog brightness level
 
 // wiring:
+// LED   PB12 -> pin 33
 // vsync PB10 -> pin 29
 // hsync PB11 -> pin 30
-// red   PC6 -> pin 37
-// green PC7 -> pin 38
-// blue  PC8 -> pin 39
+// red   PC0 -> pin 8
+// green PC1 -> pin 9
+// blue  PC2 -> pin 10
 
 //
 // at 120MHz..
@@ -71,31 +72,29 @@ static void gpio_setup ( void ) {
   rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPCEN );
 
   /* Blinky LED: Set GPIO3 to 'output push-pull'. */
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO3 );
+  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO12 );
 
   // VGA
   //
   // sync lines
-  //gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO4 ); // vsync pin24
-  //gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5 ); // hsync pin25
   gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO10 ); // vsync
   gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO11 ); // hsync
   // colour
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO6 ); // red pin37
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO7 ); // green pin38
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO8 ); // blue pin39
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO0 ); // red pin37
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO1 ); // green pin38
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO2 ); // blue pin39
   // speed
   gpio_set_output_options ( GPIOB, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO10 | GPIO11 );
-  gpio_set_output_options ( GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO6 | GPIO7 | GPIO8 );
+  gpio_set_output_options ( GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO0 | GPIO1 | GPIO2 );
 
   // reset
   //
-  gpio_set ( GPIOC, GPIO3 );
+  gpio_set ( GPIOB, GPIO12 ); // LED
   gpio_set ( GPIOB, GPIO10 );
   gpio_set ( GPIOB, GPIO11 );
-  gpio_clear ( GPIOC, GPIO6 );
-  gpio_clear ( GPIOC, GPIO7 );
-  gpio_clear ( GPIOC, GPIO8 );
+  gpio_clear ( GPIOC, GPIO0 );
+  gpio_clear ( GPIOC, GPIO1 );
+  gpio_clear ( GPIOC, GPIO2 );
 
 }
 
@@ -104,17 +103,14 @@ static void vsync_go_high ( void ) {
 }
 
 static void vsync_go_low ( void ) {
-  //gpio_clear ( GPIOC, GPIO4 );
   gpio_clear ( GPIOB, GPIO10 );
 }
 
 static void hsync_go_high ( void ) {
-  //gpio_set ( GPIOC, GPIO5 );
   gpio_set ( GPIOB, GPIO11 );
 }
 
 static void hsync_go_low ( void ) {
-  //gpio_clear ( GPIOC, GPIO5 );
   gpio_clear ( GPIOB, GPIO11 );
 }
 
@@ -122,9 +118,9 @@ static inline void red_go_level ( unsigned char intensity ) {
 
   // for now, just on/off :)
   if ( intensity ) {
-    gpio_set ( GPIOC, GPIO6 );
+    gpio_set ( GPIOC, GPIO0 );
   } else {
-    gpio_clear ( GPIOC, GPIO6 );
+    gpio_clear ( GPIOC, GPIO0 );
   }
 
 }
@@ -178,8 +174,11 @@ static void timer2_setup ( void ) {
 }
 
 volatile unsigned int some_toggle = 0;
-volatile unsigned char framebuffer [ 240 * 240 ];
-unsigned int i = 0;
+
+#define FBWIDTH 800 /* 256 */
+#define FBHEIGHT 64 /* 256 */
+volatile unsigned char framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
+volatile unsigned int i = 0;
 void tim2_isr ( void ) {
 
   //TIM2_SR &= ~TIM_SR_UIF;    //clearing update interrupt flag
@@ -194,7 +193,7 @@ void tim2_isr ( void ) {
   */
 #if 0
   __asm__("nop");
-  gpio_toggle(GPIOC, GPIO3); /* LED on/off. */
+  gpio_toggle(GPIOB, GPIO12); /* LED on/off. */
 #endif
 
 
@@ -320,19 +319,19 @@ void tim2_isr ( void ) {
   red_go_level ( 0x00 ); // full off
 #endif
 #if 1 // pull from array
-  i = line_count % 240;
-  unsigned char *p = framebuffer + ( i * 240 );
+  i = line_count % FBHEIGHT;
+  unsigned char *p = framebuffer + ( i * FBWIDTH ); // 240
   //p = framebuffer + ( (line_count%240) * 240 );
   unsigned int px;
 
 #if 1
-  dma_memcpy ( p, 120 );
+  dma_memcpy ( p, 512 );
 #endif
 #if 0
-  i = 120; // 120
+  i = 60; // 120
   while ( i-- ) {
     //red_go_level ( *p++ );
-    rgb_go_level ( (*p++) << 4 );
+    rgb_go_level ( (*p++) );
 
     //gpio_set ( GPIOC, *p++ );
     //GPIO_BSRR(GPIOC) = *p++;
@@ -340,174 +339,174 @@ void tim2_isr ( void ) {
   }
 #endif
 #if 0
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
 
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
 
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
 
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
 
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
 
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
-    rgb_go_level ( (*p++) << 4 );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
 #endif
 
-  gpio_clear ( GPIOC, GPIO6 | GPIO7 | GPIO8 );
+  gpio_clear ( GPIOC, GPIO0 | GPIO1 | GPIO2 );
   //GPIO_BSRR(GPIOC) = 0x00;
 #endif
 
@@ -534,17 +533,13 @@ int main ( void ) {
 #if 1 // fill framebuffer
   //unsigned char i;
   unsigned int x, y;
-  unsigned int v;
-  for ( y = 0; y < 240; y++ ) {
+  unsigned char v;
+  for ( y = 0; y < FBHEIGHT; y++ ) {
 
     i = 0;
 
-    for ( x = 0; x < 240; x++ ) {
-#if 0
-      *( framebuffer + ( y * 240 ) + x ) = 1;
-#endif
+    for ( x = 0; x < FBWIDTH; x++ ) {
 
-#if 1
       if ( x % 10 == 0 ) {
         i++;
         if ( i == 3 ) {
@@ -553,29 +548,19 @@ int main ( void ) {
       }
 
       if ( i == 0 ) {
-        v = GPIO6;
+        v = (unsigned char) GPIO0;
       } else if ( i == 1 ) {
-        v = GPIO7;
+        v = (unsigned char) GPIO1;
       } else if ( i == 2 ) {
-        v = GPIO8;
+        v = (unsigned char) GPIO2;
       }
 
-      //*( framebuffer + ( y * 240 ) + x ) = (v>>4);
-      //*( framebuffer + ( y * 240 ) + x ) = v;
-      *( framebuffer + ( y * 240 ) + x ) = 0xFF;
-#endif
+      *( framebuffer + ( y * FBWIDTH ) + x ) = v;
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)GPIO2;
 
-#if 0
-      if ( x % 10 == 0 ) {
-        i ^= 1;
-      }
-      *( framebuffer + ( y * 240 ) + x ) = i;
-      //*( framebuffer + ( y * 240 ) + x ) = 1;
-      //framebuffer [ ( y * 240 ) + x ] = i;
-#endif
+    } // x
 
-    }
-  }
+  } // y
 #endif
 
   gpio_setup();
