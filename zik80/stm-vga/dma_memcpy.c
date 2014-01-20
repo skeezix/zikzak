@@ -38,7 +38,7 @@ void dma_setup ( void ) {
  
   DMA_InitStructure.DMA_Priority = DMA_Priority_High;
   DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;
-  DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_1QuarterFull; //Full
+  DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full; //Full 1QuarterFull
   DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single; // Single
   DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single; // Single INC4 INC8 INC16
 
@@ -123,7 +123,8 @@ void dma2_stream0_isr /*DMA2_Stream6_IRQHandler*/ (void) // 2 Hz
     GPIO_ToggleBits ( GPIOB, 1<<12 );
 
     // ensure colour lines are down
-    GPIO_ResetBits ( GPIOC, 1<<0 | 1<<1 | 1<<2 );
+    //GPIO_ResetBits ( GPIOC, 1<<0 | 1<<1 | 1<<2 );
+    GPIO_ResetBits ( GPIOC, 1<<0 | 1<<1 | 1<<2 | 1<<3 | 1<<4 | 1<<5 );
  
     // Add code here to process things
     //}

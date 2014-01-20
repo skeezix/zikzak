@@ -17,6 +17,10 @@
 // 800x600 60hz, see timings:
 // http://tinyvga.com/vga-timing/800x600@60Hz
 //
+// milli: .001          (m)
+// micro: .000 001      (u)
+// nano:  .000 000 001  (n)
+//
 // Remember that VGA is line-oriented.
 //
 // Each line is line-data plus a horizontal pulse at the end (or begin) of each line (not per pixel)
@@ -26,7 +30,9 @@
 // vpulse is front porch, pluse, back porch
 //
 // 800x600 mode:
-// - a line is 26.4uS in total
+// - a line is 26.4uS in total (800 pixels at 20uS, plus front porch 40->1, sync 128 -> 3.2, back porch 88->2.2)
+//   --> a pixel is 20uS/800 = 0.000 000 025/px or 25ns/px
+//   --> 120Mhz = 0.000 000 008 or 8ns/px
 // - 600 lines * 26.4uS == 15840uS or 16mS
 //   --> 1000ms / 16mS == 62.5fps
 // theres actually 24 lines in the vblank period.. so 624 long.
@@ -39,12 +45,15 @@
 // colour is 0v through 0.7v for each analog brightness level
 
 // wiring:
-// LED   PB12 -> pin 33
-// vsync PB10 -> pin 29
-// hsync PB11 -> pin 30
-// red   PC0 -> pin 8
-// green PC1 -> pin 9
-// blue  PC2 -> pin 10
+// LED    PB12 -> pin 33
+// vsync  PB10 -> pin 29
+// hsync  PB11 -> pin 30
+// red1   PC0 -> pin 8
+// red2   PC1 -> pin 9
+// green1 PC2 -> pin 10
+// green2 PC3 -> pin 11
+// blue1  PC4 -> pin 24
+// blue2  PC5 -> pin 25
 
 //
 // at 120MHz..
@@ -62,7 +71,7 @@ volatile unsigned int front_porch_togo = 0; // remaining lines of front porch
 volatile unsigned int vsync_togo = 0;       // remaining lines of vsync
 // etc
 volatile unsigned int line_count = 0;      // how many lines done so far this page
-#define VISIBLE_ROWS 640
+#define VISIBLE_ROWS 600
 
 
 static void gpio_setup ( void ) {
@@ -80,49 +89,41 @@ static void gpio_setup ( void ) {
   gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO10 ); // vsync
   gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO11 ); // hsync
   // colour
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO0 ); // red pin37
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO1 ); // green pin38
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO2 ); // blue pin39
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO0 ); // red
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO1 ); // red
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO2 ); // green
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO3 ); // green
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO4 ); // blue
+  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5 ); // blue
   // speed
   gpio_set_output_options ( GPIOB, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO10 | GPIO11 );
-  gpio_set_output_options ( GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO0 | GPIO1 | GPIO2 );
+  gpio_set_output_options ( GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 );
 
   // reset
   //
   gpio_set ( GPIOB, GPIO12 ); // LED
-  gpio_set ( GPIOB, GPIO10 );
-  gpio_set ( GPIOB, GPIO11 );
-  gpio_clear ( GPIOC, GPIO0 );
-  gpio_clear ( GPIOC, GPIO1 );
-  gpio_clear ( GPIOC, GPIO2 );
+  gpio_set ( GPIOB, GPIO10 ); // vsync
+  gpio_set ( GPIOB, GPIO11 ); // hsync
+  gpio_clear ( GPIOC, GPIO0 | GPIO1 ); // red
+  gpio_clear ( GPIOC, GPIO2 | GPIO3 ); // green
+  gpio_clear ( GPIOC, GPIO4 | GPIO5 ); // blue
 
 }
 
-static void vsync_go_high ( void ) {
+static inline void vsync_go_high ( void ) {
   gpio_set ( GPIOB, GPIO10 );
 }
 
-static void vsync_go_low ( void ) {
+static inline void vsync_go_low ( void ) {
   gpio_clear ( GPIOB, GPIO10 );
 }
 
-static void hsync_go_high ( void ) {
+static inline void hsync_go_high ( void ) {
   gpio_set ( GPIOB, GPIO11 );
 }
 
-static void hsync_go_low ( void ) {
+static inline void hsync_go_low ( void ) {
   gpio_clear ( GPIOB, GPIO11 );
-}
-
-static inline void red_go_level ( unsigned char intensity ) {
-
-  // for now, just on/off :)
-  if ( intensity ) {
-    gpio_set ( GPIOC, GPIO0 );
-  } else {
-    gpio_clear ( GPIOC, GPIO0 );
-  }
-
 }
 
 static inline void rgb_go_level ( unsigned int rgb ) {
@@ -179,6 +180,7 @@ volatile unsigned int some_toggle = 0;
 #define FBHEIGHT 200 /* 256 */
 volatile unsigned char framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
 volatile unsigned int i = 0;
+volatile unsigned char done_sync;
 void tim2_isr ( void ) {
 
   //TIM2_SR &= ~TIM_SR_UIF;    //clearing update interrupt flag
@@ -214,6 +216,7 @@ void tim2_isr ( void ) {
   //  - vsync, leads to
   //   - back porch
   // vsync is normally HIGH, but goes to LOW during pulse
+  done_sync = 0;
   if ( front_porch_togo ) {
     front_porch_togo --;
 
@@ -222,7 +225,9 @@ void tim2_isr ( void ) {
       vsync_togo = 4;
     }
 
-    return; // do nothing..
+    done_sync = 1;
+    goto hsync;
+    //return; // do nothing..
   }
 
   if ( vsync_togo ) {
@@ -233,7 +238,9 @@ void tim2_isr ( void ) {
       back_porch_togo = 23;
     }
 
-    return;
+    done_sync = 1;
+    goto hsync;
+    //return;
   }
 
   if ( back_porch_togo ) {
@@ -243,10 +250,12 @@ void tim2_isr ( void ) {
       line_count = 1;
     }
 
-    return; // do nothing..
+    done_sync = 1;
+    goto hsync;
+    //return; // do nothing..
   }
 
-
+ hsync:
   // hsync period..
   // should use timer/interupt to 'end the line' and go hsync?
   //
@@ -265,17 +274,15 @@ void tim2_isr ( void ) {
     __asm__("nop");
   }
 
-#if 1
-  i = (line_count/3);
-  unsigned char *p = framebuffer + ( i * FBWIDTH ); // 240
-  dma_memcpy ( p, 320 );
-#endif
-
   /* 2.2uS Back Porch */
   hsync_go_high();
   i = 45;
   while ( i-- ) {
     __asm__("nop");
+  }
+
+  if ( done_sync ) {
+    return;
   }
 
 
@@ -286,198 +293,53 @@ void tim2_isr ( void ) {
   // line data on/off/on/off..
   // off for hsync/porch business!
 
-#if 0 // pull from array
-  i = line_count % FBHEIGHT;
+#if 1 // pull from array
+  //i = line_count % FBHEIGHT;
+  i = line_count/4;
   unsigned char *p = framebuffer + ( i * FBWIDTH ); // 240
   //p = framebuffer + ( (line_count%240) * 240 );
-  unsigned int px;
 
-#if 0
-  dma_memcpy ( p, 352 );
-#endif
-#if 0
-  i = 60; // 120
+#if 1
+  dma_memcpy ( p, 320 );
+#else
+  i = 90 / 10; // 120
   while ( i-- ) {
-    //red_go_level ( *p++ );
+
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
+    rgb_go_level ( (*p++) );
     rgb_go_level ( (*p++) );
 
     //gpio_set ( GPIOC, *p++ );
     //GPIO_BSRR(GPIOC) = *p++;
     //GPIO_BSRR(GPIOC) = 1<<6;
   }
-#endif
-#if 0
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
 
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-#endif
-
-  gpio_clear ( GPIOC, GPIO0 | GPIO1 | GPIO2 );
+  // disable all colour pins (dma does it itself in its isr)
   //GPIO_BSRR(GPIOC) = 0x00;
+  gpio_clear ( GPIOC, GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 );
+  //rgb_go_level ( 0 );
+
 #endif
 
+#endif
 
   // entering vblank period?
   //
@@ -498,23 +360,19 @@ int main ( void ) {
   rcc_clock_setup_hse_3v3 ( &hse_8mhz_3v3 [ CLOCK_3V3_120MHZ ] );
 #endif
 
-#if 1 // fill framebuffer
+#if 1 // fill framebuffer with offset squares
   //unsigned char i;
   unsigned int x, y;
   unsigned char v;
   for ( y = 0; y < FBHEIGHT; y++ ) {
 
-    i = 0;
-
-    i = ( y / 10 ) % 2;
+    //i = 0;
+    i = ( y / 10 ) % 5;
 
     for ( x = 0; x < FBWIDTH; x++ ) {
 
       if ( x % 10 == 0 ) {
         i++;
-        if ( i == 3 ) {
-          i = 0;
-        }
       }
 
       if ( i == 0 ) {
@@ -523,13 +381,72 @@ int main ( void ) {
         v = (unsigned char) GPIO1;
       } else if ( i == 2 ) {
         v = (unsigned char) GPIO2;
+      } else if ( i == 3 ) {
+        v = (unsigned char) GPIO3;
+      } else if ( i == 4 ) {
+        v = (unsigned char) GPIO4;
+      } else if ( i == 5 ) {
+        v = (unsigned char) GPIO5;
+      } else {
+        i = 0;
+        v = (unsigned char) GPIO0;
       }
 
       *( framebuffer + ( y * FBWIDTH ) + x ) = v;
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)GPIO2;
+
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char) 0;
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO3 );
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO5 );
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO1 | GPIO3 );
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO1 | GPIO0 );
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 );
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 | GPIO2 | GPIO3 );
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO2 | GPIO3 );
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO4 | GPIO5 );
 
     } // x
 
+  } // y
+#endif
+
+#if 0 // fill framebuffer with vertical stripes of all colours (1px per colour)
+  //unsigned char i;
+  unsigned int x, y;
+  unsigned char v;
+
+  for ( y = 0; y < FBHEIGHT; y++ ) {
+
+    i = 0;
+    for ( x = 0; x < FBWIDTH; x++ ) {
+
+      *( framebuffer + ( y * FBWIDTH ) + x ) = i / 6;
+      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 );
+
+      i++;
+    } // x
+
+  } // y
+#endif
+
+#if 0 // vertical strip every 10 pixels
+  //unsigned char i;
+  unsigned int x, y;
+
+  for ( y = 0; y < FBHEIGHT; y++ ) {
+
+    i = 0;
+    for ( x = 0; x < FBWIDTH; x++ ) {
+
+      if ( i >= 9 ) {
+        *( framebuffer + ( y * FBWIDTH ) + x ) = GPIO0;
+      }
+
+      if ( i == 12 ) {
+        i = 0;
+      }
+
+      i++;
+    } // x
   } // y
 #endif
 
@@ -546,6 +463,8 @@ int main ( void ) {
   timer2_setup();
 
   dma_setup();
+
+  gpio_set ( GPIOB, GPIO12 );
 
   TIM_SR(TIM2) &= ~TIM_SR_UIF; /* Clear interrrupt flag. */
 
