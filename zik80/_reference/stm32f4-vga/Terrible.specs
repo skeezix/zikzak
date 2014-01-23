@@ -1,0 +1,2 @@
+*multilib_matches:
+mcpu=cortex-m0 march=armv6-m;mcpu=cortex-m1 march=armv6-m;march=armv7-a march=armv7;march=armv7-r march=armv7;march=armv7-m march=armv7;mcpu=cortex-a8 march=armv7;mcpu=cortex-r4 march=armv7;mcpu=cortex-m3 march=armv7;mbe mbig-endian;mle mlittle-endian;marm marm;mthumb mthumb;march=armv6-m march=armv6-m;march=armv7 march=armv7;mlittle-endian mlittle-endian;mbig-endian mbig-endian;mcpu=cortex-m4 march=armv7;

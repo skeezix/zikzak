@@ -358,6 +358,7 @@ int main ( void ) {
 #if 1 // go for 120MHz, built into libopencm3
   // requires: external 8MHz crystal on pin5/6 with associated caps to ground
   rcc_clock_setup_hse_3v3 ( &hse_8mhz_3v3 [ CLOCK_3V3_168MHZ ] );
+  //rcc_clock_setup_hse_3v3 ( &hse_8mhz_3v3 [ CLOCK_3V3_120MHZ ] );
 #endif
 
 #if 1 // fill framebuffer with offset squares

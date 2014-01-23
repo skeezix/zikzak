@@ -1,0 +1,10 @@
+glob:.DS_Store
+glob:*.png
+glob:Tools/CropPNG
+glob:Tools/MixPNGChannels
+glob:Tools/PNGToAdaptiveBitmapSource
+glob:Tools/PNGToBitmapSource
+glob:Tools/PNGToRLEBitmapSource
+glob:Tools/QuantizePNG
+glob:Tools/RemapPNG
+glob:Tools/Dependencies
