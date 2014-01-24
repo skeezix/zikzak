@@ -7,24 +7,24 @@ void InitializeLEDs();
 
 static inline void SetLEDs(int leds)
 {
-	uint16_t val=GPIOD->ODR;
+	uint16_t val=GPIOG->ODR;
 	val&=~(0x0f<<12);
 	val|=leds<<12;
-	GPIOD->ODR=val;
+	GPIOG->ODR=val;
 }
 
 static inline void ToggleLEDs(int leds)
 {
-	GPIOD->ODR^=leds<<12;
+	GPIOG->ODR^=leds<<12;
 }
 static inline void TurnOnLEDs(int leds)
 {
-	GPIOD->BSRRL=leds<<12;
+	GPIOG->BSRRL=leds<<12;
 }
 
 static inline void TurnOffLEDs(int leds)
 {
-	GPIOD->BSRRH=leds<<12;
+	GPIOG->BSRRH=leds<<12;
 }
 
 #endif

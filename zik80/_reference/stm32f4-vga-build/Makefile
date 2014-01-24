@@ -40,7 +40,7 @@ C_FILES =	Accelerometer.c \
 		Graphics/DrawingRectangles.c \
 		Graphics/DrawingRLEBitmaps.c \
 		Graphics/DrawingStraightLines.c
-			
+
 S_FILES = 
 
 OBJS = $(C_FILES:%.c=$(BUILD_DIR)/%.o) $(S_FILES:%.S=$(BUILD_DIR)/%.o)
@@ -69,7 +69,7 @@ stlink:
 	arm-eabi-gdb $(NAME).elf --eval-command="target ext :4242"
 
 clean:
-	rm -rf $(BUILD_DIR) $(NAME).elf $(NAME).bin
+	rm -rf $(BUILD_DIR) $(NAME).elf $(NAME).bin $(NAME).hex
 
 $(NAME).bin: $(NAME).elf
 	$(OBJCOPY) -O binary $(NAME).elf $(NAME).bin
@@ -89,3 +89,5 @@ $(BUILD_DIR)/%.o: $(SOURCE_DIR)/%.S
 
 -include $(OBJS:.o=.d)
 
+hex: VGA.elf
+	$(OBJCOPY) -Oihex VGA.elf VGA.hex
