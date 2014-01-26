@@ -11,6 +11,8 @@ static uint32_t VGACurrentLineAddress;
 static uint32_t VGAPixelsPerRow;
 static uint16_t VGAThreeLineCounter;
 
+typedef void HBlankInterruptFunction ( void );
+
 static HBlankInterruptFunction *HBlankInterruptHandler;
 
 void InitializeVGA()

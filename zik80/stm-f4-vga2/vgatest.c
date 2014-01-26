@@ -88,6 +88,9 @@ int main ( void ) {
   // gpios
   gpio_setup();
 
+  // vga
+  vga_setup();
+
   //__enable_irq();
   //cm_enable_interrupts();
 
