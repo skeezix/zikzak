@@ -8,7 +8,9 @@
 
 #include <libopencm3/cm3/cortex.h>
 
-#include "dma_memcpy.h"
+#include "framebuffer.h"
+#include "gpio.h"
+#include "timers.h"
 
 //#include <stm32f2xx_rcc.h>
 
@@ -65,408 +67,31 @@
 // .. keeping a line counter in code is easy enough, but may cost too much time
 // .. may be better to have a vsync interupt that resets counter..
 
-// vblank
-volatile unsigned int back_porch_togo = 0;  // remaining lines of back porch
-volatile unsigned int front_porch_togo = 0; // remaining lines of front porch
-volatile unsigned int vsync_togo = 0;       // remaining lines of vsync
-// etc
-volatile unsigned int line_count = 0;      // how many lines done so far this page
-#define VISIBLE_ROWS 600
-
-
-static void gpio_setup ( void ) {
-
-  /* Enable GPIOC clock. */
-  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPGEN ); // for led on disco
-  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPBEN );
-  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPCEN );
-
-  /* Blinky LED: Set GPIO3 to 'output push-pull'. */
-  gpio_mode_setup ( GPIOG, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO13 );
-
-  // VGA
-  //
-  // sync lines
-  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO10 ); // vsync
-  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO11 ); // hsync
-  // colour
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO0 ); // red
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO1 ); // red
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO2 ); // green
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO3 ); // green
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO4 ); // blue
-  gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5 ); // blue
-  // speed
-  gpio_set_output_options ( GPIOB, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO10 | GPIO11 );
-  gpio_set_output_options ( GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 );
-
-  // reset
-  //
-  gpio_set ( GPIOG, GPIO13 ); // LED
-  gpio_set ( GPIOB, GPIO10 ); // vsync
-  gpio_set ( GPIOB, GPIO11 ); // hsync
-  gpio_clear ( GPIOC, GPIO0 | GPIO1 ); // red
-  gpio_clear ( GPIOC, GPIO2 | GPIO3 ); // green
-  gpio_clear ( GPIOC, GPIO4 | GPIO5 ); // blue
-
-}
-
-static inline void vsync_go_high ( void ) {
-  gpio_set ( GPIOB, GPIO10 );
-}
-
-static inline void vsync_go_low ( void ) {
-  gpio_clear ( GPIOB, GPIO10 );
-}
-
-static inline void hsync_go_high ( void ) {
-  gpio_set ( GPIOB, GPIO11 );
-}
-
-static inline void hsync_go_low ( void ) {
-  gpio_clear ( GPIOB, GPIO11 );
-}
-
-static inline void rgb_go_level ( unsigned int rgb ) {
-  //gpio_set ( GPIOC, rgb );
-  gpio_port_write ( GPIOC, rgb );
-}
-
-
-
-static void nvic_setup(void) {
-  /* Without this the timer interrupt routine will never be called. */
-  nvic_enable_irq(NVIC_TIM2_IRQ);
-  //nvic_set_priority(NVIC_TIM2_IRQ, 1);
-}
-
-
-static void timer2_setup ( void ) {
-
-  //timer_reset ( TIM2 );
-  //timer_set_mode
-  //timer_continuous_mode ( TIM2 );
-
-  /* Set timer start value. */
-  TIM_CNT(TIM2) = 1;
-
-  /* Set timer prescaler. 72MHz/1440 => 50000 counts per second. */
-  TIM_PSC(TIM2) = 541; // 120M/2000 = 60k/second   ## 540
-
-  /* End timer value. If this is reached an interrupt is generated. */
-  TIM_ARR(TIM2) = 2; // ## 2
-
-  // o-scope reports:
-  // prescale 2000, 1->600 should be 100/sec; in fact, we're exactly 20ms between which is exactly 50 .. so callback is 60MHz, not 120MHz
-  // manual says:
-  //  The reference manual (see page 133) states that the GPIO is capable of:
-  //  Fast toggle capable of changing every two clock cycles
-  // --> okay so at 120MHz, the best we can do is 60MHz of GPIO. But thats different than here, where the timer seems halved..
-
-
-  /* Update interrupt enable. */
-  TIM_DIER(TIM2) |= TIM_DIER_UIE;
-
-  //timer_set_repetition_counter ( TIM2, 100 );
-
-  /* Start timer. */
-  TIM_CR1(TIM2) |= TIM_CR1_CEN;
-
-  return;
-}
-
-volatile unsigned int some_toggle = 0;
-
-#define FBWIDTH 320 /* 256 */
-#define FBHEIGHT 200 /* 256 */
-volatile unsigned char framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
-volatile unsigned int i = 0;
-volatile unsigned char done_sync;
-void tim2_isr ( void ) {
-
-  //TIM2_SR &= ~TIM_SR_UIF;    //clearing update interrupt flag
-  TIM_SR(TIM2) &= ~TIM_SR_UIF; /* Clear interrrupt flag. */
-
-  /* ISR HAS TO DO SOMRTHING A LITTLE HEAVY
-  // https://my.st.com/public/STe2ecommunities/mcu/Lists/cortex_mx_stm32/Flat.aspx?RootFolder=/public/STe2ecommunities/mcu/Lists/cortex_mx_stm32/Problem%20with%20DMA-USART%20Rx%20on%20STM32F407VG&FolderCTID=0x01200200770978C69A1141439FE559EB459D7580009C4E14902C3CDE46A77F0FFD06506F5B&currentviews=148
-  // ie: after setting SR, you need to pause read/writes
-  // ie: if the ISR is too quick, there may be a spurious re-invocation (tail chain), so you need to do a little something to avoid cpu race condition
-  // -- another way to do it, is to do a SR read (which blocks until its 'set' finishes), thus stalling until the ISR is 'done':
-  //void SPI2_IRQHandler(void)                                                                                                                                                              {                                                                                                                                                                                         volatile unsigned int dummy;                                                                                                                                                         ... some code...                                                                                                                                                                              SPI2_CR2 &= ~SPI_CR2_RXNEIE;  // Turn off RXE interrupt enable                                                                                                                    ...some code...                                                                                                                                                                              dummy = SPI2_SR; // Prevent tail-chaining.                                                                                                                                            return;                                                                                                                                                                        }         
-  */
-#if 0
-  __asm__("nop");
-  gpio_toggle(GPIOB, GPIO12); /* LED on/off. */
-#endif
-
-
-  // VGA line logic
-  //
-  // line1
-  // line2
-  // ..
-  // line600
-  // front porch blank            1 line
-  // vsync pulse                  4 lines
-  // back porch blank             23 lines
-  // \__> back to top
-  //
-
-  // handle vblank stuff
-  // - front porch, leads to
-  //  - vsync, leads to
-  //   - back porch
-  // vsync is normally HIGH, but goes to LOW during pulse
-  done_sync = 0;
-  if ( front_porch_togo ) {
-    front_porch_togo --;
-
-    if ( ! front_porch_togo ) { // on exit front porch, start vsync pulse
-      vsync_go_low();
-      vsync_togo = 4;
-    }
-
-    done_sync = 1;
-    goto hsync;
-    //return; // do nothing..
-  }
-
-  if ( vsync_togo ) {
-    vsync_togo --;
-
-    if ( ! vsync_togo ) { // on exit vsync pulse, start back porch
-      vsync_go_high();
-      back_porch_togo = 23;
-    }
-
-    done_sync = 1;
-    goto hsync;
-    //return;
-  }
-
-  if ( back_porch_togo ) {
-    back_porch_togo --;
-
-    if ( ! back_porch_togo ) {
-      line_count = 1;
-    }
-
-    done_sync = 1;
-    goto hsync;
-    //return; // do nothing..
-  }
-
- hsync:
-  // hsync period..
-  // should use timer/interupt to 'end the line' and go hsync?
-  //
-
-  /* 1uS Front Porch */
-  /* 1uS */
-  i = 22;
-  while ( i-- ) {
-    __asm__("nop");
-  }
-
-  /* 3.2uS Horizontal Sync */
-  hsync_go_low();
-  i = 60;
-  while ( i-- ) {
-    __asm__("nop");
-  }
-
-  /* 2.2uS Back Porch */
-  hsync_go_high();
-  i = 45;
-  while ( i-- ) {
-    __asm__("nop");
-  }
-
-  if ( done_sync ) {
-    return;
-  }
-
-
-
-
-  // actual line data
-  //
-  // line data on/off/on/off..
-  // off for hsync/porch business!
-
-#if 1 // pull from array
-  //i = line_count % FBHEIGHT;
-  i = line_count/4;
-  unsigned char *p = framebuffer + ( i * FBWIDTH ); // 240
-  //p = framebuffer + ( (line_count%240) * 240 );
-
-#if 0
-  dma_memcpy ( p, 320 );
-#else
-  i = 90 / 10; // 120
-  while ( i-- ) {
-
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-
-    //gpio_set ( GPIOC, *p++ );
-    //GPIO_BSRR(GPIOC) = *p++;
-    //GPIO_BSRR(GPIOC) = 1<<6;
-  }
-
-  // disable all colour pins (dma does it itself in its isr)
-  //GPIO_BSRR(GPIOC) = 0x00;
-  gpio_clear ( GPIOC, GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 );
-  //rgb_go_level ( 0 );
-
-#endif
-
-#endif
-
-  // entering vblank period?
-  //
-
-  if ( line_count > VISIBLE_ROWS ) {
-    front_porch_togo = 1;
-    return; // entering front porch
-  }
-
-  line_count++;
-}
-
 
 int main ( void ) {
 
-#if 1 // go for 120MHz, built into libopencm3
-  // requires: external 8MHz crystal on pin5/6 with associated caps to ground
+  /* setup
+   */
+
+  // main system clock
+  // REQ: external 8MHz crystal on pin5/6 with associated caps to ground
   rcc_clock_setup_hse_3v3 ( &hse_8mhz_3v3 [ CLOCK_3V3_168MHZ ] );
   //rcc_clock_setup_hse_3v3 ( &hse_8mhz_3v3 [ CLOCK_3V3_120MHZ ] );
-#endif
 
+  // framebuffer
+  framebuffer_setup();
+
+  // timers
+  nvic_setup();
   timers_setup();
 
-#if 1 // fill framebuffer with offset squares
-  //unsigned char i;
-  unsigned int x, y;
-  unsigned char v;
-  for ( y = 0; y < FBHEIGHT; y++ ) {
-
-    //i = 0;
-    i = ( y / 10 ) % 5;
-
-    for ( x = 0; x < FBWIDTH; x++ ) {
-
-      if ( x % 10 == 0 ) {
-        i++;
-      }
-
-      if ( i == 0 ) {
-        v = (unsigned char) GPIO0;
-      } else if ( i == 1 ) {
-        v = (unsigned char) GPIO1;
-      } else if ( i == 2 ) {
-        v = (unsigned char) GPIO2;
-      } else if ( i == 3 ) {
-        v = (unsigned char) GPIO3;
-      } else if ( i == 4 ) {
-        v = (unsigned char) GPIO4;
-      } else if ( i == 5 ) {
-        v = (unsigned char) GPIO5;
-      } else {
-        i = 0;
-        v = (unsigned char) GPIO0;
-      }
-
-      *( framebuffer + ( y * FBWIDTH ) + x ) = v;
-
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char) 0;
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO3 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO5 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO1 | GPIO3 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO1 | GPIO0 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 | GPIO2 | GPIO3 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO2 | GPIO3 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO4 | GPIO5 );
-
-    } // x
-
-  } // y
-#endif
-
-#if 0 // fill framebuffer with vertical stripes of all colours (1px per colour)
-  //unsigned char i;
-  unsigned int x, y;
-  unsigned char v;
-
-  for ( y = 0; y < FBHEIGHT; y++ ) {
-
-    i = 0;
-    for ( x = 0; x < FBWIDTH; x++ ) {
-
-      *( framebuffer + ( y * FBWIDTH ) + x ) = i / 6;
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 );
-
-      i++;
-    } // x
-
-  } // y
-#endif
-
-#if 0 // vertical strip every 10 pixels
-  //unsigned char i;
-  unsigned int x, y;
-
-  for ( y = 0; y < FBHEIGHT; y++ ) {
-
-    i = 0;
-    for ( x = 0; x < FBWIDTH; x++ ) {
-
-      if ( i >= 9 ) {
-        *( framebuffer + ( y * FBWIDTH ) + x ) = GPIO0;
-      }
-
-      if ( i == 12 ) {
-        i = 0;
-      }
-
-      i++;
-    } // x
-  } // y
-#endif
-
+  // gpios
   gpio_setup();
-
-  /* Enable TIM2 clock. */
-  rcc_peripheral_enable_clock(&RCC_APB1ENR, RCC_APB1ENR_TIM2EN);
 
   //__enable_irq();
   //cm_enable_interrupts();
 
-  nvic_setup();
-
-  timer2_setup();
-
-  gpio_set ( GPIOG, GPIO13 );
+  gpio_set_blinkenlight ( 1 );
 
   TIM_SR(TIM2) &= ~TIM_SR_UIF; /* Clear interrrupt flag. */
 
@@ -474,5 +99,5 @@ int main ( void ) {
     __asm__("nop");
   } // while forever
 
-  return 0;
+  return ( 0 );
 }

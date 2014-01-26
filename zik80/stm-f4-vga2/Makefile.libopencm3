@@ -39,9 +39,10 @@ $(info We seem to be building the example in the source directory. Using local l
 endif
 endif
 
+#-Wstrict-prototypes
 CFLAGS		+= -Os -g \
 		   -Wall -Wextra -Wimplicit-function-declaration \
-		   -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes \
+		   -Wredundant-decls -Wmissing-prototypes  \
 		   -Wundef -Wshadow \
 		   -I$(TOOLCHAIN_DIR)/include \
 		   -fno-common -mcpu=cortex-m4 -mthumb \
@@ -52,7 +53,7 @@ LDFLAGS		+= --static -lc -lnosys -L$(TOOLCHAIN_DIR)/lib \
 			 -L$(TOOLCHAIN_DIR)/lib/stm32/f4 \
 		   -T$(LDSCRIPT) -nostartfiles -Wl,--gc-sections \
 		   -mthumb -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
-OBJS		+= $(BINARY).o stm32f4xx_dma.o stm32f4xx_rcc.o stm32f4_misc.o stm32f4xx_gpio.o timers.o
+OBJS		+= $(BINARY).o stm32f4xx_dma.o stm32f4xx_rcc.o stm32f4_misc.o stm32f4xx_gpio.o timers.o gpio.o framebuffer.o
 
 OOCD		?= openocd
 OOCD_INTERFACE	?= stlink-v2
@@ -66,7 +67,7 @@ ifneq ($(V),1)
 Q := @
 NULL := 2>/dev/null
 else
-LDFLAGS += -Wl,--print-gc-sections
+#LDFLAGS += -Wl,--print-gc-sections
 endif
 
 .SUFFIXES: .elf .bin .hex .srec .list .images
