@@ -27,6 +27,8 @@ void dma_setup ( void ) {
   DMA_InitStructure.DMA_Memory0BaseAddr    = (uint32_t)&GPIOC->ODR;
 
   DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToMemory; //DMA_DIR_MemoryToPeripheral;
+  //DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;
+  //DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;
   //DMA_InitStructure.DMA_BufferSize = (uint32_t) (len);
 
   DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Enable;

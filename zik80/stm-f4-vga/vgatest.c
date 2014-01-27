@@ -9,6 +9,8 @@
 #include <libopencm3/cm3/cortex.h>
 
 #include "dma_memcpy.h"
+#include "framebuffer.h"
+#include "gpio.h"
 
 //#include <stm32f2xx_rcc.h>
 
@@ -73,7 +75,6 @@ volatile unsigned int vsync_togo = 0;       // remaining lines of vsync
 volatile unsigned int line_count = 0;      // how many lines done so far this page
 #define VISIBLE_ROWS 600
 
-
 static void gpio_setup ( void ) {
 
   /* Enable GPIOC clock. */
@@ -81,7 +82,8 @@ static void gpio_setup ( void ) {
   rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPCEN );
 
   /* Blinky LED: Set GPIO3 to 'output push-pull'. */
-  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO12 );
+  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPGEN );
+  gpio_mode_setup ( GPIOG, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO13 );
 
   // VGA
   //
@@ -101,7 +103,7 @@ static void gpio_setup ( void ) {
 
   // reset
   //
-  gpio_set ( GPIOB, GPIO12 ); // LED
+  gpio_set_blinkenlight ( 1 ); // LED
   gpio_set ( GPIOB, GPIO10 ); // vsync
   gpio_set ( GPIOB, GPIO11 ); // hsync
   gpio_clear ( GPIOC, GPIO0 | GPIO1 ); // red
@@ -176,9 +178,6 @@ static void timer2_setup ( void ) {
 
 volatile unsigned int some_toggle = 0;
 
-#define FBWIDTH 320 /* 256 */
-#define FBHEIGHT 200 /* 256 */
-volatile unsigned char framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
 volatile unsigned int i = 0;
 volatile unsigned char done_sync;
 void tim2_isr ( void ) {
@@ -302,7 +301,7 @@ void tim2_isr ( void ) {
 #if 1
   dma_memcpy ( p, 320 );
 #else
-  i = 90 / 10; // 120
+  i = 320 / 20 / 4;
   while ( i-- ) {
 
     rgb_go_level ( (*p++) );
@@ -361,95 +360,7 @@ int main ( void ) {
   //rcc_clock_setup_hse_3v3 ( &hse_8mhz_3v3 [ CLOCK_3V3_120MHZ ] );
 #endif
 
-#if 1 // fill framebuffer with offset squares
-  //unsigned char i;
-  unsigned int x, y;
-  unsigned char v;
-  for ( y = 0; y < FBHEIGHT; y++ ) {
-
-    //i = 0;
-    i = ( y / 10 ) % 5;
-
-    for ( x = 0; x < FBWIDTH; x++ ) {
-
-      if ( x % 10 == 0 ) {
-        i++;
-      }
-
-      if ( i == 0 ) {
-        v = (unsigned char) GPIO0;
-      } else if ( i == 1 ) {
-        v = (unsigned char) GPIO1;
-      } else if ( i == 2 ) {
-        v = (unsigned char) GPIO2;
-      } else if ( i == 3 ) {
-        v = (unsigned char) GPIO3;
-      } else if ( i == 4 ) {
-        v = (unsigned char) GPIO4;
-      } else if ( i == 5 ) {
-        v = (unsigned char) GPIO5;
-      } else {
-        i = 0;
-        v = (unsigned char) GPIO0;
-      }
-
-      *( framebuffer + ( y * FBWIDTH ) + x ) = v;
-
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char) 0;
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO3 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO5 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO1 | GPIO3 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO1 | GPIO0 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 | GPIO2 | GPIO3 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO2 | GPIO3 );
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO4 | GPIO5 );
-
-    } // x
-
-  } // y
-#endif
-
-#if 0 // fill framebuffer with vertical stripes of all colours (1px per colour)
-  //unsigned char i;
-  unsigned int x, y;
-  unsigned char v;
-
-  for ( y = 0; y < FBHEIGHT; y++ ) {
-
-    i = 0;
-    for ( x = 0; x < FBWIDTH; x++ ) {
-
-      *( framebuffer + ( y * FBWIDTH ) + x ) = i / 6;
-      //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 );
-
-      i++;
-    } // x
-
-  } // y
-#endif
-
-#if 0 // vertical strip every 10 pixels
-  //unsigned char i;
-  unsigned int x, y;
-
-  for ( y = 0; y < FBHEIGHT; y++ ) {
-
-    i = 0;
-    for ( x = 0; x < FBWIDTH; x++ ) {
-
-      if ( i >= 9 ) {
-        *( framebuffer + ( y * FBWIDTH ) + x ) = GPIO0;
-      }
-
-      if ( i == 12 ) {
-        i = 0;
-      }
-
-      i++;
-    } // x
-  } // y
-#endif
+  fb_test_pattern();
 
   gpio_setup();
 
