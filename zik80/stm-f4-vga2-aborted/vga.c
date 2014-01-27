@@ -4,13 +4,24 @@
 
 #include "timers.h"
 #include "vga.h"
+#include "gpio_swipe.h"
+#include "int_swipe.h"
+#include "rcc_swipe.h"
 
 #define NULL 0
 
+typedef void HBlankInterruptFunction(void);
+
+static HBlankInterruptFunction *HBlankInterruptHandler;
+static uint32_t VGAPixelsPerRow;
+static uint32_t VGACurrentLineAddress;
 volatile uint32_t VGALine;
 volatile uint32_t VGAFrame;
 
-static HBlankInterruptFunction *HBlankInterruptHandler;
+static void DMACompleteHandler();
+static inline void StopPixelDMA();
+static inline void StartPixelDMA();
+static void InitializePixelDMA(int pixelclock,int pixelsperrow);
 
 static inline int HandleVGAHSync480()
 {
