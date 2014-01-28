@@ -1,3 +1,4 @@
+
 #include "stm32f4xx.h"
 #include "stm32f4xx_dma.h"
 #include "stm32f4xx_rcc.h"
@@ -5,14 +6,21 @@
 #include "misc.h"
 
 #include "dma_memcpy.h"
+#include "dma_memcpy_timer.h"
 
 #define NULL 0
 
-#define DMA_STREAM DMA2_Stream0
-#define DMA_CHANNEL DMA_Channel_0
+// DMA2 can do MemoryToMemory
+// DMA Stream 0 worked, but DMA2-Stream1-Channel7 jas TIM8_UP as a optional trigger
+// (see reference channel selection table.) This suggests if we set up TIM8 as the
+// pixel-clock speed, we can control how fast the DMA doles out the bytes!
+
+#define DMA_STREAM DMA2_Stream1
+#define DMA_CHANNEL DMA_Channel_7
 #define DMA_STREAM_CLOCK         RCC_AHB1Periph_DMA2 
-#define DMA_STREAM_IRQ           DMA2_Stream0_IRQn
+#define DMA_STREAM_IRQ           DMA2_Stream1_IRQn
 #define DMA_IT_TCIF              DMA_IT_TCIF0
+#define DMA_ISR_FUNC             dma2_stream1_isr
 
 DMA_InitTypeDef  DMA_InitStructure __attribute((aligned (4)));
 
@@ -57,6 +65,9 @@ void dma_setup ( void ) {
   NVIC_Init(&NVIC_InitStructure);
 #endif
 
+  // pixelclock
+  RCC->APB2ENR |= RCC_APB2ENR_TIM8EN;
+
 }
 
 void dma_memcpy ( unsigned char *src, unsigned int len ) {
@@ -82,20 +93,26 @@ void dma_memcpy ( unsigned char *src, unsigned int len ) {
 
   DMA_Init(DMA_STREAM, &DMA_InitStructure);
  
+
+
+  DMA2_Stream1->CR &= ~DMA_SxCR_EN;
+
+  pixelclock_start();
+
+  DMA2_Stream1->CR|=DMA_SxCR_EN;
+
+
   /* Enable DMA Transfer Complete interrupt */
   DMA_ITConfig ( DMA_STREAM, DMA_IT_TC, ENABLE ); // interupts needed?
  
-  /* Toggle LED3 : begin */
-  GPIO_ToggleBits ( GPIOB, 1<<12 );
-
   DMA_Cmd ( DMA_STREAM, ENABLE );
 
   //while(DMA_GetCmdStatus(DMA_STREAM) != ENABLE);
 
 }
 
-void dma2_stream0_isr /*DMA2_Stream6_IRQHandler*/ (void) // 2 Hz
-{
+void DMA_ISR_FUNC (void) {
+
   /* Clear DMA Stream Transfer Complete interrupt pending bit */
   //DMA_ClearITPendingBit(DMA_STREAM, DMA_IT_TCIF);
 
@@ -103,17 +120,14 @@ void dma2_stream0_isr /*DMA2_Stream6_IRQHandler*/ (void) // 2 Hz
 
 #if 0 // full transfer
   if (DMA_GetITStatus(DMA_STREAM, DMA_IT_TCIF)) {
-    GPIO_ToggleBits ( GPIOB, 1<<12 );
   }
 #endif
 #if 0 // half transfer
   if (DMA_GetITStatus(DMA_STREAM, DMA_IT_HTIF6)) {
-    GPIO_ToggleBits ( GPIOB, 1<<12 );
   }
 #endif
 #if 0 // transfer error
   if (DMA_GetITStatus(DMA_STREAM, DMA_IT_TEIF6)) {
-    GPIO_ToggleBits ( GPIOB, 1<<12 );
   }
 #endif
 
@@ -122,9 +136,8 @@ void dma2_stream0_isr /*DMA2_Stream6_IRQHandler*/ (void) // 2 Hz
 
     /* Clear DMA Stream Transfer Complete interrupt pending bit */
     DMA_ClearITPendingBit(DMA_STREAM, DMA_IT_TCIF);
- 
-    /* Toggle LED3 : End of Transfer */
-    GPIO_ToggleBits ( GPIOB, 1<<12 );
+
+    //gpio_toggle_blinkenlight ( 1 ); // LED
 
     // ensure colour lines are down
     //GPIO_ResetBits ( GPIOC, 1<<0 | 1<<1 | 1<<2 );
@@ -137,5 +150,8 @@ void dma2_stream0_isr /*DMA2_Stream6_IRQHandler*/ (void) // 2 Hz
   //DMA_ClearITPendingBit(DMA_STREAM, DMA_IT_TCIF );
   //DMA_ClearITPendingBit(DMA_STREAM, DMA_IT_HTIF0 | DMA_IT_TEIF0 | DMA_IT_DMEIF0 | DMA_IT_FEIF0 );
 
+}
 
+void tim8_up_tim13_isr ( void ) {
+  //gpio_toggle_blinkenlight ( 1 ); // LED
 }

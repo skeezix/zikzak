@@ -81,6 +81,9 @@ static void gpio_setup ( void ) {
   rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPBEN );
   rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPCEN );
 
+  // pixel clock?
+  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPBEN );
+
   /* Blinky LED: Set GPIO3 to 'output push-pull'. */
   rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPGEN );
   gpio_mode_setup ( GPIOG, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO13 );
@@ -300,6 +303,7 @@ void tim2_isr ( void ) {
 
 #if 1
   dma_memcpy ( p, 320 );
+  pixelclock_stop();
 #else
   i = 320 / 20 / 4;
   while ( i-- ) {
@@ -375,6 +379,7 @@ int main ( void ) {
   timer2_setup();
 
   dma_setup();
+  pixelclock_setup();
 
   gpio_set ( GPIOB, GPIO12 );
 

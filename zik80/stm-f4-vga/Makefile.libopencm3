@@ -52,7 +52,7 @@ LDFLAGS		+= --static -lc -lnosys -L$(TOOLCHAIN_DIR)/lib \
 			 -L$(TOOLCHAIN_DIR)/lib/stm32/f4 \
 		   -T$(LDSCRIPT) -nostartfiles -Wl,--gc-sections \
 		   -mthumb -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
-OBJS		+= $(BINARY).o stm32f4xx_dma.o stm32f4xx_rcc.o stm32f4_misc.o stm32f4xx_gpio.o dma_memcpy.o framebuffer.o gpio.o # stateoftheart.o
+OBJS		+= $(BINARY).o stm32f4xx_dma.o stm32f4xx_rcc.o stm32f4_misc.o stm32f4xx_gpio.o dma_memcpy.o dma_memcpy_timer.o framebuffer.o gpio.o # stateoftheart.o
 
 OOCD		?= openocd
 OOCD_INTERFACE	?= stlink-v2
