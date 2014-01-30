@@ -5,12 +5,13 @@
 
 #include "framebuffer.h"
 
-volatile unsigned char framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
+volatile uint8_t framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
+volatile uint8_t offscreen [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
 
 void fb_test_pattern ( void ) {
   unsigned int i;
 
-#if 0 // fill framebuffer with offset squares
+#if 1 // fill framebuffer with offset squares
   //unsigned char i;
   unsigned int x, y;
   unsigned char v;
@@ -59,7 +60,7 @@ void fb_test_pattern ( void ) {
   } // y
 #endif
 
-#if 1 // fill framebuffer with vertical stripes of all colours (1px per colour)
+#if 0 // fill framebuffer with vertical stripes of all colours (1px per colour)
   //unsigned char i;
   unsigned int x, y;
   unsigned char v;
@@ -119,5 +120,52 @@ void fb_test_pattern ( void ) {
     } // x
   } // y
 #endif
+
+}
+
+void fb_clone ( uint8_t *fbsrc, uint8_t *fbdst ) {
+  memcpy ( fbdst, fbsrc, FBWIDTH * FBHEIGHT );
+}
+
+void fb_render_rect_filled ( uint8_t *fb, uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t rgb ) {
+  uint16_t tx, ty;
+  uint16_t tx2, ty2;
+
+  tx2 = x + w;
+  ty2 = y + h;
+
+  for ( ty = y; ty < ty2; ty++ ) {
+    for ( tx = x; tx < tx2; tx++ ) {
+      fb [ ( ty * FBWIDTH ) + tx ] = rgb;
+    } // x
+  } // y
+
+}
+
+static uint16_t dx = 10, dy = 10;
+static uint8_t drgb = 0;
+void fb_lame_demo_animate ( uint8_t *fb ) {
+
+  dx++;
+  dy++;
+
+  if ( dy % 10 == 0 ) {
+    drgb++;
+  }
+
+  fb_render_rect_filled ( fb, dx, dy, 10, 10, drgb );
+
+  if ( dx > 300 ) {
+    dx -= 292;
+  }
+
+  if ( dy > 160 ) {
+    dy = 10;
+    dx += 20;
+  }
+
+  if ( drgb == 0b00111111 ) {
+    drgb = 0;
+  }
 
 }

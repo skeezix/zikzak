@@ -68,13 +68,15 @@
 // .. keeping a line counter in code is easy enough, but may cost too much time
 // .. may be better to have a vsync interupt that resets counter..
 
-// vblank
+// vsync
 volatile unsigned int back_porch_togo = 0;  // remaining lines of back porch
 volatile unsigned int front_porch_togo = 0; // remaining lines of front porch
 volatile unsigned int vsync_togo = 0;       // remaining lines of vsync
 // etc
-volatile unsigned int line_count = 0;      // how many lines done so far this page
-#define VISIBLE_ROWS 600
+volatile unsigned char vblank = 0;          // changed to 1 when end of screen starts
+volatile unsigned int line_count = 0;       // how many lines done so far this page
+//#define VISIBLE_ROWS 600
+#define VISIBLE_ROWS 480
 
 static void gpio_setup ( void ) {
 
@@ -349,6 +351,7 @@ void tim2_isr ( void ) {
 
   if ( line_count > VISIBLE_ROWS ) {
     front_porch_togo = 1;
+    vblank = 1;
     return; // entering front porch
   }
 
@@ -365,6 +368,7 @@ int main ( void ) {
 #endif
 
   fb_test_pattern();
+  fb_clone ( framebuffer, offscreen );
 
   gpio_setup();
 
@@ -384,8 +388,29 @@ int main ( void ) {
 
   pixelclock_setup();
 
+  //while(1);
+
   while ( 1 ) {
+
+    if ( vblank ) {
+      vblank = 0;
+
+#if 0
+      fb_lame_demo_animate ( framebuffer );
+#endif
+#if 0
+      fb_lame_demo_animate ( offscreen );
+      fb_clone ( offscreen, framebuffer );
+#endif
+#if 0 // render to offscreen only
+      fb_lame_demo_animate ( offscreen );
+      fb_clone ( framebuffer, offscreen );
+#endif
+
+    }
+
     __asm__("nop");
+
   } // while forever
 
   return 0;
