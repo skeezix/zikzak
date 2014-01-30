@@ -4,7 +4,7 @@
 
 void dma_setup ( void );
 
-void dma_memcpy ( unsigned char *p, unsigned int len );
+void dma_memcpy ( unsigned char *src, unsigned char *dst, unsigned int len );
 
 #define DMA_MEMCPY_INCSRC   1
 #define DMA_MEMCPY_INCDEST  2

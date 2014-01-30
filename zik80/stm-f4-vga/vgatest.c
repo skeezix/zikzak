@@ -11,6 +11,7 @@
 #include "dma_memcpy.h"
 #include "framebuffer.h"
 #include "gpio.h"
+#include "pixelclock.h"
 
 //#include <stm32f2xx_rcc.h>
 
@@ -302,8 +303,7 @@ void tim2_isr ( void ) {
   //p = framebuffer + ( (line_count%240) * 240 );
 
 #if 1
-  dma_memcpy ( p, 320 );
-  pixelclock_stop();
+  dma_memcpy ( p, &(GPIO_ODR(GPIOC)) /*&GPIOC->ODR*/, 320 );
 #else
   i = 320 / 20 / 4;
   while ( i-- ) {
@@ -379,11 +379,10 @@ int main ( void ) {
   timer2_setup();
 
   dma_setup();
-  pixelclock_setup();
 
   gpio_set ( GPIOB, GPIO12 );
 
-  TIM_SR(TIM2) &= ~TIM_SR_UIF; /* Clear interrrupt flag. */
+  pixelclock_setup();
 
   while ( 1 ) {
     __asm__("nop");

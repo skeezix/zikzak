@@ -10,7 +10,7 @@ volatile unsigned char framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned
 void fb_test_pattern ( void ) {
   unsigned int i;
 
-#if 1 // fill framebuffer with offset squares
+#if 0 // fill framebuffer with offset squares
   //unsigned char i;
   unsigned int x, y;
   unsigned char v;
@@ -59,7 +59,7 @@ void fb_test_pattern ( void ) {
   } // y
 #endif
 
-#if 0 // fill framebuffer with vertical stripes of all colours (1px per colour)
+#if 1 // fill framebuffer with vertical stripes of all colours (1px per colour)
   //unsigned char i;
   unsigned int x, y;
   unsigned char v;
@@ -101,7 +101,7 @@ void fb_test_pattern ( void ) {
   } // y
 #endif
 
-#if 0 // vertical strip every X pixels
+#if 0 // vertical strip 1 pixel wide
   //unsigned char i;
   unsigned int x, y;
 
