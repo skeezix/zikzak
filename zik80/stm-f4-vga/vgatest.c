@@ -300,7 +300,7 @@ void tim2_isr ( void ) {
 
 #if 1 // pull from array
   //i = line_count % FBHEIGHT;
-  i = line_count/4;
+  i = line_count/2;
   unsigned char *p = framebuffer + ( i * FBWIDTH ); // 240
   //p = framebuffer + ( (line_count%240) * 240 );
 
@@ -395,7 +395,7 @@ int main ( void ) {
     if ( vblank ) {
       vblank = 0;
 
-#if 0
+#if 1
       fb_lame_demo_animate ( framebuffer );
 #endif
 #if 0

@@ -43,6 +43,10 @@ void fb_test_pattern ( void ) {
         v = (unsigned char) GPIO0;
       }
 
+      if ( y % 10 == 0 ) {
+        v = 0; // black
+      }
+
       *( framebuffer + ( y * FBWIDTH ) + x ) = v;
 
       //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char) 0;
@@ -142,7 +146,7 @@ void fb_render_rect_filled ( uint8_t *fb, uint8_t x, uint8_t y, uint8_t w, uint8
 
 }
 
-static uint16_t dx = 10, dy = 10;
+static uint16_t dx = 10, dy = 65;
 static uint8_t drgb = 0;
 void fb_lame_demo_animate ( uint8_t *fb ) {
 
@@ -160,7 +164,7 @@ void fb_lame_demo_animate ( uint8_t *fb ) {
   }
 
   if ( dy > 160 ) {
-    dy = 10;
+    dy = 65;
     dx += 20;
   }
 
