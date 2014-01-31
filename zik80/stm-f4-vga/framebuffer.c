@@ -128,37 +128,48 @@ void fb_test_pattern ( void ) {
 
 void fb_clone ( uint8_t *fbsrc, uint8_t *fbdst ) {
 
-#if 0
-  memcpy ( fbdst, fbsrc, FBWIDTH * FBHEIGHT );
-#else
+  // memcpy ( fbdst, fbsrc, FBWIDTH * FBHEIGHT ); // screws up the DMA!?
 
   uint16_t i;
   uint8_t *s, *d;
 
+#if 1
   i = FBWIDTH * FBHEIGHT;
 
   while ( i-- ) {
     *fbdst++ = *fbsrc++;
   }
+#else
+  i = FBWIDTH * FBHEIGHT;
+  i /= 8;
 
+  while ( i-- ) {
+    *fbdst++ = *fbsrc++;
+    *fbdst++ = *fbsrc++;
+    *fbdst++ = *fbsrc++;
+    *fbdst++ = *fbsrc++;
+    *fbdst++ = *fbsrc++;
+    *fbdst++ = *fbsrc++;
+    *fbdst++ = *fbsrc++;
+    *fbdst++ = *fbsrc++;
+  }
 #endif
 
 }
 
-void fb_render_rect_filled ( uint8_t *fb, uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t rgb ) {
+inline void fb_render_rect_filled ( uint8_t *fb, uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t rgb ) {
   uint16_t tx, ty;
   uint16_t tx2, ty2;
+  uint8_t *t;
 
   tx2 = x + w;
   ty2 = y + h;
-
-  uint8_t *t;
-
 
   for ( ty = y; ty < ty2; ty++ ) {
     t = fb + ( ty * FBWIDTH ) + x; 
     for ( tx = 0; tx < w; tx++ ) {
       *t++ = rgb;
+      //__asm__("nop");
     } // x
   } // y
 

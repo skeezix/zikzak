@@ -42,10 +42,10 @@ void dma_setup ( void ) {
   DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
   DMA_InitStructure.DMA_Mode = DMA_Mode_Normal; //DMA_Mode_Circular;
  
-  DMA_InitStructure.DMA_Priority = DMA_Priority_High;
+  DMA_InitStructure.DMA_Priority = DMA_Priority_Low;
   DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Enable;
-  DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_HalfFull; //Full 1QuarterFull HalfFull
-  DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single; // Single
+  DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_3QuartersFull; //Full 1QuarterFull HalfFull 3QuartersFull
+  DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single; // Single DMA_MemoryBurst_INC16
   DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single; // Single INC4 INC8 INC16
 
   // enable nvic clock for dma
