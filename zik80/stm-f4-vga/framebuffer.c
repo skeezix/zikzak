@@ -5,14 +5,13 @@
 
 #include "framebuffer.h"
 
-volatile uint8_t framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
-volatile uint8_t offscreen [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
+uint8_t framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
+uint8_t offscreen [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
 
 void fb_test_pattern ( void ) {
   unsigned int i;
 
 #if 1 // fill framebuffer with offset squares
-  //unsigned char i;
   unsigned int x, y;
   unsigned char v;
   for ( y = 0; y < FBHEIGHT; y++ ) {
@@ -128,7 +127,22 @@ void fb_test_pattern ( void ) {
 }
 
 void fb_clone ( uint8_t *fbsrc, uint8_t *fbdst ) {
+
+#if 0
   memcpy ( fbdst, fbsrc, FBWIDTH * FBHEIGHT );
+#else
+
+  uint16_t i;
+  uint8_t *s, *d;
+
+  i = FBWIDTH * FBHEIGHT;
+
+  while ( i-- ) {
+    *fbdst++ = *fbsrc++;
+  }
+
+#endif
+
 }
 
 void fb_render_rect_filled ( uint8_t *fb, uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t rgb ) {
@@ -138,9 +152,13 @@ void fb_render_rect_filled ( uint8_t *fb, uint8_t x, uint8_t y, uint8_t w, uint8
   tx2 = x + w;
   ty2 = y + h;
 
+  uint8_t *t;
+
+
   for ( ty = y; ty < ty2; ty++ ) {
-    for ( tx = x; tx < tx2; tx++ ) {
-      fb [ ( ty * FBWIDTH ) + tx ] = rgb;
+    t = fb + ( ty * FBWIDTH ) + x; 
+    for ( tx = 0; tx < w; tx++ ) {
+      *t++ = rgb;
     } // x
   } // y
 

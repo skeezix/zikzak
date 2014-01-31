@@ -69,12 +69,12 @@
 // .. may be better to have a vsync interupt that resets counter..
 
 // vsync
-volatile unsigned int back_porch_togo = 0;  // remaining lines of back porch
-volatile unsigned int front_porch_togo = 0; // remaining lines of front porch
-volatile unsigned int vsync_togo = 0;       // remaining lines of vsync
+unsigned int back_porch_togo = 0;  // remaining lines of back porch
+unsigned int front_porch_togo = 0; // remaining lines of front porch
+unsigned int vsync_togo = 0;       // remaining lines of vsync
 // etc
 volatile unsigned char vblank = 0;          // changed to 1 when end of screen starts
-volatile unsigned int line_count = 0;       // how many lines done so far this page
+unsigned int line_count = 0;       // how many lines done so far this page
 //#define VISIBLE_ROWS 600
 #define VISIBLE_ROWS 480
 
@@ -358,7 +358,6 @@ void tim2_isr ( void ) {
   line_count++;
 }
 
-
 int main ( void ) {
 
 #if 1 // go for 120MHz, built into libopencm3
@@ -395,10 +394,10 @@ int main ( void ) {
     if ( vblank ) {
       vblank = 0;
 
-#if 1
+#if 0
       fb_lame_demo_animate ( framebuffer );
 #endif
-#if 0
+#if 1
       fb_lame_demo_animate ( offscreen );
       fb_clone ( offscreen, framebuffer );
 #endif
