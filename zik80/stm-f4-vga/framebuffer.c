@@ -3,10 +3,20 @@
 #include <libopencm3/stm32/gpio.h>
 #include <libopencm3/stm32/timer.h>
 
+#include "dma_memcpy.h"
 #include "framebuffer.h"
 
 uint8_t framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
 uint8_t offscreen [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
+
+extern volatile unsigned char vblank;
+
+static inline void _spin_until_vblank ( void ) {
+  while ( ! vblank ) {
+    __asm__("nop");
+  }
+
+}
 
 void fb_test_pattern ( void ) {
   unsigned int i;
@@ -158,9 +168,9 @@ void fb_clone ( uint8_t *fbsrc, uint8_t *fbdst ) {
 }
 
 inline void fb_render_rect_filled ( uint8_t *fb, uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t rgb ) {
-  uint16_t tx, ty;
-  uint16_t tx2, ty2;
-  uint8_t *t;
+  register uint16_t tx, ty;
+  register uint16_t tx2, ty2;
+  register uint8_t *t;
 
   tx2 = x + w;
   ty2 = y + h;
@@ -175,9 +185,35 @@ inline void fb_render_rect_filled ( uint8_t *fb, uint8_t x, uint8_t y, uint8_t w
 
 }
 
+inline void fb_render_rect8_filled ( uint8_t *fb, uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t rgb ) {
+  register uint16_t ty;
+  register uint16_t ty2;
+  register uint8_t *t;
+
+  ty2 = y + h;
+
+  for ( ty = y; ty < ty2; ty++ ) {
+    t = fb + ( ty * FBWIDTH ) + x; 
+
+    *t++ = rgb;
+    *t++ = rgb;
+    *t++ = rgb;
+    *t++ = rgb;
+
+    *t++ = rgb;
+    *t++ = rgb;
+    *t++ = rgb;
+    *t++ = rgb;
+
+  } // y
+
+}
+
 static uint16_t dx = 10, dy = 65;
 static uint8_t drgb = 0;
 void fb_lame_demo_animate ( uint8_t *fb ) {
+
+  //_spin_until_vblank();
 
   dx++;
   dy++;
@@ -186,7 +222,7 @@ void fb_lame_demo_animate ( uint8_t *fb ) {
     drgb++;
   }
 
-  fb_render_rect_filled ( fb, dx, dy, 10, 10, drgb );
+  fb_render_rect8_filled ( fb, dx, dy, 8, 8, drgb );
 
   if ( dx > 300 ) {
     dx -= 292;

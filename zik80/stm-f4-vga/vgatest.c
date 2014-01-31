@@ -182,10 +182,8 @@ static void timer2_setup ( void ) {
   return;
 }
 
-volatile unsigned int some_toggle = 0;
-
-volatile unsigned int i = 0;
-volatile unsigned char done_sync;
+unsigned int i = 0;
+unsigned char done_sync;
 void tim2_isr ( void ) {
 
   //TIM2_SR &= ~TIM_SR_UIF;    //clearing update interrupt flag
@@ -253,6 +251,7 @@ void tim2_isr ( void ) {
 
     if ( ! back_porch_togo ) {
       line_count = 1;
+      vblank = 0;
     }
 
     done_sync = 1;
@@ -339,8 +338,8 @@ void tim2_isr ( void ) {
 
   // disable all colour pins (dma does it itself in its isr)
   //GPIO_BSRR(GPIOC) = 0x00;
+
   gpio_clear ( GPIOC, GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 );
-  //rgb_go_level ( 0 );
 
 #endif
 
@@ -391,8 +390,8 @@ int main ( void ) {
 
   while ( 1 ) {
 
-    if ( vblank ) {
-      vblank = 0;
+    if ( vblank == 1 ) {
+      vblank = 2;
 
 #if 0
       fb_lame_demo_animate ( framebuffer );

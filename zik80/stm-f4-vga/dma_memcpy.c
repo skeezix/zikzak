@@ -71,8 +71,8 @@ void dma_memcpy ( unsigned char *src, unsigned char *dst, unsigned int len ) {
   //
 
   /* Configure the DMA Stream */
-  DMA_Cmd ( DMA_STREAM, DISABLE );
-  DMA_DeInit ( DMA_STREAM );
+  //DMA_Cmd ( DMA_STREAM, DISABLE );
+  //DMA_DeInit ( DMA_STREAM );
   //while(DMA_GetCmdStatus(DMA_STREAM) != DISABLE);
 
   // DMA_DIR_MemoryToMemory
@@ -100,7 +100,6 @@ void dma_memcpy ( unsigned char *src, unsigned char *dst, unsigned int len ) {
 #endif
 
   DMA_InitStructure.DMA_BufferSize = (uint32_t) (len);
-
 
   DMA_Init(DMA_STREAM, &DMA_InitStructure);
  
@@ -162,7 +161,7 @@ void DMA_ISR_FUNC (void) {
  
       /* Toggle LED3 : End of Transfer */
       //STM_EVAL_LEDToggle(LED3);
- 
+
       // Add code here to process things
     }
 
