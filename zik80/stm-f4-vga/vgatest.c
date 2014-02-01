@@ -385,6 +385,8 @@ int main ( void ) {
 
   pixelclock_setup();
 
+  //torture_setup();
+
   //while(1);
 
   uint16_t iter;

@@ -28,7 +28,7 @@ OBJDUMP		= $(PREFIX)-objdump
 GDB		= $(PREFIX)-gdb
 FLASH		= $(shell which st-flash)
 
-APPOBJS = dma_memcpy.o pixelclock.o framebuffer.o gpio.o system.o # stateoftheart.o
+APPOBJS = dma_memcpy.o pixelclock.o framebuffer.o gpio.o system.o torture.o # stateoftheart.o
 
 TOOLCHAIN_DIR ?= /home/skeezix/archive/devo/toolkits/stm32/libopencm3
 ifeq ($(wildcard $(TOOLCHAIN_DIR)/lib/libopencm3_stm32f4.a),)

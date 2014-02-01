@@ -166,7 +166,3 @@ void DMA_ISR_FUNC (void) {
     }
 
 }
-
-void tim8_up_tim13_isr ( void ) {
-  //gpio_toggle_blinkenlight ( 1 ); // LED
-}
