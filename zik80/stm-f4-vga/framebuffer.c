@@ -5,9 +5,11 @@
 
 #include "dma_memcpy.h"
 #include "framebuffer.h"
+#include "system.h"
 
 uint8_t framebuffer [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
-uint8_t offscreen [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
+//uint8_t offscreen [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
+uint8_t *offscreen;
 
 extern volatile unsigned char vblank;
 
@@ -18,7 +20,11 @@ static inline void _spin_until_vblank ( void ) {
 
 }
 
-void fb_test_pattern ( void ) {
+void fb_setup ( void ) {
+  offscreen = ccm_memory_base;
+}
+
+void fb_test_pattern ( uint8_t *fb ) {
   unsigned int i;
 
 #if 1 // fill framebuffer with offset squares
@@ -56,7 +62,7 @@ void fb_test_pattern ( void ) {
         v = 0; // black
       }
 
-      *( framebuffer + ( y * FBWIDTH ) + x ) = v;
+      *( fb + ( y * FBWIDTH ) + x ) = v;
 
       //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char) 0;
       //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO3 );
@@ -84,7 +90,7 @@ void fb_test_pattern ( void ) {
     for ( x = 0; x < FBWIDTH; x++ ) {
 
       //*( framebuffer + ( y * FBWIDTH ) + x ) = i / 6;
-      *( framebuffer + ( y * FBWIDTH ) + x ) = i;
+      *( fb + ( y * FBWIDTH ) + x ) = i;
       //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 );
 
       i++;
@@ -103,7 +109,7 @@ void fb_test_pattern ( void ) {
     for ( x = 0; x < FBWIDTH; x++ ) {
 
       if ( i >= 9 ) {
-        *( framebuffer + ( y * FBWIDTH ) + x ) = GPIO1;
+        *( fb + ( y * FBWIDTH ) + x ) = GPIO1;
       }
 
       if ( i == 10 ) {
@@ -125,7 +131,7 @@ void fb_test_pattern ( void ) {
     for ( x = 0; x < FBWIDTH; x++ ) {
 
       if ( i == 9 ) {
-        *( framebuffer + ( y * FBWIDTH ) + x ) = GPIO1;
+        *( fb + ( y * FBWIDTH ) + x ) = GPIO1;
         i = 0;
       }
 

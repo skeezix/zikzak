@@ -221,6 +221,7 @@ void tim2_isr ( void ) {
   // vsync is normally HIGH, but goes to LOW during pulse
   done_sync = 0;
   if ( front_porch_togo ) {
+    vblank = 1;
     front_porch_togo --;
 
     if ( ! front_porch_togo ) { // on exit front porch, start vsync pulse
@@ -350,7 +351,6 @@ void tim2_isr ( void ) {
 
   if ( line_count > VISIBLE_ROWS ) {
     front_porch_togo = 1;
-    vblank = 1;
     return; // entering front porch
   }
 
@@ -365,7 +365,8 @@ int main ( void ) {
   //rcc_clock_setup_hse_3v3 ( &hse_8mhz_3v3 [ CLOCK_3V3_120MHZ ] );
 #endif
 
-  fb_test_pattern();
+  fb_setup();
+  fb_test_pattern ( framebuffer );
   fb_clone ( framebuffer, offscreen );
 
   gpio_setup();
@@ -382,28 +383,32 @@ int main ( void ) {
 
   dma_setup();
 
-  gpio_set ( GPIOB, GPIO12 );
-
   pixelclock_setup();
 
   //while(1);
+
+  uint16_t iter;
 
   while ( 1 ) {
 
     if ( vblank == 1 ) {
       vblank = 2;
 
-#if 0
-      fb_lame_demo_animate ( framebuffer );
-#endif
+      //gpio_toggle_blinkenlight();
+
+      fb_lame_demo_animate ( offscreen );
+
 #if 1
-      fb_lame_demo_animate ( offscreen );
+      for ( iter = 0; iter < 1500; iter++ ) {
+        fb_lame_demo_animate ( offscreen );
+      }
+#endif
+
+      //gpio_toggle_blinkenlight();
+
       fb_clone ( offscreen, framebuffer );
-#endif
-#if 0 // render to offscreen only
-      fb_lame_demo_animate ( offscreen );
-      fb_clone ( framebuffer, offscreen );
-#endif
+
+      //gpio_toggle_blinkenlight();
 
     }
 
