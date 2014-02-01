@@ -10,6 +10,8 @@
 #include "torture.h"
 #include "gpio.h"
 
+extern volatile unsigned char vblank;
+
 void torture_setup ( void ) {
   rcc_peripheral_enable_clock(&RCC_APB1ENR, RCC_APB1ENR_TIM3EN);
 
@@ -40,5 +42,30 @@ void torture_setup ( void ) {
 
 void tim3_isr(void) {
   TIM_SR(TIM3) &= ~TIM_SR_UIF;
-  gpio_toggle_blinkenlight();
+
+  if ( vblank ) {
+    uint16_t a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    a = gpio_port_read ( GPIOC );
+    if ( a = 37 ) {
+      //gpio_toggle_blinkenlight();
+      __asm__("nop");
+    }
+
+  }
+
 }

@@ -400,8 +400,10 @@ int main ( void ) {
 
       fb_lame_demo_animate ( offscreen );
 
+      //gpio_toggle_blinkenlight();
+
 #if 1
-      for ( iter = 0; iter < 1500; iter++ ) {
+      for ( iter = 0; iter < 1500; iter++ ) { // if 100, no distortion.. finishes during vblank; if 1500 it bleeds past vblank so shows a turd-line
         fb_lame_demo_animate ( offscreen );
       }
 #endif
