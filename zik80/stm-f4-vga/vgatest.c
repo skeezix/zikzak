@@ -12,6 +12,7 @@
 #include "framebuffer.h"
 #include "gpio.h"
 #include "pixelclock.h"
+#include "system.h"
 
 //#include <stm32f2xx_rcc.h>
 
@@ -306,6 +307,7 @@ void tim2_isr ( void ) {
 
 #if 1
   dma_memcpy ( p, &(GPIO_ODR(GPIOC)) /*&GPIOC->ODR*/, 320 );
+  //dma_memcpy ( sram2_16k, &(GPIO_ODR(GPIOC)) /*&GPIOC->ODR*/, 320 );
 #else
   i = 320 / 20 / 2;
   while ( i-- ) {
