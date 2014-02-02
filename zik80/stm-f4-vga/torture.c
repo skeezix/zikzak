@@ -29,7 +29,7 @@ void torture_setup ( void ) {
   TIM_PSC(TIM3) = 541; // 120M/2000 = 60k/second   ## 540
 
   /* End timer value. If this is reached an interrupt is generated. */
-  TIM_ARR(TIM3) = 2000; // ## 2
+  TIM_ARR(TIM3) = 200; // ## 2
 
 
 
@@ -43,7 +43,7 @@ void torture_setup ( void ) {
 void tim3_isr(void) {
   TIM_SR(TIM3) &= ~TIM_SR_UIF;
 
-  if ( vblank ) {
+  if ( 1||vblank ) {
     uint16_t a = gpio_port_read ( GPIOC );
     a = gpio_port_read ( GPIOC );
     a = gpio_port_read ( GPIOC );

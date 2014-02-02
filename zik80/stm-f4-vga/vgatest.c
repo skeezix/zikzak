@@ -307,7 +307,7 @@ void tim2_isr ( void ) {
 #if 1
   dma_memcpy ( p, &(GPIO_ODR(GPIOC)) /*&GPIOC->ODR*/, 320 );
 #else
-  i = 320 / 20 / 4;
+  i = 320 / 20 / 2;
   while ( i-- ) {
 
     rgb_go_level ( (*p++) );
