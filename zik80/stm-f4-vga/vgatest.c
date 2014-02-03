@@ -13,6 +13,7 @@
 #include "gpio.h"
 #include "pixelclock.h"
 #include "system.h"
+#include "torture.h"
 
 //#include <stm32f2xx_rcc.h>
 
@@ -292,6 +293,13 @@ void tim2_isr ( void ) {
   }
 
 
+  // center horizontally; burn some time so image isn't fully on left
+#ifndef RENDER_DMA
+  i = 40;
+  while ( i-- ) {
+    __asm__("nop");
+  }
+#endif
 
 
   // actual line data
@@ -299,49 +307,128 @@ void tim2_isr ( void ) {
   // line data on/off/on/off..
   // off for hsync/porch business!
 
-#if 1 // pull from array
-  //i = line_count % FBHEIGHT;
-  i = line_count/2;
-  unsigned char *p = framebuffer + ( i * FBWIDTH ); // 240
-  //p = framebuffer + ( (line_count%240) * 240 );
+#if RENDER_ATALL // pull from array
 
-#if 1
-  dma_memcpy ( p, &(GPIO_ODR(GPIOC)) /*&GPIOC->ODR*/, 320 );
-  //dma_memcpy ( sram2_16k, &(GPIO_ODR(GPIOC)) /*&GPIOC->ODR*/, 320 );
+  // center vertically .. dma seems blurry with this so only for non-DMA
+#ifdef RENDER_DMA
+  i = line_count/2;
 #else
-  i = 320 / 20 / 2;
+  if ( line_count < 40 ) {
+    goto scanline_done;
+  }
+
+  i = (line_count-40)/2;
+#endif
+
+  if ( i >= FBHEIGHT ) {
+    goto scanline_done;
+  }
+
+  uint8_t *p = framebuffer + ( i * FBWIDTH );
+  //uint8_t *p = sram2_16k + ( i * FBWIDTH );
+  //uint8_t *p = offscreen + ( i * FBWIDTH );
+
+#ifdef RENDER_DMA // DMA or brute force?
+
+  dma_memcpy ( p, &(GPIO_ODR(GPIOC)) /*&GPIOC->ODR*/, 320, DMA_MEMCPY_INCSRC );
+
+ scanline_done:
+#else
+
+  i = (320) / 20;
   while ( i-- ) {
 
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
+    //rgb_go_level ( (*p++) ); // seems slower than GPIO_ODR(GPIOC)= ... why? inline, should be same?!
 
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
-    rgb_go_level ( (*p++) );
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
 
-    //gpio_set ( GPIOC, *p++ );
-    //GPIO_BSRR(GPIOC) = *p++;
-    //GPIO_BSRR(GPIOC) = 1<<6;
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+    GPIO_ODR(GPIOC) = *p++;
+    __asm__("nop");
+    __asm__("nop");
+    __asm__("nop");
+
+
   }
 
   // disable all colour pins (dma does it itself in its isr)
   //GPIO_BSRR(GPIOC) = 0x00;
 
+ scanline_done:
   gpio_clear ( GPIOC, GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 );
 
 #endif
@@ -368,8 +455,12 @@ int main ( void ) {
 #endif
 
   fb_setup();
+#if 0
   fb_test_pattern ( framebuffer );
+  zl_render_line ( framebuffer, 0xFF, 0, 0, FBWIDTH - 1, FBHEIGHT - 1 );
+  zl_render_line ( framebuffer, 0xFF, 0, FBHEIGHT - 1, FBWIDTH - 1, 0 );
   fb_clone ( framebuffer, offscreen );
+#endif
 
   gpio_setup();
 
@@ -383,11 +474,16 @@ int main ( void ) {
 
   timer2_setup();
 
+#ifdef RENDER_DMA
   dma_setup();
-
   pixelclock_setup();
+#else
+  // no prep needed
+#endif
 
-  //torture_setup();
+#ifdef TORTURE_TIMER
+  torture_setup();
+#endif
 
   //while(1);
 
@@ -400,21 +496,22 @@ int main ( void ) {
 
       //gpio_toggle_blinkenlight();
 
-      fb_lame_demo_animate ( offscreen );
+      //fb_test_pattern ( offscreen );
+      memset ( offscreen, 0x00, FBWIDTH * FBHEIGHT );
 
-      //gpio_toggle_blinkenlight();
+      zl_render_line ( offscreen, 0xFF, 0, 0, FBWIDTH - 1, FBHEIGHT - 1 );
+      zl_render_line ( offscreen, 0xFF, 0, FBHEIGHT - 1, FBWIDTH - 1, 0 );
 
 #if 1
-      for ( iter = 0; iter < 1500; iter++ ) { // if 100, no distortion.. finishes during vblank; if 1500 it bleeds past vblank so shows a turd-line
-        fb_lame_demo_animate ( offscreen );
+      for ( iter = 0; iter < 20; iter++ ) { // if 100, no distortion.. finishes during vblank; if 1500 it bleeds past vblank so shows a turd-line
+        zl_render_blit32 ( sram2_16k, offscreen, 10, 10, 32, 32, 25 + iter, 25 + iter/2 );
       }
 #endif
 
-      //gpio_toggle_blinkenlight();
+      fb_lame_demo_animate ( offscreen );
 
       fb_clone ( offscreen, framebuffer );
-
-      //gpio_toggle_blinkenlight();
+      //dma_memcpy ( offscreen, framebuffer, FBWIDTH * FBHEIGHT, DMA_MEMCPY_INCSRC | DMA_MEMCPY_INCDST | DMA_MEMCPY_M2M );
 
     }
 

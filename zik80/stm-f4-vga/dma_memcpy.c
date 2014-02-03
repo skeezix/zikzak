@@ -42,9 +42,9 @@ void dma_setup ( void ) {
   DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;
   DMA_InitStructure.DMA_Mode = DMA_Mode_Normal; //DMA_Mode_Circular;
  
-  DMA_InitStructure.DMA_Priority = DMA_Priority_Low;
+  DMA_InitStructure.DMA_Priority = DMA_Priority_Low; // Low High
   DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Enable;
-  DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_3QuartersFull; //Full 1QuarterFull HalfFull 3QuartersFull
+  DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full; //Full 1QuarterFull HalfFull 3QuartersFull
   DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single; // Single DMA_MemoryBurst_INC16
   DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single; // Single INC4 INC8 INC16
 
@@ -63,7 +63,9 @@ void dma_setup ( void ) {
 
 }
 
-void dma_memcpy ( unsigned char *src, unsigned char *dst, unsigned int len ) {
+void dma_memcpy ( unsigned char *src, unsigned char *dst,
+                  unsigned int len, unsigned char flags )
+{
 
   // NOTE: Memory to memory seems like it uses Periph->Memory ... opposite of what you'd expect
 
@@ -78,33 +80,22 @@ void dma_memcpy ( unsigned char *src, unsigned char *dst, unsigned int len ) {
   // DMA_DIR_MemoryToMemory
   // DMA_DIR_MemoryToPeripheral;
   // DMA_DIR_PeripheralToMemory;
-#define MODE 3
-#if MODE == 1 // M2M
-  DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToMemory;
-  DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Enable;
-  DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Disable;
-  DMA_InitStructure.DMA_Memory0BaseAddr    = (uint32_t)dst;
-  DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)src;
-#elif MODE == 2 // P2M (mem as gpio)
-  DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
-  DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Enable;
-  DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Disable;
-  DMA_InitStructure.DMA_Memory0BaseAddr    = (uint32_t)dst;
-  DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)src;
-#else // M2P (periph as gpio)
-  DMA_InitStructure.DMA_DIR = DMA_DIR_MemoryToPeripheral;
-  DMA_InitStructure.DMA_Memory0BaseAddr    = (uint32_t)src;
-  DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)dst;
-  DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
-  DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
-#endif
+  DMA_InitStructure.DMA_DIR = flags & DMA_MEMCPY_M2M ? DMA_DIR_MemoryToMemory : DMA_DIR_MemoryToPeripheral;
+  DMA_InitStructure.DMA_Memory0BaseAddr    = flags & DMA_MEMCPY_M2M ? (uint32_t)dst : (uint32_t)src;
+  DMA_InitStructure.DMA_PeripheralBaseAddr = flags & DMA_MEMCPY_M2M ? (uint32_t)src : (uint32_t)dst;
+  DMA_InitStructure.DMA_MemoryInc = flags & DMA_MEMCPY_INCSRC ? DMA_MemoryInc_Enable : DMA_MemoryInc_Disable;
+  DMA_InitStructure.DMA_PeripheralInc = flags & DMA_MEMCPY_INCDST ? DMA_PeripheralInc_Enable : DMA_PeripheralInc_Disable;
 
   DMA_InitStructure.DMA_BufferSize = (uint32_t) (len);
 
   DMA_Init(DMA_STREAM, &DMA_InitStructure);
  
   /* Enable DMA Transfer Complete interrupt */
-  DMA_ITConfig ( DMA_STREAM, DMA_IT_TC, ENABLE ); // interupts needed?
+  if ( flags & DMA_MEMCPY_M2M ) {
+    DMA_ITConfig ( DMA_STREAM, DMA_IT_TC, ENABLE ); // interupts needed?
+  } else {
+    DMA_ITConfig ( DMA_STREAM, DMA_IT_TC, ENABLE ); // interupts needed?
+  }
  
   DMA_Cmd ( DMA_STREAM, ENABLE );
   //while(DMA_GetCmdStatus(DMA_STREAM) != ENABLE);
@@ -120,6 +111,7 @@ void DMA_ISR_FUNC (void) {
 
 #if 0 // full transfer
   if (DMA_GetITStatus(DMA_STREAM, DMA_IT_TCIF)) {
+    DMA_ClearITPendingBit(DMA2_Stream1, DMA_IT_TCIF);
   }
 #endif
 #if 0 // half transfer

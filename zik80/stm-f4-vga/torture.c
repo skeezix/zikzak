@@ -25,11 +25,11 @@ void torture_setup ( void ) {
   /* Set timer start value. */
   TIM_CNT(TIM3) = 1;
 
-  /* Set timer prescaler. 72MHz/1440 => 50000 counts per second. */
-  TIM_PSC(TIM3) = 541; // 120M/2000 = 60k/second   ## 540
+  /* Set timer prescaler. */
+  TIM_PSC(TIM3) = 100; // 100 .. so about 840000 ticks per second
 
   /* End timer value. If this is reached an interrupt is generated. */
-  TIM_ARR(TIM3) = 200; // ## 2
+  TIM_ARR(TIM3) = 60; // 840000/14 -> 60,000/sec
 
 
 
@@ -44,25 +44,9 @@ void tim3_isr(void) {
   TIM_SR(TIM3) &= ~TIM_SR_UIF;
 
   if ( 1||vblank ) {
-    uint16_t a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
-    a = gpio_port_read ( GPIOC );
+    uint16_t a = gpio_port_read ( GPIOB );
     if ( a = 37 ) {
-      //gpio_toggle_blinkenlight();
+      gpio_toggle_blinkenlight();
       __asm__("nop");
     }
 

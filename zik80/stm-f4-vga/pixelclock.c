@@ -13,7 +13,7 @@ void pixelclock_setup ( void ) {
    */
 
 //#define TIM8_PERIOD      (500-1)             /* Timer 8 PWM period 2 KHz */
-#define TIM8_PERIOD      (1)             /* Timer 8 PWM period 2 KHz */
+#define TIM8_PERIOD      (5)             /* Timer 8 PWM period 2 KHz */
 
 //#define TIM8_PRESCALER   (168-1)             /* Timer 8 prescaler  1 MHz */
 #define TIM8_PRESCALER   (1-1)             /* Timer 8 prescaler  1 MHz */
@@ -22,9 +22,9 @@ void pixelclock_setup ( void ) {
  
   RCC_APB2PeriphClockCmd(RCC_APB2Periph_TIM8, ENABLE);  /* TIM8 clock enable */
  
-  TIM_TimeBaseStructure.TIM_Period        = TIM8_PERIOD;
+  TIM_TimeBaseStructure.TIM_Period        = TIM8_PERIOD; /* ARR end counter to trigger interupt */
   TIM_TimeBaseStructure.TIM_Prescaler     = TIM8_PRESCALER;
-  TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+  TIM_TimeBaseStructure.TIM_ClockDivision = TIM_CKD_DIV1; // TIM_CKD_DIV1  TIM_CKD_DIV2 TIM_CKD_DIV14
   TIM_TimeBaseStructure.TIM_CounterMode   = TIM_CounterMode_Up;
  
   TIM_TimeBaseInit(TIM8, &TIM_TimeBaseStructure);  /* Time base configuration */
