@@ -1,7 +1,7 @@
 all:	demo
 
-ATMEGA=atmega128
-#ATMEGA=atmega644
+#ATMEGA=atmega128
+ATMEGA=atmega644
 
 CC=avr-gcc
 LD=avr-gcc

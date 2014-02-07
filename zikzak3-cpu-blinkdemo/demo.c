@@ -26,24 +26,19 @@
 //   sei(); // int - Global enable interrupts
 
 int main ( void ) {
-  DDRE = _BV (PE2);               /* PC0 is digital output */
+  DDRD = _BV (PD6);               /* PC0 is digital output */
 
   while ( 1 ) {
 
     /* set PC0 on PORTC (digital high) and delay for 500mS */
-    PORTE &= ~_BV(PE2);
-    _delay_ms ( 2000 );
-    //_delay_ms ( 200 );
+    PORTD &= ~_BV(PD6);
+    _delay_ms ( 200 );
 
     /*  PC0 on PORTC (digital 0) and delay for 500mS */
-    PORTE |= _BV(PE2);
-    _delay_ms ( 2000 );
-    //_delay_ms ( 200 );
+    PORTD |= _BV(PD6);
+    _delay_ms ( 200 );
   }
 
   return (0);
 }
-#endif
-
-#if 0
 #endif
