@@ -28,7 +28,7 @@ OBJDUMP		= $(PREFIX)-objdump
 GDB		= $(PREFIX)-gdb
 FLASH		= $(shell which st-flash)
 
-APPOBJS = dma_memcpy.o pixelclock.o framebuffer.o gpio.o system.o torture.o # stateoftheart.o
+APPOBJS = dma_memcpy.o pixelclock.o framebuffer.o gpio.o system.o server.o torture.o # stateoftheart.o
 
 TOOLCHAIN_DIR ?= /home/skeezix/archive/devo/toolkits/stm32/libopencm3
 ifeq ($(wildcard $(TOOLCHAIN_DIR)/lib/libopencm3_stm32f4.a),)
@@ -54,7 +54,7 @@ LDFLAGS		+= --static -lc -lnosys -L$(TOOLCHAIN_DIR)/lib \
 			 -L$(TOOLCHAIN_DIR)/lib/stm32/f4 \
 		   -T$(LDSCRIPT) -nostartfiles -Wl,--gc-sections \
 		   -mthumb -mcpu=cortex-m4 -mthumb -mfloat-abi=hard -mfpu=fpv4-sp-d16
-OBJS		+= $(BINARY).o stm32f4xx_dma.o stm32f4xx_rcc.o stm32f4_misc.o stm32f4xx_gpio.o stm32f4xx_tim.o ${APPOBJS}
+OBJS		+= $(BINARY).o stm32f4xx_dma.o stm32f4xx_rcc.o stm32f4_misc.o stm32f4xx_gpio.o stm32f4xx_tim.o stm32f4xx_exti.o stm32f4xx_syscfg.o ${APPOBJS}
 
 OOCD		?= openocd
 OOCD_INTERFACE	?= stlink-v2

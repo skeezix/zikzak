@@ -14,6 +14,8 @@
 #include "pixelclock.h"
 #include "system.h"
 #include "torture.h"
+#include "server.h"
+#include "protocol.h"
 
 //#include <stm32f2xx_rcc.h>
 
@@ -80,11 +82,20 @@ unsigned int line_count = 0;       // how many lines done so far this page
 //#define VISIBLE_ROWS 600
 #define VISIBLE_ROWS 480
 
+static inline void vblank_active ( void ) {
+  gpio_set ( GPIOB, GPIO12 );
+}
+
+static inline void vblank_inactive ( void ) {
+  gpio_clear ( GPIOB, GPIO12 );
+}
+
 static void gpio_setup ( void ) {
 
-  /* Enable GPIOC clock. */
-  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPBEN );
-  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPCEN );
+  /* Enable GPIO clock. */
+  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPBEN ); // hsync, vsync, vblank, server clk-in
+  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPCEN ); // vga out
+  rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPEEN ); // server data in
 
   // pixel clock?
   rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPBEN );
@@ -98,6 +109,7 @@ static void gpio_setup ( void ) {
   // sync lines
   gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO10 ); // vsync
   gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO11 ); // hsync
+  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO12 ); // hsync
   // colour
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO0 ); // red
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO1 ); // red
@@ -198,10 +210,6 @@ void tim2_isr ( void ) {
   // -- another way to do it, is to do a SR read (which blocks until its 'set' finishes), thus stalling until the ISR is 'done':
   //void SPI2_IRQHandler(void)                                                                                                                                                              {                                                                                                                                                                                         volatile unsigned int dummy;                                                                                                                                                         ... some code...                                                                                                                                                                              SPI2_CR2 &= ~SPI_CR2_RXNEIE;  // Turn off RXE interrupt enable                                                                                                                    ...some code...                                                                                                                                                                              dummy = SPI2_SR; // Prevent tail-chaining.                                                                                                                                            return;                                                                                                                                                                        }         
   */
-#if 0
-  __asm__("nop");
-  gpio_toggle(GPIOB, GPIO12); /* LED on/off. */
-#endif
 
 
   // VGA line logic
@@ -224,6 +232,7 @@ void tim2_isr ( void ) {
   done_sync = 0;
   if ( front_porch_togo ) {
     vblank = 1;
+    vblank_active();
     front_porch_togo --;
 
     if ( ! front_porch_togo ) { // on exit front porch, start vsync pulse
@@ -255,6 +264,7 @@ void tim2_isr ( void ) {
     if ( ! back_porch_togo ) {
       line_count = 1;
       vblank = 0;
+      vblank_inactive();
     }
 
     done_sync = 1;
@@ -485,6 +495,10 @@ int main ( void ) {
   torture_setup();
 #endif
 
+#ifdef SERVER_ON
+  server_setup();
+#endif
+
   //while(1);
 
   uint16_t iter;
@@ -502,9 +516,56 @@ int main ( void ) {
       zl_render_line ( offscreen, 0xFF, 0, 0, FBWIDTH - 1, FBHEIGHT - 1 );
       zl_render_line ( offscreen, 0xFF, 0, FBHEIGHT - 1, FBWIDTH - 1, 0 );
 
-#if 1
+#if 0 // render a garabge square a bunch
       for ( iter = 0; iter < 20; iter++ ) { // if 100, no distortion.. finishes during vblank; if 1500 it bleeds past vblank so shows a turd-line
         zl_render_blit32 ( sram2_16k, offscreen, 10, 10, 32, 32, 25 + iter, 25 + iter/2 );
+      }
+#endif
+
+#if 1 // render garbage square to position indicated by job queue
+
+#if 0
+      server_insert ( PROTO_CMD_SPRITE_MOVE_ABS );    // N 0
+      server_insert ( 0 );    // N 0
+      server_insert ( 200 );  // X
+      server_insert ( 10 );   // Y
+
+      server_insert ( PROTO_CMD_SPRITE_MOVE_ABS );    // N 0
+      server_insert ( 1 );    // N 0
+      server_insert ( 100 );  // X
+      server_insert ( 30 );   // Y
+#endif
+
+      {
+        uint16_t i;
+        uint16_t n, x, y;
+
+        i = 0;
+        while ( server_itemcount ) {
+
+          switch ( server_queue [ i++ ] ) {
+
+          case PROTO_CMD_SPRITE_MOVE_ABS:
+            if ( server_itemcount - i  >= 3 ) {
+              n = server_queue [ i++ ];
+              x = server_queue [ i++ ];
+              y = server_queue [ i++ ];
+
+              zl_render_blit32 ( sram2_16k, offscreen, 10, 10, 16, 16, x, y );
+            } else {
+              i = server_itemcount;
+            }
+            break;
+
+          } // switch
+
+          if ( i >= server_itemcount ) {
+            break;
+          }
+
+        } // while
+
+        server_clear();
       }
 #endif
 
