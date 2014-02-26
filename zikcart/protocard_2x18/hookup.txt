@@ -1,0 +1,43 @@
+ATc256 DIP28
+
+A0-A14 -> 15 address lines
+IO 0-7 -> 8 data lines
+GND
+VCC
+/WE
+/OE
+/CE
+--> 28 total lines
+
+We have 36pins ..
+Cart plan is..
+
+24pin address space
+8pin data space
+--> 32 right off
+
+5V
+3.3V
+GND
+/WE
+/OE
+/CE <- optional
+--> need 5 more .. eep.
+
+1MB takes 20bits: 2^20 -> 1MB
+2^20 -> 1048576
+2^21 -> 2097152
+2^22 -> 4194304
+2^23 -> 8388608
+2^24 -> 16777216
+
+Zikzak cartridge spec:
+- 6 pins for power and control lines -> leaves 30pins
+- 8 pins for data                    -> leaves 22pins
+- 22 pins for addressing -> 4MB of address space
+  --> noting that if a chip offers less address space, then those additional lines may be used for other data/signalling
+
+--> see libreoffice spreadsheet for pic
+
+805 Series 3.96mm Pitch 36P 18PX2 PCB Card Edge Connector
+.156" pin spacing
