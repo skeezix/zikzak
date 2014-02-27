@@ -1,0 +1,57 @@
+[Eagle]
+Version="06 04 00"
+Platform="Windows"
+Serial="62191E841E-LSR-WLM-1EL"
+Globals="Globals"
+Desktop="Desktop"
+
+[Globals]
+AutoSaveProject=1
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/74ac-logic.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/74ttl-din.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/74xx-eu.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/74xx-little-de.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/74xx-little-us.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/74xx-us.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/atmel.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/avr-7.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/capacitor-wima.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/con-jack.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/con-pc.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/con-subd.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/con-vg.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/con-yamaichi.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/crystal.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/cypress.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/frames.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/ic-package.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/led.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/memory-idt.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/memory-sram.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/memory.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/pinhead.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/rcl.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/resistor-dil.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/resistor.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/rohm.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/supply1.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/supply2.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/switch-misc.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/switch.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/v-reg.lbr"
+UsedLibrary="C:/Program Files/EAGLE-6.4.0/lbr/zilog.lbr"
+UsedLibrary="Y:/eagle-libraries/plcc-socket.lbr"
+UsedLibrary="Y:/eagle-libraries/skeezix.lbr"
+UsedLibrary="Y:/eagle-libraries/adafruit.lbr"
+UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-Electromechanical.lbr"
+UsedLibrary="Y:/eagle-libraries/Zilog-eZ80-v1_0.lbr"
+
+[Win_1]
+Type="Control Panel"
+Loc="692 145 1291 544"
+State=1
+Number=0
+
+[Desktop]
+Screen="1920 1080"
+Window="Win_1"
