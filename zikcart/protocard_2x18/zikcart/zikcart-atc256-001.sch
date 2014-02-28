@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -3670,7 +3670,7 @@ Source: AVX .. aphvc.pdf</description>
 <part name="17,35" library="skeezix" deviceset="ZIKZAKFINGERPAIR2X18" device=""/>
 <part name="18,36" library="skeezix" deviceset="ZIKZAKFINGERPAIR2X18" device=""/>
 <part name="AT28C256" library="skeezix" deviceset="AT28C256" device=""/>
-<part name="FRAME1" library="frames" deviceset="DOCFIELD" device=""/>
+<part name="FRAME1" library="frames" deviceset="DOCFIELD" device="" value="Jeff Mitchell 2014"/>
 </parts>
 <sheets>
 <sheet>
@@ -3704,40 +3704,6 @@ http://www.zikzak.ca</text>
 <busses>
 </busses>
 <nets>
-<net name="_VCC" class="0">
-<segment>
-<pinref part="C1" gate="G$1" pin="2"/>
-<wire x1="39.37" y1="26.67" x2="39.37" y2="29.21" width="0.1524" layer="91"/>
-<label x="39.37" y="29.21" size="1.27" layer="95" rot="R90" xref="yes"/>
-</segment>
-<segment>
-<pinref part="1,19" gate="G$1" pin="BOT"/>
-<wire x1="7.62" y1="60.96" x2="7.62" y2="57.15" width="0.1524" layer="91"/>
-<label x="7.62" y="57.15" size="1.27" layer="95" rot="R270" xref="yes"/>
-</segment>
-<segment>
-<pinref part="AT28C256" gate="G$1" pin="VCC"/>
-<wire x1="57.15" y1="38.1" x2="57.15" y2="40.64" width="0.1524" layer="91"/>
-<label x="57.15" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
-</segment>
-</net>
-<net name="_GND" class="0">
-<segment>
-<pinref part="C1" gate="G$1" pin="1"/>
-<wire x1="39.37" y1="19.05" x2="39.37" y2="16.51" width="0.1524" layer="91"/>
-<label x="39.37" y="16.51" size="1.27" layer="95" rot="R270" xref="yes"/>
-</segment>
-<segment>
-<pinref part="18,36" gate="G$1" pin="BOT"/>
-<wire x1="137.16" y1="60.96" x2="137.16" y2="58.42" width="0.1524" layer="91"/>
-<label x="137.16" y="58.42" size="1.27" layer="95" rot="R270" xref="yes"/>
-</segment>
-<segment>
-<pinref part="AT28C256" gate="G$1" pin="GND"/>
-<wire x1="97.79" y1="5.08" x2="97.79" y2="2.54" width="0.1524" layer="91"/>
-<label x="97.79" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
-</segment>
-</net>
 <net name="!WE!" class="0">
 <segment>
 <pinref part="17,35" gate="G$1" pin="TOP"/>
@@ -3806,8 +3772,8 @@ http://www.zikzak.ca</text>
 </segment>
 <segment>
 <pinref part="17,35" gate="G$1" pin="BOT"/>
-<wire x1="129.54" y1="60.96" x2="129.54" y2="58.42" width="0.1524" layer="91"/>
-<label x="129.54" y="58.42" size="1.27" layer="95" rot="R270" xref="yes"/>
+<wire x1="129.54" y1="60.96" x2="129.54" y2="55.88" width="0.1524" layer="91"/>
+<label x="129.54" y="55.88" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
 <net name="A10" class="0">
@@ -4050,9 +4016,54 @@ http://www.zikzak.ca</text>
 <label x="111.76" y="58.42" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
+<net name="GND" class="0">
+<segment>
+<pinref part="18,36" gate="G$1" pin="BOT"/>
+<wire x1="137.16" y1="60.96" x2="137.16" y2="58.42" width="0.1524" layer="91"/>
+<label x="137.16" y="58.42" size="1.27" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="AT28C256" gate="G$1" pin="GND"/>
+<wire x1="97.79" y1="5.08" x2="97.79" y2="2.54" width="0.1524" layer="91"/>
+<label x="97.79" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
+</segment>
+<segment>
+<pinref part="C1" gate="G$1" pin="1"/>
+<wire x1="39.37" y1="19.05" x2="39.37" y2="16.51" width="0.1524" layer="91"/>
+<label x="39.37" y="16.51" size="1.27" layer="95" rot="R270" xref="yes"/>
+</segment>
+</net>
+<net name="VCC" class="0">
+<segment>
+<pinref part="C1" gate="G$1" pin="2"/>
+<wire x1="39.37" y1="26.67" x2="39.37" y2="29.21" width="0.1524" layer="91"/>
+<label x="39.37" y="29.21" size="1.27" layer="95" rot="R90" xref="yes"/>
+</segment>
+<segment>
+<pinref part="AT28C256" gate="G$1" pin="VCC"/>
+<wire x1="57.15" y1="38.1" x2="57.15" y2="40.64" width="0.1524" layer="91"/>
+<label x="57.15" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
+</segment>
+<segment>
+<pinref part="1,19" gate="G$1" pin="BOT"/>
+<wire x1="7.62" y1="60.96" x2="7.62" y2="57.15" width="0.1524" layer="91"/>
+<label x="7.62" y="57.15" size="1.27" layer="95" rot="R270" xref="yes"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="101,1,5.08,60.96,1\,19,TOP,,,,"/>
+<approved hash="101,1,45.72,60.96,6\,24,BOT,,,,"/>
+<approved hash="101,1,53.34,60.96,7\,25,BOT,,,,"/>
+<approved hash="101,1,60.96,60.96,8\,26,BOT,,,,"/>
+<approved hash="101,1,68.58,60.96,9\,27,BOT,,,,"/>
+<approved hash="101,1,76.2,60.96,10\,28,BOT,,,,"/>
+<approved hash="101,1,83.82,60.96,11\,29,BOT,,,,"/>
+<approved hash="101,1,91.44,60.96,12\,30,BOT,,,,"/>
+<approved hash="115,1,54.3814,117.881,FRAME1,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>

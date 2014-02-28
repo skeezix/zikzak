@@ -3695,28 +3695,28 @@ Source: AVX .. aphvc.pdf</description>
 <label x="59.69" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="N$65" class="0">
+<net name="A13" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A13"/>
 <wire x1="64.77" y1="38.1" x2="64.77" y2="40.64" width="0.1524" layer="91"/>
 <label x="64.77" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="N$66" class="0">
+<net name="A8" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A8"/>
 <wire x1="67.31" y1="38.1" x2="67.31" y2="40.64" width="0.1524" layer="91"/>
 <label x="67.31" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="N$67" class="0">
+<net name="A9" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A9"/>
 <wire x1="69.85" y1="38.1" x2="69.85" y2="40.64" width="0.1524" layer="91"/>
 <label x="69.85" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="N$68" class="0">
+<net name="A11" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A11"/>
 <wire x1="72.39" y1="38.1" x2="72.39" y2="40.64" width="0.1524" layer="91"/>
@@ -3729,8 +3729,13 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="74.93" y1="38.1" x2="74.93" y2="40.64" width="0.1524" layer="91"/>
 <label x="74.93" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
+<segment>
+<pinref part="17,35" gate="G$1" pin="BOT"/>
+<wire x1="129.54" y1="60.96" x2="129.54" y2="58.42" width="0.1524" layer="91"/>
+<label x="129.54" y="58.42" size="1.27" layer="95" rot="R270" xref="yes"/>
+</segment>
 </net>
-<net name="N$70" class="0">
+<net name="A10" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A10"/>
 <wire x1="77.47" y1="38.1" x2="77.47" y2="40.64" width="0.1524" layer="91"/>
@@ -3743,127 +3748,132 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="80.01" y1="38.1" x2="80.01" y2="40.64" width="0.1524" layer="91"/>
 <label x="80.01" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
+<segment>
+<pinref part="18,36" gate="G$1" pin="TOP"/>
+<wire x1="134.62" y1="60.96" x2="134.62" y2="58.42" width="0.1524" layer="91"/>
+<label x="134.62" y="58.42" size="1.27" layer="95" rot="R270" xref="yes"/>
+</segment>
 </net>
-<net name="N$72" class="0">
+<net name="IO7" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="IO7"/>
 <wire x1="85.09" y1="38.1" x2="85.09" y2="40.64" width="0.1524" layer="91"/>
 <label x="85.09" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="N$73" class="0">
+<net name="IO6" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="IO6"/>
 <wire x1="87.63" y1="38.1" x2="87.63" y2="40.64" width="0.1524" layer="91"/>
 <label x="87.63" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="N$74" class="0">
+<net name="IO5" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="IO5"/>
 <wire x1="90.17" y1="38.1" x2="90.17" y2="40.64" width="0.1524" layer="91"/>
 <label x="90.17" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="N$75" class="0">
+<net name="IO4" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="IO4"/>
 <wire x1="92.71" y1="38.1" x2="92.71" y2="40.64" width="0.1524" layer="91"/>
 <label x="92.71" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="N$76" class="0">
+<net name="IO3" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="IO3"/>
 <wire x1="95.25" y1="38.1" x2="95.25" y2="40.64" width="0.1524" layer="91"/>
 <label x="95.25" y="40.64" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
-<net name="N$77" class="0">
+<net name="A14" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A14"/>
 <wire x1="57.15" y1="5.08" x2="57.15" y2="2.54" width="0.1524" layer="91"/>
 <label x="57.15" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$78" class="0">
+<net name="A12" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A12"/>
 <wire x1="59.69" y1="5.08" x2="59.69" y2="2.54" width="0.1524" layer="91"/>
 <label x="59.69" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$79" class="0">
+<net name="A7" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A7"/>
 <wire x1="62.23" y1="5.08" x2="62.23" y2="2.54" width="0.1524" layer="91"/>
 <label x="62.23" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$80" class="0">
+<net name="A6" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A6"/>
 <wire x1="64.77" y1="5.08" x2="64.77" y2="2.54" width="0.1524" layer="91"/>
 <label x="64.77" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$81" class="0">
+<net name="A5" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A5"/>
 <wire x1="67.31" y1="5.08" x2="67.31" y2="2.54" width="0.1524" layer="91"/>
 <label x="67.31" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$82" class="0">
+<net name="A4" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A4"/>
 <wire x1="69.85" y1="5.08" x2="69.85" y2="2.54" width="0.1524" layer="91"/>
 <label x="69.85" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$83" class="0">
+<net name="A3" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A3"/>
 <wire x1="72.39" y1="5.08" x2="72.39" y2="2.54" width="0.1524" layer="91"/>
 <label x="72.39" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$84" class="0">
+<net name="A2" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A2"/>
 <wire x1="74.93" y1="5.08" x2="74.93" y2="2.54" width="0.1524" layer="91"/>
 <label x="74.93" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$85" class="0">
+<net name="A1" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A1"/>
 <wire x1="77.47" y1="5.08" x2="77.47" y2="2.54" width="0.1524" layer="91"/>
 <label x="77.47" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$86" class="0">
+<net name="A0" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="A0"/>
 <wire x1="80.01" y1="5.08" x2="80.01" y2="2.54" width="0.1524" layer="91"/>
 <label x="80.01" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$87" class="0">
+<net name="IO0" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="IO0"/>
 <wire x1="85.09" y1="5.08" x2="85.09" y2="2.54" width="0.1524" layer="91"/>
 <label x="85.09" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$88" class="0">
+<net name="IO1" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="IO1"/>
 <wire x1="87.63" y1="5.08" x2="87.63" y2="2.54" width="0.1524" layer="91"/>
 <label x="87.63" y="2.54" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 </net>
-<net name="N$89" class="0">
+<net name="IO2" class="0">
 <segment>
 <pinref part="AT28C256" gate="G$1" pin="IO2"/>
 <wire x1="90.17" y1="5.08" x2="90.17" y2="2.54" width="0.1524" layer="91"/>
