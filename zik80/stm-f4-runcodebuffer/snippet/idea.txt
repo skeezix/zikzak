@@ -1,0 +1,14 @@
+
+
+0) hosting app (bootloader of sorts) sets up a vector table at well defined ram location .. essentially, the list of callable functions
+i) objcopy as normal to get the executable chunk
+ii) create new file..
+    - interupt table the new code wants
+    - executable
+
+interupt handlers:
+- when host int handler lands, in turn call the interupt handler defined in the cart
+
+cart 'OS calls':
+- when cart code wants to call a BIOS function (if any?! :), it can look it up in vector table and call it
+--> a standard library, ftw
