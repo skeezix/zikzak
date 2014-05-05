@@ -3877,6 +3877,100 @@ Source: AVX .. aphvc.pdf</description>
 </deviceset>
 </devicesets>
 </library>
+<library name="skeezix">
+<description>&lt;b&gt;IC Packages an Sockets&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by librarian@cadsoft.de&lt;/author&gt;</description>
+<packages>
+<package name="DCJACKZIK">
+<wire x1="0" y1="6.604" x2="0" y2="0" width="0.127" layer="21"/>
+<wire x1="0" y1="0" x2="9.398" y2="0" width="0.127" layer="21"/>
+<wire x1="9.398" y1="0" x2="9.398" y2="6.604" width="0.127" layer="21"/>
+<wire x1="9.398" y1="6.604" x2="0" y2="6.604" width="0.127" layer="21"/>
+<pad name="JACKET" x="1.27" y="5.334" drill="0.8" shape="square"/>
+<pad name="CPIN" x="1.27" y="3.302" drill="0.8" shape="square"/>
+<pad name="UNUSED" x="1.27" y="1.27" drill="0.8" shape="square"/>
+<text x="5.08" y="0.635" size="1.27" layer="21">DC9</text>
+<text x="2.54" y="2.54" size="1.27" layer="21">+9 CPin</text>
+<text x="2.54" y="4.699" size="1.27" layer="21">-G JCK</text>
+</package>
+<package name="TOGGLE-CYAN-LG-ZIK">
+<wire x1="0" y1="0" x2="0" y2="10.16" width="0.127" layer="21"/>
+<wire x1="0" y1="10.16" x2="10.16" y2="10.16" width="0.127" layer="21"/>
+<wire x1="10.16" y1="10.16" x2="10.16" y2="0" width="0.127" layer="21"/>
+<wire x1="10.16" y1="0" x2="0" y2="0" width="0.127" layer="21"/>
+<pad name="B1" x="2.54" y="2.54" drill="0.8" shape="square"/>
+<pad name="NA2" x="5.08" y="2.54" drill="0.8" shape="square"/>
+<pad name="B2" x="7.62" y="2.54" drill="0.8" shape="square"/>
+<pad name="A!" x="2.54" y="7.62" drill="0.8" shape="square"/>
+<pad name="NA1" x="5.08" y="7.62" drill="0.8" shape="square"/>
+<pad name="A2" x="7.62" y="7.62" drill="0.8" shape="square"/>
+</package>
+</packages>
+<symbols>
+<symbol name="DCJACKZIK">
+<wire x1="0" y1="0" x2="0" y2="7.62" width="0.254" layer="94"/>
+<wire x1="0" y1="7.62" x2="12.7" y2="7.62" width="0.254" layer="94"/>
+<wire x1="12.7" y1="7.62" x2="12.7" y2="0" width="0.254" layer="94"/>
+<wire x1="12.7" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
+<pin name="VCC" x="11.43" y="5.08" visible="pin" length="middle" direction="pwr"/>
+<pin name="GND" x="11.43" y="2.54" visible="pin" length="middle" direction="pwr"/>
+<text x="2.54" y="2.54" size="1.27" layer="94">DC</text>
+</symbol>
+<symbol name="TOGGLE-CYAN-L-ZIK">
+<wire x1="0" y1="0" x2="0" y2="10.16" width="0.254" layer="94"/>
+<wire x1="0" y1="10.16" x2="10.16" y2="10.16" width="0.254" layer="94"/>
+<wire x1="10.16" y1="10.16" x2="10.16" y2="0" width="0.254" layer="94"/>
+<wire x1="10.16" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
+<pin name="IOA1" x="1.27" y="8.89" length="middle" rot="R90"/>
+<pin name="IOA2" x="8.89" y="8.89" length="middle" rot="R90"/>
+<pin name="IOB2" x="8.89" y="1.27" length="middle" rot="R270"/>
+<pin name="IOB1" x="1.27" y="1.27" length="middle" rot="R270"/>
+<wire x1="1.27" y1="6.35" x2="2.54" y2="6.35" width="0.254" layer="94"/>
+<wire x1="2.54" y1="6.35" x2="2.54" y2="5.08" width="0.254" layer="94"/>
+<wire x1="2.54" y1="5.08" x2="1.27" y2="5.08" width="0.254" layer="94"/>
+<wire x1="1.27" y1="5.08" x2="1.27" y2="6.35" width="0.254" layer="94"/>
+<text x="3.81" y="7.62" size="1.27" layer="94">TGL</text>
+<text x="3.81" y="2.54" size="1.27" layer="94">CONN
+UP</text>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="DCJACKZIK">
+<gates>
+<gate name="G$1" symbol="DCJACKZIK" x="-5.08" y="-5.08"/>
+</gates>
+<devices>
+<device name="" package="DCJACKZIK">
+<connects>
+<connect gate="G$1" pin="GND" pad="JACKET"/>
+<connect gate="G$1" pin="VCC" pad="CPIN"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="TOGGLE-CYAN-L-ZIK">
+<gates>
+<gate name="G$1" symbol="TOGGLE-CYAN-L-ZIK" x="-2.54" y="-5.08"/>
+</gates>
+<devices>
+<device name="" package="TOGGLE-CYAN-LG-ZIK">
+<connects>
+<connect gate="G$1" pin="IOA1" pad="A!"/>
+<connect gate="G$1" pin="IOA2" pad="A2"/>
+<connect gate="G$1" pin="IOB1" pad="B1"/>
+<connect gate="G$1" pin="IOB2" pad="B2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -3900,15 +3994,18 @@ Source: AVX .. aphvc.pdf</description>
 <part name="P+4" library="supply1" deviceset="+5V" device=""/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="P+3" library="supply1" deviceset="VCC" device=""/>
+<part name="U$1" library="skeezix" deviceset="DCJACKZIK" device=""/>
+<part name="U$2" library="skeezix" deviceset="TOGGLE-CYAN-L-ZIK" device=""/>
+<part name="P+5" library="supply1" deviceset="VCC" device=""/>
+<part name="GND6" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 <text x="73.66" y="44.45" size="1.778" layer="91">5V-&gt;3.3V regulator</text>
 <text x="2.54" y="24.13" size="1.778" layer="91">VCC 9V-&gt;5V regulator</text>
-<text x="12.7" y="39.37" size="2.54" layer="94">TODO:
-- Vcc Vss Posts
-- DC jack</text>
+<text x="-5.08" y="41.91" size="2.54" layer="94">- header for power supply direct feed
+- header for output 9v, 5v, 3.3v</text>
 </plain>
 <instances>
 <instance part="IC1" gate="G$1" x="85.09" y="12.7" rot="R90"/>
@@ -3924,6 +4021,10 @@ Source: AVX .. aphvc.pdf</description>
 <instance part="P+4" gate="1" x="63.5" y="20.32" rot="R270"/>
 <instance part="GND5" gate="1" x="63.5" y="3.81" rot="R90"/>
 <instance part="P+3" gate="VCC" x="-5.08" y="20.32" rot="R90"/>
+<instance part="U$1" gate="G$1" x="2.54" y="-12.7"/>
+<instance part="U$2" gate="G$1" x="50.8" y="-15.24" rot="R90"/>
+<instance part="P+5" gate="VCC" x="67.31" y="-6.35" rot="R270"/>
+<instance part="GND6" gate="1" x="64.77" y="-17.78"/>
 </instances>
 <busses>
 </busses>
@@ -3984,6 +4085,11 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="8.89" y1="8.89" x2="8.89" y2="3.81" width="0.1524" layer="91"/>
 <junction x="8.89" y="3.81"/>
 </segment>
+<segment>
+<wire x1="54.61" y1="-13.97" x2="64.77" y2="-13.97" width="0.1524" layer="91"/>
+<wire x1="64.77" y1="-13.97" x2="64.77" y2="-15.24" width="0.1524" layer="91"/>
+<pinref part="GND6" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="+3V3" class="0">
 <segment>
@@ -4015,6 +4121,26 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="8.89" y1="16.51" x2="8.89" y2="20.32" width="0.1524" layer="91"/>
 <junction x="8.89" y="20.32"/>
 <pinref part="P+3" gate="VCC" pin="VCC"/>
+</segment>
+<segment>
+<wire x1="54.61" y1="-6.35" x2="64.77" y2="-6.35" width="0.1524" layer="91"/>
+<pinref part="P+5" gate="VCC" pin="VCC"/>
+</segment>
+</net>
+<net name="N$1" class="0">
+<segment>
+<wire x1="19.05" y1="-7.62" x2="19.05" y2="-6.35" width="0.1524" layer="91"/>
+<wire x1="19.05" y1="-6.35" x2="36.83" y2="-6.35" width="0.1524" layer="91"/>
+<junction x="36.83" y="-6.35"/>
+<junction x="19.05" y="-7.62"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<wire x1="19.05" y1="-10.16" x2="19.05" y2="-13.97" width="0.1524" layer="91"/>
+<wire x1="19.05" y1="-13.97" x2="36.83" y2="-13.97" width="0.1524" layer="91"/>
+<junction x="36.83" y="-13.97"/>
+<junction x="19.05" y="-10.16"/>
 </segment>
 </net>
 </nets>
