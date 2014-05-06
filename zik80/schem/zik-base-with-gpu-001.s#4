@@ -3902,6 +3902,7 @@ Source: AVX .. aphvc.pdf</description>
 <wire x1="12.7" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
 <pin name="VCC" x="11.43" y="5.08" visible="pin" length="middle" direction="pwr"/>
 <pin name="GND" x="11.43" y="2.54" visible="pin" length="middle" direction="pwr"/>
+<text x="2.54" y="2.54" size="1.27" layer="94">DC</text>
 </symbol>
 </symbols>
 <devicesets>

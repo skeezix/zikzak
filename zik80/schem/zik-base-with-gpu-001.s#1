@@ -4004,6 +4004,8 @@ UP</text>
 <plain>
 <text x="73.66" y="44.45" size="1.778" layer="91">5V-&gt;3.3V regulator</text>
 <text x="2.54" y="24.13" size="1.778" layer="91">VCC 9V-&gt;5V regulator</text>
+<text x="-5.08" y="41.91" size="2.54" layer="94">- header for power supply direct feed
+- header for output 9v, 5v, 3.3v</text>
 </plain>
 <instances>
 <instance part="IC1" gate="G$1" x="85.09" y="12.7" rot="R90"/>
