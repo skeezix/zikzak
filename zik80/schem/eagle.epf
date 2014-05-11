@@ -44,6 +44,8 @@ UsedLibrary="Y:/eagle-libraries/skeezix.lbr"
 UsedLibrary="Y:/eagle-libraries/adafruit.lbr"
 UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-Electromechanical.lbr"
 UsedLibrary="Y:/eagle-libraries/Zilog-eZ80-v1_0.lbr"
+UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-FreqCtrl.lbr"
+UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-Connectors.lbr"
 
 [Win_1]
 Type="Control Panel"
