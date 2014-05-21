@@ -46,6 +46,7 @@ UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-Electromechani
 UsedLibrary="Y:/eagle-libraries/Zilog-eZ80-v1_0.lbr"
 UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-FreqCtrl.lbr"
 UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-Connectors.lbr"
+UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-LED.lbr"
 
 [Win_1]
 Type="Control Panel"
