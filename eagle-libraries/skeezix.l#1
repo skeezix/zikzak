@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.025" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="yes" altdistance="0.025" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="yes" active="yes"/>
 <layer number="16" name="Bottom" color="1" fill="1" visible="yes" active="yes"/>
@@ -38,7 +38,7 @@
 <layer number="42" name="bRestrict" color="1" fill="10" visible="no" active="yes"/>
 <layer number="43" name="vRestrict" color="2" fill="10" visible="no" active="yes"/>
 <layer number="44" name="Drills" color="7" fill="1" visible="no" active="yes"/>
-<layer number="45" name="Holes" color="7" fill="1" visible="no" active="yes"/>
+<layer number="45" name="Holes" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="46" name="Milling" color="3" fill="1" visible="yes" active="yes"/>
 <layer number="47" name="Measures" color="7" fill="1" visible="no" active="yes"/>
 <layer number="48" name="Document" color="7" fill="1" visible="no" active="yes"/>
@@ -5538,6 +5538,54 @@ Source: MC68020UM.pdf</description>
 <pad name="NA1" x="5.08" y="7.62" drill="0.8" shape="square"/>
 <pad name="A2" x="7.62" y="7.62" drill="0.8" shape="square"/>
 </package>
+<package name="ZIKCARTSLOT">
+<wire x1="0" y1="0" x2="7.62" y2="0" width="0.127" layer="21"/>
+<wire x1="7.62" y1="0" x2="85.09" y2="0" width="0.127" layer="21"/>
+<wire x1="85.09" y1="0" x2="92.71" y2="0" width="0.127" layer="21"/>
+<wire x1="92.71" y1="0" x2="92.71" y2="8.89" width="0.127" layer="21"/>
+<wire x1="92.71" y1="8.89" x2="85.09" y2="8.89" width="0.127" layer="21"/>
+<wire x1="85.09" y1="8.89" x2="7.62" y2="8.89" width="0.127" layer="21"/>
+<wire x1="7.62" y1="8.89" x2="0" y2="8.89" width="0.127" layer="21"/>
+<wire x1="0" y1="8.89" x2="0" y2="0" width="0.127" layer="21"/>
+<wire x1="7.62" y1="0" x2="7.62" y2="8.89" width="0.127" layer="21"/>
+<wire x1="85.09" y1="0" x2="85.09" y2="8.89" width="0.127" layer="21"/>
+<pad name="P$2" x="12.6746" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$4" x="16.637" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$5" x="20.5994" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$6" x="24.5618" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$7" x="28.5242" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$8" x="32.4866" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$9" x="36.449" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$10" x="40.4114" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$11" x="44.3738" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$12" x="48.3362" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$13" x="52.2986" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$14" x="56.261" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$15" x="60.2234" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$16" x="64.1858" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$17" x="68.1482" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$18" x="72.1106" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$19" x="76.073" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$20" x="80.0354" y="2.5146" drill="0.8" shape="square"/>
+<pad name="P$1" x="12.7508" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$3" x="16.7132" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$21" x="20.6756" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$22" x="24.638" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$23" x="28.6004" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$24" x="32.5628" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$25" x="36.5252" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$26" x="40.4876" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$27" x="44.45" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$28" x="48.4124" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$29" x="52.3748" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$30" x="56.3372" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$31" x="60.2996" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$32" x="64.262" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$33" x="68.2244" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$34" x="72.1868" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$35" x="76.1492" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P$36" x="80.1116" y="6.3754" drill="0.8" shape="square"/>
+</package>
 </packages>
 <symbols>
 <symbol name="DIL4">
@@ -8240,6 +8288,12 @@ UP</text>
 </gates>
 <devices>
 <device name="" package="TOGGLE-CYAN-LG-ZIK">
+<connects>
+<connect gate="G$1" pin="IOA1" pad="A!"/>
+<connect gate="G$1" pin="IOA2" pad="A2"/>
+<connect gate="G$1" pin="IOB1" pad="B1"/>
+<connect gate="G$1" pin="IOB2" pad="B2"/>
+</connects>
 <technologies>
 <technology name=""/>
 </technologies>

@@ -5521,7 +5521,7 @@ Source: MC68020UM.pdf</description>
 <wire x1="9.398" y1="6.604" x2="0" y2="6.604" width="0.127" layer="21"/>
 <pad name="JACKET" x="1.27" y="5.334" drill="0.8" shape="square"/>
 <pad name="CPIN" x="1.27" y="3.302" drill="0.8" shape="square"/>
-<pad name="P$4" x="1.27" y="1.27" drill="0.8" shape="square"/>
+<pad name="UNUSED" x="1.27" y="1.27" drill="0.8" shape="square"/>
 <text x="5.08" y="0.635" size="1.27" layer="21">DC9</text>
 <text x="2.54" y="2.54" size="1.27" layer="21">+9 CPin</text>
 <text x="2.54" y="4.699" size="1.27" layer="21">-G JCK</text>
@@ -6707,8 +6707,8 @@ PH0..1 only</text>
 <wire x1="0" y1="7.62" x2="12.7" y2="7.62" width="0.254" layer="94"/>
 <wire x1="12.7" y1="7.62" x2="12.7" y2="0" width="0.254" layer="94"/>
 <wire x1="12.7" y1="0" x2="0" y2="0" width="0.254" layer="94"/>
-<pin name="VCC" x="11.43" y="5.08" length="middle" direction="pwr"/>
-<pin name="GND" x="11.43" y="2.54" length="middle" direction="pwr"/>
+<pin name="VCC" x="11.43" y="5.08" visible="pin" length="middle" direction="pwr"/>
+<pin name="GND" x="11.43" y="2.54" visible="pin" length="middle" direction="pwr"/>
 </symbol>
 </symbols>
 <devicesets>
