@@ -8728,7 +8728,9 @@ standard rectifier, 3 A, 50 V (Motorola)</description>
 PCB:
 - drill holes in corner
 - version and website info
-- label +/-, and function points (hsync, vsync, etc)</text>
+- label +/-, and function points (hsync, vsync, etc)
+- label pin1's, and pin count on headers
+- GND/GND pour</text>
 <text x="74.93" y="130.81" size="2.54" layer="94">Break-out Headers</text>
 <text x="2.54" y="130.81" size="2.54" layer="94">ISP</text>
 <text x="-27.94" y="-33.02" size="1.778" layer="94">Power Our duplicates
@@ -8737,9 +8739,13 @@ PCB:
 - 3.3
 - GND</text>
 <text x="-30.48" y="25.4" size="1.778" layer="94" rot="R90">2.2uF = 22pF</text>
-<text x="-182.88" y="43.18" size="3.81" layer="94">TBD v2:
+<text x="-191.77" y="27.94" size="3.81" layer="94">TBD v2:
 - sync may need 80/100 resistor on some monitor
-- address/data/signal RAM bus</text>
+- address/data/signal RAM bus
+- add parallel caps to decoupling caps on stm32, so
+can have both a electrolytic + a tant on each,
+without sticking both through solder point?
+- extra GND plane via's!</text>
 <text x="-54.61" y="-11.43" size="1.778" layer="94">Power LED 5V</text>
 <text x="266.7" y="107.95" size="2.54" layer="91">Legend:
 p1: vsync: B10

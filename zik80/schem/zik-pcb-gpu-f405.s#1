@@ -8696,7 +8696,7 @@ standard rectifier, 3 A, 50 V (Motorola)</description>
 <part name="R6" library="rcl" deviceset="R-US_" device="0207/10"/>
 <part name="R7" library="rcl" deviceset="R-US_" device="0207/10"/>
 <part name="IOHDR" library="pinhead" deviceset="PINHD-1X6" device=""/>
-<part name="VIDEOHDR" library="pinhead" deviceset="PINHD-1X8" device=""/>
+<part name="GPUHDR" library="pinhead" deviceset="PINHD-1X8" device=""/>
 <part name="R8" library="rcl" deviceset="R-US_" device="0207/10" value="10K"/>
 <part name="GND13" library="supply1" deviceset="GND" device=""/>
 <part name="D1" library="diode" deviceset="1N5400" device=""/>
@@ -8838,7 +8838,7 @@ RRGGBBXX .. XX being brightness</text>
 <instance part="R6" gate="G$1" x="219.71" y="86.36"/>
 <instance part="R7" gate="G$1" x="219.71" y="91.44"/>
 <instance part="IOHDR" gate="A" x="207.01" y="1.27"/>
-<instance part="VIDEOHDR" gate="A" x="208.28" y="-30.48"/>
+<instance part="GPUHDR" gate="A" x="208.28" y="-30.48"/>
 <instance part="R8" gate="G$1" x="53.34" y="0" rot="R90"/>
 <instance part="GND13" gate="1" x="53.34" y="-10.16"/>
 <instance part="D1" gate="1" x="204.47" y="77.47"/>
@@ -9168,8 +9168,9 @@ RRGGBBXX .. XX being brightness</text>
 </net>
 <net name="PA15" class="0">
 <segment>
-<wire x1="74.93" y1="-33.02" x2="67.31" y2="-33.02" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="-33.02" x2="67.31" y2="-33.02" width="0.1524" layer="91"/>
 <label x="67.31" y="-33.02" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="U$1" gate="G$1" pin="PA15/JTDI(5T)"/>
 </segment>
 <segment>
 <pinref part="ISPJTAG" gate="A" pin="5"/>
@@ -9777,7 +9778,7 @@ RRGGBBXX .. XX being brightness</text>
 <label x="125.73" y="101.6" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="VIDEOHDR" gate="A" pin="1"/>
+<pinref part="GPUHDR" gate="A" pin="1"/>
 <wire x1="205.74" y1="-20.32" x2="198.12" y2="-20.32" width="0.1524" layer="91"/>
 <label x="198.12" y="-20.32" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -9794,7 +9795,7 @@ RRGGBBXX .. XX being brightness</text>
 <label x="125.73" y="99.06" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="VIDEOHDR" gate="A" pin="2"/>
+<pinref part="GPUHDR" gate="A" pin="2"/>
 <wire x1="205.74" y1="-22.86" x2="198.12" y2="-22.86" width="0.1524" layer="91"/>
 <label x="198.12" y="-22.86" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -9811,7 +9812,7 @@ RRGGBBXX .. XX being brightness</text>
 <label x="125.73" y="96.52" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="VIDEOHDR" gate="A" pin="3"/>
+<pinref part="GPUHDR" gate="A" pin="3"/>
 <wire x1="205.74" y1="-25.4" x2="198.12" y2="-25.4" width="0.1524" layer="91"/>
 <label x="198.12" y="-25.4" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -9828,8 +9829,9 @@ RRGGBBXX .. XX being brightness</text>
 <label x="125.73" y="93.98" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="207.01" y1="-27.94" x2="198.12" y2="-27.94" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="-27.94" x2="198.12" y2="-27.94" width="0.1524" layer="91"/>
 <label x="198.12" y="-27.94" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="GPUHDR" gate="A" pin="4"/>
 </segment>
 </net>
 <net name="PA12" class="0">
@@ -9844,7 +9846,7 @@ RRGGBBXX .. XX being brightness</text>
 <label x="125.73" y="91.44" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="VIDEOHDR" gate="A" pin="5"/>
+<pinref part="GPUHDR" gate="A" pin="5"/>
 <wire x1="205.74" y1="-30.48" x2="198.12" y2="-30.48" width="0.1524" layer="91"/>
 <label x="198.12" y="-30.48" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -9939,9 +9941,8 @@ RRGGBBXX .. XX being brightness</text>
 <label x="148.59" y="99.06" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="VIDEOHDR" gate="A" pin="7"/>
-<wire x1="205.74" y1="-35.56" x2="199.39" y2="-35.56" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="-35.56" x2="199.39" y2="-35.56" width="0.1524" layer="91"/>
+<pinref part="GPUHDR" gate="A" pin="7"/>
+<wire x1="205.74" y1="-35.56" x2="198.12" y2="-35.56" width="0.1524" layer="91"/>
 <label x="198.12" y="-35.56" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
@@ -9957,7 +9958,7 @@ RRGGBBXX .. XX being brightness</text>
 <label x="148.59" y="96.52" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="VIDEOHDR" gate="A" pin="8"/>
+<pinref part="GPUHDR" gate="A" pin="8"/>
 <wire x1="205.74" y1="-38.1" x2="198.12" y2="-38.1" width="0.1524" layer="91"/>
 <label x="198.12" y="-38.1" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10078,7 +10079,7 @@ RRGGBBXX .. XX being brightness</text>
 </net>
 <net name="N$10" class="0">
 <segment>
-<pinref part="VIDEOHDR" gate="A" pin="6"/>
+<pinref part="GPUHDR" gate="A" pin="6"/>
 <wire x1="205.74" y1="-33.02" x2="198.12" y2="-33.02" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -10149,6 +10150,9 @@ RRGGBBXX .. XX being brightness</text>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="106,1,205.74,-33.02,N$10,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>

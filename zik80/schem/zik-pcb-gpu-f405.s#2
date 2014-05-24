@@ -8739,12 +8739,13 @@ PCB:
 - 3.3
 - GND</text>
 <text x="-30.48" y="25.4" size="1.778" layer="94" rot="R90">2.2uF = 22pF</text>
-<text x="-185.42" y="33.02" size="3.81" layer="94">TBD v2:
+<text x="-191.77" y="27.94" size="3.81" layer="94">TBD v2:
 - sync may need 80/100 resistor on some monitor
 - address/data/signal RAM bus
 - add parallel caps to decoupling caps on stm32, so
 can have both a electrolytic + a tant on each,
-without sticking both through solder point?</text>
+without sticking both through solder point?
+- extra GND plane via's!</text>
 <text x="-54.61" y="-11.43" size="1.778" layer="94">Power LED 5V</text>
 <text x="266.7" y="107.95" size="2.54" layer="91">Legend:
 p1: vsync: B10
@@ -9167,8 +9168,9 @@ RRGGBBXX .. XX being brightness</text>
 </net>
 <net name="PA15" class="0">
 <segment>
-<wire x1="74.93" y1="-33.02" x2="67.31" y2="-33.02" width="0.1524" layer="91"/>
+<wire x1="73.66" y1="-33.02" x2="67.31" y2="-33.02" width="0.1524" layer="91"/>
 <label x="67.31" y="-33.02" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="U$1" gate="G$1" pin="PA15/JTDI(5T)"/>
 </segment>
 <segment>
 <pinref part="ISPJTAG" gate="A" pin="5"/>
@@ -9827,8 +9829,9 @@ RRGGBBXX .. XX being brightness</text>
 <label x="125.73" y="93.98" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<wire x1="207.01" y1="-27.94" x2="198.12" y2="-27.94" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="-27.94" x2="198.12" y2="-27.94" width="0.1524" layer="91"/>
 <label x="198.12" y="-27.94" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="VIDEOHDR" gate="A" pin="4"/>
 </segment>
 </net>
 <net name="PA12" class="0">
@@ -9939,8 +9942,7 @@ RRGGBBXX .. XX being brightness</text>
 </segment>
 <segment>
 <pinref part="VIDEOHDR" gate="A" pin="7"/>
-<wire x1="205.74" y1="-35.56" x2="199.39" y2="-35.56" width="0.1524" layer="91"/>
-<wire x1="198.12" y1="-35.56" x2="199.39" y2="-35.56" width="0.1524" layer="91"/>
+<wire x1="205.74" y1="-35.56" x2="198.12" y2="-35.56" width="0.1524" layer="91"/>
 <label x="198.12" y="-35.56" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
@@ -10148,6 +10150,9 @@ RRGGBBXX .. XX being brightness</text>
 </nets>
 </sheet>
 </sheets>
+<errors>
+<approved hash="106,1,205.74,-33.02,N$10,,,,,"/>
+</errors>
 </schematic>
 </drawing>
 <compatibility>

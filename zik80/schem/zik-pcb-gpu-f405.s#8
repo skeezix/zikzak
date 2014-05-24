@@ -8655,7 +8655,7 @@ PCB:
 - GND</text>
 <text x="-30.48" y="25.4" size="1.778" layer="94" rot="R90">2.2uF = 22pF</text>
 <text x="44.45" y="62.23" size="1.778" layer="94">Run to Vdd with .1uF decouple</text>
-<text x="-181.61" y="50.8" size="3.81" layer="94">TBD v2:
+<text x="-182.88" y="43.18" size="3.81" layer="94">TBD v2:
 - sync may need 80/100 resistor on some monitor
 - address/data/signal RAM bus</text>
 <text x="-54.61" y="-11.43" size="1.778" layer="94">Power LED 5V</text>
@@ -8666,7 +8666,7 @@ p3: gnd
 p4: R
 p5: G
 p6: B</text>
-<text x="265.43" y="25.4" size="2.54" layer="91">PA2-3 == serial console
+<text x="-184.15" y="-40.64" size="2.54" layer="91">PA2-3 == serial console
 PA8-PA12 = serial control in/out
 
 PB6/PB7 = i2c sda/scl ? conflict USART1?
