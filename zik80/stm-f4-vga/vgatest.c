@@ -102,7 +102,7 @@ static void gpio_setup ( void ) {
 
   /* Blinky LED: Set GPIO3 to 'output push-pull'. */
   rcc_peripheral_enable_clock ( &RCC_AHB1ENR, RCC_AHB1ENR_IOPGEN );
-  gpio_mode_setup ( GPIOG, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO13 );
+  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO13 ); // chg B13 to be blinker
 
   // VGA
   //
@@ -510,8 +510,8 @@ int main ( void ) {
 
       //gpio_toggle_blinkenlight();
 
-      //fb_test_pattern ( offscreen );
-      memset ( offscreen, 0x00, FBWIDTH * FBHEIGHT );
+      fb_test_pattern ( offscreen );
+      //memset ( offscreen, 0x00, FBWIDTH * FBHEIGHT );
 
       zl_render_line ( offscreen, 0xFF, 0, 0, FBWIDTH - 1, FBHEIGHT - 1 );
       zl_render_line ( offscreen, 0xFF, 0, FBHEIGHT - 1, FBWIDTH - 1, 0 );

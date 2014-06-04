@@ -127,13 +127,13 @@
 <wire x1="0" y1="47.93" x2="0" y2="0" width="0" layer="20"/>
 <hole x="5.08" y="43.18" drill="2.8"/>
 <hole x="87.63" y="21.59" drill="2.8"/>
-<hole x="81.28" y="43.18" drill="2.8"/>
+<hole x="73.66" y="43.18" drill="2.8"/>
 <hole x="17.78" y="5.08" drill="2.8"/>
 <text x="22.86" y="3.81" size="1.6764" layer="21">Zikzak
 www.zikzak.ca
 Jeff Mitchell
 Power rev 1 05-2014</text>
-<text x="86.36" y="34.29" size="1.27" layer="21" align="bottom-right">GND
+<text x="86.36" y="33.02" size="1.27" layer="21" align="bottom-right">GND
 3.3
 5
 VCC</text>

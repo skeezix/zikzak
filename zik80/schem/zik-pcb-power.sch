@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -6967,7 +6967,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="P+8" library="supply1" deviceset="V+" device=""/>
 <part name="VCCIN" library="pinhead" deviceset="PINHD-1X3" device=""/>
 <part name="LED1" library="SparkFun-LED" deviceset="LED" device="5MM"/>
-<part name="R1" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
+<part name="R1" library="rcl" deviceset="R-US_" device="0207/10" value="330 ohm"/>
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
@@ -7000,6 +7000,9 @@ regulator</text>
 'shortcut' (skip
 the PWRIN then)</text>
 <text x="-8.89" y="46.99" size="1.778" layer="94">Power LED 5V</text>
+<text x="40.64" y="-27.94" size="2.54" layer="91">THIS NEEDS ROTATION;
+SAME_SIDE connects/discons
+not opposite as here!</text>
 </plain>
 <instances>
 <instance part="IC1" gate="G$1" x="85.09" y="12.7" rot="R90"/>

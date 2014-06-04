@@ -151,6 +151,13 @@ VCC5</text>
 <text x="12.7" y="13.97" size="1.27" layer="21">NC
 VCC9
 GND</text>
+<text x="86.36" y="5.08" size="1.27" layer="21" align="bottom-right">GND
+3.3
+5
+VCC</text>
+<text x="2.54" y="22.86" size="1.016" layer="21">PWRIN/JACK
+or (not both)
+VCCIN</text>
 </plain>
 <libraries>
 <library name="ic-package">

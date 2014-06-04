@@ -134,6 +134,20 @@
 www.zikzak.ca
 Jeff Mitchell
 Power rev 1 05-2014</text>
+<text x="86.36" y="34.29" size="1.27" layer="21" align="bottom-right">GND
+3.3
+5
+VCC</text>
+<text x="86.36" y="5.08" size="1.27" layer="21" align="bottom-right">GND
+3.3
+5
+VCC</text>
+<text x="8.89" y="3.81" size="1.27" layer="21">GND
+NC
+VCC9</text>
+<text x="8.89" y="31.75" size="1.27" layer="21">GND
+NC
+VCC5</text>
 </plain>
 <libraries>
 <library name="ic-package">
@@ -1624,7 +1638,7 @@ design rules under a new name.</description>
 <element name="C2" library="rcl" package="C025-025X050" value="10uF Tant" x="77.47" y="15.24" rot="R90"/>
 <element name="C3" library="rcl" package="C025-025X050" value="47uF E" x="46.99" y="11.43"/>
 <element name="C4" library="rcl" package="C025-025X050" value=".1uF M" x="46.99" y="38.1"/>
-<element name="U$1" library="skeezix" package="DCJACKZIK" value="DCJACKZIK" x="8.89" y="20.32" rot="R180"/>
+<element name="U$1" library="skeezix" package="DCJACKZIK" value="DCJACKZIK" x="11.43" y="20.32" rot="R180"/>
 <element name="U$2" library="skeezix" package="TOGGLE-CYAN-LG-ZIK" value="TOGGLE-CYAN-L-ZIK" x="27.94" y="15.24" rot="R90"/>
 <element name="PWRIN" library="pinhead" package="1X03" value="" x="6.35" y="6.35" rot="R90"/>
 <element name="PWROUT" library="pinhead" package="1X04" value="" x="90.17" y="10.16" rot="R90"/>
@@ -1734,14 +1748,14 @@ design rules under a new name.</description>
 <contactref element="PWRIN" pad="1"/>
 <contactref element="U$1" pad="CPIN"/>
 <contactref element="U$2" pad="A2"/>
-<wire x1="12.7" y1="16.51" x2="8.128" y2="16.51" width="1.27" layer="1"/>
-<wire x1="8.128" y1="16.51" x2="7.62" y2="17.018" width="1.27" layer="1"/>
 <wire x1="20.32" y1="22.86" x2="13.97" y2="22.86" width="1.27" layer="1"/>
 <wire x1="13.97" y1="22.86" x2="12.7" y2="21.59" width="1.27" layer="1"/>
-<wire x1="12.7" y1="21.59" x2="12.7" y2="16.51" width="1.27" layer="1"/>
 <wire x1="6.35" y1="3.81" x2="11.43" y2="3.81" width="1.27" layer="1"/>
 <wire x1="11.43" y1="3.81" x2="12.7" y2="5.08" width="1.27" layer="1"/>
 <wire x1="12.7" y1="5.08" x2="12.7" y2="16.51" width="1.27" layer="1"/>
+<wire x1="12.7" y1="17.018" x2="12.7" y2="21.59" width="1.27" layer="1"/>
+<wire x1="10.16" y1="17.018" x2="12.7" y2="17.018" width="1.27" layer="1"/>
+<wire x1="12.7" y1="17.018" x2="12.7" y2="16.51" width="1.27" layer="1"/>
 </signal>
 <signal name="V+">
 <contactref element="IC3" pad="5"/>

@@ -148,6 +148,9 @@ VCC9</text>
 <text x="8.89" y="31.75" size="1.27" layer="21">GND
 NC
 VCC5</text>
+<text x="12.7" y="13.97" size="1.27" layer="21">NC
+VCC9
+GND</text>
 </plain>
 <libraries>
 <library name="ic-package">
@@ -1756,6 +1759,7 @@ design rules under a new name.</description>
 <wire x1="12.7" y1="17.018" x2="12.7" y2="21.59" width="1.27" layer="1"/>
 <wire x1="10.16" y1="17.018" x2="12.7" y2="17.018" width="1.27" layer="1"/>
 <wire x1="12.7" y1="17.018" x2="12.7" y2="16.51" width="1.27" layer="1"/>
+<wire x1="6.35" y1="3.81" x2="11.43" y2="3.81" width="1.27" layer="1"/>
 </signal>
 <signal name="V+">
 <contactref element="IC3" pad="5"/>
