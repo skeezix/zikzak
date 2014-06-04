@@ -8732,6 +8732,8 @@ standard rectifier, 3 A, 50 V (Motorola)</description>
 - GND</text>
 <text x="-30.48" y="25.4" size="1.778" layer="94" rot="R90">2.2uF = 22pF</text>
 <text x="-168.91" y="86.36" size="3.81" layer="94">TBD v2:
+- move VBL to GPUHeader from IO, add some extra pins?
+..
 - sync may need 80/100 resistor on some monitor
 - address/data/signal RAM bus
 - add parallel caps to decoupling caps on stm32, so

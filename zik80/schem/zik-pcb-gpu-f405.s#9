@@ -8711,7 +8711,9 @@ standard rectifier, 3 A, 50 V (Motorola)</description>
 <part name="R13" library="rcl" deviceset="R-US_" device="0207/10"/>
 <part name="D6" library="diode" deviceset="1N5400" device=""/>
 <part name="R14" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="JP5" library="pinhead" deviceset="PINHD-1X2" device=""/>
+<part name="VBATPWRJP" library="pinhead" deviceset="PINHD-1X2" device=""/>
+<part name="C10" library="rcl" deviceset="C-EU" device="025-025X050" value=".1uF"/>
+<part name="GND14" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -8845,7 +8847,9 @@ RRGGBBXX .. XX being brightness</text>
 <instance part="R13" gate="G$1" x="220.98" y="45.72"/>
 <instance part="D6" gate="1" x="204.47" y="39.37"/>
 <instance part="R14" gate="G$1" x="220.98" y="39.37"/>
-<instance part="JP5" gate="G$1" x="50.8" y="62.23" rot="R270"/>
+<instance part="VBATPWRJP" gate="G$1" x="-41.91" y="58.42" rot="R270"/>
+<instance part="C10" gate="G$1" x="-52.07" y="48.26"/>
+<instance part="GND14" gate="1" x="-52.07" y="36.83"/>
 </instances>
 <busses>
 </busses>
@@ -9001,10 +9005,14 @@ RRGGBBXX .. XX being brightness</text>
 <label x="148.59" y="83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="JP5" gate="G$1" pin="2"/>
-<wire x1="50.8" y1="64.77" x2="50.8" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="50.8" y1="71.12" x2="38.1" y2="71.12" width="0.1524" layer="91"/>
-<label x="38.1" y="71.12" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="VBATPWRJP" gate="G$1" pin="2"/>
+<wire x1="-41.91" y1="60.96" x2="-41.91" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="-41.91" y1="71.12" x2="-52.07" y2="71.12" width="0.1524" layer="91"/>
+<label x="-54.61" y="71.12" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="C10" gate="G$1" pin="1"/>
+<wire x1="-52.07" y1="71.12" x2="-54.61" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="-52.07" y1="50.8" x2="-52.07" y2="71.12" width="0.1524" layer="91"/>
+<junction x="-52.07" y="71.12"/>
 </segment>
 </net>
 <net name="GND" class="0">
@@ -9145,6 +9153,11 @@ RRGGBBXX .. XX being brightness</text>
 <pinref part="R8" gate="G$1" pin="1"/>
 <pinref part="GND13" gate="1" pin="GND"/>
 <wire x1="53.34" y1="-5.08" x2="53.34" y2="-7.62" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="C10" gate="G$1" pin="2"/>
+<wire x1="-52.07" y1="43.18" x2="-52.07" y2="39.37" width="0.1524" layer="91"/>
+<pinref part="GND14" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="PA15" class="0">
@@ -9992,9 +10005,9 @@ RRGGBBXX .. XX being brightness</text>
 <label x="67.31" y="58.42" size="1.27" layer="95" rot="R180" xref="yes"/>
 <wire x1="69.85" y1="58.42" x2="67.31" y2="58.42" width="0.1524" layer="91"/>
 <wire x1="69.85" y1="58.42" x2="69.85" y2="71.12" width="0.1524" layer="91"/>
-<pinref part="JP5" gate="G$1" pin="1"/>
-<wire x1="69.85" y1="71.12" x2="53.34" y2="71.12" width="0.1524" layer="91"/>
-<wire x1="53.34" y1="71.12" x2="53.34" y2="64.77" width="0.1524" layer="91"/>
+<pinref part="VBATPWRJP" gate="G$1" pin="1"/>
+<wire x1="69.85" y1="71.12" x2="-39.37" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="-39.37" y1="71.12" x2="-39.37" y2="60.96" width="0.1524" layer="91"/>
 <junction x="69.85" y="58.42"/>
 </segment>
 <segment>

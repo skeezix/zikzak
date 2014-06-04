@@ -8784,6 +8784,11 @@ RRGGBBXX .. XX being brightness</text>
 <text x="254" y="80.01" size="2.54" layer="91">Resistors are
 alternating 1K and 2K
 values</text>
+<text x="-173.99" y="35.56" size="5.08" layer="94">BUG in r1:
+JTAG reset is not working;
+have to hit manual reset
+so flashing and post-flash
+can work right</text>
 </plain>
 <instances>
 <instance part="P+6" gate="1" x="-62.23" y="-10.16"/>
