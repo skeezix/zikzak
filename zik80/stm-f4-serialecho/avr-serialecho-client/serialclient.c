@@ -4,17 +4,16 @@
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 
-//#include "iocompat.h"           /* Note [1] */
-
 // install path: /usr/lib/avr/include/avr
 
-#if 1
-//#define F_CPU 1000000UL  /* 1 MHz CPU clock */
-#define F_CPU 8000000UL  /* 8 MHz CPU clock */
-//#define F_CPU 20000000UL  /* 20 MHz CPU clock */
+#include "serialclient.h"
 
 #include <util/delay.h>
 #include <avr/io.h>
+#include <util/setbaud.h>
+#include <stdio.h>
+
+#include "lib_serial.h"
 
 // direction
 //   ADR (analog direction register) and DDR (digital direction register)
@@ -26,6 +25,23 @@
 //   sei(); // int - Global enable interrupts
 
 int main ( void ) {
+
+  // serial set up
+  uart_setup();
+  uart_stream_setup();
+
+
+  // serial test to stm32
+  puts ( "p" );
+  char c;
+
+  c = getchar();
+
+  if ( c != 'p' ) {
+    while(1); // fail
+  }
+
+  // blinker
   DDRD = _BV (PD6);               /* PC0 is digital output */
 
   while ( 1 ) {
@@ -36,9 +52,8 @@ int main ( void ) {
 
     /*  PC0 on PORTC (digital 0) and delay for 500mS */
     PORTD |= _BV(PD6);
-    _delay_ms ( 200 );
+    _delay_ms ( 100 );
   }
 
-  return (0);
+  return ( 0 );
 }
-#endif
