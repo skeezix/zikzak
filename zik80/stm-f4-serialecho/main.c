@@ -15,7 +15,7 @@ int main(void) {
   init_usart1 ( 9600 ); // initialize USART1 @ 9600 baud
   init_usart2 ( 9600 );
 
-  USART_puts ( USART1, "Init usart1 complete! Hello World!\r\n" );
+  //USART_puts ( USART1, "Init usart1 complete! Hello World!\r\n" );
   USART_puts ( USART2, "Init usart2 complete! Hello World!\r\n" );
 
   while ( 1 ) {
@@ -41,7 +41,10 @@ void usart1_isr ( void ) {
       cnt++;
     } else { // otherwise reset the character counter and print the received string
       cnt = 0;
-      USART_puts(USART1, received_string);
+      //USART_puts(USART1, received_string);
+      USART_puts ( USART2, "avr: " );
+      USART_puts ( USART2, received_string );
+      USART_puts ( USART2, "\r\n" );
     }
 
   } // if USART received
@@ -65,6 +68,7 @@ void usart2_isr ( void ) {
       cnt++;
     } else { // otherwise reset the character counter and print the received string
       cnt = 0;
+      USART_puts ( USART2, "console: " );
       USART_puts ( USART2, received_string );
       USART_puts ( USART2, "\r\n" );
       memset ( received_string, '\0', MAX_STRLEN );

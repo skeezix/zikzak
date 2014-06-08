@@ -28,3 +28,11 @@ serialclient:	${APPOBJS}
 
 deploy:
 	sudo avrdude -p ${ATMEGA} -c avrispmkII -P usb -U serialclient.hex
+
+fusedump:
+	@echo "low-fuse"
+	@sudo avrdude -p ${ATMEGA} -c avrispmkII -P usb -U lfuse:r:-:h -q 2>/dev/null
+	@echo "high-fuse"
+	@sudo avrdude -p ${ATMEGA} -c avrispmkII -P usb -U hfuse:r:-:h -q 2>/dev/null
+	@echo "ext-fuse"
+	@sudo avrdude -p ${ATMEGA} -c avrispmkII -P usb -U efuse:r:-:h -q 2>/dev/null

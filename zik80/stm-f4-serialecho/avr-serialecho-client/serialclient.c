@@ -1,12 +1,12 @@
 
+#include "serialclient.h"
+
 #include <inttypes.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 
 // install path: /usr/lib/avr/include/avr
-
-#include "serialclient.h"
 
 #include <util/delay.h>
 #include <avr/io.h>
@@ -26,11 +26,22 @@
 
 int main ( void ) {
 
+  DDRD = 0;
+  //DDRD |= _BV (PD0);               /* PC0 is digital output */
+  DDRD |= _BV (PD1);               /* PC0 is digital output */
+
+  // blinker
+  DDRD |= _BV (PD6);               /* PC0 is digital output */
+
+
+
+
   // serial set up
   uart_setup();
   uart_stream_setup();
 
 
+#if 0
   // serial test to stm32
   puts ( "p" );
   char c;
@@ -40,9 +51,8 @@ int main ( void ) {
   if ( c != 'p' ) {
     while(1); // fail
   }
+#endif
 
-  // blinker
-  DDRD = _BV (PD6);               /* PC0 is digital output */
 
   while ( 1 ) {
 
@@ -53,6 +63,11 @@ int main ( void ) {
     /*  PC0 on PORTC (digital 0) and delay for 500mS */
     PORTD |= _BV(PD6);
     _delay_ms ( 100 );
+
+    uart_putchar_pre ( 'X' );
+    uart_putchar_pre ( '\r' );
+    uart_putchar_pre ( '\n' );
+
   }
 
   return ( 0 );

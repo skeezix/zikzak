@@ -1,12 +1,12 @@
 
+#include "serialclient.h"
+
 #include <inttypes.h>
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/sleep.h>
 
 // install path: /usr/lib/avr/include/avr
-
-#include "serialclient.h"
 
 #include <util/delay.h>
 #include <avr/io.h>
