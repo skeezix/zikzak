@@ -16,6 +16,8 @@ volatile char received_string[MAX_STRLEN+1]; // this will hold the recieved stri
 
 int main(void) {
 
+  system_cm3_setup();
+
 #if 1
   init_usart1 ( 9600 ); // initialize USART1 @ 9600 baud
   init_usart2 ( 9600 );
@@ -25,7 +27,6 @@ int main(void) {
 #endif
 
 #if 1
-  system_cm3_setup();
 
   fb_setup();
 

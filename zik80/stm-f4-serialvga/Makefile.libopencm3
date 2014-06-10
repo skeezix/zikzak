@@ -46,7 +46,7 @@ CFLAGS		+= -Os -g \
 		   -I$(TOOLCHAIN_DIR)/include \
 		   -fno-common -mcpu=cortex-m4 -mthumb \
 		   -mfloat-abi=hard -mfpu=fpv4-sp-d16 -MD -DSTM32F4 \
-                   -DUSE_STDPERIPH_DRIVER -Icmsis -I/home/skeezix/archive/devo/projects/zikzak/zik80/stm-f4-vga
+                   -DUSE_STDPERIPH_DRIVER -Icmsis -I/home/skeezix/archive/devo/projects/zikzak/zik80/stm-f4-vga -DHSE_VALUE=8000000
 LDSCRIPT	?= $(BINARY).ld
 LDFLAGS		+= --static -lc -lnosys -L$(TOOLCHAIN_DIR)/lib \
 			 -L$(TOOLCHAIN_DIR)/lib/stm32/f4 \
