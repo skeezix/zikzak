@@ -17,10 +17,13 @@ def send ( b ):
 from optparse import OptionParser
 
 cmdparser = OptionParser()
-cmdparser.add_option ( "-n", "--number", dest="linecount", help="number of lines", default=10 )
+cmdparser.add_option ( "-n", "--number", dest="linecount", help="number of lines/boxes", default=10 )
 cmdparser.add_option ( "-b", "--baud", dest="baudrate", help="baud rate (9600, 38400)", default=38400 )
 cmdparser.add_option ( "-d", "--device", dest="device",   help="device name (fully qualified path)", default='/dev/ttyUSB0' )
 cmdparser.add_option ( "-v", "--verbose", dest="verbose", help="verbosity level (1 is debug logs)", default=0 )
+cmdparser.add_option ( "", "--linedemo", dest="linedemo",  action="store_true", help="include line demo in outputs", default=False )
+cmdparser.add_option ( "", "--filldemo", dest="filldemo", action="store_true", help="include filled box demo in outputs", default=False )
+cmdparser.add_option ( "", "--clearpattern", dest="clearpattern", action="store_true", help="include clear-to-pattern", default=False )
 
 (cmdoptions, cmdargs) = cmdparser.parse_args()
 
@@ -53,26 +56,50 @@ if not ser:
 # do it
 #
 
-x = y = lx = ly = 0
+if cmdoptions.linedemo:
+    x = y = lx = ly = 0
+    for n in range ( int ( cmdoptions.linecount ) + 1 ): # +1 since first is consumed as starting point
 
-for n in range ( int ( cmdoptions.linecount ) + 1 ): # +1 since first is consumed as starting point
+        x = random.randrange ( 10, 256 )
+        y = random.randrange ( 10, 182 )
+        #x = random.randrange ( ord('A'), ord('Z') )
+        #y = random.randrange ( ord('A'), ord('Z') )
 
-    x = random.randrange ( 10, 256 )
-    y = random.randrange ( 10, 182 )
-    #x = random.randrange ( ord('A'), ord('Z') )
-    #y = random.randrange ( ord('A'), ord('Z') )
+        c = random.randrange ( 0, 0b00111111 )
+        #c = random.randrange ( ord('1'), ord('9') )
 
-    c = random.randrange ( 0, 0b00111111 )
-    #c = random.randrange ( ord('1'), ord('9') )
+        if lx != 0:
+            cmd = 'DL' + chr(c) + chr(lx) + chr(ly) + chr(x) + chr(y) + '\r'
+            if int ( cmdoptions.verbose ) > 0:
+                print 'Command ' + str(n) + ': ' + cmd
+            send ( cmd )
 
-    if lx != 0:
-        cmd = 'LD' + chr(c) + chr(lx) + chr(ly) + chr(x) + chr(y) + '\r'
+        lx = x
+        ly = y
+
+if cmdoptions.filldemo:
+    x = y = lx = ly = 0
+    for n in range ( int ( cmdoptions.linecount ) + 1 ): # +1 since first is consumed as starting point
+
+        x = random.randrange ( 10, 200 )
+        y = random.randrange ( 10, 120 )
+        lx = random.randrange ( 5, 250 - x )
+        ly = random.randrange ( 5, 180 - y )
+
+        c = random.randrange ( 0, 0b00111111 )
+        #c = random.randrange ( ord('1'), ord('9') )
+
+        cmd = 'DF' + chr(c) + chr(lx) + chr(ly) + chr(x) + chr(y) + '\r'
         if int ( cmdoptions.verbose ) > 0:
             print 'Command ' + str(n) + ': ' + cmd
         send ( cmd )
 
-    lx = x
-    ly = y
+if cmdoptions.clearpattern:
+
+        cmd = 'DP' + '\r'
+        if int ( cmdoptions.verbose ) > 0:
+            print 'Command ' + str(n) + ': ' + cmd
+        send ( cmd )
 
 # done
 #

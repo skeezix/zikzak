@@ -8,6 +8,7 @@
 
 #include <libopencm3/cm3/cortex.h>
 
+#include "config.h"
 #include "framebuffer.h"
 #include "system.h"
 #include "lib_vga_cm3.h"
@@ -101,11 +102,21 @@ unsigned int line_count = 0;       // how many lines done so far this page
 #define VISIBLE_ROWS 480
 
 static inline void vblank_active ( void ) {
+#ifdef INVERT_VBLANK
+  gpio_clear ( GPIOB, GPIO12 );
+#else
   gpio_set ( GPIOB, GPIO12 );
+#endif
+  vblank = 1;
 }
 
 static inline void vblank_inactive ( void ) {
+#ifdef INVERT_VBLANK
+  gpio_set ( GPIOB, GPIO12 );
+#else
   gpio_clear ( GPIOB, GPIO12 );
+#endif
+  vblank = 0;
 }
 
 static void vga_gpio_setup ( void ) {
@@ -233,9 +244,8 @@ void tim2_isr ( void ) {
   // vsync is normally HIGH, but goes to LOW during pulse
   done_sync = 0;
   if ( front_porch_togo ) {
-    vblank = 1;
-    vblank_active();
     front_porch_togo --;
+    vblank_active();
 
     if ( ! front_porch_togo ) { // on exit front porch, start vsync pulse
       vsync_go_low();
@@ -265,7 +275,6 @@ void tim2_isr ( void ) {
 
     if ( ! back_porch_togo ) {
       line_count = 1;
-      vblank = 0;
       vblank_inactive();
     }
 
@@ -304,7 +313,7 @@ void tim2_isr ( void ) {
   }
 
   // center horizontally; burn some time so image isn't fully on left
-#if 1 // skip for DMA?
+#ifndef VGA_DMA
   i = 40;
   while ( i-- ) {
     __asm__("nop");
@@ -333,10 +342,10 @@ void tim2_isr ( void ) {
     goto scanline_done;
   }
 
-#if 0 // DMA
+#ifdef VGA_DMA
   uint8_t *p = fb_active + ( i * FBWIDTH );
 
-  dma_memcpy ( p, &(GPIO_ODR(GPIOC)) /*&GPIOC->ODR*/, FBWIDTH, DMA_MEMCPY_INCSRC );
+  dma_memcpy ( p, (unsigned char*) &(GPIO_ODR(GPIOC)) /*&GPIOC->ODR*/, FBWIDTH, DMA_MEMCPY_INCSRC );
 
  scanline_done:
 #else

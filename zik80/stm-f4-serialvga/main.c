@@ -4,6 +4,7 @@
 #include <stm32f4xx_usart.h> // under Libraries/STM32F4xx_StdPeriph_Driver/inc and src
 #include <string.h>
 
+#include "config.h"
 #include "main.h"
 #include "lib_serial.h"
 //#include "/home/skeezix/archive/devo/toolkits/stm32/libopencm3/include/libopencm3/stm32/f4/nvic.h"
@@ -35,7 +36,11 @@ int main(void) {
 
   fb_setup();
 
+#ifdef VGA_DMA
+  vga_setup ( VGA_USE_DMA );
+#else
   vga_setup ( VGA_NO_DMA );
+#endif
 
   fb_test_pattern ( fb_active, fbt_offset_squares );
   //fb_test_pattern ( fb_active, fbt_vlines );
@@ -46,15 +51,15 @@ int main(void) {
     // weeeeee!
 
     // any work for us to do?
+#if 1
     if ( vblank ) {
-      resume_usart2();
 
       if ( queueready() ) {
         command_queue_run();
       }
 
-      suspend_usart2();
     }
+#endif
 
     // update framebuffers
 #if 0
@@ -140,7 +145,7 @@ void usart2_isr ( void ) {
       queueit ( (char*) received_string );
 #endif
 
-      memset ( (void*) received_string, '\0', MAX_STRLEN );
+      //memset ( (void*) received_string, '\0', MAX_STRLEN );
     }
 
   } // if USART received

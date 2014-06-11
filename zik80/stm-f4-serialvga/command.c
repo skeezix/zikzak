@@ -15,9 +15,12 @@ void command_queue_run ( void ) {
     //switch ( *((uint16_t*)c) ) {
     switch ( c[0] + (c[1]<<8) ) {
 
-    case LD:
-      //logit ( "LD\r\n" );
+    case DL:
       zl_render_line ( fb_active, c [ 2 ], c [ 3 ], c [ 4 ], c [ 5 ], c [ 6 ] );
+      break;
+
+    case DF:
+      fb_render_rect_filled ( fb_active, c [ 3 ], c [ 4 ], c [ 5 ], c [ 6 ], c [ 2 ] );
       break;
 
     case CB:
