@@ -428,7 +428,7 @@ void vga_setup ( unsigned char use_dma ) {
 
   /* Without this the timer interrupt routine will never be called. */
   nvic_enable_irq ( NVIC_TIM2_IRQ );
-  //nvic_set_priority(NVIC_TIM2_IRQ, 1);
+  //nvic_set_priority(NVIC_TIM2_IRQ, 0);
 
   timer2_setup();
 

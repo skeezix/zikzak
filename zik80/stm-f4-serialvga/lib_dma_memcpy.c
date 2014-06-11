@@ -9,6 +9,7 @@
 #include "pixelclock.h"
 
 #define NULL 0
+void dma2_stream1_isr ( void ); // shut up warnings
 
 // DMA2 can do MemoryToMemory
 // DMA Stream 0 worked, but DMA2-Stream1-Channel7 jas TIM8_UP as a optional trigger

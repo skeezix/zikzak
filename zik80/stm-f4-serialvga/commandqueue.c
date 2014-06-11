@@ -1,16 +1,15 @@
-
 #include <string.h>
-#include "logger.h"
+#include "commandqueue.h"
 
-#define QUEUESIZE 5
-#define LINESIZE 80
+#define QUEUESIZE 50
+#define LINESIZE 30
 static signed char   read_at = -1;
 static unsigned char insert_at = 0;
 
 static char _log [ QUEUESIZE ][ LINESIZE + 1 ];
 
-void log_setup ( void ) {
-  unsigned char i, j;
+void queue_setup ( void ) {
+  unsigned int i, j;
 
   for ( i = 0; i < QUEUESIZE; i++ ) {
     for ( j = 0; j < LINESIZE; j++ ) {
@@ -21,10 +20,8 @@ void log_setup ( void ) {
   return;
 }
 
-void logit ( char *foo ) {
+void queueit ( char *foo ) {
 
-  //strncpy ( _log [ insert_at ], foo, LINESIZE );
-  // strncpy must use DMA or something, causes problems.. brute force it instead
   char *p = foo;
   char *t = _log [ insert_at ];
   while ( *p ) {
@@ -45,7 +42,7 @@ void logit ( char *foo ) {
   return;
 }
 
-char *logpull ( void ) {
+char *queuepull ( void ) {
   if ( read_at >= 0 ) {
     char *poop = _log [ read_at ];
     read_at ++;
@@ -60,7 +57,7 @@ char *logpull ( void ) {
   return ( NULL );
 }
 
-unsigned char logready ( void ) {
+unsigned char queueready ( void ) {
   if ( read_at >= 0 ) {
     return ( 1 );
   }

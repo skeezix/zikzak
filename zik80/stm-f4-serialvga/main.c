@@ -12,26 +12,26 @@
 #include "framebuffer_demo.h"
 #include "system_cm3.h"
 #include "logger.h"
+#include "commandqueue.h"
+#include "command.h"
 
 void usart1_isr ( void ); // shut up compiler
 void usart2_isr ( void ); // shut up compiler
 
-#define MAX_STRLEN 12 // this is the maximum string length of our string in characters
-volatile char received_string[MAX_STRLEN+1]; // this will hold the recieved string
+#define MAX_STRLEN 80 // this is the maximum string length of our string in characters
+volatile char received_string [ MAX_STRLEN + 1 ]; // this will hold the recieved string
 
 int main(void) {
 
   system_cm3_setup();
 
-#if 1
-  init_usart1 ( 9600 ); // initialize USART1 @ 9600 baud
-  init_usart2 ( 9600 );
-
   log_setup();
+  queue_setup();
 
+  init_usart1 ( 38400 ); // initialize USART1 @ 9600 baud
+  init_usart2 ( 38400 );
   //USART_puts ( USART1, "Init usart1 complete! Hello World!\r\n" );
   USART_puts ( USART2, "Init usart2 complete! Hello World!\r\n" );
-#endif
 
   fb_setup();
 
@@ -42,13 +42,24 @@ int main(void) {
   //fb_test_pattern ( fb_active, fbt_v1lines );
   //fb_test_pattern ( fb_active, fbt_onoff1 );
 
-  unsigned char i = 0;
   while ( 1 ) {
     // weeeeee!
+
+    // any work for us to do?
+    if ( vblank ) {
+      resume_usart2();
+
+      if ( queueready() ) {
+        command_queue_run();
+      }
+
+      suspend_usart2();
+    }
 
     // update framebuffers
 #if 0
     if ( vblank ) {
+      unsigned char i = 0;
       fb_clone ( fb_2, fb_active );
       while ( vblank ) {
         __asm__("nop");
@@ -62,7 +73,7 @@ int main(void) {
 #if 1
     if ( logready() ) {
       char *log;
-      while ( log = logpull() ) {
+      while ( ( log = logpull() ) ) {
         USART_puts ( USART2, log );
       }
     }
@@ -117,12 +128,18 @@ void usart2_isr ( void ) {
       cnt++;
     } else { // otherwise reset the character counter and print the received string
       cnt = 0;
-#if 1
+
+#if 0 // echo
       //USART_puts ( USART2, "console: " );
       logit ( "console: " );
-      logit ( received_string );
+      logit ( (char*) received_string );
       logit ( "\r\n" );
 #endif
+
+#if 1
+      queueit ( (char*) received_string );
+#endif
+
       memset ( (void*) received_string, '\0', MAX_STRLEN );
     }
 
