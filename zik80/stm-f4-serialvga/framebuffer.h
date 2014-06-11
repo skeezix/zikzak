@@ -12,8 +12,6 @@ extern uint8_t fb_2 [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
 
 void fb_setup ( void );
 
-void fb_test_pattern ( uint8_t *fb );
-
 void fb_clone ( uint8_t *fbsrc, uint8_t *fbdst );
 
 void fb_render_rect_filled ( uint8_t *fb, uint16_t x, uint16_t y, uint16_t w, uint16_t h, uint8_t rgb );

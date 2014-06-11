@@ -17,11 +17,11 @@ void vga_pixelclock_setup ( void ) {
    */
 
 //#define TIM8_PERIOD      (500-1)             /* Timer 8 PWM period 2 KHz */
-#define TIM8_PERIOD      (6)             /* Timer 8 PWM period 2 KHz */
+#define TIM8_PERIOD      (4)             /* Timer 8 PWM period 2 KHz */
 
 //#define TIM8_PRESCALER   (168-1)             /* Timer 8 prescaler  1 MHz */
 //#define TIM8_PRESCALER   (1-1)             /* Timer 8 prescaler  1 MHz */
-#define TIM8_PRESCALER   (1)             /* Timer 8 prescaler  1 MHz */
+#define TIM8_PRESCALER   (1-1)             /* Timer 8 prescaler  1 MHz */
  
   TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
  

@@ -11,10 +11,10 @@
 #include "framebuffer.h"
 #include "framebuffer_demo.h"
 
-void fb_test_pattern ( uint8_t *fb ) {
+void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
   unsigned int i;
 
-#if 1 // fill framebuffer with offset squares
+  if ( pattern == fbt_offset_squares ) {
   unsigned int x, y;
   unsigned char v;
   for ( y = 0; y < FBHEIGHT; y++ ) {
@@ -64,9 +64,8 @@ void fb_test_pattern ( uint8_t *fb ) {
     } // x
 
   } // y
-#endif
 
-#if 0 // fill framebuffer with vertical stripes of all colours (1px per colour)
+  } else if ( pattern == fbt_vlines ) {
   //unsigned char i;
   unsigned int x, y;
   unsigned char v;
@@ -77,16 +76,26 @@ void fb_test_pattern ( uint8_t *fb ) {
     for ( x = 0; x < FBWIDTH; x++ ) {
 
       //*( framebuffer + ( y * FBWIDTH ) + x ) = i / 6;
-      *( fb + ( y * FBWIDTH ) + x ) = i;
+      *( fb + ( y * FBWIDTH ) + x ) = i & 0x3F; //&0x03;
       //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 );
 
       i++;
     } // x
 
   } // y
-#endif
 
-#if 0 // vertical strip every X pixels
+  } else if ( pattern == fbt_onoff1 ) {
+  //unsigned char i;
+  unsigned int x, y;
+  unsigned char v;
+
+  for ( y = 0; y < FBHEIGHT; y++ ) {
+    for ( x = 0; x < FBWIDTH; x++ ) {
+      *( fb + ( y * FBWIDTH ) + x ) = x & 0x01;
+    } // x
+  } // y
+
+  } else if ( pattern == fbt_vwlines ) {
   //unsigned char i;
   unsigned int x, y;
 
@@ -106,15 +115,14 @@ void fb_test_pattern ( uint8_t *fb ) {
       i++;
     } // x
   } // y
-#endif
 
-#if 0 // vertical strip 1 pixel wide
+  } else if ( pattern == fbt_v1lines ) {
   //unsigned char i;
   unsigned int x, y;
 
   for ( y = 0; y < FBHEIGHT; y++ ) {
-
     i = 0;
+
     for ( x = 0; x < FBWIDTH; x++ ) {
 
       if ( i == 9 ) {
@@ -124,7 +132,29 @@ void fb_test_pattern ( uint8_t *fb ) {
 
       i++;
     } // x
+
   } // y
-#endif
+
+  } // pattern?
 
 }
+
+#if 0
+void fb_plasma_diamond ( uint8_t *fb ) {
+  int x, y;
+
+  for ( x = 0; x < FBWIDTH; x++) {
+    for ( y = 0; y < FBHEIGHT; y++)  {
+
+      uint8_t cc = abs ( 128.0 + (128.0 * sin(x / 8.0))
+                         + 128.0 + (128.0 * sin(y / 8.0))
+                       ) / 2;
+
+      fb [ ( y * FBWIDTH ) + x ] = RGB(c,c,c);
+
+    } // y
+  } // x
+
+  return;
+}
+#endif

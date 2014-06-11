@@ -9,7 +9,12 @@
 //#include "/home/skeezix/archive/devo/toolkits/stm32/libopencm3/include/libopencm3/stm32/f4/nvic.h"
 #include "lib_vga_cm3.h"
 #include "framebuffer.h"
+#include "framebuffer_demo.h"
 #include "system_cm3.h"
+#include "logger.h"
+
+void usart1_isr ( void ); // shut up compiler
+void usart2_isr ( void ); // shut up compiler
 
 #define MAX_STRLEN 12 // this is the maximum string length of our string in characters
 volatile char received_string[MAX_STRLEN+1]; // this will hold the recieved string
@@ -22,21 +27,48 @@ int main(void) {
   init_usart1 ( 9600 ); // initialize USART1 @ 9600 baud
   init_usart2 ( 9600 );
 
+  log_setup();
+
   //USART_puts ( USART1, "Init usart1 complete! Hello World!\r\n" );
   USART_puts ( USART2, "Init usart2 complete! Hello World!\r\n" );
 #endif
 
-#if 1
-
   fb_setup();
 
-  vga_setup();
-#endif
+  vga_setup ( VGA_NO_DMA );
 
-  fb_test_pattern ( fb_active );
+  fb_test_pattern ( fb_active, fbt_offset_squares );
+  //fb_test_pattern ( fb_active, fbt_vlines );
+  //fb_test_pattern ( fb_active, fbt_v1lines );
+  //fb_test_pattern ( fb_active, fbt_onoff1 );
 
+  unsigned char i = 0;
   while ( 1 ) {
     // weeeeee!
+
+    // update framebuffers
+#if 0
+    if ( vblank ) {
+      fb_clone ( fb_2, fb_active );
+      while ( vblank ) {
+        __asm__("nop");
+      }
+      fb_test_pattern ( fb_2, i & 0x03 );
+      i++;
+    }
+#endif
+
+    // handle queued logs
+#if 1
+    if ( logready() ) {
+      char *log;
+      while ( log = logpull() ) {
+        USART_puts ( USART2, log );
+      }
+    }
+#endif
+
+    __asm__("nop");
   }
 
 } // main
@@ -85,9 +117,12 @@ void usart2_isr ( void ) {
       cnt++;
     } else { // otherwise reset the character counter and print the received string
       cnt = 0;
-      USART_puts ( USART2, "console: " );
-      USART_puts ( USART2, received_string );
-      USART_puts ( USART2, "\r\n" );
+#if 1
+      //USART_puts ( USART2, "console: " );
+      logit ( "console: " );
+      logit ( received_string );
+      logit ( "\r\n" );
+#endif
       memset ( (void*) received_string, '\0', MAX_STRLEN );
     }
 

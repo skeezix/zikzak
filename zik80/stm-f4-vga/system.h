@@ -3,7 +3,7 @@
 
 // features
 #define RENDER_ATALL 1 /* yes, we want rendering to occur, not just sync */
-//#define RENDER_DMA 1 /* use DMA dma_memcpy; otherwise, use brute force! */
+#define RENDER_DMA 1 /* use DMA dma_memcpy; otherwise, use brute force! */
 //#define TORTURE_TIMER 1 /* enable a torture timer which does GPIOs */
 #define SERVER_ON 1 /* if undefined, no input server present */
 

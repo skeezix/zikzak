@@ -172,10 +172,10 @@ static void timer2_setup ( void ) {
   TIM_CNT(TIM2) = 1;
 
   /* Set timer prescaler. 72MHz/1440 => 50000 counts per second. */
-  TIM_PSC(TIM2) = 541; // 120M/2000 = 60k/second   ## 540
+  TIM_PSC(TIM2) = 300; // 280K/s or 0.000 003 571
 
   /* End timer value. If this is reached an interrupt is generated. */
-  TIM_ARR(TIM2) = 2; // ## 2
+  TIM_ARR(TIM2) = 8; //
 
   // o-scope reports:
   // prescale 2000, 1->600 should be 100/sec; in fact, we're exactly 20ms between which is exactly 50 .. so callback is 60MHz, not 120MHz
@@ -183,7 +183,6 @@ static void timer2_setup ( void ) {
   //  The reference manual (see page 133) states that the GPIO is capable of:
   //  Fast toggle capable of changing every two clock cycles
   // --> okay so at 120MHz, the best we can do is 60MHz of GPIO. But thats different than here, where the timer seems halved..
-
 
   /* Update interrupt enable. */
   TIM_DIER(TIM2) |= TIM_DIER_UIE;
@@ -237,7 +236,7 @@ void tim2_isr ( void ) {
 
     if ( ! front_porch_togo ) { // on exit front porch, start vsync pulse
       vsync_go_low();
-      vsync_togo = 4;
+      vsync_togo = 2;
     }
 
     done_sync = 1;
@@ -250,7 +249,7 @@ void tim2_isr ( void ) {
 
     if ( ! vsync_togo ) { // on exit vsync pulse, start back porch
       vsync_go_high();
-      back_porch_togo = 23;
+      back_porch_togo = 33;
     }
 
     done_sync = 1;
@@ -279,21 +278,21 @@ void tim2_isr ( void ) {
 
   /* 1uS Front Porch */
   /* 1uS */
-  i = 22;
+  i = 16;
   while ( i-- ) {
     __asm__("nop");
   }
 
   /* 3.2uS Horizontal Sync */
   hsync_go_low();
-  i = 60;
+  i = 103;
   while ( i-- ) {
     __asm__("nop");
   }
 
   /* 2.2uS Back Porch */
   hsync_go_high();
-  i = 45;
+  i = 50;
   while ( i-- ) {
     __asm__("nop");
   }
@@ -345,93 +344,40 @@ void tim2_isr ( void ) {
  scanline_done:
 #else
 
+#define EMIT_PIXEL()      \
+  GPIO_ODR(GPIOC) = *p++; \
+  __asm__("nop");         \
+  __asm__("nop");         \
+  __asm__("nop");         \
+  __asm__("nop");         \
+  __asm__("nop");
+
   i = (320) / 20;
   while ( i-- ) {
 
     //rgb_go_level ( (*p++) ); // seems slower than GPIO_ODR(GPIOC)= ... why? inline, should be same?!
 
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
 
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-    GPIO_ODR(GPIOC) = *p++;
-    __asm__("nop");
-    __asm__("nop");
-    __asm__("nop");
-
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
+    EMIT_PIXEL();
 
   }
 
@@ -449,7 +395,7 @@ void tim2_isr ( void ) {
   //
 
   if ( line_count > VISIBLE_ROWS ) {
-    front_porch_togo = 1;
+    front_porch_togo = 10;
     return; // entering front porch
   }
 

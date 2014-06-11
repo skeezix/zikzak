@@ -130,4 +130,5 @@ void USART_puts ( USART_TypeDef* USARTx, volatile char *s ) {
     USART_SendData(USARTx, *s);
     *s++;
   }
+
 }

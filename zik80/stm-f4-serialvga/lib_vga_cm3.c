@@ -12,6 +12,7 @@
 #include "system.h"
 #include "lib_vga_cm3.h"
 #include "lib_vga_pixelclock.h"
+#include "lib_dma_memcpy.h"
 
 #define RENDER_ATALL 1
 
@@ -128,7 +129,7 @@ static void vga_gpio_setup ( void ) {
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5 ); // blue
   // speed
   gpio_set_output_options ( GPIOB, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO10 | GPIO11 );
-  gpio_set_output_options ( GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ, GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 );
+  gpio_set_output_options ( GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_2MHZ, GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 );
 
   // reset
   //
@@ -303,7 +304,7 @@ void tim2_isr ( void ) {
   }
 
   // center horizontally; burn some time so image isn't fully on left
-#if 1
+#if 1 // skip for DMA?
   i = 40;
   while ( i-- ) {
     __asm__("nop");
@@ -332,7 +333,15 @@ void tim2_isr ( void ) {
     goto scanline_done;
   }
 
-#define EMIT_PIXEL()      \
+#if 0 // DMA
+  uint8_t *p = fb_active + ( i * FBWIDTH );
+
+  dma_memcpy ( p, &(GPIO_ODR(GPIOC)) /*&GPIOC->ODR*/, FBWIDTH, DMA_MEMCPY_INCSRC );
+
+ scanline_done:
+#else
+
+#define OLD_EMIT_PIXEL()      \
   GPIO_ODR(GPIOC) = *p++; \
   __asm__("nop");         \
   __asm__("nop");         \
@@ -345,6 +354,22 @@ void tim2_isr ( void ) {
   __asm__("nop");         \
   __asm__("nop");         \
   __asm__("nop");
+ // 11 NOP's is pretty ideal
+
+ unsigned char c;
+#define EMIT_PIXEL()      \
+  c = *p++;               \
+  GPIO_ODR(GPIOC) = c;    \
+  GPIO_ODR(GPIOC) = c;    \
+  GPIO_ODR(GPIOC) = c;    \
+  GPIO_ODR(GPIOC) = c;    \
+  GPIO_ODR(GPIOC) = c;    \
+  GPIO_ODR(GPIOC) = c;    \
+  GPIO_ODR(GPIOC) = c;    \
+  GPIO_ODR(GPIOC) = c;    \
+  GPIO_ODR(GPIOC) = c;    \
+  GPIO_ODR(GPIOC) = c;    \
+  GPIO_ODR(GPIOC) = c;
 
   // paint the image
   uint8_t *p = fb_active + ( i * FBWIDTH );
@@ -359,7 +384,7 @@ void tim2_isr ( void ) {
     EMIT_PIXEL();
     EMIT_PIXEL();
     EMIT_PIXEL();
-    EMIT_PIXEL();
+    EMIT_PIXEL(); // 8
 
     EMIT_PIXEL();
     EMIT_PIXEL();
@@ -368,7 +393,7 @@ void tim2_isr ( void ) {
     EMIT_PIXEL();
     EMIT_PIXEL();
     EMIT_PIXEL();
-    EMIT_PIXEL();
+    EMIT_PIXEL(); // 8
 
   }
 
@@ -377,6 +402,8 @@ void tim2_isr ( void ) {
 
  scanline_done:
   gpio_clear ( GPIOC, GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 );
+
+#endif // DMA?
 
 #endif
 
@@ -391,7 +418,7 @@ void tim2_isr ( void ) {
   line_count++;
 }
 
-void vga_setup ( void ) {
+void vga_setup ( unsigned char use_dma ) {
 
   /* Enable TIM2 clock. */
   rcc_peripheral_enable_clock(&RCC_APB1ENR, RCC_APB1ENR_TIM2EN);
@@ -407,8 +434,10 @@ void vga_setup ( void ) {
 
   vga_gpio_setup();
 
-#ifdef RENDER_DMA
-  vga_pixelclock_setup();
-#endif
+  if ( use_dma ) {
+    dma_setup();
+    vga_pixelclock_setup();
+  }
 
+  return;
 }
