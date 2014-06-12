@@ -214,15 +214,15 @@ void tim2_isr ( void ) {
   // ie: after setting SR, you need to pause read/writes
   // ie: if the ISR is too quick, there may be a spurious re-invocation (tail chain), so you need to do a little something to avoid cpu race condition
   // -- another way to do it, is to do a SR read (which blocks until its 'set' finishes), thus stalling until the ISR is 'done':
-  //void SPI2_IRQHandler(void)                                                                                                                                      
-  //{                                                                                                                                                               
-  //  volatile unsigned int dummy;                                                                                                                                  
-  //  ... some code...                                                                                                                                              
-  //  SPI2_CR2 &= ~SPI_CR2_RXNEIE;  // Turn off RXE interrupt enable                                                                                                
-  //  ...some code...                                                                                                                                               
-  //  dummy = SPI2_SR; // Prevent tail-chaining.                                                                                                                    
-  //  return;                                                                                                                                                       
-  //}         
+  //void SPI2_IRQHandler(void)
+  //{
+  //  volatile unsigned int dummy;
+  //  ... some code...
+  //  SPI2_CR2 &= ~SPI_CR2_RXNEIE;  // Turn off RXE interrupt enable
+  //  ...some code...
+  //  dummy = SPI2_SR; // Prevent tail-chaining.
+  //  return;
+  //}
   */
 
   // VGA line logic

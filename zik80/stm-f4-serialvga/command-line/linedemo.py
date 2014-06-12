@@ -2,6 +2,7 @@
 
 # example invocations:
 # ./linedemo.py -d /dev/ttyUSB0 -n 10
+# ./command-line/linedemo.py  -n 100 --filldemo --linedemo --clearpattern
 
 import sys
 import os
