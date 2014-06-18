@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.4">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -9240,11 +9240,6 @@ to real master reset pin 7.. all good then</text>
 </net>
 <net name="PB4" class="0">
 <segment>
-<pinref part="ISPJTAG" gate="A" pin="15"/>
-<wire x1="10.16" y1="113.03" x2="10.16" y2="128.27" width="0.1524" layer="91"/>
-<label x="10.16" y="128.27" size="1.27" layer="95" rot="R90" xref="yes"/>
-</segment>
-<segment>
 <pinref part="U$1" gate="G$1" pin="PB4/JNTRST(5T)"/>
 <wire x1="160.02" y1="45.72" x2="177.8" y2="45.72" width="0.1524" layer="91"/>
 <label x="177.8" y="45.72" size="1.27" layer="95" xref="yes"/>
@@ -9343,6 +9338,11 @@ to real master reset pin 7.. all good then</text>
 <pinref part="JP1" gate="A" pin="7"/>
 <wire x1="78.74" y1="106.68" x2="72.39" y2="106.68" width="0.1524" layer="91"/>
 <label x="72.39" y="106.68" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="ISPJTAG" gate="A" pin="15"/>
+<wire x1="10.16" y1="113.03" x2="10.16" y2="128.27" width="0.1524" layer="91"/>
+<label x="10.16" y="128.27" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
 <net name="PC0" class="0">

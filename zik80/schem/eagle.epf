@@ -49,6 +49,7 @@ UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-FreqCtrl.lbr"
 UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-Connectors.lbr"
 UsedLibrary="Y:/eagle-libraries/SparkFun-Eagle-Libraries/SparkFun-LED.lbr"
 UsedLibrary="Y:/eagle-libraries/diode-1.lbr"
+UsedLibrary="Y:/eagle-libraries/stm32f4.lbr"
 
 [Win_1]
 Type="Control Panel"

@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -8723,14 +8723,6 @@ standard rectifier, 3 A, 50 V (Motorola)</description>
 - 5
 - 3.3
 - GND</text>
-<text x="-181.61" y="73.66" size="3.81" layer="94">TBD:
-
-PCB:
-- drill holes in corner
-- version and website info
-- label +/-, and function points (hsync, vsync, etc)
-- label pin1's, and pin count on headers
-- GND/GND pour</text>
 <text x="74.93" y="130.81" size="2.54" layer="94">Break-out Headers</text>
 <text x="2.54" y="130.81" size="2.54" layer="94">ISP</text>
 <text x="-27.94" y="-33.02" size="1.778" layer="94">Power Our duplicates
@@ -8739,7 +8731,7 @@ PCB:
 - 3.3
 - GND</text>
 <text x="-30.48" y="25.4" size="1.778" layer="94" rot="R90">2.2uF = 22pF</text>
-<text x="-191.77" y="27.94" size="3.81" layer="94">TBD v2:
+<text x="-168.91" y="86.36" size="3.81" layer="94">TBD v2:
 - sync may need 80/100 resistor on some monitor
 - address/data/signal RAM bus
 - add parallel caps to decoupling caps on stm32, so

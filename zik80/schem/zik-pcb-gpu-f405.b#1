@@ -154,7 +154,7 @@ VCC</text>
 www.zikzak.ca
 Jeff Mitchell
 GPU rev 1 05-2014</text>
-<text x="16.256" y="50.546" size="1.27" layer="22" distance="10">VBAT
+<text x="16.256" y="50.546" size="1.27" layer="21" distance="10">VBAT
 PC13
 PC14
 PC15
@@ -170,7 +170,7 @@ VddA
 PA0
 PA1
 PA2</text>
-<text x="42.672" y="31.496" size="1.27" layer="22" distance="10" rot="R90">PA3
+<text x="42.672" y="31.496" size="1.27" layer="21" distance="10" rot="R90">PA3
 Vss
 Vdd
 PA4
@@ -186,7 +186,7 @@ PB10
 PB11
 Vcap1
 Vdd</text>
-<text x="45.466" y="37.338" size="1.27" layer="22" distance="10">Vdd
+<text x="45.466" y="37.338" size="1.27" layer="21" distance="10">Vdd
 Vcap2
 PA13
 PA12
@@ -202,7 +202,7 @@ PB15
 PB14
 PB13
 PB12</text>
-<text x="44.704" y="69.088" size="1.27" layer="22" distance="10" rot="R90">Vdd
+<text x="44.704" y="69.088" size="1.27" layer="21" distance="10" rot="R90">Vdd
 Vss
 PB9
 PB8

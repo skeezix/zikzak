@@ -8781,6 +8781,9 @@ p7: i2c scl
 p8: i2c sda</text>
 <text x="180.34" y="81.28" size="1.778" layer="91">Brightness mix-in
 RRGGBBXX .. XX being brightness</text>
+<text x="254" y="80.01" size="2.54" layer="91">Resistors are
+alternating 1K and 2K
+values</text>
 </plain>
 <instances>
 <instance part="P+6" gate="1" x="-62.23" y="-10.16"/>
