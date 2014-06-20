@@ -51,9 +51,9 @@ for y in range ( im.size [ 1 ] ):
 
         # brightness multiplier
         if bright:
-            bright = 64
+            bright = 1 # 64
         else:
-            bright = 32
+            bright = 1 # 32
 
         # scale colour, allowing for brightness
         r = int ( r / 64 ) * bright
@@ -77,4 +77,19 @@ if ext == '.png':
 
 im.save ( path + '.png' )
 
+# spit out raw image
+f = open ( path + ".raw", "w" )
+
+ymax = min ( im.size [ 1 ], 100 )
+xmax = min ( im.size [ 0 ], 100 )
+for y in range ( ymax ):
+    for x in range ( xmax ):
+        r, g, b = im.getpixel ( (x,y) )
+        c = int(r) + int ( g << 2 ) + int ( b << 4 )
+        f.write ( chr(c) )
+
+f.close()
+
+# exeunt
+#
 sys.exit ( 0 )

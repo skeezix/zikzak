@@ -89,7 +89,7 @@ int main(void) {
 
 } // main
 
-// this is the interrupt request handler (IRQ) for ALL USART1 interrupts
+// cpu <-> gpu serial
 void usart1_isr ( void ) {
 
   // check if the USART1 receive interrupt flag was set
@@ -116,7 +116,7 @@ void usart1_isr ( void ) {
 
 } // func
 
-// this is the interrupt request handler (IRQ) for ALL USART1 interrupts
+// PC console serial
 void usart2_isr ( void ) {
 
   // check if the USART1 receive interrupt flag was set

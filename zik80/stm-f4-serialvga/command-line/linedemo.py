@@ -24,6 +24,7 @@ cmdparser.add_option ( "-d", "--device", dest="device",   help="device name (ful
 cmdparser.add_option ( "-v", "--verbose", dest="verbose", help="verbosity level (1 is debug logs)", default=0 )
 cmdparser.add_option ( "", "--linedemo", dest="linedemo",  action="store_true", help="include line demo in outputs", default=False )
 cmdparser.add_option ( "", "--filldemo", dest="filldemo", action="store_true", help="include filled box demo in outputs", default=False )
+cmdparser.add_option ( "", "--srdemo", dest="srdemo", action="store_true", help="include sprite-receive demo in outputs", default=False )
 cmdparser.add_option ( "", "--clearpattern", dest="clearpattern", action="store_true", help="include clear-to-pattern", default=False )
 
 (cmdoptions, cmdargs) = cmdparser.parse_args()
@@ -45,7 +46,7 @@ import random
 
 # baud was 9600 works
 # 38400 works to atmega644 20MHz
-ser = serial.Serial ( port = cmdoptions.device, baudrate = cmdoptions.baudrate, timeout = 2.05, rtscts = True )
+ser = serial.Serial ( port = cmdoptions.device, baudrate = cmdoptions.baudrate, timeout = 0.10, rtscts = True )
 
 if not ser:
     print "Couldn't open serial port", cmdoptions.device
@@ -78,6 +79,12 @@ if cmdoptions.linedemo:
         lx = x
         ly = y
 
+    while True:
+        line = ser.readline()
+        if line == "":
+            break
+        print "RESP:", line.strip()
+
 if cmdoptions.filldemo:
     x = y = lx = ly = 0
     for n in range ( int ( cmdoptions.linecount ) + 1 ): # +1 since first is consumed as starting point
@@ -94,6 +101,43 @@ if cmdoptions.filldemo:
         if int ( cmdoptions.verbose ) > 0:
             print 'Command ' + str(n) + ': ' + cmd
         send ( cmd )
+
+    while True:
+        line = ser.readline()
+        if line == "":
+            break
+        print "RESP:", line.strip()
+
+if cmdoptions.srdemo:
+    id = 0
+    w = 100
+    h = 100
+    i = 0
+
+    cmd = 'SR' + chr(id) + chr(w) + chr(h)
+    if int ( cmdoptions.verbose ) > 0:
+        print 'Command: ' + cmd
+    send ( cmd )
+
+    f = open ( 'command-line/firefly_mmo.raw', 'r' )
+    data = f.read ( 25 )
+    send ( data )
+    while True:
+        print " .. reading ", i, i*30
+        data = f.read ( 30 )
+        if data == "":
+            break
+        send ( data )
+        i += 1
+
+        line = ser.readline()
+        if line != "":
+            print "RESP:", line.strip()
+
+
+    f.close()
+    send ( '\r' )
+    print "done sending file\n"
 
 if cmdoptions.clearpattern:
 
