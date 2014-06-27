@@ -10344,6 +10344,8 @@ Based on the following sources:
 <part name="IC1" library="74xx-us-33v-skeezix" deviceset="74*32" device="N"/>
 <part name="IC2" library="74xx-us-5v-skeezix" deviceset="74*04" device="N"/>
 <part name="BOBGPIOB" library="pinhead" deviceset="PINHD-1X8" device=""/>
+<part name="GND10" library="supply1" deviceset="GND" device=""/>
+<part name="GND22" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10525,6 +10527,14 @@ www.zikzak.ca</text>
 <instance part="IC2" gate="A" x="349.25" y="274.32"/>
 <instance part="IC2" gate="B" x="349.25" y="261.62"/>
 <instance part="BOBGPIOB" gate="A" x="160.02" y="252.73"/>
+<instance part="IC1" gate="C" x="165.1" y="119.38"/>
+<instance part="IC1" gate="D" x="165.1" y="134.62"/>
+<instance part="GND10" gate="1" x="147.32" y="110.49"/>
+<instance part="IC2" gate="C" x="422.91" y="274.32"/>
+<instance part="IC2" gate="D" x="422.91" y="261.62"/>
+<instance part="IC2" gate="E" x="422.91" y="248.92"/>
+<instance part="IC2" gate="F" x="422.91" y="236.22"/>
+<instance part="GND22" gate="1" x="401.32" y="256.54" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -10690,6 +10700,47 @@ www.zikzak.ca</text>
 <pinref part="GND19" gate="1" pin="GND"/>
 <wire x1="309.88" y1="109.22" x2="302.26" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="302.26" y1="109.22" x2="302.26" y2="101.6" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="C" pin="I1"/>
+<wire x1="152.4" y1="116.84" x2="147.32" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="116.84" x2="147.32" y2="113.03" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="C" pin="I0"/>
+<wire x1="152.4" y1="121.92" x2="147.32" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="121.92" x2="147.32" y2="116.84" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="D" pin="I1"/>
+<wire x1="152.4" y1="132.08" x2="147.32" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="132.08" x2="147.32" y2="121.92" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="D" pin="I0"/>
+<wire x1="152.4" y1="137.16" x2="147.32" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="137.16" x2="147.32" y2="132.08" width="0.1524" layer="91"/>
+<junction x="147.32" y="132.08"/>
+<junction x="147.32" y="121.92"/>
+<junction x="147.32" y="116.84"/>
+<pinref part="GND10" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="IC2" gate="F" pin="I"/>
+<wire x1="412.75" y1="236.22" x2="408.94" y2="236.22" width="0.1524" layer="91"/>
+<wire x1="408.94" y1="236.22" x2="408.94" y2="248.92" width="0.1524" layer="91"/>
+<wire x1="408.94" y1="248.92" x2="408.94" y2="256.54" width="0.1524" layer="91"/>
+<wire x1="408.94" y1="256.54" x2="403.86" y2="256.54" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="E" pin="I"/>
+<wire x1="412.75" y1="248.92" x2="408.94" y2="248.92" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="D" pin="I"/>
+<wire x1="412.75" y1="261.62" x2="408.94" y2="261.62" width="0.1524" layer="91"/>
+<wire x1="408.94" y1="261.62" x2="408.94" y2="256.54" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="C" pin="I"/>
+<wire x1="412.75" y1="274.32" x2="408.94" y2="274.32" width="0.1524" layer="91"/>
+<wire x1="408.94" y1="274.32" x2="408.94" y2="261.62" width="0.1524" layer="91"/>
+<junction x="408.94" y="261.62"/>
+<junction x="408.94" y="248.92"/>
+<junction x="408.94" y="256.54"/>
+<pinref part="GND22" gate="1" pin="GND"/>
+</segment>
+<segment>
+<wire x1="180.34" y1="250.19" x2="185.42" y2="250.19" width="0.1524" layer="91"/>
+<label x="185.42" y="250.19" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="PB6" class="0">

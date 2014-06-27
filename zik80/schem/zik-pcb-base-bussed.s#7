@@ -10344,6 +10344,8 @@ Based on the following sources:
 <part name="IC1" library="74xx-us-33v-skeezix" deviceset="74*32" device="N"/>
 <part name="IC2" library="74xx-us-5v-skeezix" deviceset="74*04" device="N"/>
 <part name="BOBGPIOB" library="pinhead" deviceset="PINHD-1X8" device=""/>
+<part name="GND10" library="supply1" deviceset="GND" device=""/>
+<part name="GND22" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10525,6 +10527,14 @@ www.zikzak.ca</text>
 <instance part="IC2" gate="A" x="349.25" y="274.32"/>
 <instance part="IC2" gate="B" x="349.25" y="261.62"/>
 <instance part="BOBGPIOB" gate="A" x="160.02" y="252.73"/>
+<instance part="IC1" gate="C" x="165.1" y="119.38"/>
+<instance part="IC1" gate="D" x="165.1" y="134.62"/>
+<instance part="GND10" gate="1" x="147.32" y="110.49"/>
+<instance part="IC2" gate="C" x="422.91" y="274.32"/>
+<instance part="IC2" gate="D" x="422.91" y="261.62"/>
+<instance part="IC2" gate="E" x="422.91" y="248.92"/>
+<instance part="IC2" gate="F" x="422.91" y="236.22"/>
+<instance part="GND22" gate="1" x="401.32" y="256.54" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -10690,6 +10700,43 @@ www.zikzak.ca</text>
 <pinref part="GND19" gate="1" pin="GND"/>
 <wire x1="309.88" y1="109.22" x2="302.26" y2="109.22" width="0.1524" layer="91"/>
 <wire x1="302.26" y1="109.22" x2="302.26" y2="101.6" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="IC1" gate="C" pin="I1"/>
+<wire x1="152.4" y1="116.84" x2="147.32" y2="116.84" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="116.84" x2="147.32" y2="113.03" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="C" pin="I0"/>
+<wire x1="152.4" y1="121.92" x2="147.32" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="121.92" x2="147.32" y2="116.84" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="D" pin="I1"/>
+<wire x1="152.4" y1="132.08" x2="147.32" y2="132.08" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="132.08" x2="147.32" y2="121.92" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="D" pin="I0"/>
+<wire x1="152.4" y1="137.16" x2="147.32" y2="137.16" width="0.1524" layer="91"/>
+<wire x1="147.32" y1="137.16" x2="147.32" y2="132.08" width="0.1524" layer="91"/>
+<junction x="147.32" y="132.08"/>
+<junction x="147.32" y="121.92"/>
+<junction x="147.32" y="116.84"/>
+<pinref part="GND10" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="IC2" gate="F" pin="I"/>
+<wire x1="412.75" y1="236.22" x2="408.94" y2="236.22" width="0.1524" layer="91"/>
+<wire x1="408.94" y1="236.22" x2="408.94" y2="248.92" width="0.1524" layer="91"/>
+<wire x1="408.94" y1="248.92" x2="408.94" y2="256.54" width="0.1524" layer="91"/>
+<wire x1="408.94" y1="256.54" x2="403.86" y2="256.54" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="E" pin="I"/>
+<wire x1="412.75" y1="248.92" x2="408.94" y2="248.92" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="D" pin="I"/>
+<wire x1="412.75" y1="261.62" x2="408.94" y2="261.62" width="0.1524" layer="91"/>
+<wire x1="408.94" y1="261.62" x2="408.94" y2="256.54" width="0.1524" layer="91"/>
+<pinref part="IC2" gate="C" pin="I"/>
+<wire x1="412.75" y1="274.32" x2="408.94" y2="274.32" width="0.1524" layer="91"/>
+<wire x1="408.94" y1="274.32" x2="408.94" y2="261.62" width="0.1524" layer="91"/>
+<junction x="408.94" y="261.62"/>
+<junction x="408.94" y="248.92"/>
+<junction x="408.94" y="256.54"/>
+<pinref part="GND22" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="PB6" class="0">
@@ -11310,6 +11357,7 @@ www.zikzak.ca</text>
 <pinref part="CTRL_BUS" gate="A" pin="11"/>
 <pinref part="CTRL_BUS" gate="A" pin="12"/>
 <wire x1="425.45" y1="110.49" x2="433.07" y2="110.49" width="0.1524" layer="91"/>
+<junction x="425.45" y="110.49"/>
 </segment>
 </net>
 <net name="/WR" class="0">
@@ -11451,6 +11499,7 @@ www.zikzak.ca</text>
 <wire x1="46.99" y1="257.81" x2="46.99" y2="261.62" width="0.1524" layer="91"/>
 <wire x1="46.99" y1="261.62" x2="53.34" y2="261.62" width="0.1524" layer="91"/>
 <junction x="53.34" y="261.62"/>
+<junction x="78.74" y="261.62"/>
 </segment>
 <segment>
 <pinref part="RAM-CS0" gate="A" pin="CE2"/>
@@ -11511,6 +11560,7 @@ www.zikzak.ca</text>
 <pinref part="R4" gate="G$1" pin="1"/>
 <wire x1="500.38" y1="303.53" x2="505.46" y2="303.53" width="0.1524" layer="91"/>
 <pinref part="C1" gate="G$1" pin="1"/>
+<junction x="500.38" y="303.53"/>
 </segment>
 <segment>
 <wire x1="72.39" y1="44.45" x2="36.83" y2="44.45" width="0.1524" layer="91"/>
@@ -11530,6 +11580,7 @@ www.zikzak.ca</text>
 <pinref part="R4" gate="G$1" pin="2"/>
 <wire x1="515.62" y1="303.53" x2="519.43" y2="303.53" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="1"/>
+<junction x="519.43" y="303.53"/>
 </segment>
 </net>
 <net name="PHI" class="0">
@@ -12145,6 +12196,7 @@ www.zikzak.ca</text>
 <label x="416.56" y="123.19" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="2"/>
 <wire x1="425.45" y1="123.19" x2="433.07" y2="123.19" width="0.1524" layer="91"/>
+<junction x="425.45" y="123.19"/>
 </segment>
 </net>
 <net name="/RD" class="0">
@@ -12181,6 +12233,7 @@ www.zikzak.ca</text>
 <label x="416.56" y="120.65" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="4"/>
 <wire x1="425.45" y1="120.65" x2="433.07" y2="120.65" width="0.1524" layer="91"/>
+<junction x="425.45" y="120.65"/>
 </segment>
 <segment>
 <wire x1="339.09" y1="261.62" x2="335.28" y2="261.62" width="0.1524" layer="91"/>
@@ -12205,6 +12258,7 @@ www.zikzak.ca</text>
 <label x="416.56" y="118.11" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="6"/>
 <wire x1="425.45" y1="118.11" x2="433.07" y2="118.11" width="0.1524" layer="91"/>
+<junction x="425.45" y="118.11"/>
 </segment>
 </net>
 <net name="/CS1" class="0">
@@ -12224,6 +12278,7 @@ www.zikzak.ca</text>
 <label x="416.56" y="115.57" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="8"/>
 <wire x1="425.45" y1="115.57" x2="433.07" y2="115.57" width="0.1524" layer="91"/>
+<junction x="425.45" y="115.57"/>
 </segment>
 </net>
 <net name="A16" class="0">
@@ -12354,6 +12409,7 @@ www.zikzak.ca</text>
 <label x="416.56" y="107.95" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="14"/>
 <wire x1="425.45" y1="107.95" x2="433.07" y2="107.95" width="0.1524" layer="91"/>
+<junction x="425.45" y="107.95"/>
 </segment>
 <segment>
 <pinref part="EZ80F93" gate="G$1" pin="BUSREQ"/>
@@ -12368,6 +12424,7 @@ www.zikzak.ca</text>
 <label x="416.56" y="105.41" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="16"/>
 <wire x1="425.45" y1="105.41" x2="433.07" y2="105.41" width="0.1524" layer="91"/>
+<junction x="425.45" y="105.41"/>
 </segment>
 <segment>
 <pinref part="EZ80F93" gate="G$1" pin="BUSACK"/>
@@ -12463,6 +12520,7 @@ www.zikzak.ca</text>
 <pinref part="CTRL_BUS" gate="A" pin="9"/>
 <pinref part="CTRL_BUS" gate="A" pin="10"/>
 <wire x1="425.45" y1="113.03" x2="433.07" y2="113.03" width="0.1524" layer="91"/>
+<junction x="425.45" y="113.03"/>
 </segment>
 <segment>
 <wire x1="339.09" y1="274.32" x2="335.28" y2="274.32" width="0.1524" layer="91"/>
@@ -12501,15 +12559,42 @@ www.zikzak.ca</text>
 <label x="114.3" y="59.69" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<wire x1="207.01" y1="252.73" x2="210.82" y2="252.73" width="0.1524" layer="91"/>
+<wire x1="204.47" y1="252.73" x2="210.82" y2="252.73" width="0.1524" layer="91"/>
 <label x="210.82" y="252.73" size="1.27" layer="95" xref="yes"/>
+<pinref part="BOBMISC" gate="A" pin="5"/>
 </segment>
 </net>
 </nets>
 </sheet>
 </sheets>
 <errors>
+<approved hash="104,1,436.88,327.66,OSCDIL14,VSS,GND,,,"/>
+<approved hash="104,1,436.88,317.5,OSCDIL14,VDD,+5V,,,"/>
 <approved hash="202,1,411.48,317.5,OSCDIL14,CON,,,,"/>
+<approved hash="104,1,374.65,330.2,AY-3-8912-CS2,VCC,+5V,,,"/>
+<approved hash="104,1,374.65,327.66,AY-3-8912-CS2,VSS,GND,,,"/>
+<approved hash="104,1,226.06,163.83,RAM-CS0,VCC,+3V3,,,"/>
+<approved hash="106,1,110.49,87.63,A22,,,,,"/>
+<approved hash="106,1,110.49,85.09,A23,,,,,"/>
+<approved hash="113,1,429.218,115.701,CTRL_BUS,,,,,"/>
+<approved hash="113,1,434.702,82.6812,DATA_BUS,,,,,"/>
+<approved hash="113,1,431.11,153.801,ADDRESS_BUS,,,,,"/>
+<approved hash="113,1,63.5423,241.431,ISPZDI,,,,,"/>
+<approved hash="113,1,356.87,311.637,AY-3-8912-CS2,,,,,"/>
+<approved hash="113,1,91.44,91.8887,EZ80F93,,,,,"/>
+<approved hash="113,1,59.5549,311.281,PWRIN1,,,,,"/>
+<approved hash="113,1,238.629,326.713,+5OUT,,,,,"/>
+<approved hash="113,1,238.629,314.296,+3V3OUT,,,,,"/>
+<approved hash="113,1,257.679,328.096,GNDOUT,,,,,"/>
+<approved hash="113,1,95.25,331.792,LED2,,,,,"/>
+<approved hash="113,1,138.44,311.281,PWROUT1,,,,,"/>
+<approved hash="113,1,181.941,255.401,BOBJTAG+,,,,,"/>
+<approved hash="113,1,386.167,224.921,GPIOC-JOY0,,,,,"/>
+<approved hash="113,1,469.813,226.191,GPIOD-JOY1,,,,,"/>
+<approved hash="113,1,406.637,292.231,SPKR,,,,,"/>
+<approved hash="113,1,235.663,256.671,PS2KEYB,,,,,"/>
+<approved hash="113,1,206.524,255.401,BOBMISC,,,,,"/>
+<approved hash="113,1,160.387,255.401,BOBGPIOB,,,,,"/>
 </errors>
 </schematic>
 </drawing>

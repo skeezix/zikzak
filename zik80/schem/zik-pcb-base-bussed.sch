@@ -960,6 +960,21 @@
 <rectangle x1="-1.651" y1="-2.921" x2="-0.889" y2="-1.905" layer="21"/>
 <rectangle x1="0.889" y1="-2.921" x2="1.651" y2="-1.905" layer="21"/>
 </package>
+<package name="1X01">
+<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
+<wire x1="-0.635" y1="1.27" x2="0.635" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="1.27" x2="1.27" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="0.635" x2="1.27" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="1.27" y1="-0.635" x2="0.635" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="0.635" x2="-1.27" y2="-0.635" width="0.1524" layer="21"/>
+<wire x1="-0.635" y1="1.27" x2="-1.27" y2="0.635" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-0.635" x2="-0.635" y2="-1.27" width="0.1524" layer="21"/>
+<wire x1="0.635" y1="-1.27" x2="-0.635" y2="-1.27" width="0.1524" layer="21"/>
+<pad name="1" x="0" y="0" drill="1.016" shape="octagon"/>
+<text x="-1.3462" y="1.8288" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-1.27" y="-3.175" size="1.27" layer="27">&gt;VALUE</text>
+<rectangle x1="-0.254" y1="-0.254" x2="0.254" y2="0.254" layer="51"/>
+</package>
 </packages>
 <symbols>
 <symbol name="PINH2X11">
@@ -1078,6 +1093,15 @@
 <text x="-6.35" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
 <pin name="1" x="-2.54" y="2.54" visible="pad" length="short" direction="pas" function="dot"/>
 <pin name="2" x="-2.54" y="0" visible="pad" length="short" direction="pas" function="dot"/>
+</symbol>
+<symbol name="PINHD1">
+<wire x1="-6.35" y1="-2.54" x2="1.27" y2="-2.54" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="-2.54" x2="1.27" y2="2.54" width="0.4064" layer="94"/>
+<wire x1="1.27" y1="2.54" x2="-6.35" y2="2.54" width="0.4064" layer="94"/>
+<wire x1="-6.35" y1="2.54" x2="-6.35" y2="-2.54" width="0.4064" layer="94"/>
+<text x="-6.35" y="3.175" size="1.778" layer="95">&gt;NAME</text>
+<text x="-6.35" y="-5.08" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="-2.54" y="0" visible="pad" length="short" direction="pas" function="dot"/>
 </symbol>
 </symbols>
 <devicesets>
@@ -1350,6 +1374,22 @@
 <connects>
 <connect gate="G$1" pin="1" pad="1"/>
 <connect gate="G$1" pin="2" pad="2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="PINHD-1X1" prefix="JP" uservalue="yes">
+<description>&lt;b&gt;PIN HEADER&lt;/b&gt;</description>
+<gates>
+<gate name="G$1" symbol="PINHD1" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="1X01">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -10427,6 +10467,8 @@ Based on the following sources:
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="GND22" library="supply1" deviceset="GND" device=""/>
 <part name="BOBI2C" library="pinhead" deviceset="PINHD-1X2" device=""/>
+<part name="PHI" library="pinhead" deviceset="PINHD-1X1" device=""/>
+<part name="/CS3" library="pinhead" deviceset="PINHD-1X1" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10500,8 +10542,12 @@ GPIO PC:
 GPIO PD:
   6 for joy-2
   2 for keyb</text>
-<text x="140.97" y="191.77" size="5.08" layer="91">Jeff Mitchell 2014
+<text x="133.35" y="171.45" size="5.08" layer="91">Jeff Mitchell 2014
 www.zikzak.ca</text>
+<text x="226.06" y="220.98" size="2.54" layer="91">.. and lame 1 pin headers,
+to save me from routing
+the basketweave.. maybe clean
+up later</text>
 </plain>
 <instances>
 <instance part="CTRL_BUS" gate="A" x="427.99" y="115.57"/>
@@ -10617,6 +10663,8 @@ www.zikzak.ca</text>
 <instance part="IC2" gate="F" x="422.91" y="236.22"/>
 <instance part="GND22" gate="1" x="401.32" y="256.54" rot="R270"/>
 <instance part="BOBI2C" gate="G$1" x="182.88" y="231.14"/>
+<instance part="PHI" gate="G$1" x="212.09" y="233.68"/>
+<instance part="/CS3" gate="G$1" x="212.09" y="224.79"/>
 </instances>
 <busses>
 </busses>
@@ -11676,9 +11724,9 @@ www.zikzak.ca</text>
 <label x="68.58" y="49.53" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="BOBMISC" gate="A" pin="3"/>
-<wire x1="204.47" y1="257.81" x2="210.82" y2="257.81" width="0.1524" layer="91"/>
-<label x="210.82" y="257.81" size="1.27" layer="95" xref="yes"/>
+<pinref part="PHI" gate="G$1" pin="1"/>
+<wire x1="209.55" y1="233.68" x2="217.17" y2="233.68" width="0.1524" layer="91"/>
+<label x="217.17" y="233.68" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="VCC" class="0">
@@ -12645,9 +12693,9 @@ www.zikzak.ca</text>
 <label x="114.3" y="59.69" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<wire x1="204.47" y1="252.73" x2="210.82" y2="252.73" width="0.1524" layer="91"/>
-<label x="210.82" y="252.73" size="1.27" layer="95" xref="yes"/>
-<pinref part="BOBMISC" gate="A" pin="5"/>
+<pinref part="/CS3" gate="G$1" pin="1"/>
+<wire x1="209.55" y1="224.79" x2="217.17" y2="224.79" width="0.1524" layer="91"/>
+<label x="217.17" y="224.79" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
