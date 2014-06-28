@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -10474,11 +10474,7 @@ Based on the following sources:
 <sheet>
 <plain>
 <rectangle x1="21.59" y1="-207.518" x2="100.584" y2="-190.5" layer="206"/>
-<text x="213.36" y="-62.23" size="5.08" layer="91">- brd positions
-- drill holes
-- identification stamp
-
-- Big Question: V-in-low and V-in-high from eZ80 to 74HC32-at-3.3 are close
+<text x="214.63" y="-30.48" size="5.08" layer="91">- Big Question: V-in-low and V-in-high from eZ80 to 74HC32-at-3.3 are close
 --&gt; could bodge 5v into 73LS32 and it should work
 
 - GPIO PB unused -&gt; sent to BoB for LEDs/switches
@@ -12538,11 +12534,11 @@ up later</text>
 </net>
 <net name="/BUSREQ" class="0">
 <segment>
-<wire x1="425.45" y1="107.95" x2="416.56" y2="107.95" width="0.1524" layer="91"/>
 <pinref part="CTRL_BUS" gate="A" pin="13"/>
-<label x="416.56" y="107.95" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="14"/>
 <wire x1="425.45" y1="107.95" x2="433.07" y2="107.95" width="0.1524" layer="91"/>
+<wire x1="425.45" y1="107.95" x2="416.56" y2="107.95" width="0.1524" layer="91"/>
+<label x="416.56" y="107.95" size="1.27" layer="95" rot="R180" xref="yes"/>
 <junction x="425.45" y="107.95"/>
 </segment>
 <segment>
@@ -12553,11 +12549,11 @@ up later</text>
 </net>
 <net name="/BUSACK" class="0">
 <segment>
-<wire x1="425.45" y1="105.41" x2="416.56" y2="105.41" width="0.1524" layer="91"/>
 <pinref part="CTRL_BUS" gate="A" pin="15"/>
-<label x="416.56" y="105.41" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="16"/>
 <wire x1="425.45" y1="105.41" x2="433.07" y2="105.41" width="0.1524" layer="91"/>
+<wire x1="425.45" y1="105.41" x2="416.56" y2="105.41" width="0.1524" layer="91"/>
+<label x="416.56" y="105.41" size="1.27" layer="95" rot="R180" xref="yes"/>
 <junction x="425.45" y="105.41"/>
 </segment>
 <segment>
