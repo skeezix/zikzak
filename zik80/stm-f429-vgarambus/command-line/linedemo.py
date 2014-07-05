@@ -61,10 +61,15 @@ if not ser:
 # turn off debug serial responses
 #
 send ( 'LF\r' )
+#send ( 'LO\r' )
 
 # run demos..
 #
 if cmdoptions.linedemo:
+
+    clockstart = time.clock()
+    print "linedemo: start", clockstart
+
     x = y = lx = ly = 0
     for n in range ( int ( cmdoptions.linecount ) + 1 ): # +1 since first is consumed as starting point
 
@@ -91,7 +96,16 @@ if cmdoptions.linedemo:
             break
         print "RESP:", line.strip()
 
+    clockend = time.clock()
+    testdur_s = ( clockend - clockstart ) / 1000000
+    print "linedemo: end", clockend
+    print "linedemo: duration: ", testdur_s, clockend - clockstart
+
 if cmdoptions.filldemo:
+
+    clockstart = time.clock()
+    print "filldemo: start", clockstart
+
     x = y = lx = ly = 0
     for n in range ( int ( cmdoptions.linecount ) + 1 ): # +1 since first is consumed as starting point
 
@@ -113,6 +127,11 @@ if cmdoptions.filldemo:
         if line == "":
             break
         print "RESP:", line.strip()
+
+    clockend = time.clock()
+    testdur_s = ( clockend - clockstart ) / 1000000
+    print "filldemo: end", clockend
+    print "filldemo: duration: ", testdur_s
 
 if cmdoptions.srdemo:
     id = 0

@@ -138,8 +138,9 @@ void usart_puts_optional_set (uint8_t onoff ) {
   _puts_optional = onoff;
 }
 
+extern volatile unsigned char vblank;
 /* static inline */ void USART_puts_optional ( USART_TypeDef* USARTx, volatile char *s ) {
-  if ( _puts_optional ) {
+  if ( ! vblank && _puts_optional ) {
     USART_puts ( USARTx, s );
   }
 }
