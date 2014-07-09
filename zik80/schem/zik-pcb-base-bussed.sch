@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -10474,7 +10474,9 @@ Based on the following sources:
 <sheet>
 <plain>
 <rectangle x1="21.59" y1="-207.518" x2="100.584" y2="-190.5" layer="206"/>
-<text x="214.63" y="-30.48" size="5.08" layer="91">- Big Question: V-in-low and V-in-high from eZ80 to 74HC32-at-3.3 are close
+<text x="214.63" y="-30.48" size="5.08" layer="91">REV2++: Bigger drill holes for cart edge conn .. also check spacing?
+
+- Big Question: V-in-low and V-in-high from eZ80 to 74HC32-at-3.3 are close
 --&gt; could bodge 5v into 73LS32 and it should work
 
 - GPIO PB unused -&gt; sent to BoB for LEDs/switches

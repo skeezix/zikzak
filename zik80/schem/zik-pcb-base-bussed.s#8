@@ -10467,7 +10467,7 @@ Based on the following sources:
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
 <part name="GND22" library="supply1" deviceset="GND" device=""/>
 <part name="BOBI2C" library="pinhead" deviceset="PINHD-1X2" device=""/>
-<part name="JP1" library="pinhead" deviceset="PINHD-1X1" device=""/>
+<part name="PHI" library="pinhead" deviceset="PINHD-1X1" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10658,7 +10658,7 @@ www.zikzak.ca</text>
 <instance part="IC2" gate="F" x="422.91" y="236.22"/>
 <instance part="GND22" gate="1" x="401.32" y="256.54" rot="R270"/>
 <instance part="BOBI2C" gate="G$1" x="182.88" y="231.14"/>
-<instance part="JP1" gate="G$1" x="212.09" y="233.68"/>
+<instance part="PHI" gate="G$1" x="212.09" y="233.68"/>
 </instances>
 <busses>
 </busses>
@@ -11718,7 +11718,7 @@ www.zikzak.ca</text>
 <label x="68.58" y="49.53" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="JP1" gate="G$1" pin="1"/>
+<pinref part="PHI" gate="G$1" pin="1"/>
 <wire x1="209.55" y1="233.68" x2="217.17" y2="233.68" width="0.1524" layer="91"/>
 <label x="217.17" y="233.68" size="1.27" layer="95" xref="yes"/>
 </segment>

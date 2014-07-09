@@ -9557,14 +9557,14 @@ PC6-7 = brightness
 PE - addr bus
 PD 8..13 .. addr bus
 PD 0..7 data bus</text>
-<text x="-80.01" y="-166.37" size="2.54" layer="91">Legend:
+<text x="304.8" y="0" size="2.54" layer="91">Legend:
 p1: Console TX (send from micro): usart2
 p2: Console RX (receive to micro): usart2
 p3: 
 p4: 
 p5: 
 p6: vblank</text>
-<text x="-53.34" y="-240.03" size="2.54" layer="91">Legend:
+<text x="306.07" y="-72.39" size="2.54" layer="91">Legend:
 + usart1 video
 + i2c
 p1: usart CK
@@ -9639,8 +9639,8 @@ somehow.. etc</text>
 <instance part="R5" gate="G$1" x="288.29" y="133.35"/>
 <instance part="R6" gate="G$1" x="288.29" y="114.3"/>
 <instance part="R7" gate="G$1" x="288.29" y="119.38"/>
-<instance part="IOHDR" gate="A" x="-87.63" y="-156.21"/>
-<instance part="GPUHDR" gate="A" x="-62.23" y="-212.09"/>
+<instance part="IOHDR" gate="A" x="297.18" y="10.16"/>
+<instance part="GPUHDR" gate="A" x="297.18" y="-44.45"/>
 <instance part="R8" gate="G$1" x="172.72" y="-95.25" rot="MR90"/>
 <instance part="GND13" gate="1" x="172.72" y="-105.41" rot="MR0"/>
 <instance part="R9" gate="G$1" x="289.56" y="105.41"/>
@@ -10259,8 +10259,8 @@ somehow.. etc</text>
 </segment>
 <segment>
 <pinref part="IOHDR" gate="A" pin="1"/>
-<wire x1="-90.17" y1="-148.59" x2="-96.52" y2="-148.59" width="0.1524" layer="91"/>
-<label x="-96.52" y="-148.59" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="294.64" y1="17.78" x2="288.29" y2="17.78" width="0.1524" layer="91"/>
+<label x="288.29" y="17.78" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="1-25" gate="A" pin="25"/>
@@ -10276,8 +10276,8 @@ somehow.. etc</text>
 </segment>
 <segment>
 <pinref part="IOHDR" gate="A" pin="2"/>
-<wire x1="-90.17" y1="-151.13" x2="-96.52" y2="-151.13" width="0.1524" layer="91"/>
-<label x="-96.52" y="-151.13" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="294.64" y1="15.24" x2="288.29" y2="15.24" width="0.1524" layer="91"/>
+<label x="288.29" y="15.24" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="26-50" gate="A" pin="1"/>
@@ -10431,8 +10431,8 @@ somehow.. etc</text>
 </segment>
 <segment>
 <pinref part="GPUHDR" gate="A" pin="1"/>
-<wire x1="-64.77" y1="-201.93" x2="-71.12" y2="-201.93" width="0.1524" layer="91"/>
-<label x="-71.12" y="-201.93" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="294.64" y1="-34.29" x2="288.29" y2="-34.29" width="0.1524" layer="91"/>
+<label x="288.29" y="-34.29" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="51-75" gate="A" pin="17"/>
@@ -10448,8 +10448,8 @@ somehow.. etc</text>
 </segment>
 <segment>
 <pinref part="GPUHDR" gate="A" pin="2"/>
-<wire x1="-64.77" y1="-204.47" x2="-71.12" y2="-204.47" width="0.1524" layer="91"/>
-<label x="-71.12" y="-204.47" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="294.64" y1="-36.83" x2="288.29" y2="-36.83" width="0.1524" layer="91"/>
+<label x="288.29" y="-36.83" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="51-75" gate="A" pin="18"/>
@@ -10465,8 +10465,8 @@ somehow.. etc</text>
 </segment>
 <segment>
 <pinref part="GPUHDR" gate="A" pin="3"/>
-<wire x1="-64.77" y1="-207.01" x2="-71.12" y2="-207.01" width="0.1524" layer="91"/>
-<label x="-71.12" y="-207.01" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="294.64" y1="-39.37" x2="288.29" y2="-39.37" width="0.1524" layer="91"/>
+<label x="288.29" y="-39.37" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="51-75" gate="A" pin="19"/>
@@ -10482,8 +10482,8 @@ somehow.. etc</text>
 </segment>
 <segment>
 <pinref part="GPUHDR" gate="A" pin="4"/>
-<wire x1="-64.77" y1="-209.55" x2="-71.12" y2="-209.55" width="0.1524" layer="91"/>
-<label x="-71.12" y="-209.55" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="294.64" y1="-41.91" x2="288.29" y2="-41.91" width="0.1524" layer="91"/>
+<label x="288.29" y="-41.91" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="51-75" gate="A" pin="20"/>
@@ -10499,8 +10499,8 @@ somehow.. etc</text>
 </segment>
 <segment>
 <pinref part="GPUHDR" gate="A" pin="5"/>
-<wire x1="-64.77" y1="-212.09" x2="-71.12" y2="-212.09" width="0.1524" layer="91"/>
-<label x="-71.12" y="-212.09" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="294.64" y1="-44.45" x2="288.29" y2="-44.45" width="0.1524" layer="91"/>
+<label x="288.29" y="-44.45" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="51-75" gate="A" pin="21"/>
@@ -10819,8 +10819,8 @@ somehow.. etc</text>
 </segment>
 <segment>
 <pinref part="GPUHDR" gate="A" pin="7"/>
-<wire x1="-64.77" y1="-217.17" x2="-71.12" y2="-217.17" width="0.1524" layer="91"/>
-<label x="-71.12" y="-217.17" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="294.64" y1="-49.53" x2="288.29" y2="-49.53" width="0.1524" layer="91"/>
+<label x="288.29" y="-49.53" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="76-100" gate="A" pin="17"/>
@@ -10836,8 +10836,8 @@ somehow.. etc</text>
 </segment>
 <segment>
 <pinref part="GPUHDR" gate="A" pin="8"/>
-<wire x1="-64.77" y1="-219.71" x2="-71.12" y2="-219.71" width="0.1524" layer="91"/>
-<label x="-71.12" y="-219.71" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="294.64" y1="-52.07" x2="288.29" y2="-52.07" width="0.1524" layer="91"/>
+<label x="288.29" y="-52.07" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="76-100" gate="A" pin="18"/>
@@ -10887,8 +10887,8 @@ somehow.. etc</text>
 </segment>
 <segment>
 <pinref part="IOHDR" gate="A" pin="6"/>
-<wire x1="-90.17" y1="-161.29" x2="-96.52" y2="-161.29" width="0.1524" layer="91"/>
-<label x="-96.52" y="-161.29" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="294.64" y1="5.08" x2="288.29" y2="5.08" width="0.1524" layer="91"/>
+<label x="288.29" y="5.08" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
 <pinref part="51-75" gate="A" pin="1"/>

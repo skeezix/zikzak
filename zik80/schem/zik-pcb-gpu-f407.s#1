@@ -9490,7 +9490,7 @@ general purpose rectifier, 1 A</description>
 <part name="VBATPWRJP" library="pinhead" deviceset="PINHD-1X2" device=""/>
 <part name="C10" library="rcl" deviceset="C-EU" device="025-025X050" value=".1uF"/>
 <part name="GND14" library="supply1" deviceset="GND" device=""/>
-<part name="U$2" library="stm32f4" deviceset="STM32F407V" device=""/>
+<part name="STM32F4" library="stm32f4" deviceset="STM32F407V" device=""/>
 <part name="C11" library="rcl" deviceset="C-EU" device="025-025X050" value=".1uF"/>
 <part name="C12" library="rcl" deviceset="C-EU" device="025-025X050" value=".1uF"/>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
@@ -9658,7 +9658,7 @@ bus) from cpu/base</text>
 <instance part="VBATPWRJP" gate="G$1" x="-41.91" y="58.42" rot="R270"/>
 <instance part="C10" gate="G$1" x="-52.07" y="48.26"/>
 <instance part="GND14" gate="1" x="-52.07" y="36.83"/>
-<instance part="U$2" gate="G$1" x="83.82" y="-86.36"/>
+<instance part="STM32F4" gate="G$1" x="83.82" y="-86.36"/>
 <instance part="C11" gate="G$1" x="15.24" y="8.89"/>
 <instance part="C12" gate="G$1" x="6.35" y="8.89"/>
 <instance part="GND15" gate="1" x="15.24" y="0"/>
@@ -9723,12 +9723,12 @@ bus) from cpu/base</text>
 <wire x1="76.2" y1="45.72" x2="-11.43" y2="45.72" width="0.1524" layer="91"/>
 <pinref part="C7" gate="G$1" pin="1"/>
 <wire x1="-11.43" y1="45.72" x2="-11.43" y2="41.91" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="VDDA"/>
+<pinref part="STM32F4" gate="G$1" pin="VDDA"/>
 <wire x1="-11.43" y1="41.91" x2="-11.43" y2="34.29" width="0.1524" layer="91"/>
 <wire x1="78.74" y1="43.18" x2="76.2" y2="43.18" width="0.1524" layer="91"/>
 <wire x1="76.2" y1="43.18" x2="76.2" y2="45.72" width="0.1524" layer="91"/>
 <junction x="76.2" y="45.72"/>
-<pinref part="U$2" gate="G$1" pin="VREF+"/>
+<pinref part="STM32F4" gate="G$1" pin="VREF+"/>
 <wire x1="-11.43" y1="41.91" x2="-7.62" y2="41.91" width="0.1524" layer="91"/>
 <junction x="-11.43" y="41.91"/>
 <label x="-7.62" y="41.91" size="1.27" layer="95" rot="R270" xref="yes"/>
@@ -9739,7 +9739,7 @@ bus) from cpu/base</text>
 <wire x1="50.8" y1="20.32" x2="48.26" y2="20.32" width="0.1524" layer="91"/>
 <wire x1="50.8" y1="11.43" x2="50.8" y2="20.32" width="0.1524" layer="91"/>
 <junction x="50.8" y="20.32"/>
-<pinref part="U$2" gate="G$1" pin="VDD_6"/>
+<pinref part="STM32F4" gate="G$1" pin="VDD_6"/>
 <label x="48.26" y="20.32" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
@@ -9776,7 +9776,7 @@ bus) from cpu/base</text>
 <segment>
 <pinref part="C3" gate="G$1" pin="1"/>
 <wire x1="41.91" y1="11.43" x2="41.91" y2="20.32" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="VDD_5"/>
+<pinref part="STM32F4" gate="G$1" pin="VDD_5"/>
 <wire x1="41.91" y1="20.32" x2="41.91" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="41.91" y1="22.86" x2="78.74" y2="22.86" width="0.1524" layer="91"/>
 <wire x1="39.37" y1="20.32" x2="41.91" y2="20.32" width="0.1524" layer="91"/>
@@ -9786,7 +9786,7 @@ bus) from cpu/base</text>
 <segment>
 <pinref part="C4" gate="G$1" pin="1"/>
 <wire x1="33.02" y1="11.43" x2="33.02" y2="20.32" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="VDD_4"/>
+<pinref part="STM32F4" gate="G$1" pin="VDD_4"/>
 <wire x1="33.02" y1="20.32" x2="33.02" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="33.02" y1="25.4" x2="78.74" y2="25.4" width="0.1524" layer="91"/>
 <wire x1="30.48" y1="20.32" x2="33.02" y2="20.32" width="0.1524" layer="91"/>
@@ -9796,7 +9796,7 @@ bus) from cpu/base</text>
 <segment>
 <pinref part="C6" gate="G$1" pin="1"/>
 <wire x1="24.13" y1="11.43" x2="24.13" y2="20.32" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="VDD_3"/>
+<pinref part="STM32F4" gate="G$1" pin="VDD_3"/>
 <wire x1="24.13" y1="20.32" x2="24.13" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="24.13" y1="27.94" x2="78.74" y2="27.94" width="0.1524" layer="91"/>
 <wire x1="21.59" y1="20.32" x2="24.13" y2="20.32" width="0.1524" layer="91"/>
@@ -9804,7 +9804,7 @@ bus) from cpu/base</text>
 <label x="21.59" y="20.32" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="VDD_2"/>
+<pinref part="STM32F4" gate="G$1" pin="VDD_2"/>
 <pinref part="C11" gate="G$1" pin="1"/>
 <wire x1="78.74" y1="30.48" x2="15.24" y2="30.48" width="0.1524" layer="91"/>
 <wire x1="15.24" y1="30.48" x2="15.24" y2="20.32" width="0.1524" layer="91"/>
@@ -9814,7 +9814,7 @@ bus) from cpu/base</text>
 <label x="12.7" y="20.32" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="VDD_1"/>
+<pinref part="STM32F4" gate="G$1" pin="VDD_1"/>
 <pinref part="C12" gate="G$1" pin="1"/>
 <wire x1="78.74" y1="33.02" x2="6.35" y2="33.02" width="0.1524" layer="91"/>
 <wire x1="6.35" y1="33.02" x2="6.35" y2="20.32" width="0.1524" layer="91"/>
@@ -9874,23 +9874,23 @@ bus) from cpu/base</text>
 <segment>
 <wire x1="78.74" y1="40.64" x2="67.31" y2="40.64" width="0.1524" layer="91"/>
 <label x="67.31" y="40.64" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="U$2" gate="G$1" pin="VSSA"/>
+<pinref part="STM32F4" gate="G$1" pin="VSSA"/>
 </segment>
 <segment>
 <wire x1="78.74" y1="7.62" x2="72.39" y2="7.62" width="0.1524" layer="91"/>
 <label x="72.39" y="7.62" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="U$2" gate="G$1" pin="VSS_3"/>
+<pinref part="STM32F4" gate="G$1" pin="VSS_3"/>
 <wire x1="78.74" y1="12.7" x2="72.39" y2="12.7" width="0.1524" layer="91"/>
 <label x="72.39" y="12.7" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="U$2" gate="G$1" pin="VSS_1"/>
+<pinref part="STM32F4" gate="G$1" pin="VSS_1"/>
 </segment>
 <segment>
 <wire x1="78.74" y1="5.08" x2="64.77" y2="5.08" width="0.1524" layer="91"/>
 <label x="64.77" y="5.08" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="U$2" gate="G$1" pin="VSS_4"/>
+<pinref part="STM32F4" gate="G$1" pin="VSS_4"/>
 <wire x1="78.74" y1="10.16" x2="64.77" y2="10.16" width="0.1524" layer="91"/>
 <label x="64.77" y="10.16" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="U$2" gate="G$1" pin="VSS_2"/>
+<pinref part="STM32F4" gate="G$1" pin="VSS_2"/>
 </segment>
 <segment>
 <pinref part="GNDOUT" gate="A" pin="3"/>
@@ -10042,7 +10042,7 @@ bus) from cpu/base</text>
 <label x="8.89" y="148.59" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA15/JTDI(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA15/JTDI(5T)"/>
 <wire x1="78.74" y1="-40.64" x2="74.93" y2="-40.64" width="0.1524" layer="91"/>
 <label x="74.93" y="-40.64" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10059,7 +10059,7 @@ bus) from cpu/base</text>
 <label x="3.81" y="148.59" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA14/JTCK-SWCLK(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA14/JTCK-SWCLK(5T)"/>
 <wire x1="78.74" y1="-38.1" x2="74.93" y2="-38.1" width="0.1524" layer="91"/>
 <label x="74.93" y="-38.1" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10076,7 +10076,7 @@ bus) from cpu/base</text>
 <label x="6.35" y="156.21" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA13/JTMS-SWDAT(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA13/JTMS-SWDAT(5T)"/>
 <wire x1="78.74" y1="-35.56" x2="74.93" y2="-35.56" width="0.1524" layer="91"/>
 <label x="74.93" y="-35.56" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10093,7 +10093,7 @@ bus) from cpu/base</text>
 <label x="-1.27" y="148.59" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB3/JTDO(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB3/JTDO(5T)"/>
 <label x="74.93" y="-53.34" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="8"/>
 <wire x1="78.74" y1="-53.34" x2="53.34" y2="-53.34" width="0.1524" layer="91"/>
@@ -10108,7 +10108,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB4" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB4/JNTRST(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB4/JNTRST(5T)"/>
 <label x="74.93" y="-55.88" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="10"/>
 <wire x1="78.74" y1="-55.88" x2="53.34" y2="-55.88" width="0.1524" layer="91"/>
@@ -10131,7 +10131,7 @@ bus) from cpu/base</text>
 <wire x1="193.04" y1="-83.82" x2="193.04" y2="-90.17" width="0.1524" layer="91"/>
 <junction x="198.12" y="-83.82"/>
 <label x="198.12" y="-73.66" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="U$2" gate="G$1" pin="PH1-OSC_OUT(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PH1-OSC_OUT(5T)"/>
 </segment>
 <segment>
 <pinref part="1-25" gate="A" pin="13"/>
@@ -10149,7 +10149,7 @@ bus) from cpu/base</text>
 <wire x1="207.01" y1="-83.82" x2="203.2" y2="-83.82" width="0.1524" layer="91"/>
 <junction x="203.2" y="-83.82"/>
 <label x="203.2" y="-71.12" size="1.27" layer="95" xref="yes"/>
-<pinref part="U$2" gate="G$1" pin="PH0-OSC_IN(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PH0-OSC_IN(5T)"/>
 </segment>
 <segment>
 <pinref part="1-25" gate="A" pin="12"/>
@@ -10165,7 +10165,7 @@ bus) from cpu/base</text>
 <wire x1="161.29" y1="-83.82" x2="163.83" y2="-83.82" width="0.1524" layer="91"/>
 <wire x1="161.29" y1="-97.79" x2="161.29" y2="-83.82" width="0.1524" layer="91"/>
 <junction x="161.29" y="-83.82"/>
-<pinref part="U$2" gate="G$1" pin="NRST"/>
+<pinref part="STM32F4" gate="G$1" pin="NRST"/>
 </segment>
 <segment>
 <pinref part="ISPJTAG" gate="A" pin="15"/>
@@ -10185,7 +10185,7 @@ bus) from cpu/base</text>
 <label x="280.67" y="147.32" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC0/ADC123_IN10(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC0/ADC123_IN10(5T)"/>
 <wire x1="157.48" y1="58.42" x2="161.29" y2="58.42" width="0.1524" layer="91"/>
 <label x="161.29" y="58.42" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10202,7 +10202,7 @@ bus) from cpu/base</text>
 <label x="280.67" y="142.24" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC1/ETH_MDC/ADC123_IN11(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC1/ETH_MDC/ADC123_IN11(5T)"/>
 <wire x1="157.48" y1="55.88" x2="161.29" y2="55.88" width="0.1524" layer="91"/>
 <label x="161.29" y="55.88" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10219,7 +10219,7 @@ bus) from cpu/base</text>
 <label x="280.67" y="133.35" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC2/ETH_MII_TXD2/ADC123_IN12(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC2/ETH_MII_TXD2/ADC123_IN12(5T)"/>
 <wire x1="157.48" y1="53.34" x2="161.29" y2="53.34" width="0.1524" layer="91"/>
 <label x="161.29" y="53.34" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10236,7 +10236,7 @@ bus) from cpu/base</text>
 <label x="280.67" y="128.27" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC3/ETH_MII_TX_CLK/ADC123_IN13(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC3/ETH_MII_TX_CLK/ADC123_IN13(5T)"/>
 <wire x1="157.48" y1="50.8" x2="161.29" y2="50.8" width="0.1524" layer="91"/>
 <label x="161.29" y="50.8" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10248,7 +10248,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA2" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA2/ETH_MDIO/ADC123_IN2(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA2/ETH_MDIO/ADC123_IN2(5T)"/>
 <wire x1="78.74" y1="-7.62" x2="74.93" y2="-7.62" width="0.1524" layer="91"/>
 <label x="74.93" y="-7.62" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10265,7 +10265,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA3" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA3/ETH_MII_COL/ADC123_IN2(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA3/ETH_MII_COL/ADC123_IN2(5T)"/>
 <wire x1="78.74" y1="-10.16" x2="74.93" y2="-10.16" width="0.1524" layer="91"/>
 <label x="74.93" y="-10.16" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10287,7 +10287,7 @@ bus) from cpu/base</text>
 <label x="280.67" y="119.38" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC4/ETH_MII_RXD0/ADC12_IN14(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC4/ETH_MII_RXD0/ADC12_IN14(5T)"/>
 <wire x1="157.48" y1="48.26" x2="161.29" y2="48.26" width="0.1524" layer="91"/>
 <label x="161.29" y="48.26" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10304,7 +10304,7 @@ bus) from cpu/base</text>
 <label x="280.67" y="114.3" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC5/ETH_MII_RXD1/ADC12_IN15(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC5/ETH_MII_RXD1/ADC12_IN15(5T)"/>
 <wire x1="157.48" y1="45.72" x2="161.29" y2="45.72" width="0.1524" layer="91"/>
 <label x="161.29" y="45.72" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10321,7 +10321,7 @@ bus) from cpu/base</text>
 <label x="317.5" y="154.94" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB10/ETH_MII_RX_ER(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB10/ETH_MII_RX_ER(5T)"/>
 <wire x1="78.74" y1="-71.12" x2="74.93" y2="-71.12" width="0.1524" layer="91"/>
 <label x="74.93" y="-71.12" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10338,7 +10338,7 @@ bus) from cpu/base</text>
 <label x="317.5" y="152.4" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB11/ETH_MII_TX_EN(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB11/ETH_MII_TX_EN(5T)"/>
 <wire x1="78.74" y1="-73.66" x2="74.93" y2="-73.66" width="0.1524" layer="91"/>
 <label x="74.93" y="-73.66" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10358,7 +10358,7 @@ bus) from cpu/base</text>
 <wire x1="69.85" y1="58.42" x2="-25.4" y2="58.42" width="0.1524" layer="91"/>
 <wire x1="-25.4" y1="58.42" x2="-25.4" y2="53.34" width="0.1524" layer="91"/>
 <junction x="69.85" y="55.88"/>
-<pinref part="U$2" gate="G$1" pin="VCAP1"/>
+<pinref part="STM32F4" gate="G$1" pin="VCAP1"/>
 </segment>
 <segment>
 <pinref part="26-50" gate="A" pin="24"/>
@@ -10382,7 +10382,7 @@ bus) from cpu/base</text>
 <pinref part="D1" gate="1" pin="A"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC6/TIM3_CH1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC6/TIM3_CH1(5T)"/>
 <wire x1="157.48" y1="43.18" x2="161.29" y2="43.18" width="0.1524" layer="91"/>
 <label x="161.29" y="43.18" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10408,7 +10408,7 @@ bus) from cpu/base</text>
 <pinref part="D2" gate="1" pin="A"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC7/TIM8_CH2(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC7/TIM8_CH2(5T)"/>
 <wire x1="157.48" y1="40.64" x2="161.29" y2="40.64" width="0.1524" layer="91"/>
 <label x="161.29" y="40.64" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10420,7 +10420,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA8" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA8/MCO1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA8/MCO1(5T)"/>
 <wire x1="78.74" y1="-22.86" x2="74.93" y2="-22.86" width="0.1524" layer="91"/>
 <label x="74.93" y="-22.86" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10437,7 +10437,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA9" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA9/USART1_TX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA9/USART1_TX(5T)"/>
 <wire x1="78.74" y1="-25.4" x2="74.93" y2="-25.4" width="0.1524" layer="91"/>
 <label x="74.93" y="-25.4" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10454,7 +10454,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA10" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA10/USART1_RX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA10/USART1_RX(5T)"/>
 <wire x1="78.74" y1="-27.94" x2="74.93" y2="-27.94" width="0.1524" layer="91"/>
 <label x="74.93" y="-27.94" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10471,7 +10471,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA11" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA11/USART1_CTS(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA11/USART1_CTS(5T)"/>
 <wire x1="78.74" y1="-30.48" x2="74.93" y2="-30.48" width="0.1524" layer="91"/>
 <label x="74.93" y="-30.48" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10488,7 +10488,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA12" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA12/USART1_RTS(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA12/USART1_RTS(5T)"/>
 <wire x1="78.74" y1="-33.02" x2="74.93" y2="-33.02" width="0.1524" layer="91"/>
 <label x="74.93" y="-33.02" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10512,7 +10512,7 @@ bus) from cpu/base</text>
 <wire x1="52.07" y1="53.34" x2="-19.05" y2="53.34" width="0.1524" layer="91"/>
 <wire x1="-19.05" y1="53.34" x2="-19.05" y2="44.45" width="0.1524" layer="91"/>
 <junction x="52.07" y="53.34"/>
-<pinref part="U$2" gate="G$1" pin="VCAP2"/>
+<pinref part="STM32F4" gate="G$1" pin="VCAP2"/>
 </segment>
 <segment>
 <pinref part="51-75" gate="A" pin="23"/>
@@ -10528,7 +10528,7 @@ bus) from cpu/base</text>
 <wire x1="172.72" y1="-81.28" x2="175.26" y2="-81.28" width="0.1524" layer="91"/>
 <wire x1="172.72" y1="-90.17" x2="172.72" y2="-81.28" width="0.1524" layer="91"/>
 <junction x="172.72" y="-81.28"/>
-<pinref part="U$2" gate="G$1" pin="BOOT0"/>
+<pinref part="STM32F4" gate="G$1" pin="BOOT0"/>
 </segment>
 <segment>
 <pinref part="76-100" gate="A" pin="19"/>
@@ -10547,7 +10547,7 @@ bus) from cpu/base</text>
 <wire x1="-39.37" y1="71.12" x2="-39.37" y2="60.96" width="0.1524" layer="91"/>
 <junction x="69.85" y="63.5"/>
 <wire x1="76.2" y1="63.5" x2="76.2" y2="58.42" width="0.1524" layer="91"/>
-<pinref part="U$2" gate="G$1" pin="VBAT"/>
+<pinref part="STM32F4" gate="G$1" pin="VBAT"/>
 <wire x1="76.2" y1="58.42" x2="78.74" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
@@ -10676,7 +10676,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA0" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA0/ETH_MII_CRS/ADC123_IN0(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA0/ETH_MII_CRS/ADC123_IN0(5T)"/>
 <wire x1="78.74" y1="-2.54" x2="74.93" y2="-2.54" width="0.1524" layer="91"/>
 <label x="74.93" y="-2.54" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10688,7 +10688,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA1" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA1/ETH_RMII_RX_CLK/ADC123_IN1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA1/ETH_RMII_RX_CLK/ADC123_IN1(5T)"/>
 <wire x1="78.74" y1="-5.08" x2="74.93" y2="-5.08" width="0.1524" layer="91"/>
 <label x="74.93" y="-5.08" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10700,7 +10700,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA4" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA4/ADC12_IN4"/>
+<pinref part="STM32F4" gate="G$1" pin="PA4/ADC12_IN4"/>
 <wire x1="78.74" y1="-12.7" x2="74.93" y2="-12.7" width="0.1524" layer="91"/>
 <label x="74.93" y="-12.7" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10712,7 +10712,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA5" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA5/SPI1_SCK/ADC12_IN5"/>
+<pinref part="STM32F4" gate="G$1" pin="PA5/SPI1_SCK/ADC12_IN5"/>
 <wire x1="78.74" y1="-15.24" x2="74.93" y2="-15.24" width="0.1524" layer="91"/>
 <label x="74.93" y="-15.24" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10724,7 +10724,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA6" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA6/SPI1_MISO/ADC12_IN6(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA6/SPI1_MISO/ADC12_IN6(5T)"/>
 <wire x1="78.74" y1="-17.78" x2="74.93" y2="-17.78" width="0.1524" layer="91"/>
 <label x="74.93" y="-17.78" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10736,7 +10736,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PA7" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PA7/ETH_MII_RX_DV/ADC12_IN7(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PA7/ETH_MII_RX_DV/ADC12_IN7(5T)"/>
 <wire x1="78.74" y1="-20.32" x2="74.93" y2="-20.32" width="0.1524" layer="91"/>
 <label x="74.93" y="-20.32" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10748,7 +10748,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB0" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB0/ETH_MII_RXD2/ADC12_IN8(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB0/ETH_MII_RXD2/ADC12_IN8(5T)"/>
 <label x="74.93" y="-45.72" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="2"/>
 <wire x1="78.74" y1="-45.72" x2="53.34" y2="-45.72" width="0.1524" layer="91"/>
@@ -10763,7 +10763,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB1" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB1/ETH_MII_RXD3/ADC12_IN9(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB1/ETH_MII_RXD3/ADC12_IN9(5T)"/>
 <label x="74.93" y="-48.26" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="4"/>
 <wire x1="78.74" y1="-48.26" x2="53.34" y2="-48.26" width="0.1524" layer="91"/>
@@ -10778,7 +10778,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB2" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB2/BOOT1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB2/BOOT1(5T)"/>
 <label x="74.93" y="-50.8" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="6"/>
 <wire x1="78.74" y1="-50.8" x2="53.34" y2="-50.8" width="0.1524" layer="91"/>
@@ -10793,7 +10793,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB5" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB5/TIM3_CH2(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB5/TIM3_CH2(5T)"/>
 <label x="74.93" y="-58.42" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="12"/>
 <wire x1="78.74" y1="-58.42" x2="53.34" y2="-58.42" width="0.1524" layer="91"/>
@@ -10808,7 +10808,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB6" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB6/I2C1_SCL(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB6/I2C1_SCL(5T)"/>
 <wire x1="78.74" y1="-60.96" x2="74.93" y2="-60.96" width="0.1524" layer="91"/>
 <label x="74.93" y="-60.96" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10825,7 +10825,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB7" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB7/I2C1_SDA(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB7/I2C1_SDA(5T)"/>
 <wire x1="78.74" y1="-63.5" x2="74.93" y2="-63.5" width="0.1524" layer="91"/>
 <label x="74.93" y="-63.5" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10842,7 +10842,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB8" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB8/TIM10_CH1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB8/TIM10_CH1(5T)"/>
 <label x="74.93" y="-66.04" size="1.27" layer="95" rot="R180" xref="yes"/>
 <wire x1="78.74" y1="-66.04" x2="64.77" y2="-66.04" width="0.1524" layer="91"/>
 <wire x1="64.77" y1="-66.04" x2="64.77" y2="-60.96" width="0.1524" layer="91"/>
@@ -10859,7 +10859,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB9" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB9/TIM11_CH1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB9/TIM11_CH1(5T)"/>
 <label x="74.93" y="-68.58" size="1.27" layer="95" rot="R180" xref="yes"/>
 <wire x1="78.74" y1="-68.58" x2="62.23" y2="-68.58" width="0.1524" layer="91"/>
 <wire x1="62.23" y1="-68.58" x2="62.23" y2="-63.5" width="0.1524" layer="91"/>
@@ -10876,7 +10876,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB12" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB12/ETH_MII_TXD0(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB12/ETH_MII_TXD0(5T)"/>
 <wire x1="78.74" y1="-76.2" x2="74.93" y2="-76.2" width="0.1524" layer="91"/>
 <label x="74.93" y="-76.2" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10893,7 +10893,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB13" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB13/ETH_MII_TXD1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB13/ETH_MII_TXD1(5T)"/>
 <wire x1="78.74" y1="-78.74" x2="74.93" y2="-78.74" width="0.1524" layer="91"/>
 <label x="74.93" y="-78.74" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10905,7 +10905,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB14" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB14/TIM8_CH2N(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB14/TIM8_CH2N(5T)"/>
 <wire x1="78.74" y1="-81.28" x2="74.93" y2="-81.28" width="0.1524" layer="91"/>
 <label x="74.93" y="-81.28" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10917,7 +10917,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PB15" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PB15/TIM8_CH3N(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PB15/TIM8_CH3N(5T)"/>
 <wire x1="78.74" y1="-83.82" x2="74.93" y2="-83.82" width="0.1524" layer="91"/>
 <label x="74.93" y="-83.82" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
@@ -10929,7 +10929,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PC8" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC8/TIM8_CH3(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC8/TIM8_CH3(5T)"/>
 <wire x1="157.48" y1="38.1" x2="161.29" y2="38.1" width="0.1524" layer="91"/>
 <label x="161.29" y="38.1" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10941,7 +10941,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PC9" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC9/TIM3_CH4(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC9/TIM3_CH4(5T)"/>
 <wire x1="157.48" y1="35.56" x2="161.29" y2="35.56" width="0.1524" layer="91"/>
 <label x="161.29" y="35.56" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10953,7 +10953,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PC10" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC10/UART4_TX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC10/UART4_TX(5T)"/>
 <wire x1="157.48" y1="33.02" x2="161.29" y2="33.02" width="0.1524" layer="91"/>
 <label x="161.29" y="33.02" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10965,7 +10965,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PC11" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC11/UART4_RX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC11/UART4_RX(5T)"/>
 <wire x1="157.48" y1="30.48" x2="161.29" y2="30.48" width="0.1524" layer="91"/>
 <label x="161.29" y="30.48" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10977,7 +10977,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PC12" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC12/UART5_TX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC12/UART5_TX(5T)"/>
 <wire x1="157.48" y1="27.94" x2="161.29" y2="27.94" width="0.1524" layer="91"/>
 <label x="161.29" y="27.94" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -10989,7 +10989,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PC13" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC13(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC13(5T)"/>
 <wire x1="157.48" y1="25.4" x2="161.29" y2="25.4" width="0.1524" layer="91"/>
 <label x="161.29" y="25.4" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11001,7 +11001,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PC14" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC14/OSC32_IN(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC14/OSC32_IN(5T)"/>
 <wire x1="157.48" y1="22.86" x2="161.29" y2="22.86" width="0.1524" layer="91"/>
 <label x="161.29" y="22.86" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11013,7 +11013,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PC15" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PC15/OSC32_OUT(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PC15/OSC32_OUT(5T)"/>
 <wire x1="157.48" y1="20.32" x2="161.29" y2="20.32" width="0.1524" layer="91"/>
 <label x="161.29" y="20.32" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11025,7 +11025,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD0" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD0/CAN1_RX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD0/CAN1_RX(5T)"/>
 <label x="161.29" y="15.24" size="1.27" layer="95" xref="yes"/>
 <pinref part="DATA_BUS" gate="A" pin="1"/>
 <wire x1="157.48" y1="15.24" x2="185.42" y2="15.24" width="0.1524" layer="91"/>
@@ -11038,7 +11038,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD1" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD1/CAN1_TX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD1/CAN1_TX(5T)"/>
 <label x="161.29" y="12.7" size="1.27" layer="95" xref="yes"/>
 <wire x1="157.48" y1="12.7" x2="185.42" y2="12.7" width="0.1524" layer="91"/>
 <pinref part="DATA_BUS" gate="A" pin="2"/>
@@ -11051,7 +11051,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD2" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD2/UART5_RX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD2/UART5_RX(5T)"/>
 <label x="161.29" y="10.16" size="1.27" layer="95" xref="yes"/>
 <pinref part="DATA_BUS" gate="A" pin="3"/>
 <wire x1="157.48" y1="10.16" x2="185.42" y2="10.16" width="0.1524" layer="91"/>
@@ -11064,7 +11064,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD3" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD3(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD3(5T)"/>
 <label x="161.29" y="7.62" size="1.27" layer="95" xref="yes"/>
 <pinref part="DATA_BUS" gate="A" pin="4"/>
 <wire x1="157.48" y1="7.62" x2="185.42" y2="7.62" width="0.1524" layer="91"/>
@@ -11077,7 +11077,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD4" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD4(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD4(5T)"/>
 <label x="161.29" y="5.08" size="1.27" layer="95" xref="yes"/>
 <pinref part="DATA_BUS" gate="A" pin="5"/>
 <wire x1="157.48" y1="5.08" x2="185.42" y2="5.08" width="0.1524" layer="91"/>
@@ -11090,7 +11090,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD5" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD5/USART2_TX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD5/USART2_TX(5T)"/>
 <label x="161.29" y="2.54" size="1.27" layer="95" xref="yes"/>
 <pinref part="DATA_BUS" gate="A" pin="6"/>
 <wire x1="157.48" y1="2.54" x2="185.42" y2="2.54" width="0.1524" layer="91"/>
@@ -11103,7 +11103,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD6" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD6/USART2_RX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD6/USART2_RX(5T)"/>
 <label x="161.29" y="0" size="1.27" layer="95" xref="yes"/>
 <pinref part="DATA_BUS" gate="A" pin="7"/>
 <wire x1="157.48" y1="0" x2="185.42" y2="0" width="0.1524" layer="91"/>
@@ -11116,7 +11116,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD7" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD7(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD7(5T)"/>
 <label x="161.29" y="-2.54" size="1.27" layer="95" xref="yes"/>
 <pinref part="DATA_BUS" gate="A" pin="8"/>
 <wire x1="157.48" y1="-2.54" x2="185.42" y2="-2.54" width="0.1524" layer="91"/>
@@ -11129,7 +11129,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD8" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD8/USART3_TX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD8/USART3_TX(5T)"/>
 <wire x1="157.48" y1="-5.08" x2="161.29" y2="-5.08" width="0.1524" layer="91"/>
 <label x="161.29" y="-5.08" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11146,7 +11146,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD9" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD9/USART3_RX(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD9/USART3_RX(5T)"/>
 <wire x1="157.48" y1="-7.62" x2="161.29" y2="-7.62" width="0.1524" layer="91"/>
 <label x="161.29" y="-7.62" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11163,7 +11163,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD10" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD10(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD10(5T)"/>
 <wire x1="157.48" y1="-10.16" x2="161.29" y2="-10.16" width="0.1524" layer="91"/>
 <label x="161.29" y="-10.16" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11180,7 +11180,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD11" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD11(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD11(5T)"/>
 <wire x1="157.48" y1="-12.7" x2="161.29" y2="-12.7" width="0.1524" layer="91"/>
 <label x="161.29" y="-12.7" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11197,7 +11197,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD12" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD12/TIM4_CH1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD12/TIM4_CH1(5T)"/>
 <wire x1="157.48" y1="-15.24" x2="161.29" y2="-15.24" width="0.1524" layer="91"/>
 <label x="161.29" y="-15.24" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11214,7 +11214,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD13" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD13/TIM4_CH2(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD13/TIM4_CH2(5T)"/>
 <wire x1="157.48" y1="-17.78" x2="161.29" y2="-17.78" width="0.1524" layer="91"/>
 <label x="161.29" y="-17.78" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11231,7 +11231,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD14" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD14/TIM4_CH3(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD14/TIM4_CH3(5T)"/>
 <wire x1="157.48" y1="-20.32" x2="161.29" y2="-20.32" width="0.1524" layer="91"/>
 <label x="161.29" y="-20.32" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11243,7 +11243,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PD15" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PD15/TIM4_CH4(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PD15/TIM4_CH4(5T)"/>
 <wire x1="157.48" y1="-22.86" x2="161.29" y2="-22.86" width="0.1524" layer="91"/>
 <label x="161.29" y="-22.86" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11260,7 +11260,7 @@ bus) from cpu/base</text>
 <label x="207.01" y="124.46" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE0(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE0(5T)"/>
 <wire x1="157.48" y1="-27.94" x2="161.29" y2="-27.94" width="0.1524" layer="91"/>
 <label x="161.29" y="-27.94" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11277,7 +11277,7 @@ bus) from cpu/base</text>
 <label x="186.69" y="121.92" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE1(5T)"/>
 <wire x1="161.29" y1="-30.48" x2="157.48" y2="-30.48" width="0.1524" layer="91"/>
 <label x="161.29" y="-30.48" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11294,7 +11294,7 @@ bus) from cpu/base</text>
 <label x="64.77" y="149.86" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE2/ETH_MII_TXD3(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE2/ETH_MII_TXD3(5T)"/>
 <wire x1="157.48" y1="-33.02" x2="161.29" y2="-33.02" width="0.1524" layer="91"/>
 <label x="161.29" y="-33.02" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11311,7 +11311,7 @@ bus) from cpu/base</text>
 <label x="85.09" y="149.86" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE3(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE3(5T)"/>
 <wire x1="157.48" y1="-35.56" x2="161.29" y2="-35.56" width="0.1524" layer="91"/>
 <label x="161.29" y="-35.56" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11328,7 +11328,7 @@ bus) from cpu/base</text>
 <label x="64.77" y="147.32" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE4(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE4(5T)"/>
 <wire x1="157.48" y1="-38.1" x2="161.29" y2="-38.1" width="0.1524" layer="91"/>
 <label x="161.29" y="-38.1" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11345,7 +11345,7 @@ bus) from cpu/base</text>
 <label x="85.09" y="147.32" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE5/TIM9_CH1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE5/TIM9_CH1(5T)"/>
 <wire x1="157.48" y1="-40.64" x2="161.29" y2="-40.64" width="0.1524" layer="91"/>
 <label x="161.29" y="-40.64" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11362,7 +11362,7 @@ bus) from cpu/base</text>
 <label x="64.77" y="144.78" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE6/TIM9_CH2(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE6/TIM9_CH2(5T)"/>
 <wire x1="157.48" y1="-43.18" x2="161.29" y2="-43.18" width="0.1524" layer="91"/>
 <label x="161.29" y="-43.18" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11379,7 +11379,7 @@ bus) from cpu/base</text>
 <label x="106.68" y="134.62" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE7/TIM1_ETR(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE7/TIM1_ETR(5T)"/>
 <wire x1="157.48" y1="-45.72" x2="161.29" y2="-45.72" width="0.1524" layer="91"/>
 <label x="161.29" y="-45.72" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11396,7 +11396,7 @@ bus) from cpu/base</text>
 <label x="127" y="134.62" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE8/TIM1_CH1N(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE8/TIM1_CH1N(5T)"/>
 <wire x1="157.48" y1="-48.26" x2="161.29" y2="-48.26" width="0.1524" layer="91"/>
 <label x="161.29" y="-48.26" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11408,7 +11408,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PE9" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE9/TIM1_CH1(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE9/TIM1_CH1(5T)"/>
 <wire x1="157.48" y1="-50.8" x2="161.29" y2="-50.8" width="0.1524" layer="91"/>
 <label x="161.29" y="-50.8" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11425,7 +11425,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PE10" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE10/TIM1_CH2N(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE10/TIM1_CH2N(5T)"/>
 <wire x1="157.48" y1="-53.34" x2="161.29" y2="-53.34" width="0.1524" layer="91"/>
 <label x="161.29" y="-53.34" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11442,7 +11442,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PE11" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE11/TIM1_CH2(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE11/TIM1_CH2(5T)"/>
 <wire x1="157.48" y1="-55.88" x2="161.29" y2="-55.88" width="0.1524" layer="91"/>
 <label x="161.29" y="-55.88" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11459,7 +11459,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PE12" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE12/TIM1_CH3N(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE12/TIM1_CH3N(5T)"/>
 <wire x1="157.48" y1="-58.42" x2="161.29" y2="-58.42" width="0.1524" layer="91"/>
 <label x="161.29" y="-58.42" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11476,7 +11476,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PE13" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE13/TIM1_CH3(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE13/TIM1_CH3(5T)"/>
 <wire x1="157.48" y1="-60.96" x2="161.29" y2="-60.96" width="0.1524" layer="91"/>
 <label x="161.29" y="-60.96" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11493,7 +11493,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PE14" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE14/TIM1_CH4(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE14/TIM1_CH4(5T)"/>
 <wire x1="157.48" y1="-63.5" x2="161.29" y2="-63.5" width="0.1524" layer="91"/>
 <label x="161.29" y="-63.5" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11510,7 +11510,7 @@ bus) from cpu/base</text>
 </net>
 <net name="PE15" class="0">
 <segment>
-<pinref part="U$2" gate="G$1" pin="PE15/TIM1_BKIN(5T)"/>
+<pinref part="STM32F4" gate="G$1" pin="PE15/TIM1_BKIN(5T)"/>
 <wire x1="157.48" y1="-66.04" x2="161.29" y2="-66.04" width="0.1524" layer="91"/>
 <label x="161.29" y="-66.04" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -11528,9 +11528,6 @@ bus) from cpu/base</text>
 </nets>
 </sheet>
 </sheets>
-<errors>
-<approved hash="106,1,205.74,-33.02,N$10,,,,,"/>
-</errors>
 </schematic>
 </drawing>
 <compatibility>

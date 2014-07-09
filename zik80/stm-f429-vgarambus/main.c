@@ -15,6 +15,7 @@
 #include "logger.h"
 #include "commandqueue.h"
 #include "command.h"
+#include "lib_bus_ram.h"
 
 void usart1_isr ( void ); // shut up compiler
 void usart2_isr ( void ); // shut up compiler
@@ -40,6 +41,10 @@ int main(void) {
   vga_setup ( VGA_USE_DMA );
 #else
   vga_setup ( VGA_NO_DMA );
+#endif
+
+#ifdef BUS_FRAMEBUFFER
+  bus_setup();
 #endif
 
   fb_test_pattern ( fb_active, fbt_offset_squares );
@@ -71,6 +76,41 @@ int main(void) {
       }
       fb_test_pattern ( fb_2, i & 0x03 );
       i++;
+    }
+#endif
+
+    // check for external RAM updates?
+#ifdef BUS_FRAMEBUFFER
+    if ( vblank ) {
+      bus_grab_and_wait();
+
+      uint32_t addr = 0xAA0000;
+      uint8_t v;
+      v = bus_perform_read ( addr );
+
+#if 0
+      static unsigned char x = 0;
+      if ( x < 10 ) {
+        char b [ 20 ];
+        sprintf ( b, "%d\n", addr );
+        USART_puts_optional ( USART2, b );
+        x++;
+      }
+#endif
+
+      if ( v == 0 ) {
+        addr++;
+        v = bus_perform_read ( addr );
+        if ( v == 1 ) {
+          USART_puts_optional ( USART2, "+OK v1\n" );
+        } else {
+          USART_puts_optional ( USART2, "+FAIL v1\n" );
+        }
+
+      }
+
+      bus_release();
+
     }
 #endif
 

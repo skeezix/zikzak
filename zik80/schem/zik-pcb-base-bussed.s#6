@@ -10542,8 +10542,12 @@ GPIO PC:
 GPIO PD:
   6 for joy-2
   2 for keyb</text>
-<text x="140.97" y="191.77" size="5.08" layer="91">Jeff Mitchell 2014
+<text x="133.35" y="171.45" size="5.08" layer="91">Jeff Mitchell 2014
 www.zikzak.ca</text>
+<text x="226.06" y="220.98" size="2.54" layer="91">.. and lame 1 pin headers,
+to save me from routing
+the basketweave.. maybe clean
+up later</text>
 </plain>
 <instances>
 <instance part="CTRL_BUS" gate="A" x="427.99" y="115.57"/>
