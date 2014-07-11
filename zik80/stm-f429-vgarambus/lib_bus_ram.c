@@ -61,7 +61,11 @@ void bus_grab_and_wait ( void ) {
   gpio_clear ( GPIOB, GPIO8 );
 
   // wait for /BUSACK
-  while ( gpio_get ( GPIOB, GPIO9 ) > 0 ) {
+  //while ( gpio_get ( GPIOB, GPIO9 ) > 0 ) {
+  //__asm__("nop");
+  //}
+  unsigned char i;
+  for ( i = 0; i < 200; i++ ) {
     __asm__("nop");
   }
 

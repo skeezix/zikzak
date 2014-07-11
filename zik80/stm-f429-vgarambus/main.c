@@ -84,29 +84,21 @@ int main(void) {
     if ( vblank ) {
       bus_grab_and_wait();
 
-      uint32_t addr = 0xAA0000;
+      uint32_t addr = 0x0C0000;
       uint8_t v;
       v = bus_perform_read ( addr );
-
-#if 0
-      static unsigned char x = 0;
-      if ( x < 10 ) {
-        char b [ 20 ];
-        sprintf ( b, "%d\n", addr );
-        USART_puts_optional ( USART2, b );
-        x++;
-      }
-#endif
 
       if ( v == 0 ) {
         addr++;
         v = bus_perform_read ( addr );
         if ( v == 1 ) {
-          USART_puts_optional ( USART2, "+OK v1\n" );
+          USART_puts_optional ( USART2, "+OK v1 ****************\n" );
         } else {
           USART_puts_optional ( USART2, "+FAIL v1\n" );
         }
 
+      } else {
+          USART_puts_optional ( USART2, "+FAIL v is wrong\n" );
       }
 
       bus_release();
