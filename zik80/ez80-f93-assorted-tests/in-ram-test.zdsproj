@@ -5,6 +5,8 @@
 <files>
 <file filter-key="">.\zsldevinit.asm</file>
 <file filter-key="">.\main.c</file>
+<file filter-key="">.\skeelib.c</file>
+<file filter-key="">.\lib_ay-3-8912.c</file>
 </files>
 
 <!-- configuration information -->
@@ -145,7 +147,7 @@
 </tool>
 <tool name="Compiler">
 <options>
-<option name="padbranch" type="string" change-action="compile">Off</option>
+<option name="padbranch" type="string" change-action="compile">On</option>
 <option name="define" type="string" change-action="compile">NDEBUG,_EZ80F93,_EZ80ACCLAIM!,ZSL_DEVINIT,ZSL_DEVICE_PORTD,_ZSL_PORT_USED,ZSL_DEVICE_PORTC,ZSL_DEVICE_UART0,_ZSL_UART_USED</option>
 <option name="genprintf" type="boolean" change-action="compile">true</option>
 <option name="keepasm" type="boolean" change-action="none">false</option>
@@ -228,7 +230,7 @@
 <option name="useadddirectives" type="boolean" change-action="build">false</option>
 <option name="linkconfig" type="string" change-action="build">Standard</option>
 <option name="flashinfo" type="string" change-action="build">000000-0000FF</option>
-<option name="ram" type="string" change-action="build">AA0000-ABFFFF</option>
+<option name="ram" type="string" change-action="build">B7F000-B7FFFF</option>
 <option name="rom" type="string" change-action="build">000000-00FFFF</option>
 <option name="extio" type="string" change-action="build">000000-00FFFF</option>
 <option name="intio" type="string" change-action="build">000000-0000FF</option>
@@ -256,9 +258,9 @@
 <!-- breakpoint information -->
 <breakpoints>
 <breakpoint temporary="false" enabled="true" >
-<line-number>51</line-number>
+<line-number>180</line-number>
 <pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-in-ext-ram-test\main.c</pathname>
-<address>1101</address>
+<address>0</address>
 <command></command>
 <preserve-type>0</preserve-type>
 </breakpoint>

@@ -10,6 +10,7 @@
 #include "logger.h"
 #include "framebuffer.h"
 #include "framebuffer_demo.h"
+#include "lib_bus_ram.h"
 
 static void lamecopy ( uint8_t *dest, char *src, uint16_t len ) {
 
