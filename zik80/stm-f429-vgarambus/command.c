@@ -11,6 +11,8 @@
 #include "framebuffer.h"
 #include "framebuffer_demo.h"
 #include "lib_bus_ram.h"
+#include "skeelib.h"
+#include "lib_i2c.h"
 
 static void lamecopy ( uint8_t *dest, char *src, uint16_t len ) {
 
@@ -57,6 +59,113 @@ void command_queue_run ( void ) {
       fb_test_pattern ( fb_active, fbt_offset_squares );
       USART_puts_optional ( USART2, "+OK DP\n" );
       break;
+
+    case ID:
+      fb_render_rect_filled ( fb_active, 0, 0, FBWIDTH - 1, FBHEIGHT - 1, 0x00 ); // busy loop needed??!
+      {
+        char b [ 100 ] = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+        int retval;
+        char retvalb [ 30 ] = "rv: \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+
+        I2C_BusInit();
+
+        retval = I2C_ReadTransfer ( 0xe8, (uint8_t*)b, 5, 0, 0 );
+
+        lame_itoa ( retval, retvalb + 4 );
+        USART_puts_optional ( USART2, retvalb );
+
+        USART_puts_optional ( USART2, b );
+
+        USART_puts_optional ( USART2, "\n" );
+
+      }
+      break;
+
+    case BD:
+      //fb_render_rect_filled ( fb_active, 0, 0, FBWIDTH - 1, FBHEIGHT - 1, 0x00 ); // busy loop needed??!
+      //USART_puts_optional ( USART2, "+OK BD\n" );
+#if 1
+      {
+      unsigned char sawblank = 0;
+      while ( 1 )
+      {
+        extern volatile unsigned char vblank;
+        if ( ! vblank ) {
+          sawblank = 1;
+          continue;
+        }
+
+        if ( sawblank > 1 ) {
+          continue;
+        }
+        sawblank = 2;
+
+      bus_grab_and_wait();
+
+      //uint32_t addr = 0x1C0000;
+      uint32_t addr = 0x0C0000;
+      uint8_t v;
+      uint32_t i;
+      char b [ 20 ];
+
+      //addr += 20;
+      //addr += 1;
+
+      //USART_puts_optional ( USART2, "+REM cart dump:\n" );
+
+      bus_perform_read ( addr ); // discard .. just getting /CS set
+
+      for ( i = 0; i < 45000; i++ ) {
+
+#if 0 // print /CS1
+        if ( bus_check_cs1() ) {
+          USART_puts_optional ( USART2, "CS1 H " );
+        } else {
+          USART_puts_optional ( USART2, "CS1 L " );
+        }
+#endif
+
+#if 0 // print address
+        lame_itoa ( addr, b );
+        USART_puts_optional ( USART2, b );
+        USART_puts_optional ( USART2, ": " );
+#endif
+
+        v = bus_perform_read ( addr );
+
+        if ( v > 0 ) {
+          fb_active [ i ] = v;
+        }
+
+#if 0 // print character
+        b [ 0 ] = v;
+        b [ 1 ] = '\0';
+        b [ 2 ] = '\0';
+        USART_puts_optional ( USART2, b );
+#endif
+
+#if 0 // print byte value
+        lame_itoa ( v, b );
+        USART_puts_optional ( USART2, b );
+#endif
+
+#if 0
+        USART_puts_optional ( USART2, "\n" );
+#endif
+
+        addr++;
+      }
+
+#if 0
+      USART_puts_optional ( USART2, "+++\n" );
+#endif
+
+      bus_release();
+      }
+      }
+#endif
+      break;
+
 
     case SR:
       {

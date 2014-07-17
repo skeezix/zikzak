@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -10468,6 +10468,8 @@ Based on the following sources:
 <part name="GND22" library="supply1" deviceset="GND" device=""/>
 <part name="BOBI2C" library="pinhead" deviceset="PINHD-1X2" device=""/>
 <part name="PHI" library="pinhead" deviceset="PINHD-1X1" device=""/>
+<part name="/CS3" library="pinhead" deviceset="PINHD-1X1" device=""/>
+<part name="BRQAK" library="pinhead" deviceset="PINHD-1X2" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -10541,8 +10543,12 @@ GPIO PC:
 GPIO PD:
   6 for joy-2
   2 for keyb</text>
-<text x="140.97" y="191.77" size="5.08" layer="91">Jeff Mitchell 2014
+<text x="133.35" y="171.45" size="5.08" layer="91">Jeff Mitchell 2014
 www.zikzak.ca</text>
+<text x="226.06" y="220.98" size="2.54" layer="91">.. and lame 1 pin headers,
+to save me from routing
+the basketweave.. maybe clean
+up later</text>
 </plain>
 <instances>
 <instance part="CTRL_BUS" gate="A" x="427.99" y="115.57"/>
@@ -10659,6 +10665,8 @@ www.zikzak.ca</text>
 <instance part="GND22" gate="1" x="401.32" y="256.54" rot="R270"/>
 <instance part="BOBI2C" gate="G$1" x="182.88" y="231.14"/>
 <instance part="PHI" gate="G$1" x="212.09" y="233.68"/>
+<instance part="/CS3" gate="G$1" x="212.09" y="224.79"/>
+<instance part="BRQAK" gate="G$1" x="482.6" y="109.22"/>
 </instances>
 <busses>
 </busses>
@@ -12532,32 +12540,36 @@ www.zikzak.ca</text>
 </net>
 <net name="/BUSREQ" class="0">
 <segment>
-<wire x1="425.45" y1="107.95" x2="416.56" y2="107.95" width="0.1524" layer="91"/>
 <pinref part="CTRL_BUS" gate="A" pin="13"/>
-<label x="416.56" y="107.95" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="14"/>
 <wire x1="425.45" y1="107.95" x2="433.07" y2="107.95" width="0.1524" layer="91"/>
-<junction x="425.45" y="107.95"/>
 </segment>
 <segment>
 <pinref part="EZ80F93" gate="G$1" pin="BUSREQ"/>
 <wire x1="72.39" y1="77.47" x2="68.58" y2="77.47" width="0.1524" layer="91"/>
 <label x="68.58" y="77.47" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
+<segment>
+<pinref part="BRQAK" gate="G$1" pin="1"/>
+<wire x1="480.06" y1="111.76" x2="487.68" y2="111.76" width="0.1524" layer="91"/>
+<label x="487.68" y="111.76" size="1.27" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="/BUSACK" class="0">
 <segment>
-<wire x1="425.45" y1="105.41" x2="416.56" y2="105.41" width="0.1524" layer="91"/>
 <pinref part="CTRL_BUS" gate="A" pin="15"/>
-<label x="416.56" y="105.41" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="CTRL_BUS" gate="A" pin="16"/>
 <wire x1="425.45" y1="105.41" x2="433.07" y2="105.41" width="0.1524" layer="91"/>
-<junction x="425.45" y="105.41"/>
 </segment>
 <segment>
 <pinref part="EZ80F93" gate="G$1" pin="BUSACK"/>
 <wire x1="72.39" y1="80.01" x2="68.58" y2="80.01" width="0.1524" layer="91"/>
 <label x="68.58" y="80.01" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="BRQAK" gate="G$1" pin="2"/>
+<wire x1="480.06" y1="109.22" x2="487.68" y2="109.22" width="0.1524" layer="91"/>
+<label x="487.68" y="109.22" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="HALT_SLP" class="0">
@@ -12687,9 +12699,9 @@ www.zikzak.ca</text>
 <label x="114.3" y="59.69" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<wire x1="204.47" y1="252.73" x2="210.82" y2="252.73" width="0.1524" layer="91"/>
-<label x="210.82" y="252.73" size="1.27" layer="95" xref="yes"/>
-<pinref part="BOBMISC" gate="A" pin="5"/>
+<pinref part="/CS3" gate="G$1" pin="1"/>
+<wire x1="209.55" y1="224.79" x2="217.17" y2="224.79" width="0.1524" layer="91"/>
+<label x="217.17" y="224.79" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>

@@ -8,4 +8,6 @@ void bus_release ( void );
 
 uint8_t bus_perform_read ( uint32_t address );
 
+uint8_t bus_check_cs1 ( void );
+
 #endif

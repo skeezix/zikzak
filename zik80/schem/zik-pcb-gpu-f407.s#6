@@ -9541,7 +9541,7 @@ p3: gnd
 p4: R
 p5: G
 p6: B</text>
-<text x="-184.15" y="-40.64" size="2.54" layer="91">PA2-3 == serial console
+<text x="-153.67" y="-38.1" size="2.54" layer="91">PA2-3 == serial console
 PA8-PA12 = serial control in/out
 
 PB0-5 = ctrl bus OE WE n/c*4

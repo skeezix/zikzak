@@ -9545,7 +9545,7 @@ p6: B</text>
 PA8-PA12 = serial control in/out
 
 PB0-5 = ctrl bus OE WE n/c*4
-PB6/PB7 = i2c sda/scl ? conflict USART1?
+PB6/PB7 = i2c sda/scl ?
 PB8 -&gt; ctrl bus BUSREQ
 PB9 -&gt; ctrl bus BUSACK
 PB10/11 == sync

@@ -9596,6 +9596,14 @@ Longer header
 - in case needed for
 ROM control
 somehow.. etc</text>
+<text x="-2.54" y="-88.9" size="1.778" layer="94">TBD Idea:
+- send vblank to PB2
+(not used now, but
+wired to control bus)
+- accept 'frame ready'
+on PB3 (not used now,
+but wired to control
+bus) from cpu/base</text>
 </plain>
 <instances>
 <instance part="P+6" gate="1" x="-62.23" y="-10.16"/>

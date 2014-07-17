@@ -80,26 +80,31 @@ int main(void) {
 #endif
 
     // check for external RAM updates?
-#ifdef BUS_FRAMEBUFFER
-    if ( vblank ) {
+#ifdef zzBUS_FRAMEBUFFER
+    static uint16_t _done = 0;
+    _done++;
+    if ( vblank && _done > 30 && _done < 40  ) {
+
       bus_grab_and_wait();
 
-      uint32_t addr = 0x0C0000;
+      uint32_t addr = 0x1C0000;
       uint8_t v;
-      v = bus_perform_read ( addr );
+      uint8_t i;
+      char b [ 2 ];
 
-      if ( v == 0 ) {
-        addr++;
+      USART_puts_optional ( USART2, "+REM cart dump: " );
+
+      for ( i = 0; i < 20; i++ ) {
         v = bus_perform_read ( addr );
-        if ( v == 1 ) {
-          USART_puts_optional ( USART2, "+OK v1 ****************\n" );
-        } else {
-          USART_puts_optional ( USART2, "+FAIL v1\n" );
-        }
 
-      } else {
-          USART_puts_optional ( USART2, "+FAIL v is wrong\n" );
+        b [ 0 ] = v;
+        b [ 1 ] = '\0';
+        USART_puts_optional ( USART2, b );
+
+        addr++;
       }
+
+      USART_puts_optional ( USART2, "+++\n" );
 
       bus_release();
 

@@ -9581,10 +9581,10 @@ alternating 1K and 2K
 values</text>
 <text x="19.05" y="-69.85" size="2.54" layer="91">/OE
 /WE
-n/c
-n/c
-n/c
-n/c
+/CS0 ram
+/CS1 cart rom
+/CS2 audio
+/MREQ ez80
 /BUSREQ
 /BUSACK</text>
 <text x="-8.89" y="-64.77" size="1.778" layer="91">Double-header

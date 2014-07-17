@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE eagle SYSTEM "eagle.dtd">
-<eagle version="6.4">
+<eagle version="6.5.0">
 <drawing>
 <settings>
 <setting alwaysvectorfont="no"/>
@@ -9525,7 +9525,7 @@ general purpose rectifier, 1 A</description>
 - 3.3
 - GND</text>
 <text x="-27.94" y="33.02" size="1.778" layer="94" rot="R90">2.2uF = 22pF</text>
-<text x="-168.91" y="86.36" size="3.81" layer="94">TBD v2:
+<text x="-171.45" y="68.58" size="3.81" layer="94">TBD v2:
 - sync may need 80/100 resistor on some monitor
 - add parallel caps to decoupling caps on stm32, so
 can have both a electrolytic + a tant on each,
@@ -9603,6 +9603,8 @@ wired to control bus)
 on PB3 (not used now,
 but wired to control
 bus) from cpu/base</text>
+<text x="-173.99" y="116.84" size="3.81" layer="94">TBD v3:
+- move ctrl bus connector up a bit so space for IDC connectors</text>
 </plain>
 <instances>
 <instance part="P+6" gate="1" x="-62.23" y="-10.16"/>

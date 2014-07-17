@@ -36,18 +36,14 @@ void bus_setup ( void ) {
   //
 
   // data bus
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO0 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO1 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO2 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO3 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO4 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO5 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO6 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO7 );
+  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_PULLDOWN,
+                    GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 | GPIO6 | GPIO7 );
 
   // control bus, address bus, and release
+  gpio_mode_setup ( GPIOB, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO5 ); // MREQ
   gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO8 ); // BUSREQ
   gpio_mode_setup ( GPIOB, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO9 ); // BUSACK
+  gpio_mode_setup ( GPIOB, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO3 ); // /CS1
   bus_release();
 
   // should be all clear to survive
@@ -61,44 +57,48 @@ void bus_grab_and_wait ( void ) {
   gpio_clear ( GPIOB, GPIO8 );
 
   // wait for /BUSACK
-  //while ( gpio_get ( GPIOB, GPIO9 ) > 0 ) {
-  //__asm__("nop");
-  //}
-  unsigned char i;
-  for ( i = 0; i < 200; i++ ) {
+  uint16_t v = 0;
+  while ( gpio_get ( GPIOB, GPIO9 ) > v ) {
     __asm__("nop");
   }
+  //uint16_t i;
+  //for ( i = 0; i < 2000; i++ ) {
+  //  __asm__("nop");
+  //}
 
   // switch all the inputs around
   //
 
   // control bus
-  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP, GPIO0 ); // OE
+  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO0 ); // OE
   gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP, GPIO1 ); // WE
+  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO5 ); // MREQ
+
+  //gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO3 ); // /CS1
+  //gpio_clear ( GPIOB, GPIO3 );                   // /CS1
+
+  //gpio_clear ( GPIOB, GPIO5 );                   // /MREQ
+  gpio_set ( GPIOB, GPIO1 );                     // /WE
+  //gpio_clear ( GPIOB, GPIO0 );                   // /OE
 
   // address bus
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO0 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO1 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO2 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO3 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO4 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO5 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO6 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO7 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO8 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO9 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO10 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO11 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO12 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO13 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO14 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO15 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO8 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO9 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO10 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO11 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO12 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLDOWN, GPIO13 );
+  gpio_mode_setup ( GPIOE, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE,
+                    GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 | GPIO6 | GPIO7 |
+                    GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 | GPIO14 | GPIO15 );
+  gpio_mode_setup ( GPIOD, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE,
+                    GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 );
+
+  gpio_set_output_options ( GPIOE, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ,
+                            GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 | GPIO6 | GPIO7 |
+                            GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 | GPIO14 | GPIO15 );
+  gpio_set_output_options ( GPIOD, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ,
+                            GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 );
+
+  gpio_set_output_options ( GPIOD, GPIO_OTYPE_PP, GPIO_OSPEED_100MHZ,
+                            GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 | GPIO6 | GPIO7 );
+
+  gpio_set_output_options ( GPIOB, GPIO_OTYPE_PP, GPIO_OSPEED_2MHZ,
+                            GPIO0 | GPIO1 ); // OE WE
 
   gpio_clear ( GPIOE, GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 | GPIO6 | GPIO7 |
                       GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 | GPIO14 | GPIO15 );
@@ -109,49 +109,81 @@ void bus_grab_and_wait ( void ) {
 void bus_release ( void ) {
 
   // release
+  //gpio_set ( GPIOB, GPIO5 );                   // /MREQ
   gpio_set ( GPIOB, GPIO8 ); // /BUSREQ high (not active)
+  //gpio_set ( GPIOB, GPIO0 );                   // /OE
 
   // control bus
   gpio_mode_setup ( GPIOB, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO0 ); // OE
-  gpio_mode_setup ( GPIOB, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO1 ); // WE
+  gpio_mode_setup ( GPIOB, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, GPIO1 ); // WE
+  gpio_mode_setup ( GPIOB, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO5 ); // MREQ
+  //gpio_mode_setup ( GPIOB, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO3 ); // /CS1
 
   // address bus
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO0 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO1 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO2 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO3 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO4 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO5 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO6 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO7 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO8 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO9 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO10 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO11 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO12 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO13 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO14 );
-  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO15 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO8 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO9 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO10 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO11 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO12 );
-  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE, GPIO13 );
+  gpio_mode_setup ( GPIOE, GPIO_MODE_INPUT, GPIO_PUPD_NONE,
+                    GPIO0 | GPIO1 | GPIO2 | GPIO3 | GPIO4 | GPIO5 | GPIO6 | GPIO7 |
+                    GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 | GPIO14 | GPIO15 );
+  gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE,
+                    GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 );
 
 }
 
 uint8_t bus_perform_read ( uint32_t address ) {
+  uint8_t v;
+  uint32_t a;
+  uint16_t i;
+
+  a = address & 0xFF0000;
+  a >>= 8;
+
+#if 0
+  gpio_clear ( GPIOE, 0xFFFF );
+  gpio_clear ( GPIOD, 0xFF00 );
 
   gpio_set ( GPIOE, address & 0xFFFF );        // address low-16
-  gpio_set ( GPIOD, ( address & 0xFF0000 ) ); // address top
+  //gpio_set ( GPIOD, ( address & 0xFF0000 ) >> 8 ); // address top
+  gpio_set ( GPIOD, a ); // address top
+#endif
+  GPIO_ODR(GPIOE) = address & 0xFFFF;
+  GPIO_ODR(GPIOD) &= 0xFF;
+  GPIO_ODR(GPIOD) |= a;
 
-  gpio_set ( GPIOB, GPIO0 );                   // /OE
+#if 0
+  for ( i = 0; i < 500; i++ ) {
+    __asm__("nop");
+  }
+#endif
 
-  unsigned char i;
+  gpio_clear ( GPIOB, GPIO5 );                   // /MREQ
+  gpio_clear ( GPIOB, GPIO0 );                   // /OE
+
+#if 0
+  for ( i = 0; i < 50000; i++ ) {
+    __asm__("nop");
+  }
+#endif
+
+#if 1
   for ( i = 0; i < 10; i++ ) {
     __asm__("nop");
   }
+#endif
 
-  return ( gpio_port_read ( GPIOD ) & 0xFF );
+  //v = ( gpio_port_read ( GPIOD ) & 0xFF );
+  v =  GPIO_IDR ( GPIOD );
+
+  gpio_set ( GPIOB, GPIO5 );                   // /MREQ
+  gpio_set ( GPIOB, GPIO0 );                   // /OE
+
+#if 0
+  for ( i = 0; i < 500; i++ ) {
+    __asm__("nop");
+  }
+#endif
+
+  return ( v );
+}
+
+uint8_t bus_check_cs1 ( void ) {
+  return ( gpio_port_read ( GPIOB ) & GPIO3 );
 }
