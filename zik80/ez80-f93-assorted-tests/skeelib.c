@@ -42,8 +42,13 @@ UINT16 lame_strlen ( char *p ) {
 
 
 void delay_ms_spin ( unsigned int ms ) {
-  PC_DR ^= 1;
+  //PC_DR ^= 1;
   while ( --ms ) {
     delay_loop ( 500 );
   }
+}
+
+UINT8 lame_randrange8 ( UINT8 min, UINT8 width ) {
+	int r = rand() % width;
+	return ( min + r );
 }

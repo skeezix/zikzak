@@ -8,8 +8,10 @@
 #include <eZ80.h>
 #include <uart.h>
 #include <gpio.h>
+#include <stdlib.h>
 
 #include "skeelib.h"
+#include "framebuffer.h"
 #include <lib_ay-3-8912.h>
 
 int main ( ) {
@@ -106,7 +108,7 @@ int main ( ) {
 	}
 #endif
 
-#pragma noopt
+//#__pragma noopt
 #if 0 // ext rom read
 	//while (1)
 	{
@@ -157,10 +159,11 @@ int main ( ) {
 	}
 #endif
 
-#if 1 // ext rom write-delay-loop - minor update per frame
+#if 0 // ext ram write-delay-loop - minor update per frame
 	{
 		UINT16 y = 0;
 		UINT16 c = 0;
+		UINT16 cx = 2, cy = 150;
 		while (1)
 		{
 			unsigned char *extram;
@@ -185,6 +188,42 @@ int main ( ) {
 	}
 #endif
 
+	
+#if 1 // RAM random line demo
+	while ( 1 ) {
+		UINT8 x, y, lx = 0, ly; // x, y, last-x, last-y
+		UINT8 c;
+		UINT16 maxlines = 1250;
+		UINT8 i;
+		UINT8 *extram;
+			
+		extram = (UINT8 *) 0x0C0000;
+
+		fb_render_rect_filled ( extram, 0, 0, 250, 190, 1 );
+		
+		x = y = lx = ly = 0;
+
+		for ( i = 0; i < maxlines; i++ ) {
+			
+			x = lame_randrange8 ( 10, 230 );
+			y = lame_randrange8 ( 10, 170 );
+			c = lame_randrange8 ( 0, 0x3F ); // 0b00111111
+			
+			if ( lx != 0 ) {
+				zl_render_line ( extram, c, lx, ly, x, y );
+			}
+			
+			lx = x;
+			ly = y;
+			
+		} // for
+
+		delay_ms_spin ( 20 );		
+		
+		while(1);
+
+	}
+#endif
 	
 #if 1 // blinker - WORKS
 	{

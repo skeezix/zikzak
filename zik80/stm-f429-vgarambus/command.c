@@ -87,7 +87,8 @@ void command_queue_run ( void ) {
 #if 1
       {
       unsigned char sawblank = 0;
-      while ( 1 )
+      unsigned char running = 60;
+      while ( running )
       {
         extern volatile unsigned char vblank;
         if ( ! vblank ) {
@@ -99,6 +100,7 @@ void command_queue_run ( void ) {
           continue;
         }
         sawblank = 2;
+        running--;
 
       bus_grab_and_wait();
 
