@@ -5567,11 +5567,11 @@ Source: MC68020UM.pdf</description>
 <pad name="P$18" x="72.1106" y="2.5146" drill="0.8" shape="square"/>
 <pad name="P$19" x="76.073" y="2.5146" drill="0.8" shape="square"/>
 <pad name="P$20" x="80.0354" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P$1" x="12.7508" y="6.3754" drill="0.8" shape="square"/>
-<pad name="P$3" x="16.7132" y="6.3754" drill="0.8" shape="square"/>
-<pad name="P$21" x="20.6756" y="6.3754" drill="0.8" shape="square"/>
-<pad name="P$22" x="24.638" y="6.3754" drill="0.8" shape="square"/>
-<pad name="P$23" x="28.6004" y="6.3754" drill="0.8" shape="square"/>
+<pad name="PA" x="12.7508" y="6.3754" drill="0.8" shape="square"/>
+<pad name="PB" x="16.7132" y="6.3754" drill="0.8" shape="square"/>
+<pad name="PC" x="20.6756" y="6.3754" drill="0.8" shape="square"/>
+<pad name="PD" x="24.638" y="6.3754" drill="0.8" shape="square"/>
+<pad name="PE" x="28.6004" y="6.3754" drill="0.8" shape="square"/>
 <pad name="P$24" x="32.5628" y="6.3754" drill="0.8" shape="square"/>
 <pad name="P$25" x="36.5252" y="6.3754" drill="0.8" shape="square"/>
 <pad name="P$26" x="40.4876" y="6.3754" drill="0.8" shape="square"/>
@@ -5585,6 +5585,16 @@ Source: MC68020UM.pdf</description>
 <pad name="P$34" x="72.1868" y="6.3754" drill="0.8" shape="square"/>
 <pad name="P$35" x="76.1492" y="6.3754" drill="0.8" shape="square"/>
 <pad name="P$36" x="80.1116" y="6.3754" drill="0.8" shape="square"/>
+<text x="11.43" y="7.62" size="1.27" layer="21">PA</text>
+<text x="27.94" y="7.62" size="1.27" layer="21">PE</text>
+<text x="46.99" y="7.62" size="1.27" layer="21">PJ</text>
+<text x="63.5" y="7.62" size="1.27" layer="21">PN</text>
+<text x="78.74" y="7.62" size="1.27" layer="21">PR</text>
+<text x="11.43" y="0" size="1.27" layer="21">P1</text>
+<text x="27.94" y="0" size="1.27" layer="21">P5</text>
+<text x="46.99" y="0" size="1.27" layer="21">P10</text>
+<text x="63.5" y="0" size="1.27" layer="21">P14</text>
+<text x="78.74" y="0" size="1.27" layer="21">P18</text>
 </package>
 </packages>
 <symbols>

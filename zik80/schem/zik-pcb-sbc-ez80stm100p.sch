@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -7736,42 +7736,42 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <wire x1="0" y1="8.89" x2="0" y2="0" width="0.127" layer="21"/>
 <wire x1="7.62" y1="0" x2="7.62" y2="8.89" width="0.127" layer="21"/>
 <wire x1="85.09" y1="0" x2="85.09" y2="8.89" width="0.127" layer="21"/>
-<pad name="P1" x="12.6746" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P2" x="16.637" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P3" x="20.5994" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P4" x="24.5618" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P5" x="28.5242" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P6" x="32.4866" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P7" x="36.449" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P8" x="40.4114" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P9" x="44.3738" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P10" x="48.3362" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P11" x="52.2986" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P12" x="56.261" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P13" x="60.2234" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P14" x="64.1858" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P15" x="68.1482" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P16" x="72.1106" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P17" x="76.073" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P18" x="80.0354" y="2.5146" drill="0.8" shape="square"/>
-<pad name="PA" x="12.7508" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PB" x="16.7132" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PC" x="20.6756" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PD" x="24.638" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PE" x="28.6004" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PF" x="32.5628" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PG" x="36.5252" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PH" x="40.4876" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PI" x="44.45" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PJ" x="48.4124" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PK" x="52.3748" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PL" x="56.3372" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PM" x="60.2996" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PN" x="64.262" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PO" x="68.2244" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PP" x="72.1868" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PQ" x="76.1492" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PR" x="80.1116" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P1" x="12.6746" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P2" x="16.637" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P3" x="20.5994" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P4" x="24.5618" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P5" x="28.5242" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P6" x="32.4866" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P7" x="36.449" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P8" x="40.4114" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P9" x="44.3738" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P10" x="48.3362" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P11" x="52.2986" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P12" x="56.261" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P13" x="60.2234" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P14" x="64.1858" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P15" x="68.1482" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P16" x="72.1106" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P17" x="76.073" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P18" x="80.0354" y="2.5146" drill="1.1" shape="square"/>
+<pad name="PA" x="12.7508" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PB" x="16.7132" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PC" x="20.6756" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PD" x="24.638" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PE" x="28.6004" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PF" x="32.5628" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PG" x="36.5252" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PH" x="40.4876" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PI" x="44.45" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PJ" x="48.4124" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PK" x="52.3748" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PL" x="56.3372" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PM" x="60.2996" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PN" x="64.262" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PO" x="68.2244" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PP" x="72.1868" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PQ" x="76.1492" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PR" x="80.1116" y="6.3754" drill="1.1" shape="square"/>
 <text x="11.43" y="7.62" size="1.27" layer="21">PA</text>
 <text x="78.74" y="7.62" size="1.27" layer="21">PR</text>
 <text x="11.43" y="0" size="1.27" layer="21">P1</text>
@@ -11224,8 +11224,8 @@ general purpose rectifier, 1 A</description>
 <part name="S2" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-2" device="PTH"/>
 <part name="GND33" library="supply1" deviceset="GND" device=""/>
 <part name="VGAHDR" library="pinhead" deviceset="PINHD-1X6" device=""/>
-<part name="R16" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R17" library="rcl" deviceset="R-US_" device="0207/10"/>
+<part name="R16" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
+<part name="R17" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
 <part name="R18" library="rcl" deviceset="R-US_" device="0207/10"/>
 <part name="R19" library="rcl" deviceset="R-US_" device="0207/10"/>
 <part name="R24" library="rcl" deviceset="R-US_" device="0207/10"/>
@@ -11757,8 +11757,9 @@ bus expansion without adding headers all over..
 <pinref part="GND22" gate="1" pin="GND"/>
 </segment>
 <segment>
-<wire x1="180.34" y1="250.19" x2="185.42" y2="250.19" width="0.1524" layer="91"/>
+<wire x1="179.07" y1="250.19" x2="185.42" y2="250.19" width="0.1524" layer="91"/>
 <label x="185.42" y="250.19" size="1.27" layer="95" xref="yes"/>
+<pinref part="BOBJTAG+" gate="A" pin="6"/>
 </segment>
 <segment>
 <wire x1="1092.2" y1="142.24" x2="1080.77" y2="142.24" width="0.1524" layer="91"/>
@@ -11769,17 +11770,11 @@ bus expansion without adding headers all over..
 <wire x1="1092.2" y1="109.22" x2="1085.85" y2="109.22" width="0.1524" layer="91"/>
 <label x="1085.85" y="109.22" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="STM32F4" gate="G$1" pin="VSS_3"/>
-<wire x1="1092.2" y1="114.3" x2="1085.85" y2="114.3" width="0.1524" layer="91"/>
-<label x="1085.85" y="114.3" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="STM32F4" gate="G$1" pin="VSS_1"/>
 </segment>
 <segment>
 <wire x1="1092.2" y1="106.68" x2="1078.23" y2="106.68" width="0.1524" layer="91"/>
 <label x="1078.23" y="106.68" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="STM32F4" gate="G$1" pin="VSS_4"/>
-<wire x1="1092.2" y1="111.76" x2="1078.23" y2="111.76" width="0.1524" layer="91"/>
-<label x="1078.23" y="111.76" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="STM32F4" gate="G$1" pin="VSS_2"/>
 </segment>
 <segment>
 <pinref part="GNDOUT1" gate="A" pin="3"/>
@@ -11892,6 +11887,16 @@ bus expansion without adding headers all over..
 <pinref part="C22" gate="G$1" pin="2"/>
 <wire x1="1019.81" y1="104.14" x2="1019.81" y2="105.41" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="STM32F4" gate="G$1" pin="VSS_1"/>
+<wire x1="1092.2" y1="114.3" x2="1085.85" y2="114.3" width="0.1524" layer="91"/>
+<label x="1085.85" y="114.3" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="STM32F4" gate="G$1" pin="VSS_2"/>
+<wire x1="1092.2" y1="111.76" x2="1078.23" y2="111.76" width="0.1524" layer="91"/>
+<label x="1078.23" y="111.76" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="PB6" class="0">
 <segment>
@@ -11934,11 +11939,9 @@ bus expansion without adding headers all over..
 <label x="1174.75" y="73.66" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<wire x1="426.72" y1="143.51" x2="425.45" y2="143.51" width="0.1524" layer="91"/>
 <label x="417.83" y="143.51" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="BOBADDR" gate="A" pin="1"/>
 <wire x1="425.45" y1="143.51" x2="417.83" y2="143.51" width="0.1524" layer="91"/>
-<junction x="425.45" y="143.51"/>
 </segment>
 </net>
 <net name="A1" class="0">
@@ -12598,7 +12601,7 @@ bus expansion without adding headers all over..
 <label x="210.82" y="252.73" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="NRST" class="0">
+<net name="ZNRST" class="0">
 <segment>
 <pinref part="S1" gate="G$1" pin="2"/>
 <wire x1="43.18" y1="78.74" x2="43.18" y2="85.09" width="0.1524" layer="91"/>
@@ -12607,15 +12610,7 @@ bus expansion without adding headers all over..
 <pinref part="R3" gate="G$1" pin="1"/>
 <junction x="43.18" y="85.09"/>
 <pinref part="EZ80F93" gate="G$1" pin="RESET"/>
-</segment>
-<segment>
-<wire x1="1170.94" y1="17.78" x2="1174.75" y2="17.78" width="0.1524" layer="91"/>
-<label x="1177.29" y="17.78" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="S2" gate="G$1" pin="2"/>
-<wire x1="1174.75" y1="17.78" x2="1177.29" y2="17.78" width="0.1524" layer="91"/>
-<wire x1="1174.75" y1="3.81" x2="1174.75" y2="17.78" width="0.1524" layer="91"/>
-<junction x="1174.75" y="17.78"/>
-<pinref part="STM32F4" gate="G$1" pin="NRST"/>
+<label x="50.8" y="85.09" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
 <pinref part="ISPJTAG" gate="A" pin="15"/>
@@ -12850,9 +12845,9 @@ bus expansion without adding headers all over..
 <pinref part="STM32F4" gate="G$1" pin="VDD_3"/>
 <wire x1="1037.59" y1="121.92" x2="1037.59" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="1037.59" y1="129.54" x2="1092.2" y2="129.54" width="0.1524" layer="91"/>
-<wire x1="1035.05" y1="121.92" x2="1037.59" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="1033.78" y1="121.92" x2="1037.59" y2="121.92" width="0.1524" layer="91"/>
 <junction x="1037.59" y="121.92"/>
-<label x="1035.05" y="121.92" size="1.27" layer="95" rot="R270" xref="yes"/>
+<label x="1033.78" y="121.92" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
 <pinref part="STM32F4" gate="G$1" pin="VDD_2"/>
@@ -13179,13 +13174,6 @@ bus expansion without adding headers all over..
 <pinref part="BOBI2C" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="PB3" class="0">
-<segment>
-<pinref part="ISPJTAG" gate="A" pin="13"/>
-<wire x1="1012.19" y1="242.57" x2="1012.19" y2="250.19" width="0.1524" layer="91"/>
-<label x="1012.19" y="250.19" size="1.27" layer="95" rot="R90" xref="yes"/>
-</segment>
-</net>
 <net name="PC0" class="0">
 <segment>
 <pinref part="R17" gate="G$1" pin="1"/>
@@ -13430,6 +13418,11 @@ bus expansion without adding headers all over..
 <pinref part="STM32F4" gate="G$1" pin="PB3/JTDO(5T)"/>
 <wire x1="1092.2" y1="48.26" x2="1076.96" y2="48.26" width="0.1524" layer="91"/>
 <label x="1076.96" y="48.26" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="ISPJTAG" gate="A" pin="13"/>
+<wire x1="1012.19" y1="242.57" x2="1012.19" y2="250.19" width="0.1524" layer="91"/>
+<label x="1012.19" y="250.19" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
 <net name="A16" class="0">
@@ -14569,6 +14562,17 @@ bus expansion without adding headers all over..
 <junction x="473.71" y="215.9"/>
 </segment>
 </net>
+<net name="NRST" class="0">
+<segment>
+<wire x1="1170.94" y1="17.78" x2="1174.75" y2="17.78" width="0.1524" layer="91"/>
+<label x="1177.29" y="17.78" size="1.27" layer="95" rot="MR180" xref="yes"/>
+<pinref part="S2" gate="G$1" pin="2"/>
+<wire x1="1174.75" y1="17.78" x2="1177.29" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="1174.75" y1="3.81" x2="1174.75" y2="17.78" width="0.1524" layer="91"/>
+<junction x="1174.75" y="17.78"/>
+<pinref part="STM32F4" gate="G$1" pin="NRST"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
@@ -14581,16 +14585,10 @@ bus expansion without adding headers all over..
 <approved hash="104,1,226.06,163.83,RAM-CS0,VCC,+3V3,,,"/>
 <approved hash="106,1,110.49,87.63,A22,,,,,"/>
 <approved hash="106,1,110.49,85.09,A23,,,,,"/>
-<approved hash="113,1,429.218,115.701,CTRL_BUS,,,,,"/>
-<approved hash="113,1,434.702,82.6812,DATA_BUS,,,,,"/>
-<approved hash="113,1,431.11,153.801,ADDRESS_BUS,,,,,"/>
 <approved hash="113,1,63.5423,241.431,ISPZDI,,,,,"/>
 <approved hash="113,1,356.87,311.637,AY-3-8912-CS2,,,,,"/>
 <approved hash="113,1,91.44,91.8887,EZ80F93,,,,,"/>
 <approved hash="113,1,59.5549,311.281,PWRIN1,,,,,"/>
-<approved hash="113,1,238.629,326.713,+5OUT,,,,,"/>
-<approved hash="113,1,238.629,314.296,+3V3OUT,,,,,"/>
-<approved hash="113,1,257.679,328.096,GNDOUT,,,,,"/>
 <approved hash="113,1,95.25,331.792,LED2,,,,,"/>
 <approved hash="113,1,138.44,311.281,PWROUT1,,,,,"/>
 <approved hash="113,1,181.941,255.401,BOBJTAG+,,,,,"/>
