@@ -11757,8 +11757,9 @@ bus expansion without adding headers all over..
 <pinref part="GND22" gate="1" pin="GND"/>
 </segment>
 <segment>
-<wire x1="180.34" y1="250.19" x2="185.42" y2="250.19" width="0.1524" layer="91"/>
+<wire x1="179.07" y1="250.19" x2="185.42" y2="250.19" width="0.1524" layer="91"/>
 <label x="185.42" y="250.19" size="1.27" layer="95" xref="yes"/>
+<pinref part="BOBJTAG+" gate="A" pin="6"/>
 </segment>
 <segment>
 <wire x1="1092.2" y1="142.24" x2="1080.77" y2="142.24" width="0.1524" layer="91"/>
@@ -11774,9 +11775,6 @@ bus expansion without adding headers all over..
 <wire x1="1092.2" y1="106.68" x2="1078.23" y2="106.68" width="0.1524" layer="91"/>
 <label x="1078.23" y="106.68" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="STM32F4" gate="G$1" pin="VSS_4"/>
-<wire x1="1092.2" y1="111.76" x2="1078.23" y2="111.76" width="0.1524" layer="91"/>
-<label x="1078.23" y="111.76" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="STM32F4" gate="G$1" pin="VSS_2"/>
 </segment>
 <segment>
 <pinref part="GNDOUT1" gate="A" pin="3"/>
@@ -11894,6 +11892,11 @@ bus expansion without adding headers all over..
 <wire x1="1092.2" y1="114.3" x2="1085.85" y2="114.3" width="0.1524" layer="91"/>
 <label x="1085.85" y="114.3" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
+<segment>
+<pinref part="STM32F4" gate="G$1" pin="VSS_2"/>
+<wire x1="1092.2" y1="111.76" x2="1078.23" y2="111.76" width="0.1524" layer="91"/>
+<label x="1078.23" y="111.76" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="PB6" class="0">
 <segment>
@@ -11936,11 +11939,9 @@ bus expansion without adding headers all over..
 <label x="1174.75" y="73.66" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<wire x1="426.72" y1="143.51" x2="425.45" y2="143.51" width="0.1524" layer="91"/>
 <label x="417.83" y="143.51" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="BOBADDR" gate="A" pin="1"/>
 <wire x1="425.45" y1="143.51" x2="417.83" y2="143.51" width="0.1524" layer="91"/>
-<junction x="425.45" y="143.51"/>
 </segment>
 </net>
 <net name="A1" class="0">
@@ -12843,9 +12844,9 @@ bus expansion without adding headers all over..
 <pinref part="STM32F4" gate="G$1" pin="VDD_3"/>
 <wire x1="1037.59" y1="121.92" x2="1037.59" y2="129.54" width="0.1524" layer="91"/>
 <wire x1="1037.59" y1="129.54" x2="1092.2" y2="129.54" width="0.1524" layer="91"/>
-<wire x1="1035.05" y1="121.92" x2="1037.59" y2="121.92" width="0.1524" layer="91"/>
+<wire x1="1033.78" y1="121.92" x2="1037.59" y2="121.92" width="0.1524" layer="91"/>
 <junction x="1037.59" y="121.92"/>
-<label x="1035.05" y="121.92" size="1.27" layer="95" rot="R270" xref="yes"/>
+<label x="1033.78" y="121.92" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
 <pinref part="STM32F4" gate="G$1" pin="VDD_2"/>

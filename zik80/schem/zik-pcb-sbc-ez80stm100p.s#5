@@ -11224,8 +11224,8 @@ general purpose rectifier, 1 A</description>
 <part name="S2" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-2" device="PTH"/>
 <part name="GND33" library="supply1" deviceset="GND" device=""/>
 <part name="VGAHDR" library="pinhead" deviceset="PINHD-1X6" device=""/>
-<part name="R16" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R17" library="rcl" deviceset="R-US_" device="0207/10"/>
+<part name="R16" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
+<part name="R17" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
 <part name="R18" library="rcl" deviceset="R-US_" device="0207/10"/>
 <part name="R19" library="rcl" deviceset="R-US_" device="0207/10"/>
 <part name="R24" library="rcl" deviceset="R-US_" device="0207/10"/>
@@ -11939,11 +11939,9 @@ bus expansion without adding headers all over..
 <label x="1174.75" y="73.66" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<wire x1="426.72" y1="143.51" x2="425.45" y2="143.51" width="0.1524" layer="91"/>
 <label x="417.83" y="143.51" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="BOBADDR" gate="A" pin="1"/>
 <wire x1="425.45" y1="143.51" x2="417.83" y2="143.51" width="0.1524" layer="91"/>
-<junction x="425.45" y="143.51"/>
 </segment>
 </net>
 <net name="A1" class="0">
@@ -12612,6 +12610,7 @@ bus expansion without adding headers all over..
 <pinref part="R3" gate="G$1" pin="1"/>
 <junction x="43.18" y="85.09"/>
 <pinref part="EZ80F93" gate="G$1" pin="RESET"/>
+<label x="50.8" y="85.09" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
 <segment>
 <pinref part="ISPJTAG" gate="A" pin="15"/>
@@ -13175,13 +13174,6 @@ bus expansion without adding headers all over..
 <pinref part="BOBI2C" gate="G$1" pin="2"/>
 </segment>
 </net>
-<net name="PB3" class="0">
-<segment>
-<pinref part="ISPJTAG" gate="A" pin="13"/>
-<wire x1="1012.19" y1="242.57" x2="1012.19" y2="250.19" width="0.1524" layer="91"/>
-<label x="1012.19" y="250.19" size="1.27" layer="95" rot="R90" xref="yes"/>
-</segment>
-</net>
 <net name="PC0" class="0">
 <segment>
 <pinref part="R17" gate="G$1" pin="1"/>
@@ -13426,6 +13418,11 @@ bus expansion without adding headers all over..
 <pinref part="STM32F4" gate="G$1" pin="PB3/JTDO(5T)"/>
 <wire x1="1092.2" y1="48.26" x2="1076.96" y2="48.26" width="0.1524" layer="91"/>
 <label x="1076.96" y="48.26" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="ISPJTAG" gate="A" pin="13"/>
+<wire x1="1012.19" y1="242.57" x2="1012.19" y2="250.19" width="0.1524" layer="91"/>
+<label x="1012.19" y="250.19" size="1.27" layer="95" rot="R90" xref="yes"/>
 </segment>
 </net>
 <net name="A16" class="0">
