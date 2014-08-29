@@ -1,0 +1,1760 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -nomodsect -optspeed -noreduceopt -padbranch 
+                           A     3    ; -peephole -globalopt -localcse -const=ROM 
+                           A     4    	FILE	"..\..\EZ80~P1U\FRAMEBUFFER.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:   2
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+000000                     A    95    _delay_loop:
+                           A    96    .DEFINE "_delay_loop"
+                           A    97    
+                           A    98    .VALUE _delay_loop
+                           A    99    
+                           A   100    .CLASS 3
+                           A   101    
+                           A   102    .TYPE 65
+                           A   103    
+                           A   104    .ENDEF
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:   3
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   105    
+                           A   106    .BEGFUNC "delay_loop",12,"_delay_loop"
+                           A   107    
+                           A   108    .LINE 12
+                           A   109    
+                           A   110    .DEFINE "c"
+                           A   111    
+                           A   112    .CLASS 65
+                           A   113    
+                           A   114    .VALUE 6
+                           A   115    
+                           A   116    .TYPE 14
+                           A   117    
+                           A   118    .ENDEF
+                           A   119    
+000000 DDE5                A   120    	PUSH	IX
+000002 DD210000 00         A   121    	LD	IX,0
+000007 DD39                A   122    	ADD	IX,SP
+                           A   123    .LINE 13
+                           A   124    
+000009 18 0A 00            A   125    	JR	L_1
+00000C                     A   126    L_2:
+                           A   127    .LINE 14
+                           A   128    
+00000C DD3106              A   129    	LD	IY,(IX+6)
+00000F ED33FF              A   130    	LEA	IY,IY+-1
+000012 DD3E06              A   131    	LD	(IX+6),IY
+000015                     A   132    L_1:
+                           A   133    .LINE 15
+                           A   134    
+000015 01000000            A   135    	LD	BC,0
+000019 DD2706              A   136    	LD	HL,(IX+6)
+00001C B7                  A   137    	OR	A,A
+00001D ED42                A   138    	SBC	HL,BC
+00001F 20 EB 00            A   139    	JR	NZ,L_2
+                           A   140    .LINE 16
+                           A   141    
+000022 DDF9                A   142    	LD	SP,IX
+000024 DDE1                A   143    	POP	IX
+000026 C9                  A   144    	RET	
+                           A   145    
+                           A   146    
+                           A   147    ;**************************** _delay_loop *****
+                           A   148    ;Name                         Addr/Register   S
+                           A   149    ;c                                     IX+6    
+                           A   150    
+                           A   151    
+                           A   152    ; Stack Frame Size: 9 (bytes)
+                           A   153    ;       Spill Code: 0 (instruction)
+                           A   154    
+                           A   155    
+                           A   156    .ENDFUNC "delay_loop",16,"_delay_loop"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:   4
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   157    ;    1	#include <eZ80.h>
+                           A   158    ;    2	
+                           A   159    ;    3	#include "skeelib.h"
+                           A   160    ;    4	#include "framebuffer.h"
+                           A   161    ;    5	
+                           A   162    ;    6	#include <string.h> // memcpy
+                           A   163    ;    7	
+                           A   164    ;    8	void fb_render_rect_filled ( UINT8 *fb,
+000027                     A   165    _fb_render_rect_filled:
+                           A   166    .DEFINE "_fb_render_rect_filled"
+                           A   167    
+                           A   168    .VALUE _fb_render_rect_filled
+                           A   169    
+                           A   170    .CLASS 2
+                           A   171    
+                           A   172    .TYPE 65
+                           A   173    
+                           A   174    .ENDEF
+                           A   175    
+                           A   176    .BEGFUNC "fb_render_rect_filled",8,"_fb_render_
+                           A   177    
+                           A   178    .LINE 8
+                           A   179    
+                           A   180    .DEFINE "fb"
+                           A   181    
+                           A   182    .CLASS 65
+                           A   183    
+                           A   184    .VALUE 6
+                           A   185    
+                           A   186    .TYPE 44
+                           A   187    
+                           A   188    .ENDEF
+                           A   189    
+                           A   190    .DEFINE "x"
+                           A   191    
+                           A   192    .CLASS 65
+                           A   193    
+                           A   194    .VALUE 9
+                           A   195    
+                           A   196    .TYPE 12
+                           A   197    
+                           A   198    .ENDEF
+                           A   199    
+                           A   200    .DEFINE "y"
+                           A   201    
+                           A   202    .CLASS 65
+                           A   203    
+                           A   204    .VALUE 12
+                           A   205    
+                           A   206    .TYPE 12
+                           A   207    
+                           A   208    .ENDEF
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:   5
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   209    
+                           A   210    .DEFINE "w"
+                           A   211    
+                           A   212    .CLASS 65
+                           A   213    
+                           A   214    .VALUE 15
+                           A   215    
+                           A   216    .TYPE 12
+                           A   217    
+                           A   218    .ENDEF
+                           A   219    
+                           A   220    .DEFINE "h"
+                           A   221    
+                           A   222    .CLASS 65
+                           A   223    
+                           A   224    .VALUE 18
+                           A   225    
+                           A   226    .TYPE 12
+                           A   227    
+                           A   228    .ENDEF
+                           A   229    
+                           A   230    .DEFINE "rgb"
+                           A   231    
+                           A   232    .CLASS 65
+                           A   233    
+                           A   234    .VALUE 21
+                           A   235    
+                           A   236    .TYPE 12
+                           A   237    
+                           A   238    .ENDEF
+                           A   239    
+                           A   240    .DEFINE "ty"
+                           A   241    
+                           A   242    .CLASS 65
+                           A   243    
+                           A   244    .VALUE -1
+                           A   245    
+                           A   246    .TYPE 12
+                           A   247    
+                           A   248    .ENDEF
+                           A   249    
+                           A   250    .DEFINE "tx"
+                           A   251    
+                           A   252    .CLASS 65
+                           A   253    
+                           A   254    .VALUE -2
+                           A   255    
+                           A   256    .TYPE 12
+                           A   257    
+                           A   258    .ENDEF
+                           A   259    
+                           A   260    .DEFINE "ty2"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:   6
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   261    
+                           A   262    .CLASS 65
+                           A   263    
+                           A   264    .VALUE -3
+                           A   265    
+                           A   266    .TYPE 12
+                           A   267    
+                           A   268    .ENDEF
+                           A   269    
+                           A   270    .DEFINE "t"
+                           A   271    
+                           A   272    .CLASS 65
+                           A   273    
+                           A   274    .VALUE -6
+                           A   275    
+                           A   276    .TYPE 44
+                           A   277    
+                           A   278    .ENDEF
+                           A   279    
+                           A   280    ;    9	  register UINT8 tx, ty;
+                           A   281    ;   10	  register UINT8 ty2;
+                           A   282    ;   11	  register UINT8 *t;
+                           A   283    ;   12	
+                           A   284    ;   13	  ty2 = y + h;
+                           A   285    ;   14	
+                           A   286    ;   15	  for ( ty = y; ty < ty2; ty++ ) {
+                           A   287    ;   16	    t = fb + ( ty * FBWIDTH ) + x; 
+000027 DDE5                A   288    	PUSH	IX
+000029 DD210000 00         A   289    	LD	IX,0
+00002E DD39                A   290    	ADD	IX,SP
+000030 C5                  A   291    	PUSH	BC
+000031 C5                  A   292    	PUSH	BC
+000032 C5                  A   293    	PUSH	BC
+                           A   294    .LINE 13
+                           A   295    
+000033 DD7E0C              A   296    	LD	A,(IX+12)
+000036 DD8612              A   297    	ADD	A,(IX+18)
+000039 DD77FD              A   298    	LD	(IX+-3),A
+                           A   299    .LINE 15
+                           A   300    
+00003C DD7E0C              A   301    	LD	A,(IX+12)
+00003F DD77FF              A   302    	LD	(IX+-1),A
+000042 18 47 00            A   303    	JR	L_12
+000045                     A   304    L_10:
+                           A   305    .LINE 16
+                           A   306    
+000045 DD7EFF              A   307    	LD	A,(IX+-1)
+000048 B7ED62              A   308    	UEXT	HL
+00004B 6F                  A   309    	LD	L,A
+00004C 3E08                A   310    	LD	A,8
+00004E CD 00 00 00         A   311    	CALL	__ishl_b
+000052 DD0706              A   312    	LD	BC,(IX+6)
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:   7
+
+
+PC     Object              I  Line    Source framebuffer.src
+000055 09                  A   313    	ADD	HL,BC
+000056 E5C1                A   314    	LD	BC,HL
+000058 DD7E09              A   315    	LD	A,(IX+9)
+00005B B7ED62              A   316    	UEXT	HL
+00005E 6F                  A   317    	LD	L,A
+00005F 09                  A   318    	ADD	HL,BC
+000060 DD2FFA              A   319    	LD	(IX+-6),HL
+                           A   320    ;   17	    for ( tx = 0; tx < w; tx++ ) {
+                           A   321    .LINE 17
+                           A   322    
+000063 DD36FE00            A   323    	LD	(IX+-2),0
+000067 18 17 00            A   324    	JR	L_9
+00006A                     A   325    L_7:
+                           A   326    ;   18	      *t++ = rgb;
+                           A   327    .LINE 18
+                           A   328    
+00006A DD07FA              A   329    	LD	BC,(IX+-6)
+00006D DD0FF7              A   330    	LD	(IX+-9),BC
+000070 C5E1                A   331    	LD	HL,BC
+000072 DD7E15              A   332    	LD	A,(IX+21)
+000075 77                  A   333    	LD	(HL),A
+000076 DD07FA              A   334    	LD	BC,(IX+-6)
+000079 03                  A   335    	INC	BC
+00007A DD0FFA              A   336    	LD	(IX+-6),BC
+00007D DD34FE              A   337    	INC	(IX+-2)
+                           A   338    ;   19	      //__asm__("nop");
+                           A   339    ;   20	    } // x
+000080                     A   340    L_9:
+                           A   341    .LINE 20
+                           A   342    
+000080 DD7EFE              A   343    	LD	A,(IX+-2)
+000083 DDBE0F              A   344    	CP	A,(IX+15)
+000086 38 E2               A   345    	JR	C,L_7
+000088 DD34FF              A   346    	INC	(IX+-1)
+                           A   347    ;   21	  } // y
+00008B                     A   348    L_12:
+                           A   349    .LINE 21
+                           A   350    
+00008B DD7EFF              A   351    	LD	A,(IX+-1)
+00008E DDBEFD              A   352    	CP	A,(IX+-3)
+000091 38 B2 00            A   353    	JR	C,L_10
+                           A   354    ;   22	
+                           A   355    ;   23	}
+                           A   356    .LINE 23
+                           A   357    
+000094 DDF9                A   358    	LD	SP,IX
+000096 DDE1                A   359    	POP	IX
+000098 C9                  A   360    	RET	
+                           A   361    
+                           A   362    
+                           A   363    ;**************************** _fb_render_rect_f
+                           A   364    ;Name                         Addr/Register   S
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:   8
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   365    ;t                                     IX-6    
+                           A   366    ;ty2                                   IX-3    
+                           A   367    ;tx                                    IX-2    
+                           A   368    ;ty                                    IX-1    
+                           A   369    ;rgb                                  IX+21    
+                           A   370    ;h                                    IX+18    
+                           A   371    ;w                                    IX+15    
+                           A   372    ;y                                    IX+12    
+                           A   373    ;x                                     IX+9    
+                           A   374    ;fb                                    IX+6    
+                           A   375    
+                           A   376    
+                           A   377    ; Stack Frame Size: 33 (bytes)
+                           A   378    ;       Spill Code: 0 (instruction)
+                           A   379    
+                           A   380    
+                           A   381    .ENDFUNC "fb_render_rect_filled",23,"_fb_render
+                           A   382    ;   24	
+                           A   383    ;   25	/* bresenham based line draw */
+                           A   384    ;   26	// ripped from old zotlib and adapted t
+                           A   385    ;   27	void zl_render_line ( UINT8 *bits, UINT
+000099                     A   386    _zl_render_line:
+                           A   387    .DEFINE "_zl_render_line"
+                           A   388    
+                           A   389    .VALUE _zl_render_line
+                           A   390    
+                           A   391    .CLASS 2
+                           A   392    
+                           A   393    .TYPE 65
+                           A   394    
+                           A   395    .ENDEF
+                           A   396    
+                           A   397    .BEGFUNC "zl_render_line",27,"_zl_render_line"
+                           A   398    
+                           A   399    .LINE 27
+                           A   400    
+                           A   401    .DEFINE "bits"
+                           A   402    
+                           A   403    .CLASS 65
+                           A   404    
+                           A   405    .VALUE 6
+                           A   406    
+                           A   407    .TYPE 44
+                           A   408    
+                           A   409    .ENDEF
+                           A   410    
+                           A   411    .DEFINE "c"
+                           A   412    
+                           A   413    .CLASS 65
+                           A   414    
+                           A   415    .VALUE 9
+                           A   416    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:   9
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   417    .TYPE 12
+                           A   418    
+                           A   419    .ENDEF
+                           A   420    
+                           A   421    .DEFINE "x0"
+                           A   422    
+                           A   423    .CLASS 65
+                           A   424    
+                           A   425    .VALUE 12
+                           A   426    
+                           A   427    .TYPE 13
+                           A   428    
+                           A   429    .ENDEF
+                           A   430    
+                           A   431    .DEFINE "y0"
+                           A   432    
+                           A   433    .CLASS 65
+                           A   434    
+                           A   435    .VALUE 15
+                           A   436    
+                           A   437    .TYPE 13
+                           A   438    
+                           A   439    .ENDEF
+                           A   440    
+                           A   441    .DEFINE "x1"
+                           A   442    
+                           A   443    .CLASS 65
+                           A   444    
+                           A   445    .VALUE 18
+                           A   446    
+                           A   447    .TYPE 13
+                           A   448    
+                           A   449    .ENDEF
+                           A   450    
+                           A   451    .DEFINE "y1"
+                           A   452    
+                           A   453    .CLASS 65
+                           A   454    
+                           A   455    .VALUE 21
+                           A   456    
+                           A   457    .TYPE 13
+                           A   458    
+                           A   459    .ENDEF
+                           A   460    
+                           A   461    .DEFINE "fraction"
+                           A   462    
+                           A   463    .CLASS 65
+                           A   464    
+                           A   465    .VALUE -2
+                           A   466    
+                           A   467    .TYPE 3
+                           A   468    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  10
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   469    .ENDEF
+                           A   470    
+                           A   471    .DEFINE "dy"
+                           A   472    
+                           A   473    .CLASS 65
+                           A   474    
+                           A   475    .VALUE -4
+                           A   476    
+                           A   477    .TYPE 3
+                           A   478    
+                           A   479    .ENDEF
+                           A   480    
+                           A   481    .DEFINE "dx"
+                           A   482    
+                           A   483    .CLASS 65
+                           A   484    
+                           A   485    .VALUE -6
+                           A   486    
+                           A   487    .TYPE 3
+                           A   488    
+                           A   489    .ENDEF
+                           A   490    
+                           A   491    .DEFINE "stepx"
+                           A   492    
+                           A   493    .CLASS 65
+                           A   494    
+                           A   495    .VALUE -8
+                           A   496    
+                           A   497    .TYPE 3
+                           A   498    
+                           A   499    .ENDEF
+                           A   500    
+                           A   501    .DEFINE "stepy"
+                           A   502    
+                           A   503    .CLASS 65
+                           A   504    
+                           A   505    .VALUE -10
+                           A   506    
+                           A   507    .TYPE 3
+                           A   508    
+                           A   509    .ENDEF
+                           A   510    
+000099 DDE5                A   511    	PUSH	IX
+00009B DD210000 00         A   512    	LD	IX,0
+0000A0 DD39                A   513    	ADD	IX,SP
+0000A2 C5                  A   514    	PUSH	BC
+0000A3 C5                  A   515    	PUSH	BC
+0000A4 C5                  A   516    	PUSH	BC
+0000A5 3B                  A   517    	DEC	SP
+                           A   518    ;   28	  INT16 dy = y1 - y0;
+                           A   519    .LINE 28
+                           A   520    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  11
+
+
+PC     Object              I  Line    Source framebuffer.src
+0000A6 DD070F              A   521    	LD	BC,(IX+15)
+0000A9 DD2715              A   522    	LD	HL,(IX+21)
+0000AC B7                  A   523    	OR	A,A
+0000AD 40ED42              A   524    	SBC.SIS	HL,BC
+0000B0 DD75FC              A   525    	LD	(IX+-4),L
+0000B3 DD74FD              A   526    	LD	(IX+-3),H
+                           A   527    ;   29	  INT16 dx = x1 - x0;
+                           A   528    .LINE 29
+                           A   529    
+0000B6 DD070C              A   530    	LD	BC,(IX+12)
+0000B9 DD2712              A   531    	LD	HL,(IX+18)
+0000BC B7                  A   532    	OR	A,A
+0000BD 40ED42              A   533    	SBC.SIS	HL,BC
+0000C0 DD75FA              A   534    	LD	(IX+-6),L
+0000C3 DD74FB              A   535    	LD	(IX+-5),H
+                           A   536    ;   30	  INT16 stepx, stepy;
+                           A   537    ;   31	  INT16 fraction;
+                           A   538    ;   32	
+                           A   539    ;   33	  if (dy < 0) {
+                           A   540    .LINE 33
+                           A   541    
+0000C6 DD27FC              A   542    	LD	HL,(IX+-4)
+0000C9 CD 00 00 00         A   543    	CALL	__scmpzero
+0000CD F2 D7 00 00         A   544    	JP	P,L__12
+0000D1 EA F4 00 00         A   545    	JP	PE,L_15
+0000D5 18 05               A   546    	JR	L__13
+0000D7                     A   547    L__12:
+0000D7 E2 F4 00 00 00      A   548    	JP	PO,L_15
+0000DC                     A   549    L__13:
+                           A   550    ;   34	    dy = -dy;
+                           A   551    .LINE 34
+                           A   552    
+0000DC DD27FC              A   553    	LD	HL,(IX+-4)
+0000DF CD 00 00 00         A   554    	CALL	__sneg
+0000E3 DD75FC              A   555    	LD	(IX+-4),L
+0000E6 DD74FD              A   556    	LD	(IX+-3),H
+                           A   557    ;   35	    stepy = - ( FBWIDTH );
+                           A   558    .LINE 35
+                           A   559    
+0000E9 DD36F600            A   560    	LD	(IX+-10),0
+0000ED DD36F7FF            A   561    	LD	(IX+-9),255
+                           A   562    ;   36	  } else {
+                           A   563    .LINE 36
+                           A   564    
+0000F1 18 09 00            A   565    	JR	L_18
+0000F4                     A   566    L_15:
+                           A   567    ;   37	    stepy = ( FBWIDTH );
+                           A   568    .LINE 37
+                           A   569    
+0000F4 DD36F600            A   570    	LD	(IX+-10),0
+0000F8 DD36F701            A   571    	LD	(IX+-9),1
+                           A   572    ;   38	  }
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  12
+
+
+PC     Object              I  Line    Source framebuffer.src
+0000FC                     A   573    L_18:
+                           A   574    .LINE 38
+                           A   575    
+                           A   576    ;   39	
+                           A   577    ;   40	  if (dx < 0) {
+                           A   578    .LINE 40
+                           A   579    
+0000FC DD27FA              A   580    	LD	HL,(IX+-6)
+0000FF CD 00 00 00         A   581    	CALL	__scmpzero
+000103 F2 0D 01 00         A   582    	JP	P,L__14
+000107 EA 2A 01 00         A   583    	JP	PE,L_17
+00010B 18 05               A   584    	JR	L__15
+00010D                     A   585    L__14:
+00010D E2 2A 01 00 00      A   586    	JP	PO,L_17
+000112                     A   587    L__15:
+                           A   588    ;   41	    dx = -dx;
+                           A   589    .LINE 41
+                           A   590    
+000112 DD27FA              A   591    	LD	HL,(IX+-6)
+000115 CD 00 00 00         A   592    	CALL	__sneg
+000119 DD75FA              A   593    	LD	(IX+-6),L
+00011C DD74FB              A   594    	LD	(IX+-5),H
+                           A   595    ;   42	    stepx = -1;
+                           A   596    .LINE 42
+                           A   597    
+00011F DD36F8FF            A   598    	LD	(IX+-8),255
+000123 DD36F9FF            A   599    	LD	(IX+-7),255
+                           A   600    ;   43	  } else {
+                           A   601    .LINE 43
+                           A   602    
+000127 18 09 00            A   603    	JR	L_19
+00012A                     A   604    L_17:
+                           A   605    ;   44	    stepx = 1;
+                           A   606    .LINE 44
+                           A   607    
+00012A DD36F801            A   608    	LD	(IX+-8),1
+00012E DD36F900            A   609    	LD	(IX+-7),0
+                           A   610    ;   45	  }
+000132                     A   611    L_19:
+                           A   612    .LINE 45
+                           A   613    
+                           A   614    ;   46	
+                           A   615    ;   47	  dy <<= 1;
+                           A   616    .LINE 47
+                           A   617    
+000132 DD27FC              A   618    	LD	HL,(IX+-4)
+000135 29                  A   619    	ADD	HL,HL
+000136 DD75FC              A   620    	LD	(IX+-4),L
+000139 DD74FD              A   621    	LD	(IX+-3),H
+                           A   622    ;   48	  dx <<= 1;
+                           A   623    .LINE 48
+                           A   624    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  13
+
+
+PC     Object              I  Line    Source framebuffer.src
+00013C DD27FA              A   625    	LD	HL,(IX+-6)
+00013F 29                  A   626    	ADD	HL,HL
+000140 DD75FA              A   627    	LD	(IX+-6),L
+000143 DD74FB              A   628    	LD	(IX+-5),H
+                           A   629    ;   49	
+                           A   630    ;   50	  y0 *= ( FBWIDTH );
+                           A   631    .LINE 50
+                           A   632    
+000146 DD270F              A   633    	LD	HL,(IX+15)
+000149 65                  A   634    	LD	H,L
+00014A 2E00                A   635    	LD	L,0
+00014C DD750F              A   636    	LD	(IX+15),L
+00014F DD7410              A   637    	LD	(IX+16),H
+                           A   638    ;   51	  y1 *= ( FBWIDTH );
+                           A   639    .LINE 51
+                           A   640    
+000152 DD2715              A   641    	LD	HL,(IX+21)
+000155 65                  A   642    	LD	H,L
+000156 2E00                A   643    	LD	L,0
+000158 DD7515              A   644    	LD	(IX+21),L
+00015B DD7416              A   645    	LD	(IX+22),H
+                           A   646    ;   52	
+                           A   647    ;   53	  bits [ x0 + y0 ] = c;
+                           A   648    .LINE 53
+                           A   649    
+00015E DD070C              A   650    	LD	BC,(IX+12)
+000161 CD 00 00 00         A   651    	CALL	__stoiu
+000165 E5D1                A   652    	LD	DE,HL
+000167 DD070F              A   653    	LD	BC,(IX+15)
+00016A CD 00 00 00         A   654    	CALL	__stoiu
+00016E 19                  A   655    	ADD	HL,DE
+00016F DD0706              A   656    	LD	BC,(IX+6)
+000172 09                  A   657    	ADD	HL,BC
+000173 DD7E09              A   658    	LD	A,(IX+9)
+000176 77                  A   659    	LD	(HL),A
+                           A   660    ;   54	
+                           A   661    ;   55	  if (dx > dy) {
+                           A   662    .LINE 55
+                           A   663    
+000177 DD07FA              A   664    	LD	BC,(IX+-6)
+00017A DD27FC              A   665    	LD	HL,(IX+-4)
+00017D B7                  A   666    	OR	A,A
+00017E 40ED42              A   667    	SBC.SIS	HL,BC
+000181 F2 8B 01 00         A   668    	JP	P,L__16
+000185 EA 29 02 00         A   669    	JP	PE,L_29
+000189 18 05               A   670    	JR	L__17
+00018B                     A   671    L__16:
+00018B E2 29 02 00 00      A   672    	JP	PO,L_29
+000190                     A   673    L__17:
+                           A   674    ;   56	    fraction = dy - (dx >> 1);
+                           A   675    .LINE 56
+                           A   676    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  14
+
+
+PC     Object              I  Line    Source framebuffer.src
+000190 DD07FA              A   677    	LD	BC,(IX+-6)
+000193 CD 00 00 00         A   678    	CALL	__stoi
+000197 3E01                A   679    	LD	A,1
+000199 CD 00 00 00         A   680    	CALL	__ishrs_b
+00019D E5C1                A   681    	LD	BC,HL
+00019F DD27FC              A   682    	LD	HL,(IX+-4)
+0001A2 B7                  A   683    	OR	A,A
+0001A3 40ED42              A   684    	SBC.SIS	HL,BC
+0001A6 DD75FE              A   685    	LD	(IX+-2),L
+0001A9 DD74FF              A   686    	LD	(IX+-1),H
+                           A   687    ;   57	    while (x0 != x1) {
+                           A   688    .LINE 57
+                           A   689    
+0001AC 18 6A 00            A   690    	JR	L_22
+0001AF                     A   691    L_23:
+                           A   692    ;   58	      if (fraction >= 0) {
+                           A   693    .LINE 58
+                           A   694    
+0001AF DD27FE              A   695    	LD	HL,(IX+-2)
+0001B2 CD 00 00 00         A   696    	CALL	__scmpzero
+0001B6 FA C0 01 00         A   697    	JP	M,L__18
+0001BA EA E3 01 00         A   698    	JP	PE,L_21
+0001BE 18 05               A   699    	JR	L__19
+0001C0                     A   700    L__18:
+0001C0 E2 E3 01 00 00      A   701    	JP	PO,L_21
+0001C5                     A   702    L__19:
+                           A   703    ;   59		y0 += stepy;
+                           A   704    .LINE 59
+                           A   705    
+0001C5 DD070F              A   706    	LD	BC,(IX+15)
+0001C8 DD27F6              A   707    	LD	HL,(IX+-10)
+0001CB 4009                A   708    	ADD.SIS	HL,BC
+0001CD DD750F              A   709    	LD	(IX+15),L
+0001D0 DD7410              A   710    	LD	(IX+16),H
+                           A   711    ;   60		fraction -= dx;
+                           A   712    .LINE 60
+                           A   713    
+0001D3 DD07FA              A   714    	LD	BC,(IX+-6)
+0001D6 DD27FE              A   715    	LD	HL,(IX+-2)
+0001D9 B7                  A   716    	OR	A,A
+0001DA 40ED42              A   717    	SBC.SIS	HL,BC
+0001DD DD75FE              A   718    	LD	(IX+-2),L
+0001E0 DD74FF              A   719    	LD	(IX+-1),H
+                           A   720    ;   61	      }
+0001E3                     A   721    L_21:
+                           A   722    .LINE 61
+                           A   723    
+                           A   724    ;   62	      x0 += stepx;
+                           A   725    .LINE 62
+                           A   726    
+0001E3 DD070C              A   727    	LD	BC,(IX+12)
+0001E6 DD27F8              A   728    	LD	HL,(IX+-8)
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  15
+
+
+PC     Object              I  Line    Source framebuffer.src
+0001E9 4009                A   729    	ADD.SIS	HL,BC
+0001EB DD750C              A   730    	LD	(IX+12),L
+0001EE DD740D              A   731    	LD	(IX+13),H
+                           A   732    ;   63	      fraction += dy;
+                           A   733    .LINE 63
+                           A   734    
+0001F1 DD07FC              A   735    	LD	BC,(IX+-4)
+0001F4 DD27FE              A   736    	LD	HL,(IX+-2)
+0001F7 4009                A   737    	ADD.SIS	HL,BC
+0001F9 DD75FE              A   738    	LD	(IX+-2),L
+0001FC DD74FF              A   739    	LD	(IX+-1),H
+                           A   740    ;   64	      bits [ x0 + y0 ] = c;
+                           A   741    .LINE 64
+                           A   742    
+0001FF DD070C              A   743    	LD	BC,(IX+12)
+000202 CD 00 00 00         A   744    	CALL	__stoiu
+000206 E5D1                A   745    	LD	DE,HL
+000208 DD070F              A   746    	LD	BC,(IX+15)
+00020B CD 00 00 00         A   747    	CALL	__stoiu
+00020F 19                  A   748    	ADD	HL,DE
+000210 DD0706              A   749    	LD	BC,(IX+6)
+000213 09                  A   750    	ADD	HL,BC
+000214 DD7E09              A   751    	LD	A,(IX+9)
+000217 77                  A   752    	LD	(HL),A
+                           A   753    ;   65	    }
+000218                     A   754    L_22:
+                           A   755    .LINE 65
+                           A   756    
+000218 DD0712              A   757    	LD	BC,(IX+18)
+00021B DD270C              A   758    	LD	HL,(IX+12)
+00021E B7                  A   759    	OR	A,A
+00021F 40ED42              A   760    	SBC.SIS	HL,BC
+000222 20 8B               A   761    	JR	NZ,L_23
+000224 C3 BE 02 00 00      A   762    	JR	L_30
+                           A   763    ;   66	  } else {
+000229                     A   764    L_29:
+                           A   765    .LINE 66
+                           A   766    
+                           A   767    ;   67	    fraction = dx - (dy >> 1);
+                           A   768    .LINE 67
+                           A   769    
+000229 DD07FC              A   770    	LD	BC,(IX+-4)
+00022C CD 00 00 00         A   771    	CALL	__stoi
+000230 3E01                A   772    	LD	A,1
+000232 CD 00 00 00         A   773    	CALL	__ishrs_b
+000236 E5C1                A   774    	LD	BC,HL
+000238 DD27FA              A   775    	LD	HL,(IX+-6)
+00023B B7                  A   776    	OR	A,A
+00023C 40ED42              A   777    	SBC.SIS	HL,BC
+00023F DD75FE              A   778    	LD	(IX+-2),L
+000242 DD74FF              A   779    	LD	(IX+-1),H
+                           A   780    ;   68	    while (y0 != y1) {
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  16
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   781    .LINE 68
+                           A   782    
+000245 18 6A 00            A   783    	JR	L_26
+000248                     A   784    L_27:
+                           A   785    ;   69	      if (fraction >= 0) {
+                           A   786    .LINE 69
+                           A   787    
+000248 DD27FE              A   788    	LD	HL,(IX+-2)
+00024B CD 00 00 00         A   789    	CALL	__scmpzero
+00024F FA 59 02 00         A   790    	JP	M,L__20
+000253 EA 7C 02 00         A   791    	JP	PE,L_25
+000257 18 05               A   792    	JR	L__21
+000259                     A   793    L__20:
+000259 E2 7C 02 00 00      A   794    	JP	PO,L_25
+00025E                     A   795    L__21:
+                           A   796    ;   70		x0 += stepx;
+                           A   797    .LINE 70
+                           A   798    
+00025E DD070C              A   799    	LD	BC,(IX+12)
+000261 DD27F8              A   800    	LD	HL,(IX+-8)
+000264 4009                A   801    	ADD.SIS	HL,BC
+000266 DD750C              A   802    	LD	(IX+12),L
+000269 DD740D              A   803    	LD	(IX+13),H
+                           A   804    ;   71		fraction -= dy;
+                           A   805    .LINE 71
+                           A   806    
+00026C DD07FC              A   807    	LD	BC,(IX+-4)
+00026F DD27FE              A   808    	LD	HL,(IX+-2)
+000272 B7                  A   809    	OR	A,A
+000273 40ED42              A   810    	SBC.SIS	HL,BC
+000276 DD75FE              A   811    	LD	(IX+-2),L
+000279 DD74FF              A   812    	LD	(IX+-1),H
+                           A   813    ;   72	      }
+00027C                     A   814    L_25:
+                           A   815    .LINE 72
+                           A   816    
+                           A   817    ;   73	      y0 += stepy;
+                           A   818    .LINE 73
+                           A   819    
+00027C DD070F              A   820    	LD	BC,(IX+15)
+00027F DD27F6              A   821    	LD	HL,(IX+-10)
+000282 4009                A   822    	ADD.SIS	HL,BC
+000284 DD750F              A   823    	LD	(IX+15),L
+000287 DD7410              A   824    	LD	(IX+16),H
+                           A   825    ;   74	      fraction += dx;
+                           A   826    .LINE 74
+                           A   827    
+00028A DD07FA              A   828    	LD	BC,(IX+-6)
+00028D DD27FE              A   829    	LD	HL,(IX+-2)
+000290 4009                A   830    	ADD.SIS	HL,BC
+000292 DD75FE              A   831    	LD	(IX+-2),L
+000295 DD74FF              A   832    	LD	(IX+-1),H
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  17
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   833    ;   75	      bits [ x0 + y0 ] = c;
+                           A   834    .LINE 75
+                           A   835    
+000298 DD070C              A   836    	LD	BC,(IX+12)
+00029B CD 00 00 00         A   837    	CALL	__stoiu
+00029F E5D1                A   838    	LD	DE,HL
+0002A1 DD070F              A   839    	LD	BC,(IX+15)
+0002A4 CD 00 00 00         A   840    	CALL	__stoiu
+0002A8 19                  A   841    	ADD	HL,DE
+0002A9 DD0706              A   842    	LD	BC,(IX+6)
+0002AC 09                  A   843    	ADD	HL,BC
+0002AD DD7E09              A   844    	LD	A,(IX+9)
+0002B0 77                  A   845    	LD	(HL),A
+                           A   846    ;   76	    }
+0002B1                     A   847    L_26:
+                           A   848    .LINE 76
+                           A   849    
+0002B1 DD0715              A   850    	LD	BC,(IX+21)
+0002B4 DD270F              A   851    	LD	HL,(IX+15)
+0002B7 B7                  A   852    	OR	A,A
+0002B8 40ED42              A   853    	SBC.SIS	HL,BC
+0002BB 20 8B 00            A   854    	JR	NZ,L_27
+                           A   855    ;   77	  }
+0002BE                     A   856    L_30:
+                           A   857    .LINE 77
+                           A   858    
+                           A   859    ;   78	
+                           A   860    ;   79	  return;
+                           A   861    ;   80	}
+                           A   862    .LINE 80
+                           A   863    
+0002BE DDF9                A   864    	LD	SP,IX
+0002C0 DDE1                A   865    	POP	IX
+0002C2 C9                  A   866    	RET	
+                           A   867    
+                           A   868    
+                           A   869    ;**************************** _zl_render_line *
+                           A   870    ;Name                         Addr/Register   S
+                           A   871    ;stepy                                IX-10    
+                           A   872    ;stepx                                 IX-8    
+                           A   873    ;dx                                    IX-6    
+                           A   874    ;dy                                    IX-4    
+                           A   875    ;fraction                              IX-2    
+                           A   876    ;y1                                   IX+21    
+                           A   877    ;x1                                   IX+18    
+                           A   878    ;y0                                   IX+15    
+                           A   879    ;x0                                   IX+12    
+                           A   880    ;c                                     IX+9    
+                           A   881    ;bits                                  IX+6    
+                           A   882    
+                           A   883    
+                           A   884    ; Stack Frame Size: 34 (bytes)
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  18
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   885    ;       Spill Code: 0 (instruction)
+                           A   886    
+                           A   887    
+                           A   888    .ENDFUNC "zl_render_line",80,"_zl_render_line"
+                           A   889    ;   81	
+                           A   890    ;   82	void zl_render_blit32 ( UINT8 *from, UI
+                           A   891    ;   83	                        UINT8 x1, UINT8
+                           A   892    ;   84	                        UINT8 to_x, UIN
+                           A   893    ;   85	{
+0002C3                     A   894    _zl_render_blit32:
+                           A   895    .DEFINE "_zl_render_blit32"
+                           A   896    
+                           A   897    .VALUE _zl_render_blit32
+                           A   898    
+                           A   899    .CLASS 2
+                           A   900    
+                           A   901    .TYPE 65
+                           A   902    
+                           A   903    .ENDEF
+                           A   904    
+                           A   905    .BEGFUNC "zl_render_blit32",85,"_zl_render_blit
+                           A   906    
+                           A   907    .LINE 85
+                           A   908    
+                           A   909    .DEFINE "from"
+                           A   910    
+                           A   911    .CLASS 65
+                           A   912    
+                           A   913    .VALUE 6
+                           A   914    
+                           A   915    .TYPE 44
+                           A   916    
+                           A   917    .ENDEF
+                           A   918    
+                           A   919    .DEFINE "to"
+                           A   920    
+                           A   921    .CLASS 65
+                           A   922    
+                           A   923    .VALUE 9
+                           A   924    
+                           A   925    .TYPE 44
+                           A   926    
+                           A   927    .ENDEF
+                           A   928    
+                           A   929    .DEFINE "x1"
+                           A   930    
+                           A   931    .CLASS 65
+                           A   932    
+                           A   933    .VALUE 12
+                           A   934    
+                           A   935    .TYPE 12
+                           A   936    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  19
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   937    .ENDEF
+                           A   938    
+                           A   939    .DEFINE "y1"
+                           A   940    
+                           A   941    .CLASS 65
+                           A   942    
+                           A   943    .VALUE 15
+                           A   944    
+                           A   945    .TYPE 12
+                           A   946    
+                           A   947    .ENDEF
+                           A   948    
+                           A   949    .DEFINE "w"
+                           A   950    
+                           A   951    .CLASS 65
+                           A   952    
+                           A   953    .VALUE 18
+                           A   954    
+                           A   955    .TYPE 12
+                           A   956    
+                           A   957    .ENDEF
+                           A   958    
+                           A   959    .DEFINE "h"
+                           A   960    
+                           A   961    .CLASS 65
+                           A   962    
+                           A   963    .VALUE 21
+                           A   964    
+                           A   965    .TYPE 12
+                           A   966    
+                           A   967    .ENDEF
+                           A   968    
+                           A   969    .DEFINE "to_x"
+                           A   970    
+                           A   971    .CLASS 65
+                           A   972    
+                           A   973    .VALUE 24
+                           A   974    
+                           A   975    .TYPE 12
+                           A   976    
+                           A   977    .ENDEF
+                           A   978    
+                           A   979    .DEFINE "to_y"
+                           A   980    
+                           A   981    .CLASS 65
+                           A   982    
+                           A   983    .VALUE 27
+                           A   984    
+                           A   985    .TYPE 12
+                           A   986    
+                           A   987    .ENDEF
+                           A   988    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  20
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A   989    .DEFINE "x"
+                           A   990    
+                           A   991    .CLASS 65
+                           A   992    
+                           A   993    .VALUE -1
+                           A   994    
+                           A   995    .TYPE 12
+                           A   996    
+                           A   997    .ENDEF
+                           A   998    
+                           A   999    .DEFINE "y"
+                           A  1000    
+                           A  1001    .CLASS 65
+                           A  1002    
+                           A  1003    .VALUE -2
+                           A  1004    
+                           A  1005    .TYPE 12
+                           A  1006    
+                           A  1007    .ENDEF
+                           A  1008    
+                           A  1009    .DEFINE "x2"
+                           A  1010    
+                           A  1011    .CLASS 65
+                           A  1012    
+                           A  1013    .VALUE -3
+                           A  1014    
+                           A  1015    .TYPE 12
+                           A  1016    
+                           A  1017    .ENDEF
+                           A  1018    
+                           A  1019    .DEFINE "vfromline"
+                           A  1020    
+                           A  1021    .CLASS 65
+                           A  1022    
+                           A  1023    .VALUE -6
+                           A  1024    
+                           A  1025    .TYPE 44
+                           A  1026    
+                           A  1027    .ENDEF
+                           A  1028    
+                           A  1029    .DEFINE "vtoline"
+                           A  1030    
+                           A  1031    .CLASS 65
+                           A  1032    
+                           A  1033    .VALUE -9
+                           A  1034    
+                           A  1035    .TYPE 44
+                           A  1036    
+                           A  1037    .ENDEF
+                           A  1038    
+                           A  1039    .DEFINE "vfromiter"
+                           A  1040    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  21
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1041    .CLASS 65
+                           A  1042    
+                           A  1043    .VALUE -12
+                           A  1044    
+                           A  1045    .TYPE 47
+                           A  1046    
+                           A  1047    .ENDEF
+                           A  1048    
+                           A  1049    .DEFINE "y2"
+                           A  1050    
+                           A  1051    .CLASS 65
+                           A  1052    
+                           A  1053    .VALUE -13
+                           A  1054    
+                           A  1055    .TYPE 12
+                           A  1056    
+                           A  1057    .ENDEF
+                           A  1058    
+                           A  1059    .DEFINE "vtoiter"
+                           A  1060    
+                           A  1061    .CLASS 65
+                           A  1062    
+                           A  1063    .VALUE -16
+                           A  1064    
+                           A  1065    .TYPE 47
+                           A  1066    
+                           A  1067    .ENDEF
+                           A  1068    
+0002C3 DDE5                A  1069    	PUSH	IX
+0002C5 DD210000 00         A  1070    	LD	IX,0
+0002CA DD39                A  1071    	ADD	IX,SP
+0002CC ED22EA              A  1072    	LEA	HL,IX+-22
+0002CF F9                  A  1073    	LD	SP,HL
+                           A  1074    ;   86	  UINT8 x2 = x1 + w;
+                           A  1075    .LINE 86
+                           A  1076    
+0002D0 DD7E0C              A  1077    	LD	A,(IX+12)
+0002D3 DD8612              A  1078    	ADD	A,(IX+18)
+0002D6 DD77FD              A  1079    	LD	(IX+-3),A
+                           A  1080    ;   87	  UINT8 y2 = y1 + h;
+                           A  1081    .LINE 87
+                           A  1082    
+0002D9 DD7E0F              A  1083    	LD	A,(IX+15)
+0002DC DD8615              A  1084    	ADD	A,(IX+21)
+0002DF DD77F3              A  1085    	LD	(IX+-13),A
+                           A  1086    ;   88	  UINT8 x, y;
+                           A  1087    ;   89	  UINT8 *vfromline = from;
+                           A  1088    ;   90	  UINT32 *vfromiter;
+                           A  1089    ;   91	  UINT8 *vtoline = to;
+                           A  1090    ;   92	  UINT32 *vtoiter;
+                           A  1091    ;   93	
+                           A  1092    ;   94	  vfromline += ( y1 * FBWIDTH );
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  22
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1093    .LINE 94
+                           A  1094    
+0002E2 DD7E0F              A  1095    	LD	A,(IX+15)
+0002E5 B7ED62              A  1096    	UEXT	HL
+0002E8 6F                  A  1097    	LD	L,A
+0002E9 3E08                A  1098    	LD	A,8
+0002EB CD 00 00 00         A  1099    	CALL	__ishl_b
+0002EF DD0706              A  1100    	LD	BC,(IX+6)
+0002F2 09                  A  1101    	ADD	HL,BC
+0002F3 DD2FFA              A  1102    	LD	(IX+-6),HL
+                           A  1103    ;   95	  vfromline += x1;
+                           A  1104    .LINE 95
+                           A  1105    
+0002F6 DD7E0C              A  1106    	LD	A,(IX+12)
+0002F9 B7ED62              A  1107    	UEXT	HL
+0002FC 6F                  A  1108    	LD	L,A
+0002FD DD07FA              A  1109    	LD	BC,(IX+-6)
+000300 09                  A  1110    	ADD	HL,BC
+000301 DD2FFA              A  1111    	LD	(IX+-6),HL
+                           A  1112    ;   96	
+                           A  1113    ;   97	  vtoline += ( to_y * FBWIDTH );
+                           A  1114    .LINE 97
+                           A  1115    
+000304 DD7E1B              A  1116    	LD	A,(IX+27)
+000307 B7ED62              A  1117    	UEXT	HL
+00030A 6F                  A  1118    	LD	L,A
+00030B 3E08                A  1119    	LD	A,8
+00030D CD 00 00 00         A  1120    	CALL	__ishl_b
+000311 DD0709              A  1121    	LD	BC,(IX+9)
+000314 09                  A  1122    	ADD	HL,BC
+000315 DD2FF7              A  1123    	LD	(IX+-9),HL
+                           A  1124    ;   98	  vtoline += to_x;
+                           A  1125    .LINE 98
+                           A  1126    
+000318 DD7E18              A  1127    	LD	A,(IX+24)
+00031B B7ED62              A  1128    	UEXT	HL
+00031E 6F                  A  1129    	LD	L,A
+00031F DD07F7              A  1130    	LD	BC,(IX+-9)
+000322 09                  A  1131    	ADD	HL,BC
+000323 DD2FF7              A  1132    	LD	(IX+-9),HL
+                           A  1133    ;   99	
+                           A  1134    ;  100	  x1 >>= 2;
+                           A  1135    .LINE 100
+                           A  1136    
+000326 DD7E0C              A  1137    	LD	A,(IX+12)
+000329 B7ED62              A  1138    	UEXT	HL
+00032C 6F                  A  1139    	LD	L,A
+00032D 3E02                A  1140    	LD	A,2
+00032F CD 00 00 00         A  1141    	CALL	__ishrs_b
+000333 DD750C              A  1142    	LD	(IX+12),L
+                           A  1143    ;  101	  x2 >>= 2;
+                           A  1144    .LINE 101
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  23
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1145    
+000336 DD7EFD              A  1146    	LD	A,(IX+-3)
+000339 B7ED62              A  1147    	UEXT	HL
+00033C 6F                  A  1148    	LD	L,A
+00033D 3E02                A  1149    	LD	A,2
+00033F CD 00 00 00         A  1150    	CALL	__ishrs_b
+000343 DD75FD              A  1151    	LD	(IX+-3),L
+                           A  1152    ;  102	
+                           A  1153    ;  103	  for ( y = y1; y < y2; y++ ) {
+                           A  1154    .LINE 103
+                           A  1155    
+000346 DD7E0F              A  1156    	LD	A,(IX+15)
+000349 DD77FE              A  1157    	LD	(IX+-2),A
+00034C 18 66 00            A  1158    	JR	L_42
+00034F                     A  1159    L_40:
+                           A  1160    ;  104	    vtoiter = (UINT32*) vtoline;
+                           A  1161    .LINE 104
+                           A  1162    
+00034F DD07F7              A  1163    	LD	BC,(IX+-9)
+000352 DD0FF0              A  1164    	LD	(IX+-16),BC
+                           A  1165    ;  105	    vfromiter = (UINT32*) vfromline;
+                           A  1166    .LINE 105
+                           A  1167    
+000355 DD07FA              A  1168    	LD	BC,(IX+-6)
+000358 DD0FF4              A  1169    	LD	(IX+-12),BC
+                           A  1170    ;  106	
+                           A  1171    ;  107	    for ( x = x1; x < x2; x++ ) {
+                           A  1172    .LINE 107
+                           A  1173    
+00035B DD7E0C              A  1174    	LD	A,(IX+12)
+00035E DD77FF              A  1175    	LD	(IX+-1),A
+000361 18 33 00            A  1176    	JR	L_38
+000364                     A  1177    L_36:
+                           A  1178    ;  108	      *vtoiter++ = *vfromiter++;
+                           A  1179    .LINE 108
+                           A  1180    
+000364 DD07F4              A  1181    	LD	BC,(IX+-12)
+000367 DD0FED              A  1182    	LD	(IX+-19),BC
+00036A DD07F0              A  1183    	LD	BC,(IX+-16)
+00036D DD0FEA              A  1184    	LD	(IX+-22),BC
+000370 DD31ED              A  1185    	LD	IY,(IX+-19)
+000373 C5E1                A  1186    	LD	HL,BC
+000375 FD0700              A  1187    	LD	BC,(IY)
+000378 FD7E03              A  1188    	LD	A,(IY+3)
+00037B ED0F                A  1189    	LD	(HL),BC
+00037D 23                  A  1190    	INC	HL
+00037E 23                  A  1191    	INC	HL
+00037F 23                  A  1192    	INC	HL
+000380 77                  A  1193    	LD	(HL),A
+000381 DD31F4              A  1194    	LD	IY,(IX+-12)
+000384 ED0304              A  1195    	LEA	BC,IY+4
+000387 DD0FF4              A  1196    	LD	(IX+-12),BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  24
+
+
+PC     Object              I  Line    Source framebuffer.src
+00038A DD31F0              A  1197    	LD	IY,(IX+-16)
+00038D ED3304              A  1198    	LEA	IY,IY+4
+000390 DD3EF0              A  1199    	LD	(IX+-16),IY
+000393 DD34FF              A  1200    	INC	(IX+-1)
+                           A  1201    ;  109	    }
+000396                     A  1202    L_38:
+                           A  1203    .LINE 109
+                           A  1204    
+000396 DD7EFF              A  1205    	LD	A,(IX+-1)
+000399 DDBEFD              A  1206    	CP	A,(IX+-3)
+00039C 38 C6 00            A  1207    	JR	C,L_36
+                           A  1208    ;  110	
+                           A  1209    ;  111	    vtoline += FBWIDTH;
+                           A  1210    .LINE 111
+                           A  1211    
+00039F 01000100            A  1212    	LD	BC,256
+0003A3 DD27F7              A  1213    	LD	HL,(IX+-9)
+0003A6 09                  A  1214    	ADD	HL,BC
+0003A7 DD2FF7              A  1215    	LD	(IX+-9),HL
+                           A  1216    ;  112	    vfromline += FBWIDTH;
+                           A  1217    .LINE 112
+                           A  1218    
+0003AA DD27FA              A  1219    	LD	HL,(IX+-6)
+0003AD 09                  A  1220    	ADD	HL,BC
+0003AE DD2FFA              A  1221    	LD	(IX+-6),HL
+0003B1 DD34FE              A  1222    	INC	(IX+-2)
+                           A  1223    ;  113	  }
+0003B4                     A  1224    L_42:
+                           A  1225    .LINE 113
+                           A  1226    
+0003B4 DD7EFE              A  1227    	LD	A,(IX+-2)
+0003B7 DDBEF3              A  1228    	CP	A,(IX+-13)
+0003BA 38 93 00            A  1229    	JR	C,L_40
+                           A  1230    ;  114	
+                           A  1231    ;  115	  return;
+                           A  1232    ;  116	}
+                           A  1233    .LINE 116
+                           A  1234    
+0003BD DDF9                A  1235    	LD	SP,IX
+0003BF DDE1                A  1236    	POP	IX
+0003C1 C9                  A  1237    	RET	
+                           A  1238    
+                           A  1239    
+                           A  1240    ;**************************** _zl_render_blit32
+                           A  1241    ;Name                         Addr/Register   S
+                           A  1242    ;vtoiter                              IX-16    
+                           A  1243    ;y2                                   IX-13    
+                           A  1244    ;vfromiter                            IX-12    
+                           A  1245    ;vtoline                               IX-9    
+                           A  1246    ;vfromline                             IX-6    
+                           A  1247    ;x2                                    IX-3    
+                           A  1248    ;y                                     IX-2    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  25
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1249    ;x                                     IX-1    
+                           A  1250    ;to_y                                 IX+27    
+                           A  1251    ;to_x                                 IX+24    
+                           A  1252    ;h                                    IX+21    
+                           A  1253    ;w                                    IX+18    
+                           A  1254    ;y1                                   IX+15    
+                           A  1255    ;x1                                   IX+12    
+                           A  1256    ;to                                    IX+9    
+                           A  1257    ;from                                  IX+6    
+                           A  1258    
+                           A  1259    
+                           A  1260    ; Stack Frame Size: 52 (bytes)
+                           A  1261    ;       Spill Code: 0 (instruction)
+                           A  1262    
+                           A  1263    
+                           A  1264    .ENDFUNC "zl_render_blit32",116,"_zl_render_bli
+                           A  1265    ;  117	
+                           A  1266    ;  118	void zl_render_blit8 ( UINT8 *from, UIN
+                           A  1267    ;  119	                       UINT8 x1, UINT8 
+                           A  1268    ;  120	                       UINT8 to_x, UINT
+                           A  1269    ;  121	{
+0003C2                     A  1270    _zl_render_blit8:
+                           A  1271    .DEFINE "_zl_render_blit8"
+                           A  1272    
+                           A  1273    .VALUE _zl_render_blit8
+                           A  1274    
+                           A  1275    .CLASS 2
+                           A  1276    
+                           A  1277    .TYPE 65
+                           A  1278    
+                           A  1279    .ENDEF
+                           A  1280    
+                           A  1281    .BEGFUNC "zl_render_blit8",121,"_zl_render_blit
+                           A  1282    
+                           A  1283    .LINE 121
+                           A  1284    
+                           A  1285    .DEFINE "from"
+                           A  1286    
+                           A  1287    .CLASS 65
+                           A  1288    
+                           A  1289    .VALUE 6
+                           A  1290    
+                           A  1291    .TYPE 44
+                           A  1292    
+                           A  1293    .ENDEF
+                           A  1294    
+                           A  1295    .DEFINE "to"
+                           A  1296    
+                           A  1297    .CLASS 65
+                           A  1298    
+                           A  1299    .VALUE 9
+                           A  1300    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  26
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1301    .TYPE 44
+                           A  1302    
+                           A  1303    .ENDEF
+                           A  1304    
+                           A  1305    .DEFINE "x1"
+                           A  1306    
+                           A  1307    .CLASS 65
+                           A  1308    
+                           A  1309    .VALUE 12
+                           A  1310    
+                           A  1311    .TYPE 12
+                           A  1312    
+                           A  1313    .ENDEF
+                           A  1314    
+                           A  1315    .DEFINE "y1"
+                           A  1316    
+                           A  1317    .CLASS 65
+                           A  1318    
+                           A  1319    .VALUE 15
+                           A  1320    
+                           A  1321    .TYPE 12
+                           A  1322    
+                           A  1323    .ENDEF
+                           A  1324    
+                           A  1325    .DEFINE "w"
+                           A  1326    
+                           A  1327    .CLASS 65
+                           A  1328    
+                           A  1329    .VALUE 18
+                           A  1330    
+                           A  1331    .TYPE 12
+                           A  1332    
+                           A  1333    .ENDEF
+                           A  1334    
+                           A  1335    .DEFINE "h"
+                           A  1336    
+                           A  1337    .CLASS 65
+                           A  1338    
+                           A  1339    .VALUE 21
+                           A  1340    
+                           A  1341    .TYPE 12
+                           A  1342    
+                           A  1343    .ENDEF
+                           A  1344    
+                           A  1345    .DEFINE "to_x"
+                           A  1346    
+                           A  1347    .CLASS 65
+                           A  1348    
+                           A  1349    .VALUE 24
+                           A  1350    
+                           A  1351    .TYPE 12
+                           A  1352    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  27
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1353    .ENDEF
+                           A  1354    
+                           A  1355    .DEFINE "to_y"
+                           A  1356    
+                           A  1357    .CLASS 65
+                           A  1358    
+                           A  1359    .VALUE 27
+                           A  1360    
+                           A  1361    .TYPE 12
+                           A  1362    
+                           A  1363    .ENDEF
+                           A  1364    
+                           A  1365    .DEFINE "x"
+                           A  1366    
+                           A  1367    .CLASS 65
+                           A  1368    
+                           A  1369    .VALUE -1
+                           A  1370    
+                           A  1371    .TYPE 12
+                           A  1372    
+                           A  1373    .ENDEF
+                           A  1374    
+                           A  1375    .DEFINE "y"
+                           A  1376    
+                           A  1377    .CLASS 65
+                           A  1378    
+                           A  1379    .VALUE -2
+                           A  1380    
+                           A  1381    .TYPE 12
+                           A  1382    
+                           A  1383    .ENDEF
+                           A  1384    
+                           A  1385    .DEFINE "vfromline"
+                           A  1386    
+                           A  1387    .CLASS 65
+                           A  1388    
+                           A  1389    .VALUE -5
+                           A  1390    
+                           A  1391    .TYPE 44
+                           A  1392    
+                           A  1393    .ENDEF
+                           A  1394    
+                           A  1395    .DEFINE "vtoline"
+                           A  1396    
+                           A  1397    .CLASS 65
+                           A  1398    
+                           A  1399    .VALUE -8
+                           A  1400    
+                           A  1401    .TYPE 44
+                           A  1402    
+                           A  1403    .ENDEF
+                           A  1404    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  28
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1405    .DEFINE "x2"
+                           A  1406    
+                           A  1407    .CLASS 65
+                           A  1408    
+                           A  1409    .VALUE -9
+                           A  1410    
+                           A  1411    .TYPE 12
+                           A  1412    
+                           A  1413    .ENDEF
+                           A  1414    
+                           A  1415    .DEFINE "vfromiter"
+                           A  1416    
+                           A  1417    .CLASS 65
+                           A  1418    
+                           A  1419    .VALUE -12
+                           A  1420    
+                           A  1421    .TYPE 44
+                           A  1422    
+                           A  1423    .ENDEF
+                           A  1424    
+                           A  1425    .DEFINE "y2"
+                           A  1426    
+                           A  1427    .CLASS 65
+                           A  1428    
+                           A  1429    .VALUE -13
+                           A  1430    
+                           A  1431    .TYPE 12
+                           A  1432    
+                           A  1433    .ENDEF
+                           A  1434    
+                           A  1435    .DEFINE "vtoiter"
+                           A  1436    
+                           A  1437    .CLASS 65
+                           A  1438    
+                           A  1439    .VALUE -16
+                           A  1440    
+                           A  1441    .TYPE 44
+                           A  1442    
+                           A  1443    .ENDEF
+                           A  1444    
+0003C2 DDE5                A  1445    	PUSH	IX
+0003C4 DD210000 00         A  1446    	LD	IX,0
+0003C9 DD39                A  1447    	ADD	IX,SP
+0003CB ED22EA              A  1448    	LEA	HL,IX+-22
+0003CE F9                  A  1449    	LD	SP,HL
+                           A  1450    ;  122	  UINT8 x2 = x1 + w;
+                           A  1451    .LINE 122
+                           A  1452    
+0003CF DD7E0C              A  1453    	LD	A,(IX+12)
+0003D2 DD8612              A  1454    	ADD	A,(IX+18)
+0003D5 DD77F7              A  1455    	LD	(IX+-9),A
+                           A  1456    ;  123	  UINT8 y2 = y1 + h;
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  29
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1457    .LINE 123
+                           A  1458    
+0003D8 DD7E0F              A  1459    	LD	A,(IX+15)
+0003DB DD8615              A  1460    	ADD	A,(IX+21)
+0003DE DD77F3              A  1461    	LD	(IX+-13),A
+                           A  1462    ;  124	  UINT8 x, y;
+                           A  1463    ;  125	  UINT8 *vfromline = from;
+                           A  1464    ;  126	  UINT8 *vfromiter;
+                           A  1465    ;  127	  UINT8 *vtoline = to;
+                           A  1466    ;  128	  UINT8 *vtoiter;
+                           A  1467    ;  129	
+                           A  1468    ;  130	  vfromline += ( y1 * FBWIDTH );
+                           A  1469    .LINE 130
+                           A  1470    
+0003E1 DD7E0F              A  1471    	LD	A,(IX+15)
+0003E4 B7ED62              A  1472    	UEXT	HL
+0003E7 6F                  A  1473    	LD	L,A
+0003E8 3E08                A  1474    	LD	A,8
+0003EA CD 00 00 00         A  1475    	CALL	__ishl_b
+0003EE DD0706              A  1476    	LD	BC,(IX+6)
+0003F1 09                  A  1477    	ADD	HL,BC
+0003F2 DD2FFB              A  1478    	LD	(IX+-5),HL
+                           A  1479    ;  131	  vfromline += x1;
+                           A  1480    .LINE 131
+                           A  1481    
+0003F5 DD7E0C              A  1482    	LD	A,(IX+12)
+0003F8 B7ED62              A  1483    	UEXT	HL
+0003FB 6F                  A  1484    	LD	L,A
+0003FC DD07FB              A  1485    	LD	BC,(IX+-5)
+0003FF 09                  A  1486    	ADD	HL,BC
+000400 DD2FFB              A  1487    	LD	(IX+-5),HL
+                           A  1488    ;  132	
+                           A  1489    ;  133	  vtoline += ( to_y * FBWIDTH );
+                           A  1490    .LINE 133
+                           A  1491    
+000403 DD7E1B              A  1492    	LD	A,(IX+27)
+000406 B7ED62              A  1493    	UEXT	HL
+000409 6F                  A  1494    	LD	L,A
+00040A 3E08                A  1495    	LD	A,8
+00040C CD 00 00 00         A  1496    	CALL	__ishl_b
+000410 DD0709              A  1497    	LD	BC,(IX+9)
+000413 09                  A  1498    	ADD	HL,BC
+000414 DD2FF8              A  1499    	LD	(IX+-8),HL
+                           A  1500    ;  134	  vtoline += to_x;
+                           A  1501    .LINE 134
+                           A  1502    
+000417 DD7E18              A  1503    	LD	A,(IX+24)
+00041A B7ED62              A  1504    	UEXT	HL
+00041D 6F                  A  1505    	LD	L,A
+00041E DD07F8              A  1506    	LD	BC,(IX+-8)
+000421 09                  A  1507    	ADD	HL,BC
+000422 DD2FF8              A  1508    	LD	(IX+-8),HL
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  30
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1509    ;  135	
+                           A  1510    ;  136	  for ( y = y1; y < y2; y++ ) {
+                           A  1511    .LINE 136
+                           A  1512    
+000425 DD7E0F              A  1513    	LD	A,(IX+15)
+000428 DD77FE              A  1514    	LD	(IX+-2),A
+00042B 18 5A 00            A  1515    	JR	L_55
+00042E                     A  1516    L_53:
+                           A  1517    ;  137	    vtoiter = vtoline;
+                           A  1518    .LINE 137
+                           A  1519    
+00042E DD07F8              A  1520    	LD	BC,(IX+-8)
+000431 DD0FF0              A  1521    	LD	(IX+-16),BC
+                           A  1522    ;  138	    vfromiter = vfromline;
+                           A  1523    .LINE 138
+                           A  1524    
+000434 DD07FB              A  1525    	LD	BC,(IX+-5)
+000437 DD0FF4              A  1526    	LD	(IX+-12),BC
+                           A  1527    ;  139	
+                           A  1528    ;  140	    for ( x = x1; x < x2; x++ ) {
+                           A  1529    .LINE 140
+                           A  1530    
+00043A DD7E0C              A  1531    	LD	A,(IX+12)
+00043D DD77FF              A  1532    	LD	(IX+-1),A
+000440 18 27 00            A  1533    	JR	L_51
+000443                     A  1534    L_49:
+                           A  1535    ;  141	      *vtoiter++ = *vfromiter++;
+                           A  1536    .LINE 141
+                           A  1537    
+000443 DD07F4              A  1538    	LD	BC,(IX+-12)
+000446 DD0FED              A  1539    	LD	(IX+-19),BC
+000449 DD07F0              A  1540    	LD	BC,(IX+-16)
+00044C DD0FEA              A  1541    	LD	(IX+-22),BC
+00044F DD31ED              A  1542    	LD	IY,(IX+-19)
+000452 C5E1                A  1543    	LD	HL,BC
+000454 FD7E00              A  1544    	LD	A,(IY)
+000457 77                  A  1545    	LD	(HL),A
+000458 DD07F4              A  1546    	LD	BC,(IX+-12)
+00045B 03                  A  1547    	INC	BC
+00045C DD0FF4              A  1548    	LD	(IX+-12),BC
+00045F DD07F0              A  1549    	LD	BC,(IX+-16)
+000462 03                  A  1550    	INC	BC
+000463 DD0FF0              A  1551    	LD	(IX+-16),BC
+000466 DD34FF              A  1552    	INC	(IX+-1)
+                           A  1553    ;  142	    }
+000469                     A  1554    L_51:
+                           A  1555    .LINE 142
+                           A  1556    
+000469 DD7EFF              A  1557    	LD	A,(IX+-1)
+00046C DDBEF7              A  1558    	CP	A,(IX+-9)
+00046F 38 D2 00            A  1559    	JR	C,L_49
+                           A  1560    ;  143	
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  31
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1561    ;  144	    vtoline += FBWIDTH;
+                           A  1562    .LINE 144
+                           A  1563    
+000472 01000100            A  1564    	LD	BC,256
+000476 DD27F8              A  1565    	LD	HL,(IX+-8)
+000479 09                  A  1566    	ADD	HL,BC
+00047A DD2FF8              A  1567    	LD	(IX+-8),HL
+                           A  1568    ;  145	    vfromline += FBWIDTH;
+                           A  1569    .LINE 145
+                           A  1570    
+00047D DD27FB              A  1571    	LD	HL,(IX+-5)
+000480 09                  A  1572    	ADD	HL,BC
+000481 DD2FFB              A  1573    	LD	(IX+-5),HL
+000484 DD34FE              A  1574    	INC	(IX+-2)
+                           A  1575    ;  146	  }
+000487                     A  1576    L_55:
+                           A  1577    .LINE 146
+                           A  1578    
+000487 DD7EFE              A  1579    	LD	A,(IX+-2)
+00048A DDBEF3              A  1580    	CP	A,(IX+-13)
+00048D 38 9F 00            A  1581    	JR	C,L_53
+                           A  1582    ;  147	
+                           A  1583    ;  148	  return;
+                           A  1584    ;  149	}
+                           A  1585    .LINE 149
+                           A  1586    
+000490 DDF9                A  1587    	LD	SP,IX
+000492 DDE1                A  1588    	POP	IX
+000494 C9                  A  1589    	RET	
+                           A  1590    
+                           A  1591    
+                           A  1592    ;**************************** _zl_render_blit8 
+                           A  1593    ;Name                         Addr/Register   S
+                           A  1594    ;vtoiter                              IX-16    
+                           A  1595    ;y2                                   IX-13    
+                           A  1596    ;vfromiter                            IX-12    
+                           A  1597    ;x2                                    IX-9    
+                           A  1598    ;vtoline                               IX-8    
+                           A  1599    ;vfromline                             IX-5    
+                           A  1600    ;y                                     IX-2    
+                           A  1601    ;x                                     IX-1    
+                           A  1602    ;to_y                                 IX+27    
+                           A  1603    ;to_x                                 IX+24    
+                           A  1604    ;h                                    IX+21    
+                           A  1605    ;w                                    IX+18    
+                           A  1606    ;y1                                   IX+15    
+                           A  1607    ;x1                                   IX+12    
+                           A  1608    ;to                                    IX+9    
+                           A  1609    ;from                                  IX+6    
+                           A  1610    
+                           A  1611    
+                           A  1612    ; Stack Frame Size: 52 (bytes)
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:40     page:  32
+
+
+PC     Object              I  Line    Source framebuffer.src
+                           A  1613    ;       Spill Code: 0 (instruction)
+                           A  1614    
+                           A  1615    
+                           A  1616    .ENDFUNC "zl_render_blit8",149,"_zl_render_blit
+                           A  1617    	XREF __sneg:ROM
+                           A  1618    	XREF __stoi:ROM
+                           A  1619    	XREF __stoiu:ROM
+                           A  1620    	XREF __scmpzero:ROM
+                           A  1621    	XREF __ishl_b:ROM
+                           A  1622    	XREF __ishrs_b:ROM
+                           A  1623    	XDEF _zl_render_blit8
+                           A  1624    	XDEF _zl_render_blit32
+                           A  1625    	XDEF _zl_render_line
+                           A  1626    	XDEF _fb_render_rect_filled
+                           A  1627    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 1628

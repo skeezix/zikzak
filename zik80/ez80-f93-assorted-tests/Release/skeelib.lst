@@ -1,0 +1,809 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -nomodsect -optspeed -noreduceopt -padbranch 
+                           A     3    ; -peephole -globalopt -localcse -const=ROM 
+                           A     4    	FILE	"..\..\EZ80~P1U\SKEELIB.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:   2
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+                           A    95    .BEGREC "fmt_type",19
+                           A    96    .DEFINE "status"
+                           A    97    .VALUE 0
+                           A    98    .CLASS 8
+                           A    99    .TYPE 12
+                           A   100    .ENDEF
+                           A   101    .DEFINE "flags"
+                           A   102    .VALUE 1
+                           A   103    .CLASS 8
+                           A   104    .TYPE 12
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:   3
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A   105    .ENDEF
+                           A   106    .DEFINE "size"
+                           A   107    .VALUE 2
+                           A   108    .CLASS 8
+                           A   109    .TYPE 2
+                           A   110    .ENDEF
+                           A   111    .DEFINE "chr"
+                           A   112    .VALUE 3
+                           A   113    .CLASS 8
+                           A   114    .TYPE 2
+                           A   115    .ENDEF
+                           A   116    .DEFINE "type"
+                           A   117    .VALUE 4
+                           A   118    .CLASS 8
+                           A   119    .TYPE 2
+                           A   120    .ENDEF
+                           A   121    .DEFINE "field_width"
+                           A   122    .VALUE 5
+                           A   123    .CLASS 8
+                           A   124    .TYPE 2
+                           A   125    .ENDEF
+                           A   126    .DEFINE "precision"
+                           A   127    .VALUE 6
+                           A   128    .CLASS 8
+                           A   129    .TYPE 2
+                           A   130    .ENDEF
+                           A   131    .DEFINE "set_begin"
+                           A   132    .VALUE 7
+                           A   133    .CLASS 8
+                           A   134    .TYPE 34
+                           A   135    .ENDEF
+                           A   136    .DEFINE "set_end"
+                           A   137    .VALUE 10
+                           A   138    .CLASS 8
+                           A   139    .TYPE 34
+                           A   140    .ENDEF
+                           A   141    .DEFINE "pad_whole"
+                           A   142    .VALUE 13
+                           A   143    .CLASS 8
+                           A   144    .TYPE 12
+                           A   145    .ENDEF
+                           A   146    .DEFINE "pad_pre_fract"
+                           A   147    .VALUE 14
+                           A   148    .CLASS 8
+                           A   149    .TYPE 12
+                           A   150    .ENDEF
+                           A   151    .DEFINE "pad_post_fract"
+                           A   152    .VALUE 15
+                           A   153    .CLASS 8
+                           A   154    .TYPE 12
+                           A   155    .ENDEF
+                           A   156    .DEFINE "pad_at"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:   4
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A   157    .VALUE 16
+                           A   158    .CLASS 8
+                           A   159    .TYPE 34
+                           A   160    .ENDEF
+                           A   161    .ENDREC "fmt_type"
+                           A   162    .BEGREC "flt_info",12
+                           A   163    .DEFINE "flags"
+                           A   164    .VALUE 0
+                           A   165    .CLASS 8
+                           A   166    .TYPE 12
+                           A   167    .ENDEF
+                           A   168    .DEFINE "exp"
+                           A   169    .VALUE 1
+                           A   170    .CLASS 8
+                           A   171    .TYPE 2
+                           A   172    .ENDEF
+                           A   173    .DEFINE "digits"
+                           A   174    .VALUE 2
+                           A   175    .CLASS 8
+                           A   176    .DIM 10
+                           A   177    .TYPE 108
+                           A   178    .ENDEF
+                           A   179    .ENDREC "flt_info"
+000000                     A   180    _delay_loop:
+                           A   181    .DEFINE "_delay_loop"
+                           A   182    
+                           A   183    .VALUE _delay_loop
+                           A   184    
+                           A   185    .CLASS 3
+                           A   186    
+                           A   187    .TYPE 65
+                           A   188    
+                           A   189    .ENDEF
+                           A   190    
+                           A   191    .BEGFUNC "delay_loop",12,"_delay_loop"
+                           A   192    
+                           A   193    .LINE 12
+                           A   194    
+                           A   195    .DEFINE "c"
+                           A   196    
+                           A   197    .CLASS 65
+                           A   198    
+                           A   199    .VALUE 6
+                           A   200    
+                           A   201    .TYPE 14
+                           A   202    
+                           A   203    .ENDEF
+                           A   204    
+000000 DDE5                A   205    	PUSH	IX
+000002 DD210000 00         A   206    	LD	IX,0
+000007 DD39                A   207    	ADD	IX,SP
+                           A   208    .LINE 13
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:   5
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A   209    
+000009 18 0A 00            A   210    	JR	L_1
+00000C                     A   211    L_2:
+                           A   212    .LINE 14
+                           A   213    
+00000C DD3106              A   214    	LD	IY,(IX+6)
+00000F ED33FF              A   215    	LEA	IY,IY+-1
+000012 DD3E06              A   216    	LD	(IX+6),IY
+000015                     A   217    L_1:
+                           A   218    .LINE 15
+                           A   219    
+000015 01000000            A   220    	LD	BC,0
+000019 DD2706              A   221    	LD	HL,(IX+6)
+00001C B7                  A   222    	OR	A,A
+00001D ED42                A   223    	SBC	HL,BC
+00001F 20 EB 00            A   224    	JR	NZ,L_2
+                           A   225    .LINE 16
+                           A   226    
+000022 DDF9                A   227    	LD	SP,IX
+000024 DDE1                A   228    	POP	IX
+000026 C9                  A   229    	RET	
+                           A   230    
+                           A   231    
+                           A   232    ;**************************** _delay_loop *****
+                           A   233    ;Name                         Addr/Register   S
+                           A   234    ;c                                     IX+6    
+                           A   235    
+                           A   236    
+                           A   237    ; Stack Frame Size: 9 (bytes)
+                           A   238    ;       Spill Code: 0 (instruction)
+                           A   239    
+                           A   240    
+                           A   241    .ENDFUNC "delay_loop",16,"_delay_loop"
+                           A   242    ;    1	#include <eZ80.h>
+                           A   243    ;    2	#include <stdio.h>
+                           A   244    ;    3	
+                           A   245    ;    4	#include "skeelib.h"
+                           A   246    ;    5	
+                           A   247    ;    6	char* lame_itoa ( int i, char b[] ) {
+000027                     A   248    _lame_itoa:
+                           A   249    .DEFINE "_lame_itoa"
+                           A   250    
+                           A   251    .VALUE _lame_itoa
+                           A   252    
+                           A   253    .CLASS 2
+                           A   254    
+                           A   255    .TYPE 322
+                           A   256    
+                           A   257    .ENDEF
+                           A   258    
+                           A   259    .BEGFUNC "lame_itoa",6,"_lame_itoa"
+                           A   260    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:   6
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A   261    .LINE 6
+                           A   262    
+                           A   263    .DEFINE "i"
+                           A   264    
+                           A   265    .CLASS 65
+                           A   266    
+                           A   267    .VALUE 6
+                           A   268    
+                           A   269    .TYPE 4
+                           A   270    
+                           A   271    .ENDEF
+                           A   272    
+                           A   273    .DEFINE "b"
+                           A   274    
+                           A   275    .CLASS 65
+                           A   276    
+                           A   277    .VALUE 9
+                           A   278    
+                           A   279    .TYPE 34
+                           A   280    
+                           A   281    .ENDEF
+                           A   282    
+                           A   283    .DEFINE "p"
+                           A   284    
+                           A   285    .CLASS 65
+                           A   286    
+                           A   287    .VALUE -3
+                           A   288    
+                           A   289    .TYPE 34
+                           A   290    
+                           A   291    .ENDEF
+                           A   292    
+                           A   293    .DEFINE "shifter"
+                           A   294    
+                           A   295    .CLASS 65
+                           A   296    
+                           A   297    .VALUE -6
+                           A   298    
+                           A   299    .TYPE 4
+                           A   300    
+                           A   301    .ENDEF
+                           A   302    
+                           A   303    .DEFINE "digit"
+                           A   304    
+                           A   305    .CLASS 65
+                           A   306    
+                           A   307    .VALUE -17
+                           A   308    
+                           A   309    .DIM 11
+                           A   310    
+                           A   311    .TYPE 98
+                           A   312    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:   7
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A   313    .ENDEF
+                           A   314    
+                           A   315    ;    7		char const digit[] = "0123456789";
+                           A   316    ;    8		int shifter;
+                           A   317    ;    9		char* p = b;
+                           A   318    ;   10		
+                           A   319    ;   11		if ( i < 0 ){
+                           A   320    ;   12			*p++ = '-';
+                           A   321    ;   13			i *= -1;
+                           A   322    ;   14		}
+                           A   323    ;   15		
+                           A   324    ;   16		shifter = i;
+000027 DDE5                A   325    	PUSH	IX
+000029 DD210000 00         A   326    	LD	IX,0
+00002E DD39                A   327    	ADD	IX,SP
+000030 ED22EF              A   328    	LEA	HL,IX+-17
+000033 F9                  A   329    	LD	SP,HL
+                           A   330    .LINE 7
+                           A   331    
+000034 ED12EF              A   332    	LEA	DE,IX+-17
+000037 21 00 00 00         A   333    	LD	HL,_0temp4
+00003B 010B0000            A   334    	LD	BC,11
+00003F EDB0 00             A   335    	LDIR	
+                           A   336    .LINE 9
+                           A   337    
+000042 DD0709              A   338    	LD	BC,(IX+9)
+000045 DD0FFD              A   339    	LD	(IX+-3),BC
+                           A   340    .LINE 11
+                           A   341    
+000048 01000000            A   342    	LD	BC,0
+00004C DD2706              A   343    	LD	HL,(IX+6)
+00004F B7                  A   344    	OR	A,A
+000050 ED42                A   345    	SBC	HL,BC
+000052 F2 5C 00 00         A   346    	JP	P,L__5
+000056 EA 77 00 00         A   347    	JP	PE,L_7
+00005A 18 05               A   348    	JR	L__6
+00005C                     A   349    L__5:
+00005C E2 77 00 00 00      A   350    	JP	PO,L_7
+000061                     A   351    L__6:
+                           A   352    .LINE 12
+                           A   353    
+000061 DD2709              A   354    	LD	HL,(IX+9)
+000064 362D                A   355    	LD	(HL),45
+000066 DD0709              A   356    	LD	BC,(IX+9)
+000069 03                  A   357    	INC	BC
+00006A DD0FFD              A   358    	LD	(IX+-3),BC
+                           A   359    .LINE 13
+                           A   360    
+00006D DD2706              A   361    	LD	HL,(IX+6)
+000070 CD 00 00 00         A   362    	CALL	__ineg
+000074 DD2F06              A   363    	LD	(IX+6),HL
+000077                     A   364    L_7:
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:   8
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A   365    .LINE 14
+                           A   366    
+                           A   367    .LINE 16
+                           A   368    
+000077 DD0706              A   369    	LD	BC,(IX+6)
+00007A DD0FFA              A   370    	LD	(IX+-6),BC
+                           A   371    ;   17		
+                           A   372    ;   18		do { //Move to where representation
+00007D                     A   373    L_8:
+                           A   374    .LINE 18
+                           A   375    
+                           A   376    ;   19			++p;
+                           A   377    .LINE 19
+                           A   378    
+00007D DD07FD              A   379    	LD	BC,(IX+-3)
+000080 03                  A   380    	INC	BC
+000081 DD0FFD              A   381    	LD	(IX+-3),BC
+                           A   382    ;   20			shifter = shifter/10;
+                           A   383    .LINE 20
+                           A   384    
+000084 010A0000            A   385    	LD	BC,10
+000088 DD27FA              A   386    	LD	HL,(IX+-6)
+00008B CD 00 00 00         A   387    	CALL	__idivs
+00008F DD2FFA              A   388    	LD	(IX+-6),HL
+                           A   389    ;   21		} while ( shifter );
+                           A   390    .LINE 21
+                           A   391    
+000092 01000000            A   392    	LD	BC,0
+000096 DD27FA              A   393    	LD	HL,(IX+-6)
+000099 B7                  A   394    	OR	A,A
+00009A ED42                A   395    	SBC	HL,BC
+00009C 20 DF 00            A   396    	JR	NZ,L_8
+                           A   397    ;   22		
+                           A   398    ;   23		*p = '\0';
+                           A   399    .LINE 23
+                           A   400    
+00009F DD27FD              A   401    	LD	HL,(IX+-3)
+0000A2 3600                A   402    	LD	(HL),0
+                           A   403    ;   24		do { //Move back, inserting digits 
+0000A4                     A   404    L_11:
+                           A   405    .LINE 24
+                           A   406    
+                           A   407    ;   25			*--p = digit[i%10];
+                           A   408    .LINE 25
+                           A   409    
+0000A4 DD31FD              A   410    	LD	IY,(IX+-3)
+0000A7 ED33FF              A   411    	LEA	IY,IY+-1
+0000AA DD3EFD              A   412    	LD	(IX+-3),IY
+0000AD 010A0000            A   413    	LD	BC,10
+0000B1 DD2706              A   414    	LD	HL,(IX+6)
+0000B4 CD 00 00 00         A   415    	CALL	__irems
+0000B8 E5C1                A   416    	LD	BC,HL
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:   9
+
+
+PC     Object              I  Line    Source skeelib.src
+0000BA ED22EF              A   417    	LEA	HL,IX+-17
+0000BD 09                  A   418    	ADD	HL,BC
+0000BE DD31FD              A   419    	LD	IY,(IX+-3)
+0000C1 7E                  A   420    	LD	A,(HL)
+0000C2 FD7700              A   421    	LD	(IY),A
+                           A   422    ;   26			i = i/10;
+                           A   423    .LINE 26
+                           A   424    
+0000C5 010A0000            A   425    	LD	BC,10
+0000C9 DD2706              A   426    	LD	HL,(IX+6)
+0000CC CD 00 00 00         A   427    	CALL	__idivs
+0000D0 DD2F06              A   428    	LD	(IX+6),HL
+                           A   429    ;   27		} while ( i );
+                           A   430    .LINE 27
+                           A   431    
+0000D3 01000000            A   432    	LD	BC,0
+0000D7 DD2706              A   433    	LD	HL,(IX+6)
+0000DA B7                  A   434    	OR	A,A
+0000DB ED42                A   435    	SBC	HL,BC
+0000DD 20 C5 00            A   436    	JR	NZ,L_11
+                           A   437    ;   28	
+                           A   438    ;   29		return ( b );
+                           A   439    .LINE 29
+                           A   440    
+0000E0 DD2709              A   441    	LD	HL,(IX+9)
+                           A   442    ;   30	}
+                           A   443    .LINE 30
+                           A   444    
+0000E3 DDF9                A   445    	LD	SP,IX
+0000E5 DDE1                A   446    	POP	IX
+0000E7 C9                  A   447    	RET	
+                           A   448    
+                           A   449    
+                           A   450    ;**************************** _lame_itoa ******
+                           A   451    ;Name                         Addr/Register   S
+                           A   452    ;_0temp4                             STATIC    
+                           A   453    ;digit                                IX-17    
+                           A   454    ;shifter                               IX-6    
+                           A   455    ;p                                     IX-3    
+                           A   456    ;b                                     IX+9    
+                           A   457    ;i                                     IX+6    
+                           A   458    
+                           A   459    
+                           A   460    ; Stack Frame Size: 29 (bytes)
+                           A   461    ;       Spill Code: 0 (instruction)
+                           A   462    
+                           A   463    
+                           A   464    .ENDFUNC "lame_itoa",30,"_lame_itoa"
+                           A   465    	SEGMENT TEXT
+000000                     A   466    _0temp4:
+000000 30                  A   467    	DB	48
+000001 31                  A   468    	DB	49
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:  10
+
+
+PC     Object              I  Line    Source skeelib.src
+000002 32                  A   469    	DB	50
+000003 33                  A   470    	DB	51
+000004 34                  A   471    	DB	52
+000005 35                  A   472    	DB	53
+000006 36                  A   473    	DB	54
+000007 37                  A   474    	DB	55
+000008 38                  A   475    	DB	56
+000009 39                  A   476    	DB	57
+00000A 00                  A   477    	DB	0
+                           A   478    	SEGMENT CODE
+                           A   479    ;   31	
+                           A   480    ;   32	UINT16 lame_strlen ( char *p ) {
+0000E8                     A   481    _lame_strlen:
+                           A   482    .DEFINE "_lame_strlen"
+                           A   483    
+                           A   484    .VALUE _lame_strlen
+                           A   485    
+                           A   486    .CLASS 2
+                           A   487    
+                           A   488    .TYPE 77
+                           A   489    
+                           A   490    .ENDEF
+                           A   491    
+                           A   492    .BEGFUNC "lame_strlen",32,"_lame_strlen"
+                           A   493    
+                           A   494    .LINE 32
+                           A   495    
+                           A   496    .DEFINE "p"
+                           A   497    
+                           A   498    .CLASS 65
+                           A   499    
+                           A   500    .VALUE 6
+                           A   501    
+                           A   502    .TYPE 34
+                           A   503    
+                           A   504    .ENDEF
+                           A   505    
+                           A   506    .DEFINE "e"
+                           A   507    
+                           A   508    .CLASS 65
+                           A   509    
+                           A   510    .VALUE -3
+                           A   511    
+                           A   512    .TYPE 34
+                           A   513    
+                           A   514    .ENDEF
+                           A   515    
+0000E8 DDE5                A   516    	PUSH	IX
+0000EA DD210000 00         A   517    	LD	IX,0
+0000EF DD39                A   518    	ADD	IX,SP
+0000F1 C5                  A   519    	PUSH	BC
+                           A   520    ;   33		char *e = p;
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:  11
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A   521    .LINE 33
+                           A   522    
+0000F2 DD0706              A   523    	LD	BC,(IX+6)
+0000F5 DD0FFD              A   524    	LD	(IX+-3),BC
+                           A   525    ;   34		
+                           A   526    ;   35		while ( *e != '\0' ) {
+                           A   527    .LINE 35
+                           A   528    
+0000F8 18 08 00            A   529    	JR	L_16
+0000FB                     A   530    L_17:
+                           A   531    ;   36			e++;
+                           A   532    .LINE 36
+                           A   533    
+0000FB DD07FD              A   534    	LD	BC,(IX+-3)
+0000FE 03                  A   535    	INC	BC
+0000FF DD0FFD              A   536    	LD	(IX+-3),BC
+                           A   537    ;   37		}
+000102                     A   538    L_16:
+                           A   539    .LINE 37
+                           A   540    
+000102 DD27FD              A   541    	LD	HL,(IX+-3)
+000105 7E                  A   542    	LD	A,(HL)
+000106 B7                  A   543    	OR	A,A
+000107 20 F2 00            A   544    	JR	NZ,L_17
+                           A   545    ;   38	
+                           A   546    ;   39		return ( e - p );
+                           A   547    .LINE 39
+                           A   548    
+00010A DD0706              A   549    	LD	BC,(IX+6)
+00010D DD27FD              A   550    	LD	HL,(IX+-3)
+000110 B7                  A   551    	OR	A,A
+000111 ED42                A   552    	SBC	HL,BC
+                           A   553    ;   40	}
+                           A   554    .LINE 40
+                           A   555    
+000113 DDF9                A   556    	LD	SP,IX
+000115 DDE1                A   557    	POP	IX
+000117 C9                  A   558    	RET	
+                           A   559    
+                           A   560    
+                           A   561    ;**************************** _lame_strlen ****
+                           A   562    ;Name                         Addr/Register   S
+                           A   563    ;e                                     IX-3    
+                           A   564    ;p                                     IX+6    
+                           A   565    
+                           A   566    
+                           A   567    ; Stack Frame Size: 12 (bytes)
+                           A   568    ;       Spill Code: 0 (instruction)
+                           A   569    
+                           A   570    
+                           A   571    .ENDFUNC "lame_strlen",40,"_lame_strlen"
+                           A   572    ;   41	
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:  12
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A   573    ;   42	
+                           A   574    ;   43	
+                           A   575    ;   44	void delay_ms_spin ( unsigned int ms ) 
+000118                     A   576    _delay_ms_spin:
+                           A   577    .DEFINE "_delay_ms_spin"
+                           A   578    
+                           A   579    .VALUE _delay_ms_spin
+                           A   580    
+                           A   581    .CLASS 2
+                           A   582    
+                           A   583    .TYPE 65
+                           A   584    
+                           A   585    .ENDEF
+                           A   586    
+                           A   587    .BEGFUNC "delay_ms_spin",44,"_delay_ms_spin"
+                           A   588    
+                           A   589    .LINE 44
+                           A   590    
+                           A   591    .DEFINE "ms"
+                           A   592    
+                           A   593    .CLASS 65
+                           A   594    
+                           A   595    .VALUE 6
+                           A   596    
+                           A   597    .TYPE 14
+                           A   598    
+                           A   599    .ENDEF
+                           A   600    
+000118 DDE5                A   601    	PUSH	IX
+00011A DD210000 00         A   602    	LD	IX,0
+00011F DD39                A   603    	ADD	IX,SP
+                           A   604    ;   45	  //PC_DR ^= 1;
+                           A   605    ;   46	  while ( --ms ) {
+                           A   606    .LINE 46
+                           A   607    
+000121 18 0B 00            A   608    	JR	L_20
+000124                     A   609    L_21:
+                           A   610    ;   47	    delay_loop ( 500 );
+                           A   611    .LINE 47
+                           A   612    
+000124 01F40100            A   613    	LD	BC,500
+000128 C5                  A   614    	PUSH	BC
+000129 CD 00 00 00         A   615    	CALL	_delay_loop
+00012D C1                  A   616    	POP	BC
+                           A   617    ;   48	  }
+00012E                     A   618    L_20:
+                           A   619    .LINE 48
+                           A   620    
+00012E DD3106              A   621    	LD	IY,(IX+6)
+000131 ED33FF              A   622    	LEA	IY,IY+-1
+000134 DD3E06              A   623    	LD	(IX+6),IY
+000137 01000000            A   624    	LD	BC,0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:  13
+
+
+PC     Object              I  Line    Source skeelib.src
+00013B DD2706              A   625    	LD	HL,(IX+6)
+00013E B7                  A   626    	OR	A,A
+00013F ED42                A   627    	SBC	HL,BC
+000141 20 E1 00            A   628    	JR	NZ,L_21
+                           A   629    ;   49	}
+                           A   630    .LINE 49
+                           A   631    
+000144 DDF9                A   632    	LD	SP,IX
+000146 DDE1                A   633    	POP	IX
+000148 C9                  A   634    	RET	
+                           A   635    
+                           A   636    
+                           A   637    ;**************************** _delay_ms_spin **
+                           A   638    ;Name                         Addr/Register   S
+                           A   639    ;ms                                    IX+6    
+                           A   640    
+                           A   641    
+                           A   642    ; Stack Frame Size: 9 (bytes)
+                           A   643    ;       Spill Code: 0 (instruction)
+                           A   644    
+                           A   645    
+                           A   646    .ENDFUNC "delay_ms_spin",49,"_delay_ms_spin"
+                           A   647    ;   50	
+                           A   648    ;   51	UINT8 lame_randrange8 ( UINT8 min, UINT
+000149                     A   649    _lame_randrange8:
+                           A   650    .DEFINE "_lame_randrange8"
+                           A   651    
+                           A   652    .VALUE _lame_randrange8
+                           A   653    
+                           A   654    .CLASS 2
+                           A   655    
+                           A   656    .TYPE 76
+                           A   657    
+                           A   658    .ENDEF
+                           A   659    
+                           A   660    .BEGFUNC "lame_randrange8",51,"_lame_randrange8
+                           A   661    
+                           A   662    .LINE 51
+                           A   663    
+                           A   664    .DEFINE "min"
+                           A   665    
+                           A   666    .CLASS 65
+                           A   667    
+                           A   668    .VALUE 6
+                           A   669    
+                           A   670    .TYPE 12
+                           A   671    
+                           A   672    .ENDEF
+                           A   673    
+                           A   674    .DEFINE "width"
+                           A   675    
+                           A   676    .CLASS 65
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:  14
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A   677    
+                           A   678    .VALUE 9
+                           A   679    
+                           A   680    .TYPE 12
+                           A   681    
+                           A   682    .ENDEF
+                           A   683    
+                           A   684    .DEFINE "r"
+                           A   685    
+                           A   686    .CLASS 65
+                           A   687    
+                           A   688    .VALUE -3
+                           A   689    
+                           A   690    .TYPE 4
+                           A   691    
+                           A   692    .ENDEF
+                           A   693    
+000149 DDE5                A   694    	PUSH	IX
+00014B DD210000 00         A   695    	LD	IX,0
+000150 DD39                A   696    	ADD	IX,SP
+000152 C5                  A   697    	PUSH	BC
+                           A   698    ;   52		int r = rand() % width;
+                           A   699    .LINE 52
+                           A   700    
+000153 CD 00 00 00         A   701    	CALL	_rand
+000157 E5D1                A   702    	LD	DE,HL
+000159 DD7E09              A   703    	LD	A,(IX+9)
+00015C B7ED62              A   704    	UEXT	HL
+00015F 6F                  A   705    	LD	L,A
+000160 E5C1                A   706    	LD	BC,HL
+000162 D5E1                A   707    	LD	HL,DE
+000164 CD 00 00 00         A   708    	CALL	__irems
+000168 DD2FFD              A   709    	LD	(IX+-3),HL
+                           A   710    ;   53		return ( min + r );
+                           A   711    .LINE 53
+                           A   712    
+00016B DD7EFD              A   713    	LD	A,(IX+-3)
+00016E DD8606              A   714    	ADD	A,(IX+6)
+                           A   715    ;   54	}
+                           A   716    .LINE 54
+                           A   717    
+000171 DDF9                A   718    	LD	SP,IX
+000173 DDE1                A   719    	POP	IX
+000175 C9                  A   720    	RET	
+                           A   721    
+                           A   722    
+                           A   723    ;**************************** _lame_randrange8 
+                           A   724    ;Name                         Addr/Register   S
+                           A   725    ;_rand                               IMPORT  --
+                           A   726    ;r                                     IX-3    
+                           A   727    ;width                                 IX+9    
+                           A   728    ;min                                   IX+6    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)29-Aug-14     14:37:39     page:  15
+
+
+PC     Object              I  Line    Source skeelib.src
+                           A   729    
+                           A   730    
+                           A   731    ; Stack Frame Size: 15 (bytes)
+                           A   732    ;       Spill Code: 0 (instruction)
+                           A   733    
+                           A   734    
+                           A   735    .ENDFUNC "lame_randrange8",54,"_lame_randrange8
+                           A   736    	XREF _rand:ROM
+                           A   737    	XREF __idivs:ROM
+                           A   738    	XREF __ineg:ROM
+                           A   739    	XREF __irems:ROM
+                           A   740    	XDEF _lame_randrange8
+                           A   741    	XDEF _delay_ms_spin
+                           A   742    	XDEF _lame_strlen
+                           A   743    	XDEF _lame_itoa
+                           A   744    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 745

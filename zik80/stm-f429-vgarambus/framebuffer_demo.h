@@ -7,6 +7,7 @@ typedef enum {
   fbt_vwlines,
   fbt_v1lines,
   fbt_onoff1,
+  fbt_topbottom,
 } fbt_e;
 
 void fb_test_pattern ( uint8_t *fb, fbt_e pattern );

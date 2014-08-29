@@ -64,6 +64,23 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
 
     } // y
 
+  } else if ( pattern == fbt_topbottom ) {
+    unsigned int x, y;
+
+    for ( y = 0; y < FBHEIGHT; y++ ) {
+
+      for ( x = 0; x < FBWIDTH; x++ ) {
+
+        if ( y < ( FBHEIGHT/2) ) {
+          *( fb + ( y * FBWIDTH ) + x ) = GPIO0;
+        } else {
+          *( fb + ( y * FBWIDTH ) + x ) = GPIO1;
+        }
+
+      } // x
+
+    } // y
+
   } else if ( pattern == fbt_vlines ) {
     unsigned char i;
     unsigned int x, y;

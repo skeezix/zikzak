@@ -1,7 +1,7 @@
 // Chip Selects:
-// CS0 e8 0 0c0000 0d0000 -> ram
-// CS1 e8 0 1c0000 -> rom
-// CS2 e8 0 2c0000 -> audio
+// CS0 e8 0 0c0000 0dffff -> ram
+// CS1 e8 0 1c0000 1dffff -> rom
+// CS2 e8 0 2c0000 2cffff -> audio
 //
 // 2.457MHz oscilator in place
 
