@@ -47,8 +47,8 @@ int main(void) {
   bus_setup();
 #endif
 
-  fb_test_pattern ( fb_active, fbt_topbottom );
-  //fb_test_pattern ( fb_active, fbt_offset_squares );
+  //fb_test_pattern ( fb_active, fbt_topbottom );
+  fb_test_pattern ( fb_active, fbt_offset_squares );
   //fb_test_pattern ( fb_active, fbt_vlines );
   //fb_test_pattern ( fb_active, fbt_v1lines );
   //fb_test_pattern ( fb_active, fbt_onoff1 );
