@@ -13,6 +13,7 @@
 #include "skeelib.h"
 #include "framebuffer.h"
 #include <lib_ay-3-8912.h>
+#include "font_vincent.h"
 
 int main ( ) {
 
@@ -193,20 +194,25 @@ int main ( ) {
 	while ( 1 ) {
 		UINT8 x, y, lx = 0, ly; // x, y, last-x, last-y
 		UINT8 c;
-		UINT16 maxlines = 1250;
+		UINT16 maxlines = 250;
 		UINT8 i;
 		UINT8 *extram;
 			
 		extram = (UINT8 *) 0x0C0000;
 
-		fb_render_rect_filled ( extram, 0, 0, 250, 190, 1 );
+		fb_render_rect_filled ( extram, 0, 0, 250, 230, 1 );
+		
+		render_font_8x8 ( 0, 0, "Zikzak http://www.zikzak.ca", lame_randrange8 ( 1, 0xFF ) );
+		render_font_8x8 ( 0, 8, "Colour 256x240 mode", lame_randrange8 ( 1, 0xFF ) );
+		render_font_8x8 ( 0, 16, "Here be dragons.", lame_randrange8 ( 1, 0xFF ) );
+		render_font_8x8 ( 0, 24, "> ", lame_randrange8 ( 1, 0xFF ) );
 		
 		x = y = lx = ly = 0;
 
 		for ( i = 0; i < maxlines; i++ ) {
 			
 			x = lame_randrange8 ( 10, 230 );
-			y = lame_randrange8 ( 10, 170 );
+			y = lame_randrange8 ( 30, 170 );
 			c = lame_randrange8 ( 0, 0x3F ); // 0b00111111
 			
 			if ( lx != 0 ) {
@@ -220,7 +226,7 @@ int main ( ) {
 
 		delay_ms_spin ( 20 );		
 		
-		while(1);
+		//while(1);
 
 	}
 #endif

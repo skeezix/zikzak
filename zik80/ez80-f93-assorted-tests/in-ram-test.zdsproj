@@ -9,6 +9,7 @@
 <file filter-key="">.\lib_ay-3-8912.c</file>
 <file filter-key="flash">Release\in-ram-test.hex</file>
 <file filter-key="">.\framebuffer.c</file>
+<file filter-key="">.\lib_fontrender.c</file>
 </files>
 
 <!-- configuration information -->
@@ -260,15 +261,8 @@
 <!-- breakpoint information -->
 <breakpoints>
 <breakpoint temporary="false" enabled="true" >
-<line-number>19</line-number>
+<line-number>22</line-number>
 <pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-in-ext-ram-test\main.c</pathname>
-<address>0</address>
-<command></command>
-<preserve-type>0</preserve-type>
-</breakpoint>
-<breakpoint temporary="false" enabled="true" >
-<line-number>21</line-number>
-<pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-assorted-tests\main.c</pathname>
 <address>0</address>
 <command></command>
 <preserve-type>0</preserve-type>

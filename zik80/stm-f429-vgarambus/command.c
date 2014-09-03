@@ -60,6 +60,46 @@ void command_queue_run ( void ) {
       USART_puts_optional ( USART2, "+OK DP\n" );
       break;
 
+    case RD:
+      {
+        char b [ 100 ] = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
+        uint32_t i;
+        uint32_t addr = 0x0C0000;
+        uint8_t v;
+
+        bus_grab_and_wait();
+        bus_perform_read ( addr ); // discard .. just getting /CS set
+
+        //addr += 1000;
+
+        lame_itoa ( addr, b );
+
+        USART_puts ( USART2, "addr " );
+        USART_puts ( USART2, b );
+        USART_puts ( USART2, "\n" );
+
+        for ( i = 0; i < 10; i++ ) {
+          v = bus_perform_read ( addr );
+
+          b [ 0 ] = '\0';
+          b [ 1 ] = '\0';
+          b [ 2 ] = '\0';
+          b [ 3 ] = '\0';
+          b [ 4 ] = '\0';
+          lame_itoa ( v, b );
+
+          USART_puts ( USART2, b );
+          USART_puts ( USART2, "\n" );
+
+          addr ++;
+        }
+
+        bus_release();
+
+        USART_puts ( USART2, "+OK RD\n" );
+      }
+      break;
+
     case ID:
       fb_render_rect_filled ( fb_active, 0, 0, FBWIDTH - 1, FBHEIGHT - 1, 0x00 ); // busy loop needed??!
       {
@@ -101,6 +141,10 @@ void command_queue_run ( void ) {
         }
         sawblank = 2;
         running--;
+
+        if ( running & 2 ) {
+          continue;
+        }
 
       bus_grab_and_wait();
 
@@ -166,6 +210,7 @@ void command_queue_run ( void ) {
       }
       }
 #endif
+      USART_puts ( USART2, "+OK BD\n" );
       break;
 
 

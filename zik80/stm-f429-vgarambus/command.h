@@ -12,6 +12,7 @@
 #define LF _s ( 'L', 'F' ) // debugLog off (usart2 serial)
 #define BD _s ( 'B', 'D' ) // bus debug
 #define ID _s ( 'i', 'd' ) // i2c debug
+#define RD _s ( 'R', 'D' ) // ram debug
 
 void command_queue_run ( void );
 
