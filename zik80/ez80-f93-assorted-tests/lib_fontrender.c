@@ -8,10 +8,12 @@
 void render_font_8x8 ( unsigned char tx, unsigned char ty, char *text, unsigned char colour ) {
 	signed char x, y;
 	UINT8 *extram;
+	UINT8 *linestart;
 	unsigned char *p;
 	
 	extram = (UINT8 *) 0x0C0000;       // start of RAM
 	extram += ((UINT16)ty)*256;        // skip down to target Y
+	linestart = extram;
 	extram += tx;                      // skip over to target X
 	
 	if ( ! text ) {
@@ -20,6 +22,12 @@ void render_font_8x8 ( unsigned char tx, unsigned char ty, char *text, unsigned 
 	
 	while ( *text != '\0' ) {
 		
+		if ( *text == '\n' ) {
+			text++;
+			linestart += ( 256 * 8 );
+			extram = linestart;
+		}
+
 		p = vincent_data [ *text ];
 		
 		for ( y = 0; y < 8; y++ ) {

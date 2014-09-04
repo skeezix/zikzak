@@ -124,95 +124,59 @@ void command_queue_run ( void ) {
     case BD:
       //fb_render_rect_filled ( fb_active, 0, 0, FBWIDTH - 1, FBHEIGHT - 1, 0x00 ); // busy loop needed??!
       //USART_puts_optional ( USART2, "+OK BD\n" );
+      {
+        unsigned char sawblank = 0;
+        unsigned char running = 60;
+        unsigned char blankcounter = 0;
+
+        while ( running ) {
+          extern volatile unsigned char vblank;
+          if ( ! vblank ) {
+            sawblank = 1;
+            continue;
+          }
+
+          if ( sawblank > 1 ) {
+            continue;
+          }
+          sawblank = 2;
+          running--;
+
 #if 1
-      {
-      unsigned char sawblank = 0;
-      unsigned char running = 60;
-      while ( running )
-      {
-        extern volatile unsigned char vblank;
-        if ( ! vblank ) {
-          sawblank = 1;
-          continue;
-        }
-
-        if ( sawblank > 1 ) {
-          continue;
-        }
-        sawblank = 2;
-        running--;
-
-        if ( running & 2 ) {
-          continue;
-        }
-
-      bus_grab_and_wait();
-
-      //uint32_t addr = 0x1C0000;
-      uint32_t addr = 0x0C0000;
-      uint8_t v;
-      uint32_t i;
-      char b [ 20 ];
-
-      //addr += 20;
-      //addr += 1;
-
-      //USART_puts_optional ( USART2, "+REM cart dump:\n" );
-
-      bus_perform_read ( addr ); // discard .. just getting /CS set
-
-      for ( i = 0; i < 45000; i++ ) {
-
-#if 0 // print /CS1
-        if ( bus_check_cs1() ) {
-          USART_puts_optional ( USART2, "CS1 H " );
-        } else {
-          USART_puts_optional ( USART2, "CS1 L " );
-        }
+          if ( blankcounter < 2 ) {
+            blankcounter++;
+            continue;
+          }
+          blankcounter = 0;
 #endif
 
-#if 0 // print address
-        lame_itoa ( addr, b );
-        USART_puts_optional ( USART2, b );
-        USART_puts_optional ( USART2, ": " );
-#endif
+          bus_grab_and_wait();
 
-        v = bus_perform_read ( addr );
+          //uint32_t addr = 0x1C0000;
+          uint32_t addr = 0x0C0000;
+          uint8_t v;
+          uint32_t i;
+          char b [ 20 ];
 
-        if ( v > 0 ) {
-          fb_active [ i ] = v;
-        }
+          bus_perform_read ( addr ); // discard .. just getting /CS set
 
-#if 0 // print character
-        b [ 0 ] = v;
-        b [ 1 ] = '\0';
-        b [ 2 ] = '\0';
-        USART_puts_optional ( USART2, b );
-#endif
+          for ( i = 0; i < 45000; i++ ) {
 
-#if 0 // print byte value
-        lame_itoa ( v, b );
-        USART_puts_optional ( USART2, b );
-#endif
+            v = bus_perform_read ( addr );
 
-#if 0
-        USART_puts_optional ( USART2, "\n" );
-#endif
+            if ( v > 0 ) {
+              fb_active [ i ] = v;
+            }
 
-        addr++;
-      }
+            addr++;
+          }
 
-#if 0
-      USART_puts_optional ( USART2, "+++\n" );
-#endif
+          bus_release();
+        } // while running
 
-      bus_release();
-      }
-      }
-#endif
+      } // BD scope
       USART_puts ( USART2, "+OK BD\n" );
       break;
-
 
     case SR:
       {

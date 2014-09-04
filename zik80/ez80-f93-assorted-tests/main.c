@@ -13,7 +13,9 @@
 #include "skeelib.h"
 #include "framebuffer.h"
 #include <lib_ay-3-8912.h>
-#include "font_vincent.h"
+#include "lib_fontrender.h"
+#include "menu.h"
+#include "demo.h"
 
 int main ( ) {
 
@@ -36,8 +38,8 @@ int main ( ) {
 		char b [ 16 ];
 		unsigned char i;
 		
-		u0.uartMode = INTERRUPT; //POLL; //INTERRUPT;
-		u0.baudRate =  BAUD_57600; //BAUD_115200; //BAUD_38400;
+		u0.uartMode = POLL; //INTERRUPT; //POLL; //INTERRUPT;
+		u0.baudRate =  BAUD_38400; //BAUD_57600; //BAUD_115200; //BAUD_38400;
 		u0.dataBits = DATABITS_8;
 		u0.stopBits = STOPBITS_1;
 		u0.parity = PAR_NOPARITY;
@@ -190,6 +192,76 @@ int main ( ) {
 #endif
 
 	
+#if 1 // main menu
+	
+	while ( 1 ) {
+		UINT8 *extram;
+		char inbuf [ 5 ] = "\0\0\0\0\0";
+		UINT24 nbytes;
+		UCHAR retval;
+			
+		extram = (UINT8 *) 0x0C0000;
+
+		memset ( extram, 1, 256*200 ); // clear to dark red
+		
+		render_font_8x8 ( 0, 0,  "Zikzak http://www.zikzak.ca", lame_randrange8 ( 1, 0xFF ) );
+		render_font_8x8 ( 0, 8,  "Mode: Colour 256x240", lame_randrange8 ( 1, 0xFF ) );
+		render_font_8x8 ( 0, 16, "In: CPU Serial", lame_randrange8 ( 1, 0xFF ) );
+		
+		render_font_8x8 ( 0, 32, menu_mainmenu, lame_randrange8 ( 1, 0xFF ) );
+		
+		nbytes = 1;
+		retval = read_UART0 ( inbuf, &nbytes );
+		
+		// echo back
+		render_font_8x8 ( 0, 0,  inbuf, lame_randrange8 ( 1, 0xFF ) );
+		write_UART0 ( inbuf, lame_strlen ( inbuf ) );
+		
+		if ( retval == UART_ERR_NONE ) {
+			
+			switch ( inbuf [ 0 ] ) {
+				case '1':
+				{
+					demo_linedemo ( 500 );
+					demo_pause ( "** Press key to exit demo ** " );
+				}
+				break;
+				
+				case '2':
+				{
+					demo_offset_squares();
+					demo_pause ( "** Press key to exit demo ** " );
+				}
+				break;
+
+				case '4':
+				{
+					demo_charset();
+					demo_pause ( "** Press key to exit demo ** " );
+				}
+				break;
+
+				case '5':
+				{
+					demo_sprite_fb();
+					demo_pause ( "** Press key to exit demo ** " );
+				}
+				break;
+
+				default:
+					demo_pause ( "** Option not recognized. ** " );
+			}
+			
+			
+		} else {
+			flush_UART0 ( FLUSHFIFO_ALL );
+		}
+		
+	}
+	
+#endif
+	
+	
 #if 1 // RAM random line demo
 	while ( 1 ) {
 		UINT8 x, y, lx = 0, ly; // x, y, last-x, last-y
@@ -200,12 +272,14 @@ int main ( ) {
 			
 		extram = (UINT8 *) 0x0C0000;
 
-		fb_render_rect_filled ( extram, 0, 0, 250, 230, 1 );
+		//fb_render_rect_filled ( extram, 0, 0, 250, 230, 1 );
+		memset ( extram, 1, 256*200 );
 		
-		render_font_8x8 ( 0, 0, "Zikzak http://www.zikzak.ca", lame_randrange8 ( 1, 0xFF ) );
-		render_font_8x8 ( 0, 8, "Colour 256x240 mode", lame_randrange8 ( 1, 0xFF ) );
-		render_font_8x8 ( 0, 16, "Here be dragons.", lame_randrange8 ( 1, 0xFF ) );
-		render_font_8x8 ( 0, 24, "> ", lame_randrange8 ( 1, 0xFF ) );
+		render_font_8x8 ( 0, 0,  "Zikzak http://www.zikzak.ca", lame_randrange8 ( 1, 0xFF ) );
+		render_font_8x8 ( 0, 8,  "Mode: Colour 256x240", lame_randrange8 ( 1, 0xFF ) );
+		render_font_8x8 ( 0, 16, "In: CPU Serial", lame_randrange8 ( 1, 0xFF ) );
+		
+		render_font_8x8 ( 0, 24, menu_mainmenu, lame_randrange8 ( 1, 0xFF ) );
 		
 		x = y = lx = ly = 0;
 
@@ -231,7 +305,7 @@ int main ( ) {
 	}
 #endif
 	
-#if 1 // blinker - WORKS
+#if 0 // blinker - WORKS
 	{
 		PORT pc;
 		UCHAR err;
@@ -260,7 +334,7 @@ int main ( ) {
 #endif
 
 	
-#if 1 // do nothing
+#if 0 // do nothing
 	{
 		char b [ 20 ];
 		UINT8 v = 1;

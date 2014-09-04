@@ -21,11 +21,9 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
       //i = 0;
       i = ( y / 10 ) % 5;
 
-      for ( x = 0; x < FBWIDTH; x++ ) {
+      for ( x = 0; x < (FBWIDTH/12); x++ ) {
 
-        if ( x % 10 == 0 ) {
-          i++;
-        }
+        i++;
 
         if ( i == 0 ) {
           v = (unsigned char) GPIO0;
@@ -48,17 +46,12 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
           v = 0; // black
         }
 
-        *( fb + ( y * FBWIDTH ) + x ) = v;
-
-        //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char) 0;
-        //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO3 );
-        //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO5 );
-        //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO1 | GPIO3 );
-        //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO1 | GPIO0 );
-        //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 );
-        //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO0 | GPIO1 | GPIO2 | GPIO3 );
-        //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO2 | GPIO3 );
-        //*( framebuffer + ( y * FBWIDTH ) + x ) = (unsigned char)( GPIO4 | GPIO5 );
+        { // fake memset:  memset ( fb + ( y * FBWIDTH ) + (x*16) ), v, 16 );
+          unsigned char z;
+          for ( z = 0; z < 12; z++ ) {
+            * ( fb + ( y * FBWIDTH ) + (x*12) + z ) = v;
+          }
+        }
 
       } // x
 

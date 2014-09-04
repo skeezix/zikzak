@@ -57,13 +57,20 @@ int main(void) {
     // weeeeee!
 
     // any work for us to do?
-#if 1
+#ifdef RUNMODE_COMMAND_SERIAL
     if ( vblank ) {
 
       if ( queueready() ) {
         command_queue_run();
       }
 
+    }
+#endif
+
+#ifdef RUNMODE_FRAMEBUFFER_FOREVER
+    if ( vblank ) {
+      queueit ( "BD" );
+      command_queue_run();
     }
 #endif
 
@@ -113,7 +120,7 @@ int main(void) {
 #endif
 
     // handle queued logs
-#if 1
+#if 0
     if ( logready() ) {
       char *log;
       while ( ( log = logpull() ) ) {

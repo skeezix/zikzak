@@ -58,9 +58,11 @@ void bus_grab_and_wait ( void ) {
 
   // wait for /BUSACK
   uint16_t v = 0;
+#if 1
   while ( gpio_get ( GPIOB, GPIO9 ) > v ) {
     __asm__("nop");
   }
+#endif
   //uint16_t i;
   //for ( i = 0; i < 2000; i++ ) {
   //  __asm__("nop");
@@ -126,6 +128,13 @@ void bus_release ( void ) {
   gpio_mode_setup ( GPIOD, GPIO_MODE_INPUT, GPIO_PUPD_NONE,
                     GPIO8 | GPIO9 | GPIO10 | GPIO11 | GPIO12 | GPIO13 );
 
+#if 1
+  uint16_t v = 0;
+  while ( gpio_get ( GPIOB, GPIO9 ) == v ) {
+    __asm__("nop");
+  }
+#endif
+
 }
 
 uint8_t bus_perform_read ( uint32_t address ) {
@@ -136,35 +145,15 @@ uint8_t bus_perform_read ( uint32_t address ) {
   a = address & 0xFF0000;
   a >>= 8;
 
-#if 0
-  gpio_clear ( GPIOE, 0xFFFF );
-  gpio_clear ( GPIOD, 0xFF00 );
-
-  gpio_set ( GPIOE, address & 0xFFFF );        // address low-16
-  //gpio_set ( GPIOD, ( address & 0xFF0000 ) >> 8 ); // address top
-  gpio_set ( GPIOD, a ); // address top
-#endif
   GPIO_ODR(GPIOE) = address & 0xFFFF;
   GPIO_ODR(GPIOD) &= 0xFF;
   GPIO_ODR(GPIOD) |= a;
 
-#if 0
-  for ( i = 0; i < 500; i++ ) {
-    __asm__("nop");
-  }
-#endif
-
   gpio_clear ( GPIOB, GPIO5 );                   // /MREQ
   gpio_clear ( GPIOB, GPIO0 );                   // /OE
 
-#if 0
-  for ( i = 0; i < 50000; i++ ) {
-    __asm__("nop");
-  }
-#endif
-
 #if 1
-  for ( i = 0; i < 10; i++ ) {
+  for ( i = 0; i < 5; i++ ) {
     __asm__("nop");
   }
 #endif
@@ -174,12 +163,6 @@ uint8_t bus_perform_read ( uint32_t address ) {
 
   gpio_set ( GPIOB, GPIO5 );                   // /MREQ
   gpio_set ( GPIOB, GPIO0 );                   // /OE
-
-#if 0
-  for ( i = 0; i < 500; i++ ) {
-    __asm__("nop");
-  }
-#endif
 
   return ( v );
 }

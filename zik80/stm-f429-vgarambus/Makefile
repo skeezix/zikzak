@@ -2,6 +2,11 @@
 #HSE_XTAL=8000000
 HSE_XTAL=16000000
 
+OPTIM=-Os -fomit-frame-pointer
+#OPTIM=-O3
+
+DEBUG= #-g
+
 # refering to libopencm3-examples Makefiles/ld-script
 LCM3EX_BASE=/home/skeezix/archive/devo/toolkits/stm32/libopencm3-examples/examples/stm32/f4/
 

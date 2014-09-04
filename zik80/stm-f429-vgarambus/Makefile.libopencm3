@@ -39,7 +39,7 @@ $(info We seem to be building the example in the source directory. Using local l
 endif
 endif
 
-CFLAGS		+= -Os -g \
+CFLAGS		+= ${OPTIM} ${DEBUG} \
 		   -Wall -Wextra -Wimplicit-function-declaration \
 		   -Wredundant-decls -Wmissing-prototypes -Wstrict-prototypes \
 		   -Wundef -Wshadow \

@@ -10,6 +10,8 @@
 <file filter-key="flash">Release\in-ram-test.hex</file>
 <file filter-key="">.\framebuffer.c</file>
 <file filter-key="">.\lib_fontrender.c</file>
+<file filter-key="">.\menu.c</file>
+<file filter-key="">.\demo.c</file>
 </files>
 
 <!-- configuration information -->
