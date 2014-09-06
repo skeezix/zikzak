@@ -39,3 +39,11 @@ uint16_t lame_strlen ( char *p ) {
 
 	return ( e - p );
 }
+
+void *lame_memcpy ( unsigned char *dest, unsigned char *src, unsigned int n ) {
+  while ( n ) {
+    *dest++ = *src++;
+    n--;
+  }
+  return dest;
+}

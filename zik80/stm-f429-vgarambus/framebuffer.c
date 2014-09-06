@@ -10,8 +10,10 @@
 #include <string.h> // memcpy
 
 uint8_t fb_1 [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
+//uint8_t *fb_1 = (uint8_t *)(0x10000000);
 uint8_t fb_2 [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
-uint8_t *fb_active = fb_1;
+uint8_t *fb_active;
+uint8_t *fb_inactive;
 
 extern volatile unsigned char vblank;
 
@@ -23,6 +25,8 @@ static inline void _spin_until_vblank ( void ) {
 }
 
 void fb_setup ( void ) {
+  fb_active = fb_1;
+  fb_inactive = fb_2;
   fb_render_rect_filled ( fb_1, 0, 0, FBWIDTH - 1, FBHEIGHT - 1, 0x00 );
   fb_render_rect_filled ( fb_2, 0, 0, FBWIDTH - 1, FBHEIGHT - 1, 0x00 );
 }
@@ -170,6 +174,19 @@ void zl_render_blit8 ( uint8_t *from, uint8_t *to,
 
     vtoline += FBWIDTH;
     vfromline += FBWIDTH;
+  }
+
+  return;
+}
+
+void fb_swap ( void ) {
+
+  if ( fb_active == fb_1 ) {
+    fb_active = fb_2;
+    fb_inactive = fb_1;
+  } else {
+    fb_active = fb_1;
+    fb_inactive = fb_2;
   }
 
   return;
