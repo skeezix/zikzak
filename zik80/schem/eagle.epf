@@ -12,6 +12,7 @@ UsedLibrary="/home/skeezix/eagle-6.5.0/lbr/pinhead.lbr"
 UsedLibrary="/home/skeezix/eagle-libraries/skeezix.lbr"
 UsedLibrary="/home/skeezix/eagle-libraries/74xx-us-33v-skeezix.lbr"
 UsedLibrary="/home/skeezix/eagle-libraries/74xx-us-5v-skeezix.lbr"
+UsedLibrary="/home/skeezix/eagle-libraries/8Bit_Parts.lbr"
 
 [Win_1]
 Type="Control Panel"

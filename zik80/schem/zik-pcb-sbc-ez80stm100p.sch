@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -8409,120 +8409,109 @@ We've spent an enormous amount of time creating and checking these footprints an
 <library name="8Bit_Parts">
 <description>8Bit Components Library</description>
 <packages>
-<package name="DIL28">
-<description>&lt;b&gt;Dual In Line Package&lt;/b&gt;</description>
-<wire x1="17.78" y1="6.731" x2="-17.78" y2="6.731" width="0.1524" layer="21"/>
-<wire x1="-17.78" y1="-6.731" x2="17.78" y2="-6.731" width="0.1524" layer="21"/>
-<wire x1="17.78" y1="6.731" x2="17.78" y2="-6.731" width="0.1524" layer="21"/>
-<wire x1="-17.78" y1="6.731" x2="-17.78" y2="1.016" width="0.1524" layer="21"/>
-<wire x1="-17.78" y1="-6.731" x2="-17.78" y2="-1.016" width="0.1524" layer="21"/>
-<wire x1="-17.78" y1="1.016" x2="-17.78" y2="-1.016" width="0.1524" layer="21" curve="-180"/>
-<pad name="1" x="-16.51" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="2" x="-13.97" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="7" x="-1.27" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="8" x="1.27" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="3" x="-11.43" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="4" x="-8.89" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="6" x="-3.81" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="5" x="-6.35" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="9" x="3.81" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="10" x="6.35" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="11" x="8.89" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="12" x="11.43" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="13" x="13.97" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="14" x="16.51" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="15" x="16.51" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="16" x="13.97" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="17" x="11.43" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="18" x="8.89" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="19" x="6.35" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="20" x="3.81" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="21" x="1.27" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="22" x="-1.27" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="23" x="-3.81" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="24" x="-6.35" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="25" x="-8.89" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="26" x="-11.43" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="27" x="-13.97" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<pad name="28" x="-16.51" y="7.62" drill="0.8128" shape="long" rot="R90"/>
-<text x="-12.7" y="-2.794" size="1.778" layer="25">&gt;NAME</text>
-<text x="-12.7" y="1.27" size="1.778" layer="27">&gt;VALUE</text>
+<package name="DIL24-6">
+<description>&lt;b&gt;Dual In Line Package&lt;/b&gt; 0.6 inch</description>
+<wire x1="-15.113" y1="-1.27" x2="-15.113" y2="-6.604" width="0.1524" layer="21"/>
+<wire x1="-15.113" y1="1.27" x2="-15.113" y2="-1.27" width="0.1524" layer="21" curve="-180"/>
+<wire x1="15.113" y1="-6.604" x2="15.113" y2="6.604" width="0.1524" layer="21"/>
+<wire x1="-15.113" y1="6.604" x2="-15.113" y2="1.27" width="0.1524" layer="21"/>
+<wire x1="-15.113" y1="6.604" x2="15.113" y2="6.604" width="0.1524" layer="21"/>
+<wire x1="-15.113" y1="-6.604" x2="15.113" y2="-6.604" width="0.1524" layer="21"/>
+<pad name="1" x="-13.97" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="2" x="-11.43" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="3" x="-8.89" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="4" x="-6.35" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="5" x="-3.81" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="6" x="-1.27" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="7" x="1.27" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="8" x="3.81" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="9" x="6.35" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="10" x="8.89" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="11" x="11.43" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="12" x="13.97" y="-7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="13" x="13.97" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="14" x="11.43" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="15" x="8.89" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="16" x="6.35" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="17" x="3.81" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="18" x="1.27" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="19" x="-1.27" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="20" x="-3.81" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="21" x="-6.35" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="22" x="-8.89" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="23" x="-11.43" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<pad name="24" x="-13.97" y="7.62" drill="0.8128" shape="long" rot="R90"/>
+<text x="-10.16" y="-2.54" size="1.778" layer="25" ratio="10">&gt;NAME</text>
+<text x="-10.16" y="1.27" size="1.778" layer="27">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
-<symbol name="AY-3-8912_28PIN">
-<pin name="CHANNEL_C" x="17.78" y="-22.86" length="middle" direction="out" rot="R180"/>
-<pin name="TEST1" x="17.78" y="-12.7" length="middle" direction="nc" rot="R180"/>
-<pin name="VCC" x="17.78" y="17.78" length="middle" direction="pwr" rot="R180"/>
-<pin name="CHANNEL_B" x="17.78" y="-20.32" length="middle" direction="out" rot="R180"/>
-<pin name="CHANNEL_A" x="17.78" y="-17.78" length="middle" direction="out" rot="R180"/>
-<pin name="VSS" x="17.78" y="15.24" length="middle" direction="pwr" rot="R180"/>
-<pin name="IOA7" x="-17.78" y="-5.08" length="middle"/>
-<pin name="IOA6" x="-17.78" y="-7.62" length="middle"/>
-<pin name="IOA5" x="-17.78" y="-10.16" length="middle"/>
-<pin name="IOA4" x="-17.78" y="-12.7" length="middle"/>
-<pin name="IOA3" x="-17.78" y="-15.24" length="middle"/>
-<pin name="IOA2" x="-17.78" y="-17.78" length="middle"/>
-<pin name="AIO1" x="-17.78" y="-20.32" length="middle"/>
-<pin name="AIO0" x="-17.78" y="-22.86" length="middle"/>
-<pin name="CLK" x="17.78" y="10.16" length="middle" direction="in" function="clk" rot="R180"/>
-<pin name="/RESET" x="17.78" y="7.62" length="middle" direction="in" function="dot" rot="R180"/>
-<pin name="A8" x="17.78" y="2.54" length="middle" direction="in" rot="R180"/>
-<pin name="BDIR" x="17.78" y="0" length="middle" direction="in" rot="R180"/>
-<pin name="BC2" x="17.78" y="-5.08" length="middle" direction="in" rot="R180"/>
-<pin name="BC1" x="17.78" y="-2.54" length="middle" direction="in" rot="R180"/>
-<pin name="DA7" x="-17.78" y="17.78" length="middle"/>
-<pin name="DA6" x="-17.78" y="15.24" length="middle"/>
-<pin name="DA5" x="-17.78" y="12.7" length="middle"/>
-<pin name="DA4" x="-17.78" y="10.16" length="middle"/>
-<pin name="DA3" x="-17.78" y="7.62" length="middle"/>
-<pin name="DA2" x="-17.78" y="5.08" length="middle"/>
-<pin name="DA1" x="-17.78" y="2.54" length="middle"/>
-<pin name="DA0" x="-17.78" y="0" length="middle"/>
-<text x="-12.7" y="21.59" size="1.778" layer="95">&gt;NAME</text>
-<wire x1="-12.7" y1="20.32" x2="-12.7" y2="-25.4" width="0.254" layer="94"/>
-<wire x1="-12.7" y1="-25.4" x2="12.7" y2="-25.4" width="0.254" layer="94"/>
-<wire x1="12.7" y1="-25.4" x2="12.7" y2="20.32" width="0.254" layer="94"/>
-<wire x1="12.7" y1="20.32" x2="-12.7" y2="20.32" width="0.254" layer="94"/>
-<text x="-12.7" y="-27.94" size="1.27" layer="96">&gt;VALUE</text>
+<symbol name="AY-3-8912_24PIN">
+<wire x1="-12.7" y1="17.78" x2="-12.7" y2="-22.86" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="-22.86" x2="12.7" y2="-22.86" width="0.254" layer="94"/>
+<wire x1="12.7" y1="-22.86" x2="12.7" y2="17.78" width="0.254" layer="94"/>
+<wire x1="-12.7" y1="17.78" x2="12.7" y2="17.78" width="0.254" layer="94"/>
+<text x="-12.065" y="18.415" size="1.778" layer="95">&gt;NAME</text>
+<pin name="VSS" x="17.78" y="12.7" length="middle" direction="pwr" rot="R180"/>
+<pin name="BDIR" x="-17.78" y="-15.24" length="middle" direction="in"/>
+<pin name="BC1" x="-17.78" y="-12.7" length="middle" direction="in"/>
+<pin name="DA7" x="-17.78" y="15.24" length="middle"/>
+<pin name="DA6" x="-17.78" y="12.7" length="middle"/>
+<pin name="DA5" x="-17.78" y="10.16" length="middle"/>
+<pin name="DA4" x="-17.78" y="7.62" length="middle"/>
+<pin name="DA3" x="-17.78" y="5.08" length="middle"/>
+<pin name="DA2" x="-17.78" y="2.54" length="middle"/>
+<pin name="DA1" x="-17.78" y="0" visible="pin" length="middle"/>
+<pin name="DA0" x="-17.78" y="-2.54" length="middle"/>
+<pin name="TEST_OUT" x="17.78" y="-7.62" length="middle" direction="nc" rot="R180"/>
+<pin name="VCC" x="17.78" y="15.24" length="middle" direction="pwr" rot="R180"/>
+<pin name="TEST_IN" x="17.78" y="-5.08" length="middle" direction="nc" rot="R180"/>
+<pin name="CHANNEL_B" x="17.78" y="-17.78" length="middle" direction="out" rot="R180"/>
+<pin name="NC" x="17.78" y="-10.16" length="middle" direction="nc" rot="R180"/>
+<pin name="CHANNEL_A" x="17.78" y="-15.24" length="middle" direction="out" rot="R180"/>
+<pin name="CHANNEL_C" x="17.78" y="-20.32" length="middle" direction="out" rot="R180"/>
+<pin name="VSS2" x="17.78" y="10.16" length="middle" direction="pwr" rot="R180"/>
+<pin name="CLK" x="-17.78" y="-20.32" length="middle" direction="in" function="clk"/>
+<pin name="/RESET" x="17.78" y="0" length="middle" direction="in" function="dot" rot="R180"/>
+<pin name="/A9" x="-17.78" y="-10.16" length="middle" direction="in" function="dot"/>
+<pin name="A8" x="-17.78" y="-7.62" length="middle" direction="in"/>
+<pin name="/CS" x="17.78" y="2.54" length="middle" direction="in" function="dot" rot="R180"/>
+<text x="-12.7" y="-25.4" size="1.27" layer="96">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
-<deviceset name="AY-3-8912_28PIN" prefix="IC" uservalue="yes">
+<deviceset name="AY-3-8912_24PIN" prefix="IC" uservalue="yes">
+<description>&lt;b&gt;Dual In Line&lt;/b&gt;</description>
 <gates>
-<gate name="AY-3-8912_28PIN" symbol="AY-3-8912_28PIN" x="0" y="0"/>
+<gate name="AY-3-8912" symbol="AY-3-8912_24PIN" x="0" y="0"/>
 </gates>
 <devices>
-<device name="" package="DIL28">
+<device name="-6" package="DIL24-6">
 <connects>
-<connect gate="AY-3-8912_28PIN" pin="/RESET" pad="16"/>
-<connect gate="AY-3-8912_28PIN" pin="A8" pad="17"/>
-<connect gate="AY-3-8912_28PIN" pin="AIO0" pad="14"/>
-<connect gate="AY-3-8912_28PIN" pin="AIO1" pad="13"/>
-<connect gate="AY-3-8912_28PIN" pin="BC1" pad="20"/>
-<connect gate="AY-3-8912_28PIN" pin="BC2" pad="19"/>
-<connect gate="AY-3-8912_28PIN" pin="BDIR" pad="18"/>
-<connect gate="AY-3-8912_28PIN" pin="CHANNEL_A" pad="5"/>
-<connect gate="AY-3-8912_28PIN" pin="CHANNEL_B" pad="4"/>
-<connect gate="AY-3-8912_28PIN" pin="CHANNEL_C" pad="1"/>
-<connect gate="AY-3-8912_28PIN" pin="CLK" pad="15"/>
-<connect gate="AY-3-8912_28PIN" pin="DA0" pad="28"/>
-<connect gate="AY-3-8912_28PIN" pin="DA1" pad="27"/>
-<connect gate="AY-3-8912_28PIN" pin="DA2" pad="26"/>
-<connect gate="AY-3-8912_28PIN" pin="DA3" pad="25"/>
-<connect gate="AY-3-8912_28PIN" pin="DA4" pad="24"/>
-<connect gate="AY-3-8912_28PIN" pin="DA5" pad="23"/>
-<connect gate="AY-3-8912_28PIN" pin="DA6" pad="22"/>
-<connect gate="AY-3-8912_28PIN" pin="DA7" pad="21"/>
-<connect gate="AY-3-8912_28PIN" pin="IOA2" pad="12"/>
-<connect gate="AY-3-8912_28PIN" pin="IOA3" pad="11"/>
-<connect gate="AY-3-8912_28PIN" pin="IOA4" pad="10"/>
-<connect gate="AY-3-8912_28PIN" pin="IOA5" pad="9"/>
-<connect gate="AY-3-8912_28PIN" pin="IOA6" pad="8"/>
-<connect gate="AY-3-8912_28PIN" pin="IOA7" pad="7"/>
-<connect gate="AY-3-8912_28PIN" pin="TEST1" pad="2"/>
-<connect gate="AY-3-8912_28PIN" pin="VCC" pad="3"/>
-<connect gate="AY-3-8912_28PIN" pin="VSS" pad="6"/>
+<connect gate="AY-3-8912" pin="/A9" pad="22"/>
+<connect gate="AY-3-8912" pin="/CS" pad="24"/>
+<connect gate="AY-3-8912" pin="/RESET" pad="21"/>
+<connect gate="AY-3-8912" pin="A8" pad="23"/>
+<connect gate="AY-3-8912" pin="BC1" pad="3"/>
+<connect gate="AY-3-8912" pin="BDIR" pad="2"/>
+<connect gate="AY-3-8912" pin="CHANNEL_A" pad="17"/>
+<connect gate="AY-3-8912" pin="CHANNEL_B" pad="15"/>
+<connect gate="AY-3-8912" pin="CHANNEL_C" pad="18"/>
+<connect gate="AY-3-8912" pin="CLK" pad="20"/>
+<connect gate="AY-3-8912" pin="DA0" pad="11"/>
+<connect gate="AY-3-8912" pin="DA1" pad="10"/>
+<connect gate="AY-3-8912" pin="DA2" pad="9"/>
+<connect gate="AY-3-8912" pin="DA3" pad="8"/>
+<connect gate="AY-3-8912" pin="DA4" pad="7"/>
+<connect gate="AY-3-8912" pin="DA5" pad="6"/>
+<connect gate="AY-3-8912" pin="DA6" pad="5"/>
+<connect gate="AY-3-8912" pin="DA7" pad="4"/>
+<connect gate="AY-3-8912" pin="NC" pad="16"/>
+<connect gate="AY-3-8912" pin="TEST_IN" pad="14"/>
+<connect gate="AY-3-8912" pin="TEST_OUT" pad="12"/>
+<connect gate="AY-3-8912" pin="VCC" pad="13"/>
+<connect gate="AY-3-8912" pin="VSS" pad="1"/>
+<connect gate="AY-3-8912" pin="VSS2" pad="19"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -11099,7 +11088,6 @@ general purpose rectifier, 1 A</description>
 <parts>
 <part name="ISPZDI" library="pinhead" deviceset="PINHD-2X3" device=""/>
 <part name="OSCDIL14" library="crystal" deviceset="CRYSTAL_RES-" device="SG51" value="2.5MHz"/>
-<part name="AY-3-8912-CS2" library="8Bit_Parts" deviceset="AY-3-8912_28PIN" device=""/>
 <part name="S1" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-2" device="PTH"/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="R3" library="rcl" deviceset="R-US_" device="0204/7" value="10K"/>
@@ -11148,11 +11136,8 @@ general purpose rectifier, 1 A</description>
 <part name="R6" library="rcl" deviceset="R-US_" device="0204/7" value="10K"/>
 <part name="GPIOC-JOY0" library="pinhead" deviceset="PINHD-1X8" device=""/>
 <part name="GPIOD-JOY1" library="pinhead" deviceset="PINHD-1X8" device=""/>
-<part name="+5V2" library="supply1" deviceset="+5V" device=""/>
-<part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="SPKR" library="pinhead" deviceset="PINHD-1X4" device=""/>
 <part name="GND20" library="supply1" deviceset="GND" device=""/>
-<part name="+5V3" library="supply1" deviceset="+5V" device=""/>
 <part name="+5V4" library="supply1" deviceset="+5V" device=""/>
 <part name="GND21" library="supply1" deviceset="GND" device=""/>
 <part name="PS2KEYB" library="pinhead" deviceset="PINHD-1X4" device=""/>
@@ -11259,12 +11244,19 @@ general purpose rectifier, 1 A</description>
 <part name="+5V17" library="supply1" deviceset="+5V" device=""/>
 <part name="BOBADDR" library="pinhead" deviceset="PINHD-1X8" device=""/>
 <part name="BOBDATA" library="pinhead" deviceset="PINHD-1X8" device=""/>
+<part name="AY-3-8913-CS2" library="8Bit_Parts" deviceset="AY-3-8912_24PIN" device="-6"/>
+<part name="+5V18" library="supply1" deviceset="+5V" device=""/>
+<part name="GND23" library="supply1" deviceset="GND" device=""/>
+<part name="+5V19" library="supply1" deviceset="+5V" device=""/>
+<part name="GND34" library="supply1" deviceset="GND" device=""/>
+<part name="+5V20" library="supply1" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 <rectangle x1="21.59" y1="-207.518" x2="100.584" y2="-190.5" layer="206"/>
-<text x="222.25" y="-86.36" size="5.08" layer="91">- keep all bus breakout pins? or keep less so, and open up IOreq for expansion? what about stm32 breakout?
+<text x="222.25" y="-86.36" size="5.08" layer="91">- OOPS: ay-3-8912 not really suitable here, since the A8/A9 mechanism doesn't high-Z; we need -8913 variant with true /CS
+- keep all bus breakout pins? or keep less so, and open up IOreq for expansion? what about stm32 breakout?
 REV2++: Bigger drill holes for cart edge conn .. also check spacing?
 ++ split off addr to 16+6 connectors
 ++ CHG edge connector to side mount with pads, instead of drill holes at all; just squish the pins or pads and solder!
@@ -11392,8 +11384,7 @@ bus expansion without adding headers all over..
 </plain>
 <instances>
 <instance part="ISPZDI" gate="A" x="64.77" y="240.03" rot="MR0"/>
-<instance part="OSCDIL14" gate="A" x="424.18" y="322.58" rot="R180"/>
-<instance part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" x="356.87" y="312.42"/>
+<instance part="OSCDIL14" gate="A" x="331.47" y="306.07" rot="MR180"/>
 <instance part="S1" gate="G$1" x="43.18" y="73.66" rot="R90"/>
 <instance part="GND5" gate="1" x="43.18" y="63.5"/>
 <instance part="R3" gate="G$1" x="29.21" y="85.09" rot="R180"/>
@@ -11442,13 +11433,10 @@ bus expansion without adding headers all over..
 <instance part="R6" gate="G$1" x="53.34" y="248.92" rot="R270"/>
 <instance part="GPIOC-JOY0" gate="A" x="384.81" y="222.25"/>
 <instance part="GPIOD-JOY1" gate="A" x="471.17" y="223.52" rot="MR0"/>
-<instance part="+5V2" gate="1" x="379.73" y="340.36"/>
-<instance part="GND3" gate="1" x="388.62" y="339.09" rot="R180"/>
-<instance part="SPKR" gate="A" x="408.94" y="289.56"/>
-<instance part="GND20" gate="1" x="396.24" y="278.13"/>
-<instance part="+5V3" gate="1" x="403.86" y="314.96" rot="R270"/>
-<instance part="+5V4" gate="1" x="441.96" y="308.61" rot="R180"/>
-<instance part="GND21" gate="1" x="441.96" y="337.82" rot="R180"/>
+<instance part="SPKR" gate="A" x="429.26" y="306.07"/>
+<instance part="GND20" gate="1" x="415.29" y="294.64"/>
+<instance part="+5V4" gate="1" x="314.96" y="292.1" rot="MR180"/>
+<instance part="GND21" gate="1" x="314.96" y="321.31" rot="MR180"/>
 <instance part="PS2KEYB" gate="A" x="236.22" y="254"/>
 <instance part="R7" gate="G$1" x="372.11" y="213.36" rot="R270"/>
 <instance part="+5V5" gate="1" x="372.11" y="203.2" rot="R180"/>
@@ -11561,6 +11549,12 @@ bus expansion without adding headers all over..
 <instance part="+5V17" gate="1" x="270.51" y="248.92" rot="R270"/>
 <instance part="BOBADDR" gate="A" x="427.99" y="133.35"/>
 <instance part="BOBDATA" gate="A" x="473.71" y="133.35"/>
+<instance part="AY-3-8913-CS2" gate="AY-3-8912" x="392.43" y="326.39"/>
+<instance part="+5V18" gate="1" x="356.87" y="339.09"/>
+<instance part="GND23" gate="1" x="346.71" y="344.17" rot="R180"/>
+<instance part="+5V19" gate="1" x="416.56" y="351.79"/>
+<instance part="GND34" gate="1" x="422.91" y="354.33" rot="R180"/>
+<instance part="+5V20" gate="1" x="429.26" y="365.76"/>
 </instances>
 <busses>
 </busses>
@@ -11685,21 +11679,15 @@ bus expansion without adding headers all over..
 <junction x="78.74" y="237.49"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="VSS"/>
-<wire x1="374.65" y1="327.66" x2="388.62" y2="327.66" width="0.1524" layer="91"/>
-<wire x1="388.62" y1="327.66" x2="388.62" y2="336.55" width="0.1524" layer="91"/>
-<pinref part="GND3" gate="1" pin="GND"/>
-</segment>
-<segment>
 <pinref part="SPKR" gate="A" pin="4"/>
-<wire x1="406.4" y1="287.02" x2="396.24" y2="287.02" width="0.1524" layer="91"/>
-<wire x1="396.24" y1="287.02" x2="396.24" y2="280.67" width="0.1524" layer="91"/>
+<wire x1="426.72" y1="303.53" x2="415.29" y2="303.53" width="0.1524" layer="91"/>
+<wire x1="415.29" y1="303.53" x2="415.29" y2="297.18" width="0.1524" layer="91"/>
 <pinref part="GND20" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="OSCDIL14" gate="A" pin="VSS"/>
-<wire x1="436.88" y1="327.66" x2="441.96" y2="327.66" width="0.1524" layer="91"/>
-<wire x1="441.96" y1="327.66" x2="441.96" y2="335.28" width="0.1524" layer="91"/>
+<wire x1="318.77" y1="311.15" x2="314.96" y2="311.15" width="0.1524" layer="91"/>
+<wire x1="314.96" y1="311.15" x2="314.96" y2="318.77" width="0.1524" layer="91"/>
 <pinref part="GND21" gate="1" pin="GND"/>
 </segment>
 <segment>
@@ -11897,6 +11885,22 @@ bus expansion without adding headers all over..
 <wire x1="795.02" y1="187.96" x2="781.05" y2="187.96" width="0.1524" layer="91"/>
 <label x="781.05" y="187.96" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="/A9"/>
+<wire x1="374.65" y1="316.23" x2="346.71" y2="316.23" width="0.1524" layer="91"/>
+<wire x1="346.71" y1="316.23" x2="346.71" y2="341.63" width="0.1524" layer="91"/>
+<pinref part="GND23" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="VSS2"/>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="VSS"/>
+<wire x1="410.21" y1="339.09" x2="422.91" y2="339.09" width="0.1524" layer="91"/>
+<wire x1="422.91" y1="339.09" x2="422.91" y2="351.79" width="0.1524" layer="91"/>
+<wire x1="410.21" y1="336.55" x2="422.91" y2="336.55" width="0.1524" layer="91"/>
+<wire x1="422.91" y1="336.55" x2="422.91" y2="339.09" width="0.1524" layer="91"/>
+<junction x="422.91" y="339.09"/>
+<pinref part="GND34" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="PB6" class="0">
 <segment>
@@ -11929,11 +11933,6 @@ bus expansion without adding headers all over..
 <label x="347.98" y="124.46" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="BC1"/>
-<wire x1="374.65" y1="309.88" x2="378.46" y2="309.88" width="0.1524" layer="91"/>
-<label x="378.46" y="309.88" size="1.27" layer="95" xref="yes"/>
-</segment>
-<segment>
 <pinref part="STM32F4" gate="G$1" pin="PE0(5T)"/>
 <wire x1="873.76" y1="149.86" x2="877.57" y2="149.86" width="0.1524" layer="91"/>
 <label x="877.57" y="149.86" size="1.27" layer="95" xref="yes"/>
@@ -11942,6 +11941,11 @@ bus expansion without adding headers all over..
 <label x="417.83" y="143.51" size="1.27" layer="95" rot="R180" xref="yes"/>
 <pinref part="BOBADDR" gate="A" pin="1"/>
 <wire x1="425.45" y1="143.51" x2="417.83" y2="143.51" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="BC1"/>
+<wire x1="374.65" y1="313.69" x2="372.11" y2="313.69" width="0.1524" layer="91"/>
+<label x="372.11" y="313.69" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="A1" class="0">
@@ -12326,11 +12330,6 @@ bus expansion without adding headers all over..
 <label x="347.98" y="121.92" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="DA0"/>
-<wire x1="339.09" y1="312.42" x2="336.55" y2="312.42" width="0.1524" layer="91"/>
-<label x="336.55" y="312.42" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="STM32F4" gate="G$1" pin="PD0/CAN1_RX(5T)"/>
 <wire x1="873.76" y1="193.04" x2="901.7" y2="193.04" width="0.1524" layer="91"/>
 <label x="901.7" y="193.04" size="1.27" layer="95" xref="yes"/>
@@ -12339,6 +12338,11 @@ bus expansion without adding headers all over..
 <pinref part="BOBDATA" gate="A" pin="1"/>
 <wire x1="471.17" y1="143.51" x2="463.55" y2="143.51" width="0.1524" layer="91"/>
 <label x="463.55" y="143.51" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="DA0"/>
+<wire x1="374.65" y1="323.85" x2="372.11" y2="323.85" width="0.1524" layer="91"/>
+<label x="372.11" y="323.85" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D1" class="0">
@@ -12358,11 +12362,6 @@ bus expansion without adding headers all over..
 <label x="347.98" y="119.38" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="DA1"/>
-<wire x1="339.09" y1="314.96" x2="336.55" y2="314.96" width="0.1524" layer="91"/>
-<label x="336.55" y="314.96" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="STM32F4" gate="G$1" pin="PD1/CAN1_TX(5T)"/>
 <wire x1="873.76" y1="190.5" x2="901.7" y2="190.5" width="0.1524" layer="91"/>
 <label x="901.7" y="190.5" size="1.27" layer="95" xref="yes"/>
@@ -12371,6 +12370,11 @@ bus expansion without adding headers all over..
 <pinref part="BOBDATA" gate="A" pin="2"/>
 <wire x1="471.17" y1="140.97" x2="463.55" y2="140.97" width="0.1524" layer="91"/>
 <label x="463.55" y="140.97" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="DA1"/>
+<wire x1="374.65" y1="326.39" x2="372.11" y2="326.39" width="0.1524" layer="91"/>
+<label x="372.11" y="326.39" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D2" class="0">
@@ -12390,11 +12394,6 @@ bus expansion without adding headers all over..
 <label x="347.98" y="116.84" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="DA2"/>
-<wire x1="339.09" y1="317.5" x2="336.55" y2="317.5" width="0.1524" layer="91"/>
-<label x="336.55" y="317.5" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="STM32F4" gate="G$1" pin="PD2/UART5_RX(5T)"/>
 <wire x1="873.76" y1="187.96" x2="901.7" y2="187.96" width="0.1524" layer="91"/>
 <label x="901.7" y="187.96" size="1.27" layer="95" xref="yes"/>
@@ -12403,6 +12402,11 @@ bus expansion without adding headers all over..
 <pinref part="BOBDATA" gate="A" pin="3"/>
 <wire x1="471.17" y1="138.43" x2="463.55" y2="138.43" width="0.1524" layer="91"/>
 <label x="463.55" y="138.43" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="DA2"/>
+<wire x1="374.65" y1="328.93" x2="372.11" y2="328.93" width="0.1524" layer="91"/>
+<label x="372.11" y="328.93" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D3" class="0">
@@ -12422,11 +12426,6 @@ bus expansion without adding headers all over..
 <label x="347.98" y="114.3" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="DA3"/>
-<wire x1="339.09" y1="320.04" x2="336.55" y2="320.04" width="0.1524" layer="91"/>
-<label x="336.55" y="320.04" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="STM32F4" gate="G$1" pin="PD3(5T)"/>
 <wire x1="873.76" y1="185.42" x2="901.7" y2="185.42" width="0.1524" layer="91"/>
 <label x="901.7" y="185.42" size="1.27" layer="95" xref="yes"/>
@@ -12435,6 +12434,11 @@ bus expansion without adding headers all over..
 <pinref part="BOBDATA" gate="A" pin="4"/>
 <wire x1="471.17" y1="135.89" x2="463.55" y2="135.89" width="0.1524" layer="91"/>
 <label x="463.55" y="135.89" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="DA3"/>
+<wire x1="374.65" y1="331.47" x2="372.11" y2="331.47" width="0.1524" layer="91"/>
+<label x="372.11" y="331.47" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D4" class="0">
@@ -12454,11 +12458,6 @@ bus expansion without adding headers all over..
 <label x="304.8" y="114.3" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="DA4"/>
-<wire x1="339.09" y1="322.58" x2="336.55" y2="322.58" width="0.1524" layer="91"/>
-<label x="336.55" y="322.58" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="STM32F4" gate="G$1" pin="PD4(5T)"/>
 <wire x1="873.76" y1="182.88" x2="901.7" y2="182.88" width="0.1524" layer="91"/>
 <label x="901.7" y="182.88" size="1.27" layer="95" xref="yes"/>
@@ -12467,6 +12466,11 @@ bus expansion without adding headers all over..
 <pinref part="BOBDATA" gate="A" pin="5"/>
 <wire x1="471.17" y1="133.35" x2="463.55" y2="133.35" width="0.1524" layer="91"/>
 <label x="463.55" y="133.35" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="DA4"/>
+<wire x1="374.65" y1="334.01" x2="372.11" y2="334.01" width="0.1524" layer="91"/>
+<label x="372.11" y="334.01" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D5" class="0">
@@ -12486,11 +12490,6 @@ bus expansion without adding headers all over..
 <label x="304.8" y="116.84" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="DA5"/>
-<wire x1="339.09" y1="325.12" x2="336.55" y2="325.12" width="0.1524" layer="91"/>
-<label x="336.55" y="325.12" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="STM32F4" gate="G$1" pin="PD5/USART2_TX(5T)"/>
 <wire x1="873.76" y1="180.34" x2="901.7" y2="180.34" width="0.1524" layer="91"/>
 <label x="901.7" y="180.34" size="1.27" layer="95" xref="yes"/>
@@ -12499,6 +12498,11 @@ bus expansion without adding headers all over..
 <pinref part="BOBDATA" gate="A" pin="6"/>
 <wire x1="471.17" y1="130.81" x2="463.55" y2="130.81" width="0.1524" layer="91"/>
 <label x="463.55" y="130.81" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="DA5"/>
+<wire x1="374.65" y1="336.55" x2="372.11" y2="336.55" width="0.1524" layer="91"/>
+<label x="372.11" y="336.55" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D6" class="0">
@@ -12518,11 +12522,6 @@ bus expansion without adding headers all over..
 <label x="304.8" y="119.38" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="DA6"/>
-<wire x1="339.09" y1="327.66" x2="336.55" y2="327.66" width="0.1524" layer="91"/>
-<label x="336.55" y="327.66" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="STM32F4" gate="G$1" pin="PD6/USART2_RX(5T)"/>
 <wire x1="873.76" y1="177.8" x2="901.7" y2="177.8" width="0.1524" layer="91"/>
 <label x="901.7" y="177.8" size="1.27" layer="95" xref="yes"/>
@@ -12531,6 +12530,11 @@ bus expansion without adding headers all over..
 <pinref part="BOBDATA" gate="A" pin="7"/>
 <wire x1="471.17" y1="128.27" x2="463.55" y2="128.27" width="0.1524" layer="91"/>
 <label x="463.55" y="128.27" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="DA6"/>
+<wire x1="374.65" y1="339.09" x2="372.11" y2="339.09" width="0.1524" layer="91"/>
+<label x="372.11" y="339.09" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="D7" class="0">
@@ -12550,11 +12554,6 @@ bus expansion without adding headers all over..
 <label x="304.8" y="121.92" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="DA7"/>
-<wire x1="339.09" y1="330.2" x2="336.55" y2="330.2" width="0.1524" layer="91"/>
-<label x="336.55" y="330.2" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
 <pinref part="STM32F4" gate="G$1" pin="PD7(5T)"/>
 <wire x1="873.76" y1="175.26" x2="901.7" y2="175.26" width="0.1524" layer="91"/>
 <label x="901.7" y="175.26" size="1.27" layer="95" xref="yes"/>
@@ -12563,6 +12562,11 @@ bus expansion without adding headers all over..
 <pinref part="BOBDATA" gate="A" pin="8"/>
 <wire x1="471.17" y1="125.73" x2="463.55" y2="125.73" width="0.1524" layer="91"/>
 <label x="463.55" y="125.73" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="DA7"/>
+<wire x1="374.65" y1="341.63" x2="372.11" y2="341.63" width="0.1524" layer="91"/>
+<label x="372.11" y="341.63" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="/MREQ" class="0">
@@ -12955,26 +12959,9 @@ bus expansion without adding headers all over..
 <pinref part="P+4" gate="1" pin="+5V"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="VCC"/>
-<wire x1="374.65" y1="330.2" x2="379.73" y2="330.2" width="0.1524" layer="91"/>
-<pinref part="+5V2" gate="1" pin="+5V"/>
-<wire x1="379.73" y1="330.2" x2="379.73" y2="337.82" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="BC2"/>
-<wire x1="374.65" y1="307.34" x2="394.97" y2="307.34" width="0.1524" layer="91"/>
-<wire x1="394.97" y1="307.34" x2="394.97" y2="314.96" width="0.1524" layer="91"/>
-<pinref part="+5V3" gate="1" pin="+5V"/>
-<wire x1="394.97" y1="314.96" x2="401.32" y2="314.96" width="0.1524" layer="91"/>
-<junction x="394.97" y="314.96"/>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="/RESET"/>
-<wire x1="374.65" y1="320.04" x2="394.97" y2="320.04" width="0.1524" layer="91"/>
-<wire x1="394.97" y1="320.04" x2="394.97" y2="314.96" width="0.1524" layer="91"/>
-</segment>
-<segment>
 <pinref part="OSCDIL14" gate="A" pin="VDD"/>
-<wire x1="436.88" y1="317.5" x2="441.96" y2="317.5" width="0.1524" layer="91"/>
-<wire x1="441.96" y1="317.5" x2="441.96" y2="311.15" width="0.1524" layer="91"/>
+<wire x1="318.77" y1="300.99" x2="314.96" y2="300.99" width="0.1524" layer="91"/>
+<wire x1="314.96" y1="300.99" x2="314.96" y2="294.64" width="0.1524" layer="91"/>
 <pinref part="+5V4" gate="1" pin="+5V"/>
 </segment>
 <segment>
@@ -13058,6 +13045,24 @@ bus expansion without adding headers all over..
 <pinref part="R33" gate="G$1" pin="2"/>
 <wire x1="264.16" y1="248.92" x2="267.97" y2="248.92" width="0.1524" layer="91"/>
 <pinref part="+5V17" gate="1" pin="+5V"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="A8"/>
+<wire x1="374.65" y1="318.77" x2="356.87" y2="318.77" width="0.1524" layer="91"/>
+<wire x1="356.87" y1="318.77" x2="356.87" y2="336.55" width="0.1524" layer="91"/>
+<pinref part="+5V18" gate="1" pin="+5V"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="VCC"/>
+<wire x1="410.21" y1="341.63" x2="416.56" y2="341.63" width="0.1524" layer="91"/>
+<wire x1="416.56" y1="341.63" x2="416.56" y2="349.25" width="0.1524" layer="91"/>
+<pinref part="+5V19" gate="1" pin="+5V"/>
+</segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="/RESET"/>
+<wire x1="410.21" y1="326.39" x2="429.26" y2="326.39" width="0.1524" layer="91"/>
+<wire x1="429.26" y1="326.39" x2="429.26" y2="363.22" width="0.1524" layer="91"/>
+<pinref part="+5V20" gate="1" pin="+5V"/>
 </segment>
 </net>
 <net name="N$2" class="0">
@@ -13283,36 +13288,11 @@ bus expansion without adding headers all over..
 <label x="877.57" y="218.44" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$10" class="0">
-<segment>
-<wire x1="373.38" y1="294.64" x2="374.65" y2="294.64" width="0.1524" layer="91"/>
-<pinref part="SPKR" gate="A" pin="1"/>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="CHANNEL_A"/>
-<wire x1="374.65" y1="294.64" x2="406.4" y2="294.64" width="0.1524" layer="91"/>
-<junction x="374.65" y="294.64"/>
-</segment>
-</net>
-<net name="N$8" class="0">
-<segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="CHANNEL_B"/>
-<pinref part="SPKR" gate="A" pin="2"/>
-<wire x1="374.65" y1="292.1" x2="406.4" y2="292.1" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$9" class="0">
-<segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="CHANNEL_C"/>
-<pinref part="SPKR" gate="A" pin="3"/>
-<wire x1="374.65" y1="289.56" x2="406.4" y2="289.56" width="0.1524" layer="91"/>
-</segment>
-</net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="CLK"/>
-<wire x1="374.65" y1="322.58" x2="411.48" y2="322.58" width="0.1524" layer="91"/>
 <pinref part="OSCDIL14" gate="A" pin="OUT"/>
-<wire x1="411.48" y1="322.58" x2="412.75" y2="322.58" width="0.1524" layer="91"/>
-<junction x="411.48" y="322.58"/>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="CLK"/>
+<wire x1="344.17" y1="306.07" x2="374.65" y2="306.07" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="/MEMREAD" class="0">
@@ -13662,17 +13642,17 @@ bus expansion without adding headers all over..
 <wire x1="795.02" y1="121.92" x2="779.78" y2="121.92" width="0.1524" layer="91"/>
 <label x="779.78" y="121.92" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="/CS"/>
+<wire x1="410.21" y1="328.93" x2="412.75" y2="328.93" width="0.1524" layer="91"/>
+<label x="412.75" y="328.93" size="1.27" layer="95" xref="yes"/>
+</segment>
 </net>
 <net name="+CS2" class="0">
 <segment>
 <wire x1="359.41" y1="274.32" x2="361.95" y2="274.32" width="0.1524" layer="91"/>
 <label x="361.95" y="274.32" size="1.27" layer="95" xref="yes"/>
 <pinref part="IC2" gate="A" pin="O"/>
-</segment>
-<segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="A8"/>
-<wire x1="374.65" y1="314.96" x2="378.46" y2="314.96" width="0.1524" layer="91"/>
-<label x="378.46" y="314.96" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="+MEMWRITE" class="0">
@@ -13682,9 +13662,9 @@ bus expansion without adding headers all over..
 <pinref part="IC2" gate="B" pin="O"/>
 </segment>
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="BDIR"/>
-<wire x1="374.65" y1="312.42" x2="378.46" y2="312.42" width="0.1524" layer="91"/>
-<label x="378.46" y="312.42" size="1.27" layer="95" xref="yes"/>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="BDIR"/>
+<wire x1="374.65" y1="311.15" x2="372.11" y2="311.15" width="0.1524" layer="91"/>
+<label x="372.11" y="311.15" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="/CS3" class="0">
@@ -14571,6 +14551,27 @@ bus expansion without adding headers all over..
 <pinref part="ISPJTAG" gate="A" pin="15"/>
 <wire x1="659.13" y1="306.07" x2="659.13" y2="321.31" width="0.1524" layer="91"/>
 <label x="659.13" y="321.31" size="1.27" layer="95" rot="R90" xref="yes"/>
+</segment>
+</net>
+<net name="N$26" class="0">
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="CHANNEL_A"/>
+<wire x1="426.72" y1="311.15" x2="410.21" y2="311.15" width="0.1524" layer="91"/>
+<pinref part="SPKR" gate="A" pin="1"/>
+</segment>
+</net>
+<net name="N$27" class="0">
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="CHANNEL_B"/>
+<pinref part="SPKR" gate="A" pin="2"/>
+<wire x1="410.21" y1="308.61" x2="426.72" y2="308.61" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$28" class="0">
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="CHANNEL_C"/>
+<pinref part="SPKR" gate="A" pin="3"/>
+<wire x1="410.21" y1="306.07" x2="426.72" y2="306.07" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

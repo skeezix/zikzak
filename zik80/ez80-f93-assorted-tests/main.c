@@ -89,7 +89,7 @@ int main ( ) {
 	}
 #endif
 	
-#if 0 // ext audio AY-3-8912 test
+#if 1 // ext audio AY-3-8912 test
 	{
 		
 		PORT pc;

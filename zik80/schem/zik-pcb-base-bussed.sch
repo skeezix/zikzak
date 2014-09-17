@@ -10474,7 +10474,8 @@ Based on the following sources:
 <sheet>
 <plain>
 <rectangle x1="21.59" y1="-207.518" x2="100.584" y2="-190.5" layer="206"/>
-<text x="214.63" y="-45.72" size="5.08" layer="91">REV2++: Bigger drill holes for cart edge conn .. also check spacing?
+<text x="222.25" y="-78.74" size="5.08" layer="91">!! Needs pull-ups on ps/2 keyb!
+REV2++: Bigger drill holes for cart edge conn .. also check spacing?
 ++ split off addr to 16+6 connectors
 ++ CHG edge connector to side mount with pads, instead of drill holes at all; just squish the pins or pads and solder!
 ++ Clear space around audio osc .. esp resistor needs to move

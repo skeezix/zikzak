@@ -10475,6 +10475,7 @@ Based on the following sources:
 <plain>
 <rectangle x1="21.59" y1="-207.518" x2="100.584" y2="-190.5" layer="206"/>
 <text x="214.63" y="-30.48" size="5.08" layer="91">REV2++: Bigger drill holes for cart edge conn .. also check spacing?
+++ split off addr to 16+6 connectors
 
 - Big Question: V-in-low and V-in-high from eZ80 to 74HC32-at-3.3 are close
 --&gt; could bodge 5v into 73LS32 and it should work
