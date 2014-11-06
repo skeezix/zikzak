@@ -202,7 +202,7 @@ UINT8 ay_write ( unsigned char address, unsigned char data ) {
 	// inactive
 	psg = BC1_0;
 	dummy = *psg;
-
+	
 	// latch and write address
 	psg = BC1_1;
 	*psg = address;
@@ -214,10 +214,10 @@ UINT8 ay_write ( unsigned char address, unsigned char data ) {
 	// write data
 	psg = BC1_0;
 	*psg = data;
-
+	
 	// inactive
 	psg = BC1_0;
 	dummy = *psg;
-
+	
 	return ( dummy );
 }

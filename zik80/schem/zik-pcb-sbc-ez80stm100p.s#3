@@ -11505,7 +11505,7 @@ bus expansion without adding headers all over..
 </plain>
 <instances>
 <instance part="ISPZDI" gate="A" x="64.77" y="240.03" rot="MR0"/>
-<instance part="OSCDIL14" gate="A" x="424.18" y="322.58" rot="R180"/>
+<instance part="OSCDIL14" gate="A" x="231.14" y="369.57" rot="MR180"/>
 <instance part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" x="356.87" y="312.42"/>
 <instance part="S1" gate="G$1" x="43.18" y="73.66" rot="R90"/>
 <instance part="GND5" gate="1" x="43.18" y="63.5"/>
@@ -11557,11 +11557,11 @@ bus expansion without adding headers all over..
 <instance part="GPIOD-JOY1" gate="A" x="471.17" y="223.52" rot="MR0"/>
 <instance part="+5V2" gate="1" x="379.73" y="340.36"/>
 <instance part="GND3" gate="1" x="388.62" y="339.09" rot="R180"/>
-<instance part="SPKR" gate="A" x="408.94" y="289.56"/>
-<instance part="GND20" gate="1" x="396.24" y="278.13"/>
+<instance part="SPKR" gate="A" x="326.39" y="294.64"/>
+<instance part="GND20" gate="1" x="312.42" y="283.21"/>
 <instance part="+5V3" gate="1" x="403.86" y="314.96" rot="R270"/>
-<instance part="+5V4" gate="1" x="441.96" y="308.61" rot="R180"/>
-<instance part="GND21" gate="1" x="441.96" y="337.82" rot="R180"/>
+<instance part="+5V4" gate="1" x="213.36" y="355.6" rot="MR180"/>
+<instance part="GND21" gate="1" x="213.36" y="384.81" rot="MR180"/>
 <instance part="PS2KEYB" gate="A" x="236.22" y="254"/>
 <instance part="R7" gate="G$1" x="372.11" y="213.36" rot="R270"/>
 <instance part="+5V5" gate="1" x="372.11" y="203.2" rot="R180"/>
@@ -11811,14 +11811,14 @@ bus expansion without adding headers all over..
 </segment>
 <segment>
 <pinref part="SPKR" gate="A" pin="4"/>
-<wire x1="406.4" y1="287.02" x2="396.24" y2="287.02" width="0.1524" layer="91"/>
-<wire x1="396.24" y1="287.02" x2="396.24" y2="280.67" width="0.1524" layer="91"/>
+<wire x1="323.85" y1="292.1" x2="312.42" y2="292.1" width="0.1524" layer="91"/>
+<wire x1="312.42" y1="292.1" x2="312.42" y2="285.75" width="0.1524" layer="91"/>
 <pinref part="GND20" gate="1" pin="GND"/>
 </segment>
 <segment>
 <pinref part="OSCDIL14" gate="A" pin="VSS"/>
-<wire x1="436.88" y1="327.66" x2="441.96" y2="327.66" width="0.1524" layer="91"/>
-<wire x1="441.96" y1="327.66" x2="441.96" y2="335.28" width="0.1524" layer="91"/>
+<wire x1="218.44" y1="374.65" x2="213.36" y2="374.65" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="374.65" x2="213.36" y2="382.27" width="0.1524" layer="91"/>
 <pinref part="GND21" gate="1" pin="GND"/>
 </segment>
 <segment>
@@ -13153,8 +13153,8 @@ bus expansion without adding headers all over..
 </segment>
 <segment>
 <pinref part="OSCDIL14" gate="A" pin="VDD"/>
-<wire x1="436.88" y1="317.5" x2="441.96" y2="317.5" width="0.1524" layer="91"/>
-<wire x1="441.96" y1="317.5" x2="441.96" y2="311.15" width="0.1524" layer="91"/>
+<wire x1="218.44" y1="364.49" x2="213.36" y2="364.49" width="0.1524" layer="91"/>
+<wire x1="213.36" y1="364.49" x2="213.36" y2="358.14" width="0.1524" layer="91"/>
 <pinref part="+5V4" gate="1" pin="+5V"/>
 </segment>
 <segment>
@@ -13484,33 +13484,13 @@ bus expansion without adding headers all over..
 <net name="N$10" class="0">
 <segment>
 <wire x1="373.38" y1="294.64" x2="374.65" y2="294.64" width="0.1524" layer="91"/>
-<pinref part="SPKR" gate="A" pin="1"/>
 <pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="CHANNEL_A"/>
-<wire x1="374.65" y1="294.64" x2="406.4" y2="294.64" width="0.1524" layer="91"/>
-<junction x="374.65" y="294.64"/>
-</segment>
-</net>
-<net name="N$8" class="0">
-<segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="CHANNEL_B"/>
-<pinref part="SPKR" gate="A" pin="2"/>
-<wire x1="374.65" y1="292.1" x2="406.4" y2="292.1" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$9" class="0">
-<segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="CHANNEL_C"/>
-<pinref part="SPKR" gate="A" pin="3"/>
-<wire x1="374.65" y1="289.56" x2="406.4" y2="289.56" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$11" class="0">
 <segment>
-<pinref part="AY-3-8912-CS2" gate="AY-3-8912_28PIN" pin="CLK"/>
-<wire x1="374.65" y1="322.58" x2="411.48" y2="322.58" width="0.1524" layer="91"/>
 <pinref part="OSCDIL14" gate="A" pin="OUT"/>
-<wire x1="411.48" y1="322.58" x2="412.75" y2="322.58" width="0.1524" layer="91"/>
-<junction x="411.48" y="322.58"/>
+<wire x1="243.84" y1="369.57" x2="242.57" y2="369.57" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="/MEMREAD" class="0">
@@ -14790,19 +14770,22 @@ bus expansion without adding headers all over..
 <net name="N$26" class="0">
 <segment>
 <pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="CHANNEL_A"/>
-<wire x1="307.34" y1="299.72" x2="309.88" y2="299.72" width="0.1524" layer="91"/>
+<wire x1="323.85" y1="299.72" x2="307.34" y2="299.72" width="0.1524" layer="91"/>
+<pinref part="SPKR" gate="A" pin="1"/>
 </segment>
 </net>
 <net name="N$27" class="0">
 <segment>
 <pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="CHANNEL_B"/>
-<wire x1="307.34" y1="297.18" x2="309.88" y2="297.18" width="0.1524" layer="91"/>
+<pinref part="SPKR" gate="A" pin="2"/>
+<wire x1="307.34" y1="297.18" x2="323.85" y2="297.18" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$28" class="0">
 <segment>
 <pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="CHANNEL_C"/>
-<wire x1="307.34" y1="294.64" x2="309.88" y2="294.64" width="0.1524" layer="91"/>
+<pinref part="SPKR" gate="A" pin="3"/>
+<wire x1="307.34" y1="294.64" x2="323.85" y2="294.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -11255,23 +11255,6 @@ general purpose rectifier, 1 A</description>
 <sheet>
 <plain>
 <rectangle x1="21.59" y1="-207.518" x2="100.584" y2="-190.5" layer="206"/>
-<text x="222.25" y="-86.36" size="5.08" layer="91">- OOPS: ay-3-8912 not really suitable here, since the A8/A9 mechanism doesn't high-Z; we need -8913 variant with true /CS
-- keep all bus breakout pins? or keep less so, and open up IOreq for expansion? what about stm32 breakout?
-REV2++: Bigger drill holes for cart edge conn .. also check spacing?
-++ split off addr to 16+6 connectors
-++ CHG edge connector to side mount with pads, instead of drill holes at all; just squish the pins or pads and solder!
-++ Clear space around audio osc .. esp resistor needs to move
-
-- Big Question: V-in-low and V-in-high from eZ80 to 74HC32-at-3.3 are close
---&gt; could bodge 5v into 73LS32 and it should work
-
-- GPIO PB unused -&gt; sent to BoB for LEDs/switches
-
-- rev2: IOREQ, handle OUT for something/BoB?
-- rev2: amplifier 2n2222 as per http below? mix all 3 channels together to another pin on speaker header? amp on board?
-- rev2: ?? put PSG back onto GPIO PB, drop the inverters, use GPIO for A8 and BDIR and BC1? Bus idea here: http://z80.hit.bg/z80/eZ80.pdf
-- rev2: zikcart - tie unused addr to gnd?
-- rev2: change ctrl bus, add /cs3 for gpu.. bus to gpu, sweet</text>
 <text x="40.64" y="311.15" size="1.778" layer="94">Power-In header
 - VCC
 - 5
@@ -11372,7 +11355,7 @@ Console RX (receive to micro) to PC
 
 PA8-2 - usart1
 --&gt; could jumper to eZ80 GPIO/serial</text>
-<text x="215.9" y="-168.91" size="5.08" layer="91">Of interest..
+<text x="330.2" y="-29.21" size="5.08" layer="91">Of interest..
 - Bus expansion:
   -&gt; /CS3 is on Breakout pins too, not just to gpu
      -&gt; could add another level on top of RAM chip, to fork off its address and 
@@ -11381,6 +11364,8 @@ bus expansion without adding headers all over..
   -&gt; or use IOREQ and RD and WR plus external OR (or solder to unused pins?!) and bridge from RAM/etc for address/data liones, and voila.. IO system is usable too.
 - SD card .. see GPIO B, wide open SPI :)
 - ethernet .. not direct, thats eZ80F91, not F93; perhaps an i2c, SPI, serial, or bus addition ethernet or wifi...</text>
+<text x="330.2" y="55.88" size="6.4516" layer="91">Zikzak SBC - Single board computer
+Jeff Mitchell 2014</text>
 </plain>
 <instances>
 <instance part="ISPZDI" gate="A" x="64.77" y="240.03" rot="MR0"/>

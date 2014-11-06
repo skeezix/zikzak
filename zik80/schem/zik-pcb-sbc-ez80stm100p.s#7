@@ -11264,7 +11264,8 @@ general purpose rectifier, 1 A</description>
 <sheet>
 <plain>
 <rectangle x1="21.59" y1="-207.518" x2="100.584" y2="-190.5" layer="206"/>
-<text x="222.25" y="-86.36" size="5.08" layer="91">- keep all bus breakout pins? or keep less so, and open up IOreq for expansion? what about stm32 breakout?
+<text x="222.25" y="-86.36" size="5.08" layer="91">- OOPS: ay-3-8912 not really suitable here, since the A8/A9 mechanism doesn't high-Z; we need -8913 variant with true /CS
+- keep all bus breakout pins? or keep less so, and open up IOreq for expansion? what about stm32 breakout?
 REV2++: Bigger drill holes for cart edge conn .. also check spacing?
 ++ split off addr to 16+6 connectors
 ++ CHG edge connector to side mount with pads, instead of drill holes at all; just squish the pins or pads and solder!

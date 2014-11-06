@@ -269,6 +269,13 @@
 <command></command>
 <preserve-type>0</preserve-type>
 </breakpoint>
+<breakpoint temporary="false" enabled="true" >
+<line-number>98</line-number>
+<pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-assorted-tests\main.c</pathname>
+<address>1276</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
 </breakpoints>
 
 </project>

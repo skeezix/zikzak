@@ -11370,6 +11370,7 @@ general purpose rectifier, 1 A</description>
 <part name="GND23" library="supply1" deviceset="GND" device=""/>
 <part name="+5V19" library="supply1" deviceset="+5V" device=""/>
 <part name="GND34" library="supply1" deviceset="GND" device=""/>
+<part name="+5V20" library="supply1" deviceset="+5V" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -11678,6 +11679,7 @@ bus expansion without adding headers all over..
 <instance part="GND23" gate="1" x="250.19" y="295.91"/>
 <instance part="+5V19" gate="1" x="313.69" y="340.36"/>
 <instance part="GND34" gate="1" x="320.04" y="342.9" rot="R180"/>
+<instance part="+5V20" gate="1" x="326.39" y="354.33"/>
 </instances>
 <busses>
 </busses>
@@ -13249,6 +13251,12 @@ bus expansion without adding headers all over..
 <wire x1="313.69" y1="330.2" x2="313.69" y2="337.82" width="0.1524" layer="91"/>
 <pinref part="+5V19" gate="1" pin="+5V"/>
 </segment>
+<segment>
+<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="/RESET"/>
+<wire x1="307.34" y1="314.96" x2="326.39" y2="314.96" width="0.1524" layer="91"/>
+<wire x1="326.39" y1="314.96" x2="326.39" y2="351.79" width="0.1524" layer="91"/>
+<pinref part="+5V20" gate="1" pin="+5V"/>
+</segment>
 </net>
 <net name="N$2" class="0">
 <segment>
@@ -14777,12 +14785,6 @@ bus expansion without adding headers all over..
 <segment>
 <pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="CLK"/>
 <wire x1="271.78" y1="294.64" x2="269.24" y2="294.64" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="N$25" class="0">
-<segment>
-<pinref part="AY-3-8913-CS2" gate="AY-3-8912" pin="/RESET"/>
-<wire x1="307.34" y1="314.96" x2="309.88" y2="314.96" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$26" class="0">

@@ -9,11 +9,13 @@ UINT16 lame_strlen ( char *p );
 UINT8 lame_randrange8 ( UINT8 min, UINT8 width );
 
 // time / delay
+#pragma noopt
 static void delay_loop ( unsigned int c ) {
 	while ( c ) {
 		c--;
 	}
 }
+#pragma noopt
 
 void delay_ms_spin ( unsigned int ms );
 
