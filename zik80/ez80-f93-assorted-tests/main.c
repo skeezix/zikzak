@@ -92,7 +92,7 @@ int main ( ) {
 #if 1 // ext audio AY-3-8912 test
 	{
 		
-		PORT pc;
+		/*PORT pc;
 		UCHAR err;
 		
 		pc.dr = 0x01;
@@ -101,10 +101,12 @@ int main ( ) {
 		pc.alt1 = 0;
 		pc.alt2 = 0;
 		
-		open_PortC ( &pc );
+		open_PortC ( &pc );*/
+
+		ay_gpio_setup();
 
 		while ( 1 ) {
-			delay_ms_spin ( 1000 );
+			delay_ms_spin ( 600 );
 			ym_play_demo();
 		} // while
 		

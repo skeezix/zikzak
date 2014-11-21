@@ -15,9 +15,9 @@
 void ay_set_bc1 ( unsigned char on ) {
 
   if ( on ) {
-    PORTD |= ( 1<<PD0 );
+    PORTD |= ( 1<<PD5 );
   } else {
-    PORTD &= ~( 1<<PD0 );
+    PORTD &= ~( 1<<PD5 );
   }
 
   return;
@@ -26,9 +26,9 @@ void ay_set_bc1 ( unsigned char on ) {
 void ay_set_bdir ( unsigned char on ) {
 
   if ( on ) {
-    PORTD |= ( 1<<PD1 );
+    PORTD |= ( 1<<PD6 );
   } else {
-    PORTD &= ~( 1<<PD1 );
+    PORTD &= ~( 1<<PD6 );
   }
 
   return;

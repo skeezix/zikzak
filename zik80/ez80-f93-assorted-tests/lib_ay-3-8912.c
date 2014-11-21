@@ -3,6 +3,7 @@
 
 #include <eZ80.h>
 #include <stdio.h>
+#include <gpio.h>
 
 #include "skeelib.h"
 #include "lib_ay-3-8912.h"
@@ -148,7 +149,7 @@ void ym_play_demo ( void ) {
     ay_write ( 0x0a, 0x10);
     ay_write ( 0x0c, 0x10);
     ay_write ( 0x0d, 0x00);
-    _delay_ms ( 500 ); 
+    delay_ms_spin ( 500 ); 
 
     ay_write ( 0x06, 0x00);
     ay_write ( 0x07, 0x07);
@@ -157,7 +158,7 @@ void ym_play_demo ( void ) {
     ay_write ( 0x0a, 0x10);
     ay_write ( 0x0c, 0x38);
     ay_write ( 0x0d, 0x00);
-    _delay_ms ( 500 );  
+    delay_ms_spin ( 500 );  
 #endif
 
   } // while forever
@@ -173,6 +174,27 @@ void ay_set_chA ( int i ) {
 void ay_set_chB ( int i ) {
   ay_write ( 0x02, tp[i]&0xff );
   ay_write ( 0x03, (tp[i] >> 8)&0x0f );
+}
+
+void ay_gpio_setup ( void ) {
+
+	PORT pc;
+	UCHAR err;
+		
+	pc.dr = 0x01;
+	pc.ddr = 0; // 0 ddr is output
+	//pc.alt0 = 0; // does not exist for F93
+	pc.alt1 = 0;
+	pc.alt2 = 0;
+		
+	open_PortB ( &pc );
+	//control_PortC ( & pc);
+
+	err = setmode_PortB ( PORTPIN_ALL, GPIOMODE_OUTPUT );
+		
+	SETDR_PORTB ( 1 );
+
+	return;
 }
 
 #pragma noopt
@@ -198,26 +220,37 @@ UINT8 ay_write ( unsigned char address, unsigned char data ) {
 
 	UINT8 *psg;
 	UINT8 dummy;
-	
+
+	//PB_DR ^= 1; // TEST
+
 	// inactive
 	psg = BC1_0;
 	dummy = *psg;
+    delay_loop ( 20 );
 	
 	// latch and write address
+	PB_DR = address & 0x0F;
 	psg = BC1_1;
-	*psg = address;
+	*psg = address & 0x0F;
+    delay_loop ( 20 );
 	
 	// inactive
 	psg = BC1_0;
 	dummy = *psg;
+    delay_loop ( 20 );
 	
 	// write data
+	PB_DR = data;
 	psg = BC1_0;
 	*psg = data;
+    delay_loop ( 20 );
 	
 	// inactive
 	psg = BC1_0;
 	dummy = *psg;
+    delay_loop ( 20 );
+	
+	//PB_DR = 0;
 	
 	return ( dummy );
 }
