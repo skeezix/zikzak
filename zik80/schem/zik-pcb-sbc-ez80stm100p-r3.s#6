@@ -11720,7 +11720,7 @@ p3: gnd
 p4: R
 p5: G
 p6: B</text>
-<text x="638.81" y="106.68" size="2.54" layer="91">PA2-3 == serial console
+<text x="641.35" y="104.14" size="2.54" layer="91">PA2-3 == serial console
 PA8-PA12 = serial control in/out
 
 PB0-5 = ctrl bus OE WE /CS0-2 /mreq
@@ -11730,6 +11730,7 @@ PB9 -&gt; ctrl bus BUSACK
 PB10/11 == sync
 PB12 -&gt; vblank -&gt; z80
 PB13 -&gt; frameready in -&gt; z80
+PB14/15 -&gt; BoB (USB?)
 
 PC0-5 == RGB
 PC6-7 = brightness
@@ -11786,6 +11787,9 @@ Jeff Mitchell 2014</text>
 compatible to 256KB and 128KB with
 fiddling (code level to ensure chip
 select)</text>
+<text x="727.71" y="59.69" size="2.54" layer="91">BoB for PB14/PB15
+-&gt; also as USB to savd
+  using PA11/PA12 as USB</text>
 </plain>
 <instances>
 <instance part="ISPZDI" gate="A" x="64.77" y="240.03" rot="MR0"/>

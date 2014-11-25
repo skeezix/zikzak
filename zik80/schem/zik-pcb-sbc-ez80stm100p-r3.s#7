@@ -11651,8 +11651,8 @@ general purpose rectifier, 1 A</description>
 <part name="+5V19" library="supply1" deviceset="+5V" device=""/>
 <part name="GND34" library="supply1" deviceset="GND" device=""/>
 <part name="+5V20" library="supply1" deviceset="+5V" device=""/>
-<part name="PAD1" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
-<part name="PAD2" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
+<part name="B14" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
+<part name="B15" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
 </parts>
 <sheets>
 <sheet>
@@ -11786,6 +11786,9 @@ Jeff Mitchell 2014</text>
 compatible to 256KB and 128KB with
 fiddling (code level to ensure chip
 select)</text>
+<text x="727.71" y="59.69" size="2.54" layer="91">BoB for PB14/PB15
+-&gt; also as USB to savd
+  using PA11/PA12 as USB</text>
 </plain>
 <instances>
 <instance part="ISPZDI" gate="A" x="64.77" y="240.03" rot="MR0"/>
@@ -11959,8 +11962,8 @@ select)</text>
 <instance part="+5V19" gate="1" x="416.56" y="351.79"/>
 <instance part="GND34" gate="1" x="422.91" y="354.33" rot="R180"/>
 <instance part="+5V20" gate="1" x="429.26" y="365.76"/>
-<instance part="PAD1" gate="G$1" x="735.33" y="86.36"/>
-<instance part="PAD2" gate="G$1" x="735.33" y="74.93"/>
+<instance part="B14" gate="G$1" x="735.33" y="86.36"/>
+<instance part="B15" gate="G$1" x="735.33" y="74.93"/>
 </instances>
 <busses>
 </busses>
@@ -14480,7 +14483,7 @@ select)</text>
 <label x="791.21" y="96.52" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="PAD1" gate="G$1" pin="P"/>
+<pinref part="B14" gate="G$1" pin="P"/>
 <wire x1="737.87" y1="86.36" x2="745.49" y2="86.36" width="0.1524" layer="91"/>
 <label x="745.49" y="86.36" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -14492,7 +14495,7 @@ select)</text>
 <label x="791.21" y="93.98" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="PAD2" gate="G$1" pin="P"/>
+<pinref part="B15" gate="G$1" pin="P"/>
 <wire x1="737.87" y1="74.93" x2="745.49" y2="74.93" width="0.1524" layer="91"/>
 <label x="745.49" y="74.93" size="1.27" layer="95" xref="yes"/>
 </segment>

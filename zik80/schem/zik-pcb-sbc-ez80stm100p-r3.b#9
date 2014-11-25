@@ -26,8 +26,8 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="yes" active="yes"/>
@@ -3169,8 +3169,14 @@ design rules under a new name.</description>
 <element name="BOBADDR" library="pinhead" package="1X08" value="" x="114.3" y="85.09" rot="R180"/>
 <element name="BOBDATA" library="pinhead" package="1X08" value="" x="137.16" y="85.09" rot="R180"/>
 <element name="AY-3-8913-CS2" library="8Bit_Parts" package="DIL24-6" value="" x="77.4065" y="36.92525" rot="R270"/>
-<element name="PAD1" library="wirepad" package="SMD1,27-2,54" value="WIREPADSMD1,27-254" x="133.5024" y="54.0766"/>
-<element name="PAD2" library="wirepad" package="SMD1,27-2,54" value="WIREPADSMD1,27-254" x="135.2296" y="56.388"/>
+<element name="B14" library="wirepad" package="SMD1,27-2,54" value="WIREPADSMD1,27-254" x="133.5024" y="54.0766" smashed="yes">
+<attribute name="VALUE" x="133.5024" y="54.0766" size="0.0254" layer="27"/>
+<attribute name="NAME" x="132.7024" y="52.2862" size="1.27" layer="25" rot="R90"/>
+</element>
+<element name="B15" library="wirepad" package="SMD1,27-2,54" value="WIREPADSMD1,27-254" x="135.2296" y="56.388" smashed="yes">
+<attribute name="VALUE" x="135.2296" y="56.388" size="0.0254" layer="27"/>
+<attribute name="NAME" x="137.2744" y="55.2834" size="1.27" layer="25" rot="R90"/>
+</element>
 </elements>
 <signals>
 <signal name="GND">
@@ -7593,13 +7599,17 @@ design rules under a new name.</description>
 </signal>
 <signal name="PB14">
 <contactref element="STM32F4" pad="53"/>
-<contactref element="PAD1" pad="1"/>
-<wire x1="133.5024" y1="54.0766" x2="132.46" y2="57.23" width="0" layer="19" extent="1-1"/>
+<contactref element="B14" pad="1"/>
+<wire x1="132.46" y1="57.23" x2="133.4478" y2="57.23" width="0.1524" layer="1"/>
+<wire x1="133.4478" y1="57.23" x2="134.112" y2="56.5658" width="0.1524" layer="1"/>
+<wire x1="134.112" y1="56.5658" x2="134.112" y2="54.6862" width="0.1524" layer="1"/>
+<wire x1="134.112" y1="54.6862" x2="133.5024" y2="54.0766" width="0.1524" layer="1"/>
 </signal>
 <signal name="PB15">
 <contactref element="STM32F4" pad="54"/>
-<contactref element="PAD2" pad="1"/>
-<wire x1="132.46" y1="57.73" x2="135.2296" y2="56.388" width="0" layer="19" extent="1-1"/>
+<contactref element="B15" pad="1"/>
+<wire x1="132.46" y1="57.73" x2="133.8876" y2="57.73" width="0.1524" layer="1"/>
+<wire x1="133.8876" y1="57.73" x2="135.2296" y2="56.388" width="0.1524" layer="1"/>
 </signal>
 <signal name="PC8">
 <contactref element="STM32F4" pad="65"/>

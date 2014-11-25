@@ -158,21 +158,6 @@ Jeff Mitchell</text>
 <text x="62.5475" y="18.7325" size="1.27" layer="21" rot="R90">PD7</text>
 <text x="28.2575" y="10.16" size="1.778" layer="21">1</text>
 <text x="34.29" y="10.16" size="1.778" layer="21">2</text>
-<text x="2.2225" y="53.975" size="1.27" layer="22" rot="MR90">PA0</text>
-<text x="24.4475" y="53.975" size="1.27" layer="22" rot="MR90">PA7</text>
-<text x="38.735" y="53.975" size="1.27" layer="22" rot="MR90">PC7</text>
-<text x="61.2775" y="53.975" size="1.27" layer="22" rot="MR90">PC0</text>
-<text x="61.2775" y="18.7325" size="1.27" layer="22" rot="MR90">PD7</text>
-<text x="39.0525" y="18.415" size="1.27" layer="22" rot="MR90">PD0</text>
-<text x="24.4475" y="18.415" size="1.27" layer="22" rot="MR90">PB7</text>
-<text x="2.2225" y="18.415" size="1.27" layer="22" rot="MR90">PB0</text>
-<text x="42.545" y="25.4" size="1.27" layer="21" rot="R90">RX</text>
-<text x="45.085" y="25.4" size="1.27" layer="21" rot="R90">TX</text>
-<text x="47.625" y="24.4475" size="1.27" layer="21" rot="R90">RX2</text>
-<text x="50.165" y="24.4475" size="1.27" layer="21" rot="R90">TX2</text>
-<text x="97.4725" y="6.35" size="1.778" layer="21" rot="R90">1</text>
-<text x="97.155" y="19.05" size="1.778" layer="21" rot="R90">1</text>
-<text x="96.52" y="44.45" size="1.778" layer="21" rot="R90">1</text>
 </plain>
 <libraries>
 <library name="SparkFun">
@@ -3348,10 +3333,7 @@ design rules under a new name.</description>
 <element name="P412" library="wirepad" package="1,6/0,9" value="" x="73.66" y="78.74" smashed="yes">
 <attribute name="VALUE" x="73.66" y="79.34" size="0.0254" layer="27"/>
 </element>
-<element name="ALWAYS-ON" library="pinhead" package="1X02" value="" x="76.2" y="11.43" smashed="yes">
-<attribute name="NAME" x="71.6788" y="13.2588" size="1.27" layer="25" ratio="10"/>
-<attribute name="VALUE" x="73.66" y="8.255" size="1.27" layer="27"/>
-</element>
+<element name="ALWAYS-ON" library="pinhead" package="1X02" value="" x="76.2" y="11.43"/>
 <element name="PD0-TXD" library="pinhead" package="1X02" value="" x="77.47" y="46.99" rot="R180"/>
 <element name="PD1-RXD" library="pinhead" package="1X02" value="" x="77.47" y="40.64" rot="R180"/>
 </elements>

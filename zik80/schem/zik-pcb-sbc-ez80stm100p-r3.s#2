@@ -11653,7 +11653,9 @@ general purpose rectifier, 1 A</description>
 <part name="+5V20" library="supply1" deviceset="+5V" device=""/>
 <part name="B14" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
 <part name="B15" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
-<part name="PAD1" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
+<part name="+CE2A17" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
+<part name="3V" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
+<part name="+3V3" library="supply1" deviceset="+3V3" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -11780,7 +11782,7 @@ and other features via memory map?
   -&gt; RTC is already on BOBMISC</text>
 <text x="518.16" y="5.08" size="6.4516" layer="91">Zikzak SBC - Single board computer
 Jeff Mitchell 2014</text>
-<text x="195.58" y="-19.05" size="5.08" layer="91">rev 3:
+<text x="209.55" y="-38.1" size="5.08" layer="91">rev 3:
 - rotated 180deg ISPZDI
 - rotated 180deg ISP GPU
 - Z GPIO-B -&gt; audio data bus now
@@ -11788,7 +11790,12 @@ Jeff Mitchell 2014</text>
 compatible to 256KB and 128KB with
 fiddling (code level to ensure chip
 select)
-- added smd solder pads for PB14/15</text>
+- added smd solder pads for PB14/15
+- added solder pad for shorting to
+force RAM +CE2 ro 3v3 (for 128KB)
+- added label to pcb to note where
+RAM A17 is, in case we want to cut
+with exacto :O</text>
 <text x="727.71" y="59.69" size="2.54" layer="91">BoB for PB14/PB15
 -&gt; also as USB to savd
   using PA11/PA12 as USB</text>
@@ -11967,7 +11974,9 @@ select)
 <instance part="+5V20" gate="1" x="429.26" y="365.76"/>
 <instance part="B14" gate="G$1" x="735.33" y="86.36"/>
 <instance part="B15" gate="G$1" x="735.33" y="74.93"/>
-<instance part="PAD1" gate="G$1" x="191.77" y="151.13"/>
+<instance part="+CE2A17" gate="G$1" x="191.77" y="151.13"/>
+<instance part="3V" gate="G$1" x="191.77" y="142.24"/>
+<instance part="+3V3" gate="G$1" x="207.01" y="142.24" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -13235,6 +13244,11 @@ select)
 <junction x="722.63" y="198.12"/>
 <label x="720.09" y="198.12" size="1.27" layer="95" rot="R270" xref="yes"/>
 </segment>
+<segment>
+<pinref part="3V" gate="G$1" pin="P"/>
+<wire x1="194.31" y1="142.24" x2="204.47" y2="142.24" width="0.1524" layer="91"/>
+<pinref part="+3V3" gate="G$1" pin="+3V3"/>
+</segment>
 </net>
 <net name="XOUT" class="0">
 <segment>
@@ -13811,7 +13825,7 @@ select)
 <label x="222.25" y="151.13" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 <segment>
-<pinref part="PAD1" gate="G$1" pin="P"/>
+<pinref part="+CE2A17" gate="G$1" pin="P"/>
 <wire x1="194.31" y1="151.13" x2="198.12" y2="151.13" width="0.1524" layer="91"/>
 <label x="198.12" y="151.13" size="1.27" layer="95" xref="yes"/>
 </segment>

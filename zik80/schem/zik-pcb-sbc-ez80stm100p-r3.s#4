@@ -11653,6 +11653,7 @@ general purpose rectifier, 1 A</description>
 <part name="+5V20" library="supply1" deviceset="+5V" device=""/>
 <part name="B14" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
 <part name="B15" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
+<part name="PAD1" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
 </parts>
 <sheets>
 <sheet>
@@ -11786,7 +11787,8 @@ Jeff Mitchell 2014</text>
 - bump to 512KB SRAM chip,
 compatible to 256KB and 128KB with
 fiddling (code level to ensure chip
-select)</text>
+select)
+- added smd solder pads for PB14/15</text>
 <text x="727.71" y="59.69" size="2.54" layer="91">BoB for PB14/PB15
 -&gt; also as USB to savd
   using PA11/PA12 as USB</text>
@@ -11965,6 +11967,7 @@ select)</text>
 <instance part="+5V20" gate="1" x="429.26" y="365.76"/>
 <instance part="B14" gate="G$1" x="735.33" y="86.36"/>
 <instance part="B15" gate="G$1" x="735.33" y="74.93"/>
+<instance part="PAD1" gate="G$1" x="191.77" y="151.13"/>
 </instances>
 <busses>
 </busses>
@@ -13806,6 +13809,11 @@ select)</text>
 <pinref part="RAM-CS0" gate="A" pin="CE2"/>
 <wire x1="226.06" y1="151.13" x2="222.25" y2="151.13" width="0.1524" layer="91"/>
 <label x="222.25" y="151.13" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="PAD1" gate="G$1" pin="P"/>
+<wire x1="194.31" y1="151.13" x2="198.12" y2="151.13" width="0.1524" layer="91"/>
+<label x="198.12" y="151.13" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="A18" class="0">
