@@ -270,16 +270,23 @@
 <preserve-type>0</preserve-type>
 </breakpoint>
 <breakpoint temporary="false" enabled="true" >
-<line-number>106</line-number>
+<line-number>101</line-number>
 <pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-assorted-tests\main.c</pathname>
-<address>1276</address>
+<address>1451</address>
 <command></command>
 <preserve-type>0</preserve-type>
 </breakpoint>
 <breakpoint temporary="false" enabled="true" >
-<line-number>86</line-number>
-<pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-assorted-tests\lib_ay-3-8912.c</pathname>
-<address>2626</address>
+<line-number>106</line-number>
+<pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-assorted-tests\main.c</pathname>
+<address>1474</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
+<breakpoint temporary="false" enabled="true" >
+<line-number>115</line-number>
+<pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-assorted-tests\main.c</pathname>
+<address>1546</address>
 <command></command>
 <preserve-type>0</preserve-type>
 </breakpoint>

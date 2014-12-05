@@ -120,23 +120,23 @@ void ym_play_demo ( void ) {
 
     for(i=0;i<8;i++){
       ay_set_chA(48);
-      delay_ms_spin(100);
+      delay_ms_spin(70);
       ay_set_chA(60);   
-      delay_ms_spin(100);
+      delay_ms_spin(70);
     }  
 
     for( i=0;i<4;i++){
       ay_set_chA(53);
-      delay_ms_spin(100);
+      delay_ms_spin(70);
       ay_set_chA(65);
-      delay_ms_spin(100);
+      delay_ms_spin(70);
     }
 
     for( i=0;i<4;i++){
       ay_set_chA(55);
-      delay_ms_spin(100);
+      delay_ms_spin(70);
       ay_set_chA(67);
-      delay_ms_spin(100);
+      delay_ms_spin(70);
     }
 #endif
 

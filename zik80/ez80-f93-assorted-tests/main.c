@@ -9,6 +9,7 @@
 #include <uart.h>
 #include <gpio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "skeelib.h"
 #include "framebuffer.h"
@@ -63,6 +64,59 @@ int main ( ) {
 		write_UART0 ( b, lame_strlen ( b ) );
 		write_UART0 ( "\n", 1 );
 		
+	}
+#endif
+
+#if 1 // ram test - and why aren't I making a HAL library, and a hwtest library on top of it?
+	{
+		unsigned char *extram, *iter, *max;
+		unsigned char v;
+		char msg [ 64 ];
+		
+		extram = (unsigned char *) 0x0C0000;
+
+		max = extram;
+		max += 65536; max += 65536;
+		max += 65536; max += 65536;
+		max += 65536; max += 65536;
+		max += 65536; max += 65536;
+
+		// writer stage
+		strcpy ( msg, "Memory test: writing sequence to RAM\n" );
+		write_UART0 ( msg, lame_strlen ( msg ) );
+		
+		iter = extram;
+		v = 0;
+		
+		while ( iter != max ) {
+			*iter = v;
+			v++;
+			iter++;
+		}
+		
+		// verification stage
+		strcpy ( msg, "Memory test: verifying sequence in RAM\n" );
+		write_UART0 ( msg, lame_strlen ( msg ) );
+
+		iter = extram;
+		v = 0;
+		
+		while ( iter != max ) {
+			if ( *iter != v ) {
+				strcpy ( msg, "Memory test failed\n" );
+				write_UART0 ( msg, lame_strlen ( msg ) );
+				break;
+			}
+
+			v++;
+			iter++;
+		}
+		
+		if ( iter == max ) {
+			strcpy ( msg, "Memory test: PASS\n" );
+			write_UART0 ( msg, lame_strlen ( msg ) );
+		}
+
 	}
 #endif
 	

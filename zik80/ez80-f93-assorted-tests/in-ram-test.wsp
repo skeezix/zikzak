@@ -11,8 +11,6 @@ ptn_Child3=Document-2
 ptn_Child4=Document-3
 ptn_Child5=Document-4
 ptn_Child6=Document-5
-ptn_Child7=Document-6
-ptn_Child8=Document-7
 
 [WorkState_v1_2.Frames.ChildFrames.Document-0]
 ptn_Child1=ViewFrame-0
@@ -62,28 +60,6 @@ WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPAAAAAAAAIBAAAAAAGBAAAAAA
 ptn_Child1=ViewFrame-0
 
 [WorkState_v1_2.Frames.ChildFrames.Document-4.ViewFrame-0]
-DocPathName=.\demo.h
-DocTemplateIndex=0
-DocumentString=IDE.Document
-IsActiveChildFrame=False
-IsFrameVisible=True
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPAAAAAAAAIBAAAAAAMCAAAAAAMCAAAAAANAGAAAAALIBAAAAA
-
-[WorkState_v1_2.Frames.ChildFrames.Document-5]
-ptn_Child1=ViewFrame-0
-
-[WorkState_v1_2.Frames.ChildFrames.Document-5.ViewFrame-0]
-DocPathName=.\lib_ay-3-8912.c
-DocTemplateIndex=0
-DocumentString=IDE.Document
-IsActiveChildFrame=False
-IsFrameVisible=True
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPMPPPPPPPJOPPPPPPGBAAAAAAGBAAAAAAPBFAAAAAMKBAAAAA
-
-[WorkState_v1_2.Frames.ChildFrames.Document-6]
-ptn_Child1=ViewFrame-0
-
-[WorkState_v1_2.Frames.ChildFrames.Document-6.ViewFrame-0]
 DocPathName=C:\PROG~FBU\ZiLOG\ZDSI~ZZT.1\src\boot\common\vectors16.asm
 DocTemplateIndex=0
 DocumentString=IDE.Document
@@ -91,14 +67,14 @@ IsActiveChildFrame=False
 IsFrameVisible=True
 WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPMPPPPPPPJOPPPPPPMCAAAAAAMCAAAAAAFDFAAAAACMBAAAAA
 
-[WorkState_v1_2.Frames.ChildFrames.Document-7]
+[WorkState_v1_2.Frames.ChildFrames.Document-5]
 ptn_Child1=ViewFrame-0
 
-[WorkState_v1_2.Frames.ChildFrames.Document-7.ViewFrame-0]
+[WorkState_v1_2.Frames.ChildFrames.Document-5.ViewFrame-0]
 DocPathName=C:\PROG~FBU\ZiLOG\ZDSI~ZZT.1\include\zilog\gpio.h
 DocTemplateIndex=0
 DocumentString=IDE.Document
 IsActiveChildFrame=False
 IsFrameVisible=True
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPMPPPPPPPJOPPPPPPKJAAAAAAKJAAAAAAFGGAAAAACACAAAAA
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPAAAAAAAAIBAAAAAAKJAAAAAAKJAAAAAAFGGAAAAACACAAAAA
 
