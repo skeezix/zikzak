@@ -1,0 +1,30 @@
+
+Test avr -> RAM -> stm32 GPU on breadboard (so not hooking up much address space, too lazy.)
+
+avr8 atmega644 on internal clock:
+
+PA....PC
+>
+PB....PD
+
+Port B:
+  - ISP
+  PB0   blinkenlight
+  PB3  /CE
+  PB4  /BUSREQ
+  PB5  /BUSACK
+  PB6  /OE
+  PB7  /WE
+
+Port D+C: address bus
+  PC: low address
+  PD: high address
+
+Port A: data bus
+
+avr goal:
+  startup: full-Z and wait
+  run:
+    - update RAM 'framebuffer'
+    - run or spin until beseq
+      - busack then spin until busreq clear

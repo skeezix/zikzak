@@ -17,6 +17,7 @@
 #include "lib_fontrender.h"
 #include "menu.h"
 #include "demo.h"
+#include "HAL.h"
 
 int main ( ) {
 
