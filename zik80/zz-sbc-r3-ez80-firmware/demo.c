@@ -2,6 +2,7 @@
 #include <uart.h>
 #include <gpio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "skeelib.h"
 #include "framebuffer.h"

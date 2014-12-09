@@ -16,8 +16,9 @@
 #include <lib_ay-3-8912.h>
 #include "lib_fontrender.h"
 #include "menu.h"
-#include "demo.h"
 #include "HAL.h"
+#include "bios_video.h"
+#include "demo.h"
 
 int main ( ) {
 
@@ -27,6 +28,9 @@ int main ( ) {
 		delay_ms_spin(1000);
 	}
 #endif
+
+	// enable interupts
+	_init_default_vectors();
 	
 #if 1 // uart logger - WORKS
 	{
@@ -150,26 +154,35 @@ int main ( ) {
 	unsigned char *extram;
 	unsigned char spritelist [ TM_SPRITE_MAX * TM_SPRITE_CELL_STRIDE ];
 	unsigned char *curr = spritelist;
+	unsigned char iter;
 
+	vb_enable_vblank_interupt();
+	
 	extram = (UINT8 *) TM_VRAM_FB;
 	memset ( extram, 1, TM_TEXTLINE_STRIDE * TM_TEXTCOL_STRIDE ); // clear characters
+	
+	strcpy ( extram, "ZikZak SBC r3 512KB" );
+	strcpy ( extram + TM_TEXTLINE_STRIDE, "Jeff Mitchell" );
 		
 	extram = (UINT8 *) TM_VRAM_ATTR;
 	memset ( extram, 1, TM_TEXTLINE_STRIDE * TM_TEXTCOL_STRIDE ); // clear attributes
 	
 	extram = (UINT8 *) TM_SPRITE_LIST_BASE;
 	memset ( extram, 0, TM_SPRITE_MAX * TM_SPRITE_CELL_STRIDE); // clear to hidden sprites
+	*((UINT8*)TM_SPRITE_ACTIVE) = 4;
 
-	curr [ 0 ] =  30; curr [ 1 ] =  30; curr [ 2 ] = 1; curr [ 3 ] = 32; extram += 4;
-	curr [ 0 ] =  60; curr [ 1 ] =  60; curr [ 2 ] = 1; curr [ 3 ] = 32; extram += 4;
-	curr [ 0 ] =  90; curr [ 1 ] =  90; curr [ 2 ] = 1; curr [ 3 ] = 32; extram += 4;
-	curr [ 0 ] = 120; curr [ 1 ] = 120; curr [ 2 ] = 1; curr [ 3 ] = 32; extram += 4;
-
+	curr [ 0 ] =  30; curr [ 1 ] =  30; curr [ 2 ] =      1; curr [ 3 ] = 32; extram += 4;
+	curr [ 0 ] =  60; curr [ 1 ] =  60; curr [ 2 ] =      1; curr [ 3 ] = 32; extram += 4;
+	curr [ 0 ] =  90; curr [ 1 ] =  90; curr [ 2 ] =      1; curr [ 3 ] = 32; extram += 4;
+	curr [ 0 ] = 120; curr [ 1 ] = 120; curr [ 2 ] =      1; curr [ 3 ] = 32; extram += 4;
+	
 	// move sprites
 	while ( 1 ) {
 		
-		extram = (UINT8 *) TM_SPRITE_LIST_BASE;
+		curr = spritelist;
+		for ( iter = 0; iter < 4; iter++ ) {
 		
+#if 1		
 	    if ( curr [ 3 ] < 64 ) {
 			// go left                                                                                                             
 			if ( curr [ 0 ] > 10 ) {
@@ -199,9 +212,13 @@ int main ( ) {
               curr [ 3 ] = 150;
             }
          }
-
+#endif
+			curr += 4;
+		} // iter
+	 
 		memcpy ( TM_SPRITE_LIST_BASE, spritelist, TM_SPRITE_MAX * TM_SPRITE_CELL_STRIDE );
 		
+		vb_wait_for_vblank ( VB_CLEAR_SAW_VBLANK );
 	}
 
 	while ( 1 ) {

@@ -44,7 +44,7 @@ void framebuffer_update_from_ram ( void ) {
     sawblank = 2;
     running--;
 
-#if 1
+#if 0
     if ( blankcounter < 2 ) {
       blankcounter++;
       continue;
@@ -56,11 +56,12 @@ void framebuffer_update_from_ram ( void ) {
     tm_fetch_ram();
 
     // render to framebuffer
+#if 1
+    tm_render_to_framebuffer ( fb_active );
+#else
     tm_render_to_framebuffer ( fb_inactive );
-    //tm_render_to_framebuffer ( fb_active );
 
     // swap framebuffers for smooth animation
-#if 1
     // -> swap only if still in vblank, otherwise wait till next frame and do it then
     //fb_swap();
 
@@ -68,10 +69,11 @@ void framebuffer_update_from_ram ( void ) {
       __asm__("nop");
     }
     fb_swap();
+#endif
+
     while ( vblank ) {
       __asm__("nop");
     }
-#endif
 
   } // while running
 

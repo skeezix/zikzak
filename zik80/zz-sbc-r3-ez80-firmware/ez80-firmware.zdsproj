@@ -11,6 +11,7 @@
 <file filter-key="">.\framebuffer.c</file>
 <file filter-key="">.\lib_fontrender.c</file>
 <file filter-key="">.\menu.c</file>
+<file filter-key="">.\bios_video.c</file>
 <file filter-key="">.\demo.c</file>
 </files>
 
@@ -139,7 +140,7 @@
 <tools>
 <tool name="Assembler">
 <options>
-<option name="define" type="string" change-action="assemble">_EZ80ACCLAIM!=1,ZSL_DEVINIT=1,ZSL_DEVICE_PORTD=1,_ZSL_PORT_USED=1,ZSL_DEVICE_PORTC=1,ZSL_DEVICE_UART0=1,_ZSL_UART_USED=1</option>
+<option name="define" type="string" change-action="assemble">_EZ80ACCLAIM!=1,ZSL_DEVINIT=1,ZSL_DEVICE_PORTD=1,_ZSL_PORT_USED=1,ZSL_DEVICE_PORTC=1,ZSL_DEVICE_PORTB=1,ZSL_DEVICE_UART0=1,_ZSL_UART_USED=1</option>
 <option name="include" type="string" change-action="assemble"></option>
 <option name="list" type="boolean" change-action="none">true</option>
 <option name="listmac" type="boolean" change-action="none">false</option>
@@ -153,7 +154,7 @@
 <tool name="Compiler">
 <options>
 <option name="padbranch" type="string" change-action="compile">On</option>
-<option name="define" type="string" change-action="compile">NDEBUG,_EZ80F93,_EZ80ACCLAIM!,ZSL_DEVINIT,ZSL_DEVICE_PORTD,_ZSL_PORT_USED,ZSL_DEVICE_PORTC,ZSL_DEVICE_UART0,_ZSL_UART_USED</option>
+<option name="define" type="string" change-action="compile">NDEBUG,_EZ80F93,_EZ80ACCLAIM!,ZSL_DEVINIT,ZSL_DEVICE_PORTD,_ZSL_PORT_USED,ZSL_DEVICE_PORTC,ZSL_DEVICE_PORTB,ZSL_DEVICE_UART0,_ZSL_UART_USED</option>
 <option name="genprintf" type="boolean" change-action="compile">true</option>
 <option name="keepasm" type="boolean" change-action="none">false</option>
 <option name="keeplst" type="boolean" change-action="none">true</option>
@@ -244,7 +245,7 @@
 <tool name="Middleware">
 <options>
 <option name="usezsl" type="boolean" change-action="rebuild">true</option>
-<option name="zslports" type="string" change-action="rebuild">Port D,Port C</option>
+<option name="zslports" type="string" change-action="rebuild">Port D,Port C,Port B</option>
 <option name="zsluarts" type="string" change-action="rebuild">UART0</option>
 <option name="userzk" type="boolean" change-action="rebuild">false</option>
 <option name="rzkconfigpi" type="boolean" change-action="rebuild">false</option>

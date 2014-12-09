@@ -16,6 +16,9 @@
 //
 // 2.457MHz oscilator in place
 
+// vblank
+// STM PB12 -> eZ80 PC6      vbl active low (though is configurable..)
+
 #ifndef h_hal_h
 #define h_hal_h
 
@@ -35,7 +38,9 @@
 #define TM_TEXTLINE_STRIDE 32                       /* 32 chars/bytes across */
 #define TM_TEXTCOL_STRIDE 24                        /* 24 chars/bytyes tall */
 // sprite list is (say) 32spr*3b == 96b long
-#define TM_SPRITE_LIST_BASE (TM_VRAM_ATTR+TM_PAGE_STRIDE)  /* where to place sprite list in VRAM */
+#define TM_SPRITE_BASE (TM_VRAM_ATTR+TM_PAGE_STRIDE)       /* where to place sprite block */
+#define TM_SPRITE_ACTIVE (TM_SPRITE_BASE)                  /* where to place sprite current counter */
+#define TM_SPRITE_LIST_BASE (TM_SPRITE_ACTIVE+1)           /* where to place sprite list in VRAM */
 #define TM_SPRITE_MAX      32                       /* number of sprites to allow */
 #define TM_SPRITE_CELL_STRIDE 4                     /* size in bytes of sprite cell */
 
@@ -43,7 +48,7 @@ typedef struct {
   unsigned char x;
   unsigned char y;
   unsigned char f;                                  /* flags */
-#define TM_SPRITE_SHOW (1<<0)                       /* flag bit 0: default sprite hide, enable to show sprite */
+#define TM_SPRITE_SHOW (1<<0)                       /* flag bit 1: default sprite hide, enable to show sprite */
   unsigned char _u;                                 /* user value */
 } tm_sprite_cell_t;
 

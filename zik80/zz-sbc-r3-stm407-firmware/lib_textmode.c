@@ -22,6 +22,7 @@ static unsigned char *sprite = SRAM2_MEMORY_BASE + (5*8*FBWIDTH);
 static uint8_t ram_textmode [ FBWIDTH * FBHEIGHT / 8 / 8 ];
 static uint8_t ram_textattr [ FBWIDTH * FBHEIGHT / 8 / 8 ];
 static uint8_t ram_spritelist [ TM_SPRITE_MAX * TM_SPRITE_CELL_STRIDE ];
+static uint8_t ram_spritecount = 0;
 
 void tm_setup ( void ) {
   char b [ 3 ] = "\0\0\0";
@@ -70,7 +71,8 @@ void tm_fetch_ram ( void ) {
   bus_grab_and_wait();
   bus_read_block ( ram_textmode, TM_VRAM_FB, TM_PAGE_STRIDE );
   bus_read_block ( ram_textattr, TM_VRAM_ATTR, TM_PAGE_STRIDE );
-  bus_read_block ( ram_spritelist, TM_SPRITE_LIST_BASE, TM_SPRITE_MAX * TM_SPRITE_CELL_STRIDE );
+  bus_read_block ( &ram_spritecount, TM_SPRITE_ACTIVE, 1 );
+  bus_read_block ( ram_spritelist, TM_SPRITE_LIST_BASE, ( ram_spritecount * TM_SPRITE_CELL_STRIDE) );
   bus_release();
   return;
 }
@@ -94,7 +96,12 @@ void tm_render_to_framebuffer ( uint8_t *fb ) {
 #if 1
   {
     unsigned char *spam = ram_spritelist;
-    for ( tiley = 0; tiley < TM_SPRITE_MAX; tiley++ ) {
+
+    if ( ram_spritecount > TM_SPRITE_MAX ) {
+      ram_spritecount = TM_SPRITE_MAX;
+    }
+
+    for ( tiley = 0; tiley < ram_spritecount; tiley++ ) {
 
       if ( spam [ 2 ] & TM_SPRITE_SHOW ) {
         _demo_blit_16x16 ( fb, spam [ 0 ], spam [ 1 ] );
