@@ -312,9 +312,26 @@ void _demo_blit_16x16 ( unsigned char *to, unsigned int x, unsigned int y ) {
 
   unsigned char *p = to + ( y * FBWIDTH ) + x;
 
+  unsigned char n, nn; // transparency
+  unsigned char *np, *nsrc; // transparency
+
   for ( row = 0; row < 16; row++ ) {
 
+#if 0 // no transparency, faster
     lame_memcpy ( p, sprite + ( row * 16 ), 16 );
+#else // transparency, slower
+    n = 16; np = p; nsrc = sprite + ( row * 16 );
+    while ( n ) {
+      nn = *nsrc++;
+      if ( nn != 1 ) {
+        *np = nn;
+      } else {
+        // nada
+      }
+      np++;
+      n--;
+    }
+#endif
 
     p += FBWIDTH;
   }

@@ -13,6 +13,7 @@
 #include "lib_bus_ram.h"
 #include "skeelib.h"
 #include "lib_i2c.h"
+#include "HAL.h"
 
 static void lamecopy ( uint8_t *dest, char *src, uint16_t len ) {
 
@@ -64,7 +65,7 @@ void command_queue_run ( void ) {
       {
         char b [ 100 ] = "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0";
         uint32_t i;
-        uint32_t addr = 0x0C0000;
+        uint32_t addr = EXTRAM_BASE;
         uint8_t v;
 
         bus_grab_and_wait();
@@ -153,10 +154,9 @@ void command_queue_run ( void ) {
           bus_grab_and_wait();
 
           //uint32_t addr = 0x1C0000;
-          uint32_t addr = 0x0C0000;
+          uint32_t addr = EXTRAM_BASE;
           uint8_t v;
           uint32_t i;
-          char b [ 20 ];
 
           bus_perform_read ( addr ); // discard .. just getting /CS set
 

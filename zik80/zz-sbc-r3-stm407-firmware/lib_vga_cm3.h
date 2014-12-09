@@ -7,4 +7,11 @@ extern volatile unsigned char vblank;          // is >0 when inside of vblank pe
 #define VGA_NO_DMA  0
 void vga_setup ( unsigned char use_dma );
 
+static inline void _fb_spin_until_vblank ( void ) {
+  while ( ! vblank ) {
+    __asm__("nop");
+  }
+
+}
+
 #endif

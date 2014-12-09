@@ -170,3 +170,22 @@ uint8_t bus_perform_read ( uint32_t address ) {
 uint8_t bus_check_cs1 ( void ) {
   return ( gpio_port_read ( GPIOB ) & GPIO3 );
 }
+
+void bus_read_block ( uint8_t *dest, uint32_t address, uint16_t len ) {
+  uint8_t v;
+  uint32_t i;
+
+  bus_perform_read ( address ); // discard .. just getting /CS set
+
+  for ( i = 0; i < len; i++ ) {
+
+    v = bus_perform_read ( address++ );
+
+    //if ( v > 0 ) {
+    *dest++ = v;
+    //}
+
+  } // for
+
+  return;
+}

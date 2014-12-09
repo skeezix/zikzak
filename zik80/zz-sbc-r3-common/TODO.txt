@@ -1,0 +1,5 @@
+
+ez80: autodemo - after timeout and no cart, jump to a demo loop
+
+ez80: memory size determine - write/read/write/read
+ez80: memory check

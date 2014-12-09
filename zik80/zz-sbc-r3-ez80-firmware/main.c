@@ -74,7 +74,7 @@ int main ( ) {
 		unsigned char v;
 		char msg [ 64 ];
 		
-		extram = (unsigned char *) 0x0C0000;
+		extram = (unsigned char *) EXTRAM_BASE;
 
 		max = extram;
 		max += 65536; max += 65536;
@@ -121,30 +121,7 @@ int main ( ) {
 	}
 #endif
 	
-#if 0 // ext ram write
-	{
-		unsigned char *extram;
-
-		extram = (unsigned char *) 0x0C0000;
-		*extram = 0;
-		extram++;
-		*extram = 1;
-		extram++;
-		*extram = 2;
-		extram++;
-		*extram = 3;
-		extram++;
-		*extram = 4;
-		extram++;
-		*extram = 5;
-		extram++;
-		*extram = 6;
-		extram++;
-
-	}
-#endif
-	
-#if 1 // ext audio AY-3-8912 test
+#if 0 // ext audio AY-3-8912 test
 	{
 		
 		/*PORT pc;
@@ -168,104 +145,85 @@ int main ( ) {
 	}
 #endif
 
-//#__pragma noopt
-#if 0 // ext rom read
-	//while (1)
-	{
-		unsigned char *extram;
-		unsigned char b [ 251 ];
-		unsigned char i;
-		unsigned char v;
-		
-		extram = (unsigned char *) 0x1C0000;
-		
-		for ( i = 0; i < 250; i++ ) {
-			v = *extram;
-			b [ i ] = v;
-			extram++;
-		}
-		
-		write_UART0 ( (char*)b, i - 1 );
-		
-		extram = (unsigned char *) 0x1C0000;
-
-	}
-#endif
-
-#if 0 // ext rom write-delay-loop - full screen render
-	{
-		UINT8 shift = 0;
-		while (1)
-		{
-			unsigned char *extram;
-			UINT32 x, y;
-			
-			extram = (unsigned char *) 0x0C0000;
-			
-			for ( y = 0; y < 192; y++ ) {
-				for ( x = 0; x < 256; x++ ) {
-					*extram = y + (shift<<1);
-					extram++;
-				}
-			}
-			
-			//delay_ms_spin ( 10 );
-			
-			//extram = (unsigned char *) 0x0C0000;
-			
-			shift++;
-
-		}
-	}
-#endif
-
-#if 0 // ext ram write-delay-loop - minor update per frame
-	{
-		UINT16 y = 0;
-		UINT16 c = 0;
-		UINT16 cx = 2, cy = 150;
-		while (1)
-		{
-			unsigned char *extram;
-			UINT16 x;
-			
-			extram = (unsigned char *) 0x0C0000;
-			extram += ( y * 256 );
-			
-			if ( y > 190 ) continue;
-			
-			for ( x = 0; x < 256; x++ ) {
-				*extram = c & 0xFF;
-				extram++;
-			}
-			
-			delay_ms_spin ( 10 );
-			
-			y++;
-			c++;
-			
-		}
-	}
-#endif
-
-	
 #if 1 // main menu
+{
+	unsigned char *extram;
+	unsigned char spritelist [ TM_SPRITE_MAX * TM_SPRITE_CELL_STRIDE ];
+	unsigned char *curr = spritelist;
+
+	extram = (UINT8 *) TM_VRAM_FB;
+	memset ( extram, 1, TM_TEXTLINE_STRIDE * TM_TEXTCOL_STRIDE ); // clear characters
+		
+	extram = (UINT8 *) TM_VRAM_ATTR;
+	memset ( extram, 1, TM_TEXTLINE_STRIDE * TM_TEXTCOL_STRIDE ); // clear attributes
 	
+	extram = (UINT8 *) TM_SPRITE_LIST_BASE;
+	memset ( extram, 0, TM_SPRITE_MAX * TM_SPRITE_CELL_STRIDE); // clear to hidden sprites
+
+	curr [ 0 ] =  30; curr [ 1 ] =  30; curr [ 2 ] = 1; curr [ 3 ] = 32; extram += 4;
+	curr [ 0 ] =  60; curr [ 1 ] =  60; curr [ 2 ] = 1; curr [ 3 ] = 32; extram += 4;
+	curr [ 0 ] =  90; curr [ 1 ] =  90; curr [ 2 ] = 1; curr [ 3 ] = 32; extram += 4;
+	curr [ 0 ] = 120; curr [ 1 ] = 120; curr [ 2 ] = 1; curr [ 3 ] = 32; extram += 4;
+
+	// move sprites
+	while ( 1 ) {
+		
+		extram = (UINT8 *) TM_SPRITE_LIST_BASE;
+		
+	    if ( curr [ 3 ] < 64 ) {
+			// go left                                                                                                             
+			if ( curr [ 0 ] > 10 ) {
+              curr [ 0 ] -= 2;
+            } else {
+              curr [ 3 ] = 100;
+            }
+        } else if ( curr [ 3 ] > 64 && curr [ 3 ] < 128 ) {
+            // go right                                                                                                            
+            if ( curr [ 0 ] < FBWIDTH - 40 ) {
+              curr [ 0 ] += 2;
+            } else {
+              curr [ 3 ] = 50;
+            }
+        } else if ( curr [ 3 ] > 128 && curr [ 3 ] < 192 ) {
+            // up                                                                                                                  
+            if ( curr [ 1 ] > 40 ) {
+              curr [ 1 ] -= 1;
+            } else {
+              curr [ 3 ] = 250;
+            }
+        } else {
+            // down                                                                                                                
+            if ( curr [ 1 ] < FBHEIGHT - 40 ) {
+              curr [ 1 ] += 1;
+            } else {
+              curr [ 3 ] = 150;
+            }
+         }
+
+		memcpy ( TM_SPRITE_LIST_BASE, spritelist, TM_SPRITE_MAX * TM_SPRITE_CELL_STRIDE );
+		
+	}
+
 	while ( 1 ) {
 		UINT8 *extram;
 		char inbuf [ 5 ] = "\0\0\0\0\0";
 		UINT24 nbytes;
 		UCHAR retval;
 			
-		extram = (UINT8 *) 0x0C0000;
+		extram = (UINT8 *) TM_VRAM_FB;
 
-		memset ( extram, 1, 256*200 ); // clear to dark red
+		strcpy ( extram, "Zikzak http://www.zikzak.ca" );
+		extram += TM_TEXTLINE_STRIDE;
+		strcpy ( extram, "Zikzak http://www.zikzak.ca" );
+		extram += TM_TEXTLINE_STRIDE;
+		strcpy ( extram, "Zikzak http://www.zikzak.ca" );
+		extram += TM_TEXTLINE_STRIDE;
 		
-		render_font_8x8 ( 0, 0,  "Zikzak http://www.zikzak.ca", lame_randrange8 ( 1, 0xFF ) );
-		render_font_8x8 ( 0, 8,  "Mode: Colour 256x240", lame_randrange8 ( 1, 0xFF ) );
-		render_font_8x8 ( 0, 16, "In: CPU Serial", lame_randrange8 ( 1, 0xFF ) );
+		//render_font_8x8 ( 0, 0,  "Zikzak http://www.zikzak.ca", lame_randrange8 ( 1, 0xFF ) );
+		//render_font_8x8 ( 0, 8,  "Mode: Colour 256x240", lame_randrange8 ( 1, 0xFF ) );
+		//render_font_8x8 ( 0, 16, "In: CPU Serial", lame_randrange8 ( 1, 0xFF ) );
 		
-		render_font_8x8 ( 0, 32, menu_mainmenu, lame_randrange8 ( 1, 0xFF ) );
+		//render_font_8x8 ( 0, 32, menu_mainmenu, lame_randrange8 ( 1, 0xFF ) );
 		
 		nbytes = 1;
 		retval = read_UART0 ( inbuf, &nbytes );
@@ -315,81 +273,9 @@ int main ( ) {
 		}
 		
 	}
-	
+
+}	
 #endif
-	
-	
-#if 1 // RAM random line demo
-	while ( 1 ) {
-		UINT8 x, y, lx = 0, ly; // x, y, last-x, last-y
-		UINT8 c;
-		UINT16 maxlines = 250;
-		UINT8 i;
-		UINT8 *extram;
-			
-		extram = (UINT8 *) 0x0C0000;
-
-		//fb_render_rect_filled ( extram, 0, 0, 250, 230, 1 );
-		memset ( extram, 1, 256*200 );
-		
-		render_font_8x8 ( 0, 0,  "Zikzak http://www.zikzak.ca", lame_randrange8 ( 1, 0xFF ) );
-		render_font_8x8 ( 0, 8,  "Mode: Colour 256x240", lame_randrange8 ( 1, 0xFF ) );
-		render_font_8x8 ( 0, 16, "In: CPU Serial", lame_randrange8 ( 1, 0xFF ) );
-		
-		render_font_8x8 ( 0, 24, menu_mainmenu, lame_randrange8 ( 1, 0xFF ) );
-		
-		x = y = lx = ly = 0;
-
-		for ( i = 0; i < maxlines; i++ ) {
-			
-			x = lame_randrange8 ( 10, 230 );
-			y = lame_randrange8 ( 30, 170 );
-			c = lame_randrange8 ( 0, 0x3F ); // 0b00111111
-			
-			if ( lx != 0 ) {
-				zl_render_line ( extram, c, lx, ly, x, y );
-			}
-			
-			lx = x;
-			ly = y;
-			
-		} // for
-
-		delay_ms_spin ( 20 );		
-		
-		//while(1);
-
-	}
-#endif
-	
-#if 0 // blinker - WORKS
-	{
-		PORT pc;
-		UCHAR err;
-		
-		pc.dr = 0x01;
-		pc.ddr = 0; // 0 ddr is output
-		//pc.alt0 = 0; // does not exist for F93
-		pc.alt1 = 0;
-		pc.alt2 = 0;
-		
-		open_PortC ( &pc );
-		//control_PortC ( & pc);
-
-		err = setmode_PortC ( PORTPIN_ZERO, GPIOMODE_OUTPUT );
-		
-		SETDR_PORTC ( 1 );
-		
-		//SETDR_PORTC ( 0xFF );
-		
-		while ( 1 ) {
-			delay_loop ( 150 );
-			PC_DR ^= 1;
-			//SETDR_PORTC ( 1 );
-		}
-	}		
-#endif
-
 	
 #if 0 // do nothing
 	{

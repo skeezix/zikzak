@@ -7,7 +7,6 @@
 #include "config.h"
 #include "main.h"
 #include "lib_serial.h"
-//#include "/home/skeezix/archive/devo/toolkits/stm32/libopencm3/include/libopencm3/stm32/f4/nvic.h"
 #include "lib_vga_cm3.h"
 #include "framebuffer.h"
 #include "framebuffer_demo.h"
@@ -16,6 +15,9 @@
 #include "commandqueue.h"
 #include "command.h"
 #include "lib_bus_ram.h"
+#include "framebuffer_update.h"
+#include "lib_textmode.h"
+#include "HAL.h"
 
 void usart1_isr ( void ); // shut up compiler
 void usart2_isr ( void ); // shut up compiler
@@ -41,6 +43,15 @@ int main(void) {
   vga_setup ( VGA_USE_DMA );
 #else
   vga_setup ( VGA_NO_DMA );
+#endif
+
+#ifdef STARTUP_WASTE // waste some time before we start savaging the bus
+  {
+    unsigned int i;
+    for ( i = 0; i < 60*3; i++ ) {
+      _fb_spin_until_vblank();
+    }
+  }
 #endif
 
 #ifdef BUS_FRAMEBUFFER
@@ -69,54 +80,9 @@ int main(void) {
 #endif
 
 #ifdef RUNMODE_FRAMEBUFFER_FOREVER
-    if ( vblank ) {
-      queueit ( "BD" );
-      command_queue_run();
-    }
-#endif
-
-    // update framebuffers
-#if 0
-    if ( vblank ) {
-      unsigned char i = 0;
-      fb_clone ( fb_2, fb_active );
-      while ( vblank ) {
-        __asm__("nop");
-      }
-      fb_test_pattern ( fb_2, i & 0x03 );
-      i++;
-    }
-#endif
-
-    // check for external RAM updates?
-#ifdef zzBUS_FRAMEBUFFER
-    static uint16_t _done = 0;
-    _done++;
-    if ( vblank && _done > 30 && _done < 40  ) {
-
-      bus_grab_and_wait();
-
-      uint32_t addr = 0x1C0000;
-      uint8_t v;
-      uint8_t i;
-      char b [ 2 ];
-
-      USART_puts_optional ( USART2, "+REM cart dump: " );
-
-      for ( i = 0; i < 20; i++ ) {
-        v = bus_perform_read ( addr );
-
-        b [ 0 ] = v;
-        b [ 1 ] = '\0';
-        USART_puts_optional ( USART2, b );
-
-        addr++;
-      }
-
-      USART_puts_optional ( USART2, "+++\n" );
-
-      bus_release();
-
+    {
+      tm_setup();
+      framebuffer_update_from_ram_forever();
     }
 #endif
 

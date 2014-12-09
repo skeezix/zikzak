@@ -7,6 +7,7 @@ void bus_grab_and_wait ( void ); // neither read nor write
 void bus_release ( void );
 
 uint8_t bus_perform_read ( uint32_t address );
+void bus_read_block ( uint8_t *dest, uint32_t address, uint16_t len );
 
 uint8_t bus_check_cs1 ( void );
 

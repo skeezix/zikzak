@@ -15,15 +15,6 @@ uint8_t fb_2 [ FBWIDTH * FBHEIGHT ] /*__attribute((aligned (1024)))*/;
 uint8_t *fb_active;
 uint8_t *fb_inactive;
 
-extern volatile unsigned char vblank;
-
-static inline void _spin_until_vblank ( void ) {
-  while ( ! vblank ) {
-    __asm__("nop");
-  }
-
-}
-
 void fb_setup ( void ) {
   fb_active = fb_1;
   fb_inactive = fb_2;

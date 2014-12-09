@@ -164,7 +164,7 @@
 <option name="promote" type="boolean" change-action="compile">true</option>
 <option name="reduceopt" type="boolean" change-action="compile">false</option>
 <option name="stdinc" type="string" change-action="compile"></option>
-<option name="usrinc" type="string" change-action="compile"></option>
+<option name="usrinc" type="string" change-action="compile">Y:\archive\devo\projects\zikzak\zik80\zz-sbc-r3-common</option>
 <option name="watch" type="boolean" change-action="none">false</option>
 <option name="multithread" type="boolean" change-action="compile">false</option>
 </options>
@@ -262,34 +262,6 @@
 
 <!-- breakpoint information -->
 <breakpoints>
-<breakpoint temporary="false" enabled="true" >
-<line-number>104</line-number>
-<pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-in-ext-ram-test\main.c</pathname>
-<address>0</address>
-<command></command>
-<preserve-type>0</preserve-type>
-</breakpoint>
-<breakpoint temporary="false" enabled="true" >
-<line-number>101</line-number>
-<pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-assorted-tests\main.c</pathname>
-<address>0</address>
-<command></command>
-<preserve-type>0</preserve-type>
-</breakpoint>
-<breakpoint temporary="false" enabled="true" >
-<line-number>106</line-number>
-<pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-assorted-tests\main.c</pathname>
-<address>0</address>
-<command></command>
-<preserve-type>0</preserve-type>
-</breakpoint>
-<breakpoint temporary="false" enabled="true" >
-<line-number>115</line-number>
-<pathname>Y:\archive\devo\projects\zikzak\zik80\ez80-f93-assorted-tests\main.c</pathname>
-<address>0</address>
-<command></command>
-<preserve-type>0</preserve-type>
-</breakpoint>
 </breakpoints>
 
 </project>
