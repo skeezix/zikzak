@@ -30,6 +30,14 @@
 
 #define VRAM_BASE (EXTRAM_BASE) /* where to place VRAM in RAM */
 
+/* Video modes
+ */
+// textmode
+// textsprite
+// spriteonly
+// rawframebuffer
+// --> perhaps rle option, or delta (changed regions only) or something?
+
 /* Text Mode defines
  */
 #define TM_PAGE_STRIDE 768                          /* size in cells (bytes) of a page */

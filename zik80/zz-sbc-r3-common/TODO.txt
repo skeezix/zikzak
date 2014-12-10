@@ -1,4 +1,7 @@
 
+ez80: set frame-ready
+      gpu: pick up frame ready, and use it to pull sprite/text data .. maybe let cpu run longer if no changes
+
 ez80: autodemo - after timeout and no cart, jump to a demo loop
 
 ez80: memory size determine - write/read/write/read
