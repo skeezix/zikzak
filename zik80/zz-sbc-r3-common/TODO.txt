@@ -1,4 +1,48 @@
 
+tests to do:
+      - ps2 keyboard from ez80
+      - joystick pullups working
+      - r2r ladder for extra colours
+        - flasg image to cart, show image from cart?
+
+++ cart header definition
+   - cart magic (ZZC4R+)?
+   - cart unique id identifier (8B string?)
+   - z80 mode? ez80 mode?
+   - flags?
+     - read only or needs write
+
+cart: actually make a cart, and boot code from it .. get toolchain nailed
+
+project: BASIC and add some zz functions
+         - https://github.com/BleuLlama/TinyBasicPlus
+project: SD reader shield/mod .. for big storage, without resorting to giant carts?
+project: a big cart eeprom or more likely eprom .. what burner? :/
+project: cart zikburner actual dedicated pcb
+project: cart .. proto-card cart hacking pcb
+project: music or sound player (YM player)
+project: nuttX? linux?
+
+bios: add proper time handling (interupt to count time, accurately.. use it in delay-loop functions)
+bios: disable/enable framebuffer updates (ie: gpu can keep showing what it has already)
+bios: disable rendering entirely (no sync, monitor cuts out)
+
+ez80: BIOS boot menu
+      .. show message, hit Del or somethign to go to menu
+      .. menu includes the serial/usb cart flasher?
+      .. test joy 0/1, keyb, audio, ram, cartrom, serial 0,1, video tests
+      .. how to trigger tests on gpu itself, if any? serial on it, during boot as well? test ram, rom, etc bus from gpu..
+
+util: serial/usb -> ez80 cart flasher .. so peopel can flash carts, without needing programmers
+
+audio: make revision with avr for audio, and do emulated SID? makes availability easy.
+
+both: high res text mode (mono, with configurable front/back colour); 640x480 1bpp - double buffered still; sprites?
+both: med res textsprite mode - 640x480 4bpp, single frame?
+both: sprite-only mode?
+both: how to do fast raw framebuffer? delta to know only changed scanlines..b ut full screen upload, how?
+      .. disable svreen update, move frame, enable? what sort of framerate can you get then?
+
 ez80: set frame-ready
       gpu: pick up frame ready, and use it to pull sprite/text data .. maybe let cpu run longer if no changes
 
