@@ -13,6 +13,7 @@
 <file filter-key="">.\menu.c</file>
 <file filter-key="">.\bios_video.c</file>
 <file filter-key="">.\demo.c</file>
+<file filter-key="">.\lib_ps2_keyboard.c</file>
 </files>
 
 <!-- configuration information -->
@@ -263,6 +264,13 @@
 
 <!-- breakpoint information -->
 <breakpoints>
+<breakpoint temporary="false" enabled="true" >
+<line-number>34</line-number>
+<pathname>Z:\zik80\zz-sbc-r3-ez80-firmware\main.c</pathname>
+<address>1142</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
 </breakpoints>
 
 </project>

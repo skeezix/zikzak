@@ -15,6 +15,7 @@
 #include "framebuffer.h"
 #include <lib_ay-3-8912.h>
 #include "lib_fontrender.h"
+#include "lib_ps2_keyboard.h"
 #include "menu.h"
 #include "HAL.h"
 #include "bios_video.h"
@@ -31,6 +32,23 @@ int main ( ) {
 
 	// enable interupts
 	_init_default_vectors();
+
+#if 0 // GPIOB for lulz debug output
+	{
+		PORT pb;
+		UCHAR err;
+
+		// enable gpio output mode1 port	
+		pb.dr = 0; // default value 0off
+		pb.ddr = 0; // output=0, input=1
+		pb.alt1 = 0;
+		pb.alt2 = 0;
+			
+		open_PortC ( &pb );
+
+		err = setmode_PortB ( PORTPIN_ZERO, GPIOMODE_OUTPUT );
+	}
+#endif
 	
 #if 1 // uart logger - WORKS
 	{
@@ -64,14 +82,39 @@ int main ( ) {
 			write_UART0 ( b, 3 );
 		}
 		
-		lame_itoa ( (int) b, b );
+		lame_itoa ( (int)37, b );
 		
 		write_UART0 ( b, lame_strlen ( b ) );
 		write_UART0 ( "\n", 1 );
+		flush_UART0 ( FLUSHFIFO_ALL );
 		
 	}
 #endif
 
+#if 1 // isr interrupt test
+	{
+		keyb_setup ( 0 );
+		//write_UART0 ( "keyb up\n", 8 );
+		
+#if 1
+		while ( 1 ) {
+			if ( _g_char_waiting ) {
+					char b [ 5 ];
+					b [ 0 ] = map_scan_code ( _g_kbd_data );
+					b [ 1 ] = '\n';
+					b [ 2 ] = '\0';
+					write_UART0 ( b, 2 );
+					flush_UART0 ( FLUSHFIFO_ALL );
+					// clear
+					_g_char_waiting = 0;
+			}
+			delay_loop ( 10 );
+		}
+#endif
+
+	}
+#endif
+	
 #if 0 // ram test - and why aren't I making a HAL library, and a hwtest library on top of it?
 	{
 		unsigned char *extram, *iter, *max;
@@ -216,7 +259,7 @@ int main ( ) {
 			curr += 4;
 		} // iter
 	 
-		memcpy ( TM_SPRITE_LIST_BASE, spritelist, TM_SPRITE_MAX * TM_SPRITE_CELL_STRIDE );
+
 		
 		vb_wait_for_vblank ( VB_CLEAR_SAW_VBLANK );
 	}

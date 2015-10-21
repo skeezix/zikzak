@@ -1,6 +1,9 @@
 #ifndef h_skeelib_h
 #define h_skeelib_h
 
+// types
+typedef UCHAR uint8_t;
+
 // string
 char* lame_itoa ( int i, char b[] );
 UINT16 lame_strlen ( char *p );
