@@ -164,9 +164,9 @@
 <option name="modsect" type="boolean" change-action="compile">false</option>
 <option name="optspeed" type="boolean" change-action="compile">true</option>
 <option name="promote" type="boolean" change-action="compile">true</option>
-<option name="reduceopt" type="boolean" change-action="compile">false</option>
+<option name="reduceopt" type="boolean" change-action="compile">true</option>
 <option name="stdinc" type="string" change-action="compile"></option>
-<option name="usrinc" type="string" change-action="compile">Y:\archive\devo\projects\zikzak\zik80\zz-sbc-r3-common</option>
+<option name="usrinc" type="string" change-action="compile">Y:\archive\devo\projects\zikzak\zik80\zz-sbc-r3-common;Y:\archive\devo\projects\zikzak\zik80\debug2ram</option>
 <option name="watch" type="boolean" change-action="none">false</option>
 <option name="multithread" type="boolean" change-action="compile">false</option>
 </options>
@@ -265,9 +265,16 @@
 <!-- breakpoint information -->
 <breakpoints>
 <breakpoint temporary="false" enabled="true" >
-<line-number>34</line-number>
+<line-number>124</line-number>
 <pathname>Z:\zik80\zz-sbc-r3-ez80-firmware\main.c</pathname>
-<address>1142</address>
+<address>0</address>
+<command></command>
+<preserve-type>0</preserve-type>
+</breakpoint>
+<breakpoint temporary="false" enabled="true" >
+<line-number>126</line-number>
+<pathname>Z:\zik80\zz-sbc-r3-ez80-firmware\lib_ps2_keyboard.c</pathname>
+<address>6676</address>
 <command></command>
 <preserve-type>0</preserve-type>
 </breakpoint>

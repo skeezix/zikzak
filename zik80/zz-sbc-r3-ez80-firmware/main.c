@@ -108,7 +108,7 @@ int main ( ) {
 					// clear
 					_g_char_waiting = 0;
 			}
-			delay_loop ( 10 );
+			delay_loop ( 100 );
 		}
 #endif
 

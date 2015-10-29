@@ -12,8 +12,8 @@ void interrupt keyb_clock_isr ( void );
 char map_scan_code ( UCHAR data );    // map key code to character
 UCHAR read_packet();                  // fetch data from keyboard
 
-volatile uint8_t _g_kbd_data;
-volatile uint8_t _g_char_waiting;
+extern uint8_t _g_kbd_data;
+extern uint8_t _g_char_waiting;
 
 // if key waiting, return >0.. otherwise return 0
 // when captured, a key is populated to both mapped code (where possible), and keycode (see table)

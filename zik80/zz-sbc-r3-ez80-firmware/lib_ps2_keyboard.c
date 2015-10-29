@@ -9,45 +9,83 @@
 #include "lib_ps2_keymap.h"
 
 // ---[ ISR follows ]-------------------------------------------
+#define LOGRAM_ON
 
-uint8_t _g_started;
-uint8_t _g_bit_count;
-uint8_t _g_shifted;
-uint8_t _g_release_event;
+uint8_t _g_started = 0;
+uint8_t _g_bit_count = 0;
+uint8_t _g_shifted = 0;
+uint8_t _g_release_event = 0;
+
+uint8_t _g_kbd_data = 0;
+uint8_t _g_char_waiting = 0;
+
+#if 1 // hacking around
+#define GPIO_DATAPORT    PC_DR
+#define GPIO_CLOCK_ISR   PORTC0_IVECT
+#define GPIO_CLOCK_PIN   PORTPIN_ZERO
+#define GPIO_DATA_PIN    PORTPIN_ONE
+#define GPIO_OPEN_F		 open_PortC
+#define GPIO_CONTROL_F	 control_PortC
+#define GPIO_SETMODE_F	 setmode_PortC
+//#define GPIO_FORCE_OPEN  1
+#endif
+
+#if 0 // zikzak sbc rev3 intended
+#define GPIO_DATAPORT    PD_DR
+#define GPIO_CLOCK_ISR   PORTD7_IVECT
+#define GPIO_CLOCK_PIN   PORTPIN_SEVEN
+#define GPIO_DATA_PIN    PORTPIN_SIX
+#define GPIO_OPEN_F		 open_PortD
+#define GPIO_CONTROL_F	 control_PortD
+#define GPIO_SETMODE_F	 setmode_PortD
+//#define GPIO_FORCE_OPEN  1
+#endif
+
+#ifdef LOGRAM_ON // DEBUG: populate a received keycode bits into RAM
+uint8_t *_g_logram = (uint8_t*) 0x0D0000;
+#endif
+
+#pragma noopt
 
 static interrupt void keyb_clock_isr ( void ) {
-
-	// debug
-#if 0
-	char b [ 5 ];
-	b [ 0 ] = '=';
-	b [ 1 ] = '\n';
-	b [ 2 ] = '\0';
-	
-	write_UART0 ( b, 2 );
-#endif
 
   // simple state machine to determine key-code and event
 
   // make sure clock line is low, if not ignore this transition
-  if ( PD_DR & (PORTPIN_SEVEN)){
+  // WTF: If we set to interupt on falling edge, or active low why the heck are we seeing high value on pin EVER?
+#if 0
+  if ( GPIO_DATAPORT & (GPIO_CLOCK_PIN)) {
+	_g_logram [ 8 ] = 37; // so we can breakpoint this event
     return;
   }
+#endif
+
+#ifdef LOGRAM_ON
+  _g_logram [ 9 ] += 1;
+#endif
 
   // if we have not started, check for start bit on DATA line
   if ( ! _g_started ) {
-    if ( ( PD_DR & (PORTPIN_SIX)) == 0 ) {
-      _g_started = 1;
-      _g_bit_count = 0;
-      _g_kbd_data = 0;
-      return;
-    }
+      if ( ( GPIO_DATAPORT & (GPIO_DATA_PIN)) == 0 ) {
+		_g_started = 1;
+		_g_bit_count = 0;
+		_g_kbd_data = 0;
+		
+#ifdef LOGRAM_ON
+		_g_logram [ 0 ] = 0; _g_logram [ 1 ] = 0; _g_logram [ 2 ] = 0; _g_logram [ 3 ] = 0;
+		_g_logram [ 4 ] = 0; _g_logram [ 5 ] = 0; _g_logram [ 6 ] = 0; _g_logram [ 7 ] = 0;
+#endif
+		return;
+	  }
 
   } else if ( _g_bit_count < 8 ) { // we started, read in the new bit
     //put a 1 in the right place of kdb_data if PC3 is high, leave
     //a 0 otherwise
-    if ( PD_DR & (PORTPIN_SIX) ) {
+    if ( GPIO_DATAPORT & (GPIO_DATA_PIN) ) {
       _g_kbd_data |= (1<<_g_bit_count);
+#ifdef LOGRAM_ON
+		_g_logram [ _g_bit_count ] = 1;
+#endif
     }
     _g_bit_count++;
     return;
@@ -86,12 +124,18 @@ static interrupt void keyb_clock_isr ( void ) {
       //ignore that character
     } else {
       _g_char_waiting = 1;
-    }
+
+#ifdef LOGRAM_ON
+	  _g_logram [ 9 ] = 0;
+#endif
+
+	}
 
   }
 
 	// let ISR trigger again
-	PD_DR |= (PORTPIN_SEVEN);
+	//GPIO_DATAPORT |= (GPIO_CLOCK_PIN);
+
 }
 
 
@@ -100,24 +144,37 @@ static interrupt void keyb_clock_isr ( void ) {
 // Z PD7 -> CLK -> need ISR so it knows when to detect a packet
 // Z PD6 -> DATA
 void keyb_setup ( UCHAR open_it ) {
-
-	PORT keyb;
 	UCHAR err;
 
-	_set_vector ( PORTD7_IVECT, keyb_clock_isr );
+	_set_vector ( GPIO_CLOCK_ISR, keyb_clock_isr );
+	
+#ifdef GPIO_FORCE_OPEN
+	open_it = 1; // force
+#endif
+
+#ifdef LOGRAM_ON
+  _g_logram [ 10 ] = 0;
+#endif
+
 	
 	if ( open_it ) {
-		keyb.dr = PORTPIN_SEVEN; // current value in data register; write 1 to clear or reset
-		keyb.ddr = 0;   // 0 ddr is output
-		keyb.alt1 = 0;
-		keyb.alt2 = PORTPIN_SEVEN;
+		PORT keyb;
 		
-		open_PortD ( &keyb );
-		//control_PortC ( & pc);
+		keyb.dr = 0;
+		keyb.ddr = GPIO_DATA_PIN | GPIO_CLOCK_PIN;
+		keyb.alt1 = GPIO_CLOCK_PIN;
+		keyb.alt2 = GPIO_CLOCK_PIN;
+		
+		GPIO_OPEN_F ( &keyb );
+		GPIO_CONTROL_F ( &keyb);
 	}
 
-	err = setmode_PortD ( PORTPIN_SEVEN, GPIOMODE_INTERRUPTACTVLOW ); // GPIOMODE_INTERRUPTACTVLOW GPIOMODE_INTERRUPTFALLEDGE GPIOMODE_INTERRUPTRISEEDGE GPIOMODE_INTERRUPTDUALEDGE
-	err = setmode_PortD ( PORTPIN_SIX, GPIOMODE_INPUT );
+	// GPIOMODE_INTERRUPTACTVLOW
+	// GPIOMODE_INTERRUPTFALLEDGE
+	// GPIOMODE_INTERRUPTRISEEDGE
+	// GPIOMODE_INTERRUPTDUALEDGE
+	err = GPIO_SETMODE_F ( GPIO_CLOCK_PIN, GPIOMODE_INTERRUPTACTVLOW );
+	err = GPIO_SETMODE_F ( GPIO_DATA_PIN, GPIOMODE_INPUT );
 	
 	// keyboard stuff
     _g_started = 0;
@@ -125,7 +182,7 @@ void keyb_setup ( UCHAR open_it ) {
 	_g_bit_count = 0;
 
 	// let ISR start working
-	PD_DR |= (PORTPIN_SEVEN);
+	//GPIO_DATAPORT |= (GPIO_CLOCK_PIN);
 
 	return;
 }
