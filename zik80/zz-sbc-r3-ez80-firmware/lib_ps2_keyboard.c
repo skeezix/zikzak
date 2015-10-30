@@ -9,7 +9,7 @@
 #include "lib_ps2_keymap.h"
 
 // ---[ ISR follows ]-------------------------------------------
-#define LOGRAM_ON
+//#define LOGRAM_ON
 
 uint8_t _g_started = 0;
 uint8_t _g_bit_count = 0;
@@ -18,16 +18,16 @@ uint8_t _g_release_event = 0;
 
 uint8_t _g_kbd_data = 0;
 uint8_t _g_char_waiting = 0;
+uint8_t _g_databit = 0;
 
 #if 1 // hacking around
 #define GPIO_DATAPORT    PC_DR
-#define GPIO_CLOCK_ISR   PORTC0_IVECT
-#define GPIO_CLOCK_PIN   PORTPIN_ZERO
-#define GPIO_DATA_PIN    PORTPIN_ONE
+#define GPIO_CLOCK_ISR   PORTC1_IVECT
+#define GPIO_CLOCK_PIN   PORTPIN_ONE
+#define GPIO_DATA_PIN    PORTPIN_TWO
 #define GPIO_OPEN_F		 open_PortC
 #define GPIO_CONTROL_F	 control_PortC
 #define GPIO_SETMODE_F	 setmode_PortC
-//#define GPIO_FORCE_OPEN  1
 #endif
 
 #if 0 // zikzak sbc rev3 intended
@@ -38,35 +38,33 @@ uint8_t _g_char_waiting = 0;
 #define GPIO_OPEN_F		 open_PortD
 #define GPIO_CONTROL_F	 control_PortD
 #define GPIO_SETMODE_F	 setmode_PortD
-//#define GPIO_FORCE_OPEN  1
 #endif
 
 #ifdef LOGRAM_ON // DEBUG: populate a received keycode bits into RAM
 uint8_t *_g_logram = (uint8_t*) 0x0D0000;
 #endif
 
-#pragma noopt
-
 static interrupt void keyb_clock_isr ( void ) {
-
   // simple state machine to determine key-code and event
+
+	_g_databit = GPIO_DATAPORT & GPIO_DATA_PIN;
+	GPIO_DATAPORT ^= PORTPIN_THREE;
+	
+  // let ISR trigger again
+  GPIO_DATAPORT |= (GPIO_CLOCK_PIN);
+  GPIO_DATAPORT &= ~(GPIO_CLOCK_PIN);
 
   // make sure clock line is low, if not ignore this transition
   // WTF: If we set to interupt on falling edge, or active low why the heck are we seeing high value on pin EVER?
 #if 0
   if ( GPIO_DATAPORT & (GPIO_CLOCK_PIN)) {
-	_g_logram [ 8 ] = 37; // so we can breakpoint this event
     return;
   }
 #endif
 
-#ifdef LOGRAM_ON
-  _g_logram [ 9 ] += 1;
-#endif
-
   // if we have not started, check for start bit on DATA line
   if ( ! _g_started ) {
-      if ( ( GPIO_DATAPORT & (GPIO_DATA_PIN)) == 0 ) {
+      if ( ! _g_databit ) {
 		_g_started = 1;
 		_g_bit_count = 0;
 		_g_kbd_data = 0;
@@ -81,7 +79,7 @@ static interrupt void keyb_clock_isr ( void ) {
   } else if ( _g_bit_count < 8 ) { // we started, read in the new bit
     //put a 1 in the right place of kdb_data if PC3 is high, leave
     //a 0 otherwise
-    if ( GPIO_DATAPORT & (GPIO_DATA_PIN) ) {
+    if ( _g_databit ) {
       _g_kbd_data |= (1<<_g_bit_count);
 #ifdef LOGRAM_ON
 		_g_logram [ _g_bit_count ] = 1;
@@ -133,9 +131,7 @@ static interrupt void keyb_clock_isr ( void ) {
 
   }
 
-	// let ISR trigger again
-	//GPIO_DATAPORT |= (GPIO_CLOCK_PIN);
-
+  return;
 }
 
 
@@ -143,47 +139,28 @@ static interrupt void keyb_clock_isr ( void ) {
 
 // Z PD7 -> CLK -> need ISR so it knows when to detect a packet
 // Z PD6 -> DATA
-void keyb_setup ( UCHAR open_it ) {
+void keyb_setup ( void ) {
 	UCHAR err;
 
 	_set_vector ( GPIO_CLOCK_ISR, keyb_clock_isr );
 	
-#ifdef GPIO_FORCE_OPEN
-	open_it = 1; // force
-#endif
-
 #ifdef LOGRAM_ON
   _g_logram [ 10 ] = 0;
 #endif
 
-	
-	if ( open_it ) {
-		PORT keyb;
-		
-		keyb.dr = 0;
-		keyb.ddr = GPIO_DATA_PIN | GPIO_CLOCK_PIN;
-		keyb.alt1 = GPIO_CLOCK_PIN;
-		keyb.alt2 = GPIO_CLOCK_PIN;
-		
-		GPIO_OPEN_F ( &keyb );
-		GPIO_CONTROL_F ( &keyb);
-	}
-
 	// GPIOMODE_INTERRUPTACTVLOW
+	// GPIOMODE_INTERRUPTACTVHIGH
 	// GPIOMODE_INTERRUPTFALLEDGE
 	// GPIOMODE_INTERRUPTRISEEDGE
 	// GPIOMODE_INTERRUPTDUALEDGE
-	err = GPIO_SETMODE_F ( GPIO_CLOCK_PIN, GPIOMODE_INTERRUPTACTVLOW );
+	GPIO_DATAPORT |= (GPIO_CLOCK_PIN);
+	err = GPIO_SETMODE_F ( GPIO_CLOCK_PIN, GPIOMODE_INTERRUPTFALLEDGE );
+	GPIO_DATAPORT &= ~(GPIO_CLOCK_PIN);
 	err = GPIO_SETMODE_F ( GPIO_DATA_PIN, GPIOMODE_INPUT );
 	
-	// keyboard stuff
-    _g_started = 0;
-	_g_kbd_data = 0;
-	_g_bit_count = 0;
-
-	// let ISR start working
-	//GPIO_DATAPORT |= (GPIO_CLOCK_PIN);
-
+	err = GPIO_SETMODE_F ( PORTPIN_THREE, GPIOMODE_OUTPUT );
+	GPIO_DATAPORT &= ~(PORTPIN_THREE);
+	
 	return;
 }
 
@@ -196,7 +173,7 @@ char map_scan_code ( uint8_t data ) {
   return to_ret;
 }
 
-uint8_t read_packet_blocking() {
+uint8_t packet_fetch_blocking() {
   while(!_g_char_waiting){
      //wait for a character
   }
@@ -211,7 +188,7 @@ unsigned char keyb_fetch_nonblocking ( char *r_c, unsigned char *r_keycode ) {
     return ( 0 );
   }
 
-  key_code = read_packet_blocking();
+  key_code = packet_fetch_blocking();
 
   if ( r_keycode ) {
     *r_keycode = key_code;

@@ -260,24 +260,11 @@
 
 <!-- watch information -->
 <watch-elements>
+<watch-element expression="PC_DR" />
 </watch-elements>
 
 <!-- breakpoint information -->
 <breakpoints>
-<breakpoint temporary="false" enabled="true" >
-<line-number>124</line-number>
-<pathname>Z:\zik80\zz-sbc-r3-ez80-firmware\main.c</pathname>
-<address>0</address>
-<command></command>
-<preserve-type>0</preserve-type>
-</breakpoint>
-<breakpoint temporary="false" enabled="true" >
-<line-number>126</line-number>
-<pathname>Z:\zik80\zz-sbc-r3-ez80-firmware\lib_ps2_keyboard.c</pathname>
-<address>6676</address>
-<command></command>
-<preserve-type>0</preserve-type>
-</breakpoint>
 </breakpoints>
 
 </project>

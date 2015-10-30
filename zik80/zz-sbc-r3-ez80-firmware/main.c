@@ -93,24 +93,21 @@ int main ( ) {
 
 #if 1 // isr interrupt test
 	{
-		keyb_setup ( 0 );
-		//write_UART0 ( "keyb up\n", 8 );
+		uint8_t p;
+		char b [ 5 ];
 		
-#if 1
+		keyb_setup();
+		
 		while ( 1 ) {
-			if ( _g_char_waiting ) {
-					char b [ 5 ];
-					b [ 0 ] = map_scan_code ( _g_kbd_data );
-					b [ 1 ] = '\n';
-					b [ 2 ] = '\0';
-					write_UART0 ( b, 2 );
-					flush_UART0 ( FLUSHFIFO_ALL );
-					// clear
-					_g_char_waiting = 0;
-			}
-			delay_loop ( 100 );
+			p = packet_fetch_blocking();
+			b [ 0 ] = map_scan_code ( p );
+			b [ 1 ] = '\n';
+			b [ 2 ] = '\0';
+			write_UART0 ( b, 2 );
+			//flush_UART0 ( FLUSHFIFO_ALL );
+
+			//delay_loop ( 10 );
 		}
-#endif
 
 	}
 #endif
