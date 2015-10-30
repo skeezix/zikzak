@@ -20,7 +20,7 @@ uint8_t _g_kbd_data = 0;
 uint8_t _g_char_waiting = 0;
 uint8_t _g_databit = 0;
 
-#if 1 // hacking around
+#if 0 // hacking around
 #define GPIO_DATAPORT    PC_DR
 #define GPIO_CLOCK_ISR   PORTC1_IVECT
 #define GPIO_CLOCK_PIN   PORTPIN_ONE
@@ -30,7 +30,7 @@ uint8_t _g_databit = 0;
 #define GPIO_SETMODE_F	 setmode_PortC
 #endif
 
-#if 0 // zikzak sbc rev3 intended
+#if 1 // zikzak sbc rev3 intended
 #define GPIO_DATAPORT    PD_DR
 #define GPIO_CLOCK_ISR   PORTD7_IVECT
 #define GPIO_CLOCK_PIN   PORTPIN_SEVEN
@@ -47,8 +47,7 @@ uint8_t *_g_logram = (uint8_t*) 0x0D0000;
 static interrupt void keyb_clock_isr ( void ) {
   // simple state machine to determine key-code and event
 
-	_g_databit = GPIO_DATAPORT & GPIO_DATA_PIN;
-	GPIO_DATAPORT ^= PORTPIN_THREE;
+  _g_databit = GPIO_DATAPORT & GPIO_DATA_PIN;
 	
   // let ISR trigger again
   GPIO_DATAPORT |= (GPIO_CLOCK_PIN);
@@ -157,9 +156,6 @@ void keyb_setup ( void ) {
 	err = GPIO_SETMODE_F ( GPIO_CLOCK_PIN, GPIOMODE_INTERRUPTFALLEDGE );
 	GPIO_DATAPORT &= ~(GPIO_CLOCK_PIN);
 	err = GPIO_SETMODE_F ( GPIO_DATA_PIN, GPIOMODE_INPUT );
-	
-	err = GPIO_SETMODE_F ( PORTPIN_THREE, GPIOMODE_OUTPUT );
-	GPIO_DATAPORT &= ~(PORTPIN_THREE);
 	
 	return;
 }

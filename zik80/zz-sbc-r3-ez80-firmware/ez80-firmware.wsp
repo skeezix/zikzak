@@ -35,9 +35,9 @@ ptn_Child1=ViewFrame-0
 DocPathName=.\lib_ps2_keyboard.c
 DocTemplateIndex=0
 DocumentString=IDE.Document
-IsActiveChildFrame=True
+IsActiveChildFrame=False
 IsFrameVisible=True
-WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPMPPPPPPPCOPPPPPPGBAAAAAANBAAAAAAMDFAAAAACMBAAAAA
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPMPPPPPPPCOPPPPPPGBAAAAAANBAAAAAAMDFAAAAACMBAAAAA
 
 [WorkState_v1_2.Frames.ChildFrames.Document-10]
 ptn_Child1=ViewFrame-0
@@ -79,9 +79,9 @@ ptn_Child1=ViewFrame-0
 DocPathName=C:\winapp\ZDSII_~1.1\src\boot\common\vectors16.asm
 DocTemplateIndex=0
 DocumentString=IDE.Document
-IsActiveChildFrame=False
+IsActiveChildFrame=True
 IsFrameVisible=True
-WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPMPPPPPPPCOPPPPPPOGAAAAAABJAAAAAAGDEAAAAANCCAAAAA
+WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPMPPPPPPPCOPPPPPPOGAAAAAABJAAAAAAGDEAAAAANCCAAAAA
 
 [WorkState_v1_2.Frames.ChildFrames.Document-5]
 ptn_Child1=ViewFrame-0
