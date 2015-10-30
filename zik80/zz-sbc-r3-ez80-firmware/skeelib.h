@@ -3,6 +3,7 @@
 
 // types
 typedef UCHAR uint8_t;
+typedef UINT16 uint16_t;
 
 // string
 char* lame_itoa ( int i, char b[] );

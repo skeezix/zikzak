@@ -8,7 +8,9 @@
 #include "skeelib.h"
 #include "lib_ay-3-8912.h"
 
-UINT16 tp[] = {//Frequencies related to MIDI note numbers
+
+// frequencies related to MIDI note numbers
+UINT16 tp[] = {
   15289, 14431, 13621, 12856, 12135, 11454, 10811, 10204,//0-o7
   9631, 9091, 8581, 8099, 7645, 7215, 6810, 6428,//8-15
   6067, 5727, 5405, 5102, 4816, 4545, 4290, 4050,//16-23
@@ -115,7 +117,45 @@ void ym_play_demo ( void ) {
     }
 #endif
 
-#if 1
+#if 0 // stairway
+	{
+		uint16_t progression [ 20 ] = {
+			A_FREQ, Asharp_FREQ,
+			B_FREQ,
+			C_FREQ, Csharp_FREQ,
+			D_FREQ, Dsharp_FREQ,
+			E_FREQ,
+			F_FREQ, Fsharp_FREQ,
+			G_FREQ, Gsharp_FREQ,
+			0 /* end */
+		};
+		
+		uint8_t i = 0;
+		
+		while (1) {
+
+			// play note
+			
+			ay_write ( 0x08, 0x0F );                        // register 8, full volume
+			ay_write ( 0x00, progression [ i ] & 0x0FF );   // register 0, value (freq bottom half)
+			ay_write ( 0x01, progression [ i ] >> 8 );      // register 1, value (freq top half)
+			ay_write ( 0x07, 0x3E );                        // register 7, Enable output Channel A (0011 1110)
+			
+			delay_ms_spin(70);
+
+			// next
+			i++;
+			
+			if ( progression [ i ] == 0 ) {
+				i = 0;
+			}
+			
+		} // while
+		
+	}
+#endif
+	
+#if 0
     int i;
 
     for(i=0;i<8;i++){
@@ -140,25 +180,32 @@ void ym_play_demo ( void ) {
     }
 #endif
 
-#if 0
-    //Gunshot like sound KICK 
-    ay_write ( 0x06, 0x11);
-    ay_write ( 0x07, 0x07);
-    ay_write ( 0x08, 0x10);
-    ay_write ( 0x09, 0x10);
-    ay_write ( 0x0a, 0x10);
-    ay_write ( 0x0c, 0x10);
-    ay_write ( 0x0d, 0x00);
-    delay_ms_spin ( 500 ); 
+#if 1 // effect .. laser shot?
+	while (1) {
+		// decaying laser shot; more like a ball bouncing down into floor
+		ay_write ( 0x06, 0x11);
+		ay_write ( 0x07, 0x07);
+		ay_write ( 0x08, 0x10);
+		ay_write ( 0x09, 0x10);
+		ay_write ( 0x0a, 0x10);
+		ay_write ( 0x0c, 0x10);
+		ay_write ( 0x0d, 0x00);
+		delay_ms_spin ( 200 ); 
 
-    ay_write ( 0x06, 0x00);
-    ay_write ( 0x07, 0x07);
-    ay_write ( 0x08, 0x10);
-    ay_write ( 0x09, 0x10);
-    ay_write ( 0x0a, 0x10);
-    ay_write ( 0x0c, 0x38);
-    ay_write ( 0x0d, 0x00);
-    delay_ms_spin ( 500 );  
+		// echoey noise ba ba ba baaa..
+		ay_write ( 0x06, 0x00);
+		ay_write ( 0x07, 0x07);
+		ay_write ( 0x08, 0x10);
+		ay_write ( 0x09, 0x10);
+		ay_write ( 0x0a, 0x10);
+		ay_write ( 0x0c, 0x38);
+		ay_write ( 0x0d, 0x00);
+		delay_ms_spin ( 200 );  
+		
+		// next
+		delay_ms_spin ( 400 );  
+				
+	} // while
 #endif
 
   } // while forever
@@ -198,8 +245,8 @@ void ay_gpio_setup ( void ) {
 }
 
 #pragma noopt
-#define BC1_0 ((UINT8*)0x5C0000)
-#define BC1_1 ((UINT8*)0x5C0001)
+#define BC1_0 ((UINT8*)0x2C0000)
+#define BC1_1 ((UINT8*)0x2C0001)
 UINT8 ay_write ( unsigned char address, unsigned char data ) {
 
 	// latch operation: bc1=1 bdir=1

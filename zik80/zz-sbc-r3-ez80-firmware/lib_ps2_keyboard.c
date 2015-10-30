@@ -8,6 +8,25 @@
 #include "lib_ps2_keyboard.h"
 #include "lib_ps2_keymap.h"
 
+// PS/2 keyboard protocol
+//
+// If a normal key is PRESSED, its scancode comes across the bus
+// If a normal key is RELEASED, we receive dec 240 (0xF0) and then the scancode.
+// For a repeat, the PRESS event, then more PRESS events, and then the release event.
+//
+// Therefore, typical normal key lifecycle is:
+//  ...... scancode ...... 240 scancode ......     <- 3 character packets
+//         < press>        < release  >
+//
+// Special keys:
+// dec 224 (0xE0) comes first, to escape the next value as a special key
+// Special press: 224 scancode
+// Special release: 224 240 scancode
+//
+// Retarded keys:
+// Print screen and Pause do a bunch of crazy stuff
+
+
 // ---[ ISR follows ]-------------------------------------------
 //#define LOGRAM_ON
 
