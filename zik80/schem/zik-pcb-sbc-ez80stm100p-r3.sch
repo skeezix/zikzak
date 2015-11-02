@@ -11612,18 +11612,18 @@ general purpose rectifier, 1 A</description>
 <part name="VGAHDR" library="pinhead" deviceset="PINHD-1X6" device=""/>
 <part name="R16" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
 <part name="R17" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
-<part name="R18" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R19" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R24" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R25" library="rcl" deviceset="R-US_" device="0207/10"/>
+<part name="R18" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
+<part name="R19" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
+<part name="R24" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
+<part name="R25" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
 <part name="R26" library="rcl" deviceset="R-US_" device="0207/10" value="10K"/>
 <part name="GND35" library="supply1" deviceset="GND" device=""/>
-<part name="R27" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R28" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R29" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R30" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R31" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R32" library="rcl" deviceset="R-US_" device="0207/10"/>
+<part name="R27" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
+<part name="R28" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
+<part name="R29" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
+<part name="R30" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
+<part name="R31" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
+<part name="R32" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
 <part name="VBATPWRJP" library="pinhead" deviceset="PINHD-1X2" device=""/>
 <part name="C20" library="rcl" deviceset="C-EU" device="025-025X050" value=".1uF"/>
 <part name="GND36" library="supply1" deviceset="GND" device=""/>
@@ -11676,8 +11676,8 @@ forex. Just don't populate
 the pullup resistors
 in that case or serial
 fail.</text>
-<text x="457.2" y="215.9" size="1.778" layer="91" rot="MR0">joy up
-joy down
+<text x="457.2" y="215.9" size="1.778" layer="91" rot="MR0">joy up (z80 tx0)
+joy down (zip rx0)
 joy left
 joy right
 joy fire2/unused
@@ -11731,7 +11731,7 @@ NoMore PB6/PB7 = i2c sda/scl
 PB8 -&gt; ctrl bus BUSREQ
 PB9 -&gt; ctrl bus BUSACK
 PB10/11 == sync
-PB12 -&gt; vblank -&gt; z80
+PB12 -&gt; vblank -&gt; z80 -&gt; ZPC6
 PB13 -&gt; frameready in -&gt; z80
 PB14/15 -&gt; BoB (USB?)
 
@@ -11799,6 +11799,15 @@ with exacto :O</text>
 <text x="727.71" y="59.69" size="2.54" layer="91">BoB for PB14/PB15
 -&gt; also as USB to savd
   using PA11/PA12 as USB</text>
+<text x="238.76" y="266.7" size="2.54" layer="91">ZPD7 -&gt; CLK
+ZPD6 -&gt; DATA</text>
+<text x="929.64" y="280.67" size="2.54" layer="91">Diodes are fast low voltage
+signal diodes; mA is not so
+important, but fast response
+time is.
+
+Currently trying 1N4148 as
+widely available and cheap</text>
 </plain>
 <instances>
 <instance part="ISPZDI" gate="A" x="64.77" y="240.03" rot="MR0"/>

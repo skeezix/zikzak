@@ -3138,14 +3138,14 @@ design rules under a new name.</description>
 <element name="C17" library="rcl" package="C025-025X050" value=".1uF" x="106.426" y="56.388" rot="R180"/>
 <element name="C18" library="rcl" package="C025-025X050" value="2.2uF" x="139.192" y="67.31"/>
 <element name="C19" library="rcl" package="C025-025X050" value="2.2uF" x="130.81" y="49.53"/>
-<element name="S2" library="SparkFun-Electromechanical" package="TACTILE-PTH" value="SWITCH-MOMENTARY-2PTH" x="96.52" y="82.55"/>
+<element name="STM-RESET" library="SparkFun-Electromechanical" package="TACTILE-PTH" value="SWITCH-MOMENTARY-2PTH" x="96.52" y="82.55"/>
 <element name="VGAHDR" library="pinhead" package="1X06" value="" x="146.05" y="68.58" rot="R90"/>
 <element name="R16" library="rcl" package="0207/10" value="2K" x="97.79" y="38.1"/>
 <element name="R17" library="rcl" package="0207/10" value="1K" x="97.79" y="41.91"/>
-<element name="R18" library="rcl" package="0207/10" value="" x="97.79" y="27.94"/>
-<element name="R19" library="rcl" package="0207/10" value="" x="97.79" y="31.75"/>
-<element name="R24" library="rcl" package="0207/10" value="" x="97.79" y="17.78"/>
-<element name="R25" library="rcl" package="0207/10" value="" x="97.79" y="21.59"/>
+<element name="R18" library="rcl" package="0207/10" value="2K" x="97.79" y="27.94"/>
+<element name="R19" library="rcl" package="0207/10" value="1K" x="97.79" y="31.75"/>
+<element name="R24" library="rcl" package="0207/10" value="2K" x="97.79" y="17.78"/>
+<element name="R25" library="rcl" package="0207/10" value="1K" x="97.79" y="21.59"/>
 <element name="R26" library="rcl" package="0207/10" value="10K" x="127.508" y="77.216" rot="R180"/>
 <element name="R27" library="rcl" package="0207/10" value="" x="133.35" y="41.91"/>
 <element name="R28" library="rcl" package="0207/10" value="" x="133.35" y="38.1"/>
@@ -3246,7 +3246,7 @@ design rules under a new name.</description>
 <contactref element="C17" pad="2"/>
 <contactref element="C18" pad="2"/>
 <contactref element="C19" pad="2"/>
-<contactref element="S2" pad="1"/>
+<contactref element="STM-RESET" pad="1"/>
 <contactref element="VGAHDR" pad="3"/>
 <contactref element="R26" pad="1"/>
 <contactref element="C20" pad="2"/>
@@ -8462,7 +8462,7 @@ design rules under a new name.</description>
 <wire x1="93.624340625" y1="25.17775" x2="93.834865625" y2="25.388275" width="0.2032" layer="16"/>
 </signal>
 <signal name="NRST">
-<contactref element="S2" pad="3"/>
+<contactref element="STM-RESET" pad="3"/>
 <contactref element="STM32F4" pad="14"/>
 <contactref element="ISPJTAG" pad="15"/>
 <wire x1="117.856" y1="61.722" x2="116.586" y2="61.722" width="0.1524" layer="1"/>

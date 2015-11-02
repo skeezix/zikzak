@@ -11607,23 +11607,23 @@ general purpose rectifier, 1 A</description>
 <part name="GND31" library="supply1" deviceset="GND" device=""/>
 <part name="C19" library="rcl" deviceset="C-EU" device="025-025X050" value="2.2uF"/>
 <part name="GND32" library="supply1" deviceset="GND" device=""/>
-<part name="S2" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-2" device="PTH"/>
+<part name="STM-RESET" library="SparkFun-Electromechanical" deviceset="SWITCH-MOMENTARY-2" device="PTH"/>
 <part name="GND33" library="supply1" deviceset="GND" device=""/>
 <part name="VGAHDR" library="pinhead" deviceset="PINHD-1X6" device=""/>
 <part name="R16" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
 <part name="R17" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
-<part name="R18" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R19" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R24" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R25" library="rcl" deviceset="R-US_" device="0207/10"/>
+<part name="R18" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
+<part name="R19" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
+<part name="R24" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
+<part name="R25" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
 <part name="R26" library="rcl" deviceset="R-US_" device="0207/10" value="10K"/>
 <part name="GND35" library="supply1" deviceset="GND" device=""/>
-<part name="R27" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R28" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R29" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R30" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R31" library="rcl" deviceset="R-US_" device="0207/10"/>
-<part name="R32" library="rcl" deviceset="R-US_" device="0207/10"/>
+<part name="R27" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
+<part name="R28" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
+<part name="R29" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
+<part name="R30" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
+<part name="R31" library="rcl" deviceset="R-US_" device="0207/10" value="1K"/>
+<part name="R32" library="rcl" deviceset="R-US_" device="0207/10" value="2K"/>
 <part name="VBATPWRJP" library="pinhead" deviceset="PINHD-1X2" device=""/>
 <part name="C20" library="rcl" deviceset="C-EU" device="025-025X050" value=".1uF"/>
 <part name="GND36" library="supply1" deviceset="GND" device=""/>
@@ -11676,8 +11676,8 @@ forex. Just don't populate
 the pullup resistors
 in that case or serial
 fail.</text>
-<text x="457.2" y="215.9" size="1.778" layer="91" rot="MR0">joy up
-joy down
+<text x="457.2" y="215.9" size="1.778" layer="91" rot="MR0">joy up (z80 tx0)
+joy down (zip rx0)
 joy left
 joy right
 joy fire2/unused
@@ -11731,7 +11731,7 @@ NoMore PB6/PB7 = i2c sda/scl
 PB8 -&gt; ctrl bus BUSREQ
 PB9 -&gt; ctrl bus BUSACK
 PB10/11 == sync
-PB12 -&gt; vblank -&gt; z80
+PB12 -&gt; vblank -&gt; z80 -&gt; ZPC6
 PB13 -&gt; frameready in -&gt; z80
 PB14/15 -&gt; BoB (USB?)
 
@@ -11799,6 +11799,8 @@ with exacto :O</text>
 <text x="727.71" y="59.69" size="2.54" layer="91">BoB for PB14/PB15
 -&gt; also as USB to savd
   using PA11/PA12 as USB</text>
+<text x="238.76" y="266.7" size="2.54" layer="91">ZPD7 -&gt; CLK
+ZPD6 -&gt; DATA</text>
 </plain>
 <instances>
 <instance part="ISPZDI" gate="A" x="64.77" y="240.03" rot="MR0"/>
@@ -11928,7 +11930,7 @@ with exacto :O</text>
 <instance part="GND31" gate="1" x="697.23" y="208.28"/>
 <instance part="C19" gate="G$1" x="690.88" y="228.6"/>
 <instance part="GND32" gate="1" x="690.88" y="217.17"/>
-<instance part="S2" gate="G$1" x="877.57" y="74.93" rot="MR90"/>
+<instance part="STM-RESET" gate="G$1" x="877.57" y="74.93" rot="MR90"/>
 <instance part="GND33" gate="1" x="877.57" y="64.77" rot="MR0"/>
 <instance part="VGAHDR" gate="A" x="937.26" y="353.06"/>
 <instance part="R16" gate="G$1" x="897.89" y="347.98"/>
@@ -12268,7 +12270,7 @@ with exacto :O</text>
 <pinref part="GND32" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="S2" gate="G$1" pin="1"/>
+<pinref part="STM-RESET" gate="G$1" pin="1"/>
 <wire x1="877.57" y1="69.85" x2="877.57" y2="67.31" width="0.1524" layer="91"/>
 <pinref part="GND33" gate="1" pin="GND"/>
 </segment>
@@ -14987,7 +14989,7 @@ with exacto :O</text>
 <segment>
 <wire x1="873.76" y1="93.98" x2="877.57" y2="93.98" width="0.1524" layer="91"/>
 <label x="880.11" y="93.98" size="1.27" layer="95" rot="MR180" xref="yes"/>
-<pinref part="S2" gate="G$1" pin="2"/>
+<pinref part="STM-RESET" gate="G$1" pin="2"/>
 <wire x1="877.57" y1="93.98" x2="880.11" y2="93.98" width="0.1524" layer="91"/>
 <wire x1="877.57" y1="80.01" x2="877.57" y2="93.98" width="0.1524" layer="91"/>
 <junction x="877.57" y="93.98"/>

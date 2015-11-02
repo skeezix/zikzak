@@ -26,8 +26,8 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="yes" active="yes"/>
@@ -157,6 +157,7 @@ www.zikzak.ca</text>
 <hole x="2.63525" y="10.19175" drill="2.8"/>
 <hole x="147.35175" y="96.29775" drill="2.8"/>
 <hole x="49.75225" y="69.6595" drill="2.8"/>
+<text x="64.1604" y="54.7624" size="1.27" layer="25" rot="R90">A17</text>
 </plain>
 <libraries>
 <library name="pinhead">
@@ -3069,7 +3070,7 @@ design rules under a new name.</description>
 <attribute name="MF" value="" x="100.33" y="10.16" size="1.778" layer="27" display="off"/>
 <attribute name="OC_FARNELL" value="unknown" x="100.33" y="10.16" size="1.778" layer="27" display="off"/>
 </element>
-<element name="S1" library="SparkFun-Electromechanical" package="TACTILE-PTH" value="SWITCH-MOMENTARY-2PTH" x="6.35" y="92.71"/>
+<element name="EZ80-RESET" library="SparkFun-Electromechanical" package="TACTILE-PTH" value="SWITCH-MOMENTARY-2PTH" x="6.35" y="92.71"/>
 <element name="R3" library="rcl" package="0204/7" value="10K" x="16.51" y="85.09"/>
 <element name="R2" library="rcl" package="0204/7" value="220 O" x="6.35" y="39.37" rot="R180"/>
 <element name="Z-OSC" library="SparkFun-FreqCtrl" package="HC49US" value="20Mhz" x="7.9375" y="51.1175" rot="R180"/>
@@ -3187,7 +3188,7 @@ design rules under a new name.</description>
 <signal name="GND">
 <contactref element="IC1" pad="7"/>
 <contactref element="IC2" pad="7"/>
-<contactref element="S1" pad="1"/>
+<contactref element="EZ80-RESET" pad="1"/>
 <contactref element="C1" pad="2"/>
 <contactref element="C3" pad="2"/>
 <contactref element="C2" pad="2"/>
@@ -5730,7 +5731,7 @@ design rules under a new name.</description>
 <wire x1="71.12" y1="78.74" x2="72.136" y2="79.756" width="0.1524" layer="1"/>
 </signal>
 <signal name="ZNRST">
-<contactref element="S1" pad="3"/>
+<contactref element="EZ80-RESET" pad="3"/>
 <contactref element="R3" pad="1"/>
 <contactref element="EZ80F93" pad="51"/>
 <wire x1="12.7" y1="85.09" x2="10.414" y2="85.09" width="0.254" layer="1"/>

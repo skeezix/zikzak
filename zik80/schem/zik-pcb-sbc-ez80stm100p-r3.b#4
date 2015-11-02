@@ -26,8 +26,8 @@
 <layer number="26" name="bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="27" name="tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="28" name="bValues" color="7" fill="1" visible="yes" active="yes"/>
-<layer number="29" name="tStop" color="7" fill="3" visible="no" active="yes"/>
-<layer number="30" name="bStop" color="7" fill="6" visible="no" active="yes"/>
+<layer number="29" name="tStop" color="7" fill="3" visible="yes" active="yes"/>
+<layer number="30" name="bStop" color="7" fill="6" visible="yes" active="yes"/>
 <layer number="31" name="tCream" color="7" fill="4" visible="yes" active="yes"/>
 <layer number="32" name="bCream" color="7" fill="5" visible="yes" active="yes"/>
 <layer number="33" name="tFinish" color="6" fill="3" visible="yes" active="yes"/>
@@ -157,6 +157,7 @@ www.zikzak.ca</text>
 <hole x="2.63525" y="10.19175" drill="2.8"/>
 <hole x="147.35175" y="96.29775" drill="2.8"/>
 <hole x="49.75225" y="69.6595" drill="2.8"/>
+<text x="64.1604" y="54.7624" size="1.27" layer="25" rot="R90">A17</text>
 </plain>
 <libraries>
 <library name="pinhead">
@@ -6513,8 +6514,8 @@ design rules under a new name.</description>
 <via x="65.786" y="11.684" extent="1-16" drill="0.3048"/>
 <contactref element="RAM-CS0" pad="30"/>
 <wire x1="60.96" y1="55.88" x2="61.5442" y2="55.88" width="0.1524" layer="1"/>
-<wire x1="61.5442" y1="55.88" x2="62.5856" y2="56.9214" width="0.1524" layer="1"/>
-<wire x1="62.5856" y1="56.9214" x2="62.5856" y2="60.3758" width="0.1524" layer="1"/>
+<wire x1="61.5442" y1="55.88" x2="62.5856" y2="56.2864" width="0.1524" layer="1"/>
+<wire x1="62.5856" y1="56.2864" x2="62.5856" y2="60.3758" width="0.1524" layer="1"/>
 <wire x1="62.5856" y1="60.3758" x2="63.0682" y2="60.8584" width="0.1524" layer="1"/>
 <via x="63.0682" y="60.8584" extent="1-16" drill="0.3048"/>
 <wire x1="63.0682" y1="60.8584" x2="73.5584" y2="60.8584" width="0.1524" layer="16"/>
