@@ -63,6 +63,257 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
 
     } // y
 
+    // render title
+    render_font_8x8 ( fb, 10, 10, "Offset Squares", 0xFF, 0 );
+
+  } else if ( pattern == fbt_full_palette_grid ) {
+    // ordered implied by palette value
+
+    unsigned int p;       // palette iterator
+
+    unsigned int x, y;    // dest cell top left (x,y)
+    unsigned int xi, yi;  // dest cell incrementing through the box
+
+    unsigned int _w = 14; // width
+    unsigned int _h = 10; // height
+
+    // one square for each palette entry (RRGGBBII -> 8bits -> 256 colours/intensities)
+    for ( p = 0; p != 0xFF; p++ ) {
+
+      // given a colour, figure out where to place it
+      x = ( p % 16 ) * _w;
+      y = ( p / 16 ) * _h;
+
+      for ( xi = 0; xi < _w; xi++ ) {
+        for ( yi = 0; yi < _h; yi++ ) {
+          *( fb + ( (y+yi) * FBWIDTH ) + (x+xi) ) = p;
+        } // yi
+      } // xi
+
+    } // p (palette incrementer)
+
+    // render title
+    render_font_8x8 ( fb, 10, 10, "Palette Incremental Grid", 0xFF, 0 );
+
+  } else if ( pattern == fbt_full_palette_grid_ordered ) {
+    // ordered by rules, not just implied by palette value
+
+    unsigned char r, g, b, i;
+    unsigned char rh; // redhack -> red iter mapped to red; I put resistors wrong on r3 test board, so brightness order is funky
+    unsigned char bh; // redhack -> red iter mapped to red; I put resistors wrong on r3 test board, so brightness order is funky
+
+    unsigned char p; // palette entry to use
+    unsigned int cell; // grid cell to use
+
+    unsigned int x, y;    // dest cell top left (x,y)
+    unsigned int xi, yi;  // dest cell incrementing through the box
+
+    unsigned int _w = 16; // width
+    unsigned int _h = 12; // height
+
+    // one square for each palette entry (RRGGBBII -> 8bits -> 256 colours/intensities)
+    cell = 0;
+    for ( i = 0; i < 4; i++ ) {
+      for ( bh = 0; bh < 4; bh++ ) {
+        for ( g = 0; g < 4; g++ ) {
+          for ( rh = 0; rh < 4; rh++ ) {
+
+            // map red iterator to colour
+            switch ( rh ) {
+            case 0: r = 0; break;
+            case 1: r = 2; break;
+            case 2: r = 1; break;
+            case 3: r = 3; break;
+            }
+
+            // map blue iterator to colour
+            switch ( bh ) {
+            case 0: b = 0; break;
+            case 1: b = 2; break;
+            case 2: b = 1; break;
+            case 3: b = 3; break;
+            }
+
+            // assemble a palette entry
+            p = 0;
+            p |= ( r );
+            p |= ( g << 2 );
+            p |= ( b << 4);
+            p |= ( i << 6);
+
+            // given a colour, figure out where to place it
+            x = ( cell % 16 ) * _w;
+            y = ( cell / 16 ) * _h;
+
+            for ( xi = 0; xi < _w - 1; xi++ ) {
+              for ( yi = 0; yi < _h - 1; yi++ ) {
+                *( fb + ( (y+yi) * FBWIDTH ) + (x+xi) ) = p;
+              } // yi
+            } // xi
+
+            cell++;
+
+          } // r
+        } // g
+      } // b
+    } // i
+
+    // render title
+    render_font_8x8 ( fb, 10, 10, "Full Palette", 0xFF, 0 );
+
+  } else if ( pattern == fbt_reds ) {
+
+    unsigned char r, rh;
+    unsigned char i;
+
+    // rh -> redhack
+    // - since I put resistors swapped, gotta swap some colours or ordering is funny :)
+
+    unsigned char cell = 0, p;
+
+    unsigned int x, y;    // dest cell top left (x,y)
+    unsigned int xi, yi;  // dest cell incrementing through the box
+
+    unsigned int _w = 64; // width
+    unsigned int _h = 48; // height
+
+    for ( rh = 0; rh < 4; rh++ ) {
+      for ( i = 0; i < 4; i++ ) {
+
+        // map red iterator to colour
+        switch ( rh ) {
+        case 0: r = 0; break;
+        case 1: r = 2; break;
+        case 2: r = 1; break;
+        case 3: r = 3; break;
+        }
+
+        // assemble a palette entry
+        p = 0;
+        p |= ( r );
+        p |= ( i << 6);
+
+        // given a colour, figure out where to place it
+        x = ( cell % 4 ) * _w;
+        y = ( cell / 4 ) * _h;
+
+        for ( xi = 0; xi < _w - 1; xi++ ) {
+          for ( yi = 0; yi < _h - 1; yi++ ) {
+            *( fb + ( (y+yi) * FBWIDTH ) + (x+xi) ) = p;
+          } // yi
+        } // xi
+
+        // next
+        cell++;
+
+      } // i
+    } // r
+
+    // render title
+    render_font_8x8 ( fb, 10, 10, "Reds", 0xFF, 0 );
+
+  } else if ( pattern == fbt_greens ) {
+
+    unsigned char r, rh;
+    unsigned char i;
+
+    // rh -> redhack
+    // - since I put resistors swapped, gotta swap some colours or ordering is funny :)
+
+    unsigned char cell = 0, p;
+
+    unsigned int x, y;    // dest cell top left (x,y)
+    unsigned int xi, yi;  // dest cell incrementing through the box
+
+    unsigned int _w = 64; // width
+    unsigned int _h = 48; // height
+
+    for ( rh = 0; rh < 4; rh++ ) {
+      for ( i = 0; i < 4; i++ ) {
+
+        // map red iterator to colour
+        switch ( rh ) {
+        case 0: r = 0; break;
+        case 1: r = 2; break;
+        case 2: r = 1; break;
+        case 3: r = 3; break;
+        }
+
+        // assemble a palette entry
+        p = 0;
+        p |= ( r << 2 );
+        p |= ( i << 6 );
+
+        // given a colour, figure out where to place it
+        x = ( cell % 4 ) * _w;
+        y = ( cell / 4 ) * _h;
+
+        for ( xi = 0; xi < _w - 1; xi++ ) {
+          for ( yi = 0; yi < _h - 1; yi++ ) {
+            *( fb + ( (y+yi) * FBWIDTH ) + (x+xi) ) = p;
+          } // yi
+        } // xi
+
+        // next
+        cell++;
+
+      } // i
+    } // r
+
+    // render title
+    render_font_8x8 ( fb, 10, 10, "Greens", 0xFF, 0 );
+
+  } else if ( pattern == fbt_blues ) {
+
+    unsigned char r, rh;
+    unsigned char i;
+
+    // rh -> redhack
+    // - since I put resistors swapped, gotta swap some colours or ordering is funny :)
+
+    unsigned char cell = 0, p;
+
+    unsigned int x, y;    // dest cell top left (x,y)
+    unsigned int xi, yi;  // dest cell incrementing through the box
+
+    unsigned int _w = 64; // width
+    unsigned int _h = 48; // height
+
+    for ( rh = 0; rh < 4; rh++ ) {
+      for ( i = 0; i < 4; i++ ) {
+
+        // map red iterator to colour
+        switch ( rh ) {
+        case 0: r = 0; break;
+        case 1: r = 2; break;
+        case 2: r = 1; break;
+        case 3: r = 3; break;
+        }
+
+        // assemble a palette entry
+        p = 0;
+        p |= ( r << 4 );
+        p |= ( i << 6);
+
+        // given a colour, figure out where to place it
+        x = ( cell % 4 ) * _w;
+        y = ( cell / 4 ) * _h;
+
+        for ( xi = 0; xi < _w - 1; xi++ ) {
+          for ( yi = 0; yi < _h - 1; yi++ ) {
+            *( fb + ( (y+yi) * FBWIDTH ) + (x+xi) ) = p;
+          } // yi
+        } // xi
+
+        // next
+        cell++;
+
+      } // i
+    } // r
+
+    // render title
+    render_font_8x8 ( fb, 10, 10, "Blues", 0xFF, 0 );
+
   } else if ( pattern == fbt_topbottom ) {
     unsigned int x, y;
 
@@ -79,6 +330,9 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
       } // x
 
     } // y
+
+    // render title
+    render_font_8x8 ( fb, 10, 10, "TopBottom", 0xFF, 0 );
 
   } else if ( pattern == fbt_vlines ) {
     unsigned char i;
@@ -98,6 +352,9 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
 
     } // y
 
+    // render title
+    render_font_8x8 ( fb, 10, 10, "VLines", 0xFF, 0 );
+
   } else if ( pattern == fbt_onoff1 ) {
     //unsigned char i;
     unsigned int x, y;
@@ -107,6 +364,9 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
         *( fb + ( y * FBWIDTH ) + x ) = x & 0x01;
       } // x
     } // y
+
+    // render title
+    render_font_8x8 ( fb, 10, 10, "OnOff1", 0xFF, 0 );
 
   } else if ( pattern == fbt_vwlines ) {
     unsigned char i;
@@ -129,6 +389,9 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
       } // x
     } // y
 
+    // render title
+    render_font_8x8 ( fb, 10, 10, "VWLines", 0xFF, 0 );
+
   } else if ( pattern == fbt_v1lines ) {
     unsigned char i;
     unsigned int x, y;
@@ -148,7 +411,11 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
 
     } // y
 
+    // render title
+    render_font_8x8 ( fb, 10, 10, "V1Lines", 0xFF, 0 );
+
   } else if ( pattern == fbt_spriteram ) {
+
     // given current code - fb_1 and fb_2 are in main sram (112KB chunk), not leaving much
     // sram2 16KB -> unused
     // sram3 f429 64KB -> unused
@@ -168,10 +435,12 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
     // consider:
     // - should fb_1 and/or fb_2 be in CCM RAM?
 
+    char b [ 3 ] = "\0\0\0";
+
+#if 1
     unsigned char *charset = SRAM2_MEMORY_BASE;
     //unsigned char charset [ 128 * 8 * 8 ];
     unsigned char *sprite = SRAM2_MEMORY_BASE + (5*8*FBWIDTH);
-    char b [ 3 ] = "\0\0\0";
 
     // expand font into sram2 buffer
     {
@@ -179,7 +448,7 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
 
       for ( c = 0; c < 128; c++ ) {
         b [ 0 ] = c;
-        render_font_8x8 ( charset, (c % 32) * 8, 0 + ((c / 32) * 8), b, 0xFF );
+        render_font_8x8 ( charset, (c % 32) * 8, 0 + ((c / 32) * 8), b, 0xFF, 1 );
       }
 
     } // expand font
@@ -209,6 +478,7 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
       } // y
 
     }
+#endif
 
     // demo loop
     unsigned char tilex, tiley;
@@ -225,7 +495,7 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
 
       // render score
 #if 1
-      render_font_8x8 ( fb_inactive, 50, 80, "SCORE", 0xFF );
+      render_font_8x8 ( fb_inactive, 50, 80, "SCORE", 0xFF, 1 );
 #endif
 
       // render tilemap
@@ -234,7 +504,7 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
         for ( tilex = 0; tilex < 32; tilex++ ) {
           b [ 0 ] = sram3 [ ( tiley * 32 ) + tilex ];
           //b [ 0 ] = 'A';
-          render_font_8x8 ( fb_inactive, tilex * 8, tiley * 8, b, 35 );
+          render_font_8x8 ( fb_inactive, tilex * 8, tiley * 8, b, 35, 1 );
         } // tilex
       } // tiley
 #endif
@@ -298,6 +568,9 @@ void fb_test_pattern ( uint8_t *fb, fbt_e pattern ) {
       }
 
       // move sprites
+
+      // render title
+      render_font_8x8 ( fb, 10, 10, "SpriteRAM", 0xFF, 0 );
 
     } // while forever
 

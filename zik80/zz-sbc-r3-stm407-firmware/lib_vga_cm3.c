@@ -204,6 +204,7 @@ static void timer2_setup ( void ) {
 
 unsigned int i = 0;
 unsigned char done_sync;
+volatile unsigned long int _vblank_count = 0; // can be used for timing
 void tim2_isr ( void ) {
 
   //TIM2_SR &= ~TIM_SR_UIF;    //clearing update interrupt flag
@@ -421,6 +422,7 @@ void tim2_isr ( void ) {
 
   if ( line_count > VISIBLE_ROWS ) {
     front_porch_togo = 10;
+    _vblank_count++; // entering vblank
     return; // entering front porch
   }
 

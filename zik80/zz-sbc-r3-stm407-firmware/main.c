@@ -58,12 +58,36 @@ int main(void) {
   bus_setup();
 #endif
 
-  //fb_test_pattern ( fb_active, fbt_topbottom );
-  fb_test_pattern ( fb_active, fbt_offset_squares );
-  //fb_test_pattern ( fb_active, fbt_vlines );
-  //fb_test_pattern ( fb_active, fbt_v1lines );
-  //fb_test_pattern ( fb_active, fbt_onoff1 );
-  //fb_test_pattern ( fb_active, fbt_spriteram );
+  /* last video setup
+   */
+#ifdef RUNMODE_FRAMEBUFFER_TEST
+  {
+    tm_setup();
+
+    fb_clear ( fb_active );
+    //fb_test_pattern ( fb_active, fbt_topbottom );
+    fb_test_pattern ( fb_active, fbt_offset_squares );
+    //fb_test_pattern ( fb_active, fbt_vlines );
+    //fb_test_pattern ( fb_active, fbt_v1lines );
+    //fb_test_pattern ( fb_active, fbt_onoff1 );
+    //fb_test_pattern ( fb_active, fbt_spriteram );
+    //fb_test_pattern ( fb_active, fbt_full_palette_grid );
+    //fb_test_pattern ( fb_active, fbt_full_palette_grid_ordered );
+    //fb_test_pattern ( fb_active, fbt_reds );
+    //fb_test_pattern ( fb_active, fbt_greens );
+    //fb_test_pattern ( fb_active, fbt_blues );
+  }
+#endif
+#ifdef RUNMODE_FRAMEBUFFER_TEST_CYCLE
+  {
+    tm_setup();
+  }
+#endif
+#ifdef RUNMODE_FRAMEBUFFER_FOREVER
+  {
+    tm_setup();
+  }
+#endif
 
   while ( 1 ) {
     // weeeeee!
@@ -81,8 +105,41 @@ int main(void) {
 
 #ifdef RUNMODE_FRAMEBUFFER_FOREVER
     {
-      tm_setup();
       framebuffer_update_from_ram_forever();
+    }
+#endif
+
+#ifdef RUNMODE_FRAMEBUFFER_TEST_CYCLE
+    {
+      unsigned char p;
+      unsigned long int vbl_count = _vblank_count;
+      unsigned wait;
+
+      // cycle through demos
+      for ( p = 0; p < fbt_max; p++ ) {
+
+        // skip this one.. broken right now
+        if ( p == fbt_spriteram ) {
+          p++;
+        }
+
+        // render
+        fb_clear ( fb_inactive );
+        fb_test_pattern ( fb_inactive, p );
+
+        // swap
+        fb_swap();
+
+        // wait...
+        wait = 0;
+        while ( wait < 180 ) {
+          vbl_count = _vblank_count;
+          while ( _vblank_count == vbl_count );
+          wait++;
+        } // wait loop
+
+      } // which demo
+
     }
 #endif
 

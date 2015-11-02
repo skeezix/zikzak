@@ -33,7 +33,7 @@ void tm_setup ( void ) {
 
     for ( c = 0; c < 128; c++ ) {
       b [ 0 ] = c;
-      render_font_8x8 ( charset, (c % 32) * 8, 0 + ((c / 32) * 8), b, 0xFF );
+      render_font_8x8 ( charset, (c % 32) * 8, 0 + ((c / 32) * 8), b, 0xFF, 1 );
     }
 
   } // expand font
@@ -87,7 +87,7 @@ void tm_render_to_framebuffer ( uint8_t *fb ) {
     for ( tilex = 0; tilex < TM_TEXTLINE_STRIDE; tilex++ ) {
       b [ 0 ] = ram_textmode [ ( tiley * TM_TEXTLINE_STRIDE ) + tilex ];
       //b [ 0 ] = 'A';
-      render_font_8x8 ( fb, tilex * 8, tiley * 8, b, ram_textattr [ ( tiley * TM_TEXTLINE_STRIDE ) + tilex ] / 2 );
+      render_font_8x8 ( fb, tilex * 8, tiley * 8, b, ram_textattr [ ( tiley * TM_TEXTLINE_STRIDE ) + tilex ] / 2, 1 );
     } // tilex
   } // tiley
 #endif

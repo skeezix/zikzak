@@ -135,7 +135,7 @@ unsigned char vincent_data[128][8] = {
   { 0x00, 0x08, 0x1C, 0x36, 0x63, 0x41, 0x41, 0x7F }
 };
 
-void render_font_8x8 ( unsigned char *fb, unsigned int tx, unsigned int ty, char *text, unsigned char colour ) {
+void render_font_8x8 ( unsigned char *fb, unsigned int tx, unsigned int ty, char *text, unsigned char colour, unsigned char bg ) {
   signed int x, y;
   unsigned char *extram;
   unsigned char *linestart;
@@ -167,7 +167,7 @@ void render_font_8x8 ( unsigned char *fb, unsigned int tx, unsigned int ty, char
         if ( (*p) & (1<<x) ) {
           *extram = colour;
         } else {
-          *extram = 1;
+          *extram = bg;
         }
 
         extram++; // move over a byte (X increment on display)
