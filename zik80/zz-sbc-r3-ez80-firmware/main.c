@@ -92,7 +92,7 @@ int main ( ) {
 	}
 #endif
 
-#if 1 // keyboard isr interrupt test; show mapped char, and scancode, on serial
+#if 0 // keyboard isr interrupt test; show mapped char, and scancode, on serial
 	{
 		uint8_t p;
 		char b [ 10 ];
@@ -173,7 +173,7 @@ int main ( ) {
 	}
 #endif
 	
-#if 0 // ext audio AY-3-8912 test
+#if 1 // ext audio AY-3-8912 test
 	{
 		
 		/*PORT pc;

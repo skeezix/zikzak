@@ -117,7 +117,7 @@ void ym_play_demo ( void ) {
     }
 #endif
 
-#if 0 // stairway
+#if 1 // stairway
 	{
 		uint16_t progression [ 20 ] = {
 			A_FREQ, Asharp_FREQ,
@@ -180,7 +180,7 @@ void ym_play_demo ( void ) {
     }
 #endif
 
-#if 1 // effect .. laser shot?
+#if 0 // effect .. laser shot?
 	while (1) {
 		// decaying laser shot; more like a ball bouncing down into floor
 		ay_write ( 0x06, 0x11);
