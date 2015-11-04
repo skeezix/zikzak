@@ -176,17 +176,6 @@ int main ( ) {
 #if 1 // ext audio AY-3-8912 test
 	{
 		
-		/*PORT pc;
-		UCHAR err;
-		
-		pc.dr = 0x01;
-		pc.ddr = 0; // 0 ddr is output
-		//pc.alt0 = 0; // does not exist for F93
-		pc.alt1 = 0;
-		pc.alt2 = 0;
-		
-		open_PortC ( &pc );*/
-
 		ay_gpio_setup();
 
 		while ( 1 ) {

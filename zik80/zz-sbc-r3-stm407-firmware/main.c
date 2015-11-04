@@ -54,6 +54,12 @@ int main(void) {
   }
 #endif
 
+#ifdef STARTUP_WAIT_FRAMEREADY_LOW
+  while ( vga_is_frameready() ) { // high means not ready
+    __asm__("nop");
+  }
+#endif
+
 #ifdef BUS_FRAMEBUFFER
   bus_setup();
 #endif

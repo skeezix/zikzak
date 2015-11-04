@@ -130,7 +130,8 @@ static void vga_gpio_setup ( void ) {
   // sync lines
   gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO10 ); // vsync
   gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO11 ); // hsync
-  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO12 ); // hsync
+  gpio_mode_setup ( GPIOB, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO12 ); // vblank to CPU
+  gpio_mode_setup ( GPIOB, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, GPIO13 ); // frameready from CPU
   // colour
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO0 ); // red
   gpio_mode_setup ( GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO1 ); // red
@@ -150,6 +151,10 @@ static void vga_gpio_setup ( void ) {
   gpio_clear ( GPIOC, GPIO2 | GPIO3 ); // green
   gpio_clear ( GPIOC, GPIO4 | GPIO5 ); // blue
 
+}
+
+unsigned char vga_is_frameready ( void ) {
+  return ( GPIO_IDR ( GPIOB ) & (1<<13) );
 }
 
 static inline void vsync_go_high ( void ) {
