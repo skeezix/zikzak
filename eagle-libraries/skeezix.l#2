@@ -5549,42 +5549,42 @@ Source: MC68020UM.pdf</description>
 <wire x1="0" y1="8.89" x2="0" y2="0" width="0.127" layer="21"/>
 <wire x1="7.62" y1="0" x2="7.62" y2="8.89" width="0.127" layer="21"/>
 <wire x1="85.09" y1="0" x2="85.09" y2="8.89" width="0.127" layer="21"/>
-<pad name="P1" x="12.6746" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P2" x="16.637" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P3" x="20.5994" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P4" x="24.5618" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P5" x="28.5242" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P6" x="32.4866" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P7" x="36.449" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P8" x="40.4114" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P9" x="44.3738" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P10" x="48.3362" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P11" x="52.2986" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P12" x="56.261" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P13" x="60.2234" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P14" x="64.1858" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P15" x="68.1482" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P16" x="72.1106" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P17" x="76.073" y="2.5146" drill="0.8" shape="square"/>
-<pad name="P18" x="80.0354" y="2.5146" drill="0.8" shape="square"/>
-<pad name="PA" x="12.7508" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PB" x="16.7132" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PC" x="20.6756" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PD" x="24.638" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PE" x="28.6004" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PF" x="32.5628" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PG" x="36.5252" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PH" x="40.4876" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PI" x="44.45" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PJ" x="48.4124" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PK" x="52.3748" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PL" x="56.3372" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PM" x="60.2996" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PN" x="64.262" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PO" x="68.2244" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PP" x="72.1868" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PQ" x="76.1492" y="6.3754" drill="0.8" shape="square"/>
-<pad name="PR" x="80.1116" y="6.3754" drill="0.8" shape="square"/>
+<pad name="P1" x="12.6746" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P2" x="16.637" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P3" x="20.5994" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P4" x="24.5618" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P5" x="28.5242" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P6" x="32.4866" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P7" x="36.449" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P8" x="40.4114" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P9" x="44.3738" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P10" x="48.3362" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P11" x="52.2986" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P12" x="56.261" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P13" x="60.2234" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P14" x="64.1858" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P15" x="68.1482" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P16" x="72.1106" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P17" x="76.073" y="2.5146" drill="1.1" shape="square"/>
+<pad name="P18" x="80.0354" y="2.5146" drill="1.1" shape="square"/>
+<pad name="PA" x="12.7508" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PB" x="16.7132" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PC" x="20.6756" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PD" x="24.638" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PE" x="28.6004" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PF" x="32.5628" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PG" x="36.5252" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PH" x="40.4876" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PI" x="44.45" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PJ" x="48.4124" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PK" x="52.3748" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PL" x="56.3372" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PM" x="60.2996" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PN" x="64.262" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PO" x="68.2244" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PP" x="72.1868" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PQ" x="76.1492" y="6.3754" drill="1.1" shape="square"/>
+<pad name="PR" x="80.1116" y="6.3754" drill="1.1" shape="square"/>
 <text x="11.43" y="7.62" size="1.27" layer="21">PA</text>
 <text x="78.74" y="7.62" size="1.27" layer="21">PR</text>
 <text x="11.43" y="0" size="1.27" layer="21">P1</text>
@@ -5592,6 +5592,25 @@ Source: MC68020UM.pdf</description>
 <text x="46.99" y="0" size="1.27" layer="21">P10</text>
 <text x="63.5" y="0" size="1.27" layer="21">P14</text>
 <text x="78.74" y="0" size="1.27" layer="21">P18</text>
+</package>
+<package name="LM386-DIP8">
+<description>LM386 audio amp DIP8</description>
+<wire x1="8.89" y1="5.461" x2="-1.27" y2="5.461" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-0.381" x2="8.89" y2="-0.381" width="0.1524" layer="21"/>
+<wire x1="8.89" y1="5.461" x2="8.89" y2="-0.381" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="5.461" x2="-1.27" y2="3.556" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="-0.381" x2="-1.27" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="-1.27" y1="3.556" x2="-1.27" y2="1.524" width="0.1524" layer="21" curve="-180"/>
+<pad name="1" x="0" y="-1.27" drill="0.8128" shape="long" rot="R90"/>
+<pad name="2" x="2.54" y="-1.27" drill="0.8128" shape="long" rot="R90"/>
+<pad name="7" x="2.54" y="6.35" drill="0.8128" shape="long" rot="R90"/>
+<pad name="8" x="0" y="6.35" drill="0.8128" shape="long" rot="R90"/>
+<pad name="3" x="5.08" y="-1.27" drill="0.8128" shape="long" rot="R90"/>
+<pad name="4" x="7.62" y="-1.27" drill="0.8128" shape="long" rot="R90"/>
+<pad name="6" x="5.08" y="6.35" drill="0.8128" shape="long" rot="R90"/>
+<pad name="5" x="7.62" y="6.35" drill="0.8128" shape="long" rot="R90"/>
+<text x="-2.54" y="-0.635" size="1.27" layer="25" ratio="10" rot="R90">&gt;NAME</text>
+<text x="0.635" y="1.905" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -6848,6 +6867,24 @@ UP</text>
 <pin name="A10" x="20.32" y="17.78" length="middle" rot="R180"/>
 <pin name="VCC33" x="20.32" y="20.32" length="middle" rot="R180"/>
 <text x="-10.16" y="33.02" size="1.778" layer="95">&gt;NAME</text>
+</symbol>
+<symbol name="LM386">
+<wire x1="-5.08" y1="6.35" x2="-5.08" y2="-3.81" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="-3.81" x2="5.08" y2="-3.81" width="0.254" layer="94"/>
+<wire x1="5.08" y1="-3.81" x2="5.08" y2="6.35" width="0.254" layer="94"/>
+<wire x1="5.08" y1="6.35" x2="2.54" y2="6.35" width="0.254" layer="94"/>
+<wire x1="-5.08" y1="6.35" x2="-2.54" y2="6.35" width="0.254" layer="94"/>
+<wire x1="-2.54" y1="6.35" x2="2.54" y2="6.35" width="0.254" layer="94" curve="180"/>
+<text x="-4.445" y="6.985" size="1.778" layer="95">&gt;NAME</text>
+<text x="-4.445" y="-6.35" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="1" x="-7.62" y="5.08" visible="pad" length="short" direction="pas"/>
+<pin name="2" x="-7.62" y="2.54" visible="pad" length="short" direction="pas"/>
+<pin name="3" x="-7.62" y="0" visible="pad" length="short" direction="pas"/>
+<pin name="4" x="-7.62" y="-2.54" visible="pad" length="short" direction="pas"/>
+<pin name="5" x="7.62" y="-2.54" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="6" x="7.62" y="0" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="7" x="7.62" y="2.54" visible="pad" length="short" direction="pas" rot="R180"/>
+<pin name="8" x="7.62" y="5.08" visible="pad" length="short" direction="pas" rot="R180"/>
 </symbol>
 </symbols>
 <devicesets>
