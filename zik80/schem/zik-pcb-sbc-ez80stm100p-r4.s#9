@@ -18305,6 +18305,10 @@ general purpose rectifier, 1 A</description>
 <part name="+5V2" library="supply1" deviceset="+5V" device=""/>
 <part name="C24" library="rcl" deviceset="CPOL-US" device="E3.5-8" value="10uF Pol"/>
 <part name="GND40" library="supply1" deviceset="GND" device=""/>
+<part name="C25" library="rcl" deviceset="CPOL-US" device="E3.5-8" value="250uF Pol"/>
+<part name="C26" library="rcl" deviceset="C-EU" device="025-025X050" value=".05uF"/>
+<part name="R37" library="rcl" deviceset="R-US_" device="0204/7" value="10"/>
+<part name="GND41" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -18471,7 +18475,8 @@ will shift that down to 5 and 3
 as needed to feed other
 pins</text>
 <text x="435.61" y="331.47" size="5.08" layer="91">NO?</text>
-<text x="520.7" y="312.42" size="5.08" layer="91">Vcc or +5?</text>
+<text x="525.78" y="317.5" size="5.08" layer="91">Vcc or +5?</text>
+<text x="528.32" y="298.45" size="5.08" layer="91">spkr + gnd</text>
 </plain>
 <instances>
 <instance part="ISPZDI" gate="A" x="64.77" y="240.03" rot="MR0"/>
@@ -18660,6 +18665,10 @@ pins</text>
 <instance part="+5V2" gate="1" x="524.51" y="320.04" rot="R270"/>
 <instance part="C24" gate="G$1" x="497.84" y="340.36" rot="R90"/>
 <instance part="GND40" gate="1" x="482.6" y="309.88"/>
+<instance part="C25" gate="G$1" x="518.16" y="302.26" rot="R90"/>
+<instance part="C26" gate="G$1" x="499.11" y="298.45" rot="R90"/>
+<instance part="R37" gate="G$1" x="486.41" y="298.45"/>
+<instance part="GND41" gate="1" x="476.25" y="298.45" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -19023,6 +19032,11 @@ pins</text>
 <wire x1="491.49" y1="317.5" x2="482.6" y2="317.5" width="0.1524" layer="91"/>
 <wire x1="482.6" y1="317.5" x2="482.6" y2="312.42" width="0.1524" layer="91"/>
 <pinref part="GND40" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="R37" gate="G$1" pin="1"/>
+<wire x1="481.33" y1="298.45" x2="478.79" y2="298.45" width="0.1524" layer="91"/>
+<pinref part="GND41" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="PB6" class="0">
@@ -21764,6 +21778,32 @@ pins</text>
 <wire x1="509.27" y1="325.12" x2="509.27" y2="340.36" width="0.1524" layer="91"/>
 <wire x1="509.27" y1="340.36" x2="502.92" y2="340.36" width="0.1524" layer="91"/>
 <pinref part="C24" gate="G$1" pin="-"/>
+</segment>
+</net>
+<net name="N$22" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="5"/>
+<wire x1="506.73" y1="317.5" x2="509.27" y2="317.5" width="0.1524" layer="91"/>
+<wire x1="509.27" y1="317.5" x2="509.27" y2="302.26" width="0.1524" layer="91"/>
+<wire x1="509.27" y1="302.26" x2="515.62" y2="302.26" width="0.1524" layer="91"/>
+<pinref part="C25" gate="G$1" pin="+"/>
+<wire x1="509.27" y1="302.26" x2="509.27" y2="298.45" width="0.1524" layer="91"/>
+<wire x1="509.27" y1="298.45" x2="504.19" y2="298.45" width="0.1524" layer="91"/>
+<junction x="509.27" y="302.26"/>
+<pinref part="C26" gate="G$1" pin="2"/>
+</segment>
+</net>
+<net name="N$23" class="0">
+<segment>
+<pinref part="C25" gate="G$1" pin="-"/>
+<wire x1="523.24" y1="302.26" x2="527.05" y2="302.26" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$24" class="0">
+<segment>
+<pinref part="C26" gate="G$1" pin="1"/>
+<wire x1="496.57" y1="298.45" x2="491.49" y2="298.45" width="0.1524" layer="91"/>
+<pinref part="R37" gate="G$1" pin="2"/>
 </segment>
 </net>
 </nets>

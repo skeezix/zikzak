@@ -2008,6 +2008,25 @@ type 0207, grid 10 mm</description>
 <text x="-3.175" y="6.35" size="1.27" layer="25" ratio="10">&gt;NAME</text>
 <text x="-3.048" y="-7.62" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
 </package>
+<package name="E3,5-8">
+<description>&lt;b&gt;ELECTROLYTIC CAPACITOR&lt;/b&gt;&lt;p&gt;
+grid 3.5 mm, diameter 8 mm</description>
+<wire x1="-3.429" y1="1.143" x2="-2.667" y2="1.143" width="0.1524" layer="21"/>
+<wire x1="-3.048" y1="0.762" x2="-3.048" y2="1.524" width="0.1524" layer="21"/>
+<wire x1="-1.651" y1="0" x2="-0.762" y2="0" width="0.1524" layer="51"/>
+<wire x1="-0.762" y1="0" x2="-0.762" y2="-1.27" width="0.1524" layer="51"/>
+<wire x1="-0.762" y1="-1.27" x2="-0.254" y2="-1.27" width="0.1524" layer="51"/>
+<wire x1="-0.254" y1="-1.27" x2="-0.254" y2="1.27" width="0.1524" layer="51"/>
+<wire x1="-0.254" y1="1.27" x2="-0.762" y2="1.27" width="0.1524" layer="51"/>
+<wire x1="-0.762" y1="1.27" x2="-0.762" y2="0" width="0.1524" layer="51"/>
+<wire x1="0.635" y1="0" x2="1.651" y2="0" width="0.1524" layer="51"/>
+<circle x="0" y="0" radius="4.064" width="0.1524" layer="21"/>
+<pad name="-" x="1.778" y="0" drill="0.8128" diameter="1.6002" shape="octagon"/>
+<pad name="+" x="-1.778" y="0" drill="0.8128" diameter="1.6002"/>
+<text x="3.302" y="2.794" size="1.27" layer="25" ratio="10">&gt;NAME</text>
+<text x="-2.286" y="-3.048" size="1.27" layer="27" ratio="10">&gt;VALUE</text>
+<rectangle x1="0.254" y1="-1.27" x2="0.762" y2="1.27" layer="51"/>
+</package>
 </packages>
 </library>
 <library name="SparkFun-FreqCtrl">
@@ -3241,6 +3260,7 @@ design rules under a new name.</description>
 <element name="C23" library="rcl" package="C025-025X050" value="100uF" x="2.5908" y="-16.4338"/>
 <element name="U$1" library="skeezix" package="LM386-DIP8" value="LM386-DIP" x="4.0386" y="-28.1432"/>
 <element name="R36" library="rcl" package="PT-10" value="10K" x="-5.7404" y="-23.3426"/>
+<element name="C24" library="rcl" package="E3,5-8" value="10uF Pol" x="-7.112" y="-35.9664"/>
 </elements>
 <signals>
 <signal name="GND">
@@ -4321,6 +4341,8 @@ design rules under a new name.</description>
 <via x="80.772" y="48.006" extent="1-16" drill="0.3048"/>
 <via x="82.55" y="41.656" extent="1-16" drill="0.3048"/>
 <via x="71.628" y="48.26" extent="1-16" drill="0.3048"/>
+<contactref element="U$1" pad="6"/>
+<wire x1="9.1186" y1="-21.7932" x2="39.37" y2="3.556" width="0" layer="19" extent="16-16"/>
 </signal>
 <signal name="PB6">
 <contactref element="STM32F4" pad="92"/>
@@ -8741,6 +8763,16 @@ design rules under a new name.</description>
 <contactref element="R36" pad="3"/>
 <contactref element="U$1" pad="3"/>
 <wire x1="9.1186" y1="-29.4132" x2="-5.7404" y2="-18.2626" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$18">
+<contactref element="U$1" pad="1"/>
+<contactref element="C24" pad="+"/>
+<wire x1="4.0386" y1="-29.4132" x2="-8.89" y2="-35.9664" width="0" layer="19" extent="1-1"/>
+</signal>
+<signal name="N$20">
+<contactref element="U$1" pad="8"/>
+<contactref element="C24" pad="-"/>
+<wire x1="4.0386" y1="-21.7932" x2="-5.334" y2="-35.9664" width="0" layer="19" extent="1-1"/>
 </signal>
 </signals>
 </board>

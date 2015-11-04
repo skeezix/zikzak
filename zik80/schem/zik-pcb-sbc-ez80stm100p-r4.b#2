@@ -3256,11 +3256,9 @@ design rules under a new name.</description>
 <element name="3V" library="wirepad" package="SMD1,27-2,54" value="WIREPADSMD1,27-254" x="55.6006" y="56.388"/>
 <element name="SPKR1" library="pinhead" package="1X04" value="" x="5.461" y="-3.7338"/>
 <element name="R34" library="rcl" package="0204/7" value="1K" x="4.6482" y="-8.4074"/>
-<element name="R35" library="rcl" package="0204/7" value="10K" x="4.6482" y="-12.1158"/>
 <element name="C23" library="rcl" package="C025-025X050" value="100uF" x="2.5908" y="-16.4338"/>
 <element name="U$1" library="skeezix" package="LM386-DIP8" value="LM386-DIP" x="4.0386" y="-28.1432"/>
 <element name="R36" library="rcl" package="PT-10" value="10K" x="-5.7404" y="-23.3426"/>
-<element name="C24" library="rcl" package="E3,5-8" value="10uF Pol" x="-7.112" y="-35.9664"/>
 <element name="C25" library="rcl" package="E3,5-8" value="250uF Pol" x="-7.112" y="-44.6024"/>
 <element name="C26" library="rcl" package="C025-025X050" value=".05uF" x="-8.4582" y="-51.9684"/>
 <element name="R37" library="rcl" package="0204/7" value="10" x="-6.4262" y="-57.8866"/>
@@ -8750,16 +8748,11 @@ design rules under a new name.</description>
 <via x="77.216" y="75.184" extent="1-16" drill="0.3048"/>
 <via x="72.644" y="95.504" extent="1-16" drill="0.3048"/>
 <contactref element="R34" pad="1"/>
-<contactref element="R35" pad="1"/>
+<contactref element="C23" pad="1"/>
 <wire x1="83.312" y1="34.036" x2="85.0265" y2="33.11525" width="0" layer="19" extent="1-1"/>
 <wire x1="85.09" y1="27.94" x2="86.614" y2="26.162" width="0" layer="19" extent="1-16"/>
 <wire x1="0.8382" y1="-8.4074" x2="52.832" y2="20.32" width="0" layer="19" extent="1-1"/>
-<wire x1="0.8382" y1="-12.1158" x2="0.8382" y2="-8.4074" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$3">
-<contactref element="R35" pad="2"/>
-<contactref element="C23" pad="1"/>
-<wire x1="8.4582" y1="-12.1158" x2="1.3208" y2="-16.4338" width="0" layer="19" extent="1-1"/>
+<wire x1="1.3208" y1="-16.4338" x2="0.8382" y2="-8.4074" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$8">
 <contactref element="C23" pad="2"/>
@@ -8770,16 +8763,6 @@ design rules under a new name.</description>
 <contactref element="R36" pad="3"/>
 <contactref element="U$1" pad="3"/>
 <wire x1="9.1186" y1="-29.4132" x2="-5.7404" y2="-18.2626" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$18">
-<contactref element="U$1" pad="1"/>
-<contactref element="C24" pad="+"/>
-<wire x1="4.0386" y1="-29.4132" x2="-8.89" y2="-35.9664" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="N$20">
-<contactref element="U$1" pad="8"/>
-<contactref element="C24" pad="-"/>
-<wire x1="4.0386" y1="-21.7932" x2="-5.334" y2="-35.9664" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$22">
 <contactref element="U$1" pad="5"/>
