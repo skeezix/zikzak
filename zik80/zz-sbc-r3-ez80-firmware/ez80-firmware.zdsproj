@@ -14,6 +14,7 @@
 <file filter-key="">.\bios_video.c</file>
 <file filter-key="">.\demo.c</file>
 <file filter-key="">.\lib_ps2_keyboard.c</file>
+<file filter-key="">..\ym-hackery-regdump\xenon2-ym-lha-extracted.deinterleave.c</file>
 </files>
 
 <!-- configuration information -->
@@ -268,7 +269,7 @@
 <breakpoint temporary="false" enabled="true" >
 <line-number>179</line-number>
 <pathname>Z:\zik80\zz-sbc-r3-ez80-firmware\main.c</pathname>
-<address>1309</address>
+<address>0</address>
 <command></command>
 <preserve-type>0</preserve-type>
 </breakpoint>

@@ -1,0 +1,8 @@
+
+xenon2-ym-lha-extracted
+        - given Xenon2.ym
+          - use lha e to extract the actual packed YM file (song_361.ym or something)
+
+Run ym-deinterleave..
+    - de-interleave the bin file above
+    - generate a new bin file (or C code, etc)

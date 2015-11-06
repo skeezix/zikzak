@@ -89,23 +89,78 @@ void ym_play_demo ( void ) {
 
   while ( 1 ) {
 
-    // song-hack
-#if 0
+    // from C file array compiled in .. see ym-deinterleave.c etc
+#if 1
     int i, j, k;
-    unsigned char *p = song_hacked_ym;
+    unsigned char *p;
+	extern unsigned int framelimit; 			 // see xenon.c
+	extern const unsigned char song_hacked_ym[]; // see xenon.c
 
-    // not interleaved or 'as is'
-    for ( i=0; i < framelimit; i++ ) {
+	while ( 1 ) {
 
-      for ( j = 0; j < 16; j++ ) {
-        ay_write ( j & 0x0F, pgm_read_byte(p) );
-        p++;
-      }
+		p = song_hacked_ym;
 
-      delay_ms_spin ( 10 ); // 20
+		// assuming not interleaved or 'as is'
+		for ( i=0; i < framelimit; i++ ) {
 
-    }
+		  ay_write (  0, *p++ ); // A
+		  ay_write (  1, *p++ ); // A
+		  ay_write (  2, *p++ ); // B
+		  ay_write (  3, *p++ ); // B
+		  ay_write (  4, *p++ ); // C
+		  ay_write (  5, *p++ ); // C
+		  ay_write (  6, *p++ ); // Noise
+		  ay_write (  7, *p++ ); // Mixer
+		  ay_write ( 10, *p++ ); // Vol A
+		  ay_write ( 11, *p++ ); // Vol B
+		  ay_write ( 12, *p++ ); // Vol C
+		  ay_write ( 13, *p++ ); // Env
+		  ay_write ( 14, *p++ ); // Env
+		  ay_write ( 15, *p++ ); // Env
+		  p++; // extended
+		  p++; // extended
+			
+		  delay_ms_spin ( 2 );
 
+		} // for iterate over song
+
+	} // while forever
+#endif
+
+    // bin from cart 0x1C0000 ...
+#if 0
+	unsigned char *p;
+	unsigned int i, j;
+	unsigned int framelimit = 2000;
+
+	while ( 1 ) {
+		p = (UCHAR*) 0x1C0000;
+
+		// assuming not interleaved or 'as is'
+		for ( i=0; i < framelimit; i++ ) {
+
+		  ay_write (  0, *p++ ); // A
+		  ay_write (  1, *p++ ); // A
+		  ay_write (  2, *p++ ); // B
+		  ay_write (  3, *p++ ); // B
+		  ay_write (  4, *p++ ); // C
+		  ay_write (  5, *p++ ); // C
+		  ay_write (  6, *p++ ); // Noise
+		  ay_write (  7, *p++ ); // Mixer
+		  ay_write ( 10, *p++ ); // Vol A
+		  ay_write ( 11, *p++ ); // Vol B
+		  ay_write ( 12, *p++ ); // Vol C
+		  ay_write ( 13, *p++ ); // Env
+		  ay_write ( 14, *p++ ); // Env
+		  ay_write ( 15, *p++ ); // Env
+		  p++; // extended
+		  p++; // extended
+			
+		  delay_ms_spin ( 30 );
+
+		} // for iterate over song
+
+	} // while forever
 #endif
 
     // test song
@@ -117,7 +172,7 @@ void ym_play_demo ( void ) {
     }
 #endif
 
-#if 1 // stairway
+#if 0 // stairway
 	{
 		uint16_t progression [ 20 ] = {
 			A_FREQ, Asharp_FREQ,
