@@ -162,38 +162,38 @@
 </package>
 <package name="MICROSD10">
 <wire x1="0" y1="11.8745" x2="0" y2="2.2225" width="0.127" layer="21" curve="-180"/>
-<wire x1="0" y1="2.2225" x2="0" y2="0" width="0.127" layer="21"/>
-<wire x1="0" y1="0" x2="12.192" y2="0" width="0.127" layer="21"/>
-<wire x1="12.192" y1="0" x2="12.192" y2="13.843" width="0.127" layer="21"/>
+<wire x1="0" y1="2.2225" x2="-0.0254" y2="-0.3302" width="0.127" layer="21"/>
+<wire x1="-0.0254" y1="-0.3302" x2="12.1666" y2="-0.3302" width="0.127" layer="21"/>
+<wire x1="12.1666" y1="-0.3302" x2="12.192" y2="13.843" width="0.127" layer="21"/>
 <wire x1="12.192" y1="13.843" x2="0" y2="13.843" width="0.127" layer="21"/>
 <wire x1="0" y1="13.843" x2="0" y2="11.8745" width="0.127" layer="21"/>
-<wire x1="2.794" y1="1.651" x2="2.794" y2="0.9525" width="0.127" layer="21"/>
-<wire x1="2.794" y1="0.9525" x2="8.509" y2="0.9525" width="0.127" layer="21"/>
-<wire x1="8.509" y1="0.9525" x2="8.509" y2="1.651" width="0.127" layer="21"/>
-<wire x1="8.509" y1="1.651" x2="2.794" y2="1.651" width="0.127" layer="21"/>
-<hole x="9.144" y="2.794" drill="1.6"/>
-<hole x="9.144" y="11.176" drill="1.6"/>
-<smd name="P$1" x="12.192" y="2.032" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$2" x="12.192" y="3.048" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$3" x="12.192" y="4.064" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$4" x="12.192" y="5.08" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$5" x="12.192" y="6.096" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$6" x="12.192" y="7.112" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$7" x="12.192" y="8.128" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$8" x="12.192" y="9.144" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$9" x="12.192" y="10.16" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$10" x="12.192" y="11.176" dx="1.27" dy="0.635" layer="1"/>
+<wire x1="2.8194" y1="1.4478" x2="2.794" y2="0.6223" width="0.127" layer="21"/>
+<wire x1="2.794" y1="0.6223" x2="8.509" y2="0.6223" width="0.127" layer="21"/>
+<wire x1="8.509" y1="0.6223" x2="8.5344" y2="1.4478" width="0.127" layer="21"/>
+<wire x1="8.5344" y1="1.4478" x2="2.8194" y2="1.4478" width="0.127" layer="21"/>
+<hole x="9.3726" y="2.794" drill="1.6"/>
+<hole x="9.3726" y="11.176" drill="1.6"/>
 <text x="10.795" y="0.889" size="0.8128" layer="21">1</text>
+<smd name="P$11" x="12.2174" y="1.143" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$12" x="12.2174" y="2.286" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$13" x="12.2174" y="3.429" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$14" x="12.2174" y="4.572" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$15" x="12.2174" y="5.715" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$16" x="12.2174" y="6.858" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$17" x="12.2174" y="8.001" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$18" x="12.2174" y="9.144" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$19" x="12.2174" y="10.287" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$20" x="12.2174" y="11.43" dx="1.27" dy="0.635" layer="1"/>
 </package>
 <package name="POTWHEEL">
-<pad name="P$1" x="15.24" y="6.35" drill="0.8" shape="square"/>
-<pad name="P$2" x="15.24" y="10.16" drill="0.8" shape="square"/>
-<pad name="P$3" x="15.24" y="2.54" drill="0.8" shape="square"/>
-<pad name="P$4" x="2.54" y="11.43" drill="1.3" shape="square"/>
-<pad name="P$5" x="2.54" y="1.27" drill="1.3" shape="square"/>
+<pad name="P$1" x="15.24" y="6.35" drill="1.1" shape="square"/>
+<pad name="P$2" x="15.24" y="10.16" drill="1.1" shape="square"/>
+<pad name="P$3" x="15.24" y="2.54" drill="1.1" shape="square"/>
+<pad name="P$4" x="5.08" y="11.43" drill="1.3" shape="square"/>
+<pad name="P$5" x="5.08" y="1.27" drill="1.3" shape="square"/>
 <circle x="7.62" y="6.35" radius="7.62" width="0.127" layer="21"/>
-<text x="3.81" y="6.35" size="1.27" layer="21">&gt;NAME</text>
-<text x="3.81" y="3.81" size="1.27" layer="21">&gt;VALUE</text>
+<text x="2.286" y="7.112" size="1.27" layer="21">&gt;NAME</text>
+<text x="2.286" y="4.318" size="1.27" layer="21">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -261,16 +261,16 @@
 <devices>
 <device name="" package="MICROSD10">
 <connects>
-<connect gate="G$1" pin="P$1" pad="P$1"/>
-<connect gate="G$1" pin="P$10" pad="P$10"/>
-<connect gate="G$1" pin="P$2" pad="P$2"/>
-<connect gate="G$1" pin="P$3" pad="P$3"/>
-<connect gate="G$1" pin="P$4" pad="P$4"/>
-<connect gate="G$1" pin="P$5" pad="P$5"/>
-<connect gate="G$1" pin="P$6" pad="P$6"/>
-<connect gate="G$1" pin="P$7" pad="P$7"/>
-<connect gate="G$1" pin="P$8" pad="P$8"/>
-<connect gate="G$1" pin="P$9" pad="P$9"/>
+<connect gate="G$1" pin="P$1" pad="P$11"/>
+<connect gate="G$1" pin="P$10" pad="P$20"/>
+<connect gate="G$1" pin="P$2" pad="P$12"/>
+<connect gate="G$1" pin="P$3" pad="P$13"/>
+<connect gate="G$1" pin="P$4" pad="P$14"/>
+<connect gate="G$1" pin="P$5" pad="P$15"/>
+<connect gate="G$1" pin="P$6" pad="P$16"/>
+<connect gate="G$1" pin="P$7" pad="P$17"/>
+<connect gate="G$1" pin="P$8" pad="P$18"/>
+<connect gate="G$1" pin="P$9" pad="P$19"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -1031,35 +1031,37 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 </deviceset>
 </devicesets>
 </library>
-<library name="VideoConnectors">
+<library name="VideoConnectors-skeemod">
 <packages>
 <package name="DB-15-F90+SHIELD-BIG_PADS">
 <wire x1="-15.748" y1="16.002" x2="15.748" y2="16.002" width="0.127" layer="21"/>
-<wire x1="15.748" y1="16.002" x2="15.748" y2="0" width="0.127" layer="21"/>
-<wire x1="15.748" y1="0" x2="-15.748" y2="0" width="0.127" layer="21" style="shortdash"/>
-<wire x1="-15.748" y1="0" x2="-15.748" y2="16.002" width="0.127" layer="21"/>
-<wire x1="8.382" y1="0" x2="8.382" y2="-5.08" width="0.127" layer="51" style="shortdash"/>
-<wire x1="8.382" y1="-5.08" x2="-8.382" y2="-5.08" width="0.127" layer="51" style="shortdash"/>
-<wire x1="-8.382" y1="-5.08" x2="-8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
-<wire x1="15.748" y1="0.635" x2="-15.748" y2="0.635" width="0.127" layer="21"/>
-<pad name="3" x="-0.254" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="4" x="-2.54" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="5" x="-4.826" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="2" x="2.032" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="1" x="4.318" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
+<wire x1="15.748" y1="16.002" x2="15.748" y2="4.445" width="0.127" layer="21"/>
+<wire x1="15.748" y1="4.445" x2="15.748" y2="3.81" width="0.127" layer="21"/>
+<wire x1="15.748" y1="3.81" x2="-15.748" y2="3.81" width="0.127" layer="21" style="shortdash"/>
+<wire x1="-15.748" y1="3.81" x2="-15.748" y2="4.445" width="0.127" layer="21"/>
+<wire x1="-15.748" y1="4.445" x2="-15.748" y2="16.002" width="0.127" layer="21"/>
+<wire x1="8.382" y1="5.08" x2="8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
+<wire x1="8.382" y1="0" x2="-8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
+<wire x1="-8.382" y1="0" x2="-8.382" y2="5.08" width="0.127" layer="51" style="shortdash"/>
+<wire x1="15.748" y1="4.445" x2="-15.748" y2="4.445" width="0.127" layer="21"/>
+<pad name="3" x="-0.254" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="4" x="-2.54" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="5" x="-4.826" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="2" x="2.032" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="1" x="4.318" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
 <pad name="11" x="4.318" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
 <pad name="12" x="2.032" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
 <pad name="13" x="-0.254" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
 <pad name="14" x="-2.54" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
 <pad name="15" x="-4.826" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
-<pad name="8" x="0.889" y="11.684" drill="1.1938" rot="R180"/>
-<pad name="7" x="3.175" y="11.684" drill="1.1938" rot="R180"/>
-<pad name="6" x="5.461" y="11.684" drill="1.1938" rot="R180"/>
-<pad name="9" x="-1.397" y="11.684" drill="1.1938" rot="R180"/>
-<pad name="10" x="-3.683" y="11.684" drill="1.1938" rot="R180"/>
+<pad name="8" x="0.889" y="11.43" drill="1.1938" rot="R180"/>
+<pad name="7" x="3.175" y="11.43" drill="1.1938" rot="R180"/>
+<pad name="6" x="5.461" y="11.43" drill="1.1938" rot="R180"/>
+<pad name="9" x="-1.397" y="11.43" drill="1.1938" rot="R180"/>
+<pad name="10" x="-3.683" y="11.43" drill="1.1938" rot="R180"/>
 <pad name="SHIELD@1" x="-12.4968" y="11.684" drill="3.175" diameter="5.08"/>
 <pad name="SHIELD@2" x="12.4968" y="11.684" drill="3.175" diameter="5.08"/>
-<text x="-10.16" y="5.334" size="1.27" layer="25">&gt;NAME</text>
+<text x="-15.24" y="5.334" size="1.27" layer="25">&gt;NAME</text>
 </package>
 <package name="DB-15-F90+SHIELD-SMALL_PADS">
 <wire x1="-15.748" y1="16.002" x2="15.748" y2="16.002" width="0.127" layer="21"/>
@@ -1212,8 +1214,8 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 <part name="X1" library="adafruit-musb" deviceset="USB" device="MICRO_20329"/>
 <part name="U$3" library="skeezix" deviceset="POTWHEEL" device="" value="10K"/>
 <part name="U$4" library="SparkFun-Connectors-skeemod" deviceset="MINI-DIN6" device="PTH"/>
-<part name="VGA1" library="VideoConnectors" deviceset="VGA-*" device="F90B"/>
 <part name="X2" library="SparkFun-Connectors-skeemod" deviceset="DB9" device="FEMALE"/>
+<part name="VGA1" library="VideoConnectors-skeemod" deviceset="VGA-*" device="F90B"/>
 </parts>
 <sheets>
 <sheet>
@@ -1226,8 +1228,8 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 <instance part="X1" gate="G$1" x="43.18" y="63.5"/>
 <instance part="U$3" gate="G$1" x="73.66" y="55.88"/>
 <instance part="U$4" gate="G$1" x="88.9" y="27.94"/>
-<instance part="VGA1" gate="G$1" x="152.4" y="58.42"/>
 <instance part="X2" gate="G$1" x="147.32" y="10.16"/>
+<instance part="VGA1" gate="G$1" x="157.48" y="66.04"/>
 </instances>
 <busses>
 </busses>

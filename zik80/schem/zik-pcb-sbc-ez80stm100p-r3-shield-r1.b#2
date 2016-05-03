@@ -158,52 +158,132 @@
 </package>
 <package name="MICROSD10">
 <wire x1="0" y1="11.8745" x2="0" y2="2.2225" width="0.127" layer="21" curve="-180"/>
-<wire x1="0" y1="2.2225" x2="0" y2="0" width="0.127" layer="21"/>
-<wire x1="0" y1="0" x2="12.192" y2="0" width="0.127" layer="21"/>
-<wire x1="12.192" y1="0" x2="12.192" y2="13.843" width="0.127" layer="21"/>
+<wire x1="0" y1="2.2225" x2="-0.0254" y2="-0.3302" width="0.127" layer="21"/>
+<wire x1="-0.0254" y1="-0.3302" x2="12.1666" y2="-0.3302" width="0.127" layer="21"/>
+<wire x1="12.1666" y1="-0.3302" x2="12.192" y2="13.843" width="0.127" layer="21"/>
 <wire x1="12.192" y1="13.843" x2="0" y2="13.843" width="0.127" layer="21"/>
 <wire x1="0" y1="13.843" x2="0" y2="11.8745" width="0.127" layer="21"/>
-<wire x1="2.794" y1="1.651" x2="2.794" y2="0.9525" width="0.127" layer="21"/>
-<wire x1="2.794" y1="0.9525" x2="8.509" y2="0.9525" width="0.127" layer="21"/>
-<wire x1="8.509" y1="0.9525" x2="8.509" y2="1.651" width="0.127" layer="21"/>
-<wire x1="8.509" y1="1.651" x2="2.794" y2="1.651" width="0.127" layer="21"/>
-<hole x="9.144" y="2.794" drill="1.6"/>
-<hole x="9.144" y="11.176" drill="1.6"/>
-<smd name="P$1" x="12.192" y="2.0574" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$2" x="12.192" y="3.048" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$3" x="12.192" y="4.064" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$4" x="12.192" y="5.08" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$5" x="12.192" y="6.096" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$6" x="12.192" y="7.112" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$7" x="12.192" y="8.128" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$8" x="12.192" y="9.144" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$9" x="12.192" y="10.16" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$10" x="12.192" y="11.176" dx="1.27" dy="0.635" layer="1"/>
+<wire x1="2.0066" y1="1.397" x2="2.032" y2="0.6731" width="0.127" layer="21"/>
+<wire x1="2.032" y1="0.6731" x2="7.747" y2="0.6731" width="0.127" layer="21"/>
+<wire x1="7.747" y1="0.6731" x2="7.7216" y2="1.397" width="0.127" layer="21"/>
+<wire x1="7.7216" y1="1.397" x2="2.0066" y2="1.397" width="0.127" layer="21"/>
+<hole x="9.3726" y="1.9304" drill="1.6"/>
+<hole x="9.3218" y="11.5316" drill="1.6"/>
 <text x="10.795" y="0.889" size="0.8128" layer="21">1</text>
-<smd name="P$11" x="14.859" y="2.032" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$12" x="14.859" y="3.175" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$13" x="14.859" y="4.318" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$14" x="14.859" y="5.461" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$15" x="14.859" y="6.604" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$16" x="14.859" y="7.747" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$17" x="14.859" y="8.89" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$18" x="14.859" y="10.033" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$19" x="14.859" y="11.176" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$20" x="14.859" y="12.319" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P10" x="12.2174" y="11.43" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P9" x="12.2174" y="10.3632" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P8" x="12.2174" y="9.2964" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P7" x="12.2174" y="8.2296" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P6" x="12.2174" y="7.1628" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P5" x="12.2174" y="6.096" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P4" x="12.2174" y="5.0292" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P3" x="12.2174" y="3.9624" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P2" x="12.2174" y="2.8956" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P1" x="12.2174" y="1.8288" dx="1.27" dy="0.635" layer="1"/>
 </package>
 <package name="POTWHEEL">
-<pad name="P$1" x="15.24" y="6.35" drill="0.8" shape="square"/>
-<pad name="P$2" x="15.24" y="10.16" drill="0.8" shape="square"/>
-<pad name="P$3" x="15.24" y="2.54" drill="0.8" shape="square"/>
-<pad name="P$4" x="2.54" y="11.43" drill="1.3" shape="square"/>
-<pad name="P$5" x="2.54" y="1.27" drill="1.3" shape="square"/>
+<pad name="P$1" x="15.24" y="6.35" drill="1.1" shape="square"/>
+<pad name="P$2" x="15.24" y="10.16" drill="1.1" shape="square"/>
+<pad name="P$3" x="15.24" y="2.54" drill="1.1" shape="square"/>
+<pad name="P$4" x="5.08" y="11.43" drill="1.3" shape="square"/>
+<pad name="P$5" x="5.08" y="1.27" drill="1.3" shape="square"/>
 <circle x="7.62" y="6.35" radius="7.62" width="0.127" layer="21"/>
-<text x="3.81" y="6.35" size="1.27" layer="21">&gt;NAME</text>
-<text x="3.81" y="3.81" size="1.27" layer="21">&gt;VALUE</text>
+<text x="2.286" y="7.112" size="1.27" layer="21">&gt;NAME</text>
+<text x="2.286" y="4.318" size="1.27" layer="21">&gt;VALUE</text>
 </package>
 </packages>
 </library>
-<library name="adafruit-musb">
+<library name="SparkFun-Connectors-skeemod">
+<description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
+In this library you'll find connectors and sockets- basically anything that can be plugged into or onto.&lt;br&gt;&lt;br&gt;
+We've spent an enormous amount of time creating and checking these footprints and parts, but it is the end user's responsibility to ensure correctness and suitablity for a given componet or application. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
+&lt;br&gt;&lt;br&gt;
+&lt;b&gt;Licensing:&lt;/b&gt; CC v3.0 Share-Alike You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
+<packages>
+<package name="MINI-DIN6">
+<wire x1="-7" y1="0" x2="-7" y2="-12.4" width="0.2032" layer="21"/>
+<wire x1="7" y1="0" x2="7" y2="-12.4" width="0.2032" layer="21"/>
+<wire x1="-7" y1="0" x2="7" y2="0" width="0.2032" layer="21"/>
+<wire x1="-7" y1="-12.4" x2="7" y2="-12.4" width="0.2032" layer="21"/>
+<wire x1="-7" y1="-1" x2="7" y2="-1" width="0.2032" layer="51"/>
+<pad name="3" x="-3.4" y="-8.5" drill="0.9"/>
+<pad name="1" x="-1.3" y="-8.5" drill="0.9"/>
+<pad name="2" x="1.3" y="-8.5" drill="0.9"/>
+<pad name="4" x="3.4" y="-8.5" drill="0.9"/>
+<pad name="5" x="-3.4" y="-11" drill="0.9"/>
+<pad name="6" x="3.4" y="-11" drill="0.9"/>
+<pad name="P$1" x="0" y="-4.7" drill="2.2"/>
+<text x="-6.35" y="-2.032" size="0.4064" layer="25">&gt;NAME</text>
+<text x="-6.604" y="-3.048" size="0.4064" layer="27">&gt;VALUE</text>
+<pad name="P$2" x="7.112" y="-5.208" drill="2.2"/>
+<pad name="P$3" x="-6.858" y="-5.208" drill="2.2"/>
+</package>
+<package name="DB9">
+<description>&lt;b&gt;SUB-D&lt;/b&gt;</description>
+<wire x1="-8.128" y1="15.299" x2="-7.62" y2="15.807" width="0.2032" layer="51" curve="-90"/>
+<wire x1="7.62" y1="15.807" x2="8.128" y2="15.299" width="0.2032" layer="51" curve="-90"/>
+<wire x1="-15.4" y1="-2.8" x2="-15.4" y2="2.54" width="0.2032" layer="21"/>
+<wire x1="-15.4" y1="2.5426" x2="-15.4" y2="9.5" width="0.2032" layer="51"/>
+<wire x1="15.4" y1="-2.8" x2="15.4" y2="2.54" width="0.2032" layer="21"/>
+<wire x1="15.4" y1="2.54" x2="15.4" y2="9.5" width="0.2032" layer="51"/>
+<wire x1="-8.128" y1="10.219" x2="-8.128" y2="15.299" width="0.2032" layer="51"/>
+<wire x1="-8.763" y1="9.584" x2="-8.128" y2="10.219" width="0.2032" layer="51" curve="90"/>
+<wire x1="-15.4" y1="9.5" x2="15.4" y2="9.5" width="0.2032" layer="51"/>
+<wire x1="8.128" y1="10.219" x2="8.128" y2="15.299" width="0.2032" layer="51"/>
+<wire x1="8.128" y1="10.219" x2="8.763" y2="9.584" width="0.2032" layer="51" curve="90"/>
+<wire x1="-7.62" y1="15.807" x2="7.62" y2="15.807" width="0.2032" layer="51"/>
+<wire x1="-15.4" y1="-2.8" x2="15.4" y2="-2.8" width="0.2032" layer="21"/>
+<pad name="1" x="-5.54" y="-1.42" drill="1.016" diameter="1.8796" shape="square"/>
+<pad name="2" x="-2.77" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="3" x="0" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="4" x="2.77" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="5" x="5.54" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="6" x="-4.15" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="7" x="-1.38" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="8" x="1.38" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="9" x="4.15" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="G1" x="-12.5" y="0" drill="3.302" diameter="5.08"/>
+<pad name="G2" x="12.5" y="0" drill="3.302" diameter="5.08"/>
+<text x="-0.795" y="2.62" size="0.4064" layer="25" ratio="10">&gt;NAME</text>
+<text x="-0.69" y="3.415" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
+</package>
+</packages>
+</library>
+<library name="VideoConnectors-skeemod">
+<packages>
+<package name="DB-15-F90+SHIELD-BIG_PADS">
+<wire x1="-15.748" y1="16.002" x2="15.748" y2="16.002" width="0.127" layer="21"/>
+<wire x1="15.748" y1="16.002" x2="15.748" y2="4.445" width="0.127" layer="21"/>
+<wire x1="15.748" y1="4.445" x2="15.748" y2="3.81" width="0.127" layer="21"/>
+<wire x1="15.748" y1="3.81" x2="-15.748" y2="3.81" width="0.127" layer="21" style="shortdash"/>
+<wire x1="-15.748" y1="3.81" x2="-15.748" y2="4.445" width="0.127" layer="21"/>
+<wire x1="-15.748" y1="4.445" x2="-15.748" y2="16.002" width="0.127" layer="21"/>
+<wire x1="8.382" y1="5.08" x2="8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
+<wire x1="8.382" y1="0" x2="-8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
+<wire x1="-8.382" y1="0" x2="-8.382" y2="5.08" width="0.127" layer="51" style="shortdash"/>
+<wire x1="15.748" y1="4.445" x2="-15.748" y2="4.445" width="0.127" layer="21"/>
+<pad name="3" x="-0.254" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="4" x="-2.54" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="5" x="-4.826" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="2" x="2.032" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="1" x="4.318" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="11" x="4.318" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="12" x="2.032" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="13" x="-0.254" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="14" x="-2.54" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="15" x="-4.826" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="8" x="0.889" y="11.43" drill="1.1938" rot="R180"/>
+<pad name="7" x="3.175" y="11.43" drill="1.1938" rot="R180"/>
+<pad name="6" x="5.461" y="11.43" drill="1.1938" rot="R180"/>
+<pad name="9" x="-1.397" y="11.43" drill="1.1938" rot="R180"/>
+<pad name="10" x="-3.683" y="11.43" drill="1.1938" rot="R180"/>
+<pad name="SHIELD@1" x="-12.4968" y="11.684" drill="3.175" diameter="5.08"/>
+<pad name="SHIELD@2" x="12.4968" y="11.684" drill="3.175" diameter="5.08"/>
+<text x="-15.24" y="5.334" size="1.27" layer="25">&gt;NAME</text>
+</package>
+</packages>
+</library>
+<library name="adafruit-musb-skeemod">
 <packages>
 <package name="4UCONN_20329">
 <wire x1="3.5" y1="-4.35" x2="4.35" y2="-4.35" width="0" layer="51"/>
@@ -366,94 +446,6 @@
 <vertex x="4.45" y="1.45"/>
 <vertex x="3.35" y="1.45" curve="90"/>
 </polygon>
-</package>
-</packages>
-</library>
-<library name="SparkFun-Connectors-skeemod">
-<description>&lt;h3&gt;SparkFun Electronics' preferred foot prints&lt;/h3&gt;
-In this library you'll find connectors and sockets- basically anything that can be plugged into or onto.&lt;br&gt;&lt;br&gt;
-We've spent an enormous amount of time creating and checking these footprints and parts, but it is the end user's responsibility to ensure correctness and suitablity for a given componet or application. If you enjoy using this library, please buy one of our products at www.sparkfun.com.
-&lt;br&gt;&lt;br&gt;
-&lt;b&gt;Licensing:&lt;/b&gt; CC v3.0 Share-Alike You are welcome to use this library for commercial purposes. For attribution, we ask that when you begin to sell your device using our footprint, you email us with a link to the product being sold. We want bragging rights that we helped (in a very small part) to create your 8th world wonder. We would like the opportunity to feature your device on our homepage.</description>
-<packages>
-<package name="MINI-DIN6">
-<wire x1="-7" y1="0" x2="-7" y2="-12.4" width="0.2032" layer="21"/>
-<wire x1="7" y1="0" x2="7" y2="-12.4" width="0.2032" layer="21"/>
-<wire x1="-7" y1="0" x2="7" y2="0" width="0.2032" layer="21"/>
-<wire x1="-7" y1="-12.4" x2="7" y2="-12.4" width="0.2032" layer="21"/>
-<wire x1="-7" y1="-1" x2="7" y2="-1" width="0.2032" layer="51"/>
-<pad name="3" x="-3.4" y="-8.5" drill="0.9"/>
-<pad name="1" x="-1.3" y="-8.5" drill="0.9"/>
-<pad name="2" x="1.3" y="-8.5" drill="0.9"/>
-<pad name="4" x="3.4" y="-8.5" drill="0.9"/>
-<pad name="5" x="-3.4" y="-11" drill="0.9"/>
-<pad name="6" x="3.4" y="-11" drill="0.9"/>
-<pad name="P$1" x="0" y="-4.7" drill="2.2"/>
-<text x="-6.35" y="-2.032" size="0.4064" layer="25">&gt;NAME</text>
-<text x="-6.604" y="-3.048" size="0.4064" layer="27">&gt;VALUE</text>
-<pad name="P$2" x="7.112" y="-5.208" drill="2.2"/>
-<pad name="P$3" x="-6.858" y="-5.208" drill="2.2"/>
-</package>
-<package name="DB9">
-<description>&lt;b&gt;SUB-D&lt;/b&gt;</description>
-<wire x1="-8.128" y1="15.299" x2="-7.62" y2="15.807" width="0.2032" layer="51" curve="-90"/>
-<wire x1="7.62" y1="15.807" x2="8.128" y2="15.299" width="0.2032" layer="51" curve="-90"/>
-<wire x1="-15.4" y1="-2.8" x2="-15.4" y2="2.54" width="0.2032" layer="21"/>
-<wire x1="-15.4" y1="2.5426" x2="-15.4" y2="9.5" width="0.2032" layer="51"/>
-<wire x1="15.4" y1="-2.8" x2="15.4" y2="2.54" width="0.2032" layer="21"/>
-<wire x1="15.4" y1="2.54" x2="15.4" y2="9.5" width="0.2032" layer="51"/>
-<wire x1="-8.128" y1="10.219" x2="-8.128" y2="15.299" width="0.2032" layer="51"/>
-<wire x1="-8.763" y1="9.584" x2="-8.128" y2="10.219" width="0.2032" layer="51" curve="90"/>
-<wire x1="-15.4" y1="9.5" x2="15.4" y2="9.5" width="0.2032" layer="51"/>
-<wire x1="8.128" y1="10.219" x2="8.128" y2="15.299" width="0.2032" layer="51"/>
-<wire x1="8.128" y1="10.219" x2="8.763" y2="9.584" width="0.2032" layer="51" curve="90"/>
-<wire x1="-7.62" y1="15.807" x2="7.62" y2="15.807" width="0.2032" layer="51"/>
-<wire x1="-15.4" y1="-2.8" x2="15.4" y2="-2.8" width="0.2032" layer="21"/>
-<pad name="1" x="-5.54" y="-1.42" drill="1.016" diameter="1.8796" shape="square"/>
-<pad name="2" x="-2.77" y="-1.42" drill="1.016" diameter="1.8796"/>
-<pad name="3" x="0" y="-1.42" drill="1.016" diameter="1.8796"/>
-<pad name="4" x="2.77" y="-1.42" drill="1.016" diameter="1.8796"/>
-<pad name="5" x="5.54" y="-1.42" drill="1.016" diameter="1.8796"/>
-<pad name="6" x="-4.15" y="1.42" drill="1.016" diameter="1.8796"/>
-<pad name="7" x="-1.38" y="1.42" drill="1.016" diameter="1.8796"/>
-<pad name="8" x="1.38" y="1.42" drill="1.016" diameter="1.8796"/>
-<pad name="9" x="4.15" y="1.42" drill="1.016" diameter="1.8796"/>
-<pad name="G1" x="-12.5" y="0" drill="3.302" diameter="5.08"/>
-<pad name="G2" x="12.5" y="0" drill="3.302" diameter="5.08"/>
-<text x="-0.795" y="2.62" size="0.4064" layer="25" ratio="10">&gt;NAME</text>
-<text x="-0.69" y="3.415" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
-</package>
-</packages>
-</library>
-<library name="VideoConnectors">
-<packages>
-<package name="DB-15-F90+SHIELD-BIG_PADS">
-<wire x1="-15.748" y1="16.002" x2="15.748" y2="16.002" width="0.127" layer="21"/>
-<wire x1="15.748" y1="16.002" x2="15.748" y2="0" width="0.127" layer="21"/>
-<wire x1="15.748" y1="0" x2="-15.748" y2="0" width="0.127" layer="21" style="shortdash"/>
-<wire x1="-15.748" y1="0" x2="-15.748" y2="16.002" width="0.127" layer="21"/>
-<wire x1="8.382" y1="0" x2="8.382" y2="-5.08" width="0.127" layer="51" style="shortdash"/>
-<wire x1="8.382" y1="-5.08" x2="-8.382" y2="-5.08" width="0.127" layer="51" style="shortdash"/>
-<wire x1="-8.382" y1="-5.08" x2="-8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
-<wire x1="15.748" y1="0.635" x2="-15.748" y2="0.635" width="0.127" layer="21"/>
-<pad name="3" x="-0.254" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="4" x="-2.54" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="5" x="-4.826" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="2" x="2.032" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="1" x="4.318" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="11" x="4.318" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
-<pad name="12" x="2.032" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
-<pad name="13" x="-0.254" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
-<pad name="14" x="-2.54" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
-<pad name="15" x="-4.826" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
-<pad name="8" x="0.889" y="11.684" drill="1.1938" rot="R180"/>
-<pad name="7" x="3.175" y="11.684" drill="1.1938" rot="R180"/>
-<pad name="6" x="5.461" y="11.684" drill="1.1938" rot="R180"/>
-<pad name="9" x="-1.397" y="11.684" drill="1.1938" rot="R180"/>
-<pad name="10" x="-3.683" y="11.684" drill="1.1938" rot="R180"/>
-<pad name="SHIELD@1" x="-12.4968" y="11.684" drill="3.175" diameter="5.08"/>
-<pad name="SHIELD@2" x="12.4968" y="11.684" drill="3.175" diameter="5.08"/>
-<text x="-10.16" y="5.334" size="1.27" layer="25">&gt;NAME</text>
 </package>
 </packages>
 </library>
@@ -647,11 +639,11 @@ design rules under a new name.</description>
 <elements>
 <element name="U$1" library="skeezix" package="DCJACKZIK" value="DCJACKZIK" x="5.08" y="26.67"/>
 <element name="U$2" library="skeezix" package="MICROSD10" value="MICROSD10" x="33.02" y="6.35"/>
-<element name="X1" library="adafruit-musb" package="4UCONN_20329" value="" x="10.16" y="44.45" rot="R270"/>
 <element name="U$3" library="skeezix" package="POTWHEEL" value="10K" x="35.56" y="33.02" rot="R90"/>
 <element name="U$4" library="SparkFun-Connectors-skeemod" package="MINI-DIN6" value="MINI-DIN6PTH" x="12.7" y="19.05"/>
-<element name="VGA1" library="VideoConnectors" package="DB-15-F90+SHIELD-BIG_PADS" value="VGA-F90B" x="73.66" y="8.89"/>
 <element name="X2" library="SparkFun-Connectors-skeemod" package="DB9" value="" x="69.85" y="39.37"/>
+<element name="VGA1" library="VideoConnectors-skeemod" package="DB-15-F90+SHIELD-BIG_PADS" value="VGA-F90B" x="80.01" y="10.16"/>
+<element name="X1" library="adafruit-musb-skeemod" package="4UCONN_20329" value="" x="7.62" y="-2.54"/>
 </elements>
 <signals>
 <signal name="VCC">
@@ -660,25 +652,25 @@ design rules under a new name.</description>
 <signal name="GND">
 <contactref element="U$1" pad="JACKET"/>
 <contactref element="X1" pad="BASE@1"/>
-<contactref element="X1" pad="BASE@2"/>
 <contactref element="X1" pad="GND"/>
-<contactref element="X1" pad="SPRT@1"/>
 <contactref element="X1" pad="SPRT@2"/>
 <contactref element="X1" pad="SPRT@3"/>
+<contactref element="X1" pad="BASE@2"/>
 <contactref element="X1" pad="SPRT@4"/>
-<wire x1="10.935" y1="43.15" x2="11.06" y2="41.15" width="0" layer="19" extent="1-1"/>
-<wire x1="8.26" y1="40.85" x2="11.06" y2="41.15" width="0" layer="19" extent="1-1"/>
-<wire x1="8.16" y1="43.7" x2="10.935" y2="43.15" width="0" layer="19" extent="1-1"/>
-<wire x1="8.16" y1="45.2" x2="8.16" y2="43.7" width="0" layer="19" extent="1-1"/>
-<wire x1="8.26" y1="48.05" x2="8.16" y2="45.2" width="0" layer="19" extent="1-1"/>
-<wire x1="11.06" y1="47.75" x2="8.26" y2="48.05" width="0" layer="19" extent="1-1"/>
-<wire x1="6.35" y1="32.004" x2="8.26" y2="48.05" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="VBUS">
-<contactref element="X1" pad="VBUS"/>
+<contactref element="X1" pad="SPRT@1"/>
+<wire x1="4.32" y1="-1.64" x2="6.35" y2="32.004" width="0" layer="19" extent="1-1"/>
+<wire x1="4.02" y1="-4.44" x2="4.32" y2="-1.64" width="0" layer="19" extent="1-1"/>
+<wire x1="6.87" y1="-4.54" x2="4.02" y2="-4.44" width="0" layer="19" extent="1-1"/>
+<wire x1="8.37" y1="-4.54" x2="6.87" y2="-4.54" width="0" layer="19" extent="1-1"/>
+<wire x1="8.92" y1="-1.765" x2="8.37" y2="-4.54" width="0" layer="19" extent="1-1"/>
+<wire x1="10.92" y1="-1.64" x2="8.92" y2="-1.765" width="0" layer="19" extent="1-1"/>
+<wire x1="11.22" y1="-4.44" x2="10.92" y2="-1.64" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="+5V">
 <contactref element="VGA1" pad="9"/>
+</signal>
+<signal name="VBUS">
+<contactref element="X1" pad="VBUS"/>
 </signal>
 </signals>
 </board>

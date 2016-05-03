@@ -5619,23 +5619,23 @@ Source: MC68020UM.pdf</description>
 <wire x1="12.1666" y1="-0.3302" x2="12.192" y2="13.843" width="0.127" layer="21"/>
 <wire x1="12.192" y1="13.843" x2="0" y2="13.843" width="0.127" layer="21"/>
 <wire x1="0" y1="13.843" x2="0" y2="11.8745" width="0.127" layer="21"/>
-<wire x1="2.8194" y1="1.4478" x2="2.794" y2="0.6223" width="0.127" layer="21"/>
-<wire x1="2.794" y1="0.6223" x2="8.509" y2="0.6223" width="0.127" layer="21"/>
-<wire x1="8.509" y1="0.6223" x2="8.5344" y2="1.4478" width="0.127" layer="21"/>
-<wire x1="8.5344" y1="1.4478" x2="2.8194" y2="1.4478" width="0.127" layer="21"/>
-<hole x="9.3726" y="2.794" drill="1.6"/>
-<hole x="9.3726" y="11.176" drill="1.6"/>
+<wire x1="2.0066" y1="1.397" x2="2.032" y2="0.6731" width="0.127" layer="21"/>
+<wire x1="2.032" y1="0.6731" x2="7.747" y2="0.6731" width="0.127" layer="21"/>
+<wire x1="7.747" y1="0.6731" x2="7.7216" y2="1.397" width="0.127" layer="21"/>
+<wire x1="7.7216" y1="1.397" x2="2.0066" y2="1.397" width="0.127" layer="21"/>
+<hole x="9.3726" y="1.9304" drill="1.6"/>
+<hole x="9.3218" y="11.5316" drill="1.6"/>
 <text x="10.795" y="0.889" size="0.8128" layer="21">1</text>
-<smd name="P$11" x="12.2174" y="1.143" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$12" x="12.2174" y="2.286" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$13" x="12.2174" y="3.429" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$14" x="12.2174" y="4.572" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$15" x="12.2174" y="5.715" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$16" x="12.2174" y="6.858" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$17" x="12.2174" y="8.001" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$18" x="12.2174" y="9.144" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$19" x="12.2174" y="10.287" dx="1.27" dy="0.635" layer="1"/>
-<smd name="P$20" x="12.2174" y="11.43" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P10" x="12.2174" y="11.43" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P9" x="12.2174" y="10.3632" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P8" x="12.2174" y="9.2964" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P7" x="12.2174" y="8.2296" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P6" x="12.2174" y="7.1628" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P5" x="12.2174" y="6.096" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P4" x="12.2174" y="5.0292" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P3" x="12.2174" y="3.9624" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P2" x="12.2174" y="2.8956" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P1" x="12.2174" y="1.8288" dx="1.27" dy="0.635" layer="1"/>
 </package>
 <package name="POTWHEEL">
 <pad name="P$1" x="15.24" y="6.35" drill="1.1" shape="square"/>
@@ -8551,16 +8551,16 @@ UP</text>
 <devices>
 <device name="" package="MICROSD10">
 <connects>
-<connect gate="G$1" pin="P$1" pad="P$11"/>
-<connect gate="G$1" pin="P$10" pad="P$20"/>
-<connect gate="G$1" pin="P$2" pad="P$12"/>
-<connect gate="G$1" pin="P$3" pad="P$13"/>
-<connect gate="G$1" pin="P$4" pad="P$14"/>
-<connect gate="G$1" pin="P$5" pad="P$15"/>
-<connect gate="G$1" pin="P$6" pad="P$16"/>
-<connect gate="G$1" pin="P$7" pad="P$17"/>
-<connect gate="G$1" pin="P$8" pad="P$18"/>
-<connect gate="G$1" pin="P$9" pad="P$19"/>
+<connect gate="G$1" pin="P$1" pad="P1"/>
+<connect gate="G$1" pin="P$10" pad="P10"/>
+<connect gate="G$1" pin="P$2" pad="P2"/>
+<connect gate="G$1" pin="P$3" pad="P3"/>
+<connect gate="G$1" pin="P$4" pad="P4"/>
+<connect gate="G$1" pin="P$5" pad="P5"/>
+<connect gate="G$1" pin="P$6" pad="P6"/>
+<connect gate="G$1" pin="P$7" pad="P7"/>
+<connect gate="G$1" pin="P$8" pad="P8"/>
+<connect gate="G$1" pin="P$9" pad="P9"/>
 </connects>
 <technologies>
 <technology name=""/>
