@@ -18294,7 +18294,6 @@ general purpose rectifier, 1 A</description>
 <part name="+CE2A17" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
 <part name="3V" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
 <part name="+3V3" library="supply1" deviceset="+3V3" device=""/>
-<part name="SPKR1" library="pinhead" deviceset="PINHD-1X4" device=""/>
 <part name="R34" library="rcl" deviceset="R-US_" device="0204/7" value="1K"/>
 <part name="C23" library="rcl" deviceset="C-EU" device="025-025X050" value="100uF"/>
 <part name="U$1" library="skeezix" deviceset="LM386-DIP" device=""/>
@@ -18307,6 +18306,8 @@ general purpose rectifier, 1 A</description>
 <part name="C26" library="rcl" deviceset="C-EU" device="025-025X050" value=".05uF"/>
 <part name="R37" library="rcl" deviceset="R-US_" device="0204/7" value="10"/>
 <part name="GND41" library="supply1" deviceset="GND" device=""/>
+<part name="LINEOUT" library="pinhead" deviceset="PINHD-1X2" device=""/>
+<part name="GND42" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -18473,7 +18474,7 @@ will shift that down to 5 and 3
 as needed to feed other
 pins</text>
 <text x="513.08" y="347.98" size="2.54" layer="91">Use Vcc12V or +5?</text>
-<text x="515.62" y="327.66" size="5.08" layer="91">spkr + gnd</text>
+<text x="515.62" y="327.66" size="5.08" layer="91">todo: headphone jack</text>
 <text x="457.2" y="408.94" size="3.81" layer="108">TODO:
 - correct package for 
   - volume knob
@@ -18659,7 +18660,6 @@ pins</text>
 <instance part="+CE2A17" gate="G$1" x="191.77" y="151.13"/>
 <instance part="3V" gate="G$1" x="191.77" y="142.24"/>
 <instance part="+3V3" gate="G$1" x="207.01" y="142.24" rot="R270"/>
-<instance part="SPKR1" gate="A" x="534.67" y="433.07"/>
 <instance part="R34" gate="G$1" x="427.99" y="330.2" rot="R270"/>
 <instance part="C23" gate="G$1" x="438.15" y="340.36" rot="R90"/>
 <instance part="U$1" gate="G$1" x="486.41" y="349.25"/>
@@ -18672,6 +18672,8 @@ pins</text>
 <instance part="C26" gate="G$1" x="486.41" y="327.66" rot="R90"/>
 <instance part="R37" gate="G$1" x="473.71" y="327.66"/>
 <instance part="GND41" gate="1" x="463.55" y="327.66" rot="R270"/>
+<instance part="LINEOUT" gate="G$1" x="502.92" y="379.73" rot="R90"/>
+<instance part="GND42" gate="1" x="500.38" y="369.57"/>
 </instances>
 <busses>
 </busses>
@@ -19040,6 +19042,11 @@ pins</text>
 <pinref part="R37" gate="G$1" pin="1"/>
 <wire x1="468.63" y1="327.66" x2="466.09" y2="327.66" width="0.1524" layer="91"/>
 <pinref part="GND41" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="GND42" gate="1" pin="GND"/>
+<pinref part="LINEOUT" gate="G$1" pin="1"/>
+<wire x1="500.38" y1="372.11" x2="500.38" y2="377.19" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="PB6" class="0">
@@ -21784,6 +21791,14 @@ pins</text>
 <pinref part="C26" gate="G$1" pin="1"/>
 <wire x1="483.87" y1="327.66" x2="478.79" y2="327.66" width="0.1524" layer="91"/>
 <pinref part="R37" gate="G$1" pin="2"/>
+</segment>
+</net>
+<net name="N$3" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="7"/>
+<wire x1="494.03" y1="351.79" x2="502.92" y2="351.79" width="0.1524" layer="91"/>
+<wire x1="502.92" y1="351.79" x2="502.92" y2="377.19" width="0.1524" layer="91"/>
+<pinref part="LINEOUT" gate="G$1" pin="2"/>
 </segment>
 </net>
 </nets>

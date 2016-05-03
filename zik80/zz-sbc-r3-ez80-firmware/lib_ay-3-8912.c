@@ -89,13 +89,26 @@ void ym_play_demo ( void ) {
 
   while ( 1 ) {
 
-    // from C file array compiled in .. see ym-deinterleave.c etc
-#if 1
+
+#if 0 // copy compiled in song to cart .. a lame flasher
     int i, j, k;
     unsigned char *p;
 	extern unsigned int framelimit; 			 // see xenon.c
 	extern const unsigned char song_hacked_ym[]; // see xenon.c
 
+	{
+		char b [ 4 ] = ".\n\0";
+		unsigned char *c = (unsigned char*) 0x1C0000;
+		p = song_hacked_ym;
+
+		for ( i=0; i < framelimit; i++ ) {
+			*c++ = *p++;
+			delay_ms_spin ( 10 );
+			write_UART0 ( b, 2 );
+		}
+		
+	}
+	  
 	while ( 1 ) {
 
 		p = song_hacked_ym;
@@ -121,6 +134,72 @@ void ym_play_demo ( void ) {
 		  p++; // extended
 			
 		  delay_ms_spin ( 2 );
+
+		} // for iterate over song
+
+	} // while forever
+#endif
+
+#if 1 // from C file array compiled in .. see ym-deinterleave.c etc
+    int i, j, k;
+    unsigned char *p;
+	extern unsigned int framelimit; 			 // see xenon.c
+	extern const unsigned char song_hacked_ym[]; // see xenon.c
+
+	while ( 1 ) {
+
+		p = song_hacked_ym;
+
+		// assuming not interleaved or 'as is'
+		for ( i=0; i < framelimit; i++ ) {
+
+		  if ( *(p - 16) != *p )
+			ay_write (  0, *p ); // A
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write (  1, (*p) & 0x0F ); // A
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write (  2, *p ); // B
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write (  3, (*p) & 0x0F ); // B
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write (  4, *p ); // C
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write (  5, (*p) & 0x0F ); // C
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write (  6, (*p) & 0x1F ); // Noise
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write (  7, (*p) & 0x3F ); // Mixer
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write ( 10, (*p) & 0x1F ); // Vol A
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write ( 11, (*p) & 0x1F ); // Vol B
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write ( 12, (*p) & 0x1F ); // Vol C
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write ( 13, *p ); // Env
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write ( 14, *p ); // Env
+		  p++;
+		  if ( *(p - 16) != *p )
+			  ay_write ( 15, (*p) & 0x0F ); // Env
+		  p++;
+
+		  p++; // extended
+		  p++; // extended
+			
+		  delay_ms_spin ( 6 );
 
 		} // for iterate over song
 

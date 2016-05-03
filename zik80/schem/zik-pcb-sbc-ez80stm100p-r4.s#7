@@ -18479,7 +18479,11 @@ pins</text>
 <text x="435.61" y="331.47" size="5.08" layer="91">NO?</text>
 <text x="525.78" y="317.5" size="5.08" layer="91">Vcc or +5?</text>
 <text x="528.32" y="298.45" size="5.08" layer="91">spkr + gnd</text>
-<text x="516.89" y="346.71" size="5.08" layer="91">BYPASS</text>
+<text x="516.89" y="346.71" size="5.08" layer="91">BYPASS
+leave disconn</text>
+<text x="444.5" y="419.1" size="3.81" layer="108">TODO:
+- correct package for 
+  - volume knob</text>
 </plain>
 <instances>
 <instance part="ISPZDI" gate="A" x="64.77" y="240.03" rot="MR0"/>

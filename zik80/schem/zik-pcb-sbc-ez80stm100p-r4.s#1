@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -18294,7 +18294,6 @@ general purpose rectifier, 1 A</description>
 <part name="+CE2A17" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
 <part name="3V" library="wirepad" deviceset="WIREPAD" device="SMD1,27-254"/>
 <part name="+3V3" library="supply1" deviceset="+3V3" device=""/>
-<part name="SPKR1" library="pinhead" deviceset="PINHD-1X4" device=""/>
 <part name="R34" library="rcl" deviceset="R-US_" device="0204/7" value="1K"/>
 <part name="C23" library="rcl" deviceset="C-EU" device="025-025X050" value="100uF"/>
 <part name="U$1" library="skeezix" deviceset="LM386-DIP" device=""/>
@@ -18474,8 +18473,9 @@ Should be 6-12V .. power board
 will shift that down to 5 and 3
 as needed to feed other
 pins</text>
-<text x="513.08" y="347.98" size="2.54" layer="91">Use Vcc12V or +5?</text>
-<text x="515.62" y="327.66" size="5.08" layer="91">spkr + gnd</text>
+<text x="513.08" y="347.98" size="2.54" layer="91">Use Vcc12V or +5?
+Decouple Vcc/GND with a cap?</text>
+<text x="515.62" y="327.66" size="5.08" layer="91">todo: headphone jack</text>
 <text x="457.2" y="408.94" size="3.81" layer="108">TODO:
 - correct package for 
   - volume knob
@@ -18661,7 +18661,6 @@ pins</text>
 <instance part="+CE2A17" gate="G$1" x="191.77" y="151.13"/>
 <instance part="3V" gate="G$1" x="191.77" y="142.24"/>
 <instance part="+3V3" gate="G$1" x="207.01" y="142.24" rot="R270"/>
-<instance part="SPKR1" gate="A" x="534.67" y="433.07"/>
 <instance part="R34" gate="G$1" x="427.99" y="330.2" rot="R270"/>
 <instance part="C23" gate="G$1" x="438.15" y="340.36" rot="R90"/>
 <instance part="U$1" gate="G$1" x="486.41" y="349.25"/>

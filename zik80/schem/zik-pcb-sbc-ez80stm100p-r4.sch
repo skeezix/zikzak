@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -18434,11 +18434,15 @@ and other features via memory map?
   -&gt; RTC is already on BOBMISC</text>
 <text x="447.04" y="50.8" size="6.4516" layer="91">Zikzak SBC - Single board computer
 Jeff Mitchell 2014</text>
-<text x="445.77" y="-109.22" size="5.08" layer="91">rev 4:
+<text x="445.77" y="-134.62" size="5.08" layer="91">rev 4:
 Goal: move to sockets on pcb
 instead of millions of header pins
 - add mixer hw to audio
 - add amplifier hw to audio
+- ?? add SD on pcb?
+- ?? add USB for direct power?
+- ?? USB -&gt; ez80? or stm32f4?
+- ?? newer stm32f5?
 
 rev 3:
 - rotated 180deg ISPZDI
@@ -18473,7 +18477,8 @@ Should be 6-12V .. power board
 will shift that down to 5 and 3
 as needed to feed other
 pins</text>
-<text x="513.08" y="347.98" size="2.54" layer="91">Use Vcc12V or +5?</text>
+<text x="513.08" y="347.98" size="2.54" layer="91">Use Vcc12V or +5?
+Decouple Vcc/GND with a cap?</text>
 <text x="515.62" y="327.66" size="5.08" layer="91">todo: headphone jack</text>
 <text x="457.2" y="408.94" size="3.81" layer="108">TODO:
 - correct package for 
