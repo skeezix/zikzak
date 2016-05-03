@@ -173,7 +173,7 @@
 <wire x1="8.509" y1="1.651" x2="2.794" y2="1.651" width="0.127" layer="21"/>
 <hole x="9.144" y="2.794" drill="1.6"/>
 <hole x="9.144" y="11.176" drill="1.6"/>
-<smd name="P$1" x="12.192" y="2.032" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$1" x="12.192" y="2.0574" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P$2" x="12.192" y="3.048" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P$3" x="12.192" y="4.064" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P$4" x="12.192" y="5.08" dx="1.27" dy="0.635" layer="1"/>
@@ -184,14 +184,26 @@
 <smd name="P$9" x="12.192" y="10.16" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P$10" x="12.192" y="11.176" dx="1.27" dy="0.635" layer="1"/>
 <text x="10.795" y="0.889" size="0.8128" layer="21">1</text>
+<smd name="P$11" x="14.859" y="2.032" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$12" x="14.859" y="3.175" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$13" x="14.859" y="4.318" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$14" x="14.859" y="5.461" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$15" x="14.859" y="6.604" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$16" x="14.859" y="7.747" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$17" x="14.859" y="8.89" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$18" x="14.859" y="10.033" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$19" x="14.859" y="11.176" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$20" x="14.859" y="12.319" dx="1.27" dy="0.635" layer="1"/>
 </package>
 <package name="POTWHEEL">
-<circle x="3.81" y="3.81" radius="4.016090625" width="0.127" layer="21"/>
-<pad name="P$1" x="7.62" y="3.81" drill="0.8" shape="square"/>
-<pad name="P$2" x="7.62" y="6.35" drill="0.8" shape="square"/>
-<pad name="P$3" x="7.62" y="1.27" drill="0.8" shape="square"/>
-<pad name="P$4" x="2.54" y="6.35" drill="1.3" shape="square"/>
+<pad name="P$1" x="15.24" y="6.35" drill="0.8" shape="square"/>
+<pad name="P$2" x="15.24" y="10.16" drill="0.8" shape="square"/>
+<pad name="P$3" x="15.24" y="2.54" drill="0.8" shape="square"/>
+<pad name="P$4" x="2.54" y="11.43" drill="1.3" shape="square"/>
 <pad name="P$5" x="2.54" y="1.27" drill="1.3" shape="square"/>
+<circle x="7.62" y="6.35" radius="7.62" width="0.127" layer="21"/>
+<text x="3.81" y="6.35" size="1.27" layer="21">&gt;NAME</text>
+<text x="3.81" y="3.81" size="1.27" layer="21">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -847,8 +859,66 @@ We've spent an enormous amount of time creating and checking these footprints an
 <pad name="P$1" x="0" y="-4.7" drill="2.2"/>
 <text x="-6.35" y="-2.032" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-6.604" y="-3.048" size="0.4064" layer="27">&gt;VALUE</text>
-<pad name="P$2" x="7.112" y="-6.986" drill="2.2"/>
-<pad name="P$3" x="-6.858" y="-6.986" drill="2.2"/>
+<pad name="P$2" x="7.112" y="-5.208" drill="2.2"/>
+<pad name="P$3" x="-6.858" y="-5.208" drill="2.2"/>
+</package>
+<package name="DB9">
+<description>&lt;b&gt;SUB-D&lt;/b&gt;</description>
+<wire x1="-8.128" y1="15.299" x2="-7.62" y2="15.807" width="0.2032" layer="51" curve="-90"/>
+<wire x1="7.62" y1="15.807" x2="8.128" y2="15.299" width="0.2032" layer="51" curve="-90"/>
+<wire x1="-15.4" y1="-2.8" x2="-15.4" y2="2.54" width="0.2032" layer="21"/>
+<wire x1="-15.4" y1="2.5426" x2="-15.4" y2="9.5" width="0.2032" layer="51"/>
+<wire x1="15.4" y1="-2.8" x2="15.4" y2="2.54" width="0.2032" layer="21"/>
+<wire x1="15.4" y1="2.54" x2="15.4" y2="9.5" width="0.2032" layer="51"/>
+<wire x1="-8.128" y1="10.219" x2="-8.128" y2="15.299" width="0.2032" layer="51"/>
+<wire x1="-8.763" y1="9.584" x2="-8.128" y2="10.219" width="0.2032" layer="51" curve="90"/>
+<wire x1="-15.4" y1="9.5" x2="15.4" y2="9.5" width="0.2032" layer="51"/>
+<wire x1="8.128" y1="10.219" x2="8.128" y2="15.299" width="0.2032" layer="51"/>
+<wire x1="8.128" y1="10.219" x2="8.763" y2="9.584" width="0.2032" layer="51" curve="90"/>
+<wire x1="-7.62" y1="15.807" x2="7.62" y2="15.807" width="0.2032" layer="51"/>
+<wire x1="-15.4" y1="-2.8" x2="15.4" y2="-2.8" width="0.2032" layer="21"/>
+<pad name="1" x="-5.54" y="-1.42" drill="1.016" diameter="1.8796" shape="square"/>
+<pad name="2" x="-2.77" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="3" x="0" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="4" x="2.77" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="5" x="5.54" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="6" x="-4.15" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="7" x="-1.38" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="8" x="1.38" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="9" x="4.15" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="G1" x="-12.5" y="0" drill="3.302" diameter="5.08"/>
+<pad name="G2" x="12.5" y="0" drill="3.302" diameter="5.08"/>
+<text x="-0.795" y="2.62" size="0.4064" layer="25" ratio="10">&gt;NAME</text>
+<text x="-0.69" y="3.415" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
+</package>
+<package name="DB9_MALE">
+<description>&lt;b&gt;SUB-D&lt;/b&gt;</description>
+<wire x1="-8.128" y1="15.299" x2="-7.62" y2="15.807" width="0.2032" layer="51" curve="-90"/>
+<wire x1="7.62" y1="15.807" x2="8.128" y2="15.299" width="0.2032" layer="51" curve="-90"/>
+<wire x1="-15.4" y1="-2.8" x2="-15.4" y2="2.54" width="0.2032" layer="21"/>
+<wire x1="-15.4" y1="2.5426" x2="-15.4" y2="9.5" width="0.2032" layer="51"/>
+<wire x1="15.4" y1="-2.8" x2="15.4" y2="2.54" width="0.2032" layer="21"/>
+<wire x1="15.4" y1="2.54" x2="15.4" y2="9.5" width="0.2032" layer="51"/>
+<wire x1="-8.128" y1="10.219" x2="-8.128" y2="15.299" width="0.2032" layer="51"/>
+<wire x1="-8.763" y1="9.584" x2="-8.128" y2="10.219" width="0.2032" layer="51" curve="90"/>
+<wire x1="-15.4" y1="9.5" x2="15.4" y2="9.5" width="0.2032" layer="51"/>
+<wire x1="8.128" y1="10.219" x2="8.128" y2="15.299" width="0.2032" layer="51"/>
+<wire x1="8.128" y1="10.219" x2="8.763" y2="9.584" width="0.2032" layer="51" curve="90"/>
+<wire x1="-7.62" y1="15.807" x2="7.62" y2="15.807" width="0.2032" layer="51"/>
+<wire x1="-15.4" y1="-2.8" x2="15.4" y2="-2.8" width="0.2032" layer="21"/>
+<pad name="5" x="-5.54" y="-1.42" drill="1.016" diameter="1.8796" shape="square"/>
+<pad name="4" x="-2.77" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="3" x="0" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="2" x="2.77" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="1" x="5.54" y="-1.42" drill="1.016" diameter="1.8796"/>
+<pad name="9" x="-4.15" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="8" x="-1.38" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="7" x="1.38" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="6" x="4.15" y="1.42" drill="1.016" diameter="1.8796"/>
+<pad name="G1" x="-12.5" y="0" drill="3.302" diameter="5.08"/>
+<pad name="G2" x="12.5" y="0" drill="3.302" diameter="5.08"/>
+<text x="-0.795" y="2.62" size="0.4064" layer="25" ratio="10">&gt;NAME</text>
+<text x="-0.69" y="3.415" size="0.4064" layer="27" ratio="10">&gt;VALUE</text>
 </package>
 </packages>
 <symbols>
@@ -872,6 +942,38 @@ We've spent an enormous amount of time creating and checking these footprints an
 <pin name="5" x="5.08" y="5.08" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 <pin name="6" x="5.08" y="7.62" visible="pad" length="middle" direction="pas" swaplevel="1" rot="R180"/>
 </symbol>
+<symbol name="F09G">
+<wire x1="-1.651" y1="3.429" x2="-1.651" y2="1.651" width="0.254" layer="94" curve="180" cap="flat"/>
+<wire x1="1.524" y1="1.651" x2="1.524" y2="3.429" width="0.254" layer="94" curve="180" cap="flat"/>
+<wire x1="-1.651" y1="5.969" x2="-1.651" y2="4.191" width="0.254" layer="94" curve="180" cap="flat"/>
+<wire x1="1.524" y1="-3.429" x2="1.524" y2="-1.651" width="0.254" layer="94" curve="180" cap="flat"/>
+<wire x1="-1.651" y1="0.889" x2="-1.651" y2="-0.889" width="0.254" layer="94" curve="180" cap="flat"/>
+<wire x1="1.524" y1="-0.889" x2="1.524" y2="0.889" width="0.254" layer="94" curve="180" cap="flat"/>
+<wire x1="-1.651" y1="-1.651" x2="-1.651" y2="-3.429" width="0.254" layer="94" curve="180" cap="flat"/>
+<wire x1="1.524" y1="-5.969" x2="1.524" y2="-4.191" width="0.254" layer="94" curve="180" cap="flat"/>
+<wire x1="-1.651" y1="-4.191" x2="-1.651" y2="-5.969" width="0.254" layer="94" curve="180" cap="flat"/>
+<wire x1="-4.064" y1="6.9312" x2="-2.5226" y2="8.172" width="0.4064" layer="94" curve="-102.324066" cap="flat"/>
+<wire x1="-2.5226" y1="8.1718" x2="0" y2="7.62" width="0.4064" layer="94"/>
+<wire x1="0" y1="7.62" x2="3.0654" y2="6.9494" width="0.4064" layer="94"/>
+<wire x1="3.0654" y1="6.9495" x2="4.0642" y2="5.7088" width="0.4064" layer="94" curve="-77.655139" cap="flat"/>
+<wire x1="4.064" y1="-5.7088" x2="4.064" y2="5.7088" width="0.4064" layer="94"/>
+<wire x1="3.0654" y1="-6.9494" x2="4.064" y2="-5.7088" width="0.4064" layer="94" curve="77.657889"/>
+<wire x1="-4.064" y1="-6.9312" x2="-4.064" y2="6.9312" width="0.4064" layer="94"/>
+<wire x1="-2.5226" y1="-8.1718" x2="0" y2="-7.62" width="0.4064" layer="94"/>
+<wire x1="0" y1="-7.62" x2="3.0654" y2="-6.9494" width="0.4064" layer="94"/>
+<wire x1="-4.064" y1="-6.9312" x2="-2.5226" y2="-8.1719" width="0.4064" layer="94" curve="102.337599" cap="flat"/>
+<text x="-3.81" y="-10.795" size="1.778" layer="96">&gt;VALUE</text>
+<text x="-3.81" y="8.89" size="1.778" layer="95">&gt;NAME</text>
+<pin name="1" x="-7.62" y="5.08" visible="pad" length="middle" direction="pas"/>
+<pin name="6" x="7.62" y="2.54" visible="pad" length="middle" direction="pas" rot="R180"/>
+<pin name="2" x="-7.62" y="2.54" visible="pad" length="middle" direction="pas"/>
+<pin name="7" x="7.62" y="0" visible="pad" length="middle" direction="pas" rot="R180"/>
+<pin name="3" x="-7.62" y="0" visible="pad" length="middle" direction="pas"/>
+<pin name="8" x="7.62" y="-2.54" visible="pad" length="middle" direction="pas" rot="R180"/>
+<pin name="4" x="-7.62" y="-2.54" visible="pad" length="middle" direction="pas"/>
+<pin name="9" x="7.62" y="-5.08" visible="pad" length="middle" direction="pas" rot="R180"/>
+<pin name="5" x="-7.62" y="-5.08" visible="pad" length="middle" direction="pas"/>
+</symbol>
 </symbols>
 <devicesets>
 <deviceset name="MINI-DIN6">
@@ -889,6 +991,211 @@ Commonly found on the back of a computer for PS2 keyboard and mice. Schematic an
 <connect gate="G$1" pin="4" pad="4"/>
 <connect gate="G$1" pin="5" pad="5"/>
 <connect gate="G$1" pin="6" pad="6"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="DB9" prefix="X" uservalue="yes">
+<description>&lt;b&gt;DB9 Connector&lt;/b&gt;
+Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS485 and RS232. Footprint production proven. Spark Fun Electronics SKU : PRT-00429</description>
+<gates>
+<gate name="G$1" symbol="F09G" x="0" y="0"/>
+</gates>
+<devices>
+<device name="FEMALE" package="DB9">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
+<connect gate="G$1" pin="4" pad="4"/>
+<connect gate="G$1" pin="5" pad="5"/>
+<connect gate="G$1" pin="6" pad="6"/>
+<connect gate="G$1" pin="7" pad="7"/>
+<connect gate="G$1" pin="8" pad="8"/>
+<connect gate="G$1" pin="9" pad="9"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="MALE" package="DB9_MALE">
+<connects>
+<connect gate="G$1" pin="1" pad="1"/>
+<connect gate="G$1" pin="2" pad="2"/>
+<connect gate="G$1" pin="3" pad="3"/>
+<connect gate="G$1" pin="4" pad="4"/>
+<connect gate="G$1" pin="5" pad="5"/>
+<connect gate="G$1" pin="6" pad="6"/>
+<connect gate="G$1" pin="7" pad="7"/>
+<connect gate="G$1" pin="8" pad="8"/>
+<connect gate="G$1" pin="9" pad="9"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
+<library name="VideoConnectors">
+<packages>
+<package name="DB-15-F90+SHIELD-BIG_PADS">
+<wire x1="-15.748" y1="16.002" x2="15.748" y2="16.002" width="0.127" layer="21"/>
+<wire x1="15.748" y1="16.002" x2="15.748" y2="0" width="0.127" layer="21"/>
+<wire x1="15.748" y1="0" x2="-15.748" y2="0" width="0.127" layer="21" style="shortdash"/>
+<wire x1="-15.748" y1="0" x2="-15.748" y2="16.002" width="0.127" layer="21"/>
+<wire x1="8.382" y1="0" x2="8.382" y2="-5.08" width="0.127" layer="51" style="shortdash"/>
+<wire x1="8.382" y1="-5.08" x2="-8.382" y2="-5.08" width="0.127" layer="51" style="shortdash"/>
+<wire x1="-8.382" y1="-5.08" x2="-8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
+<wire x1="15.748" y1="0.635" x2="-15.748" y2="0.635" width="0.127" layer="21"/>
+<pad name="3" x="-0.254" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="4" x="-2.54" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="5" x="-4.826" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="2" x="2.032" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="1" x="4.318" y="14.224" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="11" x="4.318" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="12" x="2.032" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="13" x="-0.254" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="14" x="-2.54" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="15" x="-4.826" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="8" x="0.889" y="11.684" drill="1.1938" rot="R180"/>
+<pad name="7" x="3.175" y="11.684" drill="1.1938" rot="R180"/>
+<pad name="6" x="5.461" y="11.684" drill="1.1938" rot="R180"/>
+<pad name="9" x="-1.397" y="11.684" drill="1.1938" rot="R180"/>
+<pad name="10" x="-3.683" y="11.684" drill="1.1938" rot="R180"/>
+<pad name="SHIELD@1" x="-12.4968" y="11.684" drill="3.175" diameter="5.08"/>
+<pad name="SHIELD@2" x="12.4968" y="11.684" drill="3.175" diameter="5.08"/>
+<text x="-10.16" y="5.334" size="1.27" layer="25">&gt;NAME</text>
+</package>
+<package name="DB-15-F90+SHIELD-SMALL_PADS">
+<wire x1="-15.748" y1="16.002" x2="15.748" y2="16.002" width="0.127" layer="21"/>
+<wire x1="15.748" y1="16.002" x2="15.748" y2="0" width="0.127" layer="21"/>
+<wire x1="15.748" y1="0" x2="-15.748" y2="0" width="0.127" layer="49" style="shortdash"/>
+<wire x1="-15.748" y1="0" x2="-15.748" y2="16.002" width="0.127" layer="21"/>
+<wire x1="8.382" y1="0" x2="8.382" y2="-5.08" width="0.127" layer="49" style="shortdash"/>
+<wire x1="8.382" y1="-5.08" x2="-8.382" y2="-5.08" width="0.127" layer="49" style="shortdash"/>
+<wire x1="-8.382" y1="-5.08" x2="-8.382" y2="0" width="0.127" layer="49" style="shortdash"/>
+<wire x1="15.748" y1="0.635" x2="-15.748" y2="0.635" width="0.127" layer="21"/>
+<pad name="3" x="-0.254" y="14.224" drill="1.2" diameter="1.524" rot="R90"/>
+<pad name="4" x="-2.54" y="14.224" drill="1.2" diameter="1.524" rot="R90"/>
+<pad name="5" x="-4.826" y="14.224" drill="1.2" diameter="1.524" rot="R90"/>
+<pad name="2" x="2.032" y="14.224" drill="1.2" diameter="1.524" rot="R90"/>
+<pad name="1" x="4.318" y="14.224" drill="1.2" diameter="1.524" rot="R90"/>
+<pad name="11" x="4.318" y="9.144" drill="1.2" diameter="1.524" rot="R270"/>
+<pad name="12" x="2.032" y="9.144" drill="1.2" diameter="1.524" rot="R270"/>
+<pad name="13" x="-0.254" y="9.144" drill="1.2" diameter="1.524" rot="R270"/>
+<pad name="14" x="-2.54" y="9.144" drill="1.2" diameter="1.524" rot="R270"/>
+<pad name="15" x="-4.826" y="9.144" drill="1.2" diameter="1.524" rot="R270"/>
+<pad name="8" x="0.889" y="11.684" drill="1.2" diameter="1.524" rot="R180"/>
+<pad name="7" x="3.175" y="11.684" drill="1.2" diameter="1.524" rot="R180"/>
+<pad name="6" x="5.461" y="11.684" drill="1.2" diameter="1.524" rot="R180"/>
+<pad name="9" x="-1.397" y="11.684" drill="1.2" diameter="1.524" rot="R180"/>
+<pad name="10" x="-3.683" y="11.684" drill="1.2" diameter="1.524" rot="R180"/>
+<pad name="SHIELD@1" x="-12.4968" y="11.684" drill="3.175" diameter="5.08"/>
+<pad name="SHIELD@2" x="12.4968" y="11.684" drill="3.175" diameter="5.08"/>
+<text x="-10.16" y="5.334" size="1.27" layer="25">&gt;NAME</text>
+</package>
+</packages>
+<symbols>
+<symbol name="CON-VGA-15">
+<wire x1="-20.32" y1="12.7" x2="20.32" y2="12.7" width="0.254" layer="94"/>
+<wire x1="20.32" y1="12.7" x2="20.32" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="20.32" y1="-10.16" x2="-20.32" y2="-10.16" width="0.254" layer="94"/>
+<wire x1="-20.32" y1="-10.16" x2="-20.32" y2="12.7" width="0.254" layer="94"/>
+<text x="-15.24" y="9.525" size="1.27" layer="94">Red</text>
+<text x="-15.24" y="6.985" size="1.27" layer="94">Green</text>
+<text x="-15.24" y="4.445" size="1.27" layer="94">Blue</text>
+<text x="-15.24" y="-5.715" size="1.27" layer="94">ID2/RES</text>
+<text x="-1.905" y="-5.08" size="1.27" layer="94" rot="R90">GND (Hsync)</text>
+<text x="15.24" y="9.525" size="1.27" layer="94" rot="MR0">Red Return</text>
+<text x="15.24" y="6.985" size="1.27" layer="94" rot="MR0">Green Return</text>
+<text x="15.24" y="4.445" size="1.27" layer="94" rot="MR0">Blue Return</text>
+<text x="-0.635" y="7.62" size="1.27" layer="94" rot="R270">+5V</text>
+<text x="3.175" y="-5.08" size="1.27" layer="94" rot="R90">GND (Vsync, DDC)</text>
+<text x="-15.24" y="-0.635" size="1.27" layer="94">ID0/RES</text>
+<text x="-15.24" y="-3.175" size="1.27" layer="94">ID1/SDA</text>
+<text x="15.24" y="-3.175" size="1.27" layer="94" rot="MR0">Hsync</text>
+<text x="15.24" y="-5.715" size="1.27" layer="94" rot="MR0">Vsync</text>
+<text x="-15.24" y="-8.255" size="1.27" layer="94">ID3/SCL</text>
+<text x="-17.78" y="13.97" size="1.27" layer="95">&gt;NAME</text>
+<text x="-17.78" y="-12.7" size="1.27" layer="96">&gt;VALUE</text>
+<pin name="VGA-R" x="-22.86" y="10.16" visible="pad" length="short"/>
+<pin name="VGA-G" x="-22.86" y="7.62" visible="pad" length="short"/>
+<pin name="VGA-B" x="-22.86" y="5.08" visible="pad" length="short"/>
+<pin name="ID2/RES" x="-22.86" y="-5.08" visible="pad" length="short" direction="pas"/>
+<pin name="GND@0" x="-2.54" y="-12.7" visible="pad" length="short" direction="pas" rot="R90"/>
+<pin name="VGA-R-" x="22.86" y="10.16" visible="pad" length="short" direction="pas" function="dot" rot="R180"/>
+<pin name="VGA-G-" x="22.86" y="7.62" visible="pad" length="short" direction="pas" function="dot" rot="R180"/>
+<pin name="VGA-B-" x="22.86" y="5.08" visible="pad" length="short" direction="pas" function="dot" rot="R180"/>
+<pin name="+5V" x="0" y="15.24" visible="pad" length="short" direction="pwr" rot="R270"/>
+<pin name="GND@1" x="2.54" y="-12.7" visible="pad" length="short" direction="pas" rot="R90"/>
+<pin name="ID0/RES" x="-22.86" y="0" visible="pad" length="short" direction="pas"/>
+<pin name="ID1/SDA" x="-22.86" y="-2.54" visible="pad" length="short"/>
+<pin name="VGA-HSYNC" x="22.86" y="-2.54" visible="pad" length="short" function="clk" rot="R180"/>
+<pin name="VGA-VSYNC" x="22.86" y="-5.08" visible="pad" length="short" function="clk" rot="R180"/>
+<pin name="ID3/SCL" x="-22.86" y="-7.62" visible="pad" length="short" function="clk"/>
+</symbol>
+<symbol name="SHIELD">
+<circle x="5.08" y="0" radius="2.54" width="0.254" layer="94"/>
+<text x="0" y="3.175" size="1.778" layer="95">&gt;PART</text>
+<pin name="SHIELD" x="0" y="0" visible="off" length="short" direction="pas"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="VGA-*" prefix="VGA">
+<gates>
+<gate name="G$1" symbol="CON-VGA-15" x="0" y="0"/>
+<gate name="G$2" symbol="SHIELD" x="-12.7" y="30.48" swaplevel="1"/>
+<gate name="G$3" symbol="SHIELD" x="2.54" y="30.48" swaplevel="1"/>
+</gates>
+<devices>
+<device name="F90B" package="DB-15-F90+SHIELD-BIG_PADS">
+<connects>
+<connect gate="G$1" pin="+5V" pad="9"/>
+<connect gate="G$1" pin="GND@0" pad="5"/>
+<connect gate="G$1" pin="GND@1" pad="10"/>
+<connect gate="G$1" pin="ID0/RES" pad="11"/>
+<connect gate="G$1" pin="ID1/SDA" pad="12"/>
+<connect gate="G$1" pin="ID2/RES" pad="4"/>
+<connect gate="G$1" pin="ID3/SCL" pad="15"/>
+<connect gate="G$1" pin="VGA-B" pad="3"/>
+<connect gate="G$1" pin="VGA-B-" pad="8"/>
+<connect gate="G$1" pin="VGA-G" pad="2"/>
+<connect gate="G$1" pin="VGA-G-" pad="7"/>
+<connect gate="G$1" pin="VGA-HSYNC" pad="13"/>
+<connect gate="G$1" pin="VGA-R" pad="1"/>
+<connect gate="G$1" pin="VGA-R-" pad="6"/>
+<connect gate="G$1" pin="VGA-VSYNC" pad="14"/>
+<connect gate="G$2" pin="SHIELD" pad="SHIELD@1"/>
+<connect gate="G$3" pin="SHIELD" pad="SHIELD@2"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+<device name="F90S" package="DB-15-F90+SHIELD-SMALL_PADS">
+<connects>
+<connect gate="G$1" pin="+5V" pad="9"/>
+<connect gate="G$1" pin="GND@0" pad="5"/>
+<connect gate="G$1" pin="GND@1" pad="10"/>
+<connect gate="G$1" pin="ID0/RES" pad="11"/>
+<connect gate="G$1" pin="ID1/SDA" pad="12"/>
+<connect gate="G$1" pin="ID2/RES" pad="4"/>
+<connect gate="G$1" pin="ID3/SCL" pad="15"/>
+<connect gate="G$1" pin="VGA-B" pad="3"/>
+<connect gate="G$1" pin="VGA-B-" pad="8"/>
+<connect gate="G$1" pin="VGA-G" pad="2"/>
+<connect gate="G$1" pin="VGA-G-" pad="7"/>
+<connect gate="G$1" pin="VGA-HSYNC" pad="13"/>
+<connect gate="G$1" pin="VGA-R" pad="1"/>
+<connect gate="G$1" pin="VGA-R-" pad="6"/>
+<connect gate="G$1" pin="VGA-VSYNC" pad="14"/>
+<connect gate="G$2" pin="SHIELD" pad="SHIELD@1"/>
+<connect gate="G$3" pin="SHIELD" pad="SHIELD@2"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -915,6 +1222,8 @@ Commonly found on the back of a computer for PS2 keyboard and mice. Schematic an
 <part name="X1" library="adafruit-musb" deviceset="USB" device="MICRO_20329"/>
 <part name="U$3" library="skeezix" deviceset="POTWHEEL" device="" value="10K"/>
 <part name="U$4" library="SparkFun-Connectors-skeemod" deviceset="MINI-DIN6" device="PTH"/>
+<part name="VGA1" library="VideoConnectors" deviceset="VGA-*" device="F90B"/>
+<part name="X2" library="SparkFun-Connectors-skeemod" deviceset="DB9" device="FEMALE"/>
 </parts>
 <sheets>
 <sheet>
@@ -927,6 +1236,8 @@ Commonly found on the back of a computer for PS2 keyboard and mice. Schematic an
 <instance part="X1" gate="G$1" x="43.18" y="63.5"/>
 <instance part="U$3" gate="G$1" x="73.66" y="55.88"/>
 <instance part="U$4" gate="G$1" x="88.9" y="27.94"/>
+<instance part="VGA1" gate="G$1" x="152.4" y="58.42"/>
+<instance part="X2" gate="G$1" x="147.32" y="10.16"/>
 </instances>
 <busses>
 </busses>
