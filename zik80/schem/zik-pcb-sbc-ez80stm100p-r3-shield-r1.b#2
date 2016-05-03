@@ -643,7 +643,7 @@ design rules under a new name.</description>
 <element name="U$4" library="SparkFun-Connectors-skeemod" package="MINI-DIN6" value="MINI-DIN6PTH" x="12.7" y="19.05"/>
 <element name="X2" library="SparkFun-Connectors-skeemod" package="DB9" value="" x="69.85" y="39.37"/>
 <element name="VGA1" library="VideoConnectors-skeemod" package="DB-15-F90+SHIELD-BIG_PADS" value="VGA-F90B" x="80.01" y="10.16"/>
-<element name="X1" library="adafruit-musb-skeemod" package="4UCONN_20329" value="" x="7.62" y="-2.54"/>
+<element name="X1" library="adafruit-musb-skeemod" package="4UCONN_20329" value="" x="10.16" y="48.26"/>
 </elements>
 <signals>
 <signal name="VCC">
@@ -658,13 +658,13 @@ design rules under a new name.</description>
 <contactref element="X1" pad="BASE@2"/>
 <contactref element="X1" pad="SPRT@4"/>
 <contactref element="X1" pad="SPRT@1"/>
-<wire x1="4.32" y1="-1.64" x2="6.35" y2="32.004" width="0" layer="19" extent="1-1"/>
-<wire x1="4.02" y1="-4.44" x2="4.32" y2="-1.64" width="0" layer="19" extent="1-1"/>
-<wire x1="6.87" y1="-4.54" x2="4.02" y2="-4.44" width="0" layer="19" extent="1-1"/>
-<wire x1="8.37" y1="-4.54" x2="6.87" y2="-4.54" width="0" layer="19" extent="1-1"/>
-<wire x1="8.92" y1="-1.765" x2="8.37" y2="-4.54" width="0" layer="19" extent="1-1"/>
-<wire x1="10.92" y1="-1.64" x2="8.92" y2="-1.765" width="0" layer="19" extent="1-1"/>
-<wire x1="11.22" y1="-4.44" x2="10.92" y2="-1.64" width="0" layer="19" extent="1-1"/>
+<wire x1="6.86" y1="49.16" x2="6.35" y2="32.004" width="0" layer="19" extent="1-1"/>
+<wire x1="6.56" y1="46.36" x2="6.86" y2="49.16" width="0" layer="19" extent="1-1"/>
+<wire x1="9.41" y1="46.26" x2="6.56" y2="46.36" width="0" layer="19" extent="1-1"/>
+<wire x1="10.91" y1="46.26" x2="9.41" y2="46.26" width="0" layer="19" extent="1-1"/>
+<wire x1="11.46" y1="49.035" x2="10.91" y2="46.26" width="0" layer="19" extent="1-1"/>
+<wire x1="13.46" y1="49.16" x2="11.46" y2="49.035" width="0" layer="19" extent="1-1"/>
+<wire x1="13.76" y1="46.36" x2="13.46" y2="49.16" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="+5V">
 <contactref element="VGA1" pad="9"/>

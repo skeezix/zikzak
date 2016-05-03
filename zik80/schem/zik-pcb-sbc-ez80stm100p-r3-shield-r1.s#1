@@ -804,10 +804,10 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 <smd name="D-" x="-0.65" y="0.775" dx="0.4" dy="1.35" layer="1" stop="no"/>
 <smd name="GND" x="1.3" y="0.775" dx="0.4" dy="1.35" layer="1" stop="no"/>
 <smd name="ID" x="0.65" y="0.775" dx="0.4" dy="1.35" layer="1" stop="no"/>
-<pad name="SPRT@1" x="-3.3" y="0.9" drill="0.7" shape="offset" rot="R180"/>
-<pad name="SPRT@2" x="3.3" y="0.9" drill="0.7" shape="offset"/>
-<pad name="SPRT@3" x="-3.6" y="-1.9" drill="0.6" diameter="2.5" shape="square" rot="R90"/>
-<pad name="SPRT@4" x="3.6" y="-1.9" drill="0.6" diameter="2.5" shape="square" rot="R90"/>
+<pad name="SPRT@1" x="-3.3" y="0.9" drill="1.1" shape="offset" rot="R180"/>
+<pad name="SPRT@2" x="3.3" y="0.9" drill="1.1" shape="offset"/>
+<pad name="SPRT@3" x="-3.6" y="-2.281" drill="1.1" diameter="2.5" shape="square" rot="R90"/>
+<pad name="SPRT@4" x="3.6" y="-2.281" drill="1.1" diameter="2.5" shape="square" rot="R90"/>
 <smd name="VBUS" x="-1.3" y="0.775" dx="0.4" dy="1.35" layer="1" stop="no"/>
 <text x="0" y="-4" size="0.4064" layer="51" ratio="16" align="center">PCB EDGE</text>
 <text x="-2.778" y="-5.852" size="0.8128" layer="25" ratio="18">&gt;NAME</text>

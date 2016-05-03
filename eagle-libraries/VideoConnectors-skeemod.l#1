@@ -171,12 +171,12 @@
 <hole x="15.875" y="3.5814" drill="3.175"/>
 </package>
 <package name="DB-15-F90+SHIELD-BIG_PADS">
-<wire x1="-15.748" y1="16.764" x2="15.748" y2="16.764" width="0.127" layer="21"/>
-<wire x1="15.748" y1="16.764" x2="15.748" y2="4.445" width="0.127" layer="21"/>
+<wire x1="-15.748" y1="16.002" x2="15.748" y2="16.002" width="0.127" layer="21"/>
+<wire x1="15.748" y1="16.002" x2="15.748" y2="4.445" width="0.127" layer="21"/>
 <wire x1="15.748" y1="4.445" x2="15.748" y2="3.81" width="0.127" layer="21"/>
 <wire x1="15.748" y1="3.81" x2="-15.748" y2="3.81" width="0.127" layer="21" style="shortdash"/>
 <wire x1="-15.748" y1="3.81" x2="-15.748" y2="4.445" width="0.127" layer="21"/>
-<wire x1="-15.748" y1="4.445" x2="-15.748" y2="16.764" width="0.127" layer="21"/>
+<wire x1="-15.748" y1="4.445" x2="-15.748" y2="16.002" width="0.127" layer="21"/>
 <wire x1="8.382" y1="5.08" x2="8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
 <wire x1="8.382" y1="0" x2="-8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
 <wire x1="-8.382" y1="0" x2="-8.382" y2="5.08" width="0.127" layer="51" style="shortdash"/>

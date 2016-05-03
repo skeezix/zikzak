@@ -640,8 +640,8 @@ design rules under a new name.</description>
 <element name="X1" library="adafruit-musb" package="4UCONN_20329" value="" x="10.16" y="44.45" rot="R270"/>
 <element name="U$3" library="skeezix" package="POTWHEEL" value="10K" x="35.56" y="33.02" rot="R90"/>
 <element name="U$4" library="SparkFun-Connectors-skeemod" package="MINI-DIN6" value="MINI-DIN6PTH" x="12.7" y="19.05"/>
-<element name="VGA1" library="VideoConnectors" package="DB-15-F90+SHIELD-BIG_PADS" value="VGA-F90B" x="16.51" y="-17.78"/>
-<element name="X2" library="SparkFun-Connectors-skeemod" package="DB9" value="" x="16.51" y="-39.37"/>
+<element name="VGA1" library="VideoConnectors" package="DB-15-F90+SHIELD-BIG_PADS" value="VGA-F90B" x="73.66" y="8.89"/>
+<element name="X2" library="SparkFun-Connectors-skeemod" package="DB9" value="" x="69.85" y="39.37"/>
 </elements>
 <signals>
 <signal name="VCC">

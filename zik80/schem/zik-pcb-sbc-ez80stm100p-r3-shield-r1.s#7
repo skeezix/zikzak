@@ -849,8 +849,8 @@ We've spent an enormous amount of time creating and checking these footprints an
 <pad name="P$1" x="0" y="-4.7" drill="2.2"/>
 <text x="-6.35" y="-2.032" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-6.604" y="-3.048" size="0.4064" layer="27">&gt;VALUE</text>
-<pad name="P$2" x="7.112" y="-6.986" drill="2.2"/>
-<pad name="P$3" x="-6.858" y="-6.986" drill="2.2"/>
+<pad name="P$2" x="7.112" y="-5.208" drill="2.2"/>
+<pad name="P$3" x="-6.858" y="-5.208" drill="2.2"/>
 </package>
 <package name="DB9">
 <description>&lt;b&gt;SUB-D&lt;/b&gt;</description>

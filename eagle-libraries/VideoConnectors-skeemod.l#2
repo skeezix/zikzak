@@ -171,26 +171,26 @@
 <hole x="15.875" y="3.5814" drill="3.175"/>
 </package>
 <package name="DB-15-F90+SHIELD-BIG_PADS">
-<wire x1="-15.748" y1="16.764" x2="15.748" y2="16.764" width="0.127" layer="21"/>
-<wire x1="15.748" y1="16.764" x2="15.748" y2="4.445" width="0.127" layer="21"/>
+<wire x1="-15.748" y1="16.002" x2="15.748" y2="16.002" width="0.127" layer="21"/>
+<wire x1="15.748" y1="16.002" x2="15.748" y2="4.445" width="0.127" layer="21"/>
 <wire x1="15.748" y1="4.445" x2="15.748" y2="3.81" width="0.127" layer="21"/>
 <wire x1="15.748" y1="3.81" x2="-15.748" y2="3.81" width="0.127" layer="21" style="shortdash"/>
 <wire x1="-15.748" y1="3.81" x2="-15.748" y2="4.445" width="0.127" layer="21"/>
-<wire x1="-15.748" y1="4.445" x2="-15.748" y2="16.764" width="0.127" layer="21"/>
+<wire x1="-15.748" y1="4.445" x2="-15.748" y2="16.002" width="0.127" layer="21"/>
 <wire x1="8.382" y1="5.08" x2="8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
 <wire x1="8.382" y1="0" x2="-8.382" y2="0" width="0.127" layer="51" style="shortdash"/>
 <wire x1="-8.382" y1="0" x2="-8.382" y2="5.08" width="0.127" layer="51" style="shortdash"/>
 <wire x1="15.748" y1="4.445" x2="-15.748" y2="4.445" width="0.127" layer="21"/>
-<pad name="3" x="-0.254" y="13.335" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="4" x="-2.54" y="13.335" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="5" x="-4.826" y="13.335" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="2" x="2.032" y="13.335" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="1" x="4.318" y="13.335" drill="1.1938" shape="offset" rot="R90"/>
-<pad name="11" x="4.318" y="9.525" drill="1.1938" shape="offset" rot="R270"/>
-<pad name="12" x="2.032" y="9.525" drill="1.1938" shape="offset" rot="R270"/>
-<pad name="13" x="-0.254" y="9.525" drill="1.1938" shape="offset" rot="R270"/>
-<pad name="14" x="-2.54" y="9.525" drill="1.1938" shape="offset" rot="R270"/>
-<pad name="15" x="-4.826" y="9.525" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="3" x="-0.254" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="4" x="-2.54" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="5" x="-4.826" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="2" x="2.032" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="1" x="4.318" y="13.716" drill="1.1938" shape="offset" rot="R90"/>
+<pad name="11" x="4.318" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="12" x="2.032" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="13" x="-0.254" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="14" x="-2.54" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
+<pad name="15" x="-4.826" y="9.144" drill="1.1938" shape="offset" rot="R270"/>
 <pad name="8" x="0.889" y="11.43" drill="1.1938" rot="R180"/>
 <pad name="7" x="3.175" y="11.43" drill="1.1938" rot="R180"/>
 <pad name="6" x="5.461" y="11.43" drill="1.1938" rot="R180"/>
