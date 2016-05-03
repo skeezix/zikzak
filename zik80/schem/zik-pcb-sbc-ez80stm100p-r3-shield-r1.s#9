@@ -228,6 +228,11 @@
 <pin name="CCW" x="22.86" y="5.08" length="middle" rot="R180"/>
 <pin name="LO" x="22.86" y="10.16" length="middle" rot="R180"/>
 <pin name="CW" x="22.86" y="15.24" length="middle" rot="R180"/>
+<wire x1="3.048" y1="9.652" x2="4.826" y2="11.43" width="0.254" layer="94"/>
+<wire x1="4.826" y1="11.43" x2="6.35" y2="9.652" width="0.254" layer="94"/>
+<wire x1="6.35" y1="9.652" x2="8.128" y2="11.43" width="0.254" layer="94"/>
+<wire x1="8.128" y1="11.43" x2="9.906" y2="9.652" width="0.254" layer="94"/>
+<text x="5.08" y="-2.54" size="1.778" layer="94">&gt;VALUE</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -835,7 +840,7 @@
 <part name="U$1" library="skeezix" deviceset="DCJACKZIK" device=""/>
 <part name="U$2" library="skeezix" deviceset="MICROSD10" device=""/>
 <part name="X1" library="adafruit-musb" deviceset="USB" device="MICRO_20329"/>
-<part name="U$3" library="skeezix" deviceset="POTWHEEL" device=""/>
+<part name="U$3" library="skeezix" deviceset="POTWHEEL" device="" value="10K"/>
 </parts>
 <sheets>
 <sheet>

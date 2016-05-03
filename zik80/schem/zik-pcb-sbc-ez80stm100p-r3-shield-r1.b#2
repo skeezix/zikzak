@@ -169,7 +169,7 @@
 <wire x1="8.509" y1="1.651" x2="2.794" y2="1.651" width="0.127" layer="21"/>
 <hole x="9.144" y="2.794" drill="1.6"/>
 <hole x="9.144" y="11.176" drill="1.6"/>
-<smd name="P$1" x="12.192" y="2.032" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$1" x="12.192" y="2.0574" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P$2" x="12.192" y="3.048" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P$3" x="12.192" y="4.064" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P$4" x="12.192" y="5.08" dx="1.27" dy="0.635" layer="1"/>
@@ -180,6 +180,16 @@
 <smd name="P$9" x="12.192" y="10.16" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P$10" x="12.192" y="11.176" dx="1.27" dy="0.635" layer="1"/>
 <text x="10.795" y="0.889" size="0.8128" layer="21">1</text>
+<smd name="P$11" x="14.859" y="2.032" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$12" x="14.859" y="3.175" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$13" x="14.859" y="4.318" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$14" x="14.859" y="5.461" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$15" x="14.859" y="6.604" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$16" x="14.859" y="7.747" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$17" x="14.859" y="8.89" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$18" x="14.859" y="10.033" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$19" x="14.859" y="11.176" dx="1.27" dy="0.635" layer="1"/>
+<smd name="P$20" x="14.859" y="12.319" dx="1.27" dy="0.635" layer="1"/>
 </package>
 <package name="POTWHEEL">
 <pad name="P$1" x="15.24" y="6.35" drill="0.8" shape="square"/>
@@ -381,8 +391,8 @@ We've spent an enormous amount of time creating and checking these footprints an
 <pad name="P$1" x="0" y="-4.7" drill="2.2"/>
 <text x="-6.35" y="-2.032" size="0.4064" layer="25">&gt;NAME</text>
 <text x="-6.604" y="-3.048" size="0.4064" layer="27">&gt;VALUE</text>
-<pad name="P$2" x="7.112" y="-6.986" drill="2.2"/>
-<pad name="P$3" x="-6.858" y="-6.986" drill="2.2"/>
+<pad name="P$2" x="7.112" y="-5.208" drill="2.2"/>
+<pad name="P$3" x="-6.858" y="-5.208" drill="2.2"/>
 </package>
 <package name="DB9">
 <description>&lt;b&gt;SUB-D&lt;/b&gt;</description>
