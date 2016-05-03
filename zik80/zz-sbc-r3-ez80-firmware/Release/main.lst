@@ -1,0 +1,1523 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -noglobalopt -nolocalcse -optsize -nomodsect 
+                           A     3    ; -padbranch -debug -peephole -const=ROM 
+                           A     4    	FILE	"..\MAIN.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:   2
+
+
+PC     Object              I  Line    Source main.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+                           A    95    .BEGREC "NONAME3",6
+                           A    96    .DEFINE "quot"
+                           A    97    .VALUE 0
+                           A    98    .CLASS 8
+                           A    99    .TYPE 4
+                           A   100    .ENDEF
+                           A   101    .DEFINE "rem"
+                           A   102    .VALUE 3
+                           A   103    .CLASS 8
+                           A   104    .TYPE 4
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:   3
+
+
+PC     Object              I  Line    Source main.src
+                           A   105    .ENDEF
+                           A   106    .ENDREC "NONAME3"
+                           A   107    .BEGREC "NONAME4",8
+                           A   108    .DEFINE "quot"
+                           A   109    .VALUE 0
+                           A   110    .CLASS 8
+                           A   111    .TYPE 5
+                           A   112    .ENDEF
+                           A   113    .DEFINE "rem"
+                           A   114    .VALUE 4
+                           A   115    .CLASS 8
+                           A   116    .TYPE 5
+                           A   117    .ENDEF
+                           A   118    .ENDREC "NONAME4"
+                           A   119    .BEGREC "header",6
+                           A   120    .DEFINE "s"
+                           A   121    .VALUE 0
+                           A   122    .CLASS 11
+                           A   123    .TAG "NONAME5"
+                           A   124    .TYPE 8
+                           A   125    .ENDEF
+                           A   126    .DEFINE "x"
+                           A   127    .VALUE 0
+                           A   128    .CLASS 11
+                           A   129    .TYPE 2
+                           A   130    .ENDEF
+                           A   131    .ENDREC "header"
+                           A   132    .BEGREC "NONAME5",6
+                           A   133    .DEFINE "ptr"
+                           A   134    .VALUE 0
+                           A   135    .CLASS 8
+                           A   136    .TAG "header"
+                           A   137    .TYPE 40
+                           A   138    .ENDEF
+                           A   139    .DEFINE "size"
+                           A   140    .VALUE 3
+                           A   141    .CLASS 8
+                           A   142    .TYPE 14
+                           A   143    .ENDEF
+                           A   144    .ENDREC "NONAME5"
+000000                     A   145    _delay_loop:
+                           A   146    .DEFINE "_delay_loop"
+                           A   147    
+                           A   148    .VALUE _delay_loop
+                           A   149    
+                           A   150    .CLASS 3
+                           A   151    
+                           A   152    .TYPE 65
+                           A   153    
+                           A   154    .ENDEF
+                           A   155    
+                           A   156    .BEGFUNC "delay_loop",17,"_delay_loop"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:   4
+
+
+PC     Object              I  Line    Source main.src
+                           A   157    
+                           A   158    .LINE 17
+                           A   159    
+                           A   160    .DEFINE "c"
+                           A   161    
+                           A   162    .CLASS 65
+                           A   163    
+                           A   164    .VALUE 6
+                           A   165    
+                           A   166    .TYPE 14
+                           A   167    
+000000 DDE5                A   168    	PUSH	IX
+000002 DD210000 00         A   169    	LD	IX,0
+000007 DD39                A   170    	ADD	IX,SP
+                           A   171    .ENDEF
+                           A   172    
+000009                     A   173    L_1:
+                           A   174    .LINE 18
+                           A   175    
+000009 DD2706              A   176    	LD	HL,(IX+6)
+00000C CD 00 00 00         A   177    	CALL	__icmpzero
+000010 28 0D 00            A   178    	JR	Z,L_3
+                           A   179    .LINE 19
+                           A   180    
+000013 DD3106              A   181    	LD	IY,(IX+6)
+000016 ED33FF              A   182    	LEA	IY,IY+-1
+000019 DD3E06              A   183    	LD	(IX+6),IY
+                           A   184    .LINE 20
+                           A   185    
+00001C 18 EB 00            A   186    	JR	L_1
+00001F                     A   187    L_3:
+                           A   188    .LINE 21
+                           A   189    
+00001F DDF9                A   190    	LD	SP,IX
+000021 DDE1                A   191    	POP	IX
+000023 C9                  A   192    	RET	
+                           A   193    
+                           A   194    
+                           A   195    ;**************************** _delay_loop *****
+                           A   196    ;Name                         Addr/Register   S
+                           A   197    ;c                                     IX+6    
+                           A   198    
+                           A   199    
+                           A   200    ; Stack Frame Size: 9 (bytes)
+                           A   201    ;       Spill Code: 0 (instruction)
+                           A   202    
+                           A   203    
+                           A   204    .ENDFUNC "delay_loop",21,"_delay_loop"
+                           A   205    .BEGREC "NONAME6",4
+                           A   206    .DEFINE "x"
+                           A   207    .VALUE 0
+                           A   208    .CLASS 8
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:   5
+
+
+PC     Object              I  Line    Source main.src
+                           A   209    .TYPE 12
+                           A   210    .ENDEF
+                           A   211    .DEFINE "y"
+                           A   212    .VALUE 1
+                           A   213    .CLASS 8
+                           A   214    .TYPE 12
+                           A   215    .ENDEF
+                           A   216    .DEFINE "f"
+                           A   217    .VALUE 2
+                           A   218    .CLASS 8
+                           A   219    .TYPE 12
+                           A   220    .ENDEF
+                           A   221    .DEFINE "_u"
+                           A   222    .VALUE 3
+                           A   223    .CLASS 8
+                           A   224    .TYPE 12
+                           A   225    .ENDEF
+                           A   226    .ENDREC "NONAME6"
+                           A   227    ;    1	// Chip Selects:
+                           A   228    ;    2	// CS0   e8 0   0c0000 - 0dffff    -> r
+                           A   229    ;    3	//                     - 7dffff    -> r
+                           A   230    ;    4	// CS1   e8 0   1c0000 - 1dffff    -> r
+                           A   231    ;    5	// CS2   e8 0   2c0000 - 2cffff    -> a
+                           A   232    ;    6	//
+                           A   233    ;    7	// 2.457MHz oscilator in place
+                           A   234    ;    8	
+                           A   235    ;    9	#include <eZ80.h>
+                           A   236    ;   10	#include <uart.h>
+                           A   237    ;   11	#include <gpio.h>
+                           A   238    ;   12	#include <stdlib.h>
+                           A   239    ;   13	#include <string.h>
+                           A   240    ;   14	
+                           A   241    ;   15	#include "skeelib.h"
+                           A   242    ;   16	#include "framebuffer.h"
+                           A   243    ;   17	#include <lib_ay-3-8912.h>
+                           A   244    ;   18	#include "lib_fontrender.h"
+                           A   245    ;   19	#include "lib_ps2_keyboard.h"
+                           A   246    ;   20	#include "menu.h"
+                           A   247    ;   21	#include "HAL.h"
+                           A   248    ;   22	#include "bios_video.h"
+                           A   249    ;   23	#include "demo.h"
+                           A   250    ;   24	
+                           A   251    ;   25	int main ( ) {
+000024                     A   252    _main:
+                           A   253    .DEFINE "_main"
+                           A   254    
+                           A   255    .VALUE _main
+                           A   256    
+                           A   257    .CLASS 2
+                           A   258    
+                           A   259    .TYPE 68
+                           A   260    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:   6
+
+
+PC     Object              I  Line    Source main.src
+                           A   261    .ENDEF
+                           A   262    
+                           A   263    .BEGFUNC "main",25,"_main"
+                           A   264    
+                           A   265    .LINE 25
+                           A   266    
+                           A   267    .DEFINE "curr"
+                           A   268    
+                           A   269    .CLASS 65
+                           A   270    
+                           A   271    .VALUE -3
+                           A   272    
+                           A   273    .TYPE 44
+                           A   274    
+                           A   275    .ENDEF
+                           A   276    
+                           A   277    .DEFINE "extram"
+                           A   278    
+                           A   279    .CLASS 65
+                           A   280    
+                           A   281    .VALUE -6
+                           A   282    
+                           A   283    .TYPE 44
+                           A   284    
+                           A   285    .ENDEF
+                           A   286    
+                           A   287    .DEFINE "iter"
+                           A   288    
+                           A   289    .CLASS 65
+                           A   290    
+                           A   291    .VALUE -7
+                           A   292    
+                           A   293    .TYPE 12
+                           A   294    
+                           A   295    .ENDEF
+                           A   296    
+                           A   297    .DEFINE "i"
+                           A   298    
+                           A   299    .CLASS 65
+                           A   300    
+                           A   301    .VALUE -8
+                           A   302    
+                           A   303    .TYPE 12
+                           A   304    
+                           A   305    .ENDEF
+                           A   306    
+                           A   307    .DEFINE "inbuf"
+                           A   308    
+                           A   309    .CLASS 65
+                           A   310    
+                           A   311    .VALUE -13
+                           A   312    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:   7
+
+
+PC     Object              I  Line    Source main.src
+                           A   313    .DIM 5
+                           A   314    
+                           A   315    .TYPE 98
+                           A   316    
+                           A   317    .ENDEF
+                           A   318    
+                           A   319    .DEFINE "retval"
+                           A   320    
+                           A   321    .CLASS 65
+                           A   322    
+                           A   323    .VALUE -14
+                           A   324    
+                           A   325    .TYPE 12
+                           A   326    
+                           A   327    .ENDEF
+                           A   328    
+                           A   329    .DEFINE "nbytes"
+                           A   330    
+                           A   331    .CLASS 65
+                           A   332    
+                           A   333    .VALUE -17
+                           A   334    
+                           A   335    .TYPE 14
+                           A   336    
+                           A   337    .ENDEF
+                           A   338    
+                           A   339    .DEFINE "u0"
+                           A   340    
+                           A   341    .CLASS 65
+                           A   342    
+                           A   343    .VALUE -27
+                           A   344    
+                           A   345    .TAG "NONAME1"
+                           A   346    
+                           A   347    .TYPE 8
+                           A   348    
+                           A   349    .ENDEF
+                           A   350    
+                           A   351    .DEFINE "b"
+                           A   352    
+                           A   353    .CLASS 65
+                           A   354    
+                           A   355    .VALUE -43
+                           A   356    
+                           A   357    .DIM 16
+                           A   358    
+                           A   359    .TYPE 98
+                           A   360    
+                           A   361    .ENDEF
+                           A   362    
+                           A   363    .DEFINE "spritelist"
+                           A   364    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:   8
+
+
+PC     Object              I  Line    Source main.src
+                           A   365    .CLASS 65
+                           A   366    
+                           A   367    .VALUE -171
+                           A   368    
+                           A   369    .DIM 128
+                           A   370    
+                           A   371    .TYPE 108
+                           A   372    
+                           A   373    .ENDEF
+                           A   374    
+000024 DDE5                A   375    	PUSH	IX
+000026 DD210000 00         A   376    	LD	IX,0
+00002B DD39                A   377    	ADD	IX,SP
+00002D 2155FFFF            A   378    	LD	HL,-171
+000031 39                  A   379    	ADD	HL,SP
+000032 F9                  A   380    	LD	SP,HL
+                           A   381    ;   26	
+                           A   382    ;   27	#if 1 // sleep for a few seconds up fro
+                           A   383    ;   28		{
+                           A   384    ;   29			delay_ms_spin(1000);
+                           A   385    .LINE 29
+                           A   386    
+000033 01E80300            A   387    	LD	BC,1000
+000037 C5                  A   388    	PUSH	BC
+000038 CD 00 00 00         A   389    	CALL	_delay_ms_spin
+00003C C1                  A   390    	POP	BC
+                           A   391    ;   30			delay_ms_spin(1000);
+                           A   392    .LINE 30
+                           A   393    
+00003D 01E80300            A   394    	LD	BC,1000
+000041 C5                  A   395    	PUSH	BC
+000042 CD 00 00 00         A   396    	CALL	_delay_ms_spin
+000046 C1                  A   397    	POP	BC
+                           A   398    ;   31		}
+                           A   399    ;   32	#endif
+                           A   400    ;   33	
+                           A   401    ;   34		// enable interupts
+                           A   402    ;   35		_init_default_vectors();
+                           A   403    .LINE 35
+                           A   404    
+000047 CD 00 00 00         A   405    	CALL	__init_default_vectors
+                           A   406    ;   36	
+                           A   407    ;   37	#if 0 // GPIOB for lulz debug output
+                           A   408    ;   38		{
+                           A   409    ;   39			PORT pb;
+                           A   410    ;   40			UCHAR err;
+                           A   411    ;   41	
+                           A   412    ;   42			// enable gpio output mode1 por
+                           A   413    ;   43			pb.dr = 0; // default value 0of
+                           A   414    ;   44			pb.ddr = 0; // output=0, input=
+                           A   415    ;   45			pb.alt1 = 0;
+                           A   416    ;   46			pb.alt2 = 0;
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:   9
+
+
+PC     Object              I  Line    Source main.src
+                           A   417    ;   47				
+                           A   418    ;   48			open_PortC ( &pb );
+                           A   419    ;   49	
+                           A   420    ;   50			err = setmode_PortB ( PORTPIN_Z
+                           A   421    ;   51		}
+                           A   422    ;   52	#endif
+                           A   423    ;   53		
+                           A   424    ;   54	#if 1 // uart logger - WORKS
+                           A   425    ;   55		{
+                           A   426    ;   56			// F93 default is 20MHz - happe
+                           A   427    ;   57			// uart0 is on port d
+                           A   428    ;   58			// uart1 is on port c
+                           A   429    ;   59			
+                           A   430    ;   60			//UCHAR open_UARTx(UART * pUART
+                           A   431    ;   61			
+                           A   432    ;   62			UART u0;
+                           A   433    ;   63			char b [ 16 ];
+                           A   434    ;   64			unsigned char i;
+                           A   435    ;   65			
+                           A   436    ;   66			u0.uartMode = POLL; //INTERRUPT
+                           A   437    .LINE 66
+                           A   438    
+00004B DD36E500            A   439    	LD	(IX+-27),0
+                           A   440    ;   67			u0.baudRate =  BAUD_38400; //BA
+                           A   441    .LINE 67
+                           A   442    
+00004F 01009600            A   443    	LD	BC,38400
+000053 DD0FE6              A   444    	LD	(IX+-26),BC
+                           A   445    ;   68			u0.dataBits = DATABITS_8;
+                           A   446    .LINE 68
+                           A   447    
+000056 DD36E908            A   448    	LD	(IX+-23),8
+                           A   449    ;   69			u0.stopBits = STOPBITS_1;
+                           A   450    .LINE 69
+                           A   451    
+00005A DD36EA01            A   452    	LD	(IX+-22),1
+                           A   453    ;   70			u0.parity = PAR_NOPARITY;
+                           A   454    .LINE 70
+                           A   455    
+00005E DD36EB00            A   456    	LD	(IX+-21),0
+                           A   457    ;   71			u0.fifoTriggerLevel = FIFO_TRGL
+                           A   458    .LINE 71
+                           A   459    
+000062 DD36EC01            A   460    	LD	(IX+-20),1
+                           A   461    ;   72			u0.hwFlowControl = DISABLE_HWFL
+                           A   462    .LINE 72
+                           A   463    
+000066 DD36ED00            A   464    	LD	(IX+-19),0
+                           A   465    ;   73			u0.swFlowControl = DISABLE_SWFL
+                           A   466    .LINE 73
+                           A   467    
+00006A DD36EE00            A   468    	LD	(IX+-18),0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  10
+
+
+PC     Object              I  Line    Source main.src
+                           A   469    ;   74			
+                           A   470    ;   75			open_UART0 ( &u0 );
+                           A   471    .LINE 75
+                           A   472    
+00006E ED65E5              A   473    	PEA	IX+-27
+000071 CD 00 00 00         A   474    	CALL	_open_UART0
+000075 C1                  A   475    	POP	BC
+                           A   476    ;   76			
+                           A   477    ;   77			b [ 0 ] = 'A';
+                           A   478    .LINE 77
+                           A   479    
+000076 DD36D541            A   480    	LD	(IX+-43),65
+                           A   481    ;   78			b [ 1 ] = 'B';
+                           A   482    .LINE 78
+                           A   483    
+00007A ED22D5              A   484    	LEA	HL,IX+-43
+00007D 23                  A   485    	INC	HL
+00007E 3642                A   486    	LD	(HL),66
+                           A   487    ;   79			b [ 2 ] = 'C';
+                           A   488    .LINE 79
+                           A   489    
+000080 ED22D7              A   490    	LEA	HL,IX+-41
+000083 3643                A   491    	LD	(HL),67
+                           A   492    ;   80			b [ 3 ] = '\0';
+                           A   493    .LINE 80
+                           A   494    
+000085 ED22D8              A   495    	LEA	HL,IX+-40
+000088 3600                A   496    	LD	(HL),0
+00008A 18 0A 00            A   497    	JR	L_5
+                           A   498    ;   81			
+                           A   499    ;   82			for ( i = 0; i < 5; i++ ) {
+00008D                     A   500    L_6:
+                           A   501    .LINE 82
+                           A   502    
+00008D DD7EF8              A   503    	LD	A,(IX+-8)
+000090 FE05                A   504    	CP	A,5
+000092 38 09               A   505    	JR	C,L_8
+000094 18 1B               A   506    	JR	L_9
+000096                     A   507    L_5:
+000096 DD36F800            A   508    	LD	(IX+-8),0
+00009A 18 F1 00            A   509    	JR	L_6
+00009D                     A   510    L_8:
+                           A   511    ;   83				write_UART0 ( b, 3 );
+                           A   512    .LINE 83
+                           A   513    
+00009D 01030000            A   514    	LD	BC,3
+0000A1 C5                  A   515    	PUSH	BC
+0000A2 ED65D5              A   516    	PEA	IX+-43
+0000A5 CD 00 00 00         A   517    	CALL	_write_UART0
+0000A9 C1                  A   518    	POP	BC
+0000AA C1                  A   519    	POP	BC
+0000AB DD34F8              A   520    	INC	(IX+-8)
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  11
+
+
+PC     Object              I  Line    Source main.src
+                           A   521    ;   84			}
+                           A   522    .LINE 84
+                           A   523    
+0000AE 18 DD 00            A   524    	JR	L_6
+0000B1                     A   525    L_9:
+                           A   526    ;   85			
+                           A   527    ;   86			lame_itoa ( (int)37, b );
+                           A   528    .LINE 86
+                           A   529    
+0000B1 ED65D5              A   530    	PEA	IX+-43
+0000B4 01250000            A   531    	LD	BC,37
+0000B8 C5                  A   532    	PUSH	BC
+0000B9 CD 00 00 00         A   533    	CALL	_lame_itoa
+0000BD C1                  A   534    	POP	BC
+0000BE C1                  A   535    	POP	BC
+                           A   536    ;   87			
+                           A   537    ;   88			write_UART0 ( b, lame_strlen ( 
+                           A   538    .LINE 88
+                           A   539    
+0000BF ED65D5              A   540    	PEA	IX+-43
+0000C2 CD 00 00 00         A   541    	CALL	_lame_strlen
+0000C6 C1                  A   542    	POP	BC
+0000C7 E5C1                A   543    	LD	BC,HL
+0000C9 CD 00 00 00         A   544    	CALL	__stoiu
+0000CD E5                  A   545    	PUSH	HL
+0000CE ED65D5              A   546    	PEA	IX+-43
+0000D1 CD 00 00 00         A   547    	CALL	_write_UART0
+0000D5 C1                  A   548    	POP	BC
+0000D6 C1                  A   549    	POP	BC
+                           A   550    ;   89			write_UART0 ( "\n", 1 );
+                           A   551    .LINE 89
+                           A   552    
+0000D7 01010000            A   553    	LD	BC,1
+0000DB C5                  A   554    	PUSH	BC
+0000DC 01 00 00 00         A   555    	LD	BC,L__3
+0000E0 C5                  A   556    	PUSH	BC
+0000E1 CD 00 00 00         A   557    	CALL	_write_UART0
+0000E5 C1                  A   558    	POP	BC
+0000E6 C1                  A   559    	POP	BC
+                           A   560    ;   90			flush_UART0 ( FLUSHFIFO_ALL );
+                           A   561    .LINE 90
+                           A   562    
+0000E7 01030000            A   563    	LD	BC,3
+0000EB C5                  A   564    	PUSH	BC
+0000EC CD 00 00 00         A   565    	CALL	_flush_UART0
+0000F0 C1                  A   566    	POP	BC
+                           A   567    ;   91			
+                           A   568    ;   92		}
+                           A   569    ;   93	#endif
+                           A   570    ;   94	
+                           A   571    ;   95	#if 0 // keyboard isr interrupt test; s
+                           A   572    ;   96		{
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  12
+
+
+PC     Object              I  Line    Source main.src
+                           A   573    ;   97			uint8_t p;
+                           A   574    ;   98			char b [ 10 ];
+                           A   575    ;   99			
+                           A   576    ;  100			keyb_setup();
+                           A   577    ;  101			
+                           A   578    ;  102			while ( 1 ) {
+                           A   579    ;  103				p = packet_fetch_blocking()
+                           A   580    ;  104	
+                           A   581    ;  105				// scancode
+                           A   582    ;  106				lame_itoa ( (int)p, b );
+                           A   583    ;  107				write_UART0 ( b, lame_strle
+                           A   584    ;  108				write_UART0 ( "\n", 1 );
+                           A   585    ;  109				// mapped char
+                           A   586    ;  110				b [ 0 ] = map_scan_code ( p
+                           A   587    ;  111				b [ 1 ] = '\n';
+                           A   588    ;  112				b [ 2 ] = '\0';
+                           A   589    ;  113				write_UART0 ( b, 2 );
+                           A   590    ;  114	
+                           A   591    ;  115				//flush_UART0 ( FLUSHFIFO_A
+                           A   592    ;  116	
+                           A   593    ;  117				//delay_loop ( 10 );
+                           A   594    ;  118			}
+                           A   595    ;  119	
+                           A   596    ;  120		}
+                           A   597    ;  121	#endif
+                           A   598    ;  122		
+                           A   599    ;  123	#if 0 // ram test - and why aren't I ma
+                           A   600    ;  124		{
+                           A   601    ;  125			unsigned char *extram, *iter, *
+                           A   602    ;  126			unsigned char v;
+                           A   603    ;  127			char msg [ 64 ];
+                           A   604    ;  128			
+                           A   605    ;  129			extram = (unsigned char *) EXTR
+                           A   606    ;  130	
+                           A   607    ;  131			max = extram;
+                           A   608    ;  132			max += 65536; max += 65536;
+                           A   609    ;  133			max += 65536; max += 65536;
+                           A   610    ;  134			max += 65536; max += 65536;
+                           A   611    ;  135			max += 65536; max += 65536;
+                           A   612    ;  136	
+                           A   613    ;  137			// writer stage
+                           A   614    ;  138			strcpy ( msg, "Memory test: wri
+                           A   615    ;  139			write_UART0 ( msg, lame_strlen 
+                           A   616    ;  140			
+                           A   617    ;  141			iter = extram;
+                           A   618    ;  142			v = 0;
+                           A   619    ;  143			
+                           A   620    ;  144			while ( iter != max ) {
+                           A   621    ;  145				*iter = v;
+                           A   622    ;  146				v++;
+                           A   623    ;  147				iter++;
+                           A   624    ;  148			}
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  13
+
+
+PC     Object              I  Line    Source main.src
+                           A   625    ;  149			
+                           A   626    ;  150			// verification stage
+                           A   627    ;  151			strcpy ( msg, "Memory test: ver
+                           A   628    ;  152			write_UART0 ( msg, lame_strlen 
+                           A   629    ;  153	
+                           A   630    ;  154			iter = extram;
+                           A   631    ;  155			v = 0;
+                           A   632    ;  156			
+                           A   633    ;  157			while ( iter != max ) {
+                           A   634    ;  158				if ( *iter != v ) {
+                           A   635    ;  159					strcpy ( msg, "Memory t
+                           A   636    ;  160					write_UART0 ( msg, lame
+                           A   637    ;  161					break;
+                           A   638    ;  162				}
+                           A   639    ;  163	
+                           A   640    ;  164				v++;
+                           A   641    ;  165				iter++;
+                           A   642    ;  166			}
+                           A   643    ;  167			
+                           A   644    ;  168			if ( iter == max ) {
+                           A   645    ;  169				strcpy ( msg, "Memory test:
+                           A   646    ;  170				write_UART0 ( msg, lame_str
+                           A   647    ;  171			}
+                           A   648    ;  172	
+                           A   649    ;  173		}
+                           A   650    ;  174	#endif
+                           A   651    ;  175		
+                           A   652    ;  176	#if 1 // ext audio AY-3-8912 test
+                           A   653    ;  177		{
+                           A   654    ;  178			
+                           A   655    ;  179			ay_gpio_setup();
+                           A   656    .LINE 179
+                           A   657    
+0000F1 CD 00 00 00         A   658    	CALL	_ay_gpio_setup
+                           A   659    ;  180	
+                           A   660    ;  181			while ( 1 ) {
+0000F5                     A   661    L_10:
+                           A   662    .LINE 181
+                           A   663    
+                           A   664    ;  182				delay_ms_spin ( 600 );
+                           A   665    .LINE 182
+                           A   666    
+0000F5 01580200            A   667    	LD	BC,600
+0000F9 C5                  A   668    	PUSH	BC
+0000FA CD 00 00 00         A   669    	CALL	_delay_ms_spin
+0000FE C1                  A   670    	POP	BC
+                           A   671    ;  183				ym_play_demo();
+                           A   672    .LINE 183
+                           A   673    
+0000FF CD 00 00 00         A   674    	CALL	_ym_play_demo
+                           A   675    ;  184			} // while
+                           A   676    .LINE 184
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  14
+
+
+PC     Object              I  Line    Source main.src
+                           A   677    
+000103 18 F0 00            A   678    	JR	L_10
+                           A   679    ;  185			
+                           A   680    ;  186		}
+                           A   681    ;  187	#endif
+                           A   682    ;  188	
+                           A   683    ;  189	#if 1 // main menu
+                           A   684    ;  190	{
+                           A   685    ;  191		unsigned char *extram;
+                           A   686    ;  192		unsigned char spritelist [ TM_SPRIT
+                           A   687    ;  193		unsigned char *curr = spritelist;
+                           A   688    ;  194		unsigned char iter;
+                           A   689    ;  195	
+                           A   690    ;  196		vb_enable_vblank_interupt();
+                           A   691    ;  197		
+                           A   692    ;  198		extram = (UINT8 *) TM_VRAM_FB;
+                           A   693    ;  199		memset ( extram, 1, TM_TEXTLINE_STR
+                           A   694    ;  200		
+                           A   695    ;  201		strcpy ( extram, "ZikZak SBC r3 512
+                           A   696    ;  202		strcpy ( extram + TM_TEXTLINE_STRID
+                           A   697    ;  203			
+                           A   698    ;  204		extram = (UINT8 *) TM_VRAM_ATTR;
+                           A   699    ;  205		memset ( extram, 1, TM_TEXTLINE_STR
+                           A   700    ;  206		
+                           A   701    ;  207		extram = (UINT8 *) TM_SPRITE_LIST_B
+                           A   702    ;  208		memset ( extram, 0, TM_SPRITE_MAX *
+                           A   703    ;  209		*((UINT8*)TM_SPRITE_ACTIVE) = 4;
+                           A   704    ;  210	
+                           A   705    ;  211		curr [ 0 ] =  30; curr [ 1 ] =  30;
+                           A   706    ;  212		curr [ 0 ] =  60; curr [ 1 ] =  60;
+                           A   707    ;  213		curr [ 0 ] =  90; curr [ 1 ] =  90;
+                           A   708    ;  214		curr [ 0 ] = 120; curr [ 1 ] = 120;
+                           A   709    ;  215		
+                           A   710    ;  216		// move sprites
+                           A   711    ;  217		while ( 1 ) {
+000106                     A   712    L_35:
+                           A   713    .LINE 217
+                           A   714    
+                           A   715    ;  218			
+                           A   716    ;  219			curr = spritelist;
+                           A   717    .LINE 219
+                           A   718    
+000106 DDE5E1              A   719    	LD	HL,IX
+000109 0155FFFF            A   720    	LD	BC,-171
+00010D 09                  A   721    	ADD	HL,BC
+00010E DD2FFD              A   722    	LD	(IX+-3),HL
+000111 18 0C 00            A   723    	JR	L_30
+                           A   724    ;  220			for ( iter = 0; iter < 4; iter+
+000114                     A   725    L_31:
+                           A   726    .LINE 220
+                           A   727    
+000114 DD7EF9              A   728    	LD	A,(IX+-7)
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  15
+
+
+PC     Object              I  Line    Source main.src
+000117 FE04                A   729    	CP	A,4
+000119 38 0B               A   730    	JR	C,L_33
+00011B C3 91 02 00         A   731    	JR	L_34
+00011F                     A   732    L_30:
+00011F DD36F900            A   733    	LD	(IX+-7),0
+000123 18 EF 00            A   734    	JR	L_31
+000126                     A   735    L_33:
+                           A   736    ;  221			
+                           A   737    ;  222	#if 1		
+                           A   738    ;  223		    if ( curr [ 3 ] < 64 ) {
+                           A   739    .LINE 223
+                           A   740    
+000126 DD31FD              A   741    	LD	IY,(IX+-3)
+000129 ED2303              A   742    	LEA	HL,IY+3
+00012C 7E                  A   743    	LD	A,(HL)
+00012D B7ED62              A   744    	UEXT	HL
+000130 6F                  A   745    	LD	L,A
+000131 01400000            A   746    	LD	BC,64
+000135 B7                  A   747    	OR	A,A
+000136 ED42                A   748    	SBC	HL,BC
+000138 CD 00 00 00         A   749    	CALL	__setflag
+00013C F2 78 01 00 00      A   750    	JP	P,L_28
+                           A   751    ;  224				// go left                 
+                           A   752    ;  225				if ( curr [ 0 ] > 10 ) {
+                           A   753    .LINE 225
+                           A   754    
+000141 DD27FD              A   755    	LD	HL,(IX+-3)
+000144 7E                  A   756    	LD	A,(HL)
+000145 B7ED62              A   757    	UEXT	HL
+000148 6F                  A   758    	LD	L,A
+000149 E5C1                A   759    	LD	BC,HL
+00014B 210A0000            A   760    	LD	HL,10
+00014F B7                  A   761    	OR	A,A
+000150 ED42                A   762    	SBC	HL,BC
+000152 CD 00 00 00         A   763    	CALL	__setflag
+000156 F2 6C 01 00 00      A   764    	JP	P,L_14
+                           A   765    ;  226	              curr [ 0 ] -= 2;
+                           A   766    .LINE 226
+                           A   767    
+00015B DD27FD              A   768    	LD	HL,(IX+-3)
+00015E DD31FD              A   769    	LD	IY,(IX+-3)
+000161 7E                  A   770    	LD	A,(HL)
+000162 3D                  A   771    	DEC	A
+000163 3D                  A   772    	DEC	A
+000164 FD7700              A   773    	LD	(IY),A
+                           A   774    ;  227	            } else {
+                           A   775    .LINE 227
+                           A   776    
+000167 C3 80 02 00 00      A   777    	JR	L_29
+00016C                     A   778    L_14:
+                           A   779    ;  228	              curr [ 3 ] = 100;
+                           A   780    .LINE 228
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  16
+
+
+PC     Object              I  Line    Source main.src
+                           A   781    
+00016C DD31FD              A   782    	LD	IY,(IX+-3)
+00016F ED2303              A   783    	LEA	HL,IY+3
+000172 3664                A   784    	LD	(HL),100
+                           A   785    ;  229	            }
+                           A   786    ;  230	        } else if ( curr [ 3 ] > 64 && 
+                           A   787    .LINE 230
+                           A   788    
+000174 C3 80 02 00         A   789    	JR	L_29
+000178                     A   790    L_28:
+000178 DD31FD              A   791    	LD	IY,(IX+-3)
+00017B ED2303              A   792    	LEA	HL,IY+3
+00017E 7E                  A   793    	LD	A,(HL)
+00017F B7ED62              A   794    	UEXT	HL
+000182 6F                  A   795    	LD	L,A
+000183 E5C1                A   796    	LD	BC,HL
+000185 21400000            A   797    	LD	HL,64
+000189 B7                  A   798    	OR	A,A
+00018A ED42                A   799    	SBC	HL,BC
+00018C CD 00 00 00         A   800    	CALL	__setflag
+000190 F2 E4 01 00         A   801    	JP	P,L_26
+000194 DD31FD              A   802    	LD	IY,(IX+-3)
+000197 ED2303              A   803    	LEA	HL,IY+3
+00019A 7E                  A   804    	LD	A,(HL)
+00019B B7ED62              A   805    	UEXT	HL
+00019E 6F                  A   806    	LD	L,A
+00019F 01800000            A   807    	LD	BC,128
+0001A3 B7                  A   808    	OR	A,A
+0001A4 ED42                A   809    	SBC	HL,BC
+0001A6 CD 00 00 00         A   810    	CALL	__setflag
+0001AA F2 E4 01 00 00      A   811    	JP	P,L_26
+                           A   812    ;  231	            // go right                
+                           A   813    ;  232	            if ( curr [ 0 ] < FBWIDTH -
+                           A   814    .LINE 232
+                           A   815    
+0001AF DD27FD              A   816    	LD	HL,(IX+-3)
+0001B2 7E                  A   817    	LD	A,(HL)
+0001B3 B7ED62              A   818    	UEXT	HL
+0001B6 6F                  A   819    	LD	L,A
+0001B7 01D80000            A   820    	LD	BC,216
+0001BB B7                  A   821    	OR	A,A
+0001BC ED42                A   822    	SBC	HL,BC
+0001BE CD 00 00 00         A   823    	CALL	__setflag
+0001C2 F2 D8 01 00 00      A   824    	JP	P,L_17
+                           A   825    ;  233	              curr [ 0 ] += 2;
+                           A   826    .LINE 233
+                           A   827    
+0001C7 DD27FD              A   828    	LD	HL,(IX+-3)
+0001CA DD31FD              A   829    	LD	IY,(IX+-3)
+0001CD 7E                  A   830    	LD	A,(HL)
+0001CE 3C                  A   831    	INC	A
+0001CF 3C                  A   832    	INC	A
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  17
+
+
+PC     Object              I  Line    Source main.src
+0001D0 FD7700              A   833    	LD	(IY),A
+                           A   834    ;  234	            } else {
+                           A   835    .LINE 234
+                           A   836    
+0001D3 C3 80 02 00 00      A   837    	JR	L_29
+0001D8                     A   838    L_17:
+                           A   839    ;  235	              curr [ 3 ] = 50;
+                           A   840    .LINE 235
+                           A   841    
+0001D8 DD31FD              A   842    	LD	IY,(IX+-3)
+0001DB ED2303              A   843    	LEA	HL,IY+3
+0001DE 3632                A   844    	LD	(HL),50
+                           A   845    ;  236	            }
+                           A   846    ;  237	        } else if ( curr [ 3 ] > 128 &&
+                           A   847    .LINE 237
+                           A   848    
+0001E0 C3 80 02 00         A   849    	JR	L_29
+0001E4                     A   850    L_26:
+0001E4 DD31FD              A   851    	LD	IY,(IX+-3)
+0001E7 ED2303              A   852    	LEA	HL,IY+3
+0001EA 7E                  A   853    	LD	A,(HL)
+0001EB B7ED62              A   854    	UEXT	HL
+0001EE 6F                  A   855    	LD	L,A
+0001EF E5C1                A   856    	LD	BC,HL
+0001F1 21800000            A   857    	LD	HL,128
+0001F5 B7                  A   858    	OR	A,A
+0001F6 ED42                A   859    	SBC	HL,BC
+0001F8 CD 00 00 00         A   860    	CALL	__setflag
+0001FC F2 50 02 00         A   861    	JP	P,L_24
+000200 DD31FD              A   862    	LD	IY,(IX+-3)
+000203 ED2303              A   863    	LEA	HL,IY+3
+000206 7E                  A   864    	LD	A,(HL)
+000207 B7ED62              A   865    	UEXT	HL
+00020A 6F                  A   866    	LD	L,A
+00020B 01C00000            A   867    	LD	BC,192
+00020F B7                  A   868    	OR	A,A
+000210 ED42                A   869    	SBC	HL,BC
+000212 CD 00 00 00         A   870    	CALL	__setflag
+000216 F2 50 02 00 00      A   871    	JP	P,L_24
+                           A   872    ;  238	            // up                      
+                           A   873    ;  239	            if ( curr [ 1 ] > 40 ) {
+                           A   874    .LINE 239
+                           A   875    
+00021B DD27FD              A   876    	LD	HL,(IX+-3)
+00021E 23                  A   877    	INC	HL
+00021F 7E                  A   878    	LD	A,(HL)
+000220 B7ED62              A   879    	UEXT	HL
+000223 6F                  A   880    	LD	L,A
+000224 E5C1                A   881    	LD	BC,HL
+000226 21280000            A   882    	LD	HL,40
+00022A B7                  A   883    	OR	A,A
+00022B ED42                A   884    	SBC	HL,BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  18
+
+
+PC     Object              I  Line    Source main.src
+00022D CD 00 00 00         A   885    	CALL	__setflag
+000231 F2 45 02 00 00      A   886    	JP	P,L_20
+                           A   887    ;  240	              curr [ 1 ] -= 1;
+                           A   888    .LINE 240
+                           A   889    
+000236 DD27FD              A   890    	LD	HL,(IX+-3)
+000239 23                  A   891    	INC	HL
+00023A DD31FD              A   892    	LD	IY,(IX+-3)
+00023D 7E                  A   893    	LD	A,(HL)
+00023E 3D                  A   894    	DEC	A
+00023F FD7701              A   895    	LD	(IY+1),A
+                           A   896    ;  241	            } else {
+                           A   897    .LINE 241
+                           A   898    
+000242 18 3C 00            A   899    	JR	L_29
+000245                     A   900    L_20:
+                           A   901    ;  242	              curr [ 3 ] = 250;
+                           A   902    .LINE 242
+                           A   903    
+000245 DD31FD              A   904    	LD	IY,(IX+-3)
+000248 ED2303              A   905    	LEA	HL,IY+3
+00024B 36FA                A   906    	LD	(HL),250
+                           A   907    ;  243	            }
+                           A   908    ;  244	        } else {
+                           A   909    .LINE 244
+                           A   910    
+00024D 18 31 00            A   911    	JR	L_29
+000250                     A   912    L_24:
+                           A   913    ;  245	            // down                    
+                           A   914    ;  246	            if ( curr [ 1 ] < FBHEIGHT 
+                           A   915    .LINE 246
+                           A   916    
+000250 DD27FD              A   917    	LD	HL,(IX+-3)
+000253 23                  A   918    	INC	HL
+000254 7E                  A   919    	LD	A,(HL)
+000255 B7ED62              A   920    	UEXT	HL
+000258 6F                  A   921    	LD	L,A
+000259 01980000            A   922    	LD	BC,152
+00025D B7                  A   923    	OR	A,A
+00025E ED42                A   924    	SBC	HL,BC
+000260 CD 00 00 00         A   925    	CALL	__setflag
+000264 F2 78 02 00 00      A   926    	JP	P,L_22
+                           A   927    ;  247	              curr [ 1 ] += 1;
+                           A   928    .LINE 247
+                           A   929    
+000269 DD31FD              A   930    	LD	IY,(IX+-3)
+00026C DD27FD              A   931    	LD	HL,(IX+-3)
+00026F 23                  A   932    	INC	HL
+000270 FD7E01              A   933    	LD	A,(IY+1)
+000273 3C                  A   934    	INC	A
+000274 77                  A   935    	LD	(HL),A
+                           A   936    ;  248	            } else {
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  19
+
+
+PC     Object              I  Line    Source main.src
+                           A   937    .LINE 248
+                           A   938    
+000275 18 09 00            A   939    	JR	L_29
+000278                     A   940    L_22:
+                           A   941    ;  249	              curr [ 3 ] = 150;
+                           A   942    .LINE 249
+                           A   943    
+000278 DD31FD              A   944    	LD	IY,(IX+-3)
+00027B ED2303              A   945    	LEA	HL,IY+3
+00027E 3696                A   946    	LD	(HL),150
+                           A   947    ;  250	            }
+                           A   948    ;  251	         }
+000280                     A   949    L_29:
+                           A   950    .LINE 251
+                           A   951    
+                           A   952    ;  252	#endif
+                           A   953    ;  253				curr += 4;
+                           A   954    .LINE 253
+                           A   955    
+000280 DD31FD              A   956    	LD	IY,(IX+-3)
+000283 ED3304              A   957    	LEA	IY,IY+4
+000286 DD3EFD              A   958    	LD	(IX+-3),IY
+000289 DD34F9              A   959    	INC	(IX+-7)
+                           A   960    ;  254			} // iter
+                           A   961    .LINE 254
+                           A   962    
+00028C C3 14 01 00 00      A   963    	JR	L_31
+000291                     A   964    L_34:
+                           A   965    ;  255		 
+                           A   966    ;  256	
+                           A   967    ;  257			
+                           A   968    ;  258			vb_wait_for_vblank ( VB_CLEAR_S
+                           A   969    .LINE 258
+                           A   970    
+000291 01010000            A   971    	LD	BC,1
+000295 C5                  A   972    	PUSH	BC
+000296 CD 00 00 00         A   973    	CALL	_vb_wait_for_vblank
+00029A C1                  A   974    	POP	BC
+                           A   975    ;  259		}
+                           A   976    .LINE 259
+                           A   977    
+00029B C3 06 01 00 00      A   978    	JR	L_35
+                           A   979    ;  260	
+                           A   980    ;  261		while ( 1 ) {
+0002A0                     A   981    L_45:
+                           A   982    .LINE 261
+                           A   983    
+                           A   984    ;  262			UINT8 *extram;
+                           A   985    ;  263			char inbuf [ 5 ] = "\0\0\0\0\0"
+                           A   986    .LINE 263
+                           A   987    
+0002A0 ED12F3              A   988    	LEA	DE,IX+-13
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  20
+
+
+PC     Object              I  Line    Source main.src
+0002A3 21 00 00 00         A   989    	LD	HL,_0temp37
+0002A7 01050000            A   990    	LD	BC,5
+0002AB EDB0 00             A   991    	LDIR	
+                           A   992    ;  264			UINT24 nbytes;
+                           A   993    ;  265			UCHAR retval;
+                           A   994    ;  266				
+                           A   995    ;  267			extram = (UINT8 *) TM_VRAM_FB;
+                           A   996    .LINE 267
+                           A   997    
+0002AE 0100000C            A   998    	LD	BC,786432
+0002B2 DD0FFA              A   999    	LD	(IX+-6),BC
+                           A  1000    ;  268	
+                           A  1001    ;  269			strcpy ( extram, "Zikzak http:/
+                           A  1002    .LINE 269
+                           A  1003    
+0002B5 01 02 00 00         A  1004    	LD	BC,L__14
+0002B9 C5                  A  1005    	PUSH	BC
+0002BA DD07FA              A  1006    	LD	BC,(IX+-6)
+0002BD C5                  A  1007    	PUSH	BC
+0002BE CD 00 00 00         A  1008    	CALL	_strcpy
+0002C2 C1                  A  1009    	POP	BC
+0002C3 C1                  A  1010    	POP	BC
+                           A  1011    ;  270			extram += TM_TEXTLINE_STRIDE;
+                           A  1012    .LINE 270
+                           A  1013    
+0002C4 DD31FA              A  1014    	LD	IY,(IX+-6)
+0002C7 ED3320              A  1015    	LEA	IY,IY+32
+0002CA DD3EFA              A  1016    	LD	(IX+-6),IY
+                           A  1017    ;  271			strcpy ( extram, "Zikzak http:/
+                           A  1018    .LINE 271
+                           A  1019    
+0002CD 01 1E 00 00         A  1020    	LD	BC,L__15
+0002D1 C5                  A  1021    	PUSH	BC
+0002D2 DD07FA              A  1022    	LD	BC,(IX+-6)
+0002D5 C5                  A  1023    	PUSH	BC
+0002D6 CD 00 00 00         A  1024    	CALL	_strcpy
+0002DA C1                  A  1025    	POP	BC
+0002DB C1                  A  1026    	POP	BC
+                           A  1027    ;  272			extram += TM_TEXTLINE_STRIDE;
+                           A  1028    .LINE 272
+                           A  1029    
+0002DC DD31FA              A  1030    	LD	IY,(IX+-6)
+0002DF ED3320              A  1031    	LEA	IY,IY+32
+0002E2 DD3EFA              A  1032    	LD	(IX+-6),IY
+                           A  1033    ;  273			strcpy ( extram, "Zikzak http:/
+                           A  1034    .LINE 273
+                           A  1035    
+0002E5 01 3A 00 00         A  1036    	LD	BC,L__16
+0002E9 C5                  A  1037    	PUSH	BC
+0002EA DD07FA              A  1038    	LD	BC,(IX+-6)
+0002ED C5                  A  1039    	PUSH	BC
+0002EE CD 00 00 00         A  1040    	CALL	_strcpy
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  21
+
+
+PC     Object              I  Line    Source main.src
+0002F2 C1                  A  1041    	POP	BC
+0002F3 C1                  A  1042    	POP	BC
+                           A  1043    ;  274			extram += TM_TEXTLINE_STRIDE;
+                           A  1044    .LINE 274
+                           A  1045    
+0002F4 DD31FA              A  1046    	LD	IY,(IX+-6)
+0002F7 ED3320              A  1047    	LEA	IY,IY+32
+0002FA DD3EFA              A  1048    	LD	(IX+-6),IY
+                           A  1049    ;  275			
+                           A  1050    ;  276			//render_font_8x8 ( 0, 0,  "Zik
+                           A  1051    ;  277			//render_font_8x8 ( 0, 8,  "Mod
+                           A  1052    ;  278			//render_font_8x8 ( 0, 16, "In:
+                           A  1053    ;  279			
+                           A  1054    ;  280			//render_font_8x8 ( 0, 32, menu
+                           A  1055    ;  281			
+                           A  1056    ;  282			nbytes = 1;
+                           A  1057    .LINE 282
+                           A  1058    
+0002FD 01010000            A  1059    	LD	BC,1
+000301 DD0FEF              A  1060    	LD	(IX+-17),BC
+                           A  1061    ;  283			retval = read_UART0 ( inbuf, &n
+                           A  1062    .LINE 283
+                           A  1063    
+000304 ED65EF              A  1064    	PEA	IX+-17
+000307 ED65F3              A  1065    	PEA	IX+-13
+00030A CD 00 00 00         A  1066    	CALL	_read_UART0
+00030E C1                  A  1067    	POP	BC
+00030F C1                  A  1068    	POP	BC
+000310 DD77F2              A  1069    	LD	(IX+-14),A
+                           A  1070    ;  284			
+                           A  1071    ;  285			// echo back
+                           A  1072    ;  286			render_font_8x8 ( 0, 0,  inbuf,
+                           A  1073    .LINE 286
+                           A  1074    
+000313 01FF0000            A  1075    	LD	BC,255
+000317 C5                  A  1076    	PUSH	BC
+000318 01010000            A  1077    	LD	BC,1
+00031C C5                  A  1078    	PUSH	BC
+00031D CD 00 00 00         A  1079    	CALL	_lame_randrange8
+000321 C1                  A  1080    	POP	BC
+000322 C1                  A  1081    	POP	BC
+000323 4F                  A  1082    	LD	C,A
+000324 0600                A  1083    	LD	B,0
+000326 C5                  A  1084    	PUSH	BC
+000327 ED65F3              A  1085    	PEA	IX+-13
+00032A 01000000            A  1086    	LD	BC,0
+00032E C5                  A  1087    	PUSH	BC
+00032F C5                  A  1088    	PUSH	BC
+000330 CD 00 00 00         A  1089    	CALL	_render_font_8x8
+000334 C1                  A  1090    	POP	BC
+000335 C1                  A  1091    	POP	BC
+000336 C1                  A  1092    	POP	BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  22
+
+
+PC     Object              I  Line    Source main.src
+000337 C1                  A  1093    	POP	BC
+                           A  1094    ;  287			write_UART0 ( inbuf, lame_strle
+                           A  1095    .LINE 287
+                           A  1096    
+000338 ED65F3              A  1097    	PEA	IX+-13
+00033B CD 00 00 00         A  1098    	CALL	_lame_strlen
+00033F C1                  A  1099    	POP	BC
+000340 E5C1                A  1100    	LD	BC,HL
+000342 CD 00 00 00         A  1101    	CALL	__stoiu
+000346 E5                  A  1102    	PUSH	HL
+000347 ED65F3              A  1103    	PEA	IX+-13
+00034A CD 00 00 00         A  1104    	CALL	_write_UART0
+00034E C1                  A  1105    	POP	BC
+00034F C1                  A  1106    	POP	BC
+                           A  1107    ;  288			
+                           A  1108    ;  289			if ( retval == UART_ERR_NONE ) 
+                           A  1109    .LINE 289
+                           A  1110    
+000350 DD7EF2              A  1111    	LD	A,(IX+-14)
+000353 B7                  A  1112    	OR	A,A
+000354 C2 DD 03 00 00      A  1113    	JR	NZ,L_44
+                           A  1114    ;  290				
+                           A  1115    ;  291				switch ( inbuf [ 0 ] ) {
+                           A  1116    .LINE 291
+                           A  1117    
+000359 DD7EF3              A  1118    	LD	A,(IX+-13)
+00035C 17ED62              A  1119    	SEXT	HL
+00035F DD6EF3              A  1120    	LD	L,(IX+-13)
+000362 CD 00 00 00         A  1121    	CALL	__case8D
+000366 E9                  A  1122    	JP	(HL)
+000367                     A  1123    L__18:
+000367 0400                A  1124    	DW	4
+000369 31                  A  1125    	DB	49
+00036A 7C0300              A  1126    	DW24	L_38	
+                           A  1127    
+00036D 32                  A  1128    	DB	50
+00036E 950300              A  1129    	DW24	L_39	
+                           A  1130    
+000371 34                  A  1131    	DB	52
+000372 A80300              A  1132    	DW24	L_40	
+                           A  1133    
+000375 35                  A  1134    	DB	53
+000376 BB0300              A  1135    	DW24	L_41	
+                           A  1136    
+000379 CE0300              A  1137    	DW24	L_42	
+                           A  1138    
+                           A  1139    ;  292					case '1':
+00037C                     A  1140    L_38:
+                           A  1141    .LINE 292
+                           A  1142    
+                           A  1143    ;  293					{
+                           A  1144    ;  294						demo_linedemo ( 500
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  23
+
+
+PC     Object              I  Line    Source main.src
+                           A  1145    .LINE 294
+                           A  1146    
+00037C 01F40100            A  1147    	LD	BC,500
+000380 C5                  A  1148    	PUSH	BC
+000381 CD 00 00 00         A  1149    	CALL	_demo_linedemo
+000385 C1                  A  1150    	POP	BC
+                           A  1151    ;  295						demo_pause ( "** Pr
+                           A  1152    .LINE 295
+                           A  1153    
+000386 01 56 00 00         A  1154    	LD	BC,L__19
+00038A C5                  A  1155    	PUSH	BC
+00038B CD 00 00 00         A  1156    	CALL	_demo_pause
+00038F C1                  A  1157    	POP	BC
+                           A  1158    ;  296					}
+                           A  1159    ;  297					break;
+                           A  1160    .LINE 297
+                           A  1161    
+000390 C3 A0 02 00 00      A  1162    	JR	L_45
+                           A  1163    ;  298					
+                           A  1164    ;  299					case '2':
+000395                     A  1165    L_39:
+                           A  1166    .LINE 299
+                           A  1167    
+                           A  1168    ;  300					{
+                           A  1169    ;  301						demo_offset_squares
+                           A  1170    .LINE 301
+                           A  1171    
+000395 CD 00 00 00         A  1172    	CALL	_demo_offset_squares
+                           A  1173    ;  302						demo_pause ( "** Pr
+                           A  1174    .LINE 302
+                           A  1175    
+000399 01 74 00 00         A  1176    	LD	BC,L__20
+00039D C5                  A  1177    	PUSH	BC
+00039E CD 00 00 00         A  1178    	CALL	_demo_pause
+0003A2 C1                  A  1179    	POP	BC
+                           A  1180    ;  303					}
+                           A  1181    ;  304					break;
+                           A  1182    .LINE 304
+                           A  1183    
+0003A3 C3 A0 02 00 00      A  1184    	JR	L_45
+                           A  1185    ;  305	
+                           A  1186    ;  306					case '4':
+0003A8                     A  1187    L_40:
+                           A  1188    .LINE 306
+                           A  1189    
+                           A  1190    ;  307					{
+                           A  1191    ;  308						demo_charset();
+                           A  1192    .LINE 308
+                           A  1193    
+0003A8 CD 00 00 00         A  1194    	CALL	_demo_charset
+                           A  1195    ;  309						demo_pause ( "** Pr
+                           A  1196    .LINE 309
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  24
+
+
+PC     Object              I  Line    Source main.src
+                           A  1197    
+0003AC 01 92 00 00         A  1198    	LD	BC,L__21
+0003B0 C5                  A  1199    	PUSH	BC
+0003B1 CD 00 00 00         A  1200    	CALL	_demo_pause
+0003B5 C1                  A  1201    	POP	BC
+                           A  1202    ;  310					}
+                           A  1203    ;  311					break;
+                           A  1204    .LINE 311
+                           A  1205    
+0003B6 C3 A0 02 00 00      A  1206    	JR	L_45
+                           A  1207    ;  312	
+                           A  1208    ;  313					case '5':
+0003BB                     A  1209    L_41:
+                           A  1210    .LINE 313
+                           A  1211    
+                           A  1212    ;  314					{
+                           A  1213    ;  315						demo_sprite_fb();
+                           A  1214    .LINE 315
+                           A  1215    
+0003BB CD 00 00 00         A  1216    	CALL	_demo_sprite_fb
+                           A  1217    ;  316						demo_pause ( "** Pr
+                           A  1218    .LINE 316
+                           A  1219    
+0003BF 01 B0 00 00         A  1220    	LD	BC,L__22
+0003C3 C5                  A  1221    	PUSH	BC
+0003C4 CD 00 00 00         A  1222    	CALL	_demo_pause
+0003C8 C1                  A  1223    	POP	BC
+                           A  1224    ;  317					}
+                           A  1225    ;  318					break;
+                           A  1226    .LINE 318
+                           A  1227    
+0003C9 C3 A0 02 00 00      A  1228    	JR	L_45
+                           A  1229    ;  319	
+                           A  1230    ;  320					default:
+0003CE                     A  1231    L_42:
+                           A  1232    .LINE 320
+                           A  1233    
+                           A  1234    ;  321						demo_pause ( "** Op
+                           A  1235    .LINE 321
+                           A  1236    
+0003CE 01 CE 00 00         A  1237    	LD	BC,L__23
+0003D2 C5                  A  1238    	PUSH	BC
+0003D3 CD 00 00 00         A  1239    	CALL	_demo_pause
+0003D7 C1                  A  1240    	POP	BC
+                           A  1241    ;  322				}
+                           A  1242    ;  323				
+                           A  1243    ;  324				
+                           A  1244    ;  325			} else {
+                           A  1245    .LINE 325
+                           A  1246    
+0003D8 C3 A0 02 00 00      A  1247    	JR	L_45
+0003DD                     A  1248    L_44:
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  25
+
+
+PC     Object              I  Line    Source main.src
+                           A  1249    ;  326				flush_UART0 ( FLUSHFIFO_ALL
+                           A  1250    .LINE 326
+                           A  1251    
+0003DD 01030000            A  1252    	LD	BC,3
+0003E1 C5                  A  1253    	PUSH	BC
+0003E2 CD 00 00 00         A  1254    	CALL	_flush_UART0
+0003E6 C1                  A  1255    	POP	BC
+                           A  1256    ;  327			}
+                           A  1257    ;  328			
+                           A  1258    ;  329		}
+                           A  1259    .LINE 329
+                           A  1260    
+0003E7 C3 A0 02 00 00      A  1261    	JR	L_45
+                           A  1262    ;  330	
+                           A  1263    ;  331	}	
+                           A  1264    ;  332	#endif
+                           A  1265    ;  333		
+                           A  1266    ;  334	#if 0 // do nothing
+                           A  1267    ;  335		{
+                           A  1268    ;  336			char b [ 20 ];
+                           A  1269    ;  337			UINT8 v = 1;
+                           A  1270    ;  338			while ( 1 ) {
+                           A  1271    ;  339				lame_itoa ( v, b );
+                           A  1272    ;  340			}
+                           A  1273    ;  341		}
+                           A  1274    ;  342	#endif
+                           A  1275    ;  343		
+                           A  1276    ;  344		return ( 0 );
+                           A  1277    ;  345	}
+                           A  1278    .LINE 345
+                           A  1279    
+0003EC DDF9                A  1280    	LD	SP,IX
+0003EE DDE1                A  1281    	POP	IX
+0003F0 C9                  A  1282    	RET	
+                           A  1283    
+                           A  1284    
+                           A  1285    ;**************************** _main ***********
+                           A  1286    ;Name                         Addr/Register   S
+                           A  1287    ;_demo_sprite_fb                     IMPORT  --
+                           A  1288    ;_demo_charset                       IMPORT  --
+                           A  1289    ;_demo_offset_squares                IMPORT  --
+                           A  1290    ;_demo_pause                         IMPORT  --
+                           A  1291    ;_demo_linedemo                      IMPORT  --
+                           A  1292    ;_lame_randrange8                    IMPORT  --
+                           A  1293    ;_render_font_8x8                    IMPORT  --
+                           A  1294    ;_read_UART0                         IMPORT  --
+                           A  1295    ;_strcpy                             IMPORT  --
+                           A  1296    ;_0temp37                            STATIC    
+                           A  1297    ;_vb_wait_for_vblank                 IMPORT  --
+                           A  1298    ;_ym_play_demo                       IMPORT  --
+                           A  1299    ;_ay_gpio_setup                      IMPORT  --
+                           A  1300    ;_flush_UART0                        IMPORT  --
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  26
+
+
+PC     Object              I  Line    Source main.src
+                           A  1301    ;_lame_strlen                        IMPORT  --
+                           A  1302    ;_lame_itoa                          IMPORT  --
+                           A  1303    ;_write_UART0                        IMPORT  --
+                           A  1304    ;_open_UART0                         IMPORT  --
+                           A  1305    ;__init_default_vectors              IMPORT  --
+                           A  1306    ;_delay_ms_spin                      IMPORT  --
+                           A  1307    ;spritelist                          IX-171    
+                           A  1308    ;b                                    IX-43    
+                           A  1309    ;u0                                   IX-27    
+                           A  1310    ;nbytes                               IX-17    
+                           A  1311    ;retval                               IX-14    
+                           A  1312    ;inbuf                                IX-13    
+                           A  1313    ;i                                     IX-8    
+                           A  1314    ;iter                                  IX-7    
+                           A  1315    ;extram                                IX-6    
+                           A  1316    ;curr                                  IX-3    
+                           A  1317    
+                           A  1318    
+                           A  1319    ; Stack Frame Size: 177 (bytes)
+                           A  1320    ;       Spill Code: 0 (instruction)
+                           A  1321    
+                           A  1322    
+                           A  1323    .ENDFUNC "main",345,"_main"
+                           A  1324    	SEGMENT STRSECT
+000000                     A  1325    L__3:
+000000 0A00                A  1326    	DB	10,0
+000002                     A  1327    L__14:
+000002 5A696B7A 616B2068   A  1328    	DB	"Zikzak http://www.zikzak.ca"
+00000A 7474703A 2F2F7777 
+000012 772E7A69 6B7A616B 
+00001A 2E6361 
+00001D 00                  A  1329    	DB	0
+00001E                     A  1330    L__15:
+00001E 5A696B7A 616B2068   A  1331    	DB	"Zikzak http://www.zikzak.ca"
+000026 7474703A 2F2F7777 
+00002E 772E7A69 6B7A616B 
+000036 2E6361 
+000039 00                  A  1332    	DB	0
+00003A                     A  1333    L__16:
+00003A 5A696B7A 616B2068   A  1334    	DB	"Zikzak http://www.zikzak.ca"
+000042 7474703A 2F2F7777 
+00004A 772E7A69 6B7A616B 
+000052 2E6361 
+000055 00                  A  1335    	DB	0
+000056                     A  1336    L__19:
+000056 2A2A2050 72657373   A  1337    	DB	"** Press key to exit demo ** "
+00005E 206B6579 20746F20 
+000066 65786974 2064656D 
+00006E 6F202A2A 20 
+000073 00                  A  1338    	DB	0
+000074                     A  1339    L__20:
+000074 2A2A2050 72657373   A  1340    	DB	"** Press key to exit demo ** "
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  27
+
+
+PC     Object              I  Line    Source main.src
+00007C 206B6579 20746F20 
+000084 65786974 2064656D 
+00008C 6F202A2A 20 
+000091 00                  A  1341    	DB	0
+000092                     A  1342    L__21:
+000092 2A2A2050 72657373   A  1343    	DB	"** Press key to exit demo ** "
+00009A 206B6579 20746F20 
+0000A2 65786974 2064656D 
+0000AA 6F202A2A 20 
+0000AF 00                  A  1344    	DB	0
+0000B0                     A  1345    L__22:
+0000B0 2A2A2050 72657373   A  1346    	DB	"** Press key to exit demo ** "
+0000B8 206B6579 20746F20 
+0000C0 65786974 2064656D 
+0000C8 6F202A2A 20 
+0000CD 00                  A  1347    	DB	0
+0000CE                     A  1348    L__23:
+0000CE 2A2A204F 7074696F   A  1349    	DB	"** Option not recognized. ** "
+0000D6 6E206E6F 74207265 
+0000DE 636F676E 697A6564 
+0000E6 2E202A2A 20 
+0000EB 00                  A  1350    	DB	0
+                           A  1351    	SEGMENT TEXT
+000000                     A  1352    _0temp37:
+000000 00                  A  1353    	DB	0
+000001 00                  A  1354    	DB	0
+000002 00                  A  1355    	DB	0
+000003 00                  A  1356    	DB	0
+000004 00                  A  1357    	DB	0
+                           A  1358    	XREF _demo_sprite_fb:ROM
+                           A  1359    	XREF _demo_charset:ROM
+                           A  1360    	XREF _demo_offset_squares:ROM
+                           A  1361    	XREF _demo_linedemo:ROM
+                           A  1362    	XREF _demo_pause:ROM
+                           A  1363    	XREF _vb_wait_for_vblank:ROM
+                           A  1364    	XREF _render_font_8x8:ROM
+                           A  1365    	XREF _ym_play_demo:ROM
+                           A  1366    	XREF _ay_gpio_setup:ROM
+                           A  1367    	XREF _delay_ms_spin:ROM
+                           A  1368    	XREF _lame_randrange8:ROM
+                           A  1369    	XREF _lame_strlen:ROM
+                           A  1370    	XREF _lame_itoa:ROM
+                           A  1371    	XREF _strcpy:ROM
+                           A  1372    	XREF _read_UART0:ROM
+                           A  1373    	XREF _write_UART0:ROM
+                           A  1374    	XREF _flush_UART0:ROM
+                           A  1375    	XREF _open_UART0:ROM
+                           A  1376    	XREF __init_default_vectors:ROM
+                           A  1377    	XREF __stoiu:ROM
+                           A  1378    	XREF __setflag:ROM
+                           A  1379    	XREF __icmpzero:ROM
+                           A  1380    	XREF __case8D:ROM
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)06-Nov-15     16:18:29     page:  28
+
+
+PC     Object              I  Line    Source main.src
+                           A  1381    	XDEF _main
+                           A  1382    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 1383

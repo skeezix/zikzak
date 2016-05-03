@@ -1,0 +1,702 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -nomodsect -optspeed -noreduceopt -padbranch 
+                           A     3    ; -peephole -globalopt -localcse -const=ROM 
+                           A     4    	FILE	"..\..\DEBUG2RAM\LIBDEBUG2R.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT BSS
+000000                     A     9    __d2r_literals:
+000000                     A    10    	DS	120
+                           A    11    .DEFINE "_d2r_literals"
+                           A    12    .ALIAS "__d2r_literals"
+                           A    13    .CLASS 83
+                           A    14    .VALUE __d2r_literals
+                           A    15    .DIM 40
+                           A    16    .TYPE 354
+                           A    17    .ENDEF
+                           A    18    	SEGMENT DATA
+000000                     A    19    __d2r_head:
+000000 29                  A    20    	DB	41
+                           A    21    .DEFINE "_d2r_head"
+                           A    22    .ALIAS "__d2r_head"
+                           A    23    .CLASS 69
+                           A    24    .VALUE __d2r_head
+                           A    25    .TYPE 12
+                           A    26    .ENDEF
+000001                     A    27    __d2r_tail:
+000001 29                  A    28    	DB	41
+                           A    29    .DEFINE "_d2r_tail"
+                           A    30    .ALIAS "__d2r_tail"
+                           A    31    .CLASS 69
+                           A    32    .VALUE __d2r_tail
+                           A    33    .TYPE 12
+                           A    34    .ENDEF
+000002                     A    35    __d2r_stringbase:
+000002 00000D              A    36    	DW24	851968
+                           A    37    .DEFINE "_d2r_stringbase"
+                           A    38    .ALIAS "__d2r_stringbase"
+                           A    39    .CLASS 69
+                           A    40    .VALUE __d2r_stringbase
+                           A    41    .TYPE 44
+                           A    42    .ENDEF
+                           A    43    ;    1	
+                           A    44    ;    2	#include <string.h>
+                           A    45    ;    3	#include "libdebug2r.h"
+                           A    46    ;    4	
+                           A    47    ;    5	#ifdef D2R_ON
+                           A    48    ;    6	char *_d2r_literals [ D2R_MAX ];   /* l
+                           A    49    ;    7	unsigned char _d2r_head = D2R_MAX + 1; 
+                           A    50    ;    8	unsigned char _d2r_tail = D2R_MAX + 1; 
+                           A    51    ;    9	
+                           A    52    ;   10	unsigned char *_d2r_stringbase = (unsig
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:   2
+
+
+PC     Object              I  Line    Source libdebug2r.src
+                           A    53    	SEGMENT CODE
+                           A    54    ;   11	#define D2R_STRINGSTRIDE 20
+                           A    55    ;   12	
+                           A    56    ;   13	void _d2r_logliteral ( char *s ) {
+000000                     A    57    __d2r_logliteral:
+                           A    58    .DEFINE "__d2r_logliteral"
+                           A    59    
+                           A    60    .VALUE __d2r_logliteral
+                           A    61    
+                           A    62    .CLASS 2
+                           A    63    
+                           A    64    .TYPE 65
+                           A    65    
+                           A    66    .ENDEF
+                           A    67    
+                           A    68    .BEGFUNC "_d2r_logliteral",13,"__d2r_logliteral
+                           A    69    
+                           A    70    .LINE 13
+                           A    71    
+                           A    72    .DEFINE "s"
+                           A    73    
+                           A    74    .CLASS 65
+                           A    75    
+                           A    76    .VALUE 6
+                           A    77    
+                           A    78    .TYPE 34
+                           A    79    
+                           A    80    .ENDEF
+                           A    81    
+000000 DDE5                A    82    	PUSH	IX
+000002 DD210000 00         A    83    	LD	IX,0
+000007 DD39                A    84    	ADD	IX,SP
+                           A    85    ;   14	
+                           A    86    ;   15	  // first insert? reset..
+                           A    87    ;   16	  if ( _d2r_tail == D2R_MAX + 1 ) {
+                           A    88    .LINE 16
+                           A    89    
+000009 3A 01 00 00         A    90    	LD	A,(__d2r_tail)
+00000D FE29                A    91    	CP	A,41
+00000F 20 17 00            A    92    	JR	NZ,L_1
+                           A    93    ;   17	    _d2r_head = 0;
+                           A    94    .LINE 17
+                           A    95    
+000012 AF                  A    96    	XOR	A,A
+000013 32 00 00 00         A    97    	LD	(__d2r_head),A
+                           A    98    ;   18	    _d2r_tail = 1;
+                           A    99    .LINE 18
+                           A   100    
+000017 3E01                A   101    	LD	A,1
+000019 32 01 00 00         A   102    	LD	(__d2r_tail),A
+                           A   103    ;   19	    _d2r_literals [ 0 ] = s;
+                           A   104    .LINE 19
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:   3
+
+
+PC     Object              I  Line    Source libdebug2r.src
+                           A   105    
+00001D DD0706              A   106    	LD	BC,(IX+6)
+000020 ED43 00 00 00       A   107    	LD	(__d2r_literals),BC
+                           A   108    ;   20	    return;
+                           A   109    .LINE 20
+                           A   110    
+000025 18 54 00            A   111    	JR	L_4
+                           A   112    ;   21	  }
+000028                     A   113    L_1:
+                           A   114    .LINE 21
+                           A   115    
+                           A   116    ;   22	
+                           A   117    ;   23	  // store
+                           A   118    ;   24	  _d2r_literals [ _d2r_tail ] = s;
+                           A   119    .LINE 24
+                           A   120    
+000028 3A 01 00 00         A   121    	LD	A,(__d2r_tail)
+00002C B7ED62              A   122    	UEXT	HL
+00002F 6F                  A   123    	LD	L,A
+000030 E5C1                A   124    	LD	BC,HL
+000032 C5E1                A   125    	LD	HL,BC
+000034 29                  A   126    	ADD	HL,HL
+000035 29                  A   127    	ADD	HL,HL
+000036 B7                  A   128    	OR	A,A
+000037 ED42                A   129    	SBC	HL,BC
+000039 01 00 00 00         A   130    	LD	BC,__d2r_literals
+00003D 09                  A   131    	ADD	HL,BC
+00003E DD0706              A   132    	LD	BC,(IX+6)
+000041 ED0F                A   133    	LD	(HL),BC
+                           A   134    ;   25	
+                           A   135    ;   26	  // move up the head?
+                           A   136    ;   27	  if ( _d2r_tail == _d2r_head ) {
+                           A   137    .LINE 27
+                           A   138    
+000043 3A 01 00 00         A   139    	LD	A,(__d2r_tail)
+000047 21 00 00 00         A   140    	LD	HL,__d2r_head
+00004B BE                  A   141    	CP	A,(HL)
+00004C 20 17 00            A   142    	JR	NZ,L_3
+                           A   143    ;   28	    _d2r_head = ( _d2r_head + 1 ) % D2R
+                           A   144    .LINE 28
+                           A   145    
+00004F 3A 00 00 00         A   146    	LD	A,(__d2r_head)
+000053 B7ED62              A   147    	UEXT	HL
+000056 6F                  A   148    	LD	L,A
+000057 23                  A   149    	INC	HL
+000058 01280000            A   150    	LD	BC,40
+00005C CD 00 00 00         A   151    	CALL	__irems
+000060 7D                  A   152    	LD	A,L
+000061 32 00 00 00         A   153    	LD	(__d2r_head),A
+                           A   154    ;   29	  }
+000065                     A   155    L_3:
+                           A   156    .LINE 29
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:   4
+
+
+PC     Object              I  Line    Source libdebug2r.src
+                           A   157    
+                           A   158    ;   30	
+                           A   159    ;   31	  // move up the tail
+                           A   160    ;   32	  _d2r_tail = ( _d2r_tail + 1 ) % D2R_M
+                           A   161    .LINE 32
+                           A   162    
+000065 3A 01 00 00         A   163    	LD	A,(__d2r_tail)
+000069 B7ED62              A   164    	UEXT	HL
+00006C 6F                  A   165    	LD	L,A
+00006D 23                  A   166    	INC	HL
+00006E 01280000            A   167    	LD	BC,40
+000072 CD 00 00 00         A   168    	CALL	__irems
+000076 7D                  A   169    	LD	A,L
+000077 32 01 00 00         A   170    	LD	(__d2r_tail),A
+                           A   171    ;   33	
+                           A   172    ;   34	  return;
+                           A   173    ;   35	}
+00007B                     A   174    L_4:
+                           A   175    .LINE 35
+                           A   176    
+00007B DDF9                A   177    	LD	SP,IX
+00007D DDE1                A   178    	POP	IX
+00007F C9                  A   179    	RET	
+                           A   180    
+                           A   181    
+                           A   182    ;**************************** __d2r_logliteral 
+                           A   183    ;Name                         Addr/Register   S
+                           A   184    ;__d2r_literals                      STATIC    
+                           A   185    ;__d2r_head                          STATIC    
+                           A   186    ;__d2r_tail                          STATIC    
+                           A   187    ;s                                     IX+6    
+                           A   188    
+                           A   189    
+                           A   190    ; Stack Frame Size: 9 (bytes)
+                           A   191    ;       Spill Code: 0 (instruction)
+                           A   192    
+                           A   193    
+                           A   194    .ENDFUNC "_d2r_logliteral",35,"__d2r_logliteral
+                           A   195    ;   36	
+                           A   196    ;   37	void _d2r_logstring ( char *s ) {
+000080                     A   197    __d2r_logstring:
+                           A   198    .DEFINE "__d2r_logstring"
+                           A   199    
+                           A   200    .VALUE __d2r_logstring
+                           A   201    
+                           A   202    .CLASS 2
+                           A   203    
+                           A   204    .TYPE 65
+                           A   205    
+                           A   206    .ENDEF
+                           A   207    
+                           A   208    .BEGFUNC "_d2r_logstring",37,"__d2r_logstring"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:   5
+
+
+PC     Object              I  Line    Source libdebug2r.src
+                           A   209    
+                           A   210    .LINE 37
+                           A   211    
+                           A   212    .DEFINE "s"
+                           A   213    
+                           A   214    .CLASS 65
+                           A   215    
+                           A   216    .VALUE 6
+                           A   217    
+                           A   218    .TYPE 34
+                           A   219    
+                           A   220    .ENDEF
+                           A   221    
+000080 DDE5                A   222    	PUSH	IX
+000082 DD210000 00         A   223    	LD	IX,0
+000087 DD39                A   224    	ADD	IX,SP
+                           A   225    ;   38	
+                           A   226    ;   39	  // first insert? reset..
+                           A   227    ;   40	  if ( _d2r_tail == D2R_MAX + 1 ) {
+                           A   228    .LINE 40
+                           A   229    
+000089 3A 01 00 00         A   230    	LD	A,(__d2r_tail)
+00008D FE29                A   231    	CP	A,41
+00008F 20 2E 00            A   232    	JR	NZ,L_6
+                           A   233    ;   41	    memset ( _d2r_stringbase, '\0', 20*
+                           A   234    .LINE 41
+                           A   235    
+000092 01900100            A   236    	LD	BC,400
+000096 C5                  A   237    	PUSH	BC
+000097 01000000            A   238    	LD	BC,0
+00009B C5                  A   239    	PUSH	BC
+00009C ED4B 02 00 00       A   240    	LD	BC,(__d2r_stringbase)
+0000A1 C5                  A   241    	PUSH	BC
+0000A2 CD 00 00 00         A   242    	CALL	_memset
+0000A6 C1                  A   243    	POP	BC
+0000A7 C1                  A   244    	POP	BC
+0000A8 C1                  A   245    	POP	BC
+                           A   246    ;   42	    _d2r_head = 0;
+                           A   247    .LINE 42
+                           A   248    
+0000A9 AF                  A   249    	XOR	A,A
+0000AA 32 00 00 00         A   250    	LD	(__d2r_head),A
+                           A   251    ;   43	    _d2r_tail = 1;
+                           A   252    .LINE 43
+                           A   253    
+0000AE 3E01                A   254    	LD	A,1
+0000B0 32 01 00 00         A   255    	LD	(__d2r_tail),A
+                           A   256    ;   44	    _d2r_literals [ 0 ] = s;
+                           A   257    .LINE 44
+                           A   258    
+0000B4 DD0706              A   259    	LD	BC,(IX+6)
+0000B7 ED43 00 00 00       A   260    	LD	(__d2r_literals),BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:   6
+
+
+PC     Object              I  Line    Source libdebug2r.src
+                           A   261    ;   45	    return;
+                           A   262    .LINE 45
+                           A   263    
+0000BC 18 77 00            A   264    	JR	L_9
+                           A   265    ;   46	  }
+0000BF                     A   266    L_6:
+                           A   267    .LINE 46
+                           A   268    
+                           A   269    ;   47	
+                           A   270    ;   48	  // store
+                           A   271    ;   49	  strcpy ( _d2r_stringbase + (D2R_STRIN
+                           A   272    .LINE 49
+                           A   273    
+0000BF DD0706              A   274    	LD	BC,(IX+6)
+0000C2 C5                  A   275    	PUSH	BC
+0000C3 3A 01 00 00         A   276    	LD	A,(__d2r_tail)
+0000C7 B7ED62              A   277    	UEXT	HL
+0000CA 6F                  A   278    	LD	L,A
+0000CB E5C1                A   279    	LD	BC,HL
+0000CD C5E1                A   280    	LD	HL,BC
+0000CF 29                  A   281    	ADD	HL,HL
+0000D0 29                  A   282    	ADD	HL,HL
+0000D1 09                  A   283    	ADD	HL,BC
+0000D2 29                  A   284    	ADD	HL,HL
+0000D3 29                  A   285    	ADD	HL,HL
+0000D4 ED4B 02 00 00       A   286    	LD	BC,(__d2r_stringbase)
+0000D9 09                  A   287    	ADD	HL,BC
+0000DA E5                  A   288    	PUSH	HL
+0000DB CD 00 00 00         A   289    	CALL	_strcpy
+0000DF C1                  A   290    	POP	BC
+0000E0 C1                  A   291    	POP	BC
+                           A   292    ;   50	  _d2r_literals [ _d2r_tail ] = 0x00; /
+                           A   293    .LINE 50
+                           A   294    
+0000E1 3A 01 00 00         A   295    	LD	A,(__d2r_tail)
+0000E5 B7ED62              A   296    	UEXT	HL
+0000E8 6F                  A   297    	LD	L,A
+0000E9 E5C1                A   298    	LD	BC,HL
+0000EB C5E1                A   299    	LD	HL,BC
+0000ED 29                  A   300    	ADD	HL,HL
+0000EE 29                  A   301    	ADD	HL,HL
+0000EF B7                  A   302    	OR	A,A
+0000F0 ED42                A   303    	SBC	HL,BC
+0000F2 01 00 00 00         A   304    	LD	BC,__d2r_literals
+0000F6 09                  A   305    	ADD	HL,BC
+0000F7 01000000            A   306    	LD	BC,0
+0000FB ED0F                A   307    	LD	(HL),BC
+                           A   308    ;   51	
+                           A   309    ;   52	  // move up the head?
+                           A   310    ;   53	  if ( _d2r_tail == _d2r_head ) {
+                           A   311    .LINE 53
+                           A   312    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:   7
+
+
+PC     Object              I  Line    Source libdebug2r.src
+0000FD 3A 01 00 00         A   313    	LD	A,(__d2r_tail)
+000101 21 00 00 00         A   314    	LD	HL,__d2r_head
+000105 BE                  A   315    	CP	A,(HL)
+000106 20 17 00            A   316    	JR	NZ,L_8
+                           A   317    ;   54	    _d2r_head = ( _d2r_head + 1 ) % D2R
+                           A   318    .LINE 54
+                           A   319    
+000109 3A 00 00 00         A   320    	LD	A,(__d2r_head)
+00010D B7ED62              A   321    	UEXT	HL
+000110 6F                  A   322    	LD	L,A
+000111 23                  A   323    	INC	HL
+000112 01280000            A   324    	LD	BC,40
+000116 CD 00 00 00         A   325    	CALL	__irems
+00011A 7D                  A   326    	LD	A,L
+00011B 32 00 00 00         A   327    	LD	(__d2r_head),A
+                           A   328    ;   55	  }
+00011F                     A   329    L_8:
+                           A   330    .LINE 55
+                           A   331    
+                           A   332    ;   56	
+                           A   333    ;   57	  // move up the tail
+                           A   334    ;   58	  _d2r_tail = ( _d2r_tail + 1 ) % D2R_M
+                           A   335    .LINE 58
+                           A   336    
+00011F 3A 01 00 00         A   337    	LD	A,(__d2r_tail)
+000123 B7ED62              A   338    	UEXT	HL
+000126 6F                  A   339    	LD	L,A
+000127 23                  A   340    	INC	HL
+000128 01280000            A   341    	LD	BC,40
+00012C CD 00 00 00         A   342    	CALL	__irems
+000130 7D                  A   343    	LD	A,L
+000131 32 01 00 00         A   344    	LD	(__d2r_tail),A
+                           A   345    ;   59	
+                           A   346    ;   60	  return;
+                           A   347    ;   61	}
+000135                     A   348    L_9:
+                           A   349    .LINE 61
+                           A   350    
+000135 DDF9                A   351    	LD	SP,IX
+000137 DDE1                A   352    	POP	IX
+000139 C9                  A   353    	RET	
+                           A   354    
+                           A   355    
+                           A   356    ;**************************** __d2r_logstring *
+                           A   357    ;Name                         Addr/Register   S
+                           A   358    ;_strcpy                             IMPORT  --
+                           A   359    ;__d2r_literals                      STATIC    
+                           A   360    ;__d2r_head                          STATIC    
+                           A   361    ;__d2r_stringbase                    STATIC    
+                           A   362    ;_memset                             IMPORT  --
+                           A   363    ;__d2r_tail                          STATIC    
+                           A   364    ;s                                     IX+6    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:   8
+
+
+PC     Object              I  Line    Source libdebug2r.src
+                           A   365    
+                           A   366    
+                           A   367    ; Stack Frame Size: 9 (bytes)
+                           A   368    ;       Spill Code: 0 (instruction)
+                           A   369    
+                           A   370    
+                           A   371    .ENDFUNC "_d2r_logstring",61,"__d2r_logstring"
+                           A   372    ;   62	
+                           A   373    ;   63	char *_d2r_fetchliteral ( char **h ) {
+00013A                     A   374    __d2r_fetchliteral:
+                           A   375    .DEFINE "__d2r_fetchliteral"
+                           A   376    
+                           A   377    .VALUE __d2r_fetchliteral
+                           A   378    
+                           A   379    .CLASS 2
+                           A   380    
+                           A   381    .TYPE 322
+                           A   382    
+                           A   383    .ENDEF
+                           A   384    
+                           A   385    .BEGFUNC "_d2r_fetchliteral",63,"__d2r_fetchlit
+                           A   386    
+                           A   387    .LINE 63
+                           A   388    
+                           A   389    .DEFINE "h"
+                           A   390    
+                           A   391    .CLASS 65
+                           A   392    
+                           A   393    .VALUE 6
+                           A   394    
+                           A   395    .TYPE 290
+                           A   396    
+                           A   397    .ENDEF
+                           A   398    
+00013A DDE5                A   399    	PUSH	IX
+00013C DD210000 00         A   400    	LD	IX,0
+000141 DD39                A   401    	ADD	IX,SP
+                           A   402    ;   64	  return *h;
+                           A   403    .LINE 64
+                           A   404    
+000143 DD2706              A   405    	LD	HL,(IX+6)
+000146 ED27                A   406    	LD	HL,(HL)
+                           A   407    ;   65	}
+                           A   408    .LINE 65
+                           A   409    
+000148 DDF9                A   410    	LD	SP,IX
+00014A DDE1                A   411    	POP	IX
+00014C C9                  A   412    	RET	
+                           A   413    
+                           A   414    
+                           A   415    ;**************************** __d2r_fetchlitera
+                           A   416    ;Name                         Addr/Register   S
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:   9
+
+
+PC     Object              I  Line    Source libdebug2r.src
+                           A   417    ;h                                     IX+6    
+                           A   418    
+                           A   419    
+                           A   420    ; Stack Frame Size: 9 (bytes)
+                           A   421    ;       Spill Code: 0 (instruction)
+                           A   422    
+                           A   423    
+                           A   424    .ENDFUNC "_d2r_fetchliteral",65,"__d2r_fetchlit
+                           A   425    ;   66	
+                           A   426    ;   67	D2R_HANDLE_T _d2r_first ( void ) {
+00014D                     A   427    __d2r_first:
+                           A   428    .DEFINE "__d2r_first"
+                           A   429    
+                           A   430    .VALUE __d2r_first
+                           A   431    
+                           A   432    .CLASS 2
+                           A   433    
+                           A   434    .TYPE 2370
+                           A   435    
+                           A   436    .ENDEF
+                           A   437    
+                           A   438    .BEGFUNC "_d2r_first",67,"__d2r_first"
+                           A   439    
+00014D DDE5                A   440    	PUSH	IX
+00014F DD210000 00         A   441    	LD	IX,0
+000154 DD39                A   442    	ADD	IX,SP
+                           A   443    ;   68	
+                           A   444    ;   69	  if ( _d2r_head == D2R_MAX + 1 ) {
+                           A   445    .LINE 69
+                           A   446    
+000156 3A 00 00 00         A   447    	LD	A,(__d2r_head)
+00015A FE29                A   448    	CP	A,41
+00015C 20 07 00            A   449    	JR	NZ,L_12
+                           A   450    ;   70	    return ( NULL );
+                           A   451    .LINE 70
+                           A   452    
+00015F B7                  A   453    	OR	A,A
+000160 ED62                A   454    	SBC	HL,HL
+000162 18 17 00            A   455    	JR	L_13
+                           A   456    ;   71	  }
+000165                     A   457    L_12:
+                           A   458    .LINE 71
+                           A   459    
+                           A   460    ;   72	
+                           A   461    ;   73	  return ( & _d2r_literals [ _d2r_head 
+                           A   462    .LINE 73
+                           A   463    
+000165 3A 00 00 00         A   464    	LD	A,(__d2r_head)
+000169 B7ED62              A   465    	UEXT	HL
+00016C 6F                  A   466    	LD	L,A
+00016D E5C1                A   467    	LD	BC,HL
+00016F C5E1                A   468    	LD	HL,BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:  10
+
+
+PC     Object              I  Line    Source libdebug2r.src
+000171 29                  A   469    	ADD	HL,HL
+000172 29                  A   470    	ADD	HL,HL
+000173 B7                  A   471    	OR	A,A
+000174 ED42                A   472    	SBC	HL,BC
+000176 01 00 00 00         A   473    	LD	BC,__d2r_literals
+00017A 09                  A   474    	ADD	HL,BC
+                           A   475    ;   74	}
+00017B                     A   476    L_13:
+                           A   477    .LINE 74
+                           A   478    
+00017B DDF9                A   479    	LD	SP,IX
+00017D DDE1                A   480    	POP	IX
+00017F C9                  A   481    	RET	
+                           A   482    
+                           A   483    
+                           A   484    ;**************************** __d2r_first *****
+                           A   485    ;Name                         Addr/Register   S
+                           A   486    ;__d2r_literals                      STATIC    
+                           A   487    ;__d2r_head                          STATIC    
+                           A   488    
+                           A   489    
+                           A   490    ; Stack Frame Size: 6 (bytes)
+                           A   491    ;       Spill Code: 0 (instruction)
+                           A   492    
+                           A   493    
+                           A   494    .ENDFUNC "_d2r_first",74,"__d2r_first"
+                           A   495    ;   75	
+                           A   496    ;   76	D2R_HANDLE_T _d2r_next ( char **h ) {
+000180                     A   497    __d2r_next:
+                           A   498    .DEFINE "__d2r_next"
+                           A   499    
+                           A   500    .VALUE __d2r_next
+                           A   501    
+                           A   502    .CLASS 2
+                           A   503    
+                           A   504    .TYPE 2370
+                           A   505    
+                           A   506    .ENDEF
+                           A   507    
+                           A   508    .BEGFUNC "_d2r_next",76,"__d2r_next"
+                           A   509    
+                           A   510    .LINE 76
+                           A   511    
+                           A   512    .DEFINE "h"
+                           A   513    
+                           A   514    .CLASS 65
+                           A   515    
+                           A   516    .VALUE 6
+                           A   517    
+                           A   518    .TYPE 290
+                           A   519    
+                           A   520    .ENDEF
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:  11
+
+
+PC     Object              I  Line    Source libdebug2r.src
+                           A   521    
+                           A   522    .DEFINE "i"
+                           A   523    
+                           A   524    .CLASS 65
+                           A   525    
+                           A   526    .VALUE -1
+                           A   527    
+                           A   528    .TYPE 12
+                           A   529    
+                           A   530    .ENDEF
+                           A   531    
+000180 DDE5                A   532    	PUSH	IX
+000182 DD210000 00         A   533    	LD	IX,0
+000187 DD39                A   534    	ADD	IX,SP
+000189 3B                  A   535    	DEC	SP
+                           A   536    ;   77	  unsigned char i;
+                           A   537    ;   78	
+                           A   538    ;   79	  if ( ! h ) {
+                           A   539    .LINE 79
+                           A   540    
+00018A 01000000            A   541    	LD	BC,0
+00018E DD2706              A   542    	LD	HL,(IX+6)
+000191 B7                  A   543    	OR	A,A
+000192 ED42                A   544    	SBC	HL,BC
+000194 20 07 00            A   545    	JR	NZ,L_15
+                           A   546    ;   80	    return ( NULL );
+                           A   547    .LINE 80
+                           A   548    
+000197 B7                  A   549    	OR	A,A
+000198 ED62                A   550    	SBC	HL,HL
+00019A 18 4E 00            A   551    	JR	L_18
+                           A   552    ;   81	  }
+00019D                     A   553    L_15:
+                           A   554    .LINE 81
+                           A   555    
+                           A   556    ;   82	
+                           A   557    ;   83	  i = ( h - _d2r_literals );
+                           A   558    .LINE 83
+                           A   559    
+00019D 01 00 00 00         A   560    	LD	BC,__d2r_literals
+0001A1 DD2706              A   561    	LD	HL,(IX+6)
+0001A4 B7                  A   562    	OR	A,A
+0001A5 ED42                A   563    	SBC	HL,BC
+0001A7 01030000            A   564    	LD	BC,3
+0001AB CD 00 00 00         A   565    	CALL	__idivs
+0001AF DD75FF              A   566    	LD	(IX+-1),L
+                           A   567    ;   84	
+                           A   568    ;   85	  i = ( i + 1  ) % D2R_MAX;
+                           A   569    .LINE 85
+                           A   570    
+0001B2 DD7EFF              A   571    	LD	A,(IX+-1)
+0001B5 B7ED62              A   572    	UEXT	HL
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:  12
+
+
+PC     Object              I  Line    Source libdebug2r.src
+0001B8 6F                  A   573    	LD	L,A
+0001B9 23                  A   574    	INC	HL
+0001BA 01280000            A   575    	LD	BC,40
+0001BE CD 00 00 00         A   576    	CALL	__irems
+0001C2 DD75FF              A   577    	LD	(IX+-1),L
+                           A   578    ;   86	
+                           A   579    ;   87	  if ( i == _d2r_tail ) {
+                           A   580    .LINE 87
+                           A   581    
+0001C5 3A 01 00 00         A   582    	LD	A,(__d2r_tail)
+0001C9 DDBEFF              A   583    	CP	A,(IX+-1)
+0001CC 20 07 00            A   584    	JR	NZ,L_17
+                           A   585    ;   88	    return ( NULL );
+                           A   586    .LINE 88
+                           A   587    
+0001CF B7                  A   588    	OR	A,A
+0001D0 ED62                A   589    	SBC	HL,HL
+0001D2 18 16 00            A   590    	JR	L_18
+                           A   591    ;   89	  }
+0001D5                     A   592    L_17:
+                           A   593    .LINE 89
+                           A   594    
+                           A   595    ;   90	
+                           A   596    ;   91	  return ( & _d2r_literals [ i ] );
+                           A   597    .LINE 91
+                           A   598    
+0001D5 DD7EFF              A   599    	LD	A,(IX+-1)
+0001D8 B7ED62              A   600    	UEXT	HL
+0001DB 6F                  A   601    	LD	L,A
+0001DC E5C1                A   602    	LD	BC,HL
+0001DE C5E1                A   603    	LD	HL,BC
+0001E0 29                  A   604    	ADD	HL,HL
+0001E1 29                  A   605    	ADD	HL,HL
+0001E2 B7                  A   606    	OR	A,A
+0001E3 ED42                A   607    	SBC	HL,BC
+0001E5 01 00 00 00         A   608    	LD	BC,__d2r_literals
+0001E9 09                  A   609    	ADD	HL,BC
+                           A   610    ;   92	}
+0001EA                     A   611    L_18:
+                           A   612    .LINE 92
+                           A   613    
+0001EA DDF9                A   614    	LD	SP,IX
+0001EC DDE1                A   615    	POP	IX
+0001EE C9                  A   616    	RET	
+                           A   617    
+                           A   618    
+                           A   619    ;**************************** __d2r_next ******
+                           A   620    ;Name                         Addr/Register   S
+                           A   621    ;__d2r_tail                          STATIC    
+                           A   622    ;__d2r_literals                      STATIC    
+                           A   623    ;i                                     IX-1    
+                           A   624    ;h                                     IX+6    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)26-Oct-15     13:59:03     page:  13
+
+
+PC     Object              I  Line    Source libdebug2r.src
+                           A   625    
+                           A   626    
+                           A   627    ; Stack Frame Size: 10 (bytes)
+                           A   628    ;       Spill Code: 0 (instruction)
+                           A   629    
+                           A   630    
+                           A   631    .ENDFUNC "_d2r_next",92,"__d2r_next"
+                           A   632    	XREF _memset:ROM
+                           A   633    	XREF _strcpy:ROM
+                           A   634    	XREF __idivs:ROM
+                           A   635    	XREF __irems:ROM
+                           A   636    	XDEF __d2r_next
+                           A   637    	XDEF __d2r_first
+                           A   638    	XDEF __d2r_fetchliteral
+                           A   639    	XDEF __d2r_logstring
+                           A   640    	XDEF __d2r_logliteral
+                           A   641    	XDEF __d2r_stringbase
+                           A   642    	XDEF __d2r_tail
+                           A   643    	XDEF __d2r_head
+                           A   644    	XDEF __d2r_literals
+                           A   645    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 646

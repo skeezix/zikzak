@@ -1,0 +1,343 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Nov-15     00:11:31     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -noglobalopt -nolocalcse -optsize -nomodsect 
+                           A     3    ; -padbranch -debug -peephole -const=ROM 
+                           A     4    	FILE	"..\MENU.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Nov-15     00:11:31     page:   2
+
+
+PC     Object              I  Line    Source menu.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+                           A    95    .BEGREC "fmt_type",19
+                           A    96    .DEFINE "status"
+                           A    97    .VALUE 0
+                           A    98    .CLASS 8
+                           A    99    .TYPE 12
+                           A   100    .ENDEF
+                           A   101    .DEFINE "flags"
+                           A   102    .VALUE 1
+                           A   103    .CLASS 8
+                           A   104    .TYPE 12
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Nov-15     00:11:31     page:   3
+
+
+PC     Object              I  Line    Source menu.src
+                           A   105    .ENDEF
+                           A   106    .DEFINE "size"
+                           A   107    .VALUE 2
+                           A   108    .CLASS 8
+                           A   109    .TYPE 2
+                           A   110    .ENDEF
+                           A   111    .DEFINE "chr"
+                           A   112    .VALUE 3
+                           A   113    .CLASS 8
+                           A   114    .TYPE 2
+                           A   115    .ENDEF
+                           A   116    .DEFINE "type"
+                           A   117    .VALUE 4
+                           A   118    .CLASS 8
+                           A   119    .TYPE 2
+                           A   120    .ENDEF
+                           A   121    .DEFINE "field_width"
+                           A   122    .VALUE 5
+                           A   123    .CLASS 8
+                           A   124    .TYPE 2
+                           A   125    .ENDEF
+                           A   126    .DEFINE "precision"
+                           A   127    .VALUE 6
+                           A   128    .CLASS 8
+                           A   129    .TYPE 2
+                           A   130    .ENDEF
+                           A   131    .DEFINE "set_begin"
+                           A   132    .VALUE 7
+                           A   133    .CLASS 8
+                           A   134    .TYPE 34
+                           A   135    .ENDEF
+                           A   136    .DEFINE "set_end"
+                           A   137    .VALUE 10
+                           A   138    .CLASS 8
+                           A   139    .TYPE 34
+                           A   140    .ENDEF
+                           A   141    .DEFINE "pad_whole"
+                           A   142    .VALUE 13
+                           A   143    .CLASS 8
+                           A   144    .TYPE 12
+                           A   145    .ENDEF
+                           A   146    .DEFINE "pad_pre_fract"
+                           A   147    .VALUE 14
+                           A   148    .CLASS 8
+                           A   149    .TYPE 12
+                           A   150    .ENDEF
+                           A   151    .DEFINE "pad_post_fract"
+                           A   152    .VALUE 15
+                           A   153    .CLASS 8
+                           A   154    .TYPE 12
+                           A   155    .ENDEF
+                           A   156    .DEFINE "pad_at"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Nov-15     00:11:31     page:   4
+
+
+PC     Object              I  Line    Source menu.src
+                           A   157    .VALUE 16
+                           A   158    .CLASS 8
+                           A   159    .TYPE 34
+                           A   160    .ENDEF
+                           A   161    .ENDREC "fmt_type"
+                           A   162    .BEGREC "flt_info",12
+                           A   163    .DEFINE "flags"
+                           A   164    .VALUE 0
+                           A   165    .CLASS 8
+                           A   166    .TYPE 12
+                           A   167    .ENDEF
+                           A   168    .DEFINE "exp"
+                           A   169    .VALUE 1
+                           A   170    .CLASS 8
+                           A   171    .TYPE 2
+                           A   172    .ENDEF
+                           A   173    .DEFINE "digits"
+                           A   174    .VALUE 2
+                           A   175    .CLASS 8
+                           A   176    .DIM 10
+                           A   177    .TYPE 108
+                           A   178    .ENDEF
+                           A   179    .ENDREC "flt_info"
+000000                     A   180    _delay_loop:
+                           A   181    .DEFINE "_delay_loop"
+                           A   182    
+                           A   183    .VALUE _delay_loop
+                           A   184    
+                           A   185    .CLASS 3
+                           A   186    
+                           A   187    .TYPE 65
+                           A   188    
+                           A   189    .ENDEF
+                           A   190    
+                           A   191    .BEGFUNC "delay_loop",17,"_delay_loop"
+                           A   192    
+                           A   193    .LINE 17
+                           A   194    
+                           A   195    .DEFINE "c"
+                           A   196    
+                           A   197    .CLASS 65
+                           A   198    
+                           A   199    .VALUE 6
+                           A   200    
+                           A   201    .TYPE 14
+                           A   202    
+000000 DDE5                A   203    	PUSH	IX
+000002 DD210000 00         A   204    	LD	IX,0
+000007 DD39                A   205    	ADD	IX,SP
+                           A   206    .ENDEF
+                           A   207    
+000009                     A   208    L_1:
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Nov-15     00:11:31     page:   5
+
+
+PC     Object              I  Line    Source menu.src
+                           A   209    .LINE 18
+                           A   210    
+000009 DD2706              A   211    	LD	HL,(IX+6)
+00000C CD 00 00 00         A   212    	CALL	__icmpzero
+000010 28 0D 00            A   213    	JR	Z,L_3
+                           A   214    .LINE 19
+                           A   215    
+000013 DD3106              A   216    	LD	IY,(IX+6)
+000016 ED33FF              A   217    	LEA	IY,IY+-1
+000019 DD3E06              A   218    	LD	(IX+6),IY
+                           A   219    .LINE 20
+                           A   220    
+00001C 18 EB 00            A   221    	JR	L_1
+00001F                     A   222    L_3:
+                           A   223    .LINE 21
+                           A   224    
+00001F DDF9                A   225    	LD	SP,IX
+000021 DDE1                A   226    	POP	IX
+000023 C9                  A   227    	RET	
+                           A   228    
+                           A   229    
+                           A   230    ;**************************** _delay_loop *****
+                           A   231    ;Name                         Addr/Register   S
+                           A   232    ;c                                     IX+6    
+                           A   233    
+                           A   234    
+                           A   235    ; Stack Frame Size: 9 (bytes)
+                           A   236    ;       Spill Code: 0 (instruction)
+                           A   237    
+                           A   238    
+                           A   239    .ENDFUNC "delay_loop",21,"_delay_loop"
+                           A   240    	SEGMENT STRSECT
+000000                     A   241    L__2:
+000000 5A696B6D 6F6E       A   242    	DB	"Zikmon"
+000006 0A                  A   243    	DB	10
+000007 313A204C 696E6520   A   244    	DB	"1: Line demo"
+00000F 64656D6F 
+000013 0A                  A   245    	DB	10
+000014 323A2050 61747465   A   246    	DB	"2: Pattern demo"
+00001C 726E2064 656D6F 
+000023 0A                  A   247    	DB	10
+000024 333A2041 7564696F   A   248    	DB	"3: Audio demo"
+00002C 2064656D 6F 
+000031 0A                  A   249    	DB	10
+000032 343A2043 68617273   A   250    	DB	"4: Charset demo"
+00003A 65742064 656D6F 
+000041 0A                  A   251    	DB	10
+000042 353A2053 70726974   A   252    	DB	"5: Sprite framebuf demo"
+00004A 65206672 616D6562 
+000052 75662064 656D6F 
+000059 0A                  A   253    	DB	10
+00005A 363A2053 70726974   A   254    	DB	"6: Spritegraph demo"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Nov-15     00:11:31     page:   6
+
+
+PC     Object              I  Line    Source menu.src
+000062 65677261 70682064 
+00006A 656D6F 
+00006D 0A                  A   255    	DB	10
+00006E 373A2043 6172742F   A   256    	DB	"7: Cart/Joy Test"
+000076 4A6F7920 54657374 
+00007E 0A                  A   257    	DB	10
+00007F 383A2052 414D2064   A   258    	DB	"8: RAM dump"
+000087 756D70 
+00008A 0A                  A   259    	DB	10
+00008B 393A2052 4F4D2064   A   260    	DB	"9: ROM dump"
+000093 756D70 
+000096 0A                  A   261    	DB	10
+000097 413A204B 6579626F   A   262    	DB	"A: Keyboard test"
+00009F 61726420 74657374 
+0000A7 0A0A                A   263    	DB	10,10
+0000A9 3E                  A   264    	DB	">"
+0000AA 00                  A   265    	DB	0
+                           A   266    	SEGMENT DATA
+000000                     A   267    _menu_mainmenu:
+000000 000000              A   268    	DW24	L__2
+                           A   269    .DEFINE "menu_mainmenu"
+                           A   270    .ALIAS "_menu_mainmenu"
+                           A   271    .CLASS 69
+                           A   272    .VALUE _menu_mainmenu
+                           A   273    .TYPE 34
+                           A   274    .ENDEF
+                           A   275    	XREF __icmpzero:ROM
+                           A   276    	XDEF _menu_mainmenu
+                           A   277    ;    1	#include <eZ80.h>
+                           A   278    ;    2	#include <stdio.h>
+                           A   279    ;    3	
+                           A   280    ;    4	#include "skeelib.h"
+                           A   281    ;    5	#include "lib_fontrender.h"
+                           A   282    ;    6	
+                           A   283    ;    7	char *menu_mainmenu =
+                           A   284    ;    8	"Zikmon\n"
+                           A   285    ;    9	"1: Line demo\n"
+                           A   286    ;   10	"2: Pattern demo\n"
+                           A   287    ;   11	"3: Audio demo\n"
+                           A   288    ;   12	"4: Charset demo\n"
+                           A   289    ;   13	"5: Sprite framebuf demo\n"
+                           A   290    ;   14	"6: Spritegraph demo\n"
+                           A   291    ;   15	"7: Cart/Joy Test\n"
+                           A   292    ;   16	"8: RAM dump\n"
+                           A   293    ;   17	"9: ROM dump\n"
+                           A   294    ;   18	"A: Keyboard test\n"
+                           A   295    ;   19	"\n"
+                           A   296    ;   20	">"
+                           A   297    ;   21	;
+                           A   298    	END
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Nov-15     00:11:31     page:   7
+
+
+PC     Object              I  Line    Source 
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 299
