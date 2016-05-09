@@ -65,6 +65,9 @@
 <layer number="56" name="wert" color="7" fill="1" visible="no" active="no"/>
 <layer number="57" name="tCAD" color="10" fill="1" visible="no" active="no"/>
 <layer number="58" name="bCAD" color="11" fill="1" visible="no" active="no"/>
+<layer number="59" name="tCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="60" name="bCarbon" color="7" fill="1" visible="no" active="no"/>
+<layer number="90" name="Modules" color="7" fill="1" visible="no" active="yes"/>
 <layer number="91" name="Nets" color="2" fill="1" visible="yes" active="yes"/>
 <layer number="92" name="Busses" color="1" fill="1" visible="yes" active="yes"/>
 <layer number="93" name="Pins" color="2" fill="1" visible="no" active="yes"/>
@@ -98,6 +101,7 @@
 <layer number="126" name="_bNames" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="127" name="_tValues" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="128" name="_bValues" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="129" name="Mask" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="131" name="prix" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="132" name="test" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="144" name="Drill_legend" color="7" fill="1" visible="no" active="yes"/>
@@ -133,6 +137,12 @@
 <layer number="222" name="222bmp" color="23" fill="1" visible="no" active="no"/>
 <layer number="223" name="223bmp" color="24" fill="1" visible="no" active="no"/>
 <layer number="224" name="224bmp" color="25" fill="1" visible="no" active="no"/>
+<layer number="225" name="225bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="226" name="226bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="227" name="227bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="228" name="228bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="229" name="229bmp" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="230" name="230bmp" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="231" name="Eagle3D_PG1" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="232" name="Eagle3D_PG2" color="7" fill="1" visible="yes" active="yes"/>
 <layer number="233" name="Eagle3D_PG3" color="7" fill="1" visible="yes" active="yes"/>
@@ -141,6 +151,7 @@
 <layer number="250" name="Descript" color="3" fill="1" visible="no" active="no"/>
 <layer number="251" name="SMDround" color="12" fill="11" visible="no" active="no"/>
 <layer number="254" name="cooling" color="7" fill="1" visible="yes" active="yes"/>
+<layer number="255" name="routoute" color="7" fill="1" visible="yes" active="yes"/>
 </layers>
 <schematic xreflabel="%F%N/%S.%C%R" xrefpart="/%S.%C%R">
 <libraries>
@@ -184,6 +195,7 @@
 <smd name="P3" x="12.2174" y="3.9624" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P2" x="12.2174" y="2.6416" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P1" x="12.2174" y="1.5748" dx="1.27" dy="0.635" layer="1"/>
+<text x="6.35" y="6.35" size="1.27" layer="21">uSD</text>
 </package>
 <package name="POTWHEEL">
 <pad name="P$1" x="15.24" y="6.35" drill="1.1" shape="square"/>
@@ -194,6 +206,24 @@
 <circle x="7.62" y="6.35" radius="7.62" width="0.127" layer="21"/>
 <text x="2.286" y="7.112" size="1.27" layer="21">&gt;NAME</text>
 <text x="2.286" y="4.318" size="1.27" layer="21">&gt;VALUE</text>
+<text x="13.97" y="12.7" size="1.27" layer="21">POT</text>
+</package>
+<package name="STEREOHEADPHONEJACK">
+<rectangle x1="0" y1="2.54" x2="1.27" y2="10.16" layer="21"/>
+<wire x1="1.27" y1="12.7" x2="1.27" y2="0" width="0.127" layer="21"/>
+<wire x1="1.27" y1="0" x2="12.7" y2="0" width="0.127" layer="21"/>
+<wire x1="12.7" y1="0" x2="12.7" y2="12.7" width="0.127" layer="21"/>
+<wire x1="12.7" y1="12.7" x2="1.27" y2="12.7" width="0.127" layer="21"/>
+<wire x1="0" y1="8.89" x2="-1.27" y2="8.89" width="0.127" layer="21"/>
+<wire x1="-1.27" y1="8.89" x2="-1.27" y2="3.81" width="0.127" layer="21"/>
+<wire x1="-1.27" y1="3.81" x2="0" y2="3.81" width="0.127" layer="21"/>
+<pad name="R" x="11.43" y="11.43" drill="1.2" shape="square"/>
+<pad name="RS" x="11.43" y="8.89" drill="1.2" shape="square"/>
+<pad name="TS" x="11.43" y="3.81" drill="1.2" shape="square"/>
+<pad name="T" x="11.43" y="1.27" drill="1.2" shape="square"/>
+<pad name="SG" x="6.35" y="6.35" drill="1.2" shape="square"/>
+<text x="2.54" y="8.89" size="1.27" layer="21">Head
+phone</text>
 </package>
 </packages>
 <symbols>
@@ -235,6 +265,31 @@
 <wire x1="6.35" y1="9.652" x2="8.128" y2="11.43" width="0.254" layer="94"/>
 <wire x1="8.128" y1="11.43" x2="9.906" y2="9.652" width="0.254" layer="94"/>
 <text x="5.08" y="-2.54" size="1.778" layer="94">&gt;VALUE</text>
+</symbol>
+<symbol name="STEREOHEADPHONEJACK">
+<wire x1="13.97" y1="5.08" x2="15.24" y2="5.08" width="0.254" layer="94"/>
+<wire x1="15.24" y1="5.08" x2="15.24" y2="3.81" width="0.1524" layer="94"/>
+<wire x1="15.24" y1="3.81" x2="2.54" y2="3.81" width="0.1524" layer="94"/>
+<wire x1="12.065" y1="8.255" x2="11.43" y2="8.89" width="0.254" layer="94"/>
+<wire x1="11.43" y1="8.89" x2="8.89" y2="6.35" width="0.254" layer="94"/>
+<wire x1="2.54" y1="8.89" x2="5.08" y2="8.89" width="0.1524" layer="94"/>
+<wire x1="5.08" y1="8.89" x2="5.08" y2="6.985" width="0.1524" layer="94"/>
+<wire x1="5.08" y1="6.985" x2="4.699" y2="8.001" width="0.1524" layer="94"/>
+<wire x1="4.699" y1="8.001" x2="5.461" y2="8.001" width="0.1524" layer="94"/>
+<wire x1="5.461" y1="8.001" x2="5.08" y2="6.985" width="0.1524" layer="94"/>
+<wire x1="13.97" y1="5.08" x2="13.97" y2="10.16" width="0.254" layer="94"/>
+<wire x1="13.97" y1="10.16" x2="15.24" y2="10.16" width="0.254" layer="94"/>
+<wire x1="2.54" y1="6.35" x2="8.89" y2="6.35" width="0.254" layer="94"/>
+<wire x1="15.24" y1="5.08" x2="15.24" y2="10.16" width="0.254" layer="94"/>
+<circle x="2.54" y="6.35" radius="0.127" width="0.4064" layer="94"/>
+<text x="1.27" y="11.43" size="1.778" layer="95">&gt;NAME</text>
+<text x="1.27" y="0" size="1.778" layer="96">&gt;VALUE</text>
+<pin name="T" x="0" y="8.89" visible="pad" length="short" direction="pas"/>
+<pin name="R" x="0" y="6.35" visible="pad" length="short" direction="pas"/>
+<pin name="S" x="0" y="3.81" visible="pad" length="short" direction="pas"/>
+<text x="0.762" y="2.032" size="1.27" layer="94">S</text>
+<text x="0.762" y="4.572" size="1.27" layer="94">R</text>
+<text x="0.762" y="7.112" size="1.27" layer="94">T</text>
 </symbol>
 </symbols>
 <devicesets>
@@ -288,6 +343,23 @@
 <connect gate="G$1" pin="CCW" pad="P$3"/>
 <connect gate="G$1" pin="CW" pad="P$2"/>
 <connect gate="G$1" pin="LO" pad="P$1"/>
+</connects>
+<technologies>
+<technology name=""/>
+</technologies>
+</device>
+</devices>
+</deviceset>
+<deviceset name="STEREOHEADPHONEJACK">
+<gates>
+<gate name="G$1" symbol="STEREOHEADPHONEJACK" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="STEREOHEADPHONEJACK">
+<connects>
+<connect gate="G$1" pin="R" pad="R"/>
+<connect gate="G$1" pin="S" pad="SG"/>
+<connect gate="G$1" pin="T" pad="T"/>
 </connects>
 <technologies>
 <technology name=""/>
@@ -1216,6 +1288,7 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 <part name="X2" library="SparkFun-Connectors-skeemod" deviceset="DB9" device="FEMALE"/>
 <part name="VGA1" library="VideoConnectors-skeemod" deviceset="VGA-*" device="F90B"/>
 <part name="X1" library="adafruit-musb-skeemod" deviceset="USB" device="MICRO_20329"/>
+<part name="U$5" library="skeezix" deviceset="STEREOHEADPHONEJACK" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -1230,6 +1303,7 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 <instance part="X2" gate="G$1" x="147.32" y="10.16"/>
 <instance part="VGA1" gate="G$1" x="157.48" y="66.04"/>
 <instance part="X1" gate="G$1" x="38.1" y="66.04"/>
+<instance part="U$5" gate="G$1" x="101.6" y="-7.62"/>
 </instances>
 <busses>
 </busses>
@@ -1298,4 +1372,10 @@ Standard DB9 (D-Sub 9) serial connector. Can be used for CAN bus as well as RS48
 </errors>
 </schematic>
 </drawing>
+<compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
+</compatibility>
 </eagle>
