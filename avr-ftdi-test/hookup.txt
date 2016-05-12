@@ -1,0 +1,12 @@
+Zok r1 pcb as base
+
+mcu: atmega644
+
+ftdi FT232RL is populated, and USB port is used for power; given zok base, PD0/1 can be toggled on/off as serial
+to ftdi, so lets test that serial port.
+
+LED on PD6, for blinkenlights sign of life
+
+20mhz crystal on zok for mcu .. is currentl not in use; fuses are set to internal 8mhz oscilator, so
+the F_CPU in main.h is set to correspond, so the baudrate calculations work.
+
