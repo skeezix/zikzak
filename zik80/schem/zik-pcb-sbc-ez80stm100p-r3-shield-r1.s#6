@@ -15311,7 +15311,7 @@ joy fire
 GND (unused i think actually)
 ps2 clk
 ps2 data</text>
-<text x="229.87" y="81.28" size="1.778" layer="91">joy up
+<text x="236.22" y="83.82" size="1.778" layer="91">joy up
 joy down
 joy left
 joy right
@@ -15323,14 +15323,17 @@ frame rdy out</text>
 -&gt; mcu RX</text>
 <text x="157.734" y="195.072" size="1.27" layer="91">FTDI RX
 -&gt; mcu TX</text>
+<text x="441.96" y="0" size="1.27" layer="91">OTG_FS_ID 
+OTG_FS_DM 
+OTG_FS_DP</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="245.11" y="195.58" rot="R270"/>
-<instance part="U$2" gate="G$1" x="288.29" y="21.59"/>
+<instance part="U$2" gate="G$1" x="252.73" y="-5.08"/>
 <instance part="U$3" gate="G$1" x="41.91" y="-67.31" rot="R270"/>
-<instance part="U$4" gate="G$1" x="88.9" y="27.94"/>
+<instance part="U$4" gate="G$1" x="453.39" y="100.33"/>
 <instance part="JOY0" gate="G$1" x="147.32" y="10.16"/>
-<instance part="VGA1" gate="G$1" x="157.48" y="66.04"/>
+<instance part="VGA1" gate="G$1" x="562.61" y="97.79"/>
 <instance part="USBSERPWR" gate="G$1" x="-11.43" y="175.26"/>
 <instance part="U$5" gate="G$1" x="101.6" y="-7.62"/>
 <instance part="GND1" gate="1" x="71.12" y="152.4"/>
@@ -15365,11 +15368,11 @@ frame rdy out</text>
 <instance part="P+1" gate="VCC" x="316.23" y="171.45" rot="R90"/>
 <instance part="PWRIN" gate="A" x="264.16" y="163.83"/>
 <instance part="GPIOC-JOY0" gate="A" x="260.35" y="91.44"/>
-<instance part="BOBGPIOB" gate="A" x="339.09" y="31.75"/>
+<instance part="BOBGPIOB" gate="A" x="303.53" y="5.08"/>
 <instance part="GPIOD-JOY1" gate="A" x="260.35" y="58.42"/>
-<instance part="VGAHDR" gate="A" x="345.44" y="93.98"/>
-<instance part="BOB-PA" gate="A" x="381" y="81.28"/>
-<instance part="PS2KEYB" gate="A" x="421.64" y="93.98"/>
+<instance part="VGAHDR" gate="A" x="525.78" y="97.79"/>
+<instance part="BOB-PA" gate="A" x="473.71" y="12.7"/>
+<instance part="PS2KEYB" gate="A" x="438.15" y="100.33"/>
 <instance part="GNDOUT" gate="A" x="270.51" y="139.7"/>
 <instance part="3V3OUT" gate="A" x="294.64" y="139.7"/>
 <instance part="5OUT" gate="A" x="321.31" y="139.7"/>
@@ -15393,7 +15396,7 @@ frame rdy out</text>
 <instance part="GND12" gate="1" x="256.54" y="127"/>
 <instance part="+3V2" gate="G$1" x="281.94" y="124.46" rot="R180"/>
 <instance part="P+3" gate="1" x="308.61" y="124.46" rot="R180"/>
-<instance part="USBGPU" gate="G$1" x="-11.43" y="140.97"/>
+<instance part="USBGPU" gate="G$1" x="504.19" y="12.7"/>
 </instances>
 <busses>
 </busses>
@@ -15946,43 +15949,64 @@ frame rdy out</text>
 <net name="ZPB0" class="0">
 <segment>
 <pinref part="BOBGPIOB" gate="A" pin="1"/>
-<wire x1="336.55" y1="41.91" x2="346.71" y2="41.91" width="0.1524" layer="91"/>
-<label x="346.71" y="41.91" size="1.27" layer="95" xref="yes"/>
+<wire x1="300.99" y1="15.24" x2="311.15" y2="15.24" width="0.1524" layer="91"/>
+<label x="311.15" y="15.24" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="ZPB2-SS" class="0">
 <segment>
 <pinref part="BOBGPIOB" gate="A" pin="3"/>
-<wire x1="336.55" y1="36.83" x2="346.71" y2="36.83" width="0.1524" layer="91"/>
-<label x="346.71" y="36.83" size="1.27" layer="95" xref="yes"/>
+<wire x1="300.99" y1="10.16" x2="311.15" y2="10.16" width="0.1524" layer="91"/>
+<label x="311.15" y="10.16" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="ZPB3-SCK" class="0">
 <segment>
 <pinref part="BOBGPIOB" gate="A" pin="4"/>
-<wire x1="336.55" y1="34.29" x2="346.71" y2="34.29" width="0.1524" layer="91"/>
-<label x="346.71" y="34.29" size="1.27" layer="95" xref="yes"/>
+<wire x1="300.99" y1="7.62" x2="311.15" y2="7.62" width="0.1524" layer="91"/>
+<label x="311.15" y="7.62" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="ZPB6-MISO" class="0">
 <segment>
 <pinref part="BOBGPIOB" gate="A" pin="7"/>
-<wire x1="336.55" y1="26.67" x2="346.71" y2="26.67" width="0.1524" layer="91"/>
-<label x="346.71" y="26.67" size="1.27" layer="95" xref="yes"/>
+<wire x1="300.99" y1="0" x2="311.15" y2="0" width="0.1524" layer="91"/>
+<label x="311.15" y="0" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="ZPB7-MOSI" class="0">
 <segment>
 <pinref part="BOBGPIOB" gate="A" pin="8"/>
-<wire x1="336.55" y1="24.13" x2="346.71" y2="24.13" width="0.1524" layer="91"/>
-<label x="346.71" y="24.13" size="1.27" layer="95" xref="yes"/>
+<wire x1="300.99" y1="-2.54" x2="311.15" y2="-2.54" width="0.1524" layer="91"/>
+<label x="311.15" y="-2.54" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="SPA0" class="0">
 <segment>
 <pinref part="BOB-PA" gate="A" pin="1"/>
-<wire x1="378.46" y1="99.06" x2="369.57" y2="99.06" width="0.1524" layer="91"/>
-<label x="369.57" y="99.06" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="471.17" y1="30.48" x2="462.28" y2="30.48" width="0.1524" layer="91"/>
+<label x="462.28" y="30.48" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="SPA10" class="0">
+<segment>
+<pinref part="BOB-PA" gate="A" pin="11"/>
+<wire x1="471.17" y1="5.08" x2="462.28" y2="5.08" width="0.1524" layer="91"/>
+<label x="462.28" y="5.08" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="SPA11" class="0">
+<segment>
+<pinref part="BOB-PA" gate="A" pin="12"/>
+<wire x1="471.17" y1="2.54" x2="462.28" y2="2.54" width="0.1524" layer="91"/>
+<label x="462.28" y="2.54" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="SPA12" class="0">
+<segment>
+<pinref part="BOB-PA" gate="A" pin="13"/>
+<wire x1="471.17" y1="0" x2="462.28" y2="0" width="0.1524" layer="91"/>
+<label x="462.28" y="0" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>

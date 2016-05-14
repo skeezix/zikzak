@@ -15188,7 +15188,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="U$4" library="SparkFun-Connectors-skeemod" deviceset="MINI-DIN6" device="PTH"/>
 <part name="JOY0" library="SparkFun-Connectors-skeemod" deviceset="DB9" device="FEMALE"/>
 <part name="VGA1" library="VideoConnectors-skeemod" deviceset="VGA-*" device="F90B"/>
-<part name="X1" library="adafruit-musb-skeemod" deviceset="USB" device="MICRO_20329"/>
+<part name="USBSERPWR" library="adafruit-musb-skeemod" deviceset="USB" device="MICRO_20329"/>
 <part name="U$5" library="skeezix" deviceset="STEREOHEADPHONEJACK" device=""/>
 <part name="GND1" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND2" library="SparkFun" deviceset="GND" device=""/>
@@ -15250,6 +15250,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="GND12" library="supply1" deviceset="GND" device=""/>
 <part name="+3V2" library="supply1" deviceset="+3V3" device=""/>
 <part name="P+3" library="supply1" deviceset="+5V" device=""/>
+<part name="USBGPU" library="adafruit-musb-skeemod" deviceset="USB" device="MICRO_20329"/>
 </parts>
 <sheets>
 <sheet>
@@ -15322,6 +15323,9 @@ frame rdy out</text>
 -&gt; mcu RX</text>
 <text x="157.734" y="195.072" size="1.27" layer="91">FTDI RX
 -&gt; mcu TX</text>
+<text x="349.25" y="68.58" size="1.27" layer="91">OTG_FS_ID 
+OTG_FS_DM 
+OTG_FS_DP</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="245.11" y="195.58" rot="R270"/>
@@ -15330,7 +15334,7 @@ frame rdy out</text>
 <instance part="U$4" gate="G$1" x="88.9" y="27.94"/>
 <instance part="JOY0" gate="G$1" x="147.32" y="10.16"/>
 <instance part="VGA1" gate="G$1" x="157.48" y="66.04"/>
-<instance part="X1" gate="G$1" x="-11.43" y="175.26"/>
+<instance part="USBSERPWR" gate="G$1" x="-11.43" y="175.26"/>
 <instance part="U$5" gate="G$1" x="101.6" y="-7.62"/>
 <instance part="GND1" gate="1" x="71.12" y="152.4"/>
 <instance part="GND2" gate="1" x="91.44" y="137.16"/>
@@ -15392,6 +15396,7 @@ frame rdy out</text>
 <instance part="GND12" gate="1" x="256.54" y="127"/>
 <instance part="+3V2" gate="G$1" x="281.94" y="124.46" rot="R180"/>
 <instance part="P+3" gate="1" x="308.61" y="124.46" rot="R180"/>
+<instance part="USBGPU" gate="G$1" x="-11.43" y="140.97"/>
 </instances>
 <busses>
 </busses>
@@ -15407,7 +15412,7 @@ frame rdy out</text>
 <wire x1="43.18" y1="172.72" x2="43.18" y2="167.64" width="0.1524" layer="91"/>
 <pinref part="GND5" gate="1" pin="GND"/>
 <pinref part="USBPORT" gate="A" pin="4"/>
-<pinref part="X1" gate="G$1" pin="GND"/>
+<pinref part="USBSERPWR" gate="G$1" pin="GND"/>
 <wire x1="-1.27" y1="170.18" x2="7.62" y2="170.18" width="0.1524" layer="91"/>
 <wire x1="7.62" y1="170.18" x2="7.62" y2="172.72" width="0.1524" layer="91"/>
 <wire x1="7.62" y1="172.72" x2="17.78" y2="172.72" width="0.1524" layer="91"/>
@@ -15539,7 +15544,7 @@ frame rdy out</text>
 <wire x1="95.25" y1="177.8" x2="17.78" y2="177.8" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="USBDM"/>
 <pinref part="USBPORT" gate="A" pin="2"/>
-<pinref part="X1" gate="G$1" pin="D+"/>
+<pinref part="USBSERPWR" gate="G$1" pin="D+"/>
 <wire x1="-1.27" y1="177.8" x2="17.78" y2="177.8" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -15548,7 +15553,7 @@ frame rdy out</text>
 <wire x1="95.25" y1="175.26" x2="17.78" y2="175.26" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="USBDP"/>
 <pinref part="USBPORT" gate="A" pin="3"/>
-<pinref part="X1" gate="G$1" pin="D-"/>
+<pinref part="USBSERPWR" gate="G$1" pin="D-"/>
 <wire x1="17.78" y1="175.26" x2="-1.27" y2="175.26" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -15640,7 +15645,7 @@ frame rdy out</text>
 <wire x1="78.74" y1="217.17" x2="67.31" y2="217.17" width="0.1524" layer="91"/>
 <pinref part="FT5V-&gt;PWR5" gate="G$1" pin="1"/>
 <pinref part="C2" gate="G$1" pin="1"/>
-<pinref part="X1" gate="G$1" pin="VBUS"/>
+<pinref part="USBSERPWR" gate="G$1" pin="VBUS"/>
 <wire x1="17.78" y1="180.34" x2="-1.27" y2="180.34" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -15974,6 +15979,34 @@ frame rdy out</text>
 <pinref part="BOBGPIOB" gate="A" pin="8"/>
 <wire x1="336.55" y1="24.13" x2="346.71" y2="24.13" width="0.1524" layer="91"/>
 <label x="346.71" y="24.13" size="1.27" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="SPA0" class="0">
+<segment>
+<pinref part="BOB-PA" gate="A" pin="1"/>
+<wire x1="378.46" y1="99.06" x2="369.57" y2="99.06" width="0.1524" layer="91"/>
+<label x="369.57" y="99.06" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="SPA10" class="0">
+<segment>
+<pinref part="BOB-PA" gate="A" pin="11"/>
+<wire x1="378.46" y1="73.66" x2="369.57" y2="73.66" width="0.1524" layer="91"/>
+<label x="369.57" y="73.66" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="SPA11" class="0">
+<segment>
+<pinref part="BOB-PA" gate="A" pin="12"/>
+<wire x1="378.46" y1="71.12" x2="369.57" y2="71.12" width="0.1524" layer="91"/>
+<label x="369.57" y="71.12" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+<net name="SPA12" class="0">
+<segment>
+<pinref part="BOB-PA" gate="A" pin="13"/>
+<wire x1="378.46" y1="68.58" x2="369.57" y2="68.58" width="0.1524" layer="91"/>
+<label x="369.57" y="68.58" size="1.27" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>
