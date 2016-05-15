@@ -5720,6 +5720,7 @@ Source: MC68020UM.pdf</description>
 <smd name="P3" x="12.2174" y="3.9624" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P2" x="12.2174" y="2.6416" dx="1.27" dy="0.635" layer="1"/>
 <smd name="P1" x="12.2174" y="1.5748" dx="1.27" dy="0.635" layer="1"/>
+<text x="6.35" y="6.35" size="1.27" layer="21">uSD</text>
 </package>
 <package name="POTWHEEL">
 <pad name="P$1" x="15.24" y="6.35" drill="1.1" shape="square"/>
