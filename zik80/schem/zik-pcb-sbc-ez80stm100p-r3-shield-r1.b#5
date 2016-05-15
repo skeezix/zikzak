@@ -2463,7 +2463,6 @@ design rules under a new name.</description>
 <wire x1="125.94" y1="98.166" x2="128.79" y2="97.885" width="0" layer="19" extent="1-1"/>
 <wire x1="11.855" y1="98.166" x2="9.005" y2="97.885" width="0" layer="19" extent="1-1"/>
 <wire x1="4.655" y1="98.166" x2="7.505" y2="97.885" width="0" layer="19" extent="1-1"/>
-<wire x1="6.835" y1="26.145" x2="17.78" y2="11.43" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="+5V">
 <contactref element="VGA1" pad="9"/>
@@ -2740,13 +2739,13 @@ design rules under a new name.</description>
 </signal>
 <signal name="ZPC0">
 <contactref element="GPIOC-JOY0" pad="1"/>
-<contactref element="JOY0" pad="1"/>
-<wire x1="9.675" y1="19.225" x2="5.08" y2="73.9775" width="0" layer="19" extent="1-1"/>
+<contactref element="JOY0" pad="5"/>
+<wire x1="9.675" y1="30.305" x2="5.08" y2="73.9775" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ZPC1">
 <contactref element="GPIOC-JOY0" pad="2"/>
-<contactref element="JOY0" pad="2"/>
-<wire x1="9.675" y1="21.995" x2="5.08" y2="71.4375" width="0" layer="19" extent="1-1"/>
+<contactref element="JOY0" pad="4"/>
+<wire x1="9.675" y1="27.535" x2="5.08" y2="71.4375" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ZPC2">
 <contactref element="GPIOC-JOY0" pad="3"/>
@@ -2755,8 +2754,8 @@ design rules under a new name.</description>
 </signal>
 <signal name="ZPC3">
 <contactref element="GPIOC-JOY0" pad="4"/>
-<contactref element="JOY0" pad="4"/>
-<wire x1="9.675" y1="27.535" x2="5.08" y2="66.3575" width="0" layer="19" extent="1-1"/>
+<contactref element="JOY0" pad="2"/>
+<wire x1="9.675" y1="21.995" x2="5.08" y2="66.3575" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ZPC4">
 <contactref element="GPIOC-JOY0" pad="5"/>

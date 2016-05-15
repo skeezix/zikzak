@@ -15258,6 +15258,8 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
 <part name="P+5" library="supply1" deviceset="+5V" device=""/>
 <part name="GND16" library="SparkFun" deviceset="GND" device=""/>
+<part name="P+6" library="supply1" deviceset="+5V" device=""/>
+<part name="GND17" library="SparkFun" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -15313,7 +15315,7 @@ Decouple Vcc/GND with a cap?</text>
 5V
 3V3
 GND</text>
-<text x="5.08" y="8.89" size="1.778" layer="91" rot="MR0">joy up (z80 tx0)
+<text x="63.5" y="8.89" size="1.778" layer="91" rot="MR0">joy up (z80 tx0)
 joy down (zip rx0)
 joy left
 joy right
@@ -15342,9 +15344,17 @@ close to V?</text>
 <text x="494.03" y="-17.78" size="1.778" layer="91">Schem lib is mislabeled?
 Should be minus always
 close to V?</text>
-<text x="723.9" y="275.59" size="7.62" layer="91">Checked - ZZ hdr to jack pcb
+<text x="756.92" y="204.47" size="7.62" layer="91">Checked - ZZ hdr to jack pcb
 - PS/2 keyb ... ok
-- SD slot seems okay</text>
+- SD slot seems okay
+- JOY0 seems ok
+- JOY1 seems ok
+
+- USB PWR ?
+- USB Data ?
+- Barrel ?
+- headphone?
+- vga?</text>
 <text x="436.88" y="12.7" size="1.27" layer="91">SPA4 SPI1 NSS
 SPA5 SPI1 SCK
 SPA6 SPI1 MISO
@@ -15418,7 +15428,7 @@ side should be highZ mode!</text>
 <instance part="GND41" gate="1" x="64.77" y="-139.7" rot="R270"/>
 <instance part="LINEOUT" gate="G$1" x="104.14" y="-87.63" rot="R90"/>
 <instance part="GND42" gate="1" x="101.6" y="-97.79"/>
-<instance part="JOY1" gate="G$1" x="53.34" y="20.32"/>
+<instance part="JOY1" gate="G$1" x="-10.16" y="17.78" rot="MR0"/>
 <instance part="VCC" gate="VCC" x="274.32" y="181.61"/>
 <instance part="GND12" gate="1" x="256.54" y="127"/>
 <instance part="+3V2" gate="G$1" x="281.94" y="124.46" rot="R180"/>
@@ -15431,6 +15441,8 @@ side should be highZ mode!</text>
 <instance part="GND15" gate="1" x="392.43" y="31.75" rot="R180"/>
 <instance part="P+5" gate="1" x="-22.86" y="50.8" rot="R180"/>
 <instance part="GND16" gate="1" x="-22.86" y="81.28" rot="R180"/>
+<instance part="P+6" gate="1" x="-21.59" y="0" rot="R180"/>
+<instance part="GND17" gate="1" x="-21.59" y="33.02" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -15604,6 +15616,12 @@ side should be highZ mode!</text>
 <pinref part="GND16" gate="1" pin="GND"/>
 <pinref part="JOY0" gate="G$1" pin="7"/>
 <wire x1="-22.86" y1="69.85" x2="-19.05" y2="69.85" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="JOY1" gate="G$1" pin="7"/>
+<wire x1="-17.78" y1="17.78" x2="-21.59" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="-21.59" y1="17.78" x2="-21.59" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="GND17" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="USB_D-" class="0">
@@ -16009,12 +16027,22 @@ side should be highZ mode!</text>
 <pinref part="JOY0" gate="G$1" pin="8"/>
 <wire x1="-22.86" y1="67.31" x2="-19.05" y2="67.31" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="JOY1" gate="G$1" pin="8"/>
+<wire x1="-17.78" y1="15.24" x2="-21.59" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="-21.59" y1="15.24" x2="-21.59" y2="2.54" width="0.1524" layer="91"/>
+<pinref part="P+6" gate="1" pin="+5V"/>
+</segment>
 </net>
 <net name="ZPD0" class="0">
 <segment>
 <pinref part="GPIOD-JOY1" gate="A" pin="1"/>
 <wire x1="13.97" y1="27.94" x2="22.86" y2="27.94" width="0.1524" layer="91"/>
 <label x="22.86" y="27.94" size="1.27" layer="95" xref="yes"/>
+<wire x1="13.97" y1="27.94" x2="6.35" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="6.35" y1="27.94" x2="6.35" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="JOY1" gate="G$1" pin="5"/>
+<wire x1="6.35" y1="12.7" x2="-2.54" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="ZPD0-RXD" gate="G$1" pin="2"/>
@@ -16027,6 +16055,10 @@ side should be highZ mode!</text>
 <pinref part="GPIOD-JOY1" gate="A" pin="2"/>
 <wire x1="13.97" y1="25.4" x2="22.86" y2="25.4" width="0.1524" layer="91"/>
 <label x="22.86" y="25.4" size="1.27" layer="95" xref="yes"/>
+<wire x1="13.97" y1="25.4" x2="3.81" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="3.81" y1="25.4" x2="3.81" y2="15.24" width="0.1524" layer="91"/>
+<pinref part="JOY1" gate="G$1" pin="4"/>
+<wire x1="3.81" y1="15.24" x2="-2.54" y2="15.24" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="ZPD1-TXD" gate="G$1" pin="2"/>
@@ -16156,6 +16188,10 @@ side should be highZ mode!</text>
 <wire x1="13.97" y1="22.86" x2="22.86" y2="22.86" width="0.1524" layer="91"/>
 <pinref part="GPIOD-JOY1" gate="A" pin="3"/>
 <label x="22.86" y="22.86" size="1.27" layer="95" xref="yes"/>
+<wire x1="13.97" y1="22.86" x2="1.27" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="1.27" y1="22.86" x2="1.27" y2="17.78" width="0.1524" layer="91"/>
+<pinref part="JOY1" gate="G$1" pin="3"/>
+<wire x1="1.27" y1="17.78" x2="-2.54" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPD3" class="0">
@@ -16163,6 +16199,8 @@ side should be highZ mode!</text>
 <wire x1="13.97" y1="20.32" x2="22.86" y2="20.32" width="0.1524" layer="91"/>
 <pinref part="GPIOD-JOY1" gate="A" pin="4"/>
 <label x="22.86" y="20.32" size="1.27" layer="95" xref="yes"/>
+<pinref part="JOY1" gate="G$1" pin="2"/>
+<wire x1="13.97" y1="20.32" x2="-2.54" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPD4" class="0">
@@ -16170,6 +16208,12 @@ side should be highZ mode!</text>
 <wire x1="13.97" y1="17.78" x2="22.86" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="GPIOD-JOY1" gate="A" pin="5"/>
 <label x="22.86" y="17.78" size="1.27" layer="95" xref="yes"/>
+<wire x1="13.97" y1="17.78" x2="8.89" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="8.89" y1="17.78" x2="8.89" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="8.89" y1="7.62" x2="-19.05" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="-19.05" y1="7.62" x2="-19.05" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="JOY1" gate="G$1" pin="9"/>
+<wire x1="-19.05" y1="12.7" x2="-17.78" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPD5" class="0">

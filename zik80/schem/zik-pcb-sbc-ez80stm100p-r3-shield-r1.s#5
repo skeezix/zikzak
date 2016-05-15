@@ -15344,7 +15344,8 @@ Should be minus always
 close to V?</text>
 <text x="723.9" y="275.59" size="7.62" layer="91">Checked - ZZ hdr to jack pcb
 - PS/2 keyb ... ok
-- SD slot seems okay</text>
+- SD slot seems okay
+- JOY0 seems ok</text>
 <text x="436.88" y="12.7" size="1.27" layer="91">SPA4 SPI1 NSS
 SPA5 SPI1 SCK
 SPA6 SPI1 MISO
@@ -15429,8 +15430,8 @@ side should be highZ mode!</text>
 <instance part="GND14" gate="1" x="116.84" y="-146.05"/>
 <instance part="+3V1" gate="G$1" x="392.43" y="-7.62" rot="R180"/>
 <instance part="GND15" gate="1" x="392.43" y="31.75" rot="R180"/>
-<instance part="P+5" gate="1" x="-22.86" y="81.28"/>
-<instance part="GND16" gate="1" x="-22.86" y="53.34"/>
+<instance part="P+5" gate="1" x="-22.86" y="50.8" rot="R180"/>
+<instance part="GND16" gate="1" x="-22.86" y="81.28" rot="R180"/>
 </instances>
 <busses>
 </busses>
@@ -15600,10 +15601,10 @@ side should be highZ mode!</text>
 <pinref part="GND15" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="JOY0" gate="G$1" pin="8"/>
-<wire x1="-19.05" y1="67.31" x2="-22.86" y2="67.31" width="0.1524" layer="91"/>
-<wire x1="-22.86" y1="67.31" x2="-22.86" y2="55.88" width="0.1524" layer="91"/>
+<wire x1="-22.86" y1="69.85" x2="-22.86" y2="78.74" width="0.1524" layer="91"/>
 <pinref part="GND16" gate="1" pin="GND"/>
+<pinref part="JOY0" gate="G$1" pin="7"/>
+<wire x1="-22.86" y1="69.85" x2="-19.05" y2="69.85" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="USB_D-" class="0">
@@ -16004,10 +16005,10 @@ side should be highZ mode!</text>
 <wire x1="448.31" y1="102.87" x2="454.66" y2="102.87" width="0.1524" layer="91"/>
 </segment>
 <segment>
-<pinref part="JOY0" gate="G$1" pin="7"/>
-<wire x1="-19.05" y1="69.85" x2="-22.86" y2="69.85" width="0.1524" layer="91"/>
-<wire x1="-22.86" y1="69.85" x2="-22.86" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="-22.86" y1="67.31" x2="-22.86" y2="53.34" width="0.1524" layer="91"/>
 <pinref part="P+5" gate="1" pin="+5V"/>
+<pinref part="JOY0" gate="G$1" pin="8"/>
+<wire x1="-22.86" y1="67.31" x2="-19.05" y2="67.31" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPD0" class="0">
@@ -16184,6 +16185,10 @@ side should be highZ mode!</text>
 <pinref part="GPIOC-JOY0" gate="A" pin="1"/>
 <wire x1="12.7" y1="78.74" x2="22.86" y2="78.74" width="0.1524" layer="91"/>
 <label x="22.86" y="78.74" size="1.27" layer="95" xref="yes"/>
+<wire x1="12.7" y1="78.74" x2="6.35" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="6.35" y1="78.74" x2="6.35" y2="64.77" width="0.1524" layer="91"/>
+<pinref part="JOY0" gate="G$1" pin="5"/>
+<wire x1="6.35" y1="64.77" x2="-3.81" y2="64.77" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPC1" class="0">
@@ -16191,6 +16196,10 @@ side should be highZ mode!</text>
 <pinref part="GPIOC-JOY0" gate="A" pin="2"/>
 <wire x1="12.7" y1="76.2" x2="22.86" y2="76.2" width="0.1524" layer="91"/>
 <label x="22.86" y="76.2" size="1.27" layer="95" xref="yes"/>
+<wire x1="12.7" y1="76.2" x2="3.81" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="3.81" y1="76.2" x2="3.81" y2="67.31" width="0.1524" layer="91"/>
+<pinref part="JOY0" gate="G$1" pin="4"/>
+<wire x1="3.81" y1="67.31" x2="-3.81" y2="67.31" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPC2" class="0">
@@ -16198,6 +16207,10 @@ side should be highZ mode!</text>
 <pinref part="GPIOC-JOY0" gate="A" pin="3"/>
 <wire x1="12.7" y1="73.66" x2="22.86" y2="73.66" width="0.1524" layer="91"/>
 <label x="22.86" y="73.66" size="1.27" layer="95" xref="yes"/>
+<wire x1="12.7" y1="73.66" x2="1.27" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="1.27" y1="73.66" x2="1.27" y2="69.85" width="0.1524" layer="91"/>
+<pinref part="JOY0" gate="G$1" pin="3"/>
+<wire x1="1.27" y1="69.85" x2="-3.81" y2="69.85" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPC3" class="0">
@@ -16205,6 +16218,10 @@ side should be highZ mode!</text>
 <pinref part="GPIOC-JOY0" gate="A" pin="4"/>
 <wire x1="12.7" y1="71.12" x2="22.86" y2="71.12" width="0.1524" layer="91"/>
 <label x="22.86" y="71.12" size="1.27" layer="95" xref="yes"/>
+<wire x1="12.7" y1="71.12" x2="-1.27" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="-1.27" y1="71.12" x2="-1.27" y2="72.39" width="0.1524" layer="91"/>
+<pinref part="JOY0" gate="G$1" pin="2"/>
+<wire x1="-1.27" y1="72.39" x2="-3.81" y2="72.39" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPC4" class="0">
@@ -16213,11 +16230,11 @@ side should be highZ mode!</text>
 <wire x1="12.7" y1="68.58" x2="22.86" y2="68.58" width="0.1524" layer="91"/>
 <label x="22.86" y="68.58" size="1.27" layer="95" xref="yes"/>
 <wire x1="12.7" y1="68.58" x2="7.62" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="7.62" y1="68.58" x2="7.62" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="7.62" y1="60.96" x2="-31.75" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="-31.75" y1="60.96" x2="-31.75" y2="72.39" width="0.1524" layer="91"/>
-<pinref part="JOY0" gate="G$1" pin="6"/>
-<wire x1="-31.75" y1="72.39" x2="-19.05" y2="72.39" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="68.58" x2="7.62" y2="59.69" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="59.69" x2="-20.32" y2="59.69" width="0.1524" layer="91"/>
+<wire x1="-20.32" y1="59.69" x2="-20.32" y2="64.77" width="0.1524" layer="91"/>
+<pinref part="JOY0" gate="G$1" pin="9"/>
+<wire x1="-20.32" y1="64.77" x2="-19.05" y2="64.77" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPC5" class="0">

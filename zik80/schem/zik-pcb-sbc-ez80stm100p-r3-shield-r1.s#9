@@ -15256,6 +15256,8 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="GND14" library="supply1" deviceset="GND" device=""/>
 <part name="+3V1" library="supply1" deviceset="+3V3" device=""/>
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
+<part name="P+5" library="supply1" deviceset="+5V" device=""/>
+<part name="GND16" library="SparkFun" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -15319,7 +15321,7 @@ joy fire
 GND (unused i think actually)
 ps2 clk
 ps2 data</text>
-<text x="-8.89" y="60.96" size="1.778" layer="91">joy up
+<text x="31.75" y="59.69" size="1.778" layer="91">joy up
 joy down
 joy left
 joy right
@@ -15357,7 +15359,7 @@ side should be highZ mode!</text>
 <instance part="U$2" gate="G$1" x="354.33" y="-1.27"/>
 <instance part="U$3" gate="G$1" x="41.91" y="-67.31" rot="R270"/>
 <instance part="PS/2KEYB" gate="G$1" x="459.74" y="100.33" rot="MR0"/>
-<instance part="JOY0" gate="G$1" x="54.61" y="71.12"/>
+<instance part="JOY0" gate="G$1" x="-11.43" y="69.85" rot="MR0"/>
 <instance part="VGA1" gate="G$1" x="562.61" y="97.79"/>
 <instance part="USBSERPWR" gate="G$1" x="-11.43" y="175.26"/>
 <instance part="U$5" gate="G$1" x="123.19" y="-142.24"/>
@@ -15427,6 +15429,8 @@ side should be highZ mode!</text>
 <instance part="GND14" gate="1" x="116.84" y="-146.05"/>
 <instance part="+3V1" gate="G$1" x="392.43" y="-7.62" rot="R180"/>
 <instance part="GND15" gate="1" x="392.43" y="31.75" rot="R180"/>
+<instance part="P+5" gate="1" x="-22.86" y="81.28"/>
+<instance part="GND16" gate="1" x="-22.86" y="53.34"/>
 </instances>
 <busses>
 </busses>
@@ -15594,6 +15598,12 @@ side should be highZ mode!</text>
 <wire x1="387.35" y1="13.97" x2="392.43" y2="13.97" width="0.1524" layer="91"/>
 <wire x1="392.43" y1="13.97" x2="392.43" y2="29.21" width="0.1524" layer="91"/>
 <pinref part="GND15" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="JOY0" gate="G$1" pin="8"/>
+<wire x1="-19.05" y1="67.31" x2="-22.86" y2="67.31" width="0.1524" layer="91"/>
+<wire x1="-22.86" y1="67.31" x2="-22.86" y2="55.88" width="0.1524" layer="91"/>
+<pinref part="GND16" gate="1" pin="GND"/>
 </segment>
 </net>
 <net name="USB_D-" class="0">
@@ -15993,6 +16003,12 @@ side should be highZ mode!</text>
 <pinref part="PS/2KEYB" gate="G$1" pin="4"/>
 <wire x1="448.31" y1="102.87" x2="454.66" y2="102.87" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="JOY0" gate="G$1" pin="7"/>
+<wire x1="-19.05" y1="69.85" x2="-22.86" y2="69.85" width="0.1524" layer="91"/>
+<wire x1="-22.86" y1="69.85" x2="-22.86" y2="78.74" width="0.1524" layer="91"/>
+<pinref part="P+5" gate="1" pin="+5V"/>
+</segment>
 </net>
 <net name="ZPD0" class="0">
 <segment>
@@ -16163,56 +16179,78 @@ side should be highZ mode!</text>
 <label x="22.86" y="15.24" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$5" class="0">
+<net name="ZPC0" class="0">
 <segment>
 <pinref part="GPIOC-JOY0" gate="A" pin="1"/>
 <wire x1="12.7" y1="78.74" x2="22.86" y2="78.74" width="0.1524" layer="91"/>
 <label x="22.86" y="78.74" size="1.27" layer="95" xref="yes"/>
+<wire x1="12.7" y1="78.74" x2="6.35" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="6.35" y1="78.74" x2="6.35" y2="64.77" width="0.1524" layer="91"/>
+<pinref part="JOY0" gate="G$1" pin="5"/>
+<wire x1="6.35" y1="64.77" x2="-3.81" y2="64.77" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$7" class="0">
+<net name="ZPC1" class="0">
 <segment>
 <pinref part="GPIOC-JOY0" gate="A" pin="2"/>
 <wire x1="12.7" y1="76.2" x2="22.86" y2="76.2" width="0.1524" layer="91"/>
 <label x="22.86" y="76.2" size="1.27" layer="95" xref="yes"/>
+<wire x1="12.7" y1="76.2" x2="3.81" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="3.81" y1="76.2" x2="3.81" y2="67.31" width="0.1524" layer="91"/>
+<pinref part="JOY0" gate="G$1" pin="4"/>
+<wire x1="3.81" y1="67.31" x2="-3.81" y2="67.31" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$9" class="0">
+<net name="ZPC2" class="0">
 <segment>
 <pinref part="GPIOC-JOY0" gate="A" pin="3"/>
 <wire x1="12.7" y1="73.66" x2="22.86" y2="73.66" width="0.1524" layer="91"/>
 <label x="22.86" y="73.66" size="1.27" layer="95" xref="yes"/>
+<wire x1="12.7" y1="73.66" x2="1.27" y2="73.66" width="0.1524" layer="91"/>
+<wire x1="1.27" y1="73.66" x2="1.27" y2="69.85" width="0.1524" layer="91"/>
+<pinref part="JOY0" gate="G$1" pin="3"/>
+<wire x1="1.27" y1="69.85" x2="-3.81" y2="69.85" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$14" class="0">
+<net name="ZPC3" class="0">
 <segment>
 <pinref part="GPIOC-JOY0" gate="A" pin="4"/>
 <wire x1="12.7" y1="71.12" x2="22.86" y2="71.12" width="0.1524" layer="91"/>
 <label x="22.86" y="71.12" size="1.27" layer="95" xref="yes"/>
+<wire x1="12.7" y1="71.12" x2="-1.27" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="-1.27" y1="71.12" x2="-1.27" y2="72.39" width="0.1524" layer="91"/>
+<pinref part="JOY0" gate="G$1" pin="2"/>
+<wire x1="-1.27" y1="72.39" x2="-3.81" y2="72.39" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$15" class="0">
+<net name="ZPC4" class="0">
 <segment>
 <pinref part="GPIOC-JOY0" gate="A" pin="5"/>
 <wire x1="12.7" y1="68.58" x2="22.86" y2="68.58" width="0.1524" layer="91"/>
 <label x="22.86" y="68.58" size="1.27" layer="95" xref="yes"/>
+<wire x1="12.7" y1="68.58" x2="7.62" y2="68.58" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="68.58" x2="7.62" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="60.96" x2="-31.75" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="-31.75" y1="60.96" x2="-31.75" y2="72.39" width="0.1524" layer="91"/>
+<pinref part="JOY0" gate="G$1" pin="6"/>
+<wire x1="-31.75" y1="72.39" x2="-19.05" y2="72.39" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$16" class="0">
+<net name="ZPC5" class="0">
 <segment>
 <pinref part="GPIOC-JOY0" gate="A" pin="6"/>
 <wire x1="12.7" y1="66.04" x2="22.86" y2="66.04" width="0.1524" layer="91"/>
 <label x="22.86" y="66.04" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$17" class="0">
+<net name="ZPC6" class="0">
 <segment>
 <pinref part="GPIOC-JOY0" gate="A" pin="7"/>
 <wire x1="12.7" y1="63.5" x2="22.86" y2="63.5" width="0.1524" layer="91"/>
 <label x="22.86" y="63.5" size="1.27" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$18" class="0">
+<net name="ZPC7" class="0">
 <segment>
 <pinref part="GPIOC-JOY0" gate="A" pin="8"/>
 <wire x1="12.7" y1="60.96" x2="22.86" y2="60.96" width="0.1524" layer="91"/>
