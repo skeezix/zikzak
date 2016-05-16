@@ -170,6 +170,25 @@ Jeff Mitchell 2016</text>
 <wire x1="73.66" y1="84.455" x2="136.525" y2="84.455" width="0.254" layer="21"/>
 <wire x1="136.525" y1="84.455" x2="136.525" y2="74.93" width="0.254" layer="21"/>
 <rectangle x1="30.48" y1="0" x2="120.65" y2="43.18" layer="46"/>
+<text x="22.86" y="53.975" size="1.778" layer="21" rot="R270">1</text>
+<text x="3.175" y="74.295" size="1.778" layer="21" rot="R90">1</text>
+<text x="8.255" y="76.2" size="1.778" layer="21" rot="R90">1</text>
+<text x="16.51" y="76.2" size="1.778" layer="21" rot="R90">1</text>
+<text x="27.305" y="81.915" size="1.778" layer="21">1</text>
+<text x="30.48" y="57.785" size="1.778" layer="21">1</text>
+<text x="1.905" y="2.54" size="1.778" layer="21">1</text>
+<text x="123.825" y="1.905" size="1.778" layer="21">1</text>
+<text x="123.825" y="8.89" size="1.778" layer="21">1</text>
+<text x="135.89" y="10.16" size="1.778" layer="21">1</text>
+<text x="142.24" y="16.51" size="1.778" layer="21" rot="R90">1</text>
+<text x="144.145" y="69.85" size="1.27" layer="21" rot="R90">VHGRGB</text>
+<text x="145.415" y="59.69" size="1.778" layer="21" rot="R90">1</text>
+<text x="138.43" y="81.915" size="1.27" layer="21">G
++5
+nc</text>
+<text x="135.89" y="90.17" size="1.778" layer="21">1</text>
+<rectangle x1="92.71" y1="78.74" x2="99.06" y2="85.09" layer="46"/>
+<rectangle x1="5.08" y1="88.9" x2="10.16" y2="92.71" layer="46"/>
 </plain>
 <libraries>
 <library name="skeezix">
@@ -2170,7 +2189,7 @@ grid 3.5 mm, diameter 8 mm</description>
 <class number="1" name="power" width="0.254" drill="0">
 </class>
 </classes>
-<designrules name="default">
+<designrules name="Elecrow_2-layer_eagle_rule">
 <description language="de">&lt;b&gt;EAGLE Design Rules&lt;/b&gt;
 &lt;p&gt;
 Die Standard-Design-Rules sind so gewählt, dass sie für 
@@ -2185,26 +2204,28 @@ a wide range of applications. Your particular design
 may have different requirements, so please make the
 necessary adjustments and save your customized
 design rules under a new name.</description>
+<description language="zh">&lt;b&gt;Elecrow EAGLE Design Rules&lt;/b&gt;
+</description>
 <param name="layerSetup" value="(1*16)"/>
 <param name="mtCopper" value="0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm 0.035mm"/>
 <param name="mtIsolate" value="1.5mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm 0.15mm 0.2mm"/>
-<param name="mdWireWire" value="8mil"/>
-<param name="mdWirePad" value="8mil"/>
-<param name="mdWireVia" value="8mil"/>
-<param name="mdPadPad" value="8mil"/>
-<param name="mdPadVia" value="8mil"/>
-<param name="mdViaVia" value="8mil"/>
-<param name="mdSmdPad" value="8mil"/>
-<param name="mdSmdVia" value="8mil"/>
-<param name="mdSmdSmd" value="8mil"/>
+<param name="mdWireWire" value="6mil"/>
+<param name="mdWirePad" value="6mil"/>
+<param name="mdWireVia" value="6mil"/>
+<param name="mdPadPad" value="6mil"/>
+<param name="mdPadVia" value="6mil"/>
+<param name="mdViaVia" value="6mil"/>
+<param name="mdSmdPad" value="0mil"/>
+<param name="mdSmdVia" value="0mil"/>
+<param name="mdSmdSmd" value="0mil"/>
 <param name="mdViaViaSameLayer" value="8mil"/>
 <param name="mnLayersViaInSmd" value="2"/>
-<param name="mdCopperDimension" value="40mil"/>
-<param name="mdDrill" value="8mil"/>
+<param name="mdCopperDimension" value="10mil"/>
+<param name="mdDrill" value="10mil"/>
 <param name="mdSmdStop" value="0mil"/>
-<param name="msWidth" value="10mil"/>
-<param name="msDrill" value="24mil"/>
-<param name="msMicroVia" value="9.99mm"/>
+<param name="msWidth" value="6mil"/>
+<param name="msDrill" value="12mil"/>
+<param name="msMicroVia" value="12mil"/>
 <param name="msBlindViaRatio" value="0.5"/>
 <param name="rvPadTop" value="0.25"/>
 <param name="rvPadInner" value="0.25"/>
@@ -2219,9 +2240,9 @@ design rules under a new name.</description>
 <param name="rlMaxPadInner" value="20mil"/>
 <param name="rlMinPadBottom" value="10mil"/>
 <param name="rlMaxPadBottom" value="20mil"/>
-<param name="rlMinViaOuter" value="8mil"/>
+<param name="rlMinViaOuter" value="6mil"/>
 <param name="rlMaxViaOuter" value="20mil"/>
-<param name="rlMinViaInner" value="8mil"/>
+<param name="rlMinViaInner" value="6mil"/>
 <param name="rlMaxViaInner" value="20mil"/>
 <param name="rlMinMicroViaOuter" value="4mil"/>
 <param name="rlMaxMicroViaOuter" value="20mil"/>
@@ -2229,16 +2250,16 @@ design rules under a new name.</description>
 <param name="rlMaxMicroViaInner" value="20mil"/>
 <param name="psTop" value="-1"/>
 <param name="psBottom" value="-1"/>
-<param name="psFirst" value="-1"/>
+<param name="psFirst" value="0"/>
 <param name="psElongationLong" value="100"/>
 <param name="psElongationOffset" value="100"/>
 <param name="mvStopFrame" value="1"/>
 <param name="mvCreamFrame" value="0"/>
-<param name="mlMinStopFrame" value="4mil"/>
-<param name="mlMaxStopFrame" value="4mil"/>
+<param name="mlMinStopFrame" value="2mil"/>
+<param name="mlMaxStopFrame" value="2mil"/>
 <param name="mlMinCreamFrame" value="0mil"/>
 <param name="mlMaxCreamFrame" value="0mil"/>
-<param name="mlViaStopLimit" value="0mil"/>
+<param name="mlViaStopLimit" value="100mil"/>
 <param name="srRoundness" value="0"/>
 <param name="srMinRoundness" value="0mil"/>
 <param name="srMaxRoundness" value="0mil"/>
@@ -2249,7 +2270,7 @@ design rules under a new name.</description>
 <param name="checkGrid" value="0"/>
 <param name="checkAngle" value="0"/>
 <param name="checkFont" value="1"/>
-<param name="checkRestrict" value="1"/>
+<param name="checkRestrict" value="0"/>
 <param name="useDiameter" value="13"/>
 <param name="maxErrors" value="50"/>
 </designrules>
@@ -2354,8 +2375,8 @@ design rules under a new name.</description>
 <element name="JOY0" library="SparkFun-Connectors-skeemod" package="DB9" value="" x="8.255" y="24.765" rot="R90"/>
 <element name="VGA1" library="VideoConnectors-skeemod" package="DB-15-F90+SHIELD-BIG_PADS" value="VGA-F90B" x="70.485" y="104.775" rot="R180"/>
 <element name="USBSERPWR" library="adafruit-musb-skeemod" package="4UCONN_20329" value="" x="8.255" y="95.885" rot="R180"/>
-<element name="U$5" library="skeezix" package="STEREOHEADPHONEJACK" value="STEREOHEADPHONEJACK" x="-1.905" y="41.275"/>
-<element name="U2" library="SparkFun" package="SSOP28DB" value="FT232RLSSOP" x="38.735" y="70.485"/>
+<element name="HEADPHONE" library="skeezix" package="STEREOHEADPHONEJACK" value="STEREOHEADPHONEJACK" x="-1.905" y="41.275"/>
+<element name="FTDI" library="SparkFun" package="SSOP28DB" value="FT232RLSSOP" x="38.735" y="70.485"/>
 <element name="USBPORT" library="pinhead" package="1X04" value="" x="22.225" y="81.28" rot="R180"/>
 <element name="CTSGND" library="pinhead" package="1X02" value="" x="60.325" y="60.325"/>
 <element name="SERSTATE" library="pinhead" package="1X06" value="" x="39.37" y="60.325"/>
@@ -2369,7 +2390,7 @@ design rules under a new name.</description>
 <element name="R6" library="rcl" package="0204/7" value="330 ohm" x="22.86" y="19.05" rot="R180"/>
 <element name="ZPD1-TXD" library="pinhead" package="1X02" value="" x="66.04" y="79.375"/>
 <element name="ZPD0-RXD" library="pinhead" package="1X02" value="" x="54.61" y="79.375"/>
-<element name="IC1" library="ic-package" package="DIL08" value="TPS7133QP" x="81.28" y="65.405"/>
+<element name="TPS7133" library="ic-package" package="DIL08" value="TPS7133QP" x="81.28" y="65.405"/>
 <element name="C3" library="rcl" package="C025-025X050" value="10uF Tant" x="90.17" y="64.135" rot="R90"/>
 <element name="PWROUT" library="pinhead" package="1X04" value="" x="12.7" y="81.915" rot="R90"/>
 <element name="PWRIN" library="pinhead" package="1X04" value="" x="5.08" y="81.915" rot="R90"/>
@@ -2379,19 +2400,20 @@ design rules under a new name.</description>
 <element name="VGAHDR" library="pinhead" package="1X06" value="" x="146.05" y="68.58" rot="R90"/>
 <element name="BOB-PA" library="pinhead" package="1X16" value="" x="146.05" y="36.83" rot="R90"/>
 <element name="PS2KEYB" library="pinhead" package="1X04" value="" x="130.81" y="3.81"/>
-<element name="GNDOUT" library="pinhead" package="1X03" value="" x="125.095" y="80.01"/>
-<element name="3V3OUT" library="pinhead" package="1X03" value="" x="104.14" y="80.01"/>
-<element name="5OUT" library="pinhead" package="1X03" value="" x="83.185" y="80.01"/>
+<element name="GNDOUT" library="pinhead" package="1X03" value="" x="83.185" y="80.01"/>
+<element name="3V3OUT" library="pinhead" package="1X03" value="" x="123.825" y="80.01"/>
+<element name="5OUT" library="pinhead" package="1X03" value="" x="109.22" y="80.01"/>
 <element name="SPKR" library="pinhead" package="1X04" value="" x="142.24" y="92.71"/>
 <element name="R34" library="rcl" package="0204/7" value="1K" x="99.695" y="71.755" rot="R180"/>
 <element name="C23" library="rcl" package="C025-025X050" value="100uF" x="99.695" y="66.675" rot="R180"/>
-<element name="U$6" library="skeezix" package="LM386-DIP8" value="LM386-DIP" x="109.855" y="63.5"/>
-<element name="C25" library="rcl" package="E3,5-8" value="250uF Pol" x="128.27" y="68.58"/>
+<element name="U$6" library="skeezix" package="LM386-DIP8" value="LM386-DIP" x="107.315" y="63.5"/>
+<element name="C25" library="rcl" package="E3,5-8" value="250uF Pol" x="129.54" y="69.215"/>
 <element name="C26" library="rcl" package="C025-025X050" value=".05uF" x="99.695" y="60.96" rot="R180"/>
-<element name="R37" library="rcl" package="0204/7" value="10" x="128.905" y="62.865" rot="R180"/>
+<element name="R37" library="rcl" package="0204/7" value="10" x="129.54" y="59.055" rot="R180"/>
 <element name="LINEOUT" library="pinhead" package="1X02" value="" x="128.27" y="10.795"/>
 <element name="JOY1" library="SparkFun-Connectors-skeemod" package="DB9" value="" x="105.41" y="91.44"/>
 <element name="USBGPU" library="adafruit-musb-skeemod" package="4UCONN_20329" value="" x="129.54" y="95.885" rot="R180"/>
+<element name="C13" library="rcl" package="C025-025X050" value=".1uF" x="121.285" y="66.04" rot="R90"/>
 </elements>
 <signals>
 <signal name="VCC">
@@ -2402,17 +2424,17 @@ design rules under a new name.</description>
 <signal name="GND" class="1">
 <contactref element="C1" pad="2"/>
 <contactref element="USBPORT" pad="4"/>
-<contactref element="U2" pad="26"/>
-<contactref element="U2" pad="25"/>
-<contactref element="U2" pad="7"/>
-<contactref element="U2" pad="18"/>
-<contactref element="U2" pad="21"/>
+<contactref element="FTDI" pad="26"/>
+<contactref element="FTDI" pad="25"/>
+<contactref element="FTDI" pad="7"/>
+<contactref element="FTDI" pad="18"/>
+<contactref element="FTDI" pad="21"/>
 <contactref element="C2" pad="2"/>
 <contactref element="CTSGND" pad="1"/>
 <contactref element="TXLED" pad="K"/>
 <contactref element="RXLED" pad="K"/>
-<contactref element="IC1" pad="1"/>
-<contactref element="IC1" pad="2"/>
+<contactref element="TPS7133" pad="1"/>
+<contactref element="TPS7133" pad="2"/>
 <contactref element="C3" pad="1"/>
 <contactref element="PWROUT" pad="4"/>
 <contactref element="R34" pad="2"/>
@@ -2446,7 +2468,7 @@ design rules under a new name.</description>
 <contactref element="USBGPU" pad="SPRT@4"/>
 <contactref element="USBGPU" pad="SPRT@3"/>
 <contactref element="USBGPU" pad="BASE@1"/>
-<contactref element="U$5" pad="SG"/>
+<contactref element="HEADPHONE" pad="SG"/>
 <contactref element="PS2KEYB" pad="2"/>
 <polygon width="0.4064" layer="1">
 <vertex x="0" y="0"/>
@@ -2458,34 +2480,31 @@ design rules under a new name.</description>
 <contactref element="U$2" pad="P8"/>
 <contactref element="JOY0" pad="7"/>
 <contactref element="JOY1" pad="7"/>
-<wire x1="130.29" y1="97.885" x2="133.14" y2="98.166" width="0" layer="19" extent="1-1"/>
-<wire x1="128.24" y1="95.11" x2="128.79" y2="97.885" width="0" layer="19" extent="1-1"/>
-<wire x1="7.505" y1="97.885" x2="6.955" y2="95.11" width="0" layer="19" extent="1-1"/>
-<wire x1="125.94" y1="98.166" x2="128.79" y2="97.885" width="0" layer="19" extent="1-1"/>
-<wire x1="11.855" y1="98.166" x2="9.005" y2="97.885" width="0" layer="19" extent="1-1"/>
-<wire x1="4.655" y1="98.166" x2="7.505" y2="97.885" width="0" layer="19" extent="1-1"/>
-</signal>
-<signal name="+5V">
-<contactref element="VGA1" pad="9"/>
-<contactref element="U$6" pad="6"/>
-<wire x1="71.882" y1="93.345" x2="114.935" y2="69.85" width="0" layer="19" extent="1-1"/>
+<contactref element="VGAHDR" pad="3"/>
+<contactref element="VGA1" pad="5"/>
+<contactref element="VGA1" pad="10"/>
+<contactref element="VGA1" pad="6"/>
+<contactref element="VGA1" pad="7"/>
+<contactref element="VGA1" pad="8"/>
+<contactref element="SPKR" pad="4"/>
+<contactref element="C13" pad="2"/>
 </signal>
 <signal name="USB_D-">
-<contactref element="U2" pad="16"/>
+<contactref element="FTDI" pad="16"/>
 <contactref element="USBPORT" pad="2"/>
-<contactref element="USBSERPWR" pad="D+"/>
+<contactref element="USBSERPWR" pad="D-"/>
 <wire x1="23.495" y1="81.28" x2="42.31" y2="74.141" width="0" layer="19" extent="1-1"/>
-<wire x1="8.255" y1="95.11" x2="23.495" y2="81.28" width="0" layer="19" extent="1-1"/>
+<wire x1="8.905" y1="95.11" x2="23.495" y2="81.28" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="USB_D+">
-<contactref element="U2" pad="15"/>
+<contactref element="FTDI" pad="15"/>
 <contactref element="USBPORT" pad="3"/>
-<contactref element="USBSERPWR" pad="D-"/>
+<contactref element="USBSERPWR" pad="D+"/>
 <wire x1="20.955" y1="81.28" x2="42.96" y2="74.141" width="0" layer="19" extent="1-1"/>
-<wire x1="8.905" y1="95.11" x2="20.955" y2="81.28" width="0" layer="19" extent="1-1"/>
+<wire x1="8.255" y1="95.11" x2="20.955" y2="81.28" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="FTDI3" class="1">
-<contactref element="U2" pad="17"/>
+<contactref element="FTDI" pad="17"/>
 <contactref element="FT3V3-&gt;PWR3" pad="1"/>
 <contactref element="C1" pad="1"/>
 <wire x1="44.45" y1="80.01" x2="58.42" y2="71.755" width="0" layer="19" extent="1-1"/>
@@ -2494,31 +2513,31 @@ design rules under a new name.</description>
 <signal name="PWR3">
 <contactref element="FT3V3-&gt;PWR3" pad="2"/>
 <contactref element="PWRIN" pad="3"/>
-<contactref element="IC1" pad="5"/>
+<contactref element="TPS7133" pad="5"/>
 <contactref element="C3" pad="2"/>
-<contactref element="IC1" pad="7"/>
-<contactref element="IC1" pad="6"/>
+<contactref element="TPS7133" pad="7"/>
+<contactref element="TPS7133" pad="6"/>
 <contactref element="PWROUT" pad="3"/>
 <contactref element="3V3OUT" pad="1"/>
 <contactref element="3V3OUT" pad="2"/>
 <contactref element="3V3OUT" pad="3"/>
 <contactref element="U$2" pad="P6"/>
-<wire x1="104.14" y1="80.01" x2="106.68" y2="80.01" width="0" layer="19" extent="1-1"/>
-<wire x1="101.6" y1="80.01" x2="104.14" y2="80.01" width="0" layer="19" extent="1-1"/>
-<wire x1="90.17" y1="65.405" x2="101.6" y2="80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="123.825" y1="80.01" x2="126.365" y2="80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="121.285" y1="80.01" x2="123.825" y2="80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="90.17" y1="65.405" x2="121.285" y2="80.01" width="0" layer="19" extent="1-1"/>
 <wire x1="85.09" y1="69.215" x2="90.17" y2="65.405" width="0" layer="19" extent="1-1"/>
 <wire x1="82.55" y1="69.215" x2="85.09" y2="69.215" width="0" layer="19" extent="1-1"/>
 <wire x1="80.01" y1="69.215" x2="82.55" y2="69.215" width="0" layer="19" extent="1-1"/>
 <wire x1="60.96" y1="71.755" x2="80.01" y2="69.215" width="0" layer="19" extent="1-1"/>
 <wire x1="12.7" y1="83.185" x2="60.96" y2="71.755" width="0" layer="19" extent="1-1"/>
 <wire x1="5.08" y1="83.185" x2="12.7" y2="83.185" width="0" layer="19" extent="1-1"/>
-<wire x1="138.2776" y1="8.0772" x2="90.17" y2="65.405" width="0" layer="19" extent="1-1"/>
+<wire x1="138.2776" y1="8.0772" x2="126.365" y2="80.01" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="USB5">
-<contactref element="U2" pad="20"/>
-<contactref element="U2" pad="4"/>
+<contactref element="FTDI" pad="20"/>
+<contactref element="FTDI" pad="4"/>
 <contactref element="USBPORT" pad="1"/>
-<contactref element="U2" pad="19"/>
+<contactref element="FTDI" pad="19"/>
 <contactref element="FT5V-&gt;PWR5" pad="1"/>
 <contactref element="C2" pad="1"/>
 <contactref element="USBSERPWR" pad="VBUS"/>
@@ -2530,32 +2549,32 @@ design rules under a new name.</description>
 <wire x1="9.555" y1="95.11" x2="26.035" y2="81.28" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RTS">
-<contactref element="U2" pad="3"/>
+<contactref element="FTDI" pad="3"/>
 <contactref element="SERSTATE" pad="5"/>
 <wire x1="43.18" y1="60.325" x2="35.81" y2="66.829" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="DTR">
-<contactref element="U2" pad="2"/>
+<contactref element="FTDI" pad="2"/>
 <contactref element="SERSTATE" pad="4"/>
 <wire x1="40.64" y1="60.325" x2="35.16" y2="66.829" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="DSR">
-<contactref element="U2" pad="9"/>
+<contactref element="FTDI" pad="9"/>
 <contactref element="SERSTATE" pad="3"/>
 <wire x1="38.1" y1="60.325" x2="39.71" y2="66.829" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="DCD">
-<contactref element="U2" pad="10"/>
+<contactref element="FTDI" pad="10"/>
 <contactref element="SERSTATE" pad="2"/>
 <wire x1="35.56" y1="60.325" x2="40.36" y2="66.829" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="RI">
-<contactref element="U2" pad="6"/>
+<contactref element="FTDI" pad="6"/>
 <contactref element="SERSTATE" pad="1"/>
 <wire x1="33.02" y1="60.325" x2="37.76" y2="66.829" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="CTS">
-<contactref element="U2" pad="11"/>
+<contactref element="FTDI" pad="11"/>
 <contactref element="CTSGND" pad="2"/>
 <contactref element="SERSTATE" pad="6"/>
 <wire x1="45.72" y1="60.325" x2="61.595" y2="60.325" width="0" layer="19" extent="1-1"/>
@@ -2567,7 +2586,7 @@ design rules under a new name.</description>
 <wire x1="23.495" y1="11.43" x2="19.05" y2="19.05" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$8">
-<contactref element="U2" pad="23"/>
+<contactref element="FTDI" pad="23"/>
 <contactref element="R6" pad="1"/>
 <wire x1="26.67" y1="19.05" x2="37.76" y2="74.141" width="0" layer="19" extent="1-1"/>
 </signal>
@@ -2577,17 +2596,17 @@ design rules under a new name.</description>
 <wire x1="15.24" y1="11.43" x2="15.24" y2="22.86" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$11">
-<contactref element="U2" pad="22"/>
+<contactref element="FTDI" pad="22"/>
 <contactref element="R3" pad="1"/>
 <wire x1="22.86" y1="22.86" x2="38.41" y2="74.141" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$12">
-<contactref element="U2" pad="1"/>
+<contactref element="FTDI" pad="1"/>
 <contactref element="ZPD1-TXD" pad="1"/>
 <wire x1="34.51" y1="66.829" x2="64.77" y2="79.375" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$13">
-<contactref element="U2" pad="5"/>
+<contactref element="FTDI" pad="5"/>
 <contactref element="ZPD0-RXD" pad="1"/>
 <wire x1="37.11" y1="66.829" x2="53.34" y2="79.375" width="0" layer="19" extent="1-1"/>
 </signal>
@@ -2599,31 +2618,31 @@ design rules under a new name.</description>
 <signal name="N$2">
 <contactref element="U$6" pad="3"/>
 <contactref element="U$3" pad="P$1"/>
-<wire x1="24.13" y1="86.995" x2="114.935" y2="62.23" width="0" layer="19" extent="1-1"/>
+<wire x1="24.13" y1="86.995" x2="112.395" y2="62.23" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$22">
 <contactref element="U$6" pad="5"/>
 <contactref element="C25" pad="+"/>
 <contactref element="C26" pad="2"/>
-<wire x1="117.475" y1="69.85" x2="126.492" y2="68.58" width="0" layer="19" extent="1-1"/>
-<wire x1="98.425" y1="60.96" x2="117.475" y2="69.85" width="0" layer="19" extent="1-1"/>
+<wire x1="114.935" y1="69.85" x2="127.762" y2="69.215" width="0" layer="19" extent="1-1"/>
+<wire x1="98.425" y1="60.96" x2="114.935" y2="69.85" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$23">
 <contactref element="C25" pad="-"/>
-<contactref element="U$5" pad="R"/>
-<contactref element="U$5" pad="T"/>
-<wire x1="9.525" y1="52.705" x2="130.048" y2="68.58" width="0" layer="19" extent="1-1"/>
+<contactref element="HEADPHONE" pad="R"/>
+<contactref element="HEADPHONE" pad="T"/>
+<wire x1="9.525" y1="52.705" x2="131.318" y2="69.215" width="0" layer="19" extent="1-1"/>
 <wire x1="9.525" y1="42.545" x2="9.525" y2="52.705" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$24">
 <contactref element="C26" pad="1"/>
 <contactref element="R37" pad="2"/>
-<wire x1="100.965" y1="60.96" x2="125.095" y2="62.865" width="0" layer="19" extent="1-1"/>
+<wire x1="100.965" y1="60.96" x2="125.73" y2="59.055" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$3">
 <contactref element="U$6" pad="7"/>
 <contactref element="LINEOUT" pad="2"/>
-<wire x1="129.54" y1="10.795" x2="112.395" y2="69.85" width="0" layer="19" extent="1-1"/>
+<wire x1="129.54" y1="10.795" x2="109.855" y2="69.85" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="N$6">
 <contactref element="SPKR" pad="1"/>
@@ -2640,8 +2659,8 @@ design rules under a new name.</description>
 <contactref element="FT5V-&gt;PWR5" pad="2"/>
 <contactref element="PWRIN" pad="2"/>
 <contactref element="U$1" pad="CPIN"/>
-<contactref element="IC1" pad="3"/>
-<contactref element="IC1" pad="4"/>
+<contactref element="TPS7133" pad="3"/>
+<contactref element="TPS7133" pad="4"/>
 <contactref element="PWROUT" pad="2"/>
 <contactref element="5OUT" pad="1"/>
 <contactref element="5OUT" pad="2"/>
@@ -2651,19 +2670,26 @@ design rules under a new name.</description>
 <contactref element="PS/2KEYB" pad="4"/>
 <contactref element="JOY0" pad="8"/>
 <contactref element="JOY1" pad="8"/>
+<contactref element="VGA1" pad="9"/>
+<contactref element="VGA1" pad="9"/>
+<contactref element="U$6" pad="6"/>
+<contactref element="C13" pad="1"/>
 <wire x1="130.84" y1="95.11" x2="142.24" y2="84.582" width="0" layer="19" extent="1-1"/>
 <wire x1="106.79" y1="92.86" x2="130.84" y2="95.11" width="0" layer="19" extent="1-1"/>
-<wire x1="85.725" y1="80.01" x2="106.79" y2="92.86" width="0" layer="19" extent="1-1"/>
-<wire x1="83.185" y1="80.01" x2="85.725" y2="80.01" width="0" layer="19" extent="1-1"/>
-<wire x1="80.645" y1="80.01" x2="83.185" y2="80.01" width="0" layer="19" extent="1-1"/>
-<wire x1="85.09" y1="61.595" x2="85.725" y2="80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="106.68" y1="80.01" x2="106.79" y2="92.86" width="0" layer="19" extent="1-1"/>
+<wire x1="109.22" y1="80.01" x2="106.68" y2="80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="111.76" y1="80.01" x2="109.22" y2="80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="112.395" y1="69.85" x2="111.76" y2="80.01" width="0" layer="19" extent="1-1"/>
+<wire x1="121.285" y1="64.77" x2="112.395" y2="69.85" width="0" layer="19" extent="1-1"/>
+<wire x1="85.09" y1="61.595" x2="106.68" y2="80.01" width="0" layer="19" extent="1-1"/>
 <wire x1="82.55" y1="61.595" x2="85.09" y2="61.595" width="0" layer="19" extent="1-1"/>
 <wire x1="61.595" y1="66.04" x2="82.55" y2="61.595" width="0" layer="19" extent="1-1"/>
-<wire x1="46.58" y1="92.465" x2="61.595" y2="66.04" width="0" layer="19" extent="1-1"/>
+<wire x1="71.882" y1="93.345" x2="61.595" y2="66.04" width="0" layer="19" extent="1-1"/>
+<wire x1="46.58" y1="92.465" x2="71.882" y2="93.345" width="0" layer="19" extent="1-1"/>
 <wire x1="12.7" y1="80.645" x2="46.58" y2="92.465" width="0" layer="19" extent="1-1"/>
 <wire x1="5.08" y1="80.645" x2="12.7" y2="80.645" width="0" layer="19" extent="1-1"/>
 <wire x1="6.835" y1="26.145" x2="5.08" y2="80.645" width="0" layer="19" extent="1-1"/>
-<wire x1="132.08" y1="3.81" x2="85.09" y2="61.595" width="0" layer="19" extent="1-1"/>
+<wire x1="132.08" y1="3.81" x2="121.285" y2="64.77" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ZPD0">
 <contactref element="GPIOD-JOY1" pad="1"/>
@@ -2721,16 +2747,18 @@ design rules under a new name.</description>
 </signal>
 <signal name="SPA10">
 <contactref element="BOB-PA" pad="11"/>
+<contactref element="USBGPU" pad="ID"/>
+<wire x1="146.05" y1="43.18" x2="128.89" y2="95.11" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SPA11">
 <contactref element="BOB-PA" pad="12"/>
-<contactref element="USBGPU" pad="D+"/>
-<wire x1="146.05" y1="45.72" x2="129.54" y2="95.11" width="0" layer="19" extent="1-1"/>
+<contactref element="USBGPU" pad="D-"/>
+<wire x1="146.05" y1="45.72" x2="130.19" y2="95.11" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="SPA12">
 <contactref element="BOB-PA" pad="13"/>
-<contactref element="USBGPU" pad="D-"/>
-<wire x1="146.05" y1="48.26" x2="130.19" y2="95.11" width="0" layer="19" extent="1-1"/>
+<contactref element="USBGPU" pad="D+"/>
+<wire x1="146.05" y1="48.26" x2="129.54" y2="95.11" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ZPD2">
 <contactref element="GPIOD-JOY1" pad="3"/>
@@ -2789,23 +2817,30 @@ design rules under a new name.</description>
 <contactref element="PS/2KEYB" pad="1"/>
 <wire x1="41.88" y1="92.465" x2="134.62" y2="3.81" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="N$26">
+<signal name="SV">
 <contactref element="VGAHDR" pad="1"/>
+<contactref element="VGA1" pad="14"/>
+<wire x1="73.025" y1="95.25" x2="146.05" y2="62.23" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="N$27">
+<signal name="SH">
 <contactref element="VGAHDR" pad="2"/>
+<contactref element="VGA1" pad="13"/>
+<wire x1="70.739" y1="95.25" x2="146.05" y2="64.77" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="N$28">
-<contactref element="VGAHDR" pad="3"/>
-</signal>
-<signal name="N$29">
+<signal name="SR">
 <contactref element="VGAHDR" pad="4"/>
+<contactref element="VGA1" pad="1"/>
+<wire x1="66.167" y1="91.44" x2="146.05" y2="69.85" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="N$30">
+<signal name="SG">
 <contactref element="VGAHDR" pad="5"/>
+<contactref element="VGA1" pad="2"/>
+<wire x1="68.453" y1="91.44" x2="146.05" y2="72.39" width="0" layer="19" extent="1-1"/>
 </signal>
-<signal name="N$31">
+<signal name="SB">
 <contactref element="VGAHDR" pad="6"/>
+<contactref element="VGA1" pad="3"/>
+<wire x1="70.739" y1="91.44" x2="146.05" y2="74.93" width="0" layer="19" extent="1-1"/>
 </signal>
 <signal name="ZPD7_CLK">
 <contactref element="PS2KEYB" pad="1"/>

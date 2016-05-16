@@ -15189,7 +15189,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="JOY0" library="SparkFun-Connectors-skeemod" deviceset="DB9" device="FEMALE"/>
 <part name="VGA1" library="VideoConnectors-skeemod" deviceset="VGA-*" device="F90B"/>
 <part name="USBSERPWR" library="adafruit-musb-skeemod" deviceset="USB" device="MICRO_20329"/>
-<part name="U$5" library="skeezix" deviceset="STEREOHEADPHONEJACK" device=""/>
+<part name="HEADPHONE" library="skeezix" deviceset="STEREOHEADPHONEJACK" device=""/>
 <part name="GND1" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND2" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND5" library="SparkFun" deviceset="GND" device=""/>
@@ -15258,6 +15258,13 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="GND15" library="supply1" deviceset="GND" device=""/>
 <part name="P+5" library="supply1" deviceset="+5V" device=""/>
 <part name="GND16" library="SparkFun" deviceset="GND" device=""/>
+<part name="P+6" library="supply1" deviceset="+5V" device=""/>
+<part name="GND17" library="SparkFun" deviceset="GND" device=""/>
+<part name="GND18" library="supply1" deviceset="GND" device=""/>
+<part name="GND19" library="supply1" deviceset="GND" device=""/>
+<part name="P+7" library="supply1" deviceset="+5V" device=""/>
+<part name="GND21" library="supply1" deviceset="GND" device=""/>
+<part name="GND22" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -15285,23 +15292,15 @@ regulator</text>
 - GND</text>
 <text x="267.97" y="209.55" size="3.81" layer="91">Power Block</text>
 <text x="374.65" y="140.97" size="7.62" layer="91">Verify
-- all pin1 orientations!
 - ensure cap, resistor sizine/type
 - printout pcb to printer, eyeball it
 - PWR v PW5 vs PWR3 vs 5V vs etc .. all powers are hooked right
 - net review; ensure no +5V and other old net names
-- uncover reset buttons.. anything else? LEDs? cutout over?
 - verify USB 5p is correct .. power and D- D+ correct pins
-- potwheel on right? cmp to r4
-- mill in some slots for air flow? visibility?
-- silkscreen name/branding/rev, pin1s
 - SD, unrouted, DRC, ERC...
-- extra BoB pins? i2c? SPI? all that stuff, bring them up and dont populate?
 - Ensure slot for cart is deep/wide enough for plastic box clearance?
-- case readyness?
-- remove back milling, hell with it?</text>
-<text x="114.3" y="-119.38" size="2.54" layer="91">Use Vcc12V or +5?
-Decouple Vcc/GND with a cap?</text>
+- case readyness?</text>
+<text x="118.11" y="-113.03" size="2.54" layer="91">Use Vcc12V or +5?</text>
 <text x="12.7" y="-106.68" size="3.81" layer="91">Audio Amp</text>
 <text x="8.89" y="255.27" size="3.81" layer="91">Powering PCB Notes</text>
 <text x="8.89" y="237.49" size="1.778" layer="91">One of:
@@ -15313,7 +15312,7 @@ Decouple Vcc/GND with a cap?</text>
 5V
 3V3
 GND</text>
-<text x="5.08" y="8.89" size="1.778" layer="91" rot="MR0">joy up (z80 tx0)
+<text x="63.5" y="8.89" size="1.778" layer="91" rot="MR0">joy up (z80 tx0)
 joy down (zip rx0)
 joy left
 joy right
@@ -15336,15 +15335,21 @@ frame rdy out</text>
 <text x="441.96" y="0" size="1.27" layer="91">OTG_FS_ID 
 OTG_FS_DM 
 OTG_FS_DP</text>
-<text x="-27.94" y="160.02" size="1.778" layer="91">Schem lib is mislabeled?
-Should be minus always
-close to V?</text>
-<text x="494.03" y="-17.78" size="1.778" layer="91">Schem lib is mislabeled?
-Should be minus always
-close to V?</text>
-<text x="723.9" y="275.59" size="7.62" layer="91">Checked - ZZ hdr to jack pcb
+<text x="-25.4" y="161.29" size="1.778" layer="91">Schem pins not same order
+as physical jack pin order</text>
+<text x="491.49" y="-15.24" size="1.778" layer="91">Schem pins not same order
+as physical jack pin order</text>
+<text x="739.14" y="132.08" size="7.62" layer="91">Checked - ZZ hdr to jack pcb
 - PS/2 keyb ... ok
-- SD slot seems okay</text>
+- SD slot seems okay
+- JOY0 seems ok
+- JOY1 seems ok
+- USB PWR seem ok
+- USB Data seem ok
+- vga seems ok
+- pot wheel seems ok
+- Barrel ? unchecked, not relevent; probably right, and can specify polarity on male side eventually
+- headphone .. should be ok, checked during part build</text>
 <text x="436.88" y="12.7" size="1.27" layer="91">SPA4 SPI1 NSS
 SPA5 SPI1 SCK
 SPA6 SPI1 MISO
@@ -15353,6 +15358,27 @@ SPA7 SPI1 MOSI</text>
 STM32 SPI1 to eZ80 SPI
 .. both are GPIO, so one or both
 side should be highZ mode!</text>
+<text x="520.7" y="77.47" size="2.54" layer="91">Legend:
+p1: vsync: B10
+p2: hsync: B11
+p3: gnd
+p4: R
+p5: G
+p6: B</text>
+<text x="638.81" y="80.01" size="1.778" layer="91">Should p9 be + or GND? It _can_
+power PNP chip in monitor (or monitor
+can self power.) If monitor self powers
+and its gnd on board, short wipes
+board. If pwr on board and or monitor,
+will monitor handle PNP chip without
+SPI on cable? Have to assume yes. So
+we should either not connect the pin
+at all, or power it and hope that is
+correct in all cases.</text>
+<text x="340.36" y="31.75" size="1.778" layer="91">NOTE: SD from eZ80 was added
+later and can conflict with audio.
+SD activity shouldn't bother audio
+but possibly audio will fight with SD..</text>
 </plain>
 <instances>
 <instance part="U$1" gate="G$1" x="245.11" y="195.58" rot="R270"/>
@@ -15360,9 +15386,9 @@ side should be highZ mode!</text>
 <instance part="U$3" gate="G$1" x="41.91" y="-67.31" rot="R270"/>
 <instance part="PS/2KEYB" gate="G$1" x="459.74" y="100.33" rot="MR0"/>
 <instance part="JOY0" gate="G$1" x="-11.43" y="69.85" rot="MR0"/>
-<instance part="VGA1" gate="G$1" x="562.61" y="97.79"/>
+<instance part="VGA1" gate="G$1" x="601.98" y="77.47"/>
 <instance part="USBSERPWR" gate="G$1" x="-11.43" y="175.26"/>
-<instance part="U$5" gate="G$1" x="123.19" y="-142.24"/>
+<instance part="HEADPHONE" gate="G$1" x="123.19" y="-142.24"/>
 <instance part="GND1" gate="1" x="71.12" y="152.4"/>
 <instance part="GND2" gate="1" x="91.44" y="137.16"/>
 <instance part="GND5" gate="1" x="43.18" y="165.1"/>
@@ -15392,12 +15418,12 @@ side should be highZ mode!</text>
 <instance part="PWR3" gate="G$1" x="321.31" y="186.69" rot="R270"/>
 <instance part="PWROUT" gate="A" x="331.47" y="166.37"/>
 <instance part="GND9" gate="1" x="321.31" y="156.21"/>
-<instance part="P+1" gate="VCC" x="316.23" y="171.45" rot="R90"/>
+<instance part="P+1" gate="VCC" x="318.77" y="176.53"/>
 <instance part="PWRIN" gate="A" x="264.16" y="163.83"/>
 <instance part="GPIOC-JOY0" gate="A" x="15.24" y="68.58"/>
 <instance part="BOBGPIOB" gate="A" x="405.13" y="8.89"/>
 <instance part="GPIOD-JOY1" gate="A" x="16.51" y="17.78"/>
-<instance part="VGAHDR" gate="A" x="525.78" y="97.79"/>
+<instance part="VGAHDR" gate="A" x="565.15" y="87.63"/>
 <instance part="BOB-PA" gate="A" x="473.71" y="12.7"/>
 <instance part="PS2KEYB" gate="A" x="424.18" y="100.33"/>
 <instance part="GNDOUT" gate="A" x="270.51" y="139.7"/>
@@ -15410,7 +15436,7 @@ side should be highZ mode!</text>
 <instance part="U$6" gate="G$1" x="87.63" y="-118.11"/>
 <instance part="GND10" gate="1" x="66.04" y="-77.47" rot="R180"/>
 <instance part="GND39" gate="1" x="71.12" y="-83.82" rot="R180"/>
-<instance part="+5V2" gate="1" x="113.03" y="-118.11" rot="R270"/>
+<instance part="+5V2" gate="1" x="132.08" y="-118.11" rot="R270"/>
 <instance part="GND40" gate="1" x="64.77" y="-128.27"/>
 <instance part="C25" gate="G$1" x="106.68" y="-135.89" rot="R90"/>
 <instance part="C26" gate="G$1" x="87.63" y="-139.7" rot="R90"/>
@@ -15418,7 +15444,7 @@ side should be highZ mode!</text>
 <instance part="GND41" gate="1" x="64.77" y="-139.7" rot="R270"/>
 <instance part="LINEOUT" gate="G$1" x="104.14" y="-87.63" rot="R90"/>
 <instance part="GND42" gate="1" x="101.6" y="-97.79"/>
-<instance part="JOY1" gate="G$1" x="53.34" y="20.32"/>
+<instance part="JOY1" gate="G$1" x="-10.16" y="17.78" rot="MR0"/>
 <instance part="VCC" gate="VCC" x="274.32" y="181.61"/>
 <instance part="GND12" gate="1" x="256.54" y="127"/>
 <instance part="+3V2" gate="G$1" x="281.94" y="124.46" rot="R180"/>
@@ -15431,6 +15457,13 @@ side should be highZ mode!</text>
 <instance part="GND15" gate="1" x="392.43" y="31.75" rot="R180"/>
 <instance part="P+5" gate="1" x="-22.86" y="50.8" rot="R180"/>
 <instance part="GND16" gate="1" x="-22.86" y="81.28" rot="R180"/>
+<instance part="P+6" gate="1" x="-21.59" y="0" rot="R180"/>
+<instance part="GND17" gate="1" x="-21.59" y="33.02" rot="R180"/>
+<instance part="GND18" gate="1" x="594.36" y="53.34"/>
+<instance part="GND19" gate="1" x="609.6" y="53.34"/>
+<instance part="P+7" gate="1" x="601.98" y="106.68"/>
+<instance part="GND21" gate="1" x="627.38" y="100.33" rot="R180"/>
+<instance part="GND22" gate="1" x="16.51" y="-142.24"/>
 </instances>
 <busses>
 </busses>
@@ -15579,7 +15612,7 @@ side should be highZ mode!</text>
 <pinref part="GND13" gate="1" pin="GND"/>
 </segment>
 <segment>
-<pinref part="U$5" gate="G$1" pin="S"/>
+<pinref part="HEADPHONE" gate="G$1" pin="S"/>
 <wire x1="123.19" y1="-138.43" x2="116.84" y2="-138.43" width="0.1524" layer="91"/>
 <wire x1="116.84" y1="-138.43" x2="116.84" y2="-143.51" width="0.1524" layer="91"/>
 <pinref part="GND14" gate="1" pin="GND"/>
@@ -15605,14 +15638,63 @@ side should be highZ mode!</text>
 <pinref part="JOY0" gate="G$1" pin="7"/>
 <wire x1="-22.86" y1="69.85" x2="-19.05" y2="69.85" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="JOY1" gate="G$1" pin="7"/>
+<wire x1="-17.78" y1="17.78" x2="-21.59" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="-21.59" y1="17.78" x2="-21.59" y2="30.48" width="0.1524" layer="91"/>
+<pinref part="GND17" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="VGAHDR" gate="A" pin="3"/>
+<wire x1="562.61" y1="90.17" x2="553.72" y2="90.17" width="0.1524" layer="91"/>
+<label x="553.72" y="90.17" size="1.27" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="VGA1" gate="G$1" pin="GND@0"/>
+<wire x1="599.44" y1="64.77" x2="599.44" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="599.44" y1="60.96" x2="594.36" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="594.36" y1="60.96" x2="594.36" y2="55.88" width="0.1524" layer="91"/>
+<pinref part="GND18" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="VGA1" gate="G$1" pin="GND@1"/>
+<wire x1="604.52" y1="64.77" x2="604.52" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="604.52" y1="60.96" x2="609.6" y2="60.96" width="0.1524" layer="91"/>
+<wire x1="609.6" y1="60.96" x2="609.6" y2="55.88" width="0.1524" layer="91"/>
+<pinref part="GND19" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="VGA1" gate="G$1" pin="VGA-R-"/>
+<wire x1="624.84" y1="87.63" x2="627.38" y2="87.63" width="0.1524" layer="91"/>
+<wire x1="627.38" y1="87.63" x2="627.38" y2="97.79" width="0.1524" layer="91"/>
+<pinref part="VGA1" gate="G$1" pin="VGA-G-"/>
+<wire x1="624.84" y1="85.09" x2="627.38" y2="85.09" width="0.1524" layer="91"/>
+<wire x1="627.38" y1="85.09" x2="627.38" y2="87.63" width="0.1524" layer="91"/>
+<pinref part="VGA1" gate="G$1" pin="VGA-B-"/>
+<wire x1="624.84" y1="82.55" x2="627.38" y2="82.55" width="0.1524" layer="91"/>
+<wire x1="627.38" y1="82.55" x2="627.38" y2="85.09" width="0.1524" layer="91"/>
+<junction x="627.38" y="87.63"/>
+<junction x="627.38" y="85.09"/>
+<pinref part="GND21" gate="1" pin="GND"/>
+</segment>
+<segment>
+<pinref part="SPKR" gate="A" pin="4"/>
+<wire x1="-1.27" y1="-132.08" x2="16.51" y2="-132.08" width="0.1524" layer="91"/>
+<wire x1="16.51" y1="-132.08" x2="16.51" y2="-139.7" width="0.1524" layer="91"/>
+<pinref part="GND22" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="USB_D-" class="0">
 <segment>
 <wire x1="95.25" y1="177.8" x2="17.78" y2="177.8" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="USBDM"/>
 <pinref part="USBPORT" gate="A" pin="2"/>
-<pinref part="USBSERPWR" gate="G$1" pin="D+"/>
-<wire x1="-1.27" y1="177.8" x2="17.78" y2="177.8" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="177.8" x2="12.7" y2="177.8" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="177.8" x2="12.7" y2="176.53" width="0.1524" layer="91"/>
+<wire x1="12.7" y1="176.53" x2="2.54" y2="176.53" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="176.53" x2="2.54" y2="175.26" width="0.1524" layer="91"/>
+<pinref part="USBSERPWR" gate="G$1" pin="D-"/>
+<wire x1="2.54" y1="175.26" x2="-1.27" y2="175.26" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="USB_D+" class="0">
@@ -15620,8 +15702,10 @@ side should be highZ mode!</text>
 <wire x1="95.25" y1="175.26" x2="17.78" y2="175.26" width="0.1524" layer="91"/>
 <pinref part="U2" gate="G$1" pin="USBDP"/>
 <pinref part="USBPORT" gate="A" pin="3"/>
-<pinref part="USBSERPWR" gate="G$1" pin="D-"/>
-<wire x1="17.78" y1="175.26" x2="-1.27" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="17.78" y1="175.26" x2="11.43" y2="175.26" width="0.1524" layer="91"/>
+<wire x1="11.43" y1="175.26" x2="11.43" y2="177.8" width="0.1524" layer="91"/>
+<pinref part="USBSERPWR" gate="G$1" pin="D+"/>
+<wire x1="11.43" y1="177.8" x2="-1.27" y2="177.8" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="FTDI3" class="1">
@@ -15848,17 +15932,11 @@ side should be highZ mode!</text>
 <wire x1="152.4" y1="175.26" x2="152.4" y2="187.96" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="+5V" class="0">
-<segment>
-<pinref part="U$6" gate="G$1" pin="6"/>
-<wire x1="95.25" y1="-118.11" x2="110.49" y2="-118.11" width="0.1524" layer="91"/>
-<pinref part="+5V2" gate="1" pin="+5V"/>
-</segment>
-</net>
 <net name="VCC" class="0">
 <segment>
 <pinref part="PWROUT" gate="A" pin="1"/>
 <wire x1="328.93" y1="171.45" x2="318.77" y2="171.45" width="0.1524" layer="91"/>
+<wire x1="318.77" y1="171.45" x2="318.77" y2="173.99" width="0.1524" layer="91"/>
 <pinref part="P+1" gate="VCC" pin="VCC"/>
 </segment>
 <segment>
@@ -15900,11 +15978,11 @@ side should be highZ mode!</text>
 <net name="N$23" class="0">
 <segment>
 <pinref part="C25" gate="G$1" pin="-"/>
-<pinref part="U$5" gate="G$1" pin="R"/>
+<pinref part="HEADPHONE" gate="G$1" pin="R"/>
 <wire x1="111.76" y1="-135.89" x2="116.84" y2="-135.89" width="0.1524" layer="91"/>
 <wire x1="116.84" y1="-135.89" x2="123.19" y2="-135.89" width="0.1524" layer="91"/>
 <wire x1="116.84" y1="-135.89" x2="116.84" y2="-133.35" width="0.1524" layer="91"/>
-<pinref part="U$5" gate="G$1" pin="T"/>
+<pinref part="HEADPHONE" gate="G$1" pin="T"/>
 <wire x1="116.84" y1="-133.35" x2="123.19" y2="-133.35" width="0.1524" layer="91"/>
 <junction x="116.84" y="-135.89"/>
 </segment>
@@ -16009,12 +16087,36 @@ side should be highZ mode!</text>
 <pinref part="JOY0" gate="G$1" pin="8"/>
 <wire x1="-22.86" y1="67.31" x2="-19.05" y2="67.31" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="JOY1" gate="G$1" pin="8"/>
+<wire x1="-17.78" y1="15.24" x2="-21.59" y2="15.24" width="0.1524" layer="91"/>
+<wire x1="-21.59" y1="15.24" x2="-21.59" y2="2.54" width="0.1524" layer="91"/>
+<pinref part="P+6" gate="1" pin="+5V"/>
+</segment>
+<segment>
+<pinref part="VGA1" gate="G$1" pin="+5V"/>
+<pinref part="P+7" gate="1" pin="+5V"/>
+<wire x1="601.98" y1="92.71" x2="601.98" y2="104.14" width="0.1524" layer="91"/>
+</segment>
+<segment>
+<pinref part="U$6" gate="G$1" pin="6"/>
+<wire x1="95.25" y1="-118.11" x2="119.38" y2="-118.11" width="0.1524" layer="91"/>
+<pinref part="+5V2" gate="1" pin="+5V"/>
+<wire x1="119.38" y1="-118.11" x2="129.54" y2="-118.11" width="0.1524" layer="91"/>
+<wire x1="119.38" y1="-118.11" x2="119.38" y2="-120.65" width="0.1524" layer="91"/>
+<wire x1="119.38" y1="-120.65" x2="143.51" y2="-120.65" width="0.1524" layer="91"/>
+<junction x="119.38" y="-118.11"/>
+</segment>
 </net>
 <net name="ZPD0" class="0">
 <segment>
 <pinref part="GPIOD-JOY1" gate="A" pin="1"/>
 <wire x1="13.97" y1="27.94" x2="22.86" y2="27.94" width="0.1524" layer="91"/>
 <label x="22.86" y="27.94" size="1.27" layer="95" xref="yes"/>
+<wire x1="13.97" y1="27.94" x2="6.35" y2="27.94" width="0.1524" layer="91"/>
+<wire x1="6.35" y1="27.94" x2="6.35" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="JOY1" gate="G$1" pin="5"/>
+<wire x1="6.35" y1="12.7" x2="-2.54" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="ZPD0-RXD" gate="G$1" pin="2"/>
@@ -16027,6 +16129,10 @@ side should be highZ mode!</text>
 <pinref part="GPIOD-JOY1" gate="A" pin="2"/>
 <wire x1="13.97" y1="25.4" x2="22.86" y2="25.4" width="0.1524" layer="91"/>
 <label x="22.86" y="25.4" size="1.27" layer="95" xref="yes"/>
+<wire x1="13.97" y1="25.4" x2="3.81" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="3.81" y1="25.4" x2="3.81" y2="15.24" width="0.1524" layer="91"/>
+<pinref part="JOY1" gate="G$1" pin="4"/>
+<wire x1="3.81" y1="15.24" x2="-2.54" y2="15.24" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="ZPD1-TXD" gate="G$1" pin="2"/>
@@ -16131,6 +16237,10 @@ side should be highZ mode!</text>
 <pinref part="BOB-PA" gate="A" pin="11"/>
 <wire x1="471.17" y1="5.08" x2="462.28" y2="5.08" width="0.1524" layer="91"/>
 <label x="462.28" y="5.08" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="471.17" y1="5.08" x2="481.33" y2="5.08" width="0.1524" layer="91"/>
+<wire x1="481.33" y1="5.08" x2="481.33" y2="-2.54" width="0.1524" layer="91"/>
+<pinref part="USBGPU" gate="G$1" pin="ID"/>
+<wire x1="481.33" y1="-2.54" x2="490.22" y2="-2.54" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SPA11" class="0">
@@ -16138,8 +16248,10 @@ side should be highZ mode!</text>
 <pinref part="BOB-PA" gate="A" pin="12"/>
 <wire x1="471.17" y1="2.54" x2="462.28" y2="2.54" width="0.1524" layer="91"/>
 <label x="462.28" y="2.54" size="1.27" layer="95" rot="R180" xref="yes"/>
-<pinref part="USBGPU" gate="G$1" pin="D+"/>
-<wire x1="471.17" y1="2.54" x2="490.22" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="471.17" y1="2.54" x2="483.87" y2="2.54" width="0.1524" layer="91"/>
+<wire x1="483.87" y1="2.54" x2="483.87" y2="0" width="0.1524" layer="91"/>
+<pinref part="USBGPU" gate="G$1" pin="D-"/>
+<wire x1="483.87" y1="0" x2="490.22" y2="0" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="SPA12" class="0">
@@ -16147,8 +16259,12 @@ side should be highZ mode!</text>
 <pinref part="BOB-PA" gate="A" pin="13"/>
 <wire x1="471.17" y1="0" x2="462.28" y2="0" width="0.1524" layer="91"/>
 <label x="462.28" y="0" size="1.27" layer="95" rot="R180" xref="yes"/>
-<wire x1="471.17" y1="0" x2="490.22" y2="0" width="0.1524" layer="91"/>
-<pinref part="USBGPU" gate="G$1" pin="D-"/>
+<wire x1="471.17" y1="0" x2="480.06" y2="0" width="0.1524" layer="91"/>
+<wire x1="480.06" y1="0" x2="480.06" y2="1.27" width="0.1524" layer="91"/>
+<wire x1="480.06" y1="1.27" x2="487.68" y2="1.27" width="0.1524" layer="91"/>
+<wire x1="487.68" y1="1.27" x2="487.68" y2="2.54" width="0.1524" layer="91"/>
+<pinref part="USBGPU" gate="G$1" pin="D+"/>
+<wire x1="487.68" y1="2.54" x2="490.22" y2="2.54" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPD2" class="0">
@@ -16156,6 +16272,10 @@ side should be highZ mode!</text>
 <wire x1="13.97" y1="22.86" x2="22.86" y2="22.86" width="0.1524" layer="91"/>
 <pinref part="GPIOD-JOY1" gate="A" pin="3"/>
 <label x="22.86" y="22.86" size="1.27" layer="95" xref="yes"/>
+<wire x1="13.97" y1="22.86" x2="1.27" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="1.27" y1="22.86" x2="1.27" y2="17.78" width="0.1524" layer="91"/>
+<pinref part="JOY1" gate="G$1" pin="3"/>
+<wire x1="1.27" y1="17.78" x2="-2.54" y2="17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPD3" class="0">
@@ -16163,6 +16283,8 @@ side should be highZ mode!</text>
 <wire x1="13.97" y1="20.32" x2="22.86" y2="20.32" width="0.1524" layer="91"/>
 <pinref part="GPIOD-JOY1" gate="A" pin="4"/>
 <label x="22.86" y="20.32" size="1.27" layer="95" xref="yes"/>
+<pinref part="JOY1" gate="G$1" pin="2"/>
+<wire x1="13.97" y1="20.32" x2="-2.54" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPD4" class="0">
@@ -16170,6 +16292,12 @@ side should be highZ mode!</text>
 <wire x1="13.97" y1="17.78" x2="22.86" y2="17.78" width="0.1524" layer="91"/>
 <pinref part="GPIOD-JOY1" gate="A" pin="5"/>
 <label x="22.86" y="17.78" size="1.27" layer="95" xref="yes"/>
+<wire x1="13.97" y1="17.78" x2="8.89" y2="17.78" width="0.1524" layer="91"/>
+<wire x1="8.89" y1="17.78" x2="8.89" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="8.89" y1="7.62" x2="-19.05" y2="7.62" width="0.1524" layer="91"/>
+<wire x1="-19.05" y1="7.62" x2="-19.05" y2="12.7" width="0.1524" layer="91"/>
+<pinref part="JOY1" gate="G$1" pin="9"/>
+<wire x1="-19.05" y1="12.7" x2="-17.78" y2="12.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPD5" class="0">
@@ -16229,11 +16357,11 @@ side should be highZ mode!</text>
 <wire x1="12.7" y1="68.58" x2="22.86" y2="68.58" width="0.1524" layer="91"/>
 <label x="22.86" y="68.58" size="1.27" layer="95" xref="yes"/>
 <wire x1="12.7" y1="68.58" x2="7.62" y2="68.58" width="0.1524" layer="91"/>
-<wire x1="7.62" y1="68.58" x2="7.62" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="7.62" y1="60.96" x2="-31.75" y2="60.96" width="0.1524" layer="91"/>
-<wire x1="-31.75" y1="60.96" x2="-31.75" y2="64.77" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="68.58" x2="7.62" y2="59.69" width="0.1524" layer="91"/>
+<wire x1="7.62" y1="59.69" x2="-20.32" y2="59.69" width="0.1524" layer="91"/>
+<wire x1="-20.32" y1="59.69" x2="-20.32" y2="64.77" width="0.1524" layer="91"/>
 <pinref part="JOY0" gate="G$1" pin="9"/>
-<wire x1="-31.75" y1="64.77" x2="-19.05" y2="64.77" width="0.1524" layer="91"/>
+<wire x1="-20.32" y1="64.77" x2="-19.05" y2="64.77" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPC5" class="0">
@@ -16268,46 +16396,57 @@ side should be highZ mode!</text>
 <wire x1="431.8" y1="95.25" x2="454.66" y2="95.25" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$26" class="0">
+<net name="SV" class="0">
 <segment>
 <pinref part="VGAHDR" gate="A" pin="1"/>
-<wire x1="523.24" y1="105.41" x2="514.35" y2="105.41" width="0.1524" layer="91"/>
-<label x="514.35" y="105.41" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="562.61" y1="95.25" x2="553.72" y2="95.25" width="0.1524" layer="91"/>
+<label x="553.72" y="95.25" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="562.61" y1="95.25" x2="574.04" y2="95.25" width="0.1524" layer="91"/>
+<wire x1="574.04" y1="95.25" x2="574.04" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="574.04" y1="114.3" x2="636.27" y2="114.3" width="0.1524" layer="91"/>
+<wire x1="636.27" y1="114.3" x2="636.27" y2="72.39" width="0.1524" layer="91"/>
+<pinref part="VGA1" gate="G$1" pin="VGA-VSYNC"/>
+<wire x1="636.27" y1="72.39" x2="624.84" y2="72.39" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$27" class="0">
+<net name="SH" class="0">
 <segment>
 <pinref part="VGAHDR" gate="A" pin="2"/>
-<wire x1="523.24" y1="102.87" x2="514.35" y2="102.87" width="0.1524" layer="91"/>
-<label x="514.35" y="102.87" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="562.61" y1="92.71" x2="553.72" y2="92.71" width="0.1524" layer="91"/>
+<label x="553.72" y="92.71" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="562.61" y1="92.71" x2="576.58" y2="92.71" width="0.1524" layer="91"/>
+<wire x1="576.58" y1="92.71" x2="576.58" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="576.58" y1="111.76" x2="633.73" y2="111.76" width="0.1524" layer="91"/>
+<wire x1="633.73" y1="111.76" x2="633.73" y2="74.93" width="0.1524" layer="91"/>
+<pinref part="VGA1" gate="G$1" pin="VGA-HSYNC"/>
+<wire x1="633.73" y1="74.93" x2="624.84" y2="74.93" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$28" class="0">
-<segment>
-<pinref part="VGAHDR" gate="A" pin="3"/>
-<wire x1="523.24" y1="100.33" x2="514.35" y2="100.33" width="0.1524" layer="91"/>
-<label x="514.35" y="100.33" size="1.27" layer="95" rot="R180" xref="yes"/>
-</segment>
-</net>
-<net name="N$29" class="0">
+<net name="SR" class="0">
 <segment>
 <pinref part="VGAHDR" gate="A" pin="4"/>
-<wire x1="523.24" y1="97.79" x2="514.35" y2="97.79" width="0.1524" layer="91"/>
-<label x="514.35" y="97.79" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="562.61" y1="87.63" x2="553.72" y2="87.63" width="0.1524" layer="91"/>
+<label x="553.72" y="87.63" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="VGA1" gate="G$1" pin="VGA-R"/>
+<wire x1="562.61" y1="87.63" x2="579.12" y2="87.63" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$30" class="0">
+<net name="SG" class="0">
 <segment>
 <pinref part="VGAHDR" gate="A" pin="5"/>
-<wire x1="523.24" y1="95.25" x2="514.35" y2="95.25" width="0.1524" layer="91"/>
-<label x="514.35" y="95.25" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="562.61" y1="85.09" x2="553.72" y2="85.09" width="0.1524" layer="91"/>
+<label x="553.72" y="85.09" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="VGA1" gate="G$1" pin="VGA-G"/>
+<wire x1="562.61" y1="85.09" x2="579.12" y2="85.09" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="N$31" class="0">
+<net name="SB" class="0">
 <segment>
 <pinref part="VGAHDR" gate="A" pin="6"/>
-<wire x1="523.24" y1="92.71" x2="514.35" y2="92.71" width="0.1524" layer="91"/>
-<label x="514.35" y="92.71" size="1.27" layer="95" rot="R180" xref="yes"/>
+<wire x1="562.61" y1="82.55" x2="553.72" y2="82.55" width="0.1524" layer="91"/>
+<label x="553.72" y="82.55" size="1.27" layer="95" rot="R180" xref="yes"/>
+<pinref part="VGA1" gate="G$1" pin="VGA-B"/>
+<wire x1="562.61" y1="82.55" x2="579.12" y2="82.55" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="ZPD7_CLK" class="0">
