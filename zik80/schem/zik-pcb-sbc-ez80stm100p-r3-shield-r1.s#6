@@ -15193,7 +15193,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="GND1" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND2" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND5" library="SparkFun" deviceset="GND" device=""/>
-<part name="U2" library="SparkFun" deviceset="FT232RL" device="SSOP"/>
+<part name="FTDI" library="SparkFun" deviceset="FT232RL" device="SSOP"/>
 <part name="GND7" library="SparkFun" deviceset="GND" device=""/>
 <part name="GND6" library="SparkFun" deviceset="GND" device=""/>
 <part name="USBPORT" library="pinhead" deviceset="PINHD-1X4" device=""/>
@@ -15211,7 +15211,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 <part name="R6" library="rcl" deviceset="R-US_" device="0204/7" value="330 ohm"/>
 <part name="ZPD1-TXD" library="pinhead" deviceset="PINHD-1X2" device=""/>
 <part name="ZPD0-RXD" library="pinhead" deviceset="PINHD-1X2" device=""/>
-<part name="IC1" library="ic-package" deviceset="DIL8" device="" value="TPS7133QP"/>
+<part name="TPS7133" library="ic-package" deviceset="DIL8" device="" value="TPS7133QP"/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="P+2" library="supply1" deviceset="+5V" device=""/>
 <part name="C3" library="rcl" deviceset="C-EU" device="025-025X050" value="10uF Tant"/>
@@ -15297,7 +15297,6 @@ regulator</text>
 - ensure cap, resistor sizine/type
 - printout pcb to printer, eyeball it
 - PWR v PW5 vs PWR3 vs 5V vs etc .. all powers are hooked right
-- net review; ensure no +5V and other old net names
 - SD, unrouted, DRC, ERC...
 - Ensure slot for cart is deep/wide enough for plastic box clearance?
 - case readyness?</text>
@@ -15350,7 +15349,8 @@ as physical jack pin order</text>
 - vga seems ok
 - pot wheel seems ok
 - Barrel ? unchecked, not relevent; probably right, and can specify polarity on male side eventually
-- headphone .. should be ok, checked during part build</text>
+- headphone .. should be ok, checked during part build
++ netlist seems clean, no old floating power +5Vs etc</text>
 <text x="436.88" y="12.7" size="1.27" layer="91">SPA4 SPI1 NSS
 SPA5 SPI1 SCK
 SPA6 SPI1 MISO
@@ -15393,7 +15393,7 @@ but possibly audio will fight with SD..</text>
 <instance part="GND1" gate="1" x="71.12" y="152.4"/>
 <instance part="GND2" gate="1" x="91.44" y="137.16"/>
 <instance part="GND5" gate="1" x="43.18" y="165.1"/>
-<instance part="U2" gate="G$1" x="110.49" y="160.02"/>
+<instance part="FTDI" gate="G$1" x="110.49" y="160.02"/>
 <instance part="GND7" gate="1" x="50.8" y="152.4"/>
 <instance part="GND6" gate="1" x="199.39" y="167.64" rot="R180"/>
 <instance part="USBPORT" gate="A" x="20.32" y="175.26"/>
@@ -15411,12 +15411,12 @@ but possibly audio will fight with SD..</text>
 <instance part="R6" gate="G$1" x="156.21" y="147.32"/>
 <instance part="ZPD1-TXD" gate="G$1" x="142.24" y="190.5" rot="R90"/>
 <instance part="ZPD0-RXD" gate="G$1" x="154.94" y="190.5" rot="R90"/>
-<instance part="IC1" gate="G$1" x="302.26" y="176.53" rot="R90"/>
+<instance part="TPS7133" gate="G$1" x="302.26" y="176.53" rot="R90"/>
 <instance part="GND3" gate="1" x="299.72" y="160.02"/>
 <instance part="P+2" gate="1" x="304.8" y="153.67" rot="R180"/>
 <instance part="C3" gate="G$1" x="302.26" y="193.04" rot="R90"/>
 <instance part="GND4" gate="1" x="293.37" y="193.04" rot="R270"/>
-<instance part="PWR3" gate="G$1" x="321.31" y="186.69" rot="R270"/>
+<instance part="PWR3" gate="G$1" x="322.58" y="186.69" rot="R270"/>
 <instance part="PWROUT" gate="A" x="331.47" y="166.37"/>
 <instance part="GND9" gate="1" x="321.31" y="156.21"/>
 <instance part="P+1" gate="VCC" x="318.77" y="176.53"/>
@@ -15502,11 +15502,11 @@ but possibly audio will fight with SD..</text>
 <junction x="91.44" y="147.32"/>
 <junction x="91.44" y="144.78"/>
 <junction x="91.44" y="142.24"/>
-<pinref part="U2" gate="G$1" pin="TEST"/>
-<pinref part="U2" gate="G$1" pin="AGND"/>
-<pinref part="U2" gate="G$1" pin="GND7"/>
-<pinref part="U2" gate="G$1" pin="GND18"/>
-<pinref part="U2" gate="G$1" pin="GND21"/>
+<pinref part="FTDI" gate="G$1" pin="TEST"/>
+<pinref part="FTDI" gate="G$1" pin="AGND"/>
+<pinref part="FTDI" gate="G$1" pin="GND7"/>
+<pinref part="FTDI" gate="G$1" pin="GND18"/>
+<pinref part="FTDI" gate="G$1" pin="GND21"/>
 <pinref part="GND2" gate="1" pin="GND"/>
 </segment>
 <segment>
@@ -15531,10 +15531,10 @@ but possibly audio will fight with SD..</text>
 <pinref part="RXLED" gate="G$1" pin="C"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="1"/>
+<pinref part="TPS7133" gate="G$1" pin="1"/>
 <pinref part="GND3" gate="1" pin="GND"/>
 <wire x1="299.72" y1="168.91" x2="299.72" y2="163.83" width="0.1524" layer="91"/>
-<pinref part="IC1" gate="G$1" pin="2"/>
+<pinref part="TPS7133" gate="G$1" pin="2"/>
 <wire x1="299.72" y1="163.83" x2="299.72" y2="162.56" width="0.1524" layer="91"/>
 <wire x1="302.26" y1="168.91" x2="302.26" y2="163.83" width="0.1524" layer="91"/>
 <wire x1="302.26" y1="163.83" x2="299.72" y2="163.83" width="0.1524" layer="91"/>
@@ -15695,7 +15695,7 @@ but possibly audio will fight with SD..</text>
 <net name="USB_D-" class="0">
 <segment>
 <wire x1="95.25" y1="177.8" x2="17.78" y2="177.8" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="USBDM"/>
+<pinref part="FTDI" gate="G$1" pin="USBDM"/>
 <pinref part="USBPORT" gate="A" pin="2"/>
 <wire x1="17.78" y1="177.8" x2="12.7" y2="177.8" width="0.1524" layer="91"/>
 <wire x1="12.7" y1="177.8" x2="12.7" y2="176.53" width="0.1524" layer="91"/>
@@ -15708,7 +15708,7 @@ but possibly audio will fight with SD..</text>
 <net name="USB_D+" class="0">
 <segment>
 <wire x1="95.25" y1="175.26" x2="17.78" y2="175.26" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="USBDP"/>
+<pinref part="FTDI" gate="G$1" pin="USBDP"/>
 <pinref part="USBPORT" gate="A" pin="3"/>
 <wire x1="17.78" y1="175.26" x2="11.43" y2="175.26" width="0.1524" layer="91"/>
 <wire x1="11.43" y1="175.26" x2="11.43" y2="177.8" width="0.1524" layer="91"/>
@@ -15723,7 +15723,7 @@ but possibly audio will fight with SD..</text>
 <wire x1="71.12" y1="167.64" x2="71.12" y2="166.37" width="0.1524" layer="91"/>
 <junction x="71.12" y="167.64"/>
 <label x="84.074" y="167.132" size="1.778" layer="95"/>
-<pinref part="U2" gate="G$1" pin="3V3OUT"/>
+<pinref part="FTDI" gate="G$1" pin="3V3OUT"/>
 <wire x1="71.12" y1="208.28" x2="43.18" y2="208.28" width="0.1524" layer="91"/>
 <pinref part="FT3V3-&gt;PWR3" gate="G$1" pin="1"/>
 <pinref part="C1" gate="G$1" pin="1"/>
@@ -15741,22 +15741,22 @@ but possibly audio will fight with SD..</text>
 <label x="269.24" y="163.83" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="5"/>
+<pinref part="TPS7133" gate="G$1" pin="5"/>
 <pinref part="C3" gate="G$1" pin="2"/>
 <wire x1="307.34" y1="184.15" x2="307.34" y2="186.69" width="0.1524" layer="91"/>
-<pinref part="IC1" gate="G$1" pin="7"/>
+<pinref part="TPS7133" gate="G$1" pin="7"/>
 <wire x1="307.34" y1="186.69" x2="307.34" y2="189.23" width="0.1524" layer="91"/>
 <wire x1="307.34" y1="189.23" x2="307.34" y2="193.04" width="0.1524" layer="91"/>
 <wire x1="307.34" y1="189.23" x2="302.26" y2="189.23" width="0.1524" layer="91"/>
 <wire x1="302.26" y1="189.23" x2="302.26" y2="184.15" width="0.1524" layer="91"/>
 <junction x="307.34" y="189.23"/>
-<pinref part="IC1" gate="G$1" pin="6"/>
+<pinref part="TPS7133" gate="G$1" pin="6"/>
 <wire x1="307.34" y1="186.69" x2="304.8" y2="186.69" width="0.1524" layer="91"/>
 <wire x1="304.8" y1="186.69" x2="304.8" y2="184.15" width="0.1524" layer="91"/>
 <junction x="307.34" y="186.69"/>
 <wire x1="307.34" y1="186.69" x2="316.23" y2="186.69" width="0.1524" layer="91"/>
 <pinref part="PWR3" gate="G$1" pin="+3V3"/>
-<wire x1="316.23" y1="186.69" x2="318.77" y2="186.69" width="0.1524" layer="91"/>
+<wire x1="316.23" y1="186.69" x2="320.04" y2="186.69" width="0.1524" layer="91"/>
 <wire x1="316.23" y1="186.69" x2="316.23" y2="181.61" width="0.1524" layer="91"/>
 <wire x1="316.23" y1="181.61" x2="339.09" y2="181.61" width="0.1524" layer="91"/>
 <wire x1="339.09" y1="181.61" x2="339.09" y2="166.37" width="0.1524" layer="91"/>
@@ -15795,14 +15795,14 @@ but possibly audio will fight with SD..</text>
 <junction x="50.8" y="180.34"/>
 <junction x="78.74" y="180.34"/>
 <label x="84.074" y="169.672" size="1.778" layer="95"/>
-<pinref part="U2" gate="G$1" pin="VCC"/>
+<pinref part="FTDI" gate="G$1" pin="VCC"/>
 <wire x1="78.74" y1="165.1" x2="95.25" y2="165.1" width="0.1524" layer="91"/>
 <label x="84.074" y="164.592" size="1.778" layer="95"/>
-<pinref part="U2" gate="G$1" pin="VCCIO"/>
+<pinref part="FTDI" gate="G$1" pin="VCCIO"/>
 <wire x1="78.74" y1="165.1" x2="78.74" y2="170.18" width="0.1524" layer="91"/>
 <junction x="78.74" y="170.18"/>
 <pinref part="USBPORT" gate="A" pin="1"/>
-<pinref part="U2" gate="G$1" pin="RESET"/>
+<pinref part="FTDI" gate="G$1" pin="RESET"/>
 <wire x1="95.25" y1="154.94" x2="78.74" y2="154.94" width="0.1524" layer="91"/>
 <wire x1="78.74" y1="154.94" x2="78.74" y2="165.1" width="0.1524" layer="91"/>
 <junction x="78.74" y="165.1"/>
@@ -15816,7 +15816,7 @@ but possibly audio will fight with SD..</text>
 </net>
 <net name="RTS" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="RTS"/>
+<pinref part="FTDI" gate="G$1" pin="RTS"/>
 <wire x1="125.73" y1="167.64" x2="130.81" y2="167.64" width="0.1524" layer="91"/>
 <label x="130.81" y="167.64" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -15828,7 +15828,7 @@ but possibly audio will fight with SD..</text>
 </net>
 <net name="DTR" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="DTR"/>
+<pinref part="FTDI" gate="G$1" pin="DTR"/>
 <wire x1="125.73" y1="165.1" x2="130.81" y2="165.1" width="0.1524" layer="91"/>
 <label x="130.81" y="165.1" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -15840,7 +15840,7 @@ but possibly audio will fight with SD..</text>
 </net>
 <net name="DSR" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="DSR"/>
+<pinref part="FTDI" gate="G$1" pin="DSR"/>
 <wire x1="125.73" y1="162.56" x2="130.81" y2="162.56" width="0.1524" layer="91"/>
 <label x="130.81" y="162.56" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -15852,7 +15852,7 @@ but possibly audio will fight with SD..</text>
 </net>
 <net name="DCD" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="DCD"/>
+<pinref part="FTDI" gate="G$1" pin="DCD"/>
 <wire x1="125.73" y1="160.02" x2="130.81" y2="160.02" width="0.1524" layer="91"/>
 <label x="130.81" y="160.02" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -15864,7 +15864,7 @@ but possibly audio will fight with SD..</text>
 </net>
 <net name="RI" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="RI"/>
+<pinref part="FTDI" gate="G$1" pin="RI"/>
 <wire x1="125.73" y1="157.48" x2="130.81" y2="157.48" width="0.1524" layer="91"/>
 <label x="130.81" y="157.48" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -15876,7 +15876,7 @@ but possibly audio will fight with SD..</text>
 </net>
 <net name="CTS" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="CTS"/>
+<pinref part="FTDI" gate="G$1" pin="CTS"/>
 <wire x1="125.73" y1="170.18" x2="130.81" y2="170.18" width="0.1524" layer="91"/>
 <label x="130.81" y="170.18" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -15902,7 +15902,7 @@ but possibly audio will fight with SD..</text>
 <net name="N$8" class="0">
 <segment>
 <wire x1="151.13" y1="147.32" x2="140.97" y2="147.32" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="TXLED"/>
+<pinref part="FTDI" gate="G$1" pin="TXLED"/>
 <wire x1="140.97" y1="147.32" x2="140.97" y2="152.4" width="0.1524" layer="91"/>
 <wire x1="140.97" y1="152.4" x2="125.73" y2="152.4" width="0.1524" layer="91"/>
 <pinref part="R6" gate="G$1" pin="1"/>
@@ -15919,14 +15919,14 @@ but possibly audio will fight with SD..</text>
 <segment>
 <wire x1="151.13" y1="137.16" x2="138.43" y2="137.16" width="0.1524" layer="91"/>
 <wire x1="138.43" y1="137.16" x2="138.43" y2="149.86" width="0.1524" layer="91"/>
-<pinref part="U2" gate="G$1" pin="RXLED"/>
+<pinref part="FTDI" gate="G$1" pin="RXLED"/>
 <wire x1="138.43" y1="149.86" x2="125.73" y2="149.86" width="0.1524" layer="91"/>
 <pinref part="R3" gate="G$1" pin="1"/>
 </segment>
 </net>
 <net name="N$12" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="TXD"/>
+<pinref part="FTDI" gate="G$1" pin="TXD"/>
 <pinref part="ZPD1-TXD" gate="G$1" pin="1"/>
 <wire x1="125.73" y1="177.8" x2="139.7" y2="177.8" width="0.1524" layer="91"/>
 <wire x1="139.7" y1="177.8" x2="139.7" y2="187.96" width="0.1524" layer="91"/>
@@ -15934,7 +15934,7 @@ but possibly audio will fight with SD..</text>
 </net>
 <net name="N$13" class="0">
 <segment>
-<pinref part="U2" gate="G$1" pin="RXD"/>
+<pinref part="FTDI" gate="G$1" pin="RXD"/>
 <pinref part="ZPD0-RXD" gate="G$1" pin="1"/>
 <wire x1="125.73" y1="175.26" x2="152.4" y2="175.26" width="0.1524" layer="91"/>
 <wire x1="152.4" y1="175.26" x2="152.4" y2="187.96" width="0.1524" layer="91"/>
@@ -16044,10 +16044,10 @@ but possibly audio will fight with SD..</text>
 <label x="269.24" y="166.37" size="1.27" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="IC1" gate="G$1" pin="3"/>
+<pinref part="TPS7133" gate="G$1" pin="3"/>
 <pinref part="P+2" gate="1" pin="+5V"/>
 <wire x1="304.8" y1="168.91" x2="304.8" y2="160.02" width="0.1524" layer="91"/>
-<pinref part="IC1" gate="G$1" pin="4"/>
+<pinref part="TPS7133" gate="G$1" pin="4"/>
 <wire x1="304.8" y1="160.02" x2="304.8" y2="156.21" width="0.1524" layer="91"/>
 <wire x1="307.34" y1="168.91" x2="307.34" y2="160.02" width="0.1524" layer="91"/>
 <wire x1="307.34" y1="160.02" x2="304.8" y2="160.02" width="0.1524" layer="91"/>
@@ -16470,65 +16470,6 @@ but possibly audio will fight with SD..</text>
 </nets>
 </sheet>
 </sheets>
-<errors>
-<approved hash="101,1,433.07,274.32,IC2C,O,,,,"/>
-<approved hash="101,1,433.07,261.62,IC2D,O,,,,"/>
-<approved hash="101,1,433.07,248.92,IC2E,O,,,,"/>
-<approved hash="101,1,433.07,236.22,IC2F,O,,,,"/>
-<approved hash="104,1,318.77,311.15,OSCDIL14,VSS,GND,,,"/>
-<approved hash="104,1,318.77,300.99,OSCDIL14,VDD,+5V,,,"/>
-<approved hash="202,1,344.17,300.99,OSCDIL14,CON,,,,"/>
-<approved hash="104,1,226.06,163.83,RAM-CS0,VCC,+3V3,,,"/>
-<approved hash="104,1,410.21,339.09,AY-3-8913-CS2,VSS,GND,,,"/>
-<approved hash="104,1,410.21,341.63,AY-3-8913-CS2,VCC,+5V,,,"/>
-<approved hash="104,1,410.21,336.55,AY-3-8913-CS2,VSS2,GND,,,"/>
-<approved hash="106,1,359.41,274.32,+CS2,,,,,"/>
-<approved hash="106,1,110.49,87.63,A22,,,,,"/>
-<approved hash="106,1,110.49,85.09,A23,,,,,"/>
-<approved hash="106,1,873.76,215.9,PC8,,,,,"/>
-<approved hash="106,1,873.76,213.36,PC9,,,,,"/>
-<approved hash="106,1,873.76,210.82,PC10,,,,,"/>
-<approved hash="106,1,873.76,208.28,PC11,,,,,"/>
-<approved hash="106,1,873.76,205.74,PC12,,,,,"/>
-<approved hash="106,1,873.76,203.2,PC13,,,,,"/>
-<approved hash="106,1,873.76,200.66,PC14,,,,,"/>
-<approved hash="106,1,873.76,198.12,PC15,,,,,"/>
-<approved hash="113,1,63.5423,241.431,ISPZDI,,,,,"/>
-<approved hash="113,1,91.44,91.8887,EZ80F93,,,,,"/>
-<approved hash="113,1,59.5549,311.281,PWRIN1,,,,,"/>
-<approved hash="113,1,95.25,331.792,LED2,,,,,"/>
-<approved hash="113,1,138.44,311.281,PWROUT1,,,,,"/>
-<approved hash="113,1,181.941,255.401,BOBJTAG+,,,,,"/>
-<approved hash="113,1,386.167,224.921,GPIOC-JOY0,,,,,"/>
-<approved hash="113,1,469.813,226.191,GPIOD-JOY1,,,,,"/>
-<approved hash="113,1,426.957,308.741,SPKR,,,,,"/>
-<approved hash="113,1,235.663,256.671,PS2KEYB,,,,,"/>
-<approved hash="113,1,206.524,255.401,BOBMISC,,,,,"/>
-<approved hash="113,1,160.387,255.401,BOBGPIOB,,,,,"/>
-<approved hash="113,1,181.194,233.811,BOBI2C,,,,,"/>
-<approved hash="113,1,209.787,235.081,PHI,,,,,"/>
-<approved hash="113,1,209.787,226.191,/CS3,,,,,"/>
-<approved hash="113,1,666.881,302.302,ISPJTAG,,,,,"/>
-<approved hash="113,1,220.849,317.258,+5OUT1,,,,,"/>
-<approved hash="113,1,220.849,309.921,+3V3OUT1,,,,,"/>
-<approved hash="113,1,220.849,300.861,GNDOUT1,,,,,"/>
-<approved hash="113,1,936.355,355.731,VGAHDR,,,,,"/>
-<approved hash="113,1,897.89,335.005,R18,,,,,"/>
-<approved hash="113,1,897.89,340.085,R19,,,,,"/>
-<approved hash="113,1,897.89,321.035,R24,,,,,"/>
-<approved hash="113,1,897.89,326.115,R25,,,,,"/>
-<approved hash="113,1,899.16,312.145,R27,,,,,"/>
-<approved hash="113,1,899.16,305.795,R28,,,,,"/>
-<approved hash="113,1,899.16,295.635,R29,,,,,"/>
-<approved hash="113,1,899.16,289.285,R30,,,,,"/>
-<approved hash="113,1,899.16,280.395,R31,,,,,"/>
-<approved hash="113,1,899.16,274.045,R32,,,,,"/>
-<approved hash="113,1,677.041,234.796,VBATPWRJP,,,,,"/>
-<approved hash="113,1,732.517,307.471,BOB-PA,,,,,"/>
-<approved hash="113,1,427.933,136.021,BOBADDR,,,,,"/>
-<approved hash="113,1,473.439,136.021,BOBDATA,,,,,"/>
-<approved hash="113,1,392.43,325.289,AY-3-8913-CS2,,,,,"/>
-</errors>
 </schematic>
 </drawing>
 <compatibility>
