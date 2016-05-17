@@ -6,7 +6,7 @@
 <setting alwaysvectorfont="no"/>
 <setting verticaltext="up"/>
 </settings>
-<grid distance="0.05" unitdist="inch" unit="inch" style="dots" multiple="1" display="yes" altdistance="0.01" altunitdist="inch" altunit="inch"/>
+<grid distance="0.1" unitdist="inch" unit="inch" style="lines" multiple="1" display="no" altdistance="0.01" altunitdist="inch" altunit="inch"/>
 <layers>
 <layer number="1" name="Top" color="4" fill="1" visible="no" active="no"/>
 <layer number="2" name="Route2" color="1" fill="3" visible="no" active="no"/>
@@ -15305,7 +15305,7 @@ Standard schematic elements and footprints for 5mm, 3mm, 1206, and 0603 sized LE
 </class>
 </classes>
 <parts>
-<part name="U$1" library="skeezix" deviceset="DCJACKZIK" device=""/>
+<part name="BARREL" library="skeezix" deviceset="DCJACKZIK" device=""/>
 <part name="U$2" library="skeezix" deviceset="MICROSD10" device=""/>
 <part name="U$3" library="skeezix" deviceset="POTWHEEL" device="" value="10K"/>
 <part name="PS/2KEYB" library="SparkFun-Connectors-skeemod" deviceset="MINI-DIN6" device="PTH"/>
@@ -15404,11 +15404,14 @@ D+
 GND</text>
 <text x="77.47" y="218.44" size="1.778" layer="91">USB 5V</text>
 <text x="53.34" y="205.74" size="1.778" layer="91">FTDI OUT 3V3</text>
-<text x="8.89" y="215.9" size="1.778" layer="91">- NEVER JUMPER enable these
+<text x="6.35" y="213.36" size="1.778" layer="91">- NEVER JUMPER enable these
 unless barrel power jack or
 headers are unconnected!
-- Jumper ONLY ONE of these to
-use USB for power</text>
+- Jumper 5V to feed the board from
+USB (including TPS)
+- Jump 3V to enable FTDI to feed board;
+do not do this if TPS7133 is
+populated</text>
 <text x="290.83" y="200.66" size="1.778" layer="91">5V-&gt;3.3V
 regulator</text>
 <text x="325.12" y="184.15" size="1.778" layer="94">header for out..
@@ -15417,12 +15420,6 @@ regulator</text>
 - 3.3
 - GND</text>
 <text x="267.97" y="209.55" size="3.81" layer="91">Power Block</text>
-<text x="374.65" y="140.97" size="7.62" layer="91">Verify
-- ensure cap, resistor sizine/type
-- printout pcb to printer, eyeball it
-- SD, unrouted, DRC, ERC...
-- Ensure slot for cart is deep/wide enough for plastic box clearance?
-- case readyness?</text>
 <text x="118.11" y="-113.03" size="2.54" layer="91">Use Vcc12V or +5?</text>
 <text x="12.7" y="-106.68" size="3.81" layer="91">Audio Amp</text>
 <text x="8.89" y="255.27" size="3.81" layer="91">Powering PCB Notes</text>
@@ -15462,7 +15459,7 @@ OTG_FS_DP</text>
 as physical jack pin order</text>
 <text x="544.83" y="-12.7" size="1.778" layer="91">Schem pins not same order
 as physical jack pin order</text>
-<text x="739.14" y="132.08" size="7.62" layer="91">Checked - ZZ hdr to jack pcb
+<text x="419.1" y="193.04" size="7.62" layer="91">Checked - ZZ hdr to jack pcb
 - PS/2 keyb ... ok
 - SD slot seems okay
 - JOY0 seems ok
@@ -15510,7 +15507,7 @@ ID
 GND</text>
 </plain>
 <instances>
-<instance part="U$1" gate="G$1" x="245.11" y="195.58" rot="R270"/>
+<instance part="BARREL" gate="G$1" x="245.11" y="195.58" rot="R270"/>
 <instance part="U$2" gate="G$1" x="354.33" y="-1.27"/>
 <instance part="U$3" gate="G$1" x="41.91" y="-67.31" rot="R270"/>
 <instance part="PS/2KEYB" gate="G$1" x="459.74" y="100.33" rot="MR0"/>
@@ -15719,7 +15716,7 @@ GND</text>
 <wire x1="247.65" y1="184.15" x2="247.65" y2="161.29" width="0.1524" layer="91"/>
 <pinref part="PWRIN" gate="A" pin="4"/>
 <wire x1="247.65" y1="161.29" x2="261.62" y2="161.29" width="0.1524" layer="91"/>
-<pinref part="U$1" gate="G$1" pin="GND"/>
+<pinref part="BARREL" gate="G$1" pin="GND"/>
 <wire x1="261.62" y1="161.29" x2="269.24" y2="161.29" width="0.1524" layer="91"/>
 <label x="269.24" y="161.29" size="1.27" layer="95" xref="yes"/>
 </segment>
@@ -16171,7 +16168,7 @@ GND</text>
 <wire x1="250.19" y1="184.15" x2="250.19" y2="166.37" width="0.1524" layer="91"/>
 <pinref part="PWRIN" gate="A" pin="2"/>
 <wire x1="250.19" y1="166.37" x2="261.62" y2="166.37" width="0.1524" layer="91"/>
-<pinref part="U$1" gate="G$1" pin="VCC"/>
+<pinref part="BARREL" gate="G$1" pin="VCC"/>
 <wire x1="261.62" y1="166.37" x2="269.24" y2="166.37" width="0.1524" layer="91"/>
 <label x="269.24" y="166.37" size="1.27" layer="95" xref="yes"/>
 </segment>

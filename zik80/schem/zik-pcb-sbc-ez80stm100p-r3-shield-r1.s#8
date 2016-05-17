@@ -15296,8 +15296,6 @@ regulator</text>
 <text x="374.65" y="140.97" size="7.62" layer="91">Verify
 - ensure cap, resistor sizine/type
 - printout pcb to printer, eyeball it
-- PWR v PW5 vs PWR3 vs 5V vs etc .. all powers are hooked right
-- net review; ensure no +5V and other old net names
 - SD, unrouted, DRC, ERC...
 - Ensure slot for cart is deep/wide enough for plastic box clearance?
 - case readyness?</text>
@@ -15350,7 +15348,8 @@ as physical jack pin order</text>
 - vga seems ok
 - pot wheel seems ok
 - Barrel ? unchecked, not relevent; probably right, and can specify polarity on male side eventually
-- headphone .. should be ok, checked during part build</text>
+- headphone .. should be ok, checked during part build
++ netlist seems clean, no old floating power +5Vs etc</text>
 <text x="436.88" y="12.7" size="1.27" layer="91">SPA4 SPI1 NSS
 SPA5 SPI1 SCK
 SPA6 SPI1 MISO
