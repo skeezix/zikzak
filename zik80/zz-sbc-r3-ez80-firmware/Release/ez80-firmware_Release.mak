@@ -30,26 +30,26 @@ CFLAGS =  \
 -define:ZSL_DEVICE_PORTB -define:ZSL_DEVICE_UART0  \
 -define:_ZSL_UART_USED -genprintf -NOkeepasm -keeplst -NOlist  \
 -NOlistinc -NOmodsect -optspeed -promote -reduceopt  \
--stdinc:"..\..\zz-sbc-r3-ez80-firmware;$(INCLUDE)\std;$(INCLUDE)\zilog"  \
--usrinc:"..\..\zz-sbc-r3-ez80-firmware;Y:\archive\devo\projects\zikzak\zik80\zz-sbc-r3-common;Y:\archive\devo\projects\zikzak\zik80\debug2ram"  \
+-stdinc:"..;$(INCLUDE)\std;$(INCLUDE)\zilog"  \
+-usrinc:"..;Y:\archive\devo\projects\zikzak\zik80\zz-sbc-r3-common;Y:\archive\devo\projects\zikzak\zik80\debug2ram"  \
 -NOmultithread -padbranch -debug -cpu:eZ80F93  \
 -asmsw:"   \
 	-define:_EZ80ACCLAIM!=1 -define:ZSL_DEVINIT=1  \
 	-define:ZSL_DEVICE_PORTD=1 -define:_ZSL_PORT_USED=1  \
 	-define:ZSL_DEVICE_PORTC=1 -define:ZSL_DEVICE_PORTB=1  \
 	-define:ZSL_DEVICE_UART0=1 -define:_ZSL_UART_USED=1  \
-	-include:"..\..\zz-sbc-r3-ez80-firmware;$(INCLUDE)\std;$(INCLUDE)\zilog"  \
-	-list -NOlistmac -pagelen:56 -pagewidth:80 -quiet -sdiopt -warn  \
-	-debug -NOigcase -cpu:eZ80F93"
+	-include:"..;$(INCLUDE)\std;$(INCLUDE)\zilog" -list -NOlistmac  \
+	-pagelen:56 -pagewidth:80 -quiet -sdiopt -warn -debug -NOigcase  \
+	-cpu:eZ80F93"
 
 ASFLAGS =  \
 -define:_EZ80ACCLAIM!=1 -define:ZSL_DEVINIT=1  \
 -define:ZSL_DEVICE_PORTD=1 -define:_ZSL_PORT_USED=1  \
 -define:ZSL_DEVICE_PORTC=1 -define:ZSL_DEVICE_PORTB=1  \
 -define:ZSL_DEVICE_UART0=1 -define:_ZSL_UART_USED=1  \
--include:"..\..\zz-sbc-r3-ez80-firmware;$(INCLUDE)\std;$(INCLUDE)\zilog"  \
--list -NOlistmac -name -pagelen:56 -pagewidth:80 -quiet -sdiopt  \
--warn -debug -NOigcase -cpu:eZ80F93
+-include:"..;$(INCLUDE)\std;$(INCLUDE)\zilog" -list -NOlistmac  \
+-name -pagelen:56 -pagewidth:80 -quiet -sdiopt -warn -debug  \
+-NOigcase -cpu:eZ80F93
 
 LDFLAGS = @.\ez80-firmware_Release.linkcmd
 OUTDIR = Z:\zik80\zz-sbc-r3-ez80-firmware\Release
