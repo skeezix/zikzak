@@ -13,17 +13,24 @@
 // - leftbacktop
 // - rightfrontbottom
 // - all
-//target = "leftbacktop";
-target = "rightfrontbottom";
+target = "leftbacktop";
+//target = "rightfrontbottom";
 //target = "all";
 
 // scale? Use this to print out tiny versions for inspection prior to printing real ones
 //scale_factor = 1;
 scale_factor = 0.4;
 
+// invert for print?
+//rotate_y = 180;   // invert
+rotate_y = 0;   // no invert
+
 // fan holes?
 fan_holes = 1;
 //fan_holes = 0;
+
+// DO IT
+//
 
 // facets
 $fn = 50;
@@ -173,16 +180,18 @@ module rightfrontbottom () {
 
 } // right front bottom
 
-scale ( [ scale_factor, scale_factor, scale_factor ] ) {
-	if ( target == "leftbacktop" ) {
-		leftbacktop();
-	} else if ( target == "rightfrontbottom" ) {
-		rightfrontbottom();
-	} else if ( target == "all" ) {
-        leftbacktop();
-        rightfrontbottom();
-	}
-}
+rotate ( [ 0, rotate_y, 0 ] ) {
+    scale ( [ scale_factor, scale_factor, scale_factor ] ) {
+        if ( target == "leftbacktop" ) {
+            leftbacktop();
+        } else if ( target == "rightfrontbottom" ) {
+            rightfrontbottom();
+        } else if ( target == "all" ) {
+            leftbacktop();
+            rightfrontbottom();
+        } // render the right piece
+    } // scale
+} // rotate
 
 module fanholes() {
     // How large is the fan rotor ? (mm)
