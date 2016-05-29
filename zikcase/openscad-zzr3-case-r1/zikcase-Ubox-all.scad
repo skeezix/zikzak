@@ -18,29 +18,30 @@
 // - frontbacktop
 // - leftrightbottom
 // - all
-//target = "frontbacktop";
+target = "frontbacktop";
 //target = "leftrightbottom";
-target = "all";
+//target = "all";
 
 // scale? Use this to print out tiny versions for inspection prior to printing real ones
-//scale_factor_x = 1;
-//scale_factor_y = 1;
-//scale_factor_z = 1;
-scale_factor_x = 0.4;
-scale_factor_y = 0.4;
-scale_factor_z = 0.4;
+scale_factor_x = 1;
+scale_factor_y = 1;
+scale_factor_z = 1;
+//scale_factor_x = 0.4;
+//scale_factor_y = 0.4;
+//scale_factor_z = 0.4;
 
 // invert for printing?
-invert_y = 1;
+//rotate_y = 0;       // for modelling or printing bottom
+rotate_y = 180;     // for printing top
 
 // fan holes?
 fan_holes = 1;      // render fan holes
 //fan_holes = 0;    // skip fan holes
-holedia_top = 10;   // larger (faster rendering) fan holes on top
-//holedia_top = 5;    // nicer smaller fan holes on top
+//holedia_top = 10;   // larger (faster rendering) fan holes on top
+holedia_top = 7;    // nicer smaller fan holes on top
 
 // facets
-$fn = 50;
+$fn = 10;
 
 // board params
 wall_thickness = 2.5;
@@ -49,9 +50,10 @@ tooth_width = wall_thickness;
 tooth_depth = 20;
 tooth_height = 20;
 
-pcb_width = 150;
-pcb_depth = 100;
-pcb_height = 40 + (1*wall_thickness);
+pcb_slush_factor = 3;
+pcb_width = 150 + pcb_slush_factor;
+pcb_depth = 100 + pcb_slush_factor;
+pcb_height = 40 + pcb_slush_factor + (1*wall_thickness);
 
 module outline_frame ( offset = 10 ) {
     // a thick edged rect frame
@@ -77,7 +79,7 @@ module frontbacktop () {
         union() {
 			// top
 			color ( "MediumSeaGreen" ) {
-				translate ( [ 0, 0, pcb_height ] ) {
+				translate ( [ 0, 0, pcb_height + (1*wall_thickness) ] ) {
 					cube ( [ pcb_width + (wall_thickness*4), pcb_depth + (2*wall_thickness), wall_thickness] );
 				}
 			}
@@ -88,23 +90,23 @@ module frontbacktop () {
 		union() {
 			// front wall
 			color ( "thistle" ) {
-				cube ( [ pcb_width + (wall_thickness*4), wall_thickness, pcb_height ] );
+				cube ( [ pcb_width + (wall_thickness*4), wall_thickness, pcb_height + (2*wall_thickness) ] );
 			}
 			// back wall
 			color ( "green" ) {
 				translate ( [ 0, pcb_depth + (1*wall_thickness), 0 ] ) {
-					cube ( [ pcb_width + (wall_thickness*4), wall_thickness, pcb_height ] );
+					cube ( [ pcb_width + (wall_thickness*4), wall_thickness, pcb_height + (2*wall_thickness)] );
 				}
 			}
             // left fastener tooth
 			color ( "MediumSeaGreen" ) {
-				translate ( [ wall_thickness, pcb_depth / 3 * 2, pcb_height - tooth_height ] ) {
+				translate ( [ wall_thickness, pcb_depth / 3 * 2, pcb_height - tooth_height + (1*wall_thickness) ] ) {
 					cube ( [ tooth_width, tooth_depth, tooth_height ] );
 				}
 			}
             // right fastener tooth
 			color ( "MediumSeaGreen" ) {
-				translate ( [ pcb_width + (2*wall_thickness), pcb_depth / 3 * 2, pcb_height - tooth_height ] ) {
+				translate ( [ pcb_width + (2*wall_thickness), pcb_depth / 3 * 2, pcb_height - tooth_height + (1*wall_thickness) ] ) {
 					cube ( [ tooth_width, tooth_depth, tooth_height ] );
 				}
 			}
@@ -119,7 +121,7 @@ module frontbacktop () {
         // left fastener small hole
         translate ( [ 0, ( pcb_depth / 3 * 2 ) + ( tooth_depth /2 ), pcb_height - ( tooth_height / 2 ) ] ) {
             rotate ( [ 0, 90, 0 ] ) {
-                cylinder ( h=wall_thickness*2,r1=1,r2=1 );
+                cylinder ( h=wall_thickness*2,r1=0.75,r2=0.75 );
             }
         }
 
@@ -127,19 +129,19 @@ module frontbacktop () {
 		//
 
 		// USB power/serial
-		translate ( [ 3 - jack_buffer, pcb_depth + (1*wall_thickness), 25 - jack_buffer ] ) {
+		translate ( [ 3 - jack_buffer, pcb_depth + (1*wall_thickness), 25 - jack_buffer + (1*wall_thickness) ] ) {
 			cube( [ 7 + (2*jack_buffer), 20, 4 + (2*jack_buffer) ] );
 		}
 		// volume potwheel
-		translate ( [ 16, pcb_depth + (1*wall_thickness), 25 - jack_buffer ] ) {
+		translate ( [ 16, pcb_depth + (1*wall_thickness), 25 - jack_buffer + (1*wall_thickness) ] ) {
 			cube( [ 15 + (2*jack_buffer), 20, 2 + (2*jack_buffer) ] );
 		}
 		// PS/2 keyb
-		translate ( [ 36, pcb_depth + (1*wall_thickness), 25 - jack_buffer ] ) {
+		translate ( [ 36, pcb_depth + (1*wall_thickness), 25 - jack_buffer + (1*wall_thickness) ] ) {
 			cube( [ 15, 20, 15 + (2*jack_buffer) ] );
 		}
 		// VGA
-		translate ( [ 55, pcb_depth + (1*wall_thickness), 25 - jack_buffer ] ) {
+		translate ( [ 55, pcb_depth + (1*wall_thickness), 25 - jack_buffer + (1*wall_thickness) ] ) {
 			cube( [ 31, 20, 14 + (2*jack_buffer) ] );
 		}
         
@@ -147,7 +149,7 @@ module frontbacktop () {
         //
 
    		// cart
-		translate ( [ 30 + (wall_thickness*2), 2, 35 - jack_buffer ] ) {
+		translate ( [ 30 + (wall_thickness*2), 2, 35 - jack_buffer + (1*wall_thickness) ] ) {
 			cube( [ 82 + (2*jack_buffer), 25+(2*jack_buffer), 20 ] );
 		}
         
@@ -157,14 +159,14 @@ module frontbacktop () {
         // right fastener small hole
         translate ( [ pcb_width + (wall_thickness*2), ( pcb_depth / 3 * 2 ) + ( tooth_depth /2 ), pcb_height - ( tooth_height / 2 ) ] ) {
             rotate ( [ 0, 90, 0 ] ) {
-                cylinder ( h=wall_thickness*2,r1=1,r2=1 );
+                cylinder ( h=wall_thickness*2,r1=0.75,r2=0.75 );
             }
         }
 
 	} // cutouts
 
     module cart_frame() {
-		translate ( [ 25 + (wall_thickness*2), 2+(1*wall_thickness), pcb_height ] ) {
+		translate ( [ 25 + (wall_thickness*2), 2+(1*wall_thickness), pcb_height + (1*wall_thickness) ] ) {
 			cube( [ 95, 35, wall_thickness ] );
 		}
     }
@@ -172,7 +174,7 @@ module frontbacktop () {
     module toptrim_frame() {
         
         // frame
-        translate ( [ 80, 60, pcb_height ] )  {
+        translate ( [ 80, 60, pcb_height + (1*wall_thickness) ] )  {
             //cube ( [ 60, 40, wall_thickness ] );
             cylinder ( h=wall_thickness, r1=25, r2=25 );
         } // tr
@@ -182,7 +184,7 @@ module frontbacktop () {
     module toptrim_text() {
         
         // ZZ
-        translate ( [ 63, 52 + (1*wall_thickness), 39 ] )  {
+        translate ( [ 63, 52 + (1*wall_thickness), 39 + (1*wall_thickness) ] )  {
              linear_extrude(slices=1,height=15) {
                 text ( text="ZZ", size=20, font="DejaVu Sans Mono:style=Bold" );
              } // ex
@@ -197,7 +199,7 @@ module frontbacktop () {
             if ( fan_holes == 1 ) {
                 difference() {
                     top();
-                    translate( [ 75, 55, 38 ] ) fanholes(dia=140,holedia=holedia_top,height=10);
+                    translate( [ 75, 55, 38 + pcb_slush_factor ] ) fanholes(dia=140,holedia=holedia_top,height=10);
                 } // diff
             } else {
                 difference() {
@@ -213,7 +215,7 @@ module frontbacktop () {
             // + cart frame
             // + top trim frame
             walls();
-            translate ( [ 0, 0, pcb_height ] ) {
+            translate ( [ 0, 0, pcb_height + (1*wall_thickness) ] ) {
                 outline_frame ( 12 );
             }
             cart_frame();
@@ -234,13 +236,13 @@ module leftrightbottom () {
 			// left wall
 			color ( "cadetblue" ) {
                 translate ( [ 0, wall_thickness, 0 ] ) {
-                    cube ( [ wall_thickness, pcb_depth, pcb_height ] );
+                    cube ( [ wall_thickness, pcb_depth, pcb_height + (1*wall_thickness) ] );
                 }
 			}
 			// right wall
 			color ( "thistle" ) {
                 translate ( [ pcb_width + (wall_thickness*3), wall_thickness, 0 ] ) {
-                    cube ( [ wall_thickness, pcb_depth, pcb_height ] );
+                    cube ( [ wall_thickness, pcb_depth, pcb_height + (1*wall_thickness) ] );
                 }
 			}
 
@@ -268,7 +270,7 @@ module leftrightbottom () {
         // left fastener hole
         translate ( [ 0, ( pcb_depth / 3 * 2 ) + ( tooth_depth /2 ), pcb_height - ( tooth_height / 2 ) ] ) {
             rotate ( [ 0, 90, 0 ] ) {
-                cylinder ( h=wall_thickness*2,r1=2,r2=2 );
+                cylinder ( h=wall_thickness*2,r1=1,r2=1 );
             }
         }
 
@@ -278,7 +280,7 @@ module leftrightbottom () {
         // right fastener hole
         translate ( [ pcb_width + (3*wall_thickness), ( pcb_depth / 3 * 2 ) + ( tooth_depth /2 ), pcb_height - ( tooth_height / 2 ) ] ) {
             rotate ( [ 0, 90, 0 ] ) {
-                cylinder ( h=wall_thickness*2,r1=2,r2=2 );
+                cylinder ( h=wall_thickness*2,r1=1,r2=1 );
             }
         }
 
@@ -302,14 +304,6 @@ module leftrightbottom () {
 
 // DO IT
 //
-
-rotate_y = 0;
-
-if ( invert_y == 1 ) {
-    //assert ( 1==2, "Invert not coded yet" );
-    rotate_y = 180;
-}
-echo ("Rotate Y ", rotate_y );
 
 rotate ( [ 0, rotate_y, 0 ] ) {
     scale ( [ scale_factor_x, scale_factor_y, scale_factor_z ] ) {
