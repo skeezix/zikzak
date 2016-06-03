@@ -1,4 +1,4 @@
-<project type="Executable" project-type="Standard" configuration="Release" created-by="d:5.2.0:11111601" modified-by="d:5.2.0:11111601" ZDSII="ZDS - eZ80Acclaim! 5.2.1 (Build 12102401)">
+<project type="Executable" project-type="Standard" configuration="Debug" created-by="d:5.2.0:11111601" modified-by="d:5.2.0:11111601" ZDSII="ZDS - eZ80Acclaim! 5.2.1 (Build 12102401)">
 <cpu>eZ80F93</cpu>
 
 <!-- file information -->
@@ -14,7 +14,6 @@
 <file filter-key="">.\bios_video.c</file>
 <file filter-key="">.\demo.c</file>
 <file filter-key="">.\lib_ps2_keyboard.c</file>
-<file filter-key="">..\ym-hackery-regdump\xenon2-ym-lha-extracted.deinterleave.c</file>
 </files>
 
 <!-- configuration information -->
@@ -44,11 +43,11 @@
 <option name="list" type="boolean" change-action="none">false</option>
 <option name="listinc" type="boolean" change-action="none">false</option>
 <option name="modsect" type="boolean" change-action="compile">false</option>
-<option name="optspeed" type="boolean" change-action="compile">false</option>
+<option name="optspeed" type="boolean" change-action="compile">true</option>
 <option name="promote" type="boolean" change-action="compile">true</option>
-<option name="reduceopt" type="boolean" change-action="compile">false</option>
+<option name="reduceopt" type="boolean" change-action="compile">true</option>
 <option name="stdinc" type="string" change-action="compile"></option>
-<option name="usrinc" type="string" change-action="compile"></option>
+<option name="usrinc" type="string" change-action="compile">Y:\archive\devo\projects\zikzak\zik80\zz-sbc-r3-common;Y:\archive\devo\projects\zikzak\zik80\debug2ram</option>
 <option name="watch" type="boolean" change-action="none">false</option>
 <option name="multithread" type="boolean" change-action="compile">false</option>
 </options>
@@ -119,8 +118,8 @@
 <option name="useadddirectives" type="boolean" change-action="build">false</option>
 <option name="linkconfig" type="string" change-action="build">Standard</option>
 <option name="flashinfo" type="string" change-action="build">000000-0000FF</option>
-<option name="ram" type="string" change-action="build">AB0000-ABFFFF</option>
-<option name="rom" type="string" change-action="build">AA0000-AAFFFF</option>
+<option name="ram" type="string" change-action="build">B7F000-B7FFFF</option>
+<option name="rom" type="string" change-action="build">0000-0dffff</option>
 <option name="extio" type="string" change-action="build">000000-00FFFF</option>
 <option name="intio" type="string" change-action="build">000000-0000FF</option>
 </options>
@@ -267,9 +266,9 @@
 <!-- breakpoint information -->
 <breakpoints>
 <breakpoint temporary="false" enabled="true" >
-<line-number>35</line-number>
+<line-number>45</line-number>
 <pathname>Z:\zik80\zz-sbc-r3-ez80-firmware\main.c</pathname>
-<address>0</address>
+<address>1103</address>
 <command></command>
 <preserve-type>0</preserve-type>
 </breakpoint>

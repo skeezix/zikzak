@@ -1,4 +1,10 @@
 // Chip Selects:
+// Built in RAM	B7F000 - B7FFFF    -> ram on chip	(4K)
+//		- is always at ___F000->___FFFF where ___ is settable in register; default reg is FF
+//		- currently seems flashed RAM address register to 0xB7 so actual RAM is at: 0xB7F000-0xB7FFFF
+//      - 'enable data ram' and address in Target Settings allows specification of this value
+// Build in ROM in F93 chip is 64; __0000-__FFFF, currently set to 00_0000-00_FFFF
+//
 // CS0   e8 0   0c0000 - 0dffff    -> ram 128KB
 //                     - 7dffff    -> ram 512KB
 // CS1   e8 0   1c0000 - 1dffff    -> rom 128KB
@@ -24,7 +30,11 @@
 
 int main ( ) {
 
-#if 1 // sleep for a few seconds up front, making emergency reflash easier (than racing against HALTs)
+	// if not debug build, sleep for a few seconds up front, making emergency
+	// reflash easier (than racing against HALTs)
+	// --> Debug build is probably running out of RAM directly, so doesn't need
+	// any up front delay
+#ifndef _DEBUG
 	{
 		delay_ms_spin(1000);
 		delay_ms_spin(1000);
@@ -83,7 +93,7 @@ int main ( ) {
 			write_UART0 ( b, 3 );
 		}
 		
-		lame_itoa ( (int)37, b );
+		lame_itoa ( (int)42, b );
 		
 		write_UART0 ( b, lame_strlen ( b ) );
 		write_UART0 ( "\n", 1 );

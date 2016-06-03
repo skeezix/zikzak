@@ -4,7 +4,7 @@ Copyright (C) 1999-2008 Zilog, Inc. All Rights Reserved
 
 LINK MAP:
 
-DATE:      Thu May 26 11:58:13 2016
+DATE:      Fri Jun 03 17:40:46 2016
 PROCESSOR: assembler
 FILES:     C:\winapp\ZDSII_~1.1\lib\zilog\vectors16.obj
            C:\winapp\ZDSII_~1.1\lib\zilog\init_params_f93.obj
@@ -18,7 +18,6 @@ FILES:     C:\winapp\ZDSII_~1.1\lib\zilog\vectors16.obj
            .\bios_video.obj
            .\demo.obj             
            .\lib_ps2_keyboard.obj
-           .\xenon2-ym-lha-extracted.deinterleave.obj
            C:\winapp\ZDSII_~1.1\lib\std\chelpD.lib
            C:\winapp\ZDSII_~1.1\lib\std\crtD.lib
            C:\winapp\ZDSII_~1.1\lib\std\crtSD.lib
@@ -116,7 +115,7 @@ define _SYS_CLK_FREQ = 20000000
 
 define _zsl_g_clock_xdefine = 20000000
 
-"Z:\zik80\zz-sbc-r3-ez80-firmware\Release\in-ram-test"=  C:\winapp\ZDSII_~1.1\lib\zilog\vectors16.obj,  C:\winapp\ZDSII_~1.1\lib\zilog\init_params_f93.obj,  C:\winapp\ZDSII_~1.1\lib\zilog\cstartup.obj,  .\zsldevinit.obj,  .\main.obj,  .\skeelib.obj,  .\lib_ay-3-8912.obj,  .\framebuffer.obj,  .\lib_fontrender.obj,  .\menu.obj,  .\bios_video.obj,  .\demo.obj,  .\lib_ps2_keyboard.obj,  .\xenon2-ym-lha-extracted.deinterleave.obj,  C:\winapp\ZDSII_~1.1\lib\std\chelpD.lib,  C:\winapp\ZDSII_~1.1\lib\std\crtD.lib,  C:\winapp\ZDSII_~1.1\lib\std\crtSD.lib,  C:\winapp\ZDSII_~1.1\lib\std\nokernelD.lib,  C:\winapp\ZDSII_~1.1\lib\zilog\gpioD.lib,  C:\winapp\ZDSII_~1.1\lib\zilog\uartf93D.lib
+"Z:\zik80\zz-sbc-r3-ez80-firmware\Release\in-ram-test"=  C:\winapp\ZDSII_~1.1\lib\zilog\vectors16.obj,  C:\winapp\ZDSII_~1.1\lib\zilog\init_params_f93.obj,  C:\winapp\ZDSII_~1.1\lib\zilog\cstartup.obj,  .\zsldevinit.obj,  .\main.obj,  .\skeelib.obj,  .\lib_ay-3-8912.obj,  .\framebuffer.obj,  .\lib_fontrender.obj,  .\menu.obj,  .\bios_video.obj,  .\demo.obj,  .\lib_ps2_keyboard.obj,  C:\winapp\ZDSII_~1.1\lib\std\chelpD.lib,  C:\winapp\ZDSII_~1.1\lib\std\crtD.lib,  C:\winapp\ZDSII_~1.1\lib\std\crtSD.lib,  C:\winapp\ZDSII_~1.1\lib\std\nokernelD.lib,  C:\winapp\ZDSII_~1.1\lib\zilog\gpioD.lib,  C:\winapp\ZDSII_~1.1\lib\zilog\uartf93D.lib
 
 
 SPACE ALLOCATION:
@@ -124,10 +123,10 @@ SPACE ALLOCATION:
 
 Space                     Base         Top      Size      Used    Unused
 ------------------ ----------- ----------- --------- --------- ---------
-RAM                   D:B7F000    D:B7F732     1000H      733H      8CDH
-                                          (     4096      1843      2253)
-ROM                     C:0000      C:B56D    10000H     B4D9H     4B27H
-                                          (    65536     46297     19239)
+RAM                   D:B7F000    D:B7F728     1000H      729H      8D7H
+                                          (     4096      1833      2263)
+ROM                     C:0000      C:359A    10000H     3506H     CAFAH
+                                          (    65536     13574     51962)
 
 
 SEGMENTS WITHIN SPACE:
@@ -135,9 +134,9 @@ SEGMENTS WITHIN SPACE:
 
 RAM                Type                Base        Top         Size
 ------------------ ------------------- ----------- ----------- ---------
-BSS                normal data            D:B7F69E    D:B7F732       95h
-DATA               normal data            D:B7F000    D:B7F5DD      5deh
-IVJMPTBL           normal data            D:B7F5DE    D:B7F69D       c0h
+BSS                normal data            D:B7F694    D:B7F728       95h
+DATA               normal data            D:B7F000    D:B7F5D3      5d4h
+IVJMPTBL           normal data            D:B7F5D4    D:B7F693       c0h
 
 
 ROM                Type                Base        Top         Size
@@ -145,27 +144,19 @@ ROM                Type                Base        Top         Size
 .IVECTS            normal data              C:0100      C:021F      120h
 .RESET             normal data              C:0000      C:006A       6bh
 .STARTUP           normal data              C:0220      C:03BE      19fh
-CODE               normal data              C:03BF      C:301B     2c5dh
-DATA               * segment copy *         C:AF90      C:B56D      5deh
-STRSECT            normal data              C:ADB7      C:AF8F      1d9h
-TEXT               normal data              C:301C      C:ADB6     7d9bh
+CODE               normal data              C:03BF      C:2D52     2994h
+DATA               * segment copy *         C:2FC7      C:359A      5d4h
+STRSECT            normal data              C:2DEE      C:2FC6      1d9h
+TEXT               normal data              C:2D53      C:2DED       9bh
 
 SEGMENTS WITHIN MODULES:
 ========================
-
-Module: ..\..\YM-HACKERY-REGDUMP\XENON2-YM-LHA-EXTRACTED.DEINTERLEAVE.C (File: xenon2-ym-lha-extracted.deinterleave.obj) Version: 1:0 11/06/2015 14:05:30
-
-    Name                                        Base        Top      Size
-    --------------------------------------- ----------- ----------- ---------
-    Segment: DATA                              D:B7F5CC    D:B7F5D5        ah
-    Segment: TEXT                                C:30B7      C:ADB6     7d00h
-
 
 Module: ..\BIOS_VIDEO.C (File: bios_video.obj) Version: 1:0 11/04/2015 00:11:31
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:14E8      C:1598       b1h
+    Segment: CODE                                C:121F      C:12CF       b1h
     Segment: DATA                              D:B7F5C3    D:B7F5C4        2h
 
 
@@ -173,23 +164,23 @@ Module: ..\DEMO.C (File: demo.obj) Version: 1:0 11/04/2015 00:11:31
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1599      C:1A98      500h
-    Segment: STRSECT                             C:AF50      C:AF8F       40h
-    Segment: TEXT                                C:302C      C:3036        bh
+    Segment: CODE                                C:12D0      C:17CF      500h
+    Segment: STRSECT                             C:2F87      C:2FC6       40h
+    Segment: TEXT                                C:2D63      C:2D6D        bh
 
 
 Module: ..\FRAMEBUFFER.C (File: framebuffer.obj) Version: 1:0 11/04/2015 00:11:31
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:0E8D      C:134B      4bfh
+    Segment: CODE                                C:0BC4      C:1082      4bfh
 
 
-Module: ..\LIB_AY-3-8912.C (File: lib_ay-3-8912.obj) Version: 1:0 11/06/2015 17:12:26
+Module: ..\LIB_AY-3-8912.C (File: lib_ay-3-8912.obj) Version: 1:0 06/03/2016 16:36:50
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:09E3      C:0E8C      4aah
+    Segment: CODE                                C:09E3      C:0BC3      1e1h
     Segment: DATA                              D:B7F006    D:B7F1BF      1bah
 
 
@@ -197,7 +188,7 @@ Module: ..\LIB_FONTRENDER.C (File: lib_fontrender.obj) Version: 1:0 11/04/2015 0
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:134C      C:14C3      178h
+    Segment: CODE                                C:1083      C:11FA      178h
     Segment: DATA                              D:B7F1C0    D:B7F5BF      400h
 
 
@@ -205,27 +196,27 @@ Module: ..\LIB_PS2_KEYBOARD.C (File: lib_ps2_keyboard.obj) Version: 1:0 11/04/20
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1A99      C:1CB1      219h
+    Segment: CODE                                C:17D0      C:19E8      219h
     Segment: DATA                              D:B7F5C5    D:B7F5CB        7h
-    Segment: TEXT                                C:3037      C:30B6       80h
+    Segment: TEXT                                C:2D6E      C:2DED       80h
 
 
-Module: ..\MAIN.C (File: main.obj) Version: 1:0 05/26/2016 11:58:01
+Module: ..\MAIN.C (File: main.obj) Version: 1:0 06/03/2016 17:40:42
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: CODE                                C:042C      C:0875      44ah
-    Segment: STRSECT                             C:ADB7      C:AEA4       eeh
-    Segment: TEXT                                C:301C      C:3020        5h
+    Segment: STRSECT                             C:2DEE      C:2EDB       eeh
+    Segment: TEXT                                C:2D53      C:2D57        5h
 
 
 Module: ..\MENU.C (File: menu.obj) Version: 1:0 11/04/2015 00:11:31
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:14C4      C:14E7       24h
+    Segment: CODE                                C:11FB      C:121E       24h
     Segment: DATA                              D:B7F5C0    D:B7F5C2        3h
-    Segment: STRSECT                             C:AEA5      C:AF4F       abh
+    Segment: STRSECT                             C:2EDC      C:2F86       abh
 
 
 Module: ..\SKEELIB.C (File: skeelib.obj) Version: 1:0 11/04/2015 00:11:30
@@ -233,171 +224,171 @@ Module: ..\SKEELIB.C (File: skeelib.obj) Version: 1:0 11/04/2015 00:11:30
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
     Segment: CODE                                C:0876      C:09E2      16dh
-    Segment: TEXT                                C:3021      C:302B        bh
+    Segment: TEXT                                C:2D58      C:2D62        bh
 
 
 Module: ..\SRC\GPIO\COMMON\CLOSEPORTB.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:22
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1D30      C:1D4A       1bh
+    Segment: CODE                                C:1A67      C:1A81       1bh
 
 
 Module: ..\SRC\GPIO\COMMON\CLOSEPORTC.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:22
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1D4B      C:1D65       1bh
+    Segment: CODE                                C:1A82      C:1A9C       1bh
 
 
 Module: ..\SRC\GPIO\COMMON\CLOSEPORTD.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:22
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1D6C      C:1D86       1bh
+    Segment: CODE                                C:1AA3      C:1ABD       1bh
 
 
 Module: ..\SRC\GPIO\COMMON\CONTROLPORTB.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:22
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2744      C:277E       3bh
+    Segment: CODE                                C:247B      C:24B5       3bh
 
 
 Module: ..\SRC\GPIO\COMMON\CONTROLPORTC.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:23
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:27BC      C:27F6       3bh
+    Segment: CODE                                C:24F3      C:252D       3bh
 
 
 Module: ..\SRC\GPIO\COMMON\CONTROLPORTD.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:23
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2834      C:286E       3bh
+    Segment: CODE                                C:256B      C:25A5       3bh
 
 
 Module: ..\SRC\GPIO\COMMON\OPENPORTB.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:24
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2707      C:2743       3dh
+    Segment: CODE                                C:243E      C:247A       3dh
 
 
 Module: ..\SRC\GPIO\COMMON\OPENPORTC.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:24
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:277F      C:27BB       3dh
+    Segment: CODE                                C:24B6      C:24F2       3dh
 
 
 Module: ..\SRC\GPIO\COMMON\OPENPORTD.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:24
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:27F7      C:2833       3dh
+    Segment: CODE                                C:252E      C:256A       3dh
 
 
 Module: ..\SRC\GPIO\COMMON\SETMODEPORTB.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:25
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1F4F      C:21CD      27fh
+    Segment: CODE                                C:1C86      C:1F04      27fh
 
 
 Module: ..\SRC\GPIO\COMMON\SETMODEPORTC.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:25
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2209      C:2487      27fh
+    Segment: CODE                                C:1F40      C:21BE      27fh
 
 
 Module: ..\SRC\GPIO\COMMON\SETMODEPORTD.C (Library: gpioD.lib) Version: 1:0 10/18/2012 09:50:25
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2488      C:2706      27fh
+    Segment: CODE                                C:21BF      C:243D      27fh
 
 
 Module: ..\SRC\UART\COMMON\CLOSEUART0.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:36
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2A38      C:2A6F       38h
+    Segment: CODE                                C:276F      C:27A6       38h
 
 
 Module: ..\SRC\UART\COMMON\CONTROLUART0.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:36
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: BSS                               D:B7F71E    D:B7F731       14h
-    Segment: CODE                                C:1DEE      C:1F39      14ch
-    Segment: DATA                              D:B7F5D6    D:B7F5D9        4h
+    Segment: BSS                               D:B7F714    D:B7F727       14h
+    Segment: CODE                                C:1B25      C:1C70      14ch
+    Segment: DATA                              D:B7F5CC    D:B7F5CF        4h
 
 
 Module: ..\SRC\UART\COMMON\FIFOADD.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:37
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2C1C      C:2C76       5bh
+    Segment: CODE                                C:2953      C:29AD       5bh
 
 
 Module: ..\SRC\UART\COMMON\FIFOEMPTY.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:37
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2BC0      C:2BE1       22h
+    Segment: CODE                                C:28F7      C:2918       22h
 
 
 Module: ..\SRC\UART\COMMON\FIFOFULL.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:37
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2FC2      C:3012       51h
+    Segment: CODE                                C:2CF9      C:2D49       51h
 
 
 Module: ..\SRC\UART\COMMON\FIFOGET0.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:37
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2D81      C:2E3A       bah
+    Segment: CODE                                C:2AB8      C:2B71       bah
 
 
 Module: ..\SRC\UART\COMMON\FLUSHUART0.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:37
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2969      C:29D0       68h
+    Segment: CODE                                C:26A0      C:2707       68h
 
 
 Module: ..\SRC\UART\COMMON\ISRUART0.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:38
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: BSS                               D:B7F732    D:B7F732        1h
-    Segment: CODE                                C:2A70      C:2BBF      150h
+    Segment: BSS                               D:B7F728    D:B7F728        1h
+    Segment: CODE                                C:27A7      C:28F6      150h
 
 
 Module: ..\SRC\UART\COMMON\OPENUART0.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:38
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1D87      C:1DED       67h
+    Segment: CODE                                C:1ABE      C:1B24       67h
 
 
 Module: ..\SRC\UART\COMMON\READUART0.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:40
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:28C6      C:2968       a3h
+    Segment: CODE                                C:25FD      C:269F       a3h
 
 
 Module: ..\SRC\UART\COMMON\WRITEUART0.C (Library: uartf93D.lib) Version: 1:0 10/18/2012 09:51:42
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2E8B      C:2F30       a6h
+    Segment: CODE                                C:2BC2      C:2C67       a6h
 
 
 Module: .\boot\common\cstartup.asm (File: cstartup.obj) Version: 1:0 10/18/2012 09:49:05
@@ -415,7 +406,7 @@ Module: .\boot\common\vectors16.asm (File: vectors16.obj) Version: 1:0 10/18/201
     Segment: .IVECTS                             C:0100      C:021F      120h
     Segment: .RESET                              C:0000      C:006A       6bh
     Segment: .STARTUP                            C:0220      C:028B       6ch
-    Segment: IVJMPTBL                          D:B7F5DE    D:B7F69D       c0h
+    Segment: IVJMPTBL                          D:B7F5D4    D:B7F693       c0h
 
 
 Module: .\boot\eZ80F93\init_params_f93.asm (File: init_params_f93.obj) Version: 1:0 10/18/2012 09:49:06
@@ -429,218 +420,218 @@ Module: .\rtl\common\bshl.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:4
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:3013      C:301B        9h
+    Segment: CODE                                C:2D4A      C:2D52        9h
 
 
 Module: .\rtl\common\case8D.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:55
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2BE2      C:2C1B       3ah
+    Segment: CODE                                C:2919      C:2952       3ah
 
 
 Module: .\rtl\common\iand.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2F3A      C:2F54       1bh
+    Segment: CODE                                C:2C71      C:2C8B       1bh
 
 
 Module: .\rtl\common\icmpzero.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:54
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:29EC      C:29F7        ch
+    Segment: CODE                                C:2723      C:272E        ch
 
 
 Module: .\rtl\common\idivs.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:29F8      C:2A30       39h
+    Segment: CODE                                C:272F      C:2767       39h
 
 
 Module: .\rtl\common\idivu.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:286F      C:288F       21h
+    Segment: CODE                                C:25A6      C:25C6       21h
 
 
 Module: .\rtl\common\imulu.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2E3B      C:2E82       48h
+    Segment: CODE                                C:2B72      C:2BB9       48h
 
 
 Module: .\rtl\common\ineg.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1CB2      C:1CBA        9h
+    Segment: CODE                                C:19E9      C:19F1        9h
 
 
 Module: .\rtl\common\irems.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1CEF      C:1D26       38h
+    Segment: CODE                                C:1A26      C:1A5D       38h
 
 
 Module: .\rtl\common\iremu.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1D27      C:1D2F        9h
+    Segment: CODE                                C:1A5E      C:1A66        9h
 
 
 Module: .\rtl\common\ishl.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2CBC      C:2CCD       12h
+    Segment: CODE                                C:29F3      C:2A04       12h
 
 
 Module: .\rtl\common\ishrs.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1CCA      C:1CEE       25h
+    Segment: CODE                                C:1A01      C:1A25       25h
 
 
 Module: .\rtl\common\itol.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2A31      C:2A37        7h
+    Segment: CODE                                C:2768      C:276E        7h
 
 
 Module: .\rtl\common\ixor.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:29D1      C:29EB       1bh
+    Segment: CODE                                C:2708      C:2722       1bh
 
 
 Module: .\rtl\common\ladd.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2D29      C:2D3D       15h
+    Segment: CODE                                C:2A60      C:2A74       15h
 
 
 Module: .\rtl\common\land.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2F31      C:2F39        9h
+    Segment: CODE                                C:2C68      C:2C70        9h
 
 
 Module: .\rtl\common\lcmpu.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:49
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2C77      C:2C8C       16h
+    Segment: CODE                                C:29AE      C:29C3       16h
 
 
 Module: .\rtl\common\ldivu.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:50
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2890      C:28C5       36h
+    Segment: CODE                                C:25C7      C:25FC       36h
 
 
 Module: .\rtl\common\lmulu.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:50
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2F55      C:2FC1       6dh
+    Segment: CODE                                C:2C8C      C:2CF8       6dh
 
 
 Module: .\rtl\common\lshru.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:50
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2D3E      C:2D5F       22h
+    Segment: CODE                                C:2A75      C:2A96       22h
 
 
 Module: .\rtl\common\memset.asm (Library: crtD.lib) Version: 1:0 10/18/2012 09:49:14
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2D60      C:2D80       21h
+    Segment: CODE                                C:2A97      C:2AB7       21h
 
 
 Module: .\RTL\COMMON\RAND.C (Library: crtD.lib) Version: 1:0 10/18/2012 09:49:11
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2CDB      C:2D28       4eh
-    Segment: DATA                              D:B7F5DA    D:B7F5DD        4h
+    Segment: CODE                                C:2A12      C:2A5F       4eh
+    Segment: DATA                              D:B7F5D0    D:B7F5D3        4h
 
 
 Module: .\rtl\common\scmpzero.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:54
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2CCE      C:2CDA        dh
+    Segment: CODE                                C:2A05      C:2A11        dh
 
 
 Module: .\rtl\common\seqcaseD.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:55
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:21CE      C:2208       3bh
+    Segment: CODE                                C:1F05      C:1F3F       3bh
 
 
 Module: .\rtl\common\setflag.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:54
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1CBB      C:1CC9        fh
+    Segment: CODE                                C:19F2      C:1A00        fh
 
 
 Module: .\rtl\common\sshru.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:51
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1F3A      C:1F4E       15h
+    Segment: CODE                                C:1C71      C:1C85       15h
 
 
 Module: .\rtl\common\stoi.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:51
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2E83      C:2E8A        8h
+    Segment: CODE                                C:2BBA      C:2BC1        8h
 
 
 Module: .\rtl\common\stoiu.asm (Library: chelpD.lib) Version: 1:0 10/18/2012 09:49:51
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:1D66      C:1D6B        6h
+    Segment: CODE                                C:1A9D      C:1AA2        6h
 
 
 Module: .\strcpy.asm (Library: crtD.lib) Version: 1:0 10/18/2012 09:49:14
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2C8D      C:2CA6       1ah
+    Segment: CODE                                C:29C4      C:29DD       1ah
 
 
 Module: .\strlen.asm (Library: crtD.lib) Version: 1:0 10/18/2012 09:49:14
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: CODE                                C:2CA7      C:2CBB       15h
+    Segment: CODE                                C:29DE      C:29F2       15h
 
 
 Module: Z:\zik80\zz-sbc-r3-ez80-firmware\zsldevinit.asm (File: zsldevinit.obj) Version: 1:0 11/04/2015 00:11:29
 
     Name                                        Base        Top      Size
     --------------------------------------- ----------- ----------- ---------
-    Segment: BSS                               D:B7F69E    D:B7F71D       80h
+    Segment: BSS                               D:B7F694    D:B7F713       80h
     Segment: CODE                                C:03BF      C:042B       6dh
     Segment: DATA                              D:B7F003    D:B7F005        3h
 
@@ -650,10 +641,10 @@ EXTERNAL DEFINITIONS:
 Symbol                             Address   Module          Segment
 -------------------------------- ----------- --------------- --------------------------------
 __1st_jump_table                      C:0160 vectors16       .IVECTS                         
-__2nd_jump_table                    D:B7F5DE vectors16       IVJMPTBL                        
-__bshl                                C:3013 bshl            CODE                            
+__2nd_jump_table                    D:B7F5D4 vectors16       IVJMPTBL                        
+__bshl                                C:2D4A bshl            CODE                            
 __c_startup                           C:0371 cstartup        .STARTUP                        
-__case8D                              C:2BE2 case8D          CODE                            
+__case8D                              C:2919 case8D          CODE                            
 __close_periphdevice                  C:041B zsldevinit      CODE                            
 __copy_code_to_ram                  00000000 (User Defined)
 __crtl                              00000001 (User Defined)
@@ -686,147 +677,143 @@ __g_kbd_data                        D:B7F5C9 LIB_PS2_KEYBOAR DATA
 __g_release_event                   D:B7F5C8 LIB_PS2_KEYBOAR DATA                            
 __g_shifted                         D:B7F5C7 LIB_PS2_KEYBOAR DATA                            
 __g_started                         D:B7F5C5 LIB_PS2_KEYBOAR DATA                            
-__heapbot                           00B7F733 (User Defined)
+__heapbot                           00B7F729 (User Defined)
 __heaptop                           00B7FFFF (User Defined)
-__iand                                C:2F3A iand            CODE                            
-__icmpzero                            C:29EC icmpzero        CODE                            
-__idivs                               C:29F8 idivs           CODE                            
-__idivu                               C:286F idivu           CODE                            
-__idvrmu                              C:2879 idivu           CODE                            
-__imul_b                              C:2E3B imulu           CODE                            
-__imuls                               C:2E47 imulu           CODE                            
-__imulu                               C:2E47 imulu           CODE                            
-__ineg                                C:1CB2 ineg            CODE                            
+__iand                                C:2C71 iand            CODE                            
+__icmpzero                            C:2723 icmpzero        CODE                            
+__idivs                               C:272F idivs           CODE                            
+__idivu                               C:25A6 idivu           CODE                            
+__idvrmu                              C:25B0 idivu           CODE                            
+__imul_b                              C:2B72 imulu           CODE                            
+__imuls                               C:2B7E imulu           CODE                            
+__imulu                               C:2B7E imulu           CODE                            
+__ineg                                C:19E9 ineg            CODE                            
 __init                                C:028C init_params_f93 .STARTUP                        
 __init_default_vectors                C:0227 vectors16       .STARTUP                        
-__irems                               C:1CEF irems           CODE                            
-__iremu                               C:1D27 iremu           CODE                            
-__ishl                                C:2CC4 ishl            CODE                            
-__ishl_b                              C:2CBC ishl            CODE                            
-__ishrs                               C:1CD2 ishrs           CODE                            
-__ishrs_b                             C:1CCA ishrs           CODE                            
-__itol                                C:2A31 itol            CODE                            
-__ixor                                C:29D1 ixor            CODE                            
-__ladd                                C:2D38 ladd            CODE                            
-__ladd_b                              C:2D29 ladd            CODE                            
-__land                                C:2F31 land            CODE                            
-__lcmps                               C:2C77 lcmpu           CODE                            
-__lcmpu                               C:2C77 lcmpu           CODE                            
-__ldivu                               C:2890 ldivu           CODE                            
-__ldvrmu                              C:28A2 ldivu           CODE                            
+__irems                               C:1A26 irems           CODE                            
+__iremu                               C:1A5E iremu           CODE                            
+__ishl                                C:29FB ishl            CODE                            
+__ishl_b                              C:29F3 ishl            CODE                            
+__ishrs                               C:1A09 ishrs           CODE                            
+__ishrs_b                             C:1A01 ishrs           CODE                            
+__itol                                C:2768 itol            CODE                            
+__ixor                                C:2708 ixor            CODE                            
+__ladd                                C:2A6F ladd            CODE                            
+__ladd_b                              C:2A60 ladd            CODE                            
+__land                                C:2C68 land            CODE                            
+__lcmps                               C:29AE lcmpu           CODE                            
+__lcmpu                               C:29AE lcmpu           CODE                            
+__ldivu                               C:25C7 ldivu           CODE                            
+__ldvrmu                              C:25D9 ldivu           CODE                            
 __len_bss                           00000095 (User Defined)
-__len_code                          00002C5D (User Defined)
-__len_data                          000005DE (User Defined)
-__lmuls                               C:2F55 lmulu           CODE                            
-__lmulu                               C:2F55 lmulu           CODE                            
-__low_bss                           00B7F69E (User Defined)
+__len_code                          00002994 (User Defined)
+__len_data                          000005D4 (User Defined)
+__lmuls                               C:2C8C lmulu           CODE                            
+__lmulu                               C:2C8C lmulu           CODE                            
+__low_bss                           00B7F694 (User Defined)
 __low_code                          000003BF (User Defined)
 __low_data                          00B7F000 (User Defined)
 __low_romcode                       00000000 (User Defined)
-__low_romdata                       0000AF90 (User Defined)
-__lshru                               C:2D3E lshru           CODE                            
-__next                              D:B7F5DA RAND            DATA                            
+__low_romdata                       00002FC7 (User Defined)
+__lshru                               C:2A75 lshru           CODE                            
+__next                              D:B7F5D0 RAND            DATA                            
 __nvectors                            C:0220 vectors16       .STARTUP                        
 __open_periphdevice                   C:03BF zsldevinit      CODE                            
 __RAM_ADDR_U_INIT_PARAM             000000B7 (User Defined)
 __RAM_CTL_INIT_PARAM                00000080 (User Defined)
-__scmpzero                            C:2CCE scmpzero        CODE                            
-__seqcaseD                            C:21CE seqcaseD        CODE                            
+__scmpzero                            C:2A05 scmpzero        CODE                            
+__seqcaseD                            C:1F05 seqcaseD        CODE                            
 __set_vector                          C:0256 vectors16       .STARTUP                        
-__setflag                             C:1CBB setflag         CODE                            
-__sneg                                C:1CB2 ineg            CODE                            
-__sshru                               C:1F42 sshru           CODE                            
-__sshru_b                             C:1F3A sshru           CODE                            
+__setflag                             C:19F2 setflag         CODE                            
+__sneg                                C:19E9 ineg            CODE                            
+__sshru                               C:1C79 sshru           CODE                            
+__sshru_b                             C:1C71 sshru           CODE                            
 __stack                             00B80000 (User Defined)
-__stoi                                C:2E83 stoi            CODE                            
-__stoiu                               C:1D66 stoiu           CODE                            
+__stoi                                C:2BBA stoi            CODE                            
+__stoiu                               C:1A9D stoiu           CODE                            
 __vector_table                        C:0100 vectors16       .IVECTS                         
 _abort                                C:0367 init_params_f93 .STARTUP                        
-_ay_gpio_setup                        C:0DB1 LIB_AY-3-8912   CODE                            
-_ay_set_chA                           C:0D11 LIB_AY-3-8912   CODE                            
-_ay_set_chB                           C:0D61 LIB_AY-3-8912   CODE                            
-_ay_write                             C:0DF2 LIB_AY-3-8912   CODE                            
+_ay_gpio_setup                        C:0AE8 LIB_AY-3-8912   CODE                            
+_ay_set_chA                           C:0A48 LIB_AY-3-8912   CODE                            
+_ay_set_chB                           C:0A98 LIB_AY-3-8912   CODE                            
+_ay_write                             C:0B29 LIB_AY-3-8912   CODE                            
 _close_periphdevice                   C:041B zsldevinit      CODE                            
-_close_PortB                          C:1D30 CLOSEPORTB      CODE                            
-_close_PortC                          C:1D4B CLOSEPORTC      CODE                            
-_close_PortD                          C:1D6C CLOSEPORTD      CODE                            
-_close_UART0                          C:2A38 CLOSEUART0      CODE                            
-_control_PortB                        C:2744 CONTROLPORTB    CODE                            
-_control_PortC                        C:27BC CONTROLPORTC    CODE                            
-_control_PortD                        C:2834 CONTROLPORTD    CODE                            
-_control_UART0                        C:1DEE CONTROLUART0    CODE                            
+_close_PortB                          C:1A67 CLOSEPORTB      CODE                            
+_close_PortC                          C:1A82 CLOSEPORTC      CODE                            
+_close_PortD                          C:1AA3 CLOSEPORTD      CODE                            
+_close_UART0                          C:276F CLOSEUART0      CODE                            
+_control_PortB                        C:247B CONTROLPORTB    CODE                            
+_control_PortC                        C:24F3 CONTROLPORTC    CODE                            
+_control_PortD                        C:256B CONTROLPORTD    CODE                            
+_control_UART0                        C:1B25 CONTROLUART0    CODE                            
 _delay_ms_spin                        C:0988 SKEELIB         CODE                            
-_demo_charset                         C:1910 DEMO            CODE                            
-_demo_linedemo                        C:15BD DEMO            CODE                            
-_demo_offset_squares                  C:178E DEMO            CODE                            
-_demo_pause                           C:1719 DEMO            CODE                            
-_demo_sprite_fb                       C:19AD DEMO            CODE                            
+_demo_charset                         C:1647 DEMO            CODE                            
+_demo_linedemo                        C:12F4 DEMO            CODE                            
+_demo_offset_squares                  C:14C5 DEMO            CODE                            
+_demo_pause                           C:1450 DEMO            CODE                            
+_demo_sprite_fb                       C:16E4 DEMO            CODE                            
 _errno                              D:B7F000 cstartup        DATA                            
 _exit                                 C:0367 init_params_f93 .STARTUP                        
-_fb_render_rect_filled                C:0EB1 FRAMEBUFFER     CODE                            
-_FifoAdd                              C:2C1C FIFOADD         CODE                            
-_FifoEmpty                            C:2BC0 FIFOEMPTY       CODE                            
-_FifoFull                             C:2FC2 FIFOFULL        CODE                            
-_FifoGet0                             C:2D81 FIFOGET0        CODE                            
-_flush_UART0                          C:2969 FLUSHUART0      CODE                            
-_framelimit                         D:B7F5CC XENON2-YM-LHA-E DATA                            
-_g_clock0                           D:B7F5D6 CONTROLUART0    DATA                            
+_fb_render_rect_filled                C:0BE8 FRAMEBUFFER     CODE                            
+_FifoAdd                              C:2953 FIFOADD         CODE                            
+_FifoEmpty                            C:28F7 FIFOEMPTY       CODE                            
+_FifoFull                             C:2CF9 FIFOFULL        CODE                            
+_FifoGet0                             C:2AB8 FIFOGET0        CODE                            
+_flush_UART0                          C:26A0 FLUSHUART0      CODE                            
+_g_clock0                           D:B7F5CC CONTROLUART0    DATA                            
 _g_fifosize                         D:B7F003 zsldevinit      DATA                            
-_g_HWflowctl_UART0                  D:B7F730 CONTROLUART0    BSS                             
-_g_mode_UART0                       D:B7F731 CONTROLUART0    BSS                             
-_g_recverr0                         D:B7F732 ISRUART0        BSS                             
-_g_RxBuffer_UART0                   D:B7F69E zsldevinit      BSS                             
-_g_RxFIFO_UART0                     D:B7F727 CONTROLUART0    BSS                             
-_g_TxBuffer_UART0                   D:B7F6DE zsldevinit      BSS                             
-_g_TxFIFO_UART0                     D:B7F71E CONTROLUART0    BSS                             
+_g_HWflowctl_UART0                  D:B7F726 CONTROLUART0    BSS                             
+_g_mode_UART0                       D:B7F727 CONTROLUART0    BSS                             
+_g_recverr0                         D:B7F728 ISRUART0        BSS                             
+_g_RxBuffer_UART0                   D:B7F694 zsldevinit      BSS                             
+_g_RxFIFO_UART0                     D:B7F71D CONTROLUART0    BSS                             
+_g_TxBuffer_UART0                   D:B7F6D4 zsldevinit      BSS                             
+_g_TxFIFO_UART0                     D:B7F714 CONTROLUART0    BSS                             
 _init_default_vectors                 C:0227 vectors16       .STARTUP                        
-_isr_uart0                            C:2A70 ISRUART0        CODE                            
-_keyb_fetch_nonblocking               C:1C60 LIB_PS2_KEYBOAR CODE                            
-_keyb_setup                           C:1BBA LIB_PS2_KEYBOAR CODE                            
-_keymap                               C:3037 LIB_PS2_KEYBOAR TEXT                            
+_isr_uart0                            C:27A7 ISRUART0        CODE                            
+_keyb_fetch_nonblocking               C:1997 LIB_PS2_KEYBOAR CODE                            
+_keyb_setup                           C:18F1 LIB_PS2_KEYBOAR CODE                            
+_keymap                               C:2D6E LIB_PS2_KEYBOAR TEXT                            
 _lame_itoa                            C:089A SKEELIB         CODE                            
 _lame_randrange8                      C:09B6 SKEELIB         CODE                            
 _lame_strlen                          C:0951 SKEELIB         CODE                            
 _main                                 C:0450 MAIN            CODE                            
-_map_scan_code                        C:1C0F LIB_PS2_KEYBOAR CODE                            
-_memset                               C:2D60 memset          CODE                            
+_map_scan_code                        C:1946 LIB_PS2_KEYBOAR CODE                            
+_memset                               C:2A97 memset          CODE                            
 _menu_mainmenu                      D:B7F5C0 MENU            DATA                            
 _open_periphdevice                    C:03BF zsldevinit      CODE                            
-_open_PortB                           C:2707 OPENPORTB       CODE                            
-_open_PortC                           C:277F OPENPORTC       CODE                            
-_open_PortD                           C:27F7 OPENPORTD       CODE                            
-_open_UART0                           C:1D87 OPENUART0       CODE                            
-_packet_fetch_blocking                C:1C41 LIB_PS2_KEYBOAR CODE                            
-_rand                                 C:2CDB RAND            CODE                            
-_read_UART0                           C:28C6 READUART0       CODE                            
-_render_font_8x8                      C:1370 LIB_FONTRENDER  CODE                            
+_open_PortB                           C:243E OPENPORTB       CODE                            
+_open_PortC                           C:24B6 OPENPORTC       CODE                            
+_open_PortD                           C:252E OPENPORTD       CODE                            
+_open_UART0                           C:1ABE OPENUART0       CODE                            
+_packet_fetch_blocking                C:1978 LIB_PS2_KEYBOAR CODE                            
+_rand                                 C:2A12 RAND            CODE                            
+_read_UART0                           C:25FD READUART0       CODE                            
+_render_font_8x8                      C:10A7 LIB_FONTRENDER  CODE                            
 _reset                                C:0000 vectors16       .RESET                          
 _set_vector                           C:0256 vectors16       .STARTUP                        
-_setmode_PortB                        C:1F4F SETMODEPORTB    CODE                            
-_setmode_PortC                        C:2209 SETMODEPORTC    CODE                            
-_setmode_PortD                        C:2488 SETMODEPORTD    CODE                            
+_setmode_PortB                        C:1C86 SETMODEPORTB    CODE                            
+_setmode_PortC                        C:1F40 SETMODEPORTC    CODE                            
+_setmode_PortD                        C:21BF SETMODEPORTD    CODE                            
 _song                               D:B7F108 LIB_AY-3-8912   DATA                            
-_song_hacked_fullym_len             D:B7F5CF XENON2-YM-LHA-E DATA                            
-_song_hacked_ym                       C:30B7 XENON2-YM-LHA-E TEXT                            
-_song_hacked_ym_len                 D:B7F5D3 XENON2-YM-LHA-E DATA                            
-_strcpy                               C:2C8D strcpy          CODE                            
-_strlen                               C:2CA7 strlen          CODE                            
+_strcpy                               C:29C4 strcpy          CODE                            
+_strlen                               C:29DE strlen          CODE                            
 _SYS_CLK_FREQ                       01312D00 (User Defined)
 _SysClkFreq                           C:036D init_params_f93 .STARTUP                        
 _tp                                 D:B7F006 LIB_AY-3-8912   DATA                            
-_vb_enable_vblank_interupt            C:1523 BIOS_VIDEO      CODE                            
+_vb_enable_vblank_interupt            C:125A BIOS_VIDEO      CODE                            
 _vb_is_vblank                       D:B7F5C4 BIOS_VIDEO      DATA                            
 _vb_saw_vblank                      D:B7F5C3 BIOS_VIDEO      DATA                            
-_vb_wait_for_vblank                   C:1577 BIOS_VIDEO      CODE                            
+_vb_wait_for_vblank                   C:12AE BIOS_VIDEO      CODE                            
 _vincent_data                       D:B7F1C0 LIB_FONTRENDER  DATA                            
-_write_UART0                          C:2E8B WRITEUART0      CODE                            
+_write_UART0                          C:2BC2 WRITEUART0      CODE                            
 _ym_play_demo                         C:0A07 LIB_AY-3-8912   CODE                            
-_zl_render_blit32                     C:113C FRAMEBUFFER     CODE                            
-_zl_render_blit8                      C:125B FRAMEBUFFER     CODE                            
-_zl_render_line                       C:0F32 FRAMEBUFFER     CODE                            
+_zl_render_blit32                     C:0E73 FRAMEBUFFER     CODE                            
+_zl_render_blit8                      C:0F92 FRAMEBUFFER     CODE                            
+_zl_render_line                       C:0C69 FRAMEBUFFER     CODE                            
 _zsl_g_clock_xdefine                01312D00 (User Defined)
 
-176 external symbol(s).
+172 external symbol(s).
 
 SYMBOL CROSS REFERENCE:
 =======================
@@ -1047,7 +1034,6 @@ _control_UART0                    Defined     ..\SRC\UART\COMMON\CONTROLUART0.C
                                   Referenced  ..\SRC\UART\COMMON\OPENUART0.C
 _delay_ms_spin                    Defined     ..\SKEELIB.C
                                   Referenced  ..\MAIN.C
-                                  Referenced  ..\LIB_AY-3-8912.C
 _demo_charset                     Defined     ..\DEMO.C
                                   Referenced  ..\MAIN.C
 _demo_linedemo                    Defined     ..\DEMO.C
@@ -1078,8 +1064,6 @@ _flush_UART0                      Defined     ..\SRC\UART\COMMON\FLUSHUART0.C
                                   Referenced  ..\MAIN.C
                                   Referenced  ..\SRC\UART\COMMON\CONTROLUART0.C
                                   Referenced  ..\SRC\UART\COMMON\CLOSEUART0.C
-_framelimit                       Defined     ..\..\YM-HACKERY-REGDUMP\XENON2-YM-LHA-EXTRACTED.DEINTERLEAVE.C
-                                  Referenced  ..\LIB_AY-3-8912.C
 _g_clock0                         Defined     ..\SRC\UART\COMMON\CONTROLUART0.C
                                   Referenced  Z:\zik80\zz-sbc-r3-ez80-firmware\zsldevinit.asm
 _g_fifosize                       Defined     Z:\zik80\zz-sbc-r3-ez80-firmware\zsldevinit.asm
@@ -1158,10 +1142,6 @@ _setmode_PortD                    Defined     ..\SRC\GPIO\COMMON\SETMODEPORTD.C
                                   Referenced  ..\SRC\UART\COMMON\OPENUART0.C
                                   Referenced  ..\SRC\UART\COMMON\CLOSEUART0.C
 _song                             Defined     ..\LIB_AY-3-8912.C
-_song_hacked_fullym_len           Defined     ..\..\YM-HACKERY-REGDUMP\XENON2-YM-LHA-EXTRACTED.DEINTERLEAVE.C
-_song_hacked_ym                   Defined     ..\..\YM-HACKERY-REGDUMP\XENON2-YM-LHA-EXTRACTED.DEINTERLEAVE.C
-                                  Referenced  ..\LIB_AY-3-8912.C
-_song_hacked_ym_len               Defined     ..\..\YM-HACKERY-REGDUMP\XENON2-YM-LHA-EXTRACTED.DEINTERLEAVE.C
 _strcpy                           Defined     .\strcpy.asm
                                   Referenced  ..\MAIN.C
 _strlen                           Defined     .\strlen.asm
@@ -1188,8 +1168,8 @@ _zsl_g_clock_xdefine              Defined     LINKER
 
 OUTPUT CHECKSUM
 ===============
-in-ram-test.hex      355FC3
-in-ram-test.lod      355FC3
+in-ram-test.hex      170A12
+in-ram-test.lod      170A12
 
 
 

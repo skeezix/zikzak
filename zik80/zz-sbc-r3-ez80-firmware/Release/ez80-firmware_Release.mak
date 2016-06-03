@@ -95,8 +95,6 @@ clean:
             $(RM) $(WORKDIR)\demo.obj
 	@if exist $(WORKDIR)\lib_ps2_keyboard.obj  \
             $(RM) $(WORKDIR)\lib_ps2_keyboard.obj
-	@if exist $(WORKDIR)\xenon2-ym-lha-extracted.deinterleave.obj  \
-            $(RM) $(WORKDIR)\xenon2-ym-lha-extracted.deinterleave.obj
 
 # pre-4.11.0 compatibility
 rebuildall: buildall 
@@ -113,8 +111,7 @@ OBJS =  \
             $(WORKDIR)\menu.obj  \
             $(WORKDIR)\bios_video.obj  \
             $(WORKDIR)\demo.obj  \
-            $(WORKDIR)\lib_ps2_keyboard.obj  \
-            $(WORKDIR)\xenon2-ym-lha-extracted.deinterleave.obj
+            $(WORKDIR)\lib_ps2_keyboard.obj
 
 ez80-firmware: $(OBJS)
 	 $(LD) $(LDFLAGS)
@@ -307,8 +304,4 @@ $(WORKDIR)\lib_ps2_keyboard.obj :  \
             Z:\zik80\zz-sbc-r3-ez80-firmware\lib_ps2_keymap.h  \
             Z:\zik80\zz-sbc-r3-ez80-firmware\skeelib.h
 	 $(CC) $(CFLAGS) Z:\zik80\zz-sbc-r3-ez80-firmware\lib_ps2_keyboard.c
-
-$(WORKDIR)\xenon2-ym-lha-extracted.deinterleave.obj :  \
-            Z:\zik80\ym-hackery-regdump\xenon2-ym-lha-extracted.deinterleave.c
-	 $(CC) $(CFLAGS) Z:\zik80\ym-hackery-regdump\xenon2-ym-lha-extracted.deinterleave.c
 

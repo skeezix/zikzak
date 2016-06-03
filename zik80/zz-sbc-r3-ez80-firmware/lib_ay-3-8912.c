@@ -140,7 +140,7 @@ void ym_play_demo ( void ) {
 	} // while forever
 #endif
 
-#if 1 // from C file array compiled in .. see ym-deinterleave.c etc
+#if 0 // from C file array compiled in .. see ym-deinterleave.c etc
     int i, j, k;
     unsigned char *p;
 	extern unsigned int framelimit; 			 // see xenon.c

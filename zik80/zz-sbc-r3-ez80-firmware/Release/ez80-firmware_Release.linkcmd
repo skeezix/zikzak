@@ -98,7 +98,6 @@ define _zsl_g_clock_xdefine = 20000000
  .\bios_video.obj, \
  .\demo.obj, \
  .\lib_ps2_keyboard.obj, \
- .\xenon2-ym-lha-extracted.deinterleave.obj, \
  C:\winapp\ZDSII_~1.1\lib\std\chelpD.lib, \
  C:\winapp\ZDSII_~1.1\lib\std\crtD.lib, \
  C:\winapp\ZDSII_~1.1\lib\std\crtSD.lib, \
