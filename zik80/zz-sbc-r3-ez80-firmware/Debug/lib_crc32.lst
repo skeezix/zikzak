@@ -1,0 +1,688 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -noglobalopt -nolocalcse -optsize -nomodsect 
+                           A     3    ; -padbranch -debug -peephole -const=ROM 
+                           A     4    	FILE	"..\LIB_CRC32.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   2
+
+
+PC     Object              I  Line    Source lib_crc32.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+                           A    95    	SEGMENT DATA
+000000                     A    96    _crc32_tab:
+000000 00000000            A    97    	DL	0
+000004 96300777            A    98    	DL	1996959894
+000008 2C610EEE            A    99    	DL	-301047508
+00000C BA510999            A   100    	DL	-1727442502
+000010 19C46D07            A   101    	DL	124634137
+000014 8FF46A70            A   102    	DL	1886057615
+000018 35A563E9            A   103    	DL	-379345611
+00001C A395649E            A   104    	DL	-1637575261
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   3
+
+
+PC     Object              I  Line    Source lib_crc32.src
+000020 3288DB0E            A   105    	DL	249268274
+000024 A4B8DC79            A   106    	DL	2044508324
+000028 1EE9D5E0            A   107    	DL	-522852066
+00002C 88D9D297            A   108    	DL	-1747789432
+000030 2B4CB609            A   109    	DL	162941995
+000034 BD7CB17E            A   110    	DL	2125561021
+000038 072DB8E7            A   111    	DL	-407360249
+00003C 911DBF90            A   112    	DL	-1866523247
+000040 6410B71D            A   113    	DL	498536548
+000044 F220B06A            A   114    	DL	1789927666
+000048 4871B9F3            A   115    	DL	-205950648
+00004C DE41BE84            A   116    	DL	-2067906082
+000050 7DD4DA1A            A   117    	DL	450548861
+000054 EBE4DD6D            A   118    	DL	1843258603
+000058 51B5D4F4            A   119    	DL	-187386543
+00005C C785D383            A   120    	DL	-2083289657
+000060 56986C13            A   121    	DL	325883990
+000064 C0A86B64            A   122    	DL	1684777152
+000068 7AF962FD            A   123    	DL	-43845254
+00006C ECC9658A            A   124    	DL	-1973040660
+000070 4F5C0114            A   125    	DL	335633487
+000074 D96C0663            A   126    	DL	1661365465
+000078 633D0FFA            A   127    	DL	-99664541
+00007C F50D088D            A   128    	DL	-1928851979
+000080 C8206E3B            A   129    	DL	997073096
+000084 5E10694C            A   130    	DL	1281953886
+000088 E44160D5            A   131    	DL	-715111964
+00008C 727167A2            A   132    	DL	-1570279054
+000090 D1E4033C            A   133    	DL	1006888145
+000094 47D4044B            A   134    	DL	1258607687
+000098 FD850DD2            A   135    	DL	-770865667
+00009C 6BB50AA5            A   136    	DL	-1526024853
+0000A0 FAA8B535            A   137    	DL	901097722
+0000A4 6C98B242            A   138    	DL	1119000684
+0000A8 D6C9BBDB            A   139    	DL	-608450090
+0000AC 40F9BCAC            A   140    	DL	-1396901568
+0000B0 E36CD832            A   141    	DL	853044451
+0000B4 755CDF45            A   142    	DL	1172266101
+0000B8 CF0DD6DC            A   143    	DL	-589951537
+0000BC 593DD1AB            A   144    	DL	-1412350631
+0000C0 AC30D926            A   145    	DL	651767980
+0000C4 3A00DE51            A   146    	DL	1373503546
+0000C8 8051D7C8            A   147    	DL	-925412992
+0000CC 1661D0BF            A   148    	DL	-1076862698
+0000D0 B5F4B421            A   149    	DL	565507253
+0000D4 23C4B356            A   150    	DL	1454621731
+0000D8 9995BACF            A   151    	DL	-809855591
+0000DC 0FA5BDB8            A   152    	DL	-1195530993
+0000E0 9EB80228            A   153    	DL	671266974
+0000E4 0888055F            A   154    	DL	1594198024
+0000E8 B2D90CC6            A   155    	DL	-972236366
+0000EC 24E90BB1            A   156    	DL	-1324619484
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   4
+
+
+PC     Object              I  Line    Source lib_crc32.src
+0000F0 877C6F2F            A   157    	DL	795835527
+0000F4 114C6858            A   158    	DL	1483230225
+0000F8 AB1D61C1            A   159    	DL	-1050600021
+0000FC 3D2D66B6            A   160    	DL	-1234817731
+000100 9041DC76            A   161    	DL	1994146192
+000104 0671DB01            A   162    	DL	31158534
+000108 BC20D298            A   163    	DL	-1731059524
+00010C 2A10D5EF            A   164    	DL	-271249366
+000110 8985B171            A   165    	DL	1907459465
+000114 1FB5B606            A   166    	DL	112637215
+000118 A5E4BF9F            A   167    	DL	-1614814043
+00011C 33D4B8E8            A   168    	DL	-390540237
+000120 A2C90778            A   169    	DL	2013776290
+000124 34F9000F            A   170    	DL	251722036
+000128 8EA80996            A   171    	DL	-1777751922
+00012C 18980EE1            A   172    	DL	-519137256
+000130 BB0D6A7F            A   173    	DL	2137656763
+000134 2D3D6D08            A   174    	DL	141376813
+000138 976C6491            A   175    	DL	-1855689577
+00013C 015C63E6            A   176    	DL	-429695999
+000140 F4516B6B            A   177    	DL	1802195444
+000144 62616C1C            A   178    	DL	476864866
+000148 D8306585            A   179    	DL	-2056965928
+00014C 4E0062F2            A   180    	DL	-228458418
+000150 ED95066C            A   181    	DL	1812370925
+000154 7BA5011B            A   182    	DL	453092731
+000158 C1F40882            A   183    	DL	-2113342271
+00015C 57C40FF5            A   184    	DL	-183516073
+000160 C6D9B065            A   185    	DL	1706088902
+000164 50E9B712            A   186    	DL	314042704
+000168 EAB8BE8B            A   187    	DL	-1950435094
+00016C 7C88B9FC            A   188    	DL	-54949764
+000170 DF1DDD62            A   189    	DL	1658658271
+000174 492DDA15            A   190    	DL	366619977
+000178 F37CD38C            A   191    	DL	-1932296973
+00017C 654CD4FB            A   192    	DL	-69972891
+000180 5861B24D            A   193    	DL	1303535960
+000184 CE51B53A            A   194    	DL	984961486
+000188 7400BCA3            A   195    	DL	-1547960204
+00018C E230BBD4            A   196    	DL	-725929758
+000190 41A5DF4A            A   197    	DL	1256170817
+000194 D795D83D            A   198    	DL	1037604311
+000198 6DC4D1A4            A   199    	DL	-1529756563
+00019C FBF4D6D3            A   200    	DL	-740887301
+0001A0 6AE96943            A   201    	DL	1131014506
+0001A4 FCD96E34            A   202    	DL	879679996
+0001A8 468867AD            A   203    	DL	-1385723834
+0001AC D0B860DA            A   204    	DL	-631195440
+0001B0 732D0444            A   205    	DL	1141124467
+0001B4 E51D0333            A   206    	DL	855842277
+0001B8 5F4C0AAA            A   207    	DL	-1442165665
+0001BC C97C0DDD            A   208    	DL	-586318647
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   5
+
+
+PC     Object              I  Line    Source lib_crc32.src
+0001C0 3C710550            A   209    	DL	1342533948
+0001C4 AA410227            A   210    	DL	654459306
+0001C8 10100BBE            A   211    	DL	-1106571248
+0001CC 86200CC9            A   212    	DL	-921952122
+0001D0 25B56857            A   213    	DL	1466479909
+0001D4 B3856F20            A   214    	DL	544179635
+0001D8 09D466B9            A   215    	DL	-1184443383
+0001DC 9FE461CE            A   216    	DL	-832445281
+0001E0 0EF9DE5E            A   217    	DL	1591671054
+0001E4 98C9D929            A   218    	DL	702138776
+0001E8 2298D0B0            A   219    	DL	-1328506846
+0001EC B4A8D7C7            A   220    	DL	-942167884
+0001F0 173DB359            A   221    	DL	1504918807
+0001F4 810DB42E            A   222    	DL	783551873
+0001F8 3B5CBDB7            A   223    	DL	-1212326853
+0001FC AD6CBAC0            A   224    	DL	-1061524307
+000200 2083B8ED            A   225    	DL	-306674912
+000204 B6B3BF9A            A   226    	DL	-1698712650
+000208 0CE2B603            A   227    	DL	62317068
+00020C 9AD2B174            A   228    	DL	1957810842
+000210 3947D5EA            A   229    	DL	-355121351
+000214 AF77D29D            A   230    	DL	-1647151185
+000218 1526DB04            A   231    	DL	81470997
+00021C 8316DC73            A   232    	DL	1943803523
+000220 120B63E3            A   233    	DL	-480048366
+000224 843B6494            A   234    	DL	-1805370492
+000228 3E6A6D0D            A   235    	DL	225274430
+00022C A85A6A7A            A   236    	DL	2053790376
+000230 0BCF0EE4            A   237    	DL	-468791541
+000234 9DFF0993            A   238    	DL	-1828061283
+000238 27AE000A            A   239    	DL	167816743
+00023C B19E077D            A   240    	DL	2097651377
+000240 44930FF0            A   241    	DL	-267414716
+000244 D2A30887            A   242    	DL	-2029476910
+000248 68F2011E            A   243    	DL	503444072
+00024C FEC20669            A   244    	DL	1762050814
+000250 5D5762F7            A   245    	DL	-144550051
+000254 CB676580            A   246    	DL	-2140837941
+000258 71366C19            A   247    	DL	426522225
+00025C E7066B6E            A   248    	DL	1852507879
+000260 761BD4FE            A   249    	DL	-19653770
+000264 E02BD389            A   250    	DL	-1982649376
+000268 5A7ADA10            A   251    	DL	282753626
+00026C CC4ADD67            A   252    	DL	1742555852
+000270 6FDFB9F9            A   253    	DL	-105259153
+000274 F9EFBE8E            A   254    	DL	-1900089351
+000278 43BEB717            A   255    	DL	397917763
+00027C D58EB060            A   256    	DL	1622183637
+000280 E8A3D6D6            A   257    	DL	-690576408
+000284 7E93D1A1            A   258    	DL	-1580100738
+000288 C4C2D838            A   259    	DL	953729732
+00028C 52F2DF4F            A   260    	DL	1340076626
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   6
+
+
+PC     Object              I  Line    Source lib_crc32.src
+000290 F167BBD1            A   261    	DL	-776247311
+000294 6757BCA6            A   262    	DL	-1497606297
+000298 DD06B53F            A   263    	DL	1068828381
+00029C 4B36B248            A   264    	DL	1219638859
+0002A0 DA2B0DD8            A   265    	DL	-670225446
+0002A4 4C1B0AAF            A   266    	DL	-1358292148
+0002A8 F64A0336            A   267    	DL	906185462
+0002AC 607A0441            A   268    	DL	1090812512
+0002B0 C3EF60DF            A   269    	DL	-547295293
+0002B4 55DF67A8            A   270    	DL	-1469587627
+0002B8 EF8E6E31            A   271    	DL	829329135
+0002BC 79BE6946            A   272    	DL	1181335161
+0002C0 8CB361CB            A   273    	DL	-882789492
+0002C4 1A8366BC            A   274    	DL	-1134132454
+0002C8 A0D26F25            A   275    	DL	628085408
+0002CC 36E26852            A   276    	DL	1382605366
+0002D0 95770CCC            A   277    	DL	-871598187
+0002D4 03470BBB            A   278    	DL	-1156888829
+0002D8 B9160222            A   279    	DL	570562233
+0002DC 2F260555            A   280    	DL	1426400815
+0002E0 BE3BBAC5            A   281    	DL	-977650754
+0002E4 280BBDB2            A   282    	DL	-1296233688
+0002E8 925AB42B            A   283    	DL	733239954
+0002EC 046AB35C            A   284    	DL	1555261956
+0002F0 A7FFD7C2            A   285    	DL	-1026031705
+0002F4 31CFD0B5            A   286    	DL	-1244606671
+0002F8 8B9ED92C            A   287    	DL	752459403
+0002FC 1DAEDE5B            A   288    	DL	1541320221
+000300 B0C2649B            A   289    	DL	-1687895376
+000304 26F263EC            A   290    	DL	-328994266
+000308 9CA36A75            A   291    	DL	1969922972
+00030C 0A936D02            A   292    	DL	40735498
+000310 A906099C            A   293    	DL	-1677130071
+000314 3F360EEB            A   294    	DL	-351390145
+000318 85670772            A   295    	DL	1913087877
+00031C 13570005            A   296    	DL	83908371
+000320 824ABF95            A   297    	DL	-1782625662
+000324 147AB8E2            A   298    	DL	-491226604
+000328 AE2BB17B            A   299    	DL	2075208622
+00032C 381BB60C            A   300    	DL	213261112
+000330 9B8ED292            A   301    	DL	-1831694693
+000334 0DBED5E5            A   302    	DL	-438977011
+000338 B7EFDC7C            A   303    	DL	2094854071
+00033C 21DFDB0B            A   304    	DL	198958881
+000340 D4D2D386            A   305    	DL	-2032938284
+000344 42E2D4F1            A   306    	DL	-237706686
+000348 F8B3DD68            A   307    	DL	1759359992
+00034C 6E83DA1F            A   308    	DL	534414190
+000350 CD16BE81            A   309    	DL	-2118248755
+000354 5B26B9F6            A   310    	DL	-155638181
+000358 E177B06F            A   311    	DL	1873836001
+00035C 7747B718            A   312    	DL	414664567
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   7
+
+
+PC     Object              I  Line    Source lib_crc32.src
+000360 E65A0888            A   313    	DL	-2012718362
+000364 706A0FFF            A   314    	DL	-15766928
+000368 CA3B0666            A   315    	DL	1711684554
+00036C 5C0B0111            A   316    	DL	285281116
+000370 FF9E658F            A   317    	DL	-1889165569
+000374 69AE62F8            A   318    	DL	-127750551
+000378 D3FF6B61            A   319    	DL	1634467795
+00037C 45CF6C16            A   320    	DL	376229701
+000380 78E20AA0            A   321    	DL	-1609899400
+000384 EED20DD7            A   322    	DL	-686959890
+000388 5483044E            A   323    	DL	1308918612
+00038C C2B30339            A   324    	DL	956543938
+000390 612667A7            A   325    	DL	-1486412191
+000394 F71660D0            A   326    	DL	-799009033
+000398 4D476949            A   327    	DL	1231636301
+00039C DB776E3E            A   328    	DL	1047427035
+0003A0 4A6AD1AE            A   329    	DL	-1362007478
+0003A4 DC5AD6D9            A   330    	DL	-640263460
+0003A8 660BDF40            A   331    	DL	1088359270
+0003AC F03BD837            A   332    	DL	936918000
+0003B0 53AEBCA9            A   333    	DL	-1447252397
+0003B4 C59EBBDE            A   334    	DL	-558129467
+0003B8 7FCFB247            A   335    	DL	1202900863
+0003BC E9FFB530            A   336    	DL	817233897
+0003C0 1CF2BDBD            A   337    	DL	-1111625188
+0003C4 8AC2BACA            A   338    	DL	-893730166
+0003C8 3093B353            A   339    	DL	1404277552
+0003CC A6A3B424            A   340    	DL	615818150
+0003D0 0536D0BA            A   341    	DL	-1160759803
+0003D4 9306D7CD            A   342    	DL	-841546093
+0003D8 2957DE54            A   343    	DL	1423857449
+0003DC BF67D923            A   344    	DL	601450431
+0003E0 2E7A66B3            A   345    	DL	-1285129682
+0003E4 B84A61C4            A   346    	DL	-1000256840
+0003E8 021B685D            A   347    	DL	1567103746
+0003EC 942B6F2A            A   348    	DL	711928724
+0003F0 37BE0BB4            A   349    	DL	-1274298825
+0003F4 A18E0CC3            A   350    	DL	-1022587231
+0003F8 1BDF055A            A   351    	DL	1510334235
+0003FC 8DEF022D            A   352    	DL	755167117
+                           A   353    .DEFINE "crc32_tab"
+                           A   354    .ALIAS "_crc32_tab"
+                           A   355    .CLASS 69
+                           A   356    .VALUE _crc32_tab
+                           A   357    .DIM 256
+                           A   358    .TYPE 111
+                           A   359    .ENDEF
+                           A   360    ;    1	/*-
+                           A   361    ;    2	 *  COPYRIGHT (C) 1986 Gary S. Brown.  
+                           A   362    ;    3	 *  code or tables extracted from it, a
+                           A   363    ;    4	 *
+                           A   364    ;    5	 *  First, the polynomial itself and it
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   8
+
+
+PC     Object              I  Line    Source lib_crc32.src
+                           A   365    ;    6	 *  polynomial is
+                           A   366    ;    7	 *  X^32+X^26+X^23+X^22+X^16+X^12+X^11+
+                           A   367    ;    8	 *
+                           A   368    ;    9	 *  Note that we take it "backwards" an
+                           A   369    ;   10	 *  the lowest-order bit.  The X^32 ter
+                           A   370    ;   11	 *  X^31 term, etc.  The X^0 term (usua
+                           A   371    ;   12	 *  the MSB being 1
+                           A   372    ;   13	 *
+                           A   373    ;   14	 *  Note that the usual hardware shift 
+                           A   374    ;   15	 *  is what we're using (we're merely o
+                           A   375    ;   16	 *  chunks at a time) shifts bits into 
+                           A   376    ;   17	 *  implementation, that means shifting
+                           A   377    ;   18	 *  do it this way?  Because the calcul
+                           A   378    ;   19	 *  order from highest-order term to lo
+                           A   379    ;   20	 *  characters in order from LSB to MSB
+                           A   380    ;   21	 *  we hand it to the UART in the order
+                           A   381    ;   22	 *  sends each low-bit to hight-bit; an
+                           A   382    ;   23	 *  by bit from highest- to lowest-orde
+                           A   383    ;   24	 *  shuffling on our part.  Reception w
+                           A   384    ;   25	 *
+                           A   385    ;   26	 *  The feedback terms table consists o
+                           A   386    ;   27	 *
+                           A   387    ;   28	 *      The table can be generated at r
+                           A   388    ;   29	 *      is shown later.  It might not b
+                           A   389    ;   30	 *      terms simply represent the resu
+                           A   390    ;   31	 *      tions for all combinations of d
+                           A   391    ;   32	 *
+                           A   392    ;   33	 *      The values must be right-shifte
+                           A   393    ;   34	 *      logic; the shift must be unsign
+                           A   394    ;   35	 *      hardware you could probably opt
+                           A   395    ;   36	 *      using byte-swap instructions
+                           A   396    ;   37	 *      polynomial $edb88320
+                           A   397    ;   38	 *
+                           A   398    ;   39	 *
+                           A   399    ;   40	 * CRC32 code derived from work by Gary
+                           A   400    ;   41	 */
+                           A   401    ;   42	
+                           A   402    ;   43	//#include <sys/param.h>
+                           A   403    ;   44	//#include <sys/systm.h>
+                           A   404    ;   45	//#include <stdint.h>
+                           A   405    ;   46	#include <ez80.h>
+                           A   406    ;   47	
+                           A   407    ;   48	//static uint32_t crc32_tab[] = {
+                           A   408    ;   49	static UINT32 crc32_tab[] = {
+                           A   409    	SEGMENT CODE
+                           A   410    ;   50	  0x00000000, 0x77073096, 0xee0e612c, 0
+                           A   411    ;   51	  0xe963a535, 0x9e6495a3,0x0edb8832, 0x
+                           A   412    ;   52	  0x09b64c2b, 0x7eb17cbd, 0xe7b82d07, 0
+                           A   413    ;   53	  0xf3b97148, 0x84be41de,0x1adad47d, 0x
+                           A   414    ;   54	  0x136c9856, 0x646ba8c0, 0xfd62f97a, 0
+                           A   415    ;   55	  0xfa0f3d63, 0x8d080df5,0x3b6e20c8, 0x
+                           A   416    ;   56	  0x3c03e4d1, 0x4b04d447, 0xd20d85fd, 0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   9
+
+
+PC     Object              I  Line    Source lib_crc32.src
+                           A   417    ;   57	  0xdbbbc9d6, 0xacbcf940,0x32d86ce3, 0x
+                           A   418    ;   58	  0x26d930ac, 0x51de003a, 0xc8d75180, 0
+                           A   419    ;   59	  0xcfba9599, 0xb8bda50f, 0x2802b89e, 0
+                           A   420    ;   60	  0x2f6f7c87, 0x58684c11, 0xc1611dab, 0
+                           A   421    ;   61	  0x98d220bc, 0xefd5102a, 0x71b18589, 0
+                           A   422    ;   62	  0x7807c9a2, 0x0f00f934, 0x9609a88e, 0
+                           A   423    ;   63	  0x91646c97, 0xe6635c01, 0x6b6b51f4, 0
+                           A   424    ;   64	  0x6c0695ed, 0x1b01a57b, 0x8208f4c1, 0
+                           A   425    ;   65	  0x8bbeb8ea, 0xfcb9887c, 0x62dd1ddf, 0
+                           A   426    ;   66	  0x4db26158, 0x3ab551ce, 0xa3bc0074, 0
+                           A   427    ;   67	  0xa4d1c46d, 0xd3d6f4fb, 0x4369e96a, 0
+                           A   428    ;   68	  0x44042d73, 0x33031de5, 0xaa0a4c5f, 0
+                           A   429    ;   69	  0xbe0b1010, 0xc90c2086, 0x5768b525, 0
+                           A   430    ;   70	  0x5edef90e, 0x29d9c998, 0xb0d09822, 0
+                           A   431    ;   71	  0xb7bd5c3b, 0xc0ba6cad, 0xedb88320, 0
+                           A   432    ;   72	  0xead54739, 0x9dd277af, 0x04db2615, 0
+                           A   433    ;   73	  0x0d6d6a3e, 0x7a6a5aa8, 0xe40ecf0b, 0
+                           A   434    ;   74	  0xf00f9344, 0x8708a3d2, 0x1e01f268, 0
+                           A   435    ;   75	  0x196c3671, 0x6e6b06e7, 0xfed41b76, 0
+                           A   436    ;   76	  0xf9b9df6f, 0x8ebeeff9, 0x17b7be43, 0
+                           A   437    ;   77	  0x38d8c2c4, 0x4fdff252, 0xd1bb67f1, 0
+                           A   438    ;   78	  0xd80d2bda, 0xaf0a1b4c, 0x36034af6, 0
+                           A   439    ;   79	  0x316e8eef, 0x4669be79, 0xcb61b38c, 0
+                           A   440    ;   80	  0xcc0c7795, 0xbb0b4703, 0x220216b9, 0
+                           A   441    ;   81	  0x2bb45a92, 0x5cb36a04, 0xc2d7ffa7, 0
+                           A   442    ;   82	  0x9b64c2b0, 0xec63f226, 0x756aa39c, 0
+                           A   443    ;   83	  0x72076785, 0x05005713, 0x95bf4a82, 0
+                           A   444    ;   84	  0x92d28e9b, 0xe5d5be0d, 0x7cdcefb7, 0
+                           A   445    ;   85	  0x68ddb3f8, 0x1fda836e, 0x81be16cd, 0
+                           A   446    ;   86	  0x88085ae6, 0xff0f6a70, 0x66063bca, 0
+                           A   447    ;   87	  0x616bffd3, 0x166ccf45, 0xa00ae278, 0
+                           A   448    ;   88	  0xa7672661, 0xd06016f7, 0x4969474d, 0
+                           A   449    ;   89	  0x40df0b66, 0x37d83bf0, 0xa9bcae53, 0
+                           A   450    ;   90	  0xbdbdf21c, 0xcabac28a, 0x53b39330, 0
+                           A   451    ;   91	  0x54de5729, 0x23d967bf, 0xb3667a2e, 0
+                           A   452    ;   92	  0xb40bbe37, 0xc30c8ea1, 0x5a05df1b, 0
+                           A   453    ;   93	};
+                           A   454    ;   94	
+                           A   455    ;   95	UINT32 crc32 ( UINT32 crc, const void *
+000000                     A   456    _crc32:
+                           A   457    .DEFINE "_crc32"
+                           A   458    
+                           A   459    .VALUE _crc32
+                           A   460    
+                           A   461    .CLASS 2
+                           A   462    
+                           A   463    .TYPE 79
+                           A   464    
+                           A   465    .ENDEF
+                           A   466    
+                           A   467    .BEGFUNC "crc32",95,"_crc32"
+                           A   468    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  10
+
+
+PC     Object              I  Line    Source lib_crc32.src
+                           A   469    .LINE 95
+                           A   470    
+                           A   471    .DEFINE "crc"
+                           A   472    
+                           A   473    .CLASS 65
+                           A   474    
+                           A   475    .VALUE 6
+                           A   476    
+                           A   477    .TYPE 15
+                           A   478    
+                           A   479    .ENDEF
+                           A   480    
+                           A   481    .DEFINE "buf"
+                           A   482    
+                           A   483    .CLASS 65
+                           A   484    
+                           A   485    .VALUE 12
+                           A   486    
+                           A   487    .TYPE 193
+                           A   488    
+                           A   489    .ENDEF
+                           A   490    
+                           A   491    .DEFINE "size"
+                           A   492    
+                           A   493    .CLASS 65
+                           A   494    
+                           A   495    .VALUE 15
+                           A   496    
+                           A   497    .TYPE 15
+                           A   498    
+                           A   499    .ENDEF
+                           A   500    
+                           A   501    .DEFINE "p"
+                           A   502    
+                           A   503    .CLASS 65
+                           A   504    
+                           A   505    .VALUE -3
+                           A   506    
+                           A   507    .TYPE 204
+                           A   508    
+                           A   509    .ENDEF
+                           A   510    
+000000 DDE5                A   511    	PUSH	IX
+000002 DD210000 00         A   512    	LD	IX,0
+000007 DD39                A   513    	ADD	IX,SP
+000009 ED22F2              A   514    	LEA	HL,IX+-14
+00000C F9                  A   515    	LD	SP,HL
+                           A   516    ;   96	  const UINT8 *p;
+                           A   517    ;   97	
+                           A   518    ;   98	  p = buf;
+                           A   519    .LINE 98
+                           A   520    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  11
+
+
+PC     Object              I  Line    Source lib_crc32.src
+00000D DD070C              A   521    	LD	BC,(IX+12)
+000010 DD0FFD              A   522    	LD	(IX+-3),BC
+                           A   523    ;   99	  crc = crc ^ ~0U;
+                           A   524    .LINE 99
+                           A   525    
+000013 DD2706              A   526    	LD	HL,(IX+6)
+000016 DD5E09              A   527    	LD	E,(IX+9)
+000019 01FFFFFF            A   528    	LD	BC,16777215
+00001D AF                  A   529    	XOR	A,A
+00001E CD 00 00 00         A   530    	CALL	__lxor
+000022 DD2F06              A   531    	LD	(IX+6),HL
+000025 DD7309              A   532    	LD	(IX+9),E
+                           A   533    ;  100	
+                           A   534    ;  101	  while (size--) {
+000028                     A   535    L_2:
+                           A   536    .LINE 101
+                           A   537    
+000028 DD070F              A   538    	LD	BC,(IX+15)
+00002B DD0FF4              A   539    	LD	(IX+-12),BC	; spill
+00002E DD6612              A   540    	LD	H,(IX+18)
+000031 DD74F2              A   541    	LD	(IX+-14),H	; spill
+000034 DD270F              A   542    	LD	HL,(IX+15)
+000037 DD5E12              A   543    	LD	E,(IX+18)
+00003A 01010000            A   544    	LD	BC,1
+00003E AF                  A   545    	XOR	A,A
+00003F CD 00 00 00         A   546    	CALL	__lsub
+000043 DD2F0F              A   547    	LD	(IX+15),HL
+000046 DD7312              A   548    	LD	(IX+18),E
+000049 DD66F2              A   549    	LD	H,(IX+-14)	; unspill
+00004C 5C                  A   550    	LD	E,H
+00004D DD27F4              A   551    	LD	HL,(IX+-12)
+000050 CD 00 00 00         A   552    	CALL	__lcmpzero
+000054 28 5D 00            A   553    	JR	Z,L_4
+                           A   554    ;  102	    crc = crc32_tab[(crc ^ *p++) & 0xFF
+                           A   555    .LINE 102
+                           A   556    
+000057 DD07FD              A   557    	LD	BC,(IX+-3)
+00005A DD0FFA              A   558    	LD	(IX+-6),BC
+00005D DD31FA              A   559    	LD	IY,(IX+-6)
+000060 B7ED62              A   560    	UEXT	HL
+000063 FD6E00              A   561    	LD	L,(IY)
+000066 E5C1                A   562    	LD	BC,HL
+000068 7C                  A   563    	LD	A,H
+000069 DD2706              A   564    	LD	HL,(IX+6)
+00006C DD5E09              A   565    	LD	E,(IX+9)
+00006F CD 00 00 00         A   566    	CALL	__lxor
+000073 E5C1                A   567    	LD	BC,HL
+000075 B7ED62              A   568    	UEXT	HL
+000078 69                  A   569    	LD	L,C
+000079 5C                  A   570    	LD	E,H
+00007A 01040000            A   571    	LD	BC,4
+00007E AF                  A   572    	XOR	A,A
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  12
+
+
+PC     Object              I  Line    Source lib_crc32.src
+00007F CD 00 00 00         A   573    	CALL	__lmulu
+000083 01 00 00 00         A   574    	LD	BC,_crc32_tab
+000087 09                  A   575    	ADD	HL,BC
+000088 E5FDE1              A   576    	LD	IY,HL
+00008B DD0706              A   577    	LD	BC,(IX+6)
+00008E DD7E09              A   578    	LD	A,(IX+9)
+000091 2E08                A   579    	LD	L,8
+000093 CD 00 00 00         A   580    	CALL	__lshru
+000097 FD2700              A   581    	LD	HL,(IY)
+00009A FD5E03              A   582    	LD	E,(IY+3)
+00009D CD 00 00 00         A   583    	CALL	__lxor
+0000A1 DD2F06              A   584    	LD	(IX+6),HL
+0000A4 DD7309              A   585    	LD	(IX+9),E
+0000A7 DD07FD              A   586    	LD	BC,(IX+-3)
+0000AA 03                  A   587    	INC	BC
+0000AB DD0FFD              A   588    	LD	(IX+-3),BC
+                           A   589    ;  103	  }
+                           A   590    .LINE 103
+                           A   591    
+0000AE C3 28 00 00 00      A   592    	JR	L_2
+0000B3                     A   593    L_4:
+                           A   594    ;  104	
+                           A   595    ;  105	  return crc ^ ~0U;
+                           A   596    .LINE 105
+                           A   597    
+0000B3 DD2706              A   598    	LD	HL,(IX+6)
+0000B6 DD5E09              A   599    	LD	E,(IX+9)
+0000B9 01FFFFFF            A   600    	LD	BC,16777215
+0000BD AF                  A   601    	XOR	A,A
+0000BE CD 00 00 00         A   602    	CALL	__lxor
+                           A   603    ;  106	}
+                           A   604    .LINE 106
+                           A   605    
+0000C2 DDF9                A   606    	LD	SP,IX
+0000C4 DDE1                A   607    	POP	IX
+0000C6 C9                  A   608    	RET	
+                           A   609    
+                           A   610    
+                           A   611    ;**************************** _crc32 **********
+                           A   612    ;Name                         Addr/Register   S
+                           A   613    ;_crc32_tab                          STATIC   1
+                           A   614    ;p                                     IX-3    
+                           A   615    ;size                                 IX+15    
+                           A   616    ;buf                                  IX+12    
+                           A   617    ;crc                                   IX+6    
+                           A   618    
+                           A   619    
+                           A   620    ; Stack Frame Size: 35 (bytes)
+                           A   621    ;       Spill Code: -1 (instruction)
+                           A   622    
+                           A   623    
+                           A   624    .ENDFUNC "crc32",106,"_crc32"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  13
+
+
+PC     Object              I  Line    Source lib_crc32.src
+                           A   625    	XREF __lsub:ROM
+                           A   626    	XREF __lmulu:ROM
+                           A   627    	XREF __lxor:ROM
+                           A   628    	XREF __lshru:ROM
+                           A   629    	XREF __lcmpzero:ROM
+                           A   630    	XDEF _crc32
+                           A   631    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 632

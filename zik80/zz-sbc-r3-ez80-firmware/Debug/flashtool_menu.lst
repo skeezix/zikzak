@@ -1,0 +1,3003 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -noglobalopt -nolocalcse -optsize -nomodsect 
+                           A     3    ; -padbranch -debug -peephole -const=ROM 
+                           A     4    	FILE	"..\FLASHTOOL_MENU.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:   2
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+                           A    95    .BEGREC "NONAME3",6
+                           A    96    .DEFINE "quot"
+                           A    97    .VALUE 0
+                           A    98    .CLASS 8
+                           A    99    .TYPE 4
+                           A   100    .ENDEF
+                           A   101    .DEFINE "rem"
+                           A   102    .VALUE 3
+                           A   103    .CLASS 8
+                           A   104    .TYPE 4
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:   3
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   105    .ENDEF
+                           A   106    .ENDREC "NONAME3"
+                           A   107    .BEGREC "NONAME4",8
+                           A   108    .DEFINE "quot"
+                           A   109    .VALUE 0
+                           A   110    .CLASS 8
+                           A   111    .TYPE 5
+                           A   112    .ENDEF
+                           A   113    .DEFINE "rem"
+                           A   114    .VALUE 4
+                           A   115    .CLASS 8
+                           A   116    .TYPE 5
+                           A   117    .ENDEF
+                           A   118    .ENDREC "NONAME4"
+                           A   119    .BEGREC "header",6
+                           A   120    .DEFINE "s"
+                           A   121    .VALUE 0
+                           A   122    .CLASS 11
+                           A   123    .TAG "NONAME5"
+                           A   124    .TYPE 8
+                           A   125    .ENDEF
+                           A   126    .DEFINE "x"
+                           A   127    .VALUE 0
+                           A   128    .CLASS 11
+                           A   129    .TYPE 2
+                           A   130    .ENDEF
+                           A   131    .ENDREC "header"
+                           A   132    .BEGREC "NONAME5",6
+                           A   133    .DEFINE "ptr"
+                           A   134    .VALUE 0
+                           A   135    .CLASS 8
+                           A   136    .TAG "header"
+                           A   137    .TYPE 40
+                           A   138    .ENDEF
+                           A   139    .DEFINE "size"
+                           A   140    .VALUE 3
+                           A   141    .CLASS 8
+                           A   142    .TYPE 14
+                           A   143    .ENDEF
+                           A   144    .ENDREC "NONAME5"
+                           A   145    .BEGREC "fmt_type",19
+                           A   146    .DEFINE "status"
+                           A   147    .VALUE 0
+                           A   148    .CLASS 8
+                           A   149    .TYPE 12
+                           A   150    .ENDEF
+                           A   151    .DEFINE "flags"
+                           A   152    .VALUE 1
+                           A   153    .CLASS 8
+                           A   154    .TYPE 12
+                           A   155    .ENDEF
+                           A   156    .DEFINE "size"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:   4
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   157    .VALUE 2
+                           A   158    .CLASS 8
+                           A   159    .TYPE 2
+                           A   160    .ENDEF
+                           A   161    .DEFINE "chr"
+                           A   162    .VALUE 3
+                           A   163    .CLASS 8
+                           A   164    .TYPE 2
+                           A   165    .ENDEF
+                           A   166    .DEFINE "type"
+                           A   167    .VALUE 4
+                           A   168    .CLASS 8
+                           A   169    .TYPE 2
+                           A   170    .ENDEF
+                           A   171    .DEFINE "field_width"
+                           A   172    .VALUE 5
+                           A   173    .CLASS 8
+                           A   174    .TYPE 2
+                           A   175    .ENDEF
+                           A   176    .DEFINE "precision"
+                           A   177    .VALUE 6
+                           A   178    .CLASS 8
+                           A   179    .TYPE 2
+                           A   180    .ENDEF
+                           A   181    .DEFINE "set_begin"
+                           A   182    .VALUE 7
+                           A   183    .CLASS 8
+                           A   184    .TYPE 34
+                           A   185    .ENDEF
+                           A   186    .DEFINE "set_end"
+                           A   187    .VALUE 10
+                           A   188    .CLASS 8
+                           A   189    .TYPE 34
+                           A   190    .ENDEF
+                           A   191    .DEFINE "pad_whole"
+                           A   192    .VALUE 13
+                           A   193    .CLASS 8
+                           A   194    .TYPE 12
+                           A   195    .ENDEF
+                           A   196    .DEFINE "pad_pre_fract"
+                           A   197    .VALUE 14
+                           A   198    .CLASS 8
+                           A   199    .TYPE 12
+                           A   200    .ENDEF
+                           A   201    .DEFINE "pad_post_fract"
+                           A   202    .VALUE 15
+                           A   203    .CLASS 8
+                           A   204    .TYPE 12
+                           A   205    .ENDEF
+                           A   206    .DEFINE "pad_at"
+                           A   207    .VALUE 16
+                           A   208    .CLASS 8
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:   5
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   209    .TYPE 34
+                           A   210    .ENDEF
+                           A   211    .ENDREC "fmt_type"
+                           A   212    .BEGREC "flt_info",12
+                           A   213    .DEFINE "flags"
+                           A   214    .VALUE 0
+                           A   215    .CLASS 8
+                           A   216    .TYPE 12
+                           A   217    .ENDEF
+                           A   218    .DEFINE "exp"
+                           A   219    .VALUE 1
+                           A   220    .CLASS 8
+                           A   221    .TYPE 2
+                           A   222    .ENDEF
+                           A   223    .DEFINE "digits"
+                           A   224    .VALUE 2
+                           A   225    .CLASS 8
+                           A   226    .DIM 10
+                           A   227    .TYPE 108
+                           A   228    .ENDEF
+                           A   229    .ENDREC "flt_info"
+000000                     A   230    _delay_loop:
+                           A   231    .DEFINE "_delay_loop"
+                           A   232    
+                           A   233    .VALUE _delay_loop
+                           A   234    
+                           A   235    .CLASS 3
+                           A   236    
+                           A   237    .TYPE 65
+                           A   238    
+                           A   239    .ENDEF
+                           A   240    
+                           A   241    .BEGFUNC "delay_loop",17,"_delay_loop"
+                           A   242    
+                           A   243    .LINE 17
+                           A   244    
+                           A   245    .DEFINE "c"
+                           A   246    
+                           A   247    .CLASS 65
+                           A   248    
+                           A   249    .VALUE 6
+                           A   250    
+                           A   251    .TYPE 14
+                           A   252    
+000000 DDE5                A   253    	PUSH	IX
+000002 DD210000 00         A   254    	LD	IX,0
+000007 DD39                A   255    	ADD	IX,SP
+                           A   256    .ENDEF
+                           A   257    
+000009                     A   258    L_1:
+                           A   259    .LINE 18
+                           A   260    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:   6
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000009 DD2706              A   261    	LD	HL,(IX+6)
+00000C CD 00 00 00         A   262    	CALL	__icmpzero
+000010 28 0D 00            A   263    	JR	Z,L_3
+                           A   264    .LINE 19
+                           A   265    
+000013 DD3106              A   266    	LD	IY,(IX+6)
+000016 ED33FF              A   267    	LEA	IY,IY+-1
+000019 DD3E06              A   268    	LD	(IX+6),IY
+                           A   269    .LINE 20
+                           A   270    
+00001C 18 EB 00            A   271    	JR	L_1
+00001F                     A   272    L_3:
+                           A   273    .LINE 21
+                           A   274    
+00001F DDF9                A   275    	LD	SP,IX
+000021 DDE1                A   276    	POP	IX
+000023 C9                  A   277    	RET	
+                           A   278    
+                           A   279    
+                           A   280    ;**************************** _delay_loop *****
+                           A   281    ;Name                         Addr/Register   S
+                           A   282    ;c                                     IX+6    
+                           A   283    
+                           A   284    
+                           A   285    ; Stack Frame Size: 9 (bytes)
+                           A   286    ;       Spill Code: 0 (instruction)
+                           A   287    
+                           A   288    
+                           A   289    .ENDFUNC "delay_loop",21,"_delay_loop"
+                           A   290    	SEGMENT DATA
+000000                     A   291    _log_format:
+000000 01                  A   292    	DB	1
+                           A   293    .DEFINE "log_format"
+                           A   294    .ALIAS "_log_format"
+                           A   295    .CLASS 69
+                           A   296    .VALUE _log_format
+                           A   297    .TYPE 12
+                           A   298    .ENDEF
+                           A   299    ;    1	
+                           A   300    ;    2	#include <eZ80.h>
+                           A   301    ;    3	#include <uart.h>
+                           A   302    ;    4	#include <gpio.h>
+                           A   303    ;    5	#include <stdlib.h>
+                           A   304    ;    6	#include <string.h>
+                           A   305    ;    7	#include <stdio.h>
+                           A   306    ;    8	
+                           A   307    ;    9	#include "skeelib.h"
+                           A   308    ;   10	#include "lib_serial.h"
+                           A   309    ;   11	#include "flashtool_menu.h"
+                           A   310    ;   12	#include "lib_crc32.h"
+                           A   311    ;   13	
+                           A   312    ;   14	// ASSUMPTION:
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:   7
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   313    ;   15	// - serial is already set up
+                           A   314    ;   16	
+                           A   315    ;   17	
+                           A   316    ;   18	/* convenience functions
+                           A   317    ;   19	 */
+                           A   318    ;   20	 
+                           A   319    ;   21	unsigned char log_format = 1;
+                           A   320    	SEGMENT CODE
+                           A   321    ;   22	
+                           A   322    ;   23	void logit ( char *foo ) {
+000024                     A   323    _logit:
+                           A   324    .DEFINE "_logit"
+                           A   325    
+                           A   326    .VALUE _logit
+                           A   327    
+                           A   328    .CLASS 2
+                           A   329    
+                           A   330    .TYPE 65
+                           A   331    
+                           A   332    .ENDEF
+                           A   333    
+                           A   334    .BEGFUNC "logit",23,"_logit"
+                           A   335    
+                           A   336    .LINE 23
+                           A   337    
+                           A   338    .DEFINE "foo"
+                           A   339    
+                           A   340    .CLASS 65
+                           A   341    
+                           A   342    .VALUE 6
+                           A   343    
+                           A   344    .TYPE 34
+                           A   345    
+                           A   346    .ENDEF
+                           A   347    
+000024 DDE5                A   348    	PUSH	IX
+000026 DD210000 00         A   349    	LD	IX,0
+00002B DD39                A   350    	ADD	IX,SP
+                           A   351    ;   24	  write_UART0 ( foo, lame_strlen ( foo 
+                           A   352    .LINE 24
+                           A   353    
+00002D DD0706              A   354    	LD	BC,(IX+6)
+000030 C5                  A   355    	PUSH	BC
+000031 CD 00 00 00         A   356    	CALL	_lame_strlen
+000035 C1                  A   357    	POP	BC
+000036 E5C1                A   358    	LD	BC,HL
+000038 CD 00 00 00         A   359    	CALL	__stoiu
+00003C E5                  A   360    	PUSH	HL
+00003D DD0706              A   361    	LD	BC,(IX+6)
+000040 C5                  A   362    	PUSH	BC
+000041 CD 00 00 00         A   363    	CALL	_write_UART0
+000045 C1                  A   364    	POP	BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:   8
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000046 C1                  A   365    	POP	BC
+                           A   366    ;   25	  return;
+                           A   367    ;   26	}
+                           A   368    .LINE 26
+                           A   369    
+000047 DDF9                A   370    	LD	SP,IX
+000049 DDE1                A   371    	POP	IX
+00004B C9                  A   372    	RET	
+                           A   373    
+                           A   374    
+                           A   375    ;**************************** _logit **********
+                           A   376    ;Name                         Addr/Register   S
+                           A   377    ;_lame_strlen                        IMPORT  --
+                           A   378    ;_write_UART0                        IMPORT  --
+                           A   379    ;foo                                   IX+6    
+                           A   380    
+                           A   381    
+                           A   382    ; Stack Frame Size: 9 (bytes)
+                           A   383    ;       Spill Code: 0 (instruction)
+                           A   384    
+                           A   385    
+                           A   386    .ENDFUNC "logit",26,"_logit"
+                           A   387    ;   27	
+                           A   388    ;   28	void logaddress ( unsigned int address,
+00004C                     A   389    _logaddress:
+                           A   390    .DEFINE "_logaddress"
+                           A   391    
+                           A   392    .VALUE _logaddress
+                           A   393    
+                           A   394    .CLASS 2
+                           A   395    
+                           A   396    .TYPE 65
+                           A   397    
+                           A   398    .ENDEF
+                           A   399    
+                           A   400    .BEGFUNC "logaddress",28,"_logaddress"
+                           A   401    
+                           A   402    .LINE 28
+                           A   403    
+                           A   404    .DEFINE "address"
+                           A   405    
+                           A   406    .CLASS 65
+                           A   407    
+                           A   408    .VALUE 6
+                           A   409    
+                           A   410    .TYPE 14
+                           A   411    
+                           A   412    .ENDEF
+                           A   413    
+                           A   414    .DEFINE "value"
+                           A   415    
+                           A   416    .CLASS 65
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:   9
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   417    
+                           A   418    .VALUE 9
+                           A   419    
+                           A   420    .TYPE 12
+                           A   421    
+                           A   422    .ENDEF
+                           A   423    
+                           A   424    .DEFINE "buffer"
+                           A   425    
+                           A   426    .CLASS 65
+                           A   427    
+                           A   428    .VALUE -30
+                           A   429    
+                           A   430    .DIM 30
+                           A   431    
+                           A   432    .TYPE 98
+                           A   433    
+                           A   434    .ENDEF
+                           A   435    
+00004C DDE5                A   436    	PUSH	IX
+00004E DD210000 00         A   437    	LD	IX,0
+000053 DD39                A   438    	ADD	IX,SP
+000055 ED22E2              A   439    	LEA	HL,IX+-30
+000058 F9                  A   440    	LD	SP,HL
+                           A   441    ;   29	  char buffer [ 30 ];
+                           A   442    ;   30	
+                           A   443    ;   31	  sprintf ( buffer, "%5u: ", address );
+                           A   444    .LINE 31
+                           A   445    
+000059 ED02E2              A   446    	LEA	BC,IX+-30
+00005C ED43 00 00 00       A   447    	LD	(___print_out),BC
+000061 3E05                A   448    	LD	A,5
+000063 32 05 00 00         A   449    	LD	(___print_fmt+5),A
+000067 3E75                A   450    	LD	A,117
+000069 32 04 00 00         A   451    	LD	(___print_fmt+4),A
+00006D DD0706              A   452    	LD	BC,(IX+6)
+000070 AF                  A   453    	XOR	A,A
+000071 C5D1                A   454    	LD	DE,BC
+000073 4F                  A   455    	LD	C,A
+000074 0600                A   456    	LD	B,0
+000076 C5                  A   457    	PUSH	BC
+000077 D5                  A   458    	PUSH	DE
+000078 CD 00 00 00         A   459    	CALL	__u_uitoa
+00007C C1                  A   460    	POP	BC
+00007D C1                  A   461    	POP	BC
+00007E 01 00 00 00         A   462    	LD	BC,L__3
+000082 C5                  A   463    	PUSH	BC
+000083 CD 00 00 00         A   464    	CALL	___print_sendstring
+000087 C1                  A   465    	POP	BC
+000088 01000000            A   466    	LD	BC,0
+00008C C5                  A   467    	PUSH	BC
+00008D CD 00 00 00         A   468    	CALL	___print_sputch
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  10
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000091 C1                  A   469    	POP	BC
+                           A   470    ;   32	  logit ( buffer );
+                           A   471    .LINE 32
+                           A   472    
+000092 ED65E2              A   473    	PEA	IX+-30
+000095 CD 24 00 00         A   474    	CALL	_logit
+000099 C1                  A   475    	POP	BC
+                           A   476    ;   33	
+                           A   477    ;   34	  sprintf ( buffer, "%X ", value );
+                           A   478    .LINE 34
+                           A   479    
+00009A ED02E2              A   480    	LEA	BC,IX+-30
+00009D ED43 00 00 00       A   481    	LD	(___print_out),BC
+0000A2 3E20                A   482    	LD	A,32
+0000A4 32 01 00 00         A   483    	LD	(___print_fmt+1),A
+0000A8 3E78                A   484    	LD	A,120
+0000AA 32 04 00 00         A   485    	LD	(___print_fmt+4),A
+0000AE DD7E09              A   486    	LD	A,(IX+9)
+0000B1 B7ED62              A   487    	UEXT	HL
+0000B4 6F                  A   488    	LD	L,A
+0000B5 E5C1                A   489    	LD	BC,HL
+0000B7 CD 00 00 00         A   490    	CALL	__itol
+0000BB C5D1                A   491    	LD	DE,BC
+0000BD 4F                  A   492    	LD	C,A
+0000BE 0600                A   493    	LD	B,0
+0000C0 C5                  A   494    	PUSH	BC
+0000C1 D5                  A   495    	PUSH	DE
+0000C2 CD 00 00 00         A   496    	CALL	__u_uitoa
+0000C6 C1                  A   497    	POP	BC
+0000C7 C1                  A   498    	POP	BC
+0000C8 01200000            A   499    	LD	BC,32
+0000CC C5                  A   500    	PUSH	BC
+0000CD CD 00 00 00         A   501    	CALL	___print_sputch
+0000D1 C1                  A   502    	POP	BC
+0000D2 01000000            A   503    	LD	BC,0
+0000D6 C5                  A   504    	PUSH	BC
+0000D7 CD 00 00 00         A   505    	CALL	___print_sputch
+0000DB C1                  A   506    	POP	BC
+                           A   507    ;   35	  logit ( buffer );
+                           A   508    .LINE 35
+                           A   509    
+0000DC ED65E2              A   510    	PEA	IX+-30
+0000DF CD 24 00 00         A   511    	CALL	_logit
+0000E3 C1                  A   512    	POP	BC
+                           A   513    ;   36	
+                           A   514    ;   37	#if 0 // binary dump as well?
+                           A   515    ;   38	  sprintf ( buffer, BYTETOBINARYPATTERN
+                           A   516    ;   39	  logit ( buffer );
+                           A   517    ;   40	#endif
+                           A   518    ;   41	
+                           A   519    ;   42	  if ( log_format ) {
+                           A   520    .LINE 42
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  11
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   521    
+0000E4 3A 00 00 00         A   522    	LD	A,(_log_format)
+0000E8 B7                  A   523    	OR	A,A
+0000E9 28 36 00            A   524    	JR	Z,L_9
+                           A   525    ;   43	
+                           A   526    ;   44	    if ( address != 0 && address % 6 ==
+                           A   527    .LINE 44
+                           A   528    
+0000EC DD2706              A   529    	LD	HL,(IX+6)
+0000EF CD 00 00 00         A   530    	CALL	__icmpzero
+0000F3 28 1F               A   531    	JR	Z,L_7
+0000F5 01060000            A   532    	LD	BC,6
+0000F9 DD2706              A   533    	LD	HL,(IX+6)
+0000FC CD 00 00 00         A   534    	CALL	__iremu
+000100 CD 00 00 00         A   535    	CALL	__icmpzero
+000104 20 0E 00            A   536    	JR	NZ,L_7
+                           A   537    ;   45	      logit ( "\n" );
+                           A   538    .LINE 45
+                           A   539    
+000107 01 03 00 00         A   540    	LD	BC,L__7
+00010B C5                  A   541    	PUSH	BC
+00010C CD 24 00 00         A   542    	CALL	_logit
+000110 C1                  A   543    	POP	BC
+                           A   544    ;   46	    } else {
+                           A   545    .LINE 46
+                           A   546    
+000111 18 18 00            A   547    	JR	L_10
+000114                     A   548    L_7:
+                           A   549    ;   47	      logit ( "\t" );
+                           A   550    .LINE 47
+                           A   551    
+000114 01 05 00 00         A   552    	LD	BC,L__8
+000118 C5                  A   553    	PUSH	BC
+000119 CD 24 00 00         A   554    	CALL	_logit
+00011D C1                  A   555    	POP	BC
+                           A   556    ;   48	    }
+                           A   557    ;   49	
+                           A   558    ;   50	  } else {
+                           A   559    .LINE 50
+                           A   560    
+00011E 18 0B 00            A   561    	JR	L_10
+000121                     A   562    L_9:
+                           A   563    ;   51	    logit ( "\n" );
+                           A   564    .LINE 51
+                           A   565    
+000121 01 07 00 00         A   566    	LD	BC,L__9
+000125 C5                  A   567    	PUSH	BC
+000126 CD 24 00 00         A   568    	CALL	_logit
+00012A C1                  A   569    	POP	BC
+                           A   570    ;   52	  }
+00012B                     A   571    L_10:
+                           A   572    .LINE 52
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  12
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   573    
+                           A   574    ;   53	
+                           A   575    ;   54	  return;
+                           A   576    ;   55	}
+                           A   577    .LINE 55
+                           A   578    
+00012B DDF9                A   579    	LD	SP,IX
+00012D DDE1                A   580    	POP	IX
+00012F C9                  A   581    	RET	
+                           A   582    
+                           A   583    
+                           A   584    ;**************************** _logaddress *****
+                           A   585    ;Name                         Addr/Register   S
+                           A   586    ;_log_format                         STATIC    
+                           A   587    ;___print_sputch                     IMPORT  --
+                           A   588    ;___print_sendstring                 IMPORT  --
+                           A   589    ;__u_uitoa                           IMPORT  --
+                           A   590    ;___print_fmt                        IMPORT    
+                           A   591    ;___print_out                        IMPORT    
+                           A   592    ;buffer                               IX-30    
+                           A   593    ;value                                 IX+9    
+                           A   594    ;address                               IX+6    
+                           A   595    
+                           A   596    
+                           A   597    ; Stack Frame Size: 42 (bytes)
+                           A   598    ;       Spill Code: 0 (instruction)
+                           A   599    
+                           A   600    
+                           A   601    .ENDFUNC "logaddress",55,"_logaddress"
+                           A   602    	SEGMENT STRSECT
+000000                     A   603    L__3:
+000000 3A20                A   604    	DB	": "
+000002 00                  A   605    	DB	0
+000003                     A   606    L__7:
+000003 0A00                A   607    	DB	10,0
+000005                     A   608    L__8:
+000005 0900                A   609    	DB	9,0
+000007                     A   610    L__9:
+000007 0A00                A   611    	DB	10,0
+                           A   612    	SEGMENT CODE
+                           A   613    ;   56	
+                           A   614    ;   57	
+                           A   615    ;   58	/* get to it
+                           A   616    ;   59	 */
+                           A   617    ;   60	
+                           A   618    ;   61	void flashtool_serial_forever ( void ) 
+000130                     A   619    _flashtool_serial_forever:
+                           A   620    .DEFINE "_flashtool_serial_forever"
+                           A   621    
+                           A   622    .VALUE _flashtool_serial_forever
+                           A   623    
+                           A   624    .CLASS 2
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  13
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   625    
+                           A   626    .TYPE 65
+                           A   627    
+                           A   628    .ENDEF
+                           A   629    
+                           A   630    .BEGFUNC "flashtool_serial_forever",61,"_flasht
+                           A   631    
+                           A   632    .LINE 61
+                           A   633    
+                           A   634    .DEFINE "state"
+                           A   635    
+                           A   636    .CLASS 65
+                           A   637    
+                           A   638    .VALUE -3
+                           A   639    
+                           A   640    .TYPE 4
+                           A   641    
+                           A   642    .ENDEF
+                           A   643    
+                           A   644    .DEFINE "args"
+                           A   645    
+                           A   646    .CLASS 65
+                           A   647    
+                           A   648    .VALUE -6
+                           A   649    
+                           A   650    .TYPE 34
+                           A   651    
+                           A   652    .ENDEF
+                           A   653    
+                           A   654    .DEFINE "data_len"
+                           A   655    
+                           A   656    .CLASS 65
+                           A   657    
+                           A   658    .VALUE -9
+                           A   659    
+                           A   660    .TYPE 14
+                           A   661    
+                           A   662    .ENDEF
+                           A   663    
+                           A   664    .DEFINE "char_echo_mode"
+                           A   665    
+                           A   666    .CLASS 65
+                           A   667    
+                           A   668    .VALUE -10
+                           A   669    
+                           A   670    .TYPE 12
+                           A   671    
+                           A   672    .ENDEF
+                           A   673    
+                           A   674    .DEFINE "c"
+                           A   675    
+                           A   676    .CLASS 65
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  14
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   677    
+                           A   678    .VALUE -11
+                           A   679    
+                           A   680    .TYPE 2
+                           A   681    
+                           A   682    .ENDEF
+                           A   683    
+                           A   684    .DEFINE "counter"
+                           A   685    
+                           A   686    .CLASS 65
+                           A   687    
+                           A   688    .VALUE -14
+                           A   689    
+                           A   690    .TYPE 14
+                           A   691    
+                           A   692    .ENDEF
+                           A   693    
+                           A   694    .DEFINE "address"
+                           A   695    
+                           A   696    .CLASS 65
+                           A   697    
+                           A   698    .VALUE -17
+                           A   699    
+                           A   700    .TYPE 14
+                           A   701    
+                           A   702    .ENDEF
+                           A   703    
+                           A   704    .DEFINE "len"
+                           A   705    
+                           A   706    .CLASS 65
+                           A   707    
+                           A   708    .VALUE -20
+                           A   709    
+                           A   710    .TYPE 14
+                           A   711    
+                           A   712    .ENDEF
+                           A   713    
+                           A   714    .DEFINE "counter"
+                           A   715    
+                           A   716    .CLASS 65
+                           A   717    
+                           A   718    .VALUE -23
+                           A   719    
+                           A   720    .TYPE 14
+                           A   721    
+                           A   722    .ENDEF
+                           A   723    
+                           A   724    .DEFINE "counter"
+                           A   725    
+                           A   726    .CLASS 65
+                           A   727    
+                           A   728    .VALUE -26
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  15
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   729    
+                           A   730    .TYPE 14
+                           A   731    
+                           A   732    .ENDEF
+                           A   733    
+                           A   734    .DEFINE "burnlen"
+                           A   735    
+                           A   736    .CLASS 65
+                           A   737    
+                           A   738    .VALUE -28
+                           A   739    
+                           A   740    .TYPE 13
+                           A   741    
+                           A   742    .ENDEF
+                           A   743    
+                           A   744    .DEFINE "burnaddr"
+                           A   745    
+                           A   746    .CLASS 65
+                           A   747    
+                           A   748    .VALUE -31
+                           A   749    
+                           A   750    .TYPE 44
+                           A   751    
+                           A   752    .ENDEF
+                           A   753    
+                           A   754    .DEFINE "b"
+                           A   755    
+                           A   756    .CLASS 65
+                           A   757    
+                           A   758    .VALUE -34
+                           A   759    
+                           A   760    .TYPE 14
+                           A   761    
+                           A   762    .ENDEF
+                           A   763    
+                           A   764    .DEFINE "srcaddr"
+                           A   765    
+                           A   766    .CLASS 65
+                           A   767    
+                           A   768    .VALUE -37
+                           A   769    
+                           A   770    .TYPE 44
+                           A   771    
+                           A   772    .ENDEF
+                           A   773    
+                           A   774    .DEFINE "address"
+                           A   775    
+                           A   776    .CLASS 65
+                           A   777    
+                           A   778    .VALUE -40
+                           A   779    
+                           A   780    .TYPE 14
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  16
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   781    
+                           A   782    .ENDEF
+                           A   783    
+                           A   784    .DEFINE "split"
+                           A   785    
+                           A   786    .CLASS 65
+                           A   787    
+                           A   788    .VALUE -43
+                           A   789    
+                           A   790    .TYPE 34
+                           A   791    
+                           A   792    .ENDEF
+                           A   793    
+                           A   794    .DEFINE "crc"
+                           A   795    
+                           A   796    .CLASS 65
+                           A   797    
+                           A   798    .VALUE -46
+                           A   799    
+                           A   800    .TYPE 14
+                           A   801    
+                           A   802    .ENDEF
+                           A   803    
+                           A   804    .DEFINE "buffer"
+                           A   805    
+                           A   806    .CLASS 65
+                           A   807    
+                           A   808    .VALUE -96
+                           A   809    
+                           A   810    .DIM 50
+                           A   811    
+                           A   812    .TYPE 98
+                           A   813    
+                           A   814    .ENDEF
+                           A   815    
+                           A   816    .DEFINE "log"
+                           A   817    
+                           A   818    .CLASS 65
+                           A   819    
+                           A   820    .VALUE -136
+                           A   821    
+                           A   822    .DIM 40
+                           A   823    
+                           A   824    .TYPE 98
+                           A   825    
+                           A   826    .ENDEF
+                           A   827    
+                           A   828    .DEFINE "log"
+                           A   829    
+                           A   830    .CLASS 65
+                           A   831    
+                           A   832    .VALUE -176
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  17
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   833    
+                           A   834    .DIM 40
+                           A   835    
+                           A   836    .TYPE 98
+                           A   837    
+                           A   838    .ENDEF
+                           A   839    
+                           A   840    .DEFINE "log"
+                           A   841    
+                           A   842    .CLASS 65
+                           A   843    
+                           A   844    .VALUE -216
+                           A   845    
+                           A   846    .DIM 40
+                           A   847    
+                           A   848    .TYPE 98
+                           A   849    
+                           A   850    .ENDEF
+                           A   851    
+                           A   852    .DEFINE "data_buffer"
+                           A   853    
+                           A   854    .CLASS 65
+                           A   855    
+                           A   856    .VALUE -472
+                           A   857    
+                           A   858    .DIM 256
+                           A   859    
+                           A   860    .TYPE 108
+                           A   861    
+                           A   862    .ENDEF
+                           A   863    
+000130 DDE5                A   864    	PUSH	IX
+000132 DD210000 00         A   865    	LD	IX,0
+000137 DD39                A   866    	ADD	IX,SP
+000139 211FFEFF            A   867    	LD	HL,-481
+00013D 39                  A   868    	ADD	HL,SP
+00013E F9                  A   869    	LD	SP,HL
+                           A   870    ;   62	  serial_state_e state;
+                           A   871    ;   63	  char c;
+                           A   872    ;   64	
+                           A   873    ;   65	  // state machine vars .. don't screw 
+                           A   874    ;   66	  unsigned char char_echo_mode = 1; // 
+                           A   875    .LINE 66
+                           A   876    
+00013F DD36F601            A   877    	LD	(IX+-10),1
+                           A   878    ;   67	  char buffer [ 50 ];               // 
+                           A   879    ;   68	  char *args;                       // 
+                           A   880    ;   69	  unsigned char data_buffer [ MAXDATASI
+                           A   881    ;   70	  unsigned int data_len = 0;           
+                           A   882    .LINE 70
+                           A   883    
+000143 01000000            A   884    	LD	BC,0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  18
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000147 DD0FF7              A   885    	LD	(IX+-9),BC
+                           A   886    ;   71	
+                           A   887    ;   72	  // test: echo time..
+                           A   888    ;   73	  //serial_echo_loop_forever();
+                           A   889    ;   74	
+                           A   890    ;   75	  state = ss_ready;
+                           A   891    .LINE 75
+                           A   892    
+00014A 01000000            A   893    	LD	BC,0
+00014E DD0FFD              A   894    	LD	(IX+-3),BC
+                           A   895    ;   76	
+                           A   896    ;   77	  while ( 1 ) {
+000151                     A   897    L_117:
+                           A   898    .LINE 77
+                           A   899    
+000151                     A   900    L_118:
+                           A   901    ;   78	
+                           A   902    ;   79	    switch ( state ) {
+                           A   903    .LINE 79
+                           A   904    
+000151 DD27FD              A   905    	LD	HL,(IX+-3)
+000154 CD 00 00 00         A   906    	CALL	__seqcaseD
+000158 E9                  A   907    	JP	(HL)
+000159                     A   908    L__11:
+000159 0C00                A   909    	DW	12
+00015B 0000                A   910    	DW	0
+00015D 00                  A   911    	DB	0
+00015E 850100              A   912    	DW24	L_12	
+                           A   913    
+000161 9D0100              A   914    	DW24	L_13	
+                           A   915    
+000164 C50300              A   916    	DW24	L_49	
+                           A   917    
+000167 B30400              A   918    	DW24	L_59	
+                           A   919    
+00016A 530600              A   920    	DW24	L_81	
+                           A   921    
+00016D 690700              A   922    	DW24	L_93	
+                           A   923    
+000170 C80800              A   924    	DW24	L_107	
+                           A   925    
+000173 730400              A   926    	DW24	L_51	
+                           A   927    
+000176 D50500              A   928    	DW24	L_71	
+                           A   929    
+000179 E50300              A   930    	DW24	L_50	
+                           A   931    
+00017C 910400              A   932    	DW24	L_55	
+                           A   933    
+00017F CD0400              A   934    	DW24	L_60	
+                           A   935    
+000182 510100              A   936    	DW24	L_118	
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  19
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   937    
+                           A   938    ;   80	
+                           A   939    ;   81	    case ss_ready:
+000185                     A   940    L_12:
+                           A   941    .LINE 81
+                           A   942    
+                           A   943    ;   82	      logit ( "+READY\n" );
+                           A   944    .LINE 82
+                           A   945    
+000185 01 09 00 00         A   946    	LD	BC,L__12
+000189 C5                  A   947    	PUSH	BC
+00018A CD 24 00 00         A   948    	CALL	_logit
+00018E C1                  A   949    	POP	BC
+                           A   950    ;   83	      // reset for next go..
+                           A   951    ;   84	      buffer [ 0 ] = '\0';
+                           A   952    .LINE 84
+                           A   953    
+00018F DD36A000            A   954    	LD	(IX+-96),0
+                           A   955    ;   85	      state = ss_cmd_build;
+                           A   956    .LINE 85
+                           A   957    
+000193 01010000            A   958    	LD	BC,1
+000197 DD0FFD              A   959    	LD	(IX+-3),BC
+                           A   960    ;   86	      break;
+                           A   961    .LINE 86
+                           A   962    
+00019A 18 B5 00            A   963    	JR	L_117
+                           A   964    ;   87	
+                           A   965    ;   88	    case ss_cmd_build:
+00019D                     A   966    L_13:
+                           A   967    .LINE 88
+                           A   968    
+                           A   969    ;   89	
+                           A   970    ;   90	      c = uart_getchar_block();
+                           A   971    .LINE 90
+                           A   972    
+00019D CD 00 00 00         A   973    	CALL	_uart_getchar_block
+0001A1 DD77F5              A   974    	LD	(IX+-11),A
+                           A   975    ;   91	
+                           A   976    ;   92	      if ( c == '\n'  || c == '\r') {
+                           A   977    .LINE 92
+                           A   978    
+0001A4 DD7EF5              A   979    	LD	A,(IX+-11)
+0001A7 FE0A                A   980    	CP	A,10
+0001A9 28 0A               A   981    	JR	Z,L_44
+0001AB DD7EF5              A   982    	LD	A,(IX+-11)
+0001AE FE0D                A   983    	CP	A,13
+0001B0 C2 5A 03 00 00      A   984    	JR	NZ,L_45
+0001B5                     A   985    L_44:
+                           A   986    ;   93	
+                           A   987    ;   94	        if ( c == '\r' ) {
+                           A   988    .LINE 94
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  20
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A   989    
+0001B5 DD7EF5              A   990    	LD	A,(IX+-11)
+0001B8 FE0D                A   991    	CP	A,13
+0001BA 20 12 00            A   992    	JR	NZ,L_17
+                           A   993    ;   95	          if ( char_echo_mode ) {
+                           A   994    .LINE 95
+                           A   995    
+0001BD DD7EF6              A   996    	LD	A,(IX+-10)
+0001C0 B7                  A   997    	OR	A,A
+0001C1 28 0B 00            A   998    	JR	Z,L_17
+                           A   999    ;   96	            uart_putchar ( '\n' );
+                           A  1000    .LINE 96
+                           A  1001    
+0001C4 010A0000            A  1002    	LD	BC,10
+0001C8 C5                  A  1003    	PUSH	BC
+0001C9 CD 00 00 00         A  1004    	CALL	_uart_putchar
+0001CD C1                  A  1005    	POP	BC
+                           A  1006    ;   97	          }
+                           A  1007    ;   98	        }
+0001CE                     A  1008    L_17:
+                           A  1009    .LINE 98
+                           A  1010    
+                           A  1011    ;   99	
+                           A  1012    ;  100	        // parse the buffer; modify to 
+                           A  1013    ;  101	        // can find command and assume 
+                           A  1014    ;  102	        args = strchr ( buffer, ' ' );
+                           A  1015    .LINE 102
+                           A  1016    
+0001CE 01200000            A  1017    	LD	BC,32
+0001D2 C5                  A  1018    	PUSH	BC
+0001D3 ED65A0              A  1019    	PEA	IX+-96
+0001D6 CD 00 00 00         A  1020    	CALL	_strchr
+0001DA C1                  A  1021    	POP	BC
+0001DB C1                  A  1022    	POP	BC
+0001DC DD2FFA              A  1023    	LD	(IX+-6),HL
+                           A  1024    ;  103	
+                           A  1025    ;  104	        if ( args ) {
+                           A  1026    .LINE 104
+                           A  1027    
+0001DF DD27FA              A  1028    	LD	HL,(IX+-6)
+0001E2 CD 00 00 00         A  1029    	CALL	__icmpzero
+0001E6 28 1B 00            A  1030    	JR	Z,L_20
+                           A  1031    ;  105	          *args = '\0';
+                           A  1032    .LINE 105
+                           A  1033    
+0001E9 DD27FA              A  1034    	LD	HL,(IX+-6)
+0001EC 3600                A  1035    	LD	(HL),0
+                           A  1036    ;  106	          args ++;
+                           A  1037    .LINE 106
+                           A  1038    
+0001EE DD27FA              A  1039    	LD	HL,(IX+-6)
+0001F1 0125FEFF            A  1040    	LD	BC,-475
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  21
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+0001F5 CD 00 00 00         A  1041    	CALL	__istix
+0001F9 DD07FA              A  1042    	LD	BC,(IX+-6)
+0001FC 03                  A  1043    	INC	BC
+0001FD DD0FFA              A  1044    	LD	(IX+-6),BC
+                           A  1045    ;  107	        } else {
+                           A  1046    .LINE 107
+                           A  1047    
+000200 18 08 00            A  1048    	JR	L_41
+000203                     A  1049    L_20:
+                           A  1050    ;  108	          args = NULL;
+                           A  1051    .LINE 108
+                           A  1052    
+000203 01000000            A  1053    	LD	BC,0
+000207 DD0FFA              A  1054    	LD	(IX+-6),BC
+                           A  1055    ;  109	        }
+00020A                     A  1056    L_41:
+                           A  1057    .LINE 109
+                           A  1058    
+                           A  1059    ;  110	
+                           A  1060    ;  111	        // dispatch command
+                           A  1061    ;  112	        if ( strcmp ( buffer, "ohai" ) 
+                           A  1062    .LINE 112
+                           A  1063    
+00020A 01 11 00 00         A  1064    	LD	BC,L__18
+00020E C5                  A  1065    	PUSH	BC
+00020F ED65A0              A  1066    	PEA	IX+-96
+000212 CD 00 00 00         A  1067    	CALL	_strcmp
+000216 C1                  A  1068    	POP	BC
+000217 C1                  A  1069    	POP	BC
+000218 CD 00 00 00         A  1070    	CALL	__icmpzero
+00021C 20 0C 00            A  1071    	JR	NZ,L_40
+                           A  1072    ;  113	          state = ss_ohai;
+                           A  1073    .LINE 113
+                           A  1074    
+00021F 01020000            A  1075    	LD	BC,2
+000223 DD0FFD              A  1076    	LD	(IX+-3),BC
+                           A  1077    ;  114	        } else if ( strcmp ( buffer, "e
+                           A  1078    .LINE 114
+                           A  1079    
+000226 C3 AC 03 00         A  1080    	JR	L_47
+00022A                     A  1081    L_40:
+00022A 01 16 00 00         A  1082    	LD	BC,L__20
+00022E C5                  A  1083    	PUSH	BC
+00022F ED65A0              A  1084    	PEA	IX+-96
+000232 CD 00 00 00         A  1085    	CALL	_strcmp
+000236 C1                  A  1086    	POP	BC
+000237 C1                  A  1087    	POP	BC
+000238 CD 00 00 00         A  1088    	CALL	__icmpzero
+00023C 20 0C 00            A  1089    	JR	NZ,L_38
+                           A  1090    ;  115	          state = ss_echo;
+                           A  1091    .LINE 115
+                           A  1092    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  22
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+00023F 01030000            A  1093    	LD	BC,3
+000243 DD0FFD              A  1094    	LD	(IX+-3),BC
+                           A  1095    ;  116	        } else if ( strcmp ( buffer, "r
+                           A  1096    .LINE 116
+                           A  1097    
+000246 C3 AC 03 00         A  1098    	JR	L_47
+00024A                     A  1099    L_38:
+00024A 01 1B 00 00         A  1100    	LD	BC,L__22
+00024E C5                  A  1101    	PUSH	BC
+00024F ED65A0              A  1102    	PEA	IX+-96
+000252 CD 00 00 00         A  1103    	CALL	_strcmp
+000256 C1                  A  1104    	POP	BC
+000257 C1                  A  1105    	POP	BC
+000258 CD 00 00 00         A  1106    	CALL	__icmpzero
+00025C 20 0C 00            A  1107    	JR	NZ,L_36
+                           A  1108    ;  117	          state = ss_receive;
+                           A  1109    .LINE 117
+                           A  1110    
+00025F 01040000            A  1111    	LD	BC,4
+000263 DD0FFD              A  1112    	LD	(IX+-3),BC
+                           A  1113    ;  118	        } else if ( strcmp ( buffer, "b
+                           A  1114    .LINE 118
+                           A  1115    
+000266 C3 AC 03 00         A  1116    	JR	L_47
+00026A                     A  1117    L_36:
+00026A 01 23 00 00         A  1118    	LD	BC,L__24
+00026E C5                  A  1119    	PUSH	BC
+00026F ED65A0              A  1120    	PEA	IX+-96
+000272 CD 00 00 00         A  1121    	CALL	_strcmp
+000276 C1                  A  1122    	POP	BC
+000277 C1                  A  1123    	POP	BC
+000278 CD 00 00 00         A  1124    	CALL	__icmpzero
+00027C 20 0C 00            A  1125    	JR	NZ,L_34
+                           A  1126    ;  119	          state = ss_burn;
+                           A  1127    .LINE 119
+                           A  1128    
+00027F 01050000            A  1129    	LD	BC,5
+000283 DD0FFD              A  1130    	LD	(IX+-3),BC
+                           A  1131    ;  120	        } else if ( strcmp ( buffer, "d
+                           A  1132    .LINE 120
+                           A  1133    
+000286 C3 AC 03 00         A  1134    	JR	L_47
+00028A                     A  1135    L_34:
+00028A 01 28 00 00         A  1136    	LD	BC,L__26
+00028E C5                  A  1137    	PUSH	BC
+00028F ED65A0              A  1138    	PEA	IX+-96
+000292 CD 00 00 00         A  1139    	CALL	_strcmp
+000296 C1                  A  1140    	POP	BC
+000297 C1                  A  1141    	POP	BC
+000298 CD 00 00 00         A  1142    	CALL	__icmpzero
+00029C 20 0C 00            A  1143    	JR	NZ,L_32
+                           A  1144    ;  121	          state = ss_dump;
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  23
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  1145    .LINE 121
+                           A  1146    
+00029F 01060000            A  1147    	LD	BC,6
+0002A3 DD0FFD              A  1148    	LD	(IX+-3),BC
+                           A  1149    ;  122	        } else if ( strcmp ( buffer, "h
+                           A  1150    .LINE 122
+                           A  1151    
+0002A6 C3 AC 03 00         A  1152    	JR	L_47
+0002AA                     A  1153    L_32:
+0002AA 01 2D 00 00         A  1154    	LD	BC,L__28
+0002AE C5                  A  1155    	PUSH	BC
+0002AF ED65A0              A  1156    	PEA	IX+-96
+0002B2 CD 00 00 00         A  1157    	CALL	_strcmp
+0002B6 C1                  A  1158    	POP	BC
+0002B7 C1                  A  1159    	POP	BC
+0002B8 CD 00 00 00         A  1160    	CALL	__icmpzero
+0002BC 20 0C 00            A  1161    	JR	NZ,L_30
+                           A  1162    ;  123	          state = ss_help;
+                           A  1163    .LINE 123
+                           A  1164    
+0002BF 01090000            A  1165    	LD	BC,9
+0002C3 DD0FFD              A  1166    	LD	(IX+-3),BC
+                           A  1167    ;  124	        } else if ( strcmp ( buffer, "c
+                           A  1168    .LINE 124
+                           A  1169    
+0002C6 C3 AC 03 00         A  1170    	JR	L_47
+0002CA                     A  1171    L_30:
+0002CA 01 32 00 00         A  1172    	LD	BC,L__30
+0002CE C5                  A  1173    	PUSH	BC
+0002CF ED65A0              A  1174    	PEA	IX+-96
+0002D2 CD 00 00 00         A  1175    	CALL	_strcmp
+0002D6 C1                  A  1176    	POP	BC
+0002D7 C1                  A  1177    	POP	BC
+0002D8 CD 00 00 00         A  1178    	CALL	__icmpzero
+0002DC 20 0C 00            A  1179    	JR	NZ,L_28
+                           A  1180    ;  125	          state = ss_charecho;
+                           A  1181    .LINE 125
+                           A  1182    
+0002DF 01070000            A  1183    	LD	BC,7
+0002E3 DD0FFD              A  1184    	LD	(IX+-3),BC
+                           A  1185    ;  126	        } else if ( strcmp ( buffer, "f
+                           A  1186    .LINE 126
+                           A  1187    
+0002E6 C3 AC 03 00         A  1188    	JR	L_47
+0002EA                     A  1189    L_28:
+0002EA 01 3B 00 00         A  1190    	LD	BC,L__32
+0002EE C5                  A  1191    	PUSH	BC
+0002EF ED65A0              A  1192    	PEA	IX+-96
+0002F2 CD 00 00 00         A  1193    	CALL	_strcmp
+0002F6 C1                  A  1194    	POP	BC
+0002F7 C1                  A  1195    	POP	BC
+0002F8 CD 00 00 00         A  1196    	CALL	__icmpzero
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  24
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+0002FC 20 0C 00            A  1197    	JR	NZ,L_26
+                           A  1198    ;  127	          state = ss_format;
+                           A  1199    .LINE 127
+                           A  1200    
+0002FF 010A0000            A  1201    	LD	BC,10
+000303 DD0FFD              A  1202    	LD	(IX+-3),BC
+                           A  1203    ;  128	        } else if ( strcmp ( buffer, "b
+                           A  1204    .LINE 128
+                           A  1205    
+000306 C3 AC 03 00         A  1206    	JR	L_47
+00030A                     A  1207    L_26:
+00030A 01 42 00 00         A  1208    	LD	BC,L__34
+00030E C5                  A  1209    	PUSH	BC
+00030F ED65A0              A  1210    	PEA	IX+-96
+000312 CD 00 00 00         A  1211    	CALL	_strcmp
+000316 C1                  A  1212    	POP	BC
+000317 C1                  A  1213    	POP	BC
+000318 CD 00 00 00         A  1214    	CALL	__icmpzero
+00031C 20 0C 00            A  1215    	JR	NZ,L_24
+                           A  1216    ;  129	          state = ss_buffer;
+                           A  1217    .LINE 129
+                           A  1218    
+00031F 01080000            A  1219    	LD	BC,8
+000323 DD0FFD              A  1220    	LD	(IX+-3),BC
+                           A  1221    ;  130	        } else if ( strcmp ( buffer, "t
+                           A  1222    .LINE 130
+                           A  1223    
+000326 C3 AC 03 00         A  1224    	JR	L_47
+00032A                     A  1225    L_24:
+00032A 01 49 00 00         A  1226    	LD	BC,L__36
+00032E C5                  A  1227    	PUSH	BC
+00032F ED65A0              A  1228    	PEA	IX+-96
+000332 CD 00 00 00         A  1229    	CALL	_strcmp
+000336 C1                  A  1230    	POP	BC
+000337 C1                  A  1231    	POP	BC
+000338 CD 00 00 00         A  1232    	CALL	__icmpzero
+00033C 20 0B 00            A  1233    	JR	NZ,L_22
+                           A  1234    ;  131	          state = ss_testbuf;
+                           A  1235    .LINE 131
+                           A  1236    
+00033F 010B0000            A  1237    	LD	BC,11
+000343 DD0FFD              A  1238    	LD	(IX+-3),BC
+                           A  1239    ;  132	        } else {
+                           A  1240    .LINE 132
+                           A  1241    
+000346 18 64 00            A  1242    	JR	L_47
+000349                     A  1243    L_22:
+                           A  1244    ;  133	          logit ( "+BADCOMMAND\n" );
+                           A  1245    .LINE 133
+                           A  1246    
+000349 01 51 00 00         A  1247    	LD	BC,L__38
+00034D C5                  A  1248    	PUSH	BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  25
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+00034E CD 24 00 00         A  1249    	CALL	_logit
+000352 C1                  A  1250    	POP	BC
+                           A  1251    ;  134	          buffer [ 0 ] = '\0';
+                           A  1252    .LINE 134
+                           A  1253    
+000353 DD36A000            A  1254    	LD	(IX+-96),0
+                           A  1255    ;  135	        }
+                           A  1256    ;  136	
+                           A  1257    ;  137	      } else {
+                           A  1258    .LINE 137
+                           A  1259    
+000357 18 53 00            A  1260    	JR	L_47
+00035A                     A  1261    L_45:
+                           A  1262    ;  138	
+                           A  1263    ;  139	        if ( strlen ( buffer ) < 49 ) {
+                           A  1264    .LINE 139
+                           A  1265    
+00035A ED65A0              A  1266    	PEA	IX+-96
+00035D CD 00 00 00         A  1267    	CALL	_strlen
+000361 C1                  A  1268    	POP	BC
+000362 01310000            A  1269    	LD	BC,49
+000366 B7                  A  1270    	OR	A,A
+000367 ED42                A  1271    	SBC	HL,BC
+000369 30 33 00            A  1272    	JR	NC,L_43
+                           A  1273    ;  140	          sprintf ( strchr ( buffer, '\
+                           A  1274    .LINE 140
+                           A  1275    
+00036C 01000000            A  1276    	LD	BC,0
+000370 C5                  A  1277    	PUSH	BC
+000371 ED65A0              A  1278    	PEA	IX+-96
+000374 CD 00 00 00         A  1279    	CALL	_strchr
+000378 C1                  A  1280    	POP	BC
+000379 C1                  A  1281    	POP	BC
+00037A 22 00 00 00         A  1282    	LD	(___print_out),HL
+00037E DD6EF5              A  1283    	LD	L,(IX+-11)
+000381 7D                  A  1284    	LD	A,L
+000382 32 00 00 00         A  1285    	LD	(___print_buff),A
+000386 21 00 00 00         A  1286    	LD	HL,___print_buff
+00038A 23                  A  1287    	INC	HL
+00038B 3600                A  1288    	LD	(HL),0
+00038D CD 00 00 00         A  1289    	CALL	___print_send
+000391 01000000            A  1290    	LD	BC,0
+000395 C5                  A  1291    	PUSH	BC
+000396 CD 00 00 00         A  1292    	CALL	___print_sputch
+00039A C1                  A  1293    	POP	BC
+                           A  1294    ;  141	        } else {
+                           A  1295    .LINE 141
+                           A  1296    
+00039B 18 0F 00            A  1297    	JR	L_47
+00039E                     A  1298    L_43:
+                           A  1299    ;  142	          // uuuh, overrun, .. reset?!
+                           A  1300    ;  143	          logit ( "+GARBAGE\n" );
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  26
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  1301    .LINE 143
+                           A  1302    
+00039E 01 5E 00 00         A  1303    	LD	BC,L__40
+0003A2 C5                  A  1304    	PUSH	BC
+0003A3 CD 24 00 00         A  1305    	CALL	_logit
+0003A7 C1                  A  1306    	POP	BC
+                           A  1307    ;  144	          buffer [ 0 ] = '\0';
+                           A  1308    .LINE 144
+                           A  1309    
+0003A8 DD36A000            A  1310    	LD	(IX+-96),0
+                           A  1311    ;  145	        }
+                           A  1312    ;  146	
+                           A  1313    ;  147	      }
+0003AC                     A  1314    L_47:
+                           A  1315    .LINE 147
+                           A  1316    
+                           A  1317    ;  148	
+                           A  1318    ;  149	      if ( char_echo_mode ) {
+                           A  1319    .LINE 149
+                           A  1320    
+0003AC DD7EF6              A  1321    	LD	A,(IX+-10)
+0003AF B7                  A  1322    	OR	A,A
+0003B0 CA 51 01 00 00      A  1323    	JR	Z,L_117
+                           A  1324    ;  150	        uart_putchar ( c );
+                           A  1325    .LINE 150
+                           A  1326    
+0003B5 DD4EF5              A  1327    	LD	C,(IX+-11)
+0003B8 0600                A  1328    	LD	B,0
+0003BA C5                  A  1329    	PUSH	BC
+0003BB CD 00 00 00         A  1330    	CALL	_uart_putchar
+0003BF C1                  A  1331    	POP	BC
+                           A  1332    ;  151	      }
+                           A  1333    .LINE 151
+                           A  1334    
+                           A  1335    ;  152	
+                           A  1336    ;  153	      break;
+                           A  1337    .LINE 153
+                           A  1338    
+0003C0 C3 51 01 00 00      A  1339    	JR	L_117
+                           A  1340    ;  154	
+                           A  1341    ;  155	    case ss_ohai:
+0003C5                     A  1342    L_49:
+                           A  1343    .LINE 155
+                           A  1344    
+                           A  1345    ;  156	      logit ( "+OHAI\n" );
+                           A  1346    .LINE 156
+                           A  1347    
+0003C5 01 68 00 00         A  1348    	LD	BC,L__42
+0003C9 C5                  A  1349    	PUSH	BC
+0003CA CD 24 00 00         A  1350    	CALL	_logit
+0003CE C1                  A  1351    	POP	BC
+                           A  1352    ;  157	
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  27
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  1353    ;  158	      log_format = 1;
+                           A  1354    .LINE 158
+                           A  1355    
+0003CF 3E01                A  1356    	LD	A,1
+0003D1 32 00 00 00         A  1357    	LD	(_log_format),A
+                           A  1358    ;  159	      char_echo_mode = 1;
+                           A  1359    .LINE 159
+                           A  1360    
+0003D5 DD36F601            A  1361    	LD	(IX+-10),1
+                           A  1362    ;  160	
+                           A  1363    ;  161	      state = ss_ready;
+                           A  1364    .LINE 161
+                           A  1365    
+0003D9 01000000            A  1366    	LD	BC,0
+0003DD DD0FFD              A  1367    	LD	(IX+-3),BC
+                           A  1368    ;  162	      break;
+                           A  1369    .LINE 162
+                           A  1370    
+0003E0 C3 51 01 00 00      A  1371    	JR	L_117
+                           A  1372    ;  163	
+                           A  1373    ;  164	    case ss_help:
+0003E5                     A  1374    L_50:
+                           A  1375    .LINE 164
+                           A  1376    
+                           A  1377    ;  165	
+                           A  1378    ;  166	      logit ( "Enter commands into term
+                           A  1379    .LINE 166
+                           A  1380    
+0003E5 01 6F 00 00         A  1381    	LD	BC,L__43
+0003E9 C5                  A  1382    	PUSH	BC
+0003EA CD 24 00 00         A  1383    	CALL	_logit
+0003EE C1                  A  1384    	POP	BC
+                           A  1385    ;  167	      logit ( "\n" );
+                           A  1386    .LINE 167
+                           A  1387    
+0003EF 01 8E 00 00         A  1388    	LD	BC,L__44
+0003F3 C5                  A  1389    	PUSH	BC
+0003F4 CD 24 00 00         A  1390    	CALL	_logit
+0003F8 C1                  A  1391    	POP	BC
+                           A  1392    ;  168	      logit ( "ohai -> return OHAI; res
+                           A  1393    .LINE 168
+                           A  1394    
+0003F9 01 90 00 00         A  1395    	LD	BC,L__45
+0003FD C5                  A  1396    	PUSH	BC
+0003FE CD 24 00 00         A  1397    	CALL	_logit
+000402 C1                  A  1398    	POP	BC
+                           A  1399    ;  169	      logit ( "echo -> enter loop, retu
+                           A  1400    .LINE 169
+                           A  1401    
+000403 01 D8 00 00         A  1402    	LD	BC,L__46
+000407 C5                  A  1403    	PUSH	BC
+000408 CD 24 00 00         A  1404    	CALL	_logit
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  28
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+00040C C1                  A  1405    	POP	BC
+                           A  1406    ;  170	      logit ( "receive N -> store next 
+                           A  1407    .LINE 170
+                           A  1408    
+00040D 01 15 01 00         A  1409    	LD	BC,L__47
+000411 C5                  A  1410    	PUSH	BC
+000412 CD 24 00 00         A  1411    	CALL	_logit
+000416 C1                  A  1412    	POP	BC
+                           A  1413    ;  171	      logit ( "burn A -> given a receiv
+                           A  1414    .LINE 171
+                           A  1415    
+000417 01 57 01 00         A  1416    	LD	BC,L__48
+00041B C5                  A  1417    	PUSH	BC
+00041C CD 24 00 00         A  1418    	CALL	_logit
+000420 C1                  A  1419    	POP	BC
+                           A  1420    ;  172	      logit ( "dump A L -> hexdump from
+                           A  1421    .LINE 172
+                           A  1422    
+000421 01 8D 01 00         A  1423    	LD	BC,L__49
+000425 C5                  A  1424    	PUSH	BC
+000426 CD 24 00 00         A  1425    	CALL	_logit
+00042A C1                  A  1426    	POP	BC
+                           A  1427    ;  173	      logit ( "charecho -> toggle chara
+                           A  1428    .LINE 173
+                           A  1429    
+00042B 01 BD 01 00         A  1430    	LD	BC,L__50
+00042F C5                  A  1431    	PUSH	BC
+000430 CD 24 00 00         A  1432    	CALL	_logit
+000434 C1                  A  1433    	POP	BC
+                           A  1434    ;  174	      logit ( "buffer -> dump the curre
+                           A  1435    .LINE 174
+                           A  1436    
+000435 01 E0 01 00         A  1437    	LD	BC,L__51
+000439 C5                  A  1438    	PUSH	BC
+00043A CD 24 00 00         A  1439    	CALL	_logit
+00043E C1                  A  1440    	POP	BC
+                           A  1441    ;  175	      logit ( "testbuf V -> generate a 
+                           A  1442    .LINE 175
+                           A  1443    
+00043F 01 0E 02 00         A  1444    	LD	BC,L__52
+000443 C5                  A  1445    	PUSH	BC
+000444 CD 24 00 00         A  1446    	CALL	_logit
+000448 C1                  A  1447    	POP	BC
+                           A  1448    ;  176	      logit ( "format -> toggle dump fo
+                           A  1449    .LINE 176
+                           A  1450    
+000449 01 35 02 00         A  1451    	LD	BC,L__53
+00044D C5                  A  1452    	PUSH	BC
+00044E CD 24 00 00         A  1453    	CALL	_logit
+000452 C1                  A  1454    	POP	BC
+                           A  1455    ;  177	      logit ( "help -> duh\n" );
+                           A  1456    .LINE 177
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  29
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  1457    
+000453 01 8C 02 00         A  1458    	LD	BC,L__54
+000457 C5                  A  1459    	PUSH	BC
+000458 CD 24 00 00         A  1460    	CALL	_logit
+00045C C1                  A  1461    	POP	BC
+                           A  1462    ;  178	      logit ( "\n" );
+                           A  1463    .LINE 178
+                           A  1464    
+00045D 01 99 02 00         A  1465    	LD	BC,L__55
+000461 C5                  A  1466    	PUSH	BC
+000462 CD 24 00 00         A  1467    	CALL	_logit
+000466 C1                  A  1468    	POP	BC
+                           A  1469    ;  179	
+                           A  1470    ;  180	      state = ss_ready;
+                           A  1471    .LINE 180
+                           A  1472    
+000467 01000000            A  1473    	LD	BC,0
+00046B DD0FFD              A  1474    	LD	(IX+-3),BC
+                           A  1475    ;  181	      break;
+                           A  1476    .LINE 181
+                           A  1477    
+00046E C3 51 01 00 00      A  1478    	JR	L_117
+                           A  1479    ;  182	
+                           A  1480    ;  183	    case ss_charecho:
+000473                     A  1481    L_51:
+                           A  1482    .LINE 183
+                           A  1483    
+                           A  1484    ;  184	
+                           A  1485    ;  185	      if ( char_echo_mode ) {
+                           A  1486    .LINE 185
+                           A  1487    
+000473 DD7EF6              A  1488    	LD	A,(IX+-10)
+000476 B7                  A  1489    	OR	A,A
+000477 28 08 00            A  1490    	JR	Z,L_53
+                           A  1491    ;  186	        char_echo_mode = 0;
+                           A  1492    .LINE 186
+                           A  1493    
+00047A DD36F600            A  1494    	LD	(IX+-10),0
+                           A  1495    ;  187	      } else {
+                           A  1496    .LINE 187
+                           A  1497    
+00047E 18 05 00            A  1498    	JR	L_54
+000481                     A  1499    L_53:
+                           A  1500    ;  188	        char_echo_mode = 1;
+                           A  1501    .LINE 188
+                           A  1502    
+000481 DD36F601            A  1503    	LD	(IX+-10),1
+                           A  1504    ;  189	      }
+000485                     A  1505    L_54:
+                           A  1506    .LINE 189
+                           A  1507    
+                           A  1508    ;  190	
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  30
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  1509    ;  191	      state = ss_ready;
+                           A  1510    .LINE 191
+                           A  1511    
+000485 01000000            A  1512    	LD	BC,0
+000489 DD0FFD              A  1513    	LD	(IX+-3),BC
+                           A  1514    ;  192	      break;
+                           A  1515    .LINE 192
+                           A  1516    
+00048C C3 51 01 00 00      A  1517    	JR	L_117
+                           A  1518    ;  193	
+                           A  1519    ;  194	    case ss_format:
+000491                     A  1520    L_55:
+                           A  1521    .LINE 194
+                           A  1522    
+                           A  1523    ;  195	
+                           A  1524    ;  196	      if ( log_format ) {
+                           A  1525    .LINE 196
+                           A  1526    
+000491 3A 00 00 00         A  1527    	LD	A,(_log_format)
+000495 B7                  A  1528    	OR	A,A
+000496 28 09 00            A  1529    	JR	Z,L_57
+                           A  1530    ;  197	        log_format = 0;
+                           A  1531    .LINE 197
+                           A  1532    
+000499 AF                  A  1533    	XOR	A,A
+00049A 32 00 00 00         A  1534    	LD	(_log_format),A
+                           A  1535    ;  198	      } else {
+                           A  1536    .LINE 198
+                           A  1537    
+00049E 18 07 00            A  1538    	JR	L_58
+0004A1                     A  1539    L_57:
+                           A  1540    ;  199	        log_format = 1;
+                           A  1541    .LINE 199
+                           A  1542    
+0004A1 3E01                A  1543    	LD	A,1
+0004A3 32 00 00 00         A  1544    	LD	(_log_format),A
+                           A  1545    ;  200	      }
+0004A7                     A  1546    L_58:
+                           A  1547    .LINE 200
+                           A  1548    
+                           A  1549    ;  201	
+                           A  1550    ;  202	      state = ss_ready;
+                           A  1551    .LINE 202
+                           A  1552    
+0004A7 01000000            A  1553    	LD	BC,0
+0004AB DD0FFD              A  1554    	LD	(IX+-3),BC
+                           A  1555    ;  203	      break;
+                           A  1556    .LINE 203
+                           A  1557    
+0004AE C3 51 01 00 00      A  1558    	JR	L_117
+                           A  1559    ;  204	
+                           A  1560    ;  205	    case ss_echo:
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  31
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+0004B3                     A  1561    L_59:
+                           A  1562    .LINE 205
+                           A  1563    
+                           A  1564    ;  206	      logit ( "+ECHO\n" );
+                           A  1565    .LINE 206
+                           A  1566    
+0004B3 01 9B 02 00         A  1567    	LD	BC,L__58
+0004B7 C5                  A  1568    	PUSH	BC
+0004B8 CD 24 00 00         A  1569    	CALL	_logit
+0004BC C1                  A  1570    	POP	BC
+                           A  1571    ;  207	
+                           A  1572    ;  208	      uart_echo_loop_forever();
+                           A  1573    .LINE 208
+                           A  1574    
+0004BD CD 00 00 00         A  1575    	CALL	_uart_echo_loop_forever
+                           A  1576    ;  209	
+                           A  1577    ;  210	      state = ss_ready; // should never
+                           A  1578    .LINE 210
+                           A  1579    
+0004C1 01000000            A  1580    	LD	BC,0
+0004C5 DD0FFD              A  1581    	LD	(IX+-3),BC
+                           A  1582    ;  211	      break;
+                           A  1583    .LINE 211
+                           A  1584    
+0004C8 C3 51 01 00 00      A  1585    	JR	L_117
+                           A  1586    ;  212	
+                           A  1587    ;  213	    case ss_testbuf:
+0004CD                     A  1588    L_60:
+                           A  1589    .LINE 213
+                           A  1590    
+                           A  1591    ;  214	      {
+                           A  1592    ;  215			unsigned int b;
+                           A  1593    ;  216	        char log [ 40 ];
+                           A  1594    ;  217	
+                           A  1595    ;  218	        // verify arguments
+                           A  1596    ;  219	        if ( ! args ) {
+                           A  1597    .LINE 219
+                           A  1598    
+0004CD DD27FA              A  1599    	LD	HL,(IX+-6)
+0004D0 CD 00 00 00         A  1600    	CALL	__icmpzero
+0004D4 20 17 00            A  1601    	JR	NZ,L_62
+                           A  1602    ;  220	          logit ( "+BADARGS\n" );
+                           A  1603    .LINE 220
+                           A  1604    
+0004D7 01 A2 02 00         A  1605    	LD	BC,L__60
+0004DB C5                  A  1606    	PUSH	BC
+0004DC CD 24 00 00         A  1607    	CALL	_logit
+0004E0 C1                  A  1608    	POP	BC
+                           A  1609    ;  221	          state = ss_ready;
+                           A  1610    .LINE 221
+                           A  1611    
+0004E1 01000000            A  1612    	LD	BC,0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  32
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+0004E5 DD0FFD              A  1613    	LD	(IX+-3),BC
+                           A  1614    ;  222	          break;
+                           A  1615    .LINE 222
+                           A  1616    
+0004E8 C3 51 01 00 00      A  1617    	JR	L_117
+                           A  1618    ;  223	        }
+0004ED                     A  1619    L_62:
+                           A  1620    .LINE 223
+                           A  1621    
+                           A  1622    ;  224	
+                           A  1623    ;  225	        b = atoi ( args );
+                           A  1624    .LINE 225
+                           A  1625    
+0004ED DD07FA              A  1626    	LD	BC,(IX+-6)
+0004F0 C5                  A  1627    	PUSH	BC
+0004F1 CD 00 00 00         A  1628    	CALL	_atoi
+0004F5 C1                  A  1629    	POP	BC
+0004F6 DD2FDE              A  1630    	LD	(IX+-34),HL
+                           A  1631    ;  226	
+                           A  1632    ;  227	        if ( b > 255 ) {
+                           A  1633    .LINE 227
+                           A  1634    
+0004F9 DD07DE              A  1635    	LD	BC,(IX+-34)
+0004FC 21FF0000            A  1636    	LD	HL,255
+000500 B7                  A  1637    	OR	A,A
+000501 ED42                A  1638    	SBC	HL,BC
+000503 30 17 00            A  1639    	JR	NC,L_64
+                           A  1640    ;  228	          logit ( "+BADARGS\n" );
+                           A  1641    .LINE 228
+                           A  1642    
+000506 01 AC 02 00         A  1643    	LD	BC,L__62
+00050A C5                  A  1644    	PUSH	BC
+00050B CD 24 00 00         A  1645    	CALL	_logit
+00050F C1                  A  1646    	POP	BC
+                           A  1647    ;  229	          state = ss_ready;
+                           A  1648    .LINE 229
+                           A  1649    
+000510 01000000            A  1650    	LD	BC,0
+000514 DD0FFD              A  1651    	LD	(IX+-3),BC
+                           A  1652    ;  230	          break;
+                           A  1653    .LINE 230
+                           A  1654    
+000517 C3 51 01 00 00      A  1655    	JR	L_117
+                           A  1656    ;  231	        }
+00051C                     A  1657    L_64:
+                           A  1658    .LINE 231
+                           A  1659    
+                           A  1660    ;  232	
+                           A  1661    ;  233	        data_len = 255;
+                           A  1662    .LINE 233
+                           A  1663    
+00051C 01FF0000            A  1664    	LD	BC,255
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  33
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000520 DD0FF7              A  1665    	LD	(IX+-9),BC
+000523 18 0E 00            A  1666    	JR	L_66
+                           A  1667    ;  234	
+                           A  1668    ;  235			{
+                           A  1669    ;  236				unsigned int counter;
+                           A  1670    ;  237				for ( counter = 0; counter 
+000526                     A  1671    L_67:
+                           A  1672    .LINE 237
+                           A  1673    
+000526 DD07F7              A  1674    	LD	BC,(IX+-9)
+000529 DD27E9              A  1675    	LD	HL,(IX+-23)
+00052C B7                  A  1676    	OR	A,A
+00052D ED42                A  1677    	SBC	HL,BC
+00052F 38 0C               A  1678    	JR	C,L_69
+000531 18 24               A  1679    	JR	L_70
+000533                     A  1680    L_66:
+000533 01000000            A  1681    	LD	BC,0
+000537 DD0FE9              A  1682    	LD	(IX+-23),BC
+00053A 18 EA 00            A  1683    	JR	L_67
+00053D                     A  1684    L_69:
+                           A  1685    ;  238				  data_buffer [ counter ] =
+                           A  1686    .LINE 238
+                           A  1687    
+00053D DD7EDE              A  1688    	LD	A,(IX+-34)
+000540 DD07E9              A  1689    	LD	BC,(IX+-23)
+000543 DDE5E1              A  1690    	LD	HL,IX
+000546 1128FEFF            A  1691    	LD	DE,-472
+00054A 19                  A  1692    	ADD	HL,DE
+00054B 09                  A  1693    	ADD	HL,BC
+00054C 77                  A  1694    	LD	(HL),A
+00054D DD07E9              A  1695    	LD	BC,(IX+-23)
+000550 03                  A  1696    	INC	BC
+000551 DD0FE9              A  1697    	LD	(IX+-23),BC
+                           A  1698    ;  239				}
+                           A  1699    .LINE 239
+                           A  1700    
+000554 18 D0 00            A  1701    	JR	L_67
+                           A  1702    ;  240			}
+000557                     A  1703    L_70:
+                           A  1704    .LINE 240
+                           A  1705    
+                           A  1706    ;  241	
+                           A  1707    ;  242	        sprintf ( log, "# Generated %d 
+                           A  1708    .LINE 242
+                           A  1709    
+000557 DDE5E1              A  1710    	LD	HL,IX
+00055A 0178FFFF            A  1711    	LD	BC,-136
+00055E 09                  A  1712    	ADD	HL,BC
+00055F 22 00 00 00         A  1713    	LD	(___print_out),HL
+000563 01 B6 02 00         A  1714    	LD	BC,L__64
+000567 C5                  A  1715    	PUSH	BC
+000568 CD 00 00 00         A  1716    	CALL	___print_sendstring
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  34
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+00056C C1                  A  1717    	POP	BC
+00056D DD07F7              A  1718    	LD	BC,(IX+-9)
+000570 AF                  A  1719    	XOR	A,A
+000571 C5D1                A  1720    	LD	DE,BC
+000573 4F                  A  1721    	LD	C,A
+000574 0600                A  1722    	LD	B,0
+000576 C5                  A  1723    	PUSH	BC
+000577 D5                  A  1724    	PUSH	DE
+000578 CD 00 00 00         A  1725    	CALL	__u_itoa
+00057C C1                  A  1726    	POP	BC
+00057D C1                  A  1727    	POP	BC
+00057E 01 C3 02 00         A  1728    	LD	BC,L__65
+000582 C5                  A  1729    	PUSH	BC
+000583 CD 00 00 00         A  1730    	CALL	___print_sendstring
+000587 C1                  A  1731    	POP	BC
+000588 3E20                A  1732    	LD	A,32
+00058A 32 01 00 00         A  1733    	LD	(___print_fmt+1),A
+00058E 3E78                A  1734    	LD	A,120
+000590 32 04 00 00         A  1735    	LD	(___print_fmt+4),A
+000594 DD07DE              A  1736    	LD	BC,(IX+-34)
+000597 AF                  A  1737    	XOR	A,A
+000598 C5D1                A  1738    	LD	DE,BC
+00059A 4F                  A  1739    	LD	C,A
+00059B 0600                A  1740    	LD	B,0
+00059D C5                  A  1741    	PUSH	BC
+00059E D5                  A  1742    	PUSH	DE
+00059F CD 00 00 00         A  1743    	CALL	__u_uitoa
+0005A3 C1                  A  1744    	POP	BC
+0005A4 C1                  A  1745    	POP	BC
+0005A5 010A0000            A  1746    	LD	BC,10
+0005A9 C5                  A  1747    	PUSH	BC
+0005AA CD 00 00 00         A  1748    	CALL	___print_sputch
+0005AE C1                  A  1749    	POP	BC
+0005AF 01000000            A  1750    	LD	BC,0
+0005B3 C5                  A  1751    	PUSH	BC
+0005B4 CD 00 00 00         A  1752    	CALL	___print_sputch
+0005B8 C1                  A  1753    	POP	BC
+                           A  1754    ;  243	        logit ( log );
+                           A  1755    .LINE 243
+                           A  1756    
+0005B9 DDE5E1              A  1757    	LD	HL,IX
+0005BC 0178FFFF            A  1758    	LD	BC,-136
+0005C0 09                  A  1759    	ADD	HL,BC
+0005C1 E5C1                A  1760    	LD	BC,HL
+0005C3 C5                  A  1761    	PUSH	BC
+0005C4 CD 24 00 00         A  1762    	CALL	_logit
+0005C8 C1                  A  1763    	POP	BC
+                           A  1764    ;  244	
+                           A  1765    ;  245	      }
+                           A  1766    ;  246	
+                           A  1767    ;  247	      state = ss_ready;
+                           A  1768    .LINE 247
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  35
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  1769    
+0005C9 01000000            A  1770    	LD	BC,0
+0005CD DD0FFD              A  1771    	LD	(IX+-3),BC
+                           A  1772    ;  248	      break;
+                           A  1773    .LINE 248
+                           A  1774    
+0005D0 C3 51 01 00 00      A  1775    	JR	L_117
+                           A  1776    ;  249	
+                           A  1777    ;  250	    case ss_buffer:
+0005D5                     A  1778    L_71:
+                           A  1779    .LINE 250
+                           A  1780    
+                           A  1781    ;  251	      {
+                           A  1782    ;  252	        unsigned int counter;
+                           A  1783    ;  253	
+                           A  1784    ;  254	        if ( ( data_len == 0 ) ||
+                           A  1785    .LINE 254
+                           A  1786    
+0005D5 DD27F7              A  1787    	LD	HL,(IX+-9)
+0005D8 CD 00 00 00         A  1788    	CALL	__icmpzero
+0005DC 28 0E 00            A  1789    	JR	Z,L_73
+                           A  1790    ;  255	             ( data_len > MAXDATASIZE )
+                           A  1791    .LINE 255
+                           A  1792    
+0005DF DD07F7              A  1793    	LD	BC,(IX+-9)
+0005E2 21000100            A  1794    	LD	HL,256
+0005E6 B7                  A  1795    	OR	A,A
+0005E7 ED42                A  1796    	SBC	HL,BC
+0005E9 30 24 00            A  1797    	JR	NC,L_75
+0005EC                     A  1798    L_73:
+                           A  1799    ;  256	        {
+                           A  1800    ;  257	          logit ( "+BADARGS\n" );
+                           A  1801    .LINE 257
+                           A  1802    
+0005EC 01 D4 02 00         A  1803    	LD	BC,L__68
+0005F0 C5                  A  1804    	PUSH	BC
+0005F1 CD 24 00 00         A  1805    	CALL	_logit
+0005F5 C1                  A  1806    	POP	BC
+                           A  1807    ;  258	          state = ss_ready;
+                           A  1808    .LINE 258
+                           A  1809    
+0005F6 01000000            A  1810    	LD	BC,0
+0005FA DD0FFD              A  1811    	LD	(IX+-3),BC
+                           A  1812    ;  259	          break;
+                           A  1813    .LINE 259
+                           A  1814    
+0005FD C3 51 01 00 00      A  1815    	JR	L_117
+                           A  1816    ;  260	        }
+                           A  1817    .LINE 260
+                           A  1818    
+                           A  1819    ;  261	
+                           A  1820    ;  262	        for ( counter = ((unsigned int)
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  36
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000602                     A  1821    L_76:
+                           A  1822    .LINE 262
+                           A  1823    
+000602 DD07F7              A  1824    	LD	BC,(IX+-9)
+000605 DD27F2              A  1825    	LD	HL,(IX+-14)
+000608 B7                  A  1826    	OR	A,A
+000609 ED42                A  1827    	SBC	HL,BC
+00060B 38 0C               A  1828    	JR	C,L_78
+00060D 18 2E               A  1829    	JR	L_80
+00060F                     A  1830    L_75:
+00060F 01000000            A  1831    	LD	BC,0
+000613 DD0FF2              A  1832    	LD	(IX+-14),BC
+000616 18 EA 00            A  1833    	JR	L_76
+000619                     A  1834    L_78:
+                           A  1835    ;  263	          logaddress ( counter, data_bu
+                           A  1836    .LINE 263
+                           A  1837    
+000619 DD07F2              A  1838    	LD	BC,(IX+-14)
+00061C DDE5E1              A  1839    	LD	HL,IX
+00061F 1128FEFF            A  1840    	LD	DE,-472
+000623 19                  A  1841    	ADD	HL,DE
+000624 09                  A  1842    	ADD	HL,BC
+000625 4E                  A  1843    	LD	C,(HL)
+000626 0600                A  1844    	LD	B,0
+000628 C5                  A  1845    	PUSH	BC
+000629 DD07F2              A  1846    	LD	BC,(IX+-14)
+00062C C5                  A  1847    	PUSH	BC
+00062D CD 4C 00 00         A  1848    	CALL	_logaddress
+000631 C1                  A  1849    	POP	BC
+000632 C1                  A  1850    	POP	BC
+000633 DD07F2              A  1851    	LD	BC,(IX+-14)
+000636 03                  A  1852    	INC	BC
+000637 DD0FF2              A  1853    	LD	(IX+-14),BC
+                           A  1854    ;  264	        } // for
+                           A  1855    .LINE 264
+                           A  1856    
+00063A 18 C6 00            A  1857    	JR	L_76
+00063D                     A  1858    L_80:
+                           A  1859    ;  265	        logit ( "\n" );
+                           A  1860    .LINE 265
+                           A  1861    
+00063D 01 DE 02 00         A  1862    	LD	BC,L__70
+000641 C5                  A  1863    	PUSH	BC
+000642 CD 24 00 00         A  1864    	CALL	_logit
+000646 C1                  A  1865    	POP	BC
+                           A  1866    ;  266	
+                           A  1867    ;  267	        state = ss_ready;
+                           A  1868    .LINE 267
+                           A  1869    
+000647 01000000            A  1870    	LD	BC,0
+00064B DD0FFD              A  1871    	LD	(IX+-3),BC
+                           A  1872    ;  268	        break;
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  37
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  1873    .LINE 268
+                           A  1874    
+00064E C3 51 01 00 00      A  1875    	JR	L_117
+                           A  1876    ;  269	      }
+                           A  1877    ;  270	
+                           A  1878    ;  271	    case ss_receive:
+000653                     A  1879    L_81:
+                           A  1880    .LINE 271
+                           A  1881    
+                           A  1882    ;  272	      // receive LEN
+                           A  1883    ;  273	      // TODO: someday, possibly..
+                           A  1884    ;  274	      // TODO: receive LEN [NAME] --> a
+                           A  1885    ;  275	
+                           A  1886    ;  276	      // verify arguments
+                           A  1887    ;  277	      if ( ! args ) {
+                           A  1888    .LINE 277
+                           A  1889    
+000653 DD27FA              A  1890    	LD	HL,(IX+-6)
+000656 CD 00 00 00         A  1891    	CALL	__icmpzero
+00065A 20 17 00            A  1892    	JR	NZ,L_83
+                           A  1893    ;  278	        logit ( "+BADARGS\n" );
+                           A  1894    .LINE 278
+                           A  1895    
+00065D 01 E0 02 00         A  1896    	LD	BC,L__72
+000661 C5                  A  1897    	PUSH	BC
+000662 CD 24 00 00         A  1898    	CALL	_logit
+000666 C1                  A  1899    	POP	BC
+                           A  1900    ;  279	        state = ss_ready;
+                           A  1901    .LINE 279
+                           A  1902    
+000667 01000000            A  1903    	LD	BC,0
+00066B DD0FFD              A  1904    	LD	(IX+-3),BC
+                           A  1905    ;  280	        break;
+                           A  1906    .LINE 280
+                           A  1907    
+00066E C3 51 01 00 00      A  1908    	JR	L_117
+                           A  1909    ;  281	      }
+000673                     A  1910    L_83:
+                           A  1911    .LINE 281
+                           A  1912    
+                           A  1913    ;  282	
+                           A  1914    ;  283	      data_len = atoi ( args );
+                           A  1915    .LINE 283
+                           A  1916    
+000673 DD07FA              A  1917    	LD	BC,(IX+-6)
+000676 C5                  A  1918    	PUSH	BC
+000677 CD 00 00 00         A  1919    	CALL	_atoi
+00067B C1                  A  1920    	POP	BC
+00067C DD2FF7              A  1921    	LD	(IX+-9),HL
+                           A  1922    ;  284	
+                           A  1923    ;  285	      if ( ( data_len == 0 ) ||
+                           A  1924    .LINE 285
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  38
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  1925    
+00067F DD27F7              A  1926    	LD	HL,(IX+-9)
+000682 CD 00 00 00         A  1927    	CALL	__icmpzero
+000686 28 0E 00            A  1928    	JR	Z,L_85
+                           A  1929    ;  286	           ( data_len > MAXDATASIZE ) )
+                           A  1930    .LINE 286
+                           A  1931    
+000689 DD07F7              A  1932    	LD	BC,(IX+-9)
+00068C 21000100            A  1933    	LD	HL,256
+000690 B7                  A  1934    	OR	A,A
+000691 ED42                A  1935    	SBC	HL,BC
+000693 30 24 00            A  1936    	JR	NC,L_87
+000696                     A  1937    L_85:
+                           A  1938    ;  287	      {
+                           A  1939    ;  288	        logit ( "+BADARGS\n" );
+                           A  1940    .LINE 288
+                           A  1941    
+000696 01 EA 02 00         A  1942    	LD	BC,L__75
+00069A C5                  A  1943    	PUSH	BC
+00069B CD 24 00 00         A  1944    	CALL	_logit
+00069F C1                  A  1945    	POP	BC
+                           A  1946    ;  289	        state = ss_ready;
+                           A  1947    .LINE 289
+                           A  1948    
+0006A0 01000000            A  1949    	LD	BC,0
+0006A4 DD0FFD              A  1950    	LD	(IX+-3),BC
+                           A  1951    ;  290	        break;
+                           A  1952    .LINE 290
+                           A  1953    
+0006A7 C3 51 01 00 00      A  1954    	JR	L_117
+                           A  1955    ;  291	      }
+                           A  1956    .LINE 291
+                           A  1957    
+                           A  1958    ;  292	
+                           A  1959    ;  293	      //sprintf ( log, "# Receive %d by
+                           A  1960    ;  294	      //logit ( log );
+                           A  1961    ;  295	
+                           A  1962    ;  296	      {
+                           A  1963    ;  297	        char log [ 40 ];
+                           A  1964    ;  298	        unsigned int counter;
+                           A  1965    ;  299			unsigned int crc;
+                           A  1966    ;  300	
+                           A  1967    ;  301	  	    for ( counter = 0; counter < da
+0006AC                     A  1968    L_88:
+                           A  1969    .LINE 301
+                           A  1970    
+0006AC DD07F7              A  1971    	LD	BC,(IX+-9)
+0006AF DD27E6              A  1972    	LD	HL,(IX+-26)
+0006B2 B7                  A  1973    	OR	A,A
+0006B3 ED42                A  1974    	SBC	HL,BC
+0006B5 38 0C               A  1975    	JR	C,L_90
+0006B7 18 25               A  1976    	JR	L_91
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  39
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+0006B9                     A  1977    L_87:
+0006B9 01000000            A  1978    	LD	BC,0
+0006BD DD0FE6              A  1979    	LD	(IX+-26),BC
+0006C0 18 EA 00            A  1980    	JR	L_88
+0006C3                     A  1981    L_90:
+                           A  1982    ;  302	          data_buffer [ counter ] = uar
+                           A  1983    .LINE 302
+                           A  1984    
+0006C3 CD 00 00 00         A  1985    	CALL	_uart_getchar_block
+0006C7 DD07E6              A  1986    	LD	BC,(IX+-26)
+0006CA DDE5E1              A  1987    	LD	HL,IX
+0006CD 1128FEFF            A  1988    	LD	DE,-472
+0006D1 19                  A  1989    	ADD	HL,DE
+0006D2 09                  A  1990    	ADD	HL,BC
+0006D3 77                  A  1991    	LD	(HL),A
+0006D4 DD07E6              A  1992    	LD	BC,(IX+-26)
+0006D7 03                  A  1993    	INC	BC
+0006D8 DD0FE6              A  1994    	LD	(IX+-26),BC
+                           A  1995    ;  303	        }
+                           A  1996    .LINE 303
+                           A  1997    
+0006DB 18 CF 00            A  1998    	JR	L_88
+0006DE                     A  1999    L_91:
+                           A  2000    ;  304	
+                           A  2001    ;  305	        crc = crc32 ( 0, data_buffer, d
+                           A  2002    .LINE 305
+                           A  2003    
+0006DE DD07F7              A  2004    	LD	BC,(IX+-9)
+0006E1 AF                  A  2005    	XOR	A,A
+0006E2 C5D1                A  2006    	LD	DE,BC
+0006E4 4F                  A  2007    	LD	C,A
+0006E5 0600                A  2008    	LD	B,0
+0006E7 C5                  A  2009    	PUSH	BC
+0006E8 D5                  A  2010    	PUSH	DE
+0006E9 DDE5E1              A  2011    	LD	HL,IX
+0006EC 0128FEFF            A  2012    	LD	BC,-472
+0006F0 09                  A  2013    	ADD	HL,BC
+0006F1 E5C1                A  2014    	LD	BC,HL
+0006F3 C5                  A  2015    	PUSH	BC
+0006F4 01000000            A  2016    	LD	BC,0
+0006F8 C5                  A  2017    	PUSH	BC
+0006F9 C5                  A  2018    	PUSH	BC
+0006FA CD 00 00 00         A  2019    	CALL	_crc32
+0006FE C1                  A  2020    	POP	BC
+0006FF C1                  A  2021    	POP	BC
+000700 C1                  A  2022    	POP	BC
+000701 C1                  A  2023    	POP	BC
+000702 C1                  A  2024    	POP	BC
+000703 DD2FD2              A  2025    	LD	(IX+-46),HL
+                           A  2026    ;  306	
+                           A  2027    ;  307	        sprintf ( log, "+RECEIVE %X\n",
+                           A  2028    .LINE 307
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  40
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  2029    
+000706 DDE5E1              A  2030    	LD	HL,IX
+000709 0128FFFF            A  2031    	LD	BC,-216
+00070D 09                  A  2032    	ADD	HL,BC
+00070E 22 00 00 00         A  2033    	LD	(___print_out),HL
+000712 01 F4 02 00         A  2034    	LD	BC,L__77
+000716 C5                  A  2035    	PUSH	BC
+000717 CD 00 00 00         A  2036    	CALL	___print_sendstring
+00071B C1                  A  2037    	POP	BC
+00071C 3E20                A  2038    	LD	A,32
+00071E 32 01 00 00         A  2039    	LD	(___print_fmt+1),A
+000722 3E78                A  2040    	LD	A,120
+000724 32 04 00 00         A  2041    	LD	(___print_fmt+4),A
+000728 DD07D2              A  2042    	LD	BC,(IX+-46)
+00072B AF                  A  2043    	XOR	A,A
+00072C C5D1                A  2044    	LD	DE,BC
+00072E 4F                  A  2045    	LD	C,A
+00072F 0600                A  2046    	LD	B,0
+000731 C5                  A  2047    	PUSH	BC
+000732 D5                  A  2048    	PUSH	DE
+000733 CD 00 00 00         A  2049    	CALL	__u_uitoa
+000737 C1                  A  2050    	POP	BC
+000738 C1                  A  2051    	POP	BC
+000739 010A0000            A  2052    	LD	BC,10
+00073D C5                  A  2053    	PUSH	BC
+00073E CD 00 00 00         A  2054    	CALL	___print_sputch
+000742 C1                  A  2055    	POP	BC
+000743 01000000            A  2056    	LD	BC,0
+000747 C5                  A  2057    	PUSH	BC
+000748 CD 00 00 00         A  2058    	CALL	___print_sputch
+00074C C1                  A  2059    	POP	BC
+                           A  2060    ;  308	        logit ( log );
+                           A  2061    .LINE 308
+                           A  2062    
+00074D DDE5E1              A  2063    	LD	HL,IX
+000750 0128FFFF            A  2064    	LD	BC,-216
+000754 09                  A  2065    	ADD	HL,BC
+000755 E5C1                A  2066    	LD	BC,HL
+000757 C5                  A  2067    	PUSH	BC
+000758 CD 24 00 00         A  2068    	CALL	_logit
+00075C C1                  A  2069    	POP	BC
+                           A  2070    ;  309	      }
+                           A  2071    ;  310	
+                           A  2072    ;  311	      state = ss_ready;
+                           A  2073    .LINE 311
+                           A  2074    
+00075D 01000000            A  2075    	LD	BC,0
+000761 DD0FFD              A  2076    	LD	(IX+-3),BC
+                           A  2077    ;  312	      break;
+                           A  2078    .LINE 312
+                           A  2079    
+000764 C3 51 01 00 00      A  2080    	JR	L_117
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  41
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  2081    ;  313	
+                           A  2082    ;  314	    case ss_burn:
+000769                     A  2083    L_93:
+                           A  2084    .LINE 314
+                           A  2085    
+                           A  2086    ;  315	      {
+                           A  2087    ;  316	        // burn address
+                           A  2088    ;  317	        // TODO: Someday maybe..
+                           A  2089    ;  318	        // TODO: burn address [name] [l
+                           A  2090    ;  319			  unsigned int address;
+                           A  2091    ;  320			  char log [ 40 ];
+                           A  2092    ;  321	
+                           A  2093    ;  322	        // verify arguments
+                           A  2094    ;  323	        if ( ! args ) {
+                           A  2095    .LINE 323
+                           A  2096    
+000769 DD27FA              A  2097    	LD	HL,(IX+-6)
+00076C CD 00 00 00         A  2098    	CALL	__icmpzero
+000770 20 17 00            A  2099    	JR	NZ,L_95
+                           A  2100    ;  324	          logit ( "+BADARGS\n" );
+                           A  2101    .LINE 324
+                           A  2102    
+000773 01 FE 02 00         A  2103    	LD	BC,L__79
+000777 C5                  A  2104    	PUSH	BC
+000778 CD 24 00 00         A  2105    	CALL	_logit
+00077C C1                  A  2106    	POP	BC
+                           A  2107    ;  325	          state = ss_ready;
+                           A  2108    .LINE 325
+                           A  2109    
+00077D 01000000            A  2110    	LD	BC,0
+000781 DD0FFD              A  2111    	LD	(IX+-3),BC
+                           A  2112    ;  326	          break;
+                           A  2113    .LINE 326
+                           A  2114    
+000784 C3 51 01 00 00      A  2115    	JR	L_117
+                           A  2116    ;  327	        }
+000789                     A  2117    L_95:
+                           A  2118    .LINE 327
+                           A  2119    
+                           A  2120    ;  328	
+                           A  2121    ;  329	        address = atoi ( args );
+                           A  2122    .LINE 329
+                           A  2123    
+000789 DD07FA              A  2124    	LD	BC,(IX+-6)
+00078C C5                  A  2125    	PUSH	BC
+00078D CD 00 00 00         A  2126    	CALL	_atoi
+000791 C1                  A  2127    	POP	BC
+000792 DD2FD8              A  2128    	LD	(IX+-40),HL
+                           A  2129    ;  330	
+                           A  2130    ;  331	        if ( /*( address > 65000 ) ||*/
+                           A  2131    ;  332	             ( data_len == 0 ) )
+                           A  2132    .LINE 332
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  42
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  2133    
+000795 DD27F7              A  2134    	LD	HL,(IX+-9)
+000798 CD 00 00 00         A  2135    	CALL	__icmpzero
+00079C 20 17 00            A  2136    	JR	NZ,L_97
+                           A  2137    ;  333	        {
+                           A  2138    ;  334	          logit ( "+BADARGS\n" );
+                           A  2139    .LINE 334
+                           A  2140    
+00079F 01 08 03 00         A  2141    	LD	BC,L__81
+0007A3 C5                  A  2142    	PUSH	BC
+0007A4 CD 24 00 00         A  2143    	CALL	_logit
+0007A8 C1                  A  2144    	POP	BC
+                           A  2145    ;  335	          state = ss_ready;
+                           A  2146    .LINE 335
+                           A  2147    
+0007A9 01000000            A  2148    	LD	BC,0
+0007AD DD0FFD              A  2149    	LD	(IX+-3),BC
+                           A  2150    ;  336	          break;
+                           A  2151    .LINE 336
+                           A  2152    
+0007B0 C3 51 01 00 00      A  2153    	JR	L_117
+                           A  2154    ;  337	        }
+0007B5                     A  2155    L_97:
+                           A  2156    .LINE 337
+                           A  2157    
+                           A  2158    ;  338	
+                           A  2159    ;  339	        sprintf ( log, "# Address %X\n"
+                           A  2160    .LINE 339
+                           A  2161    
+0007B5 DDE5E1              A  2162    	LD	HL,IX
+0007B8 0150FFFF            A  2163    	LD	BC,-176
+0007BC 09                  A  2164    	ADD	HL,BC
+0007BD 22 00 00 00         A  2165    	LD	(___print_out),HL
+0007C1 01 12 03 00         A  2166    	LD	BC,L__82
+0007C5 C5                  A  2167    	PUSH	BC
+0007C6 CD 00 00 00         A  2168    	CALL	___print_sendstring
+0007CA C1                  A  2169    	POP	BC
+0007CB 3E20                A  2170    	LD	A,32
+0007CD 32 01 00 00         A  2171    	LD	(___print_fmt+1),A
+0007D1 3E78                A  2172    	LD	A,120
+0007D3 32 04 00 00         A  2173    	LD	(___print_fmt+4),A
+0007D7 DD07D8              A  2174    	LD	BC,(IX+-40)
+0007DA AF                  A  2175    	XOR	A,A
+0007DB C5D1                A  2176    	LD	DE,BC
+0007DD 4F                  A  2177    	LD	C,A
+0007DE 0600                A  2178    	LD	B,0
+0007E0 C5                  A  2179    	PUSH	BC
+0007E1 D5                  A  2180    	PUSH	DE
+0007E2 CD 00 00 00         A  2181    	CALL	__u_uitoa
+0007E6 C1                  A  2182    	POP	BC
+0007E7 C1                  A  2183    	POP	BC
+0007E8 010A0000            A  2184    	LD	BC,10
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  43
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+0007EC C5                  A  2185    	PUSH	BC
+0007ED CD 00 00 00         A  2186    	CALL	___print_sputch
+0007F1 C1                  A  2187    	POP	BC
+0007F2 01000000            A  2188    	LD	BC,0
+0007F6 C5                  A  2189    	PUSH	BC
+0007F7 CD 00 00 00         A  2190    	CALL	___print_sputch
+0007FB C1                  A  2191    	POP	BC
+                           A  2192    ;  340	        logit ( log );
+                           A  2193    .LINE 340
+                           A  2194    
+0007FC DDE5E1              A  2195    	LD	HL,IX
+0007FF 0150FFFF            A  2196    	LD	BC,-176
+000803 09                  A  2197    	ADD	HL,BC
+000804 E5C1                A  2198    	LD	BC,HL
+000806 C5                  A  2199    	PUSH	BC
+000807 CD 24 00 00         A  2200    	CALL	_logit
+00080B C1                  A  2201    	POP	BC
+                           A  2202    ;  341	
+                           A  2203    ;  342			
+                           A  2204    ;  343	        // burn it out
+                           A  2205    ;  344			{
+                           A  2206    ;  345				UINT8 *burnaddr = (UINT8*) 
+                           A  2207    .LINE 345
+                           A  2208    
+00080C DD07D8              A  2209    	LD	BC,(IX+-40)
+00080F DD0FE1              A  2210    	LD	(IX+-31),BC
+                           A  2211    ;  346				UINT16 burnlen = data_len;
+                           A  2212    .LINE 346
+                           A  2213    
+000812 DD27F7              A  2214    	LD	HL,(IX+-9)
+000815 DD75E4              A  2215    	LD	(IX+-28),L
+000818 DD74E5              A  2216    	LD	(IX+-27),H
+                           A  2217    ;  347				UINT8 *srcaddr = data_buffe
+                           A  2218    .LINE 347
+                           A  2219    
+00081B DDE5E1              A  2220    	LD	HL,IX
+00081E 0128FEFF            A  2221    	LD	BC,-472
+000822 09                  A  2222    	ADD	HL,BC
+000823 DD2FDB              A  2223    	LD	(IX+-37),HL
+                           A  2224    ;  348				
+                           A  2225    ;  349				while ( burnlen ) {
+000826                     A  2226    L_101:
+                           A  2227    .LINE 349
+                           A  2228    
+000826 DD27E4              A  2229    	LD	HL,(IX+-28)
+000829 CD 00 00 00         A  2230    	CALL	__scmpzero
+00082D 28 55 00            A  2231    	JR	Z,L_105
+                           A  2232    ;  350					*burnaddr++ = *srcaddr+
+                           A  2233    .LINE 350
+                           A  2234    
+000830 DD27DB              A  2235    	LD	HL,(IX+-37)
+000833 0122FEFF            A  2236    	LD	BC,-478
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  44
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000837 CD 00 00 00         A  2237    	CALL	__istix
+00083B DD27E1              A  2238    	LD	HL,(IX+-31)
+00083E 011FFEFF            A  2239    	LD	BC,-481
+000842 CD 00 00 00         A  2240    	CALL	__istix
+000846 0122FEFF            A  2241    	LD	BC,-478
+00084A CD 00 00 00         A  2242    	CALL	__ildix
+00084E E5FDE1              A  2243    	LD	IY,HL
+000851 011FFEFF            A  2244    	LD	BC,-481
+000855 CD 00 00 00         A  2245    	CALL	__ildix
+000859 FD7E00              A  2246    	LD	A,(IY)
+00085C 77                  A  2247    	LD	(HL),A
+00085D DD07DB              A  2248    	LD	BC,(IX+-37)
+000860 03                  A  2249    	INC	BC
+000861 DD0FDB              A  2250    	LD	(IX+-37),BC
+000864 DD07E1              A  2251    	LD	BC,(IX+-31)
+000867 03                  A  2252    	INC	BC
+000868 DD0FE1              A  2253    	LD	(IX+-31),BC
+                           A  2254    ;  351					delay_ms_spin(2); // so
+                           A  2255    .LINE 351
+                           A  2256    
+00086B 01020000            A  2257    	LD	BC,2
+00086F C5                  A  2258    	PUSH	BC
+000870 CD 00 00 00         A  2259    	CALL	_delay_ms_spin
+000874 C1                  A  2260    	POP	BC
+                           A  2261    ;  352					burnlen--;
+                           A  2262    .LINE 352
+                           A  2263    
+000875 DD31E4              A  2264    	LD	IY,(IX+-28)
+000878 ED23FF              A  2265    	LEA	HL,IY+-1
+00087B DD75E4              A  2266    	LD	(IX+-28),L
+00087E DD74E5              A  2267    	LD	(IX+-27),H
+                           A  2268    ;  353				}
+                           A  2269    .LINE 353
+                           A  2270    
+000881 18 A3 00            A  2271    	JR	L_101
+                           A  2272    ;  354				
+                           A  2273    ;  355			}
+000884                     A  2274    L_105:
+                           A  2275    .LINE 355
+                           A  2276    
+                           A  2277    ;  356			
+                           A  2278    ;  357	        // verify
+                           A  2279    ;  358	        if ( memcmp ( (void*)address, (
+                           A  2280    .LINE 358
+                           A  2281    
+000884 DD07F7              A  2282    	LD	BC,(IX+-9)
+000887 C5                  A  2283    	PUSH	BC
+000888 DDE5E1              A  2284    	LD	HL,IX
+00088B 0128FEFF            A  2285    	LD	BC,-472
+00088F 09                  A  2286    	ADD	HL,BC
+000890 E5C1                A  2287    	LD	BC,HL
+000892 C5                  A  2288    	PUSH	BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  45
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000893 DD07D8              A  2289    	LD	BC,(IX+-40)
+000896 C5                  A  2290    	PUSH	BC
+000897 CD 00 00 00         A  2291    	CALL	_memcmp
+00089B C1                  A  2292    	POP	BC
+00089C C1                  A  2293    	POP	BC
+00089D C1                  A  2294    	POP	BC
+00089E CD 00 00 00         A  2295    	CALL	__icmpzero
+0008A2 20 0E 00            A  2296    	JR	NZ,L_104
+                           A  2297    ;  359	          logit ( "+BURNOK\n" );
+                           A  2298    .LINE 359
+                           A  2299    
+0008A5 01 1D 03 00         A  2300    	LD	BC,L__85
+0008A9 C5                  A  2301    	PUSH	BC
+0008AA CD 24 00 00         A  2302    	CALL	_logit
+0008AE C1                  A  2303    	POP	BC
+                           A  2304    ;  360	        } else {
+                           A  2305    .LINE 360
+                           A  2306    
+0008AF 18 0B 00            A  2307    	JR	L_106
+0008B2                     A  2308    L_104:
+                           A  2309    ;  361	          logit ( "+BURNFAIL\n" );
+                           A  2310    .LINE 361
+                           A  2311    
+0008B2 01 26 03 00         A  2312    	LD	BC,L__86
+0008B6 C5                  A  2313    	PUSH	BC
+0008B7 CD 24 00 00         A  2314    	CALL	_logit
+0008BB C1                  A  2315    	POP	BC
+                           A  2316    ;  362	        }
+                           A  2317    ;  363	
+                           A  2318    ;  364	      }
+0008BC                     A  2319    L_106:
+                           A  2320    .LINE 364
+                           A  2321    
+                           A  2322    ;  365	      state = ss_ready;
+                           A  2323    .LINE 365
+                           A  2324    
+0008BC 01000000            A  2325    	LD	BC,0
+0008C0 DD0FFD              A  2326    	LD	(IX+-3),BC
+                           A  2327    ;  366	      break;
+                           A  2328    .LINE 366
+                           A  2329    
+0008C3 C3 51 01 00 00      A  2330    	JR	L_117
+                           A  2331    ;  367	
+                           A  2332    ;  368	    case ss_dump:
+0008C8                     A  2333    L_107:
+                           A  2334    .LINE 368
+                           A  2335    
+                           A  2336    ;  369	      // dump address len
+                           A  2337    ;  370	      {
+                           A  2338    ;  371	        char *split;
+                           A  2339    ;  372	        unsigned int address;
+                           A  2340    ;  373	        unsigned int len;
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  46
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  2341    ;  374	
+                           A  2342    ;  375	        // verify arguments
+                           A  2343    ;  376	        if ( ! args ) {
+                           A  2344    .LINE 376
+                           A  2345    
+0008C8 DD27FA              A  2346    	LD	HL,(IX+-6)
+0008CB CD 00 00 00         A  2347    	CALL	__icmpzero
+0008CF 20 17 00            A  2348    	JR	NZ,L_109
+                           A  2349    ;  377	          logit ( "+BADARGS\n" );
+                           A  2350    .LINE 377
+                           A  2351    
+0008D2 01 31 03 00         A  2352    	LD	BC,L__88
+0008D6 C5                  A  2353    	PUSH	BC
+0008D7 CD 24 00 00         A  2354    	CALL	_logit
+0008DB C1                  A  2355    	POP	BC
+                           A  2356    ;  378	          state = ss_ready;
+                           A  2357    .LINE 378
+                           A  2358    
+0008DC 01000000            A  2359    	LD	BC,0
+0008E0 DD0FFD              A  2360    	LD	(IX+-3),BC
+                           A  2361    ;  379	          break;
+                           A  2362    .LINE 379
+                           A  2363    
+0008E3 C3 51 01 00 00      A  2364    	JR	L_117
+                           A  2365    ;  380	        }
+0008E8                     A  2366    L_109:
+                           A  2367    .LINE 380
+                           A  2368    
+                           A  2369    ;  381	
+                           A  2370    ;  382	        split = strchr ( args, ' ' );
+                           A  2371    .LINE 382
+                           A  2372    
+0008E8 01200000            A  2373    	LD	BC,32
+0008EC C5                  A  2374    	PUSH	BC
+0008ED DD07FA              A  2375    	LD	BC,(IX+-6)
+0008F0 C5                  A  2376    	PUSH	BC
+0008F1 CD 00 00 00         A  2377    	CALL	_strchr
+0008F5 C1                  A  2378    	POP	BC
+0008F6 C1                  A  2379    	POP	BC
+0008F7 DD2FD5              A  2380    	LD	(IX+-43),HL
+                           A  2381    ;  383	        address = atoi ( args );
+                           A  2382    .LINE 383
+                           A  2383    
+0008FA DD07FA              A  2384    	LD	BC,(IX+-6)
+0008FD C5                  A  2385    	PUSH	BC
+0008FE CD 00 00 00         A  2386    	CALL	_atoi
+000902 C1                  A  2387    	POP	BC
+000903 DD2FEF              A  2388    	LD	(IX+-17),HL
+                           A  2389    ;  384	        len = atoi ( split + 1 );
+                           A  2390    .LINE 384
+                           A  2391    
+000906 DD07D5              A  2392    	LD	BC,(IX+-43)
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  47
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000909 03                  A  2393    	INC	BC
+00090A C5                  A  2394    	PUSH	BC
+00090B CD 00 00 00         A  2395    	CALL	_atoi
+00090F C1                  A  2396    	POP	BC
+000910 DD2FEC              A  2397    	LD	(IX+-20),HL
+                           A  2398    ;  385	
+                           A  2399    ;  386	        if ( /*( address > 65000 ) ||*/
+                           A  2400    ;  387	             ( len == 0 ) )
+                           A  2401    .LINE 387
+                           A  2402    
+000913 DD27EC              A  2403    	LD	HL,(IX+-20)
+000916 CD 00 00 00         A  2404    	CALL	__icmpzero
+00091A 20 17 00            A  2405    	JR	NZ,L_115
+                           A  2406    ;  388	        {
+                           A  2407    ;  389	          logit ( "+BADARGS\n" );
+                           A  2408    .LINE 389
+                           A  2409    
+00091D 01 3B 03 00         A  2410    	LD	BC,L__90
+000921 C5                  A  2411    	PUSH	BC
+000922 CD 24 00 00         A  2412    	CALL	_logit
+000926 C1                  A  2413    	POP	BC
+                           A  2414    ;  390	          state = ss_ready;
+                           A  2415    .LINE 390
+                           A  2416    
+000927 01000000            A  2417    	LD	BC,0
+00092B DD0FFD              A  2418    	LD	(IX+-3),BC
+                           A  2419    ;  391	          break;
+                           A  2420    .LINE 391
+                           A  2421    
+00092E C3 51 01 00 00      A  2422    	JR	L_117
+                           A  2423    ;  392	        }
+000933                     A  2424    L_115:
+                           A  2425    .LINE 392
+                           A  2426    
+                           A  2427    ;  393	
+                           A  2428    ;  394	        // dump it out
+                           A  2429    ;  395			while ( len ) {
+000933                     A  2430    L_113:
+                           A  2431    .LINE 395
+                           A  2432    
+000933 DD27EC              A  2433    	LD	HL,(IX+-20)
+000936 CD 00 00 00         A  2434    	CALL	__icmpzero
+00093A 28 25 00            A  2435    	JR	Z,L_116
+                           A  2436    ;  396				logaddress ( address, *((UI
+                           A  2437    .LINE 396
+                           A  2438    
+00093D DD27EF              A  2439    	LD	HL,(IX+-17)
+000940 4E                  A  2440    	LD	C,(HL)
+000941 0600                A  2441    	LD	B,0
+000943 C5                  A  2442    	PUSH	BC
+000944 DD07EF              A  2443    	LD	BC,(IX+-17)
+000947 C5                  A  2444    	PUSH	BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  48
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000948 CD 4C 00 00         A  2445    	CALL	_logaddress
+00094C C1                  A  2446    	POP	BC
+00094D C1                  A  2447    	POP	BC
+                           A  2448    ;  397				address++;
+                           A  2449    .LINE 397
+                           A  2450    
+00094E DD07EF              A  2451    	LD	BC,(IX+-17)
+000951 03                  A  2452    	INC	BC
+000952 DD0FEF              A  2453    	LD	(IX+-17),BC
+                           A  2454    ;  398				len--;
+                           A  2455    .LINE 398
+                           A  2456    
+000955 DD31EC              A  2457    	LD	IY,(IX+-20)
+000958 ED33FF              A  2458    	LEA	IY,IY+-1
+00095B DD3EEC              A  2459    	LD	(IX+-20),IY
+                           A  2460    ;  399			}
+                           A  2461    .LINE 399
+                           A  2462    
+00095E 18 D3 00            A  2463    	JR	L_113
+000961                     A  2464    L_116:
+                           A  2465    ;  400	
+                           A  2466    ;  401	        logit ( "+OK\n" );
+                           A  2467    .LINE 401
+                           A  2468    
+000961 01 45 03 00         A  2469    	LD	BC,L__92
+000965 C5                  A  2470    	PUSH	BC
+000966 CD 24 00 00         A  2471    	CALL	_logit
+00096A C1                  A  2472    	POP	BC
+                           A  2473    ;  402	
+                           A  2474    ;  403	      }
+                           A  2475    ;  404	
+                           A  2476    ;  405	      state = ss_ready;
+                           A  2477    .LINE 405
+                           A  2478    
+00096B 01000000            A  2479    	LD	BC,0
+00096F DD0FFD              A  2480    	LD	(IX+-3),BC
+                           A  2481    ;  406	      break;
+                           A  2482    .LINE 406
+                           A  2483    
+000972 C3 51 01 00 00      A  2484    	JR	L_117
+                           A  2485    ;  407	
+                           A  2486    ;  408	    } // switch
+                           A  2487    ;  409	
+                           A  2488    ;  410	
+                           A  2489    ;  411	
+                           A  2490    ;  412	  } // while
+                           A  2491    ;  413	
+                           A  2492    ;  414	  return;
+                           A  2493    ;  415	}
+                           A  2494    .LINE 415
+                           A  2495    
+000977 DDF9                A  2496    	LD	SP,IX
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  49
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+000979 DDE1                A  2497    	POP	IX
+00097B C9                  A  2498    	RET	
+                           A  2499    
+                           A  2500    
+                           A  2501    ;**************************** _flashtool_serial
+                           A  2502    ;Name                         Addr/Register   S
+                           A  2503    ;_memcmp                             IMPORT  --
+                           A  2504    ;_delay_ms_spin                      IMPORT  --
+                           A  2505    ;_crc32                              IMPORT  --
+                           A  2506    ;__u_uitoa                           IMPORT  --
+                           A  2507    ;___print_fmt                        IMPORT    
+                           A  2508    ;__u_itoa                            IMPORT  --
+                           A  2509    ;___print_sendstring                 IMPORT  --
+                           A  2510    ;_atoi                               IMPORT  --
+                           A  2511    ;_uart_echo_loop_forever             IMPORT  --
+                           A  2512    ;_log_format                         STATIC    
+                           A  2513    ;___print_sputch                     IMPORT  --
+                           A  2514    ;___print_send                       IMPORT  --
+                           A  2515    ;___print_buff                       IMPORT  un
+                           A  2516    ;___print_out                        IMPORT    
+                           A  2517    ;_strlen                             IMPORT  --
+                           A  2518    ;_strcmp                             IMPORT  --
+                           A  2519    ;_strchr                             IMPORT  --
+                           A  2520    ;_uart_putchar                       IMPORT  --
+                           A  2521    ;_uart_getchar_block                 IMPORT  --
+                           A  2522    ;data_buffer                         IX-472    
+                           A  2523    ;log                                 IX-216    
+                           A  2524    ;log                                 IX-176    
+                           A  2525    ;log                                 IX-136    
+                           A  2526    ;buffer                               IX-96    
+                           A  2527    ;crc                                  IX-46    
+                           A  2528    ;split                                IX-43    
+                           A  2529    ;address                              IX-40    
+                           A  2530    ;srcaddr                              IX-37    
+                           A  2531    ;b                                    IX-34    
+                           A  2532    ;burnaddr                             IX-31    
+                           A  2533    ;burnlen                              IX-28    
+                           A  2534    ;counter                              IX-26    
+                           A  2535    ;counter                              IX-23    
+                           A  2536    ;len                                  IX-20    
+                           A  2537    ;address                              IX-17    
+                           A  2538    ;counter                              IX-14    
+                           A  2539    ;c                                    IX-11    
+                           A  2540    ;char_echo_mode                       IX-10    
+                           A  2541    ;data_len                              IX-9    
+                           A  2542    ;args                                  IX-6    
+                           A  2543    ;state                                 IX-3    
+                           A  2544    
+                           A  2545    
+                           A  2546    ; Stack Frame Size: 487 (bytes)
+                           A  2547    ;       Spill Code: 0 (instruction)
+                           A  2548    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  50
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  2549    
+                           A  2550    .ENDFUNC "flashtool_serial_forever",415,"_flash
+                           A  2551    	SEGMENT STRSECT
+000009                     A  2552    L__12:
+000009 2B524541 4459       A  2553    	DB	"+READY"
+00000F 0A00                A  2554    	DB	10,0
+000011                     A  2555    L__18:
+000011 6F686169            A  2556    	DB	"ohai"
+000015 00                  A  2557    	DB	0
+000016                     A  2558    L__20:
+000016 6563686F            A  2559    	DB	"echo"
+00001A 00                  A  2560    	DB	0
+00001B                     A  2561    L__22:
+00001B 72656365 697665     A  2562    	DB	"receive"
+000022 00                  A  2563    	DB	0
+000023                     A  2564    L__24:
+000023 6275726E            A  2565    	DB	"burn"
+000027 00                  A  2566    	DB	0
+000028                     A  2567    L__26:
+000028 64756D70            A  2568    	DB	"dump"
+00002C 00                  A  2569    	DB	0
+00002D                     A  2570    L__28:
+00002D 68656C70            A  2571    	DB	"help"
+000031 00                  A  2572    	DB	0
+000032                     A  2573    L__30:
+000032 63686172 6563686F   A  2574    	DB	"charecho"
+00003A 00                  A  2575    	DB	0
+00003B                     A  2576    L__32:
+00003B 666F726D 6174       A  2577    	DB	"format"
+000041 00                  A  2578    	DB	0
+000042                     A  2579    L__34:
+000042 62756666 6572       A  2580    	DB	"buffer"
+000048 00                  A  2581    	DB	0
+000049                     A  2582    L__36:
+000049 74657374 627566     A  2583    	DB	"testbuf"
+000050 00                  A  2584    	DB	0
+000051                     A  2585    L__38:
+000051 2B424144 434F4D4D   A  2586    	DB	"+BADCOMMAND"
+000059 414E44 
+00005C 0A00                A  2587    	DB	10,0
+00005E                     A  2588    L__40:
+00005E 2B474152 42414745   A  2589    	DB	"+GARBAGE"
+000066 0A00                A  2590    	DB	10,0
+000068                     A  2591    L__42:
+000068 2B4F4841 49         A  2592    	DB	"+OHAI"
+00006D 0A00                A  2593    	DB	10,0
+00006F                     A  2594    L__43:
+00006F 456E7465 7220636F   A  2595    	DB	"Enter commands into terminal."
+000077 6D6D616E 64732069 
+00007F 6E746F20 7465726D 
+000087 696E616C 2E 
+00008C 0A00                A  2596    	DB	10,0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  51
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+00008E                     A  2597    L__44:
+00008E 0A00                A  2598    	DB	10,0
+000090                     A  2599    L__45:
+000090 6F686169 202D3E20   A  2600    	DB	"ohai -> return OHAI; reset to defaults
+000098 72657475 726E204F 
+0000A0 4841493B 20726573 
+0000A8 65742074 6F206465 
+0000B0 6661756C 74732E20 
+0000B8 28757365 20617320 
+0000C0 66697273 7420636F 
+0000C8 6D6D616E 642C2061 
+0000D0 6C776179 7329 
+0000D6 0A00                A  2601    	DB	10,0
+0000D8                     A  2602    L__46:
+0000D8 6563686F 202D3E20   A  2603    	DB	"echo -> enter loop, returning received
+0000E0 656E7465 72206C6F 
+0000E8 6F702C20 72657475 
+0000F0 726E696E 67207265 
+0000F8 63656976 65642063 
+000100 68617261 63746572 
+000108 732E2E20 666F7265 
+000110 766572 
+000113 0A00                A  2604    	DB	10,0
+000115                     A  2605    L__47:
+000115 72656365 69766520   A  2606    	DB	"receive N -> store next N chars (after
+00011D 4E202D3E 2073746F 
+000125 7265206E 65787420 
+00012D 4E206368 61727320 
+000135 28616674 65722063 
+00013D 6F6D6D61 6E642072 
+000145 65747572 6E292074 
+00014D 6F206275 66666572 
+000155 0A00                A  2607    	DB	10,0
+000157                     A  2608    L__48:
+000157 6275726E 2041202D   A  2609    	DB	"burn A -> given a received buffer, bur
+00015F 3E206769 76656E20 
+000167 61207265 63656976 
+00016F 65642062 75666665 
+000177 722C2062 75726E20 
+00017F 746F2061 64647265 
+000187 73732041 
+00018B 0A00                A  2610    	DB	10,0
+00018D                     A  2611    L__49:
+00018D 64756D70 2041204C   A  2612    	DB	"dump A L -> hexdump from address A of 
+000195 202D3E20 68657864 
+00019D 756D7020 66726F6D 
+0001A5 20616464 72657373 
+0001AD 2041206F 66206C65 
+0001B5 6E677468 204C 
+0001BB 0A00                A  2613    	DB	10,0
+0001BD                     A  2614    L__50:
+0001BD 63686172 6563686F   A  2615    	DB	"charecho -> toggle character echo"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  52
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+0001C5 202D3E20 746F6767 
+0001CD 6C652063 68617261 
+0001D5 63746572 20656368 
+0001DD 6F 
+0001DE 0A00                A  2616    	DB	10,0
+0001E0                     A  2617    L__51:
+0001E0 62756666 6572202D   A  2618    	DB	"buffer -> dump the currently received 
+0001E8 3E206475 6D702074 
+0001F0 68652063 75727265 
+0001F8 6E746C79 20726563 
+000200 65697665 64206275 
+000208 66666572 
+00020C 0A00                A  2619    	DB	10,0
+00020E                     A  2620    L__52:
+00020E 74657374 62756620   A  2621    	DB	"testbuf V -> generate a buffer of 0xV"
+000216 56202D3E 2067656E 
+00021E 65726174 65206120 
+000226 62756666 6572206F 
+00022E 66203078 56 
+000233 0A00                A  2622    	DB	10,0
+000235                     A  2623    L__53:
+000235 666F726D 6174202D   A  2624    	DB	"format -> toggle dump formatting; defa
+00023D 3E20746F 67676C65 
+000245 2064756D 7020666F 
+00024D 726D6174 74696E67 
+000255 3B206465 6661756C 
+00025D 74206F6E 2E205768 
+000265 656E206F 66662C20 
+00026D 6F6E6C79 20312061 
+000275 64647265 73732F76 
+00027D 616C7565 20706572 
+000285 206C696E 65 
+00028A 0A00                A  2625    	DB	10,0
+00028C                     A  2626    L__54:
+00028C 68656C70 202D3E20   A  2627    	DB	"help -> duh"
+000294 647568 
+000297 0A00                A  2628    	DB	10,0
+000299                     A  2629    L__55:
+000299 0A00                A  2630    	DB	10,0
+00029B                     A  2631    L__58:
+00029B 2B454348 4F         A  2632    	DB	"+ECHO"
+0002A0 0A00                A  2633    	DB	10,0
+0002A2                     A  2634    L__60:
+0002A2 2B424144 41524753   A  2635    	DB	"+BADARGS"
+0002AA 0A00                A  2636    	DB	10,0
+0002AC                     A  2637    L__62:
+0002AC 2B424144 41524753   A  2638    	DB	"+BADARGS"
+0002B4 0A00                A  2639    	DB	10,0
+0002B6                     A  2640    L__64:
+0002B6 23204765 6E657261   A  2641    	DB	"# Generated "
+0002BE 74656420 
+0002C2 00                  A  2642    	DB	0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  53
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+0002C3                     A  2643    L__65:
+0002C3 20627974 6573206F   A  2644    	DB	" bytes of value "
+0002CB 66207661 6C756520 
+0002D3 00                  A  2645    	DB	0
+0002D4                     A  2646    L__68:
+0002D4 2B424144 41524753   A  2647    	DB	"+BADARGS"
+0002DC 0A00                A  2648    	DB	10,0
+0002DE                     A  2649    L__70:
+0002DE 0A00                A  2650    	DB	10,0
+0002E0                     A  2651    L__72:
+0002E0 2B424144 41524753   A  2652    	DB	"+BADARGS"
+0002E8 0A00                A  2653    	DB	10,0
+0002EA                     A  2654    L__75:
+0002EA 2B424144 41524753   A  2655    	DB	"+BADARGS"
+0002F2 0A00                A  2656    	DB	10,0
+0002F4                     A  2657    L__77:
+0002F4 2B524543 45495645   A  2658    	DB	"+RECEIVE "
+0002FC 20 
+0002FD 00                  A  2659    	DB	0
+0002FE                     A  2660    L__79:
+0002FE 2B424144 41524753   A  2661    	DB	"+BADARGS"
+000306 0A00                A  2662    	DB	10,0
+000308                     A  2663    L__81:
+000308 2B424144 41524753   A  2664    	DB	"+BADARGS"
+000310 0A00                A  2665    	DB	10,0
+000312                     A  2666    L__82:
+000312 23204164 64726573   A  2667    	DB	"# Address "
+00031A 7320 
+00031C 00                  A  2668    	DB	0
+00031D                     A  2669    L__85:
+00031D 2B425552 4E4F4B     A  2670    	DB	"+BURNOK"
+000324 0A00                A  2671    	DB	10,0
+000326                     A  2672    L__86:
+000326 2B425552 4E464149   A  2673    	DB	"+BURNFAIL"
+00032E 4C 
+00032F 0A00                A  2674    	DB	10,0
+000331                     A  2675    L__88:
+000331 2B424144 41524753   A  2676    	DB	"+BADARGS"
+000339 0A00                A  2677    	DB	10,0
+00033B                     A  2678    L__90:
+00033B 2B424144 41524753   A  2679    	DB	"+BADARGS"
+000343 0A00                A  2680    	DB	10,0
+000345                     A  2681    L__92:
+000345 2B4F4B              A  2682    	DB	"+OK"
+000348 0A00                A  2683    	DB	10,0
+                           A  2684    	XREF _uart_echo_loop_forever:ROM
+                           A  2685    	XREF _crc32:ROM
+                           A  2686    	XREF _uart_putchar:ROM
+                           A  2687    	XREF _uart_getchar_block:ROM
+                           A  2688    	XREF _delay_ms_spin:ROM
+                           A  2689    	XREF _lame_strlen:ROM
+                           A  2690    	XREF __u_uitoa:ROM
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:46:24     page:  54
+
+
+PC     Object              I  Line    Source flashtool_menu.src
+                           A  2691    	XREF __u_itoa:ROM
+                           A  2692    	XREF ___print_sendstring:ROM
+                           A  2693    	XREF ___print_sputch:ROM
+                           A  2694    	XREF ___print_send:ROM
+                           A  2695    	XREF ___print_out:ROM
+                           A  2696    	XREF ___print_buff:ROM
+                           A  2697    	XREF ___print_fmt:ROM
+                           A  2698    	XREF _strlen:ROM
+                           A  2699    	XREF _strchr:ROM
+                           A  2700    	XREF _strcmp:ROM
+                           A  2701    	XREF _memcmp:ROM
+                           A  2702    	XREF _atoi:ROM
+                           A  2703    	XREF _write_UART0:ROM
+                           A  2704    	XREF __iremu:ROM
+                           A  2705    	XREF __stoiu:ROM
+                           A  2706    	XREF __itol:ROM
+                           A  2707    	XREF __ildix:ROM
+                           A  2708    	XREF __istix:ROM
+                           A  2709    	XREF __scmpzero:ROM
+                           A  2710    	XREF __icmpzero:ROM
+                           A  2711    	XREF __seqcaseD:ROM
+                           A  2712    	XDEF _flashtool_serial_forever
+                           A  2713    	XDEF _logaddress
+                           A  2714    	XDEF _logit
+                           A  2715    	XDEF _log_format
+                           A  2716    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 2717

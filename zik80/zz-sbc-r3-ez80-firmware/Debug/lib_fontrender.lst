@@ -1,0 +1,1805 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -noglobalopt -nolocalcse -optsize -nomodsect 
+                           A     3    ; -padbranch -debug -peephole -const=ROM 
+                           A     4    	FILE	"..\LIB_FONTRENDER.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   2
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+                           A    95    .BEGREC "fmt_type",19
+                           A    96    .DEFINE "status"
+                           A    97    .VALUE 0
+                           A    98    .CLASS 8
+                           A    99    .TYPE 12
+                           A   100    .ENDEF
+                           A   101    .DEFINE "flags"
+                           A   102    .VALUE 1
+                           A   103    .CLASS 8
+                           A   104    .TYPE 12
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   3
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+                           A   105    .ENDEF
+                           A   106    .DEFINE "size"
+                           A   107    .VALUE 2
+                           A   108    .CLASS 8
+                           A   109    .TYPE 2
+                           A   110    .ENDEF
+                           A   111    .DEFINE "chr"
+                           A   112    .VALUE 3
+                           A   113    .CLASS 8
+                           A   114    .TYPE 2
+                           A   115    .ENDEF
+                           A   116    .DEFINE "type"
+                           A   117    .VALUE 4
+                           A   118    .CLASS 8
+                           A   119    .TYPE 2
+                           A   120    .ENDEF
+                           A   121    .DEFINE "field_width"
+                           A   122    .VALUE 5
+                           A   123    .CLASS 8
+                           A   124    .TYPE 2
+                           A   125    .ENDEF
+                           A   126    .DEFINE "precision"
+                           A   127    .VALUE 6
+                           A   128    .CLASS 8
+                           A   129    .TYPE 2
+                           A   130    .ENDEF
+                           A   131    .DEFINE "set_begin"
+                           A   132    .VALUE 7
+                           A   133    .CLASS 8
+                           A   134    .TYPE 34
+                           A   135    .ENDEF
+                           A   136    .DEFINE "set_end"
+                           A   137    .VALUE 10
+                           A   138    .CLASS 8
+                           A   139    .TYPE 34
+                           A   140    .ENDEF
+                           A   141    .DEFINE "pad_whole"
+                           A   142    .VALUE 13
+                           A   143    .CLASS 8
+                           A   144    .TYPE 12
+                           A   145    .ENDEF
+                           A   146    .DEFINE "pad_pre_fract"
+                           A   147    .VALUE 14
+                           A   148    .CLASS 8
+                           A   149    .TYPE 12
+                           A   150    .ENDEF
+                           A   151    .DEFINE "pad_post_fract"
+                           A   152    .VALUE 15
+                           A   153    .CLASS 8
+                           A   154    .TYPE 12
+                           A   155    .ENDEF
+                           A   156    .DEFINE "pad_at"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   4
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+                           A   157    .VALUE 16
+                           A   158    .CLASS 8
+                           A   159    .TYPE 34
+                           A   160    .ENDEF
+                           A   161    .ENDREC "fmt_type"
+                           A   162    .BEGREC "flt_info",12
+                           A   163    .DEFINE "flags"
+                           A   164    .VALUE 0
+                           A   165    .CLASS 8
+                           A   166    .TYPE 12
+                           A   167    .ENDEF
+                           A   168    .DEFINE "exp"
+                           A   169    .VALUE 1
+                           A   170    .CLASS 8
+                           A   171    .TYPE 2
+                           A   172    .ENDEF
+                           A   173    .DEFINE "digits"
+                           A   174    .VALUE 2
+                           A   175    .CLASS 8
+                           A   176    .DIM 10
+                           A   177    .TYPE 108
+                           A   178    .ENDEF
+                           A   179    .ENDREC "flt_info"
+000000                     A   180    _delay_loop:
+                           A   181    .DEFINE "_delay_loop"
+                           A   182    
+                           A   183    .VALUE _delay_loop
+                           A   184    
+                           A   185    .CLASS 3
+                           A   186    
+                           A   187    .TYPE 65
+                           A   188    
+                           A   189    .ENDEF
+                           A   190    
+                           A   191    .BEGFUNC "delay_loop",17,"_delay_loop"
+                           A   192    
+                           A   193    .LINE 17
+                           A   194    
+                           A   195    .DEFINE "c"
+                           A   196    
+                           A   197    .CLASS 65
+                           A   198    
+                           A   199    .VALUE 6
+                           A   200    
+                           A   201    .TYPE 14
+                           A   202    
+000000 DDE5                A   203    	PUSH	IX
+000002 DD210000 00         A   204    	LD	IX,0
+000007 DD39                A   205    	ADD	IX,SP
+                           A   206    .ENDEF
+                           A   207    
+000009                     A   208    L_1:
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   5
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+                           A   209    .LINE 18
+                           A   210    
+000009 DD2706              A   211    	LD	HL,(IX+6)
+00000C CD 00 00 00         A   212    	CALL	__icmpzero
+000010 28 0D 00            A   213    	JR	Z,L_3
+                           A   214    .LINE 19
+                           A   215    
+000013 DD3106              A   216    	LD	IY,(IX+6)
+000016 ED33FF              A   217    	LEA	IY,IY+-1
+000019 DD3E06              A   218    	LD	(IX+6),IY
+                           A   219    .LINE 20
+                           A   220    
+00001C 18 EB 00            A   221    	JR	L_1
+00001F                     A   222    L_3:
+                           A   223    .LINE 21
+                           A   224    
+00001F DDF9                A   225    	LD	SP,IX
+000021 DDE1                A   226    	POP	IX
+000023 C9                  A   227    	RET	
+                           A   228    
+                           A   229    
+                           A   230    ;**************************** _delay_loop *****
+                           A   231    ;Name                         Addr/Register   S
+                           A   232    ;c                                     IX+6    
+                           A   233    
+                           A   234    
+                           A   235    ; Stack Frame Size: 9 (bytes)
+                           A   236    ;       Spill Code: 0 (instruction)
+                           A   237    
+                           A   238    
+                           A   239    .ENDFUNC "delay_loop",21,"_delay_loop"
+                           A   240    	SEGMENT DATA
+000000                     A   241    _vincent_data:
+000000 00                  A   242    	DB	0
+000001 00                  A   243    	DB	0
+000002 00                  A   244    	DB	0
+000003 00                  A   245    	DB	0
+000004 00                  A   246    	DB	0
+000005 00                  A   247    	DB	0
+000006 00                  A   248    	DB	0
+000007 00                  A   249    	DB	0
+000008 00                  A   250    	DB	0
+000009 3E                  A   251    	DB	62
+00000A 41                  A   252    	DB	65
+00000B 55                  A   253    	DB	85
+00000C 41                  A   254    	DB	65
+00000D 55                  A   255    	DB	85
+00000E 49                  A   256    	DB	73
+00000F 3E                  A   257    	DB	62
+000010 00                  A   258    	DB	0
+000011 3E                  A   259    	DB	62
+000012 7F                  A   260    	DB	127
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   6
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+000013 6B                  A   261    	DB	107
+000014 7F                  A   262    	DB	127
+000015 6B                  A   263    	DB	107
+000016 77                  A   264    	DB	119
+000017 3E                  A   265    	DB	62
+000018 00                  A   266    	DB	0
+000019 22                  A   267    	DB	34
+00001A 77                  A   268    	DB	119
+00001B 7F                  A   269    	DB	127
+00001C 7F                  A   270    	DB	127
+00001D 3E                  A   271    	DB	62
+00001E 1C                  A   272    	DB	28
+00001F 08                  A   273    	DB	8
+000020 00                  A   274    	DB	0
+000021 08                  A   275    	DB	8
+000022 1C                  A   276    	DB	28
+000023 3E                  A   277    	DB	62
+000024 7F                  A   278    	DB	127
+000025 3E                  A   279    	DB	62
+000026 1C                  A   280    	DB	28
+000027 08                  A   281    	DB	8
+000028 00                  A   282    	DB	0
+000029 08                  A   283    	DB	8
+00002A 1C                  A   284    	DB	28
+00002B 2A                  A   285    	DB	42
+00002C 7F                  A   286    	DB	127
+00002D 2A                  A   287    	DB	42
+00002E 08                  A   288    	DB	8
+00002F 1C                  A   289    	DB	28
+000030 00                  A   290    	DB	0
+000031 08                  A   291    	DB	8
+000032 1C                  A   292    	DB	28
+000033 3E                  A   293    	DB	62
+000034 7F                  A   294    	DB	127
+000035 3E                  A   295    	DB	62
+000036 08                  A   296    	DB	8
+000037 1C                  A   297    	DB	28
+000038 00                  A   298    	DB	0
+000039 00                  A   299    	DB	0
+00003A 1C                  A   300    	DB	28
+00003B 3E                  A   301    	DB	62
+00003C 3E                  A   302    	DB	62
+00003D 3E                  A   303    	DB	62
+00003E 1C                  A   304    	DB	28
+00003F 00                  A   305    	DB	0
+000040 FF                  A   306    	DB	255
+000041 FF                  A   307    	DB	255
+000042 E3                  A   308    	DB	227
+000043 C1                  A   309    	DB	193
+000044 C1                  A   310    	DB	193
+000045 C1                  A   311    	DB	193
+000046 E3                  A   312    	DB	227
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   7
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+000047 FF                  A   313    	DB	255
+000048 00                  A   314    	DB	0
+000049 00                  A   315    	DB	0
+00004A 1C                  A   316    	DB	28
+00004B 22                  A   317    	DB	34
+00004C 22                  A   318    	DB	34
+00004D 22                  A   319    	DB	34
+00004E 1C                  A   320    	DB	28
+00004F 00                  A   321    	DB	0
+000050 FF                  A   322    	DB	255
+000051 FF                  A   323    	DB	255
+000052 E3                  A   324    	DB	227
+000053 DD                  A   325    	DB	221
+000054 DD                  A   326    	DB	221
+000055 DD                  A   327    	DB	221
+000056 E3                  A   328    	DB	227
+000057 FF                  A   329    	DB	255
+000058 00                  A   330    	DB	0
+000059 0F                  A   331    	DB	15
+00005A 03                  A   332    	DB	3
+00005B 05                  A   333    	DB	5
+00005C 39                  A   334    	DB	57
+00005D 48                  A   335    	DB	72
+00005E 48                  A   336    	DB	72
+00005F 30                  A   337    	DB	48
+000060 00                  A   338    	DB	0
+000061 08                  A   339    	DB	8
+000062 3E                  A   340    	DB	62
+000063 08                  A   341    	DB	8
+000064 1C                  A   342    	DB	28
+000065 22                  A   343    	DB	34
+000066 22                  A   344    	DB	34
+000067 1C                  A   345    	DB	28
+000068 00                  A   346    	DB	0
+000069 18                  A   347    	DB	24
+00006A 14                  A   348    	DB	20
+00006B 10                  A   349    	DB	16
+00006C 10                  A   350    	DB	16
+00006D 30                  A   351    	DB	48
+00006E 70                  A   352    	DB	112
+00006F 60                  A   353    	DB	96
+000070 00                  A   354    	DB	0
+000071 0F                  A   355    	DB	15
+000072 19                  A   356    	DB	25
+000073 11                  A   357    	DB	17
+000074 13                  A   358    	DB	19
+000075 37                  A   359    	DB	55
+000076 76                  A   360    	DB	118
+000077 60                  A   361    	DB	96
+000078 00                  A   362    	DB	0
+000079 08                  A   363    	DB	8
+00007A 2A                  A   364    	DB	42
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   8
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+00007B 1C                  A   365    	DB	28
+00007C 77                  A   366    	DB	119
+00007D 1C                  A   367    	DB	28
+00007E 2A                  A   368    	DB	42
+00007F 08                  A   369    	DB	8
+000080 00                  A   370    	DB	0
+000081 60                  A   371    	DB	96
+000082 78                  A   372    	DB	120
+000083 7E                  A   373    	DB	126
+000084 7F                  A   374    	DB	127
+000085 7E                  A   375    	DB	126
+000086 78                  A   376    	DB	120
+000087 60                  A   377    	DB	96
+000088 00                  A   378    	DB	0
+000089 03                  A   379    	DB	3
+00008A 0F                  A   380    	DB	15
+00008B 3F                  A   381    	DB	63
+00008C 7F                  A   382    	DB	127
+00008D 3F                  A   383    	DB	63
+00008E 0F                  A   384    	DB	15
+00008F 03                  A   385    	DB	3
+000090 00                  A   386    	DB	0
+000091 08                  A   387    	DB	8
+000092 1C                  A   388    	DB	28
+000093 2A                  A   389    	DB	42
+000094 08                  A   390    	DB	8
+000095 2A                  A   391    	DB	42
+000096 1C                  A   392    	DB	28
+000097 08                  A   393    	DB	8
+000098 00                  A   394    	DB	0
+000099 66                  A   395    	DB	102
+00009A 66                  A   396    	DB	102
+00009B 66                  A   397    	DB	102
+00009C 66                  A   398    	DB	102
+00009D 00                  A   399    	DB	0
+00009E 66                  A   400    	DB	102
+00009F 66                  A   401    	DB	102
+0000A0 00                  A   402    	DB	0
+0000A1 3F                  A   403    	DB	63
+0000A2 65                  A   404    	DB	101
+0000A3 65                  A   405    	DB	101
+0000A4 3D                  A   406    	DB	61
+0000A5 05                  A   407    	DB	5
+0000A6 05                  A   408    	DB	5
+0000A7 05                  A   409    	DB	5
+0000A8 00                  A   410    	DB	0
+0000A9 0C                  A   411    	DB	12
+0000AA 32                  A   412    	DB	50
+0000AB 48                  A   413    	DB	72
+0000AC 24                  A   414    	DB	36
+0000AD 12                  A   415    	DB	18
+0000AE 4C                  A   416    	DB	76
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   9
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+0000AF 30                  A   417    	DB	48
+0000B0 00                  A   418    	DB	0
+0000B1 00                  A   419    	DB	0
+0000B2 00                  A   420    	DB	0
+0000B3 00                  A   421    	DB	0
+0000B4 00                  A   422    	DB	0
+0000B5 7F                  A   423    	DB	127
+0000B6 7F                  A   424    	DB	127
+0000B7 7F                  A   425    	DB	127
+0000B8 00                  A   426    	DB	0
+0000B9 08                  A   427    	DB	8
+0000BA 1C                  A   428    	DB	28
+0000BB 2A                  A   429    	DB	42
+0000BC 08                  A   430    	DB	8
+0000BD 2A                  A   431    	DB	42
+0000BE 1C                  A   432    	DB	28
+0000BF 3E                  A   433    	DB	62
+0000C0 00                  A   434    	DB	0
+0000C1 08                  A   435    	DB	8
+0000C2 1C                  A   436    	DB	28
+0000C3 3E                  A   437    	DB	62
+0000C4 7F                  A   438    	DB	127
+0000C5 1C                  A   439    	DB	28
+0000C6 1C                  A   440    	DB	28
+0000C7 1C                  A   441    	DB	28
+0000C8 00                  A   442    	DB	0
+0000C9 1C                  A   443    	DB	28
+0000CA 1C                  A   444    	DB	28
+0000CB 1C                  A   445    	DB	28
+0000CC 7F                  A   446    	DB	127
+0000CD 3E                  A   447    	DB	62
+0000CE 1C                  A   448    	DB	28
+0000CF 08                  A   449    	DB	8
+0000D0 00                  A   450    	DB	0
+0000D1 08                  A   451    	DB	8
+0000D2 0C                  A   452    	DB	12
+0000D3 7E                  A   453    	DB	126
+0000D4 7F                  A   454    	DB	127
+0000D5 7E                  A   455    	DB	126
+0000D6 0C                  A   456    	DB	12
+0000D7 08                  A   457    	DB	8
+0000D8 00                  A   458    	DB	0
+0000D9 08                  A   459    	DB	8
+0000DA 18                  A   460    	DB	24
+0000DB 3F                  A   461    	DB	63
+0000DC 7F                  A   462    	DB	127
+0000DD 3F                  A   463    	DB	63
+0000DE 18                  A   464    	DB	24
+0000DF 08                  A   465    	DB	8
+0000E0 00                  A   466    	DB	0
+0000E1 00                  A   467    	DB	0
+0000E2 00                  A   468    	DB	0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  10
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+0000E3 70                  A   469    	DB	112
+0000E4 70                  A   470    	DB	112
+0000E5 70                  A   471    	DB	112
+0000E6 7F                  A   472    	DB	127
+0000E7 7F                  A   473    	DB	127
+0000E8 00                  A   474    	DB	0
+0000E9 00                  A   475    	DB	0
+0000EA 14                  A   476    	DB	20
+0000EB 22                  A   477    	DB	34
+0000EC 7F                  A   478    	DB	127
+0000ED 22                  A   479    	DB	34
+0000EE 14                  A   480    	DB	20
+0000EF 00                  A   481    	DB	0
+0000F0 00                  A   482    	DB	0
+0000F1 08                  A   483    	DB	8
+0000F2 1C                  A   484    	DB	28
+0000F3 1C                  A   485    	DB	28
+0000F4 3E                  A   486    	DB	62
+0000F5 3E                  A   487    	DB	62
+0000F6 7F                  A   488    	DB	127
+0000F7 7F                  A   489    	DB	127
+0000F8 00                  A   490    	DB	0
+0000F9 7F                  A   491    	DB	127
+0000FA 7F                  A   492    	DB	127
+0000FB 3E                  A   493    	DB	62
+0000FC 3E                  A   494    	DB	62
+0000FD 1C                  A   495    	DB	28
+0000FE 1C                  A   496    	DB	28
+0000FF 08                  A   497    	DB	8
+000100 00                  A   498    	DB	0
+000101 00                  A   499    	DB	0
+000102 00                  A   500    	DB	0
+000103 00                  A   501    	DB	0
+000104 00                  A   502    	DB	0
+000105 00                  A   503    	DB	0
+000106 00                  A   504    	DB	0
+000107 00                  A   505    	DB	0
+000108 00                  A   506    	DB	0
+000109 18                  A   507    	DB	24
+00010A 3C                  A   508    	DB	60
+00010B 3C                  A   509    	DB	60
+00010C 18                  A   510    	DB	24
+00010D 18                  A   511    	DB	24
+00010E 00                  A   512    	DB	0
+00010F 18                  A   513    	DB	24
+000110 00                  A   514    	DB	0
+000111 36                  A   515    	DB	54
+000112 36                  A   516    	DB	54
+000113 14                  A   517    	DB	20
+000114 00                  A   518    	DB	0
+000115 00                  A   519    	DB	0
+000116 00                  A   520    	DB	0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  11
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+000117 00                  A   521    	DB	0
+000118 00                  A   522    	DB	0
+000119 36                  A   523    	DB	54
+00011A 36                  A   524    	DB	54
+00011B 7F                  A   525    	DB	127
+00011C 36                  A   526    	DB	54
+00011D 7F                  A   527    	DB	127
+00011E 36                  A   528    	DB	54
+00011F 36                  A   529    	DB	54
+000120 00                  A   530    	DB	0
+000121 08                  A   531    	DB	8
+000122 1E                  A   532    	DB	30
+000123 20                  A   533    	DB	32
+000124 1C                  A   534    	DB	28
+000125 02                  A   535    	DB	2
+000126 3C                  A   536    	DB	60
+000127 08                  A   537    	DB	8
+000128 00                  A   538    	DB	0
+000129 60                  A   539    	DB	96
+00012A 66                  A   540    	DB	102
+00012B 0C                  A   541    	DB	12
+00012C 18                  A   542    	DB	24
+00012D 30                  A   543    	DB	48
+00012E 66                  A   544    	DB	102
+00012F 06                  A   545    	DB	6
+000130 00                  A   546    	DB	0
+000131 3C                  A   547    	DB	60
+000132 66                  A   548    	DB	102
+000133 3C                  A   549    	DB	60
+000134 28                  A   550    	DB	40
+000135 65                  A   551    	DB	101
+000136 66                  A   552    	DB	102
+000137 3F                  A   553    	DB	63
+000138 00                  A   554    	DB	0
+000139 18                  A   555    	DB	24
+00013A 18                  A   556    	DB	24
+00013B 18                  A   557    	DB	24
+00013C 30                  A   558    	DB	48
+00013D 00                  A   559    	DB	0
+00013E 00                  A   560    	DB	0
+00013F 00                  A   561    	DB	0
+000140 00                  A   562    	DB	0
+000141 60                  A   563    	DB	96
+000142 30                  A   564    	DB	48
+000143 18                  A   565    	DB	24
+000144 18                  A   566    	DB	24
+000145 18                  A   567    	DB	24
+000146 30                  A   568    	DB	48
+000147 60                  A   569    	DB	96
+000148 00                  A   570    	DB	0
+000149 06                  A   571    	DB	6
+00014A 0C                  A   572    	DB	12
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  12
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+00014B 18                  A   573    	DB	24
+00014C 18                  A   574    	DB	24
+00014D 18                  A   575    	DB	24
+00014E 0C                  A   576    	DB	12
+00014F 06                  A   577    	DB	6
+000150 00                  A   578    	DB	0
+000151 00                  A   579    	DB	0
+000152 36                  A   580    	DB	54
+000153 1C                  A   581    	DB	28
+000154 7F                  A   582    	DB	127
+000155 1C                  A   583    	DB	28
+000156 36                  A   584    	DB	54
+000157 00                  A   585    	DB	0
+000158 00                  A   586    	DB	0
+000159 00                  A   587    	DB	0
+00015A 08                  A   588    	DB	8
+00015B 08                  A   589    	DB	8
+00015C 3E                  A   590    	DB	62
+00015D 08                  A   591    	DB	8
+00015E 08                  A   592    	DB	8
+00015F 00                  A   593    	DB	0
+000160 00                  A   594    	DB	0
+000161 00                  A   595    	DB	0
+000162 00                  A   596    	DB	0
+000163 00                  A   597    	DB	0
+000164 30                  A   598    	DB	48
+000165 30                  A   599    	DB	48
+000166 30                  A   600    	DB	48
+000167 60                  A   601    	DB	96
+000168 00                  A   602    	DB	0
+000169 00                  A   603    	DB	0
+00016A 00                  A   604    	DB	0
+00016B 00                  A   605    	DB	0
+00016C 3C                  A   606    	DB	60
+00016D 00                  A   607    	DB	0
+00016E 00                  A   608    	DB	0
+00016F 00                  A   609    	DB	0
+000170 00                  A   610    	DB	0
+000171 00                  A   611    	DB	0
+000172 00                  A   612    	DB	0
+000173 00                  A   613    	DB	0
+000174 00                  A   614    	DB	0
+000175 00                  A   615    	DB	0
+000176 60                  A   616    	DB	96
+000177 60                  A   617    	DB	96
+000178 00                  A   618    	DB	0
+000179 00                  A   619    	DB	0
+00017A 06                  A   620    	DB	6
+00017B 0C                  A   621    	DB	12
+00017C 18                  A   622    	DB	24
+00017D 30                  A   623    	DB	48
+00017E 60                  A   624    	DB	96
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  13
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+00017F 00                  A   625    	DB	0
+000180 00                  A   626    	DB	0
+000181 3C                  A   627    	DB	60
+000182 66                  A   628    	DB	102
+000183 6E                  A   629    	DB	110
+000184 76                  A   630    	DB	118
+000185 66                  A   631    	DB	102
+000186 66                  A   632    	DB	102
+000187 3C                  A   633    	DB	60
+000188 00                  A   634    	DB	0
+000189 18                  A   635    	DB	24
+00018A 18                  A   636    	DB	24
+00018B 38                  A   637    	DB	56
+00018C 18                  A   638    	DB	24
+00018D 18                  A   639    	DB	24
+00018E 18                  A   640    	DB	24
+00018F 7E                  A   641    	DB	126
+000190 00                  A   642    	DB	0
+000191 3C                  A   643    	DB	60
+000192 66                  A   644    	DB	102
+000193 06                  A   645    	DB	6
+000194 0C                  A   646    	DB	12
+000195 30                  A   647    	DB	48
+000196 60                  A   648    	DB	96
+000197 7E                  A   649    	DB	126
+000198 00                  A   650    	DB	0
+000199 3C                  A   651    	DB	60
+00019A 66                  A   652    	DB	102
+00019B 06                  A   653    	DB	6
+00019C 1C                  A   654    	DB	28
+00019D 06                  A   655    	DB	6
+00019E 66                  A   656    	DB	102
+00019F 3C                  A   657    	DB	60
+0001A0 00                  A   658    	DB	0
+0001A1 0C                  A   659    	DB	12
+0001A2 1C                  A   660    	DB	28
+0001A3 2C                  A   661    	DB	44
+0001A4 4C                  A   662    	DB	76
+0001A5 7E                  A   663    	DB	126
+0001A6 0C                  A   664    	DB	12
+0001A7 0C                  A   665    	DB	12
+0001A8 00                  A   666    	DB	0
+0001A9 7E                  A   667    	DB	126
+0001AA 60                  A   668    	DB	96
+0001AB 7C                  A   669    	DB	124
+0001AC 06                  A   670    	DB	6
+0001AD 06                  A   671    	DB	6
+0001AE 66                  A   672    	DB	102
+0001AF 3C                  A   673    	DB	60
+0001B0 00                  A   674    	DB	0
+0001B1 3C                  A   675    	DB	60
+0001B2 66                  A   676    	DB	102
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  14
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+0001B3 60                  A   677    	DB	96
+0001B4 7C                  A   678    	DB	124
+0001B5 66                  A   679    	DB	102
+0001B6 66                  A   680    	DB	102
+0001B7 3C                  A   681    	DB	60
+0001B8 00                  A   682    	DB	0
+0001B9 7E                  A   683    	DB	126
+0001BA 66                  A   684    	DB	102
+0001BB 0C                  A   685    	DB	12
+0001BC 0C                  A   686    	DB	12
+0001BD 18                  A   687    	DB	24
+0001BE 18                  A   688    	DB	24
+0001BF 18                  A   689    	DB	24
+0001C0 00                  A   690    	DB	0
+0001C1 3C                  A   691    	DB	60
+0001C2 66                  A   692    	DB	102
+0001C3 66                  A   693    	DB	102
+0001C4 3C                  A   694    	DB	60
+0001C5 66                  A   695    	DB	102
+0001C6 66                  A   696    	DB	102
+0001C7 3C                  A   697    	DB	60
+0001C8 00                  A   698    	DB	0
+0001C9 3C                  A   699    	DB	60
+0001CA 66                  A   700    	DB	102
+0001CB 66                  A   701    	DB	102
+0001CC 3E                  A   702    	DB	62
+0001CD 06                  A   703    	DB	6
+0001CE 66                  A   704    	DB	102
+0001CF 3C                  A   705    	DB	60
+0001D0 00                  A   706    	DB	0
+0001D1 00                  A   707    	DB	0
+0001D2 18                  A   708    	DB	24
+0001D3 18                  A   709    	DB	24
+0001D4 00                  A   710    	DB	0
+0001D5 18                  A   711    	DB	24
+0001D6 18                  A   712    	DB	24
+0001D7 00                  A   713    	DB	0
+0001D8 00                  A   714    	DB	0
+0001D9 00                  A   715    	DB	0
+0001DA 18                  A   716    	DB	24
+0001DB 18                  A   717    	DB	24
+0001DC 00                  A   718    	DB	0
+0001DD 18                  A   719    	DB	24
+0001DE 18                  A   720    	DB	24
+0001DF 30                  A   721    	DB	48
+0001E0 00                  A   722    	DB	0
+0001E1 06                  A   723    	DB	6
+0001E2 0C                  A   724    	DB	12
+0001E3 18                  A   725    	DB	24
+0001E4 30                  A   726    	DB	48
+0001E5 18                  A   727    	DB	24
+0001E6 0C                  A   728    	DB	12
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  15
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+0001E7 06                  A   729    	DB	6
+0001E8 00                  A   730    	DB	0
+0001E9 00                  A   731    	DB	0
+0001EA 00                  A   732    	DB	0
+0001EB 3C                  A   733    	DB	60
+0001EC 00                  A   734    	DB	0
+0001ED 3C                  A   735    	DB	60
+0001EE 00                  A   736    	DB	0
+0001EF 00                  A   737    	DB	0
+0001F0 00                  A   738    	DB	0
+0001F1 60                  A   739    	DB	96
+0001F2 30                  A   740    	DB	48
+0001F3 18                  A   741    	DB	24
+0001F4 0C                  A   742    	DB	12
+0001F5 18                  A   743    	DB	24
+0001F6 30                  A   744    	DB	48
+0001F7 60                  A   745    	DB	96
+0001F8 00                  A   746    	DB	0
+0001F9 3C                  A   747    	DB	60
+0001FA 66                  A   748    	DB	102
+0001FB 06                  A   749    	DB	6
+0001FC 1C                  A   750    	DB	28
+0001FD 18                  A   751    	DB	24
+0001FE 00                  A   752    	DB	0
+0001FF 18                  A   753    	DB	24
+000200 00                  A   754    	DB	0
+000201 38                  A   755    	DB	56
+000202 44                  A   756    	DB	68
+000203 5C                  A   757    	DB	92
+000204 58                  A   758    	DB	88
+000205 42                  A   759    	DB	66
+000206 3C                  A   760    	DB	60
+000207 00                  A   761    	DB	0
+000208 00                  A   762    	DB	0
+000209 3C                  A   763    	DB	60
+00020A 66                  A   764    	DB	102
+00020B 66                  A   765    	DB	102
+00020C 7E                  A   766    	DB	126
+00020D 66                  A   767    	DB	102
+00020E 66                  A   768    	DB	102
+00020F 66                  A   769    	DB	102
+000210 00                  A   770    	DB	0
+000211 7C                  A   771    	DB	124
+000212 66                  A   772    	DB	102
+000213 66                  A   773    	DB	102
+000214 7C                  A   774    	DB	124
+000215 66                  A   775    	DB	102
+000216 66                  A   776    	DB	102
+000217 7C                  A   777    	DB	124
+000218 00                  A   778    	DB	0
+000219 3C                  A   779    	DB	60
+00021A 66                  A   780    	DB	102
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  16
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+00021B 60                  A   781    	DB	96
+00021C 60                  A   782    	DB	96
+00021D 60                  A   783    	DB	96
+00021E 66                  A   784    	DB	102
+00021F 3C                  A   785    	DB	60
+000220 00                  A   786    	DB	0
+000221 7C                  A   787    	DB	124
+000222 66                  A   788    	DB	102
+000223 66                  A   789    	DB	102
+000224 66                  A   790    	DB	102
+000225 66                  A   791    	DB	102
+000226 66                  A   792    	DB	102
+000227 7C                  A   793    	DB	124
+000228 00                  A   794    	DB	0
+000229 7E                  A   795    	DB	126
+00022A 60                  A   796    	DB	96
+00022B 60                  A   797    	DB	96
+00022C 7C                  A   798    	DB	124
+00022D 60                  A   799    	DB	96
+00022E 60                  A   800    	DB	96
+00022F 7E                  A   801    	DB	126
+000230 00                  A   802    	DB	0
+000231 7E                  A   803    	DB	126
+000232 60                  A   804    	DB	96
+000233 60                  A   805    	DB	96
+000234 7C                  A   806    	DB	124
+000235 60                  A   807    	DB	96
+000236 60                  A   808    	DB	96
+000237 60                  A   809    	DB	96
+000238 00                  A   810    	DB	0
+000239 3C                  A   811    	DB	60
+00023A 66                  A   812    	DB	102
+00023B 60                  A   813    	DB	96
+00023C 60                  A   814    	DB	96
+00023D 6E                  A   815    	DB	110
+00023E 66                  A   816    	DB	102
+00023F 3C                  A   817    	DB	60
+000240 00                  A   818    	DB	0
+000241 66                  A   819    	DB	102
+000242 66                  A   820    	DB	102
+000243 66                  A   821    	DB	102
+000244 7E                  A   822    	DB	126
+000245 66                  A   823    	DB	102
+000246 66                  A   824    	DB	102
+000247 66                  A   825    	DB	102
+000248 00                  A   826    	DB	0
+000249 3C                  A   827    	DB	60
+00024A 18                  A   828    	DB	24
+00024B 18                  A   829    	DB	24
+00024C 18                  A   830    	DB	24
+00024D 18                  A   831    	DB	24
+00024E 18                  A   832    	DB	24
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  17
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+00024F 3C                  A   833    	DB	60
+000250 00                  A   834    	DB	0
+000251 1E                  A   835    	DB	30
+000252 0C                  A   836    	DB	12
+000253 0C                  A   837    	DB	12
+000254 0C                  A   838    	DB	12
+000255 6C                  A   839    	DB	108
+000256 6C                  A   840    	DB	108
+000257 38                  A   841    	DB	56
+000258 00                  A   842    	DB	0
+000259 66                  A   843    	DB	102
+00025A 6C                  A   844    	DB	108
+00025B 78                  A   845    	DB	120
+00025C 70                  A   846    	DB	112
+00025D 78                  A   847    	DB	120
+00025E 6C                  A   848    	DB	108
+00025F 66                  A   849    	DB	102
+000260 00                  A   850    	DB	0
+000261 60                  A   851    	DB	96
+000262 60                  A   852    	DB	96
+000263 60                  A   853    	DB	96
+000264 60                  A   854    	DB	96
+000265 60                  A   855    	DB	96
+000266 60                  A   856    	DB	96
+000267 7E                  A   857    	DB	126
+000268 00                  A   858    	DB	0
+000269 63                  A   859    	DB	99
+00026A 77                  A   860    	DB	119
+00026B 7F                  A   861    	DB	127
+00026C 6B                  A   862    	DB	107
+00026D 63                  A   863    	DB	99
+00026E 63                  A   864    	DB	99
+00026F 63                  A   865    	DB	99
+000270 00                  A   866    	DB	0
+000271 63                  A   867    	DB	99
+000272 73                  A   868    	DB	115
+000273 7B                  A   869    	DB	123
+000274 6F                  A   870    	DB	111
+000275 67                  A   871    	DB	103
+000276 63                  A   872    	DB	99
+000277 63                  A   873    	DB	99
+000278 00                  A   874    	DB	0
+000279 3C                  A   875    	DB	60
+00027A 66                  A   876    	DB	102
+00027B 66                  A   877    	DB	102
+00027C 66                  A   878    	DB	102
+00027D 66                  A   879    	DB	102
+00027E 66                  A   880    	DB	102
+00027F 3C                  A   881    	DB	60
+000280 00                  A   882    	DB	0
+000281 7C                  A   883    	DB	124
+000282 66                  A   884    	DB	102
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  18
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+000283 66                  A   885    	DB	102
+000284 66                  A   886    	DB	102
+000285 7C                  A   887    	DB	124
+000286 60                  A   888    	DB	96
+000287 60                  A   889    	DB	96
+000288 00                  A   890    	DB	0
+000289 3C                  A   891    	DB	60
+00028A 66                  A   892    	DB	102
+00028B 66                  A   893    	DB	102
+00028C 66                  A   894    	DB	102
+00028D 6E                  A   895    	DB	110
+00028E 3C                  A   896    	DB	60
+00028F 06                  A   897    	DB	6
+000290 00                  A   898    	DB	0
+000291 7C                  A   899    	DB	124
+000292 66                  A   900    	DB	102
+000293 66                  A   901    	DB	102
+000294 7C                  A   902    	DB	124
+000295 78                  A   903    	DB	120
+000296 6C                  A   904    	DB	108
+000297 66                  A   905    	DB	102
+000298 00                  A   906    	DB	0
+000299 3C                  A   907    	DB	60
+00029A 66                  A   908    	DB	102
+00029B 60                  A   909    	DB	96
+00029C 3C                  A   910    	DB	60
+00029D 06                  A   911    	DB	6
+00029E 66                  A   912    	DB	102
+00029F 3C                  A   913    	DB	60
+0002A0 00                  A   914    	DB	0
+0002A1 7E                  A   915    	DB	126
+0002A2 5A                  A   916    	DB	90
+0002A3 18                  A   917    	DB	24
+0002A4 18                  A   918    	DB	24
+0002A5 18                  A   919    	DB	24
+0002A6 18                  A   920    	DB	24
+0002A7 18                  A   921    	DB	24
+0002A8 00                  A   922    	DB	0
+0002A9 66                  A   923    	DB	102
+0002AA 66                  A   924    	DB	102
+0002AB 66                  A   925    	DB	102
+0002AC 66                  A   926    	DB	102
+0002AD 66                  A   927    	DB	102
+0002AE 66                  A   928    	DB	102
+0002AF 3E                  A   929    	DB	62
+0002B0 00                  A   930    	DB	0
+0002B1 66                  A   931    	DB	102
+0002B2 66                  A   932    	DB	102
+0002B3 66                  A   933    	DB	102
+0002B4 66                  A   934    	DB	102
+0002B5 66                  A   935    	DB	102
+0002B6 3C                  A   936    	DB	60
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  19
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+0002B7 18                  A   937    	DB	24
+0002B8 00                  A   938    	DB	0
+0002B9 63                  A   939    	DB	99
+0002BA 63                  A   940    	DB	99
+0002BB 63                  A   941    	DB	99
+0002BC 6B                  A   942    	DB	107
+0002BD 7F                  A   943    	DB	127
+0002BE 77                  A   944    	DB	119
+0002BF 63                  A   945    	DB	99
+0002C0 00                  A   946    	DB	0
+0002C1 63                  A   947    	DB	99
+0002C2 63                  A   948    	DB	99
+0002C3 36                  A   949    	DB	54
+0002C4 1C                  A   950    	DB	28
+0002C5 36                  A   951    	DB	54
+0002C6 63                  A   952    	DB	99
+0002C7 63                  A   953    	DB	99
+0002C8 00                  A   954    	DB	0
+0002C9 66                  A   955    	DB	102
+0002CA 66                  A   956    	DB	102
+0002CB 66                  A   957    	DB	102
+0002CC 3C                  A   958    	DB	60
+0002CD 18                  A   959    	DB	24
+0002CE 18                  A   960    	DB	24
+0002CF 18                  A   961    	DB	24
+0002D0 00                  A   962    	DB	0
+0002D1 7E                  A   963    	DB	126
+0002D2 06                  A   964    	DB	6
+0002D3 0C                  A   965    	DB	12
+0002D4 18                  A   966    	DB	24
+0002D5 30                  A   967    	DB	48
+0002D6 60                  A   968    	DB	96
+0002D7 7E                  A   969    	DB	126
+0002D8 00                  A   970    	DB	0
+0002D9 1E                  A   971    	DB	30
+0002DA 18                  A   972    	DB	24
+0002DB 18                  A   973    	DB	24
+0002DC 18                  A   974    	DB	24
+0002DD 18                  A   975    	DB	24
+0002DE 18                  A   976    	DB	24
+0002DF 1E                  A   977    	DB	30
+0002E0 00                  A   978    	DB	0
+0002E1 00                  A   979    	DB	0
+0002E2 60                  A   980    	DB	96
+0002E3 30                  A   981    	DB	48
+0002E4 18                  A   982    	DB	24
+0002E5 0C                  A   983    	DB	12
+0002E6 06                  A   984    	DB	6
+0002E7 00                  A   985    	DB	0
+0002E8 00                  A   986    	DB	0
+0002E9 78                  A   987    	DB	120
+0002EA 18                  A   988    	DB	24
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  20
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+0002EB 18                  A   989    	DB	24
+0002EC 18                  A   990    	DB	24
+0002ED 18                  A   991    	DB	24
+0002EE 18                  A   992    	DB	24
+0002EF 78                  A   993    	DB	120
+0002F0 00                  A   994    	DB	0
+0002F1 08                  A   995    	DB	8
+0002F2 14                  A   996    	DB	20
+0002F3 22                  A   997    	DB	34
+0002F4 41                  A   998    	DB	65
+0002F5 00                  A   999    	DB	0
+0002F6 00                  A  1000    	DB	0
+0002F7 00                  A  1001    	DB	0
+0002F8 00                  A  1002    	DB	0
+0002F9 00                  A  1003    	DB	0
+0002FA 00                  A  1004    	DB	0
+0002FB 00                  A  1005    	DB	0
+0002FC 00                  A  1006    	DB	0
+0002FD 00                  A  1007    	DB	0
+0002FE 00                  A  1008    	DB	0
+0002FF 7F                  A  1009    	DB	127
+000300 00                  A  1010    	DB	0
+000301 0C                  A  1011    	DB	12
+000302 0C                  A  1012    	DB	12
+000303 06                  A  1013    	DB	6
+000304 00                  A  1014    	DB	0
+000305 00                  A  1015    	DB	0
+000306 00                  A  1016    	DB	0
+000307 00                  A  1017    	DB	0
+000308 00                  A  1018    	DB	0
+000309 00                  A  1019    	DB	0
+00030A 00                  A  1020    	DB	0
+00030B 3C                  A  1021    	DB	60
+00030C 06                  A  1022    	DB	6
+00030D 3E                  A  1023    	DB	62
+00030E 66                  A  1024    	DB	102
+00030F 3E                  A  1025    	DB	62
+000310 00                  A  1026    	DB	0
+000311 60                  A  1027    	DB	96
+000312 60                  A  1028    	DB	96
+000313 60                  A  1029    	DB	96
+000314 7C                  A  1030    	DB	124
+000315 66                  A  1031    	DB	102
+000316 66                  A  1032    	DB	102
+000317 7C                  A  1033    	DB	124
+000318 00                  A  1034    	DB	0
+000319 00                  A  1035    	DB	0
+00031A 00                  A  1036    	DB	0
+00031B 3C                  A  1037    	DB	60
+00031C 66                  A  1038    	DB	102
+00031D 60                  A  1039    	DB	96
+00031E 66                  A  1040    	DB	102
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  21
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+00031F 3C                  A  1041    	DB	60
+000320 00                  A  1042    	DB	0
+000321 06                  A  1043    	DB	6
+000322 06                  A  1044    	DB	6
+000323 06                  A  1045    	DB	6
+000324 3E                  A  1046    	DB	62
+000325 66                  A  1047    	DB	102
+000326 66                  A  1048    	DB	102
+000327 3E                  A  1049    	DB	62
+000328 00                  A  1050    	DB	0
+000329 00                  A  1051    	DB	0
+00032A 00                  A  1052    	DB	0
+00032B 3C                  A  1053    	DB	60
+00032C 66                  A  1054    	DB	102
+00032D 7E                  A  1055    	DB	126
+00032E 60                  A  1056    	DB	96
+00032F 3C                  A  1057    	DB	60
+000330 00                  A  1058    	DB	0
+000331 1C                  A  1059    	DB	28
+000332 36                  A  1060    	DB	54
+000333 30                  A  1061    	DB	48
+000334 30                  A  1062    	DB	48
+000335 7C                  A  1063    	DB	124
+000336 30                  A  1064    	DB	48
+000337 30                  A  1065    	DB	48
+000338 00                  A  1066    	DB	0
+000339 00                  A  1067    	DB	0
+00033A 3E                  A  1068    	DB	62
+00033B 66                  A  1069    	DB	102
+00033C 66                  A  1070    	DB	102
+00033D 3E                  A  1071    	DB	62
+00033E 06                  A  1072    	DB	6
+00033F 3C                  A  1073    	DB	60
+000340 00                  A  1074    	DB	0
+000341 60                  A  1075    	DB	96
+000342 60                  A  1076    	DB	96
+000343 60                  A  1077    	DB	96
+000344 7C                  A  1078    	DB	124
+000345 66                  A  1079    	DB	102
+000346 66                  A  1080    	DB	102
+000347 66                  A  1081    	DB	102
+000348 00                  A  1082    	DB	0
+000349 00                  A  1083    	DB	0
+00034A 18                  A  1084    	DB	24
+00034B 00                  A  1085    	DB	0
+00034C 18                  A  1086    	DB	24
+00034D 18                  A  1087    	DB	24
+00034E 18                  A  1088    	DB	24
+00034F 3C                  A  1089    	DB	60
+000350 00                  A  1090    	DB	0
+000351 0C                  A  1091    	DB	12
+000352 00                  A  1092    	DB	0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  22
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+000353 0C                  A  1093    	DB	12
+000354 0C                  A  1094    	DB	12
+000355 6C                  A  1095    	DB	108
+000356 6C                  A  1096    	DB	108
+000357 38                  A  1097    	DB	56
+000358 00                  A  1098    	DB	0
+000359 60                  A  1099    	DB	96
+00035A 60                  A  1100    	DB	96
+00035B 66                  A  1101    	DB	102
+00035C 6C                  A  1102    	DB	108
+00035D 78                  A  1103    	DB	120
+00035E 6C                  A  1104    	DB	108
+00035F 66                  A  1105    	DB	102
+000360 00                  A  1106    	DB	0
+000361 18                  A  1107    	DB	24
+000362 18                  A  1108    	DB	24
+000363 18                  A  1109    	DB	24
+000364 18                  A  1110    	DB	24
+000365 18                  A  1111    	DB	24
+000366 18                  A  1112    	DB	24
+000367 18                  A  1113    	DB	24
+000368 00                  A  1114    	DB	0
+000369 00                  A  1115    	DB	0
+00036A 00                  A  1116    	DB	0
+00036B 63                  A  1117    	DB	99
+00036C 77                  A  1118    	DB	119
+00036D 7F                  A  1119    	DB	127
+00036E 6B                  A  1120    	DB	107
+00036F 6B                  A  1121    	DB	107
+000370 00                  A  1122    	DB	0
+000371 00                  A  1123    	DB	0
+000372 00                  A  1124    	DB	0
+000373 7C                  A  1125    	DB	124
+000374 7E                  A  1126    	DB	126
+000375 66                  A  1127    	DB	102
+000376 66                  A  1128    	DB	102
+000377 66                  A  1129    	DB	102
+000378 00                  A  1130    	DB	0
+000379 00                  A  1131    	DB	0
+00037A 00                  A  1132    	DB	0
+00037B 3C                  A  1133    	DB	60
+00037C 66                  A  1134    	DB	102
+00037D 66                  A  1135    	DB	102
+00037E 66                  A  1136    	DB	102
+00037F 3C                  A  1137    	DB	60
+000380 00                  A  1138    	DB	0
+000381 00                  A  1139    	DB	0
+000382 7C                  A  1140    	DB	124
+000383 66                  A  1141    	DB	102
+000384 66                  A  1142    	DB	102
+000385 7C                  A  1143    	DB	124
+000386 60                  A  1144    	DB	96
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  23
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+000387 60                  A  1145    	DB	96
+000388 00                  A  1146    	DB	0
+000389 00                  A  1147    	DB	0
+00038A 3C                  A  1148    	DB	60
+00038B 6C                  A  1149    	DB	108
+00038C 6C                  A  1150    	DB	108
+00038D 3C                  A  1151    	DB	60
+00038E 0D                  A  1152    	DB	13
+00038F 0F                  A  1153    	DB	15
+000390 00                  A  1154    	DB	0
+000391 00                  A  1155    	DB	0
+000392 00                  A  1156    	DB	0
+000393 7C                  A  1157    	DB	124
+000394 66                  A  1158    	DB	102
+000395 66                  A  1159    	DB	102
+000396 60                  A  1160    	DB	96
+000397 60                  A  1161    	DB	96
+000398 00                  A  1162    	DB	0
+000399 00                  A  1163    	DB	0
+00039A 00                  A  1164    	DB	0
+00039B 3E                  A  1165    	DB	62
+00039C 40                  A  1166    	DB	64
+00039D 3C                  A  1167    	DB	60
+00039E 02                  A  1168    	DB	2
+00039F 7C                  A  1169    	DB	124
+0003A0 00                  A  1170    	DB	0
+0003A1 00                  A  1171    	DB	0
+0003A2 18                  A  1172    	DB	24
+0003A3 18                  A  1173    	DB	24
+0003A4 7E                  A  1174    	DB	126
+0003A5 18                  A  1175    	DB	24
+0003A6 18                  A  1176    	DB	24
+0003A7 18                  A  1177    	DB	24
+0003A8 00                  A  1178    	DB	0
+0003A9 00                  A  1179    	DB	0
+0003AA 00                  A  1180    	DB	0
+0003AB 66                  A  1181    	DB	102
+0003AC 66                  A  1182    	DB	102
+0003AD 66                  A  1183    	DB	102
+0003AE 66                  A  1184    	DB	102
+0003AF 3E                  A  1185    	DB	62
+0003B0 00                  A  1186    	DB	0
+0003B1 00                  A  1187    	DB	0
+0003B2 00                  A  1188    	DB	0
+0003B3 00                  A  1189    	DB	0
+0003B4 66                  A  1190    	DB	102
+0003B5 66                  A  1191    	DB	102
+0003B6 3C                  A  1192    	DB	60
+0003B7 18                  A  1193    	DB	24
+0003B8 00                  A  1194    	DB	0
+0003B9 00                  A  1195    	DB	0
+0003BA 00                  A  1196    	DB	0
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  24
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+0003BB 63                  A  1197    	DB	99
+0003BC 6B                  A  1198    	DB	107
+0003BD 6B                  A  1199    	DB	107
+0003BE 6B                  A  1200    	DB	107
+0003BF 3E                  A  1201    	DB	62
+0003C0 00                  A  1202    	DB	0
+0003C1 00                  A  1203    	DB	0
+0003C2 00                  A  1204    	DB	0
+0003C3 66                  A  1205    	DB	102
+0003C4 3C                  A  1206    	DB	60
+0003C5 18                  A  1207    	DB	24
+0003C6 3C                  A  1208    	DB	60
+0003C7 66                  A  1209    	DB	102
+0003C8 00                  A  1210    	DB	0
+0003C9 00                  A  1211    	DB	0
+0003CA 00                  A  1212    	DB	0
+0003CB 66                  A  1213    	DB	102
+0003CC 66                  A  1214    	DB	102
+0003CD 3E                  A  1215    	DB	62
+0003CE 06                  A  1216    	DB	6
+0003CF 3C                  A  1217    	DB	60
+0003D0 00                  A  1218    	DB	0
+0003D1 00                  A  1219    	DB	0
+0003D2 00                  A  1220    	DB	0
+0003D3 3C                  A  1221    	DB	60
+0003D4 0C                  A  1222    	DB	12
+0003D5 18                  A  1223    	DB	24
+0003D6 30                  A  1224    	DB	48
+0003D7 3C                  A  1225    	DB	60
+0003D8 00                  A  1226    	DB	0
+0003D9 0E                  A  1227    	DB	14
+0003DA 18                  A  1228    	DB	24
+0003DB 18                  A  1229    	DB	24
+0003DC 30                  A  1230    	DB	48
+0003DD 18                  A  1231    	DB	24
+0003DE 18                  A  1232    	DB	24
+0003DF 0E                  A  1233    	DB	14
+0003E0 00                  A  1234    	DB	0
+0003E1 18                  A  1235    	DB	24
+0003E2 18                  A  1236    	DB	24
+0003E3 18                  A  1237    	DB	24
+0003E4 00                  A  1238    	DB	0
+0003E5 18                  A  1239    	DB	24
+0003E6 18                  A  1240    	DB	24
+0003E7 18                  A  1241    	DB	24
+0003E8 00                  A  1242    	DB	0
+0003E9 70                  A  1243    	DB	112
+0003EA 18                  A  1244    	DB	24
+0003EB 18                  A  1245    	DB	24
+0003EC 0C                  A  1246    	DB	12
+0003ED 18                  A  1247    	DB	24
+0003EE 18                  A  1248    	DB	24
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  25
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+0003EF 70                  A  1249    	DB	112
+0003F0 00                  A  1250    	DB	0
+0003F1 00                  A  1251    	DB	0
+0003F2 00                  A  1252    	DB	0
+0003F3 3A                  A  1253    	DB	58
+0003F4 6C                  A  1254    	DB	108
+0003F5 00                  A  1255    	DB	0
+0003F6 00                  A  1256    	DB	0
+0003F7 00                  A  1257    	DB	0
+0003F8 00                  A  1258    	DB	0
+0003F9 08                  A  1259    	DB	8
+0003FA 1C                  A  1260    	DB	28
+0003FB 36                  A  1261    	DB	54
+0003FC 63                  A  1262    	DB	99
+0003FD 41                  A  1263    	DB	65
+0003FE 41                  A  1264    	DB	65
+0003FF 7F                  A  1265    	DB	127
+                           A  1266    .DEFINE "vincent_data"
+                           A  1267    .ALIAS "_vincent_data"
+                           A  1268    .CLASS 69
+                           A  1269    .VALUE _vincent_data
+                           A  1270    .DIM 128
+                           A  1271    .DIM 8
+                           A  1272    .TYPE 876
+                           A  1273    .ENDEF
+                           A  1274    	SEGMENT CODE
+                           A  1275    ;    1	#include <eZ80.h>
+                           A  1276    ;    2	#include <stdio.h>
+                           A  1277    ;    3	
+                           A  1278    ;    4	#include "skeelib.h"
+                           A  1279    ;    5	#include "lib_fontrender.h"
+                           A  1280    ;    6	#include "font_vincent.h"
+                           A  1281    ;    7	
+                           A  1282    ;    8	void render_font_8x8 ( unsigned char tx
+000024                     A  1283    _render_font_8x8:
+                           A  1284    .DEFINE "_render_font_8x8"
+                           A  1285    
+                           A  1286    .VALUE _render_font_8x8
+                           A  1287    
+                           A  1288    .CLASS 2
+                           A  1289    
+                           A  1290    .TYPE 65
+                           A  1291    
+                           A  1292    .ENDEF
+                           A  1293    
+                           A  1294    .BEGFUNC "render_font_8x8",8,"_render_font_8x8"
+                           A  1295    
+                           A  1296    .LINE 8
+                           A  1297    
+                           A  1298    .DEFINE "tx"
+                           A  1299    
+                           A  1300    .CLASS 65
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  26
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+                           A  1301    
+                           A  1302    .VALUE 6
+                           A  1303    
+                           A  1304    .TYPE 12
+                           A  1305    
+                           A  1306    .ENDEF
+                           A  1307    
+                           A  1308    .DEFINE "ty"
+                           A  1309    
+                           A  1310    .CLASS 65
+                           A  1311    
+                           A  1312    .VALUE 9
+                           A  1313    
+                           A  1314    .TYPE 12
+                           A  1315    
+                           A  1316    .ENDEF
+                           A  1317    
+                           A  1318    .DEFINE "text"
+                           A  1319    
+                           A  1320    .CLASS 65
+                           A  1321    
+                           A  1322    .VALUE 12
+                           A  1323    
+                           A  1324    .TYPE 34
+                           A  1325    
+                           A  1326    .ENDEF
+                           A  1327    
+                           A  1328    .DEFINE "colour"
+                           A  1329    
+                           A  1330    .CLASS 65
+                           A  1331    
+                           A  1332    .VALUE 15
+                           A  1333    
+                           A  1334    .TYPE 12
+                           A  1335    
+                           A  1336    .ENDEF
+                           A  1337    
+                           A  1338    .DEFINE "extram"
+                           A  1339    
+                           A  1340    .CLASS 65
+                           A  1341    
+                           A  1342    .VALUE -3
+                           A  1343    
+                           A  1344    .TYPE 44
+                           A  1345    
+                           A  1346    .ENDEF
+                           A  1347    
+                           A  1348    .DEFINE "x"
+                           A  1349    
+                           A  1350    .CLASS 65
+                           A  1351    
+                           A  1352    .VALUE -4
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  27
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+                           A  1353    
+                           A  1354    .TYPE 2
+                           A  1355    
+                           A  1356    .ENDEF
+                           A  1357    
+                           A  1358    .DEFINE "y"
+                           A  1359    
+                           A  1360    .CLASS 65
+                           A  1361    
+                           A  1362    .VALUE -5
+                           A  1363    
+                           A  1364    .TYPE 2
+                           A  1365    
+                           A  1366    .ENDEF
+                           A  1367    
+                           A  1368    .DEFINE "p"
+                           A  1369    
+                           A  1370    .CLASS 65
+                           A  1371    
+                           A  1372    .VALUE -8
+                           A  1373    
+                           A  1374    .TYPE 44
+                           A  1375    
+                           A  1376    .ENDEF
+                           A  1377    
+                           A  1378    .DEFINE "linestart"
+                           A  1379    
+                           A  1380    .CLASS 65
+                           A  1381    
+                           A  1382    .VALUE -11
+                           A  1383    
+                           A  1384    .TYPE 44
+                           A  1385    
+                           A  1386    .ENDEF
+                           A  1387    
+000024 DDE5                A  1388    	PUSH	IX
+000026 DD210000 00         A  1389    	LD	IX,0
+00002B DD39                A  1390    	ADD	IX,SP
+00002D ED22E9              A  1391    	LEA	HL,IX+-23
+000030 F9                  A  1392    	LD	SP,HL
+                           A  1393    ;    9		signed char x, y;
+                           A  1394    ;   10		UINT8 *extram;
+                           A  1395    ;   11		UINT8 *linestart;
+                           A  1396    ;   12		unsigned char *p;
+                           A  1397    ;   13		
+                           A  1398    ;   14		extram = (UINT8 *) 0x0C0000;       
+                           A  1399    .LINE 14
+                           A  1400    
+000031 0100000C            A  1401    	LD	BC,786432
+000035 DD0FFD              A  1402    	LD	(IX+-3),BC
+                           A  1403    ;   15		extram += ((UINT16)ty)*256;        
+                           A  1404    .LINE 15
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  28
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+                           A  1405    
+000038 DD4E09              A  1406    	LD	C,(IX+9)
+00003B 0600                A  1407    	LD	B,0
+00003D CD 00 00 00         A  1408    	CALL	__stoiu
+000041 3E08                A  1409    	LD	A,8
+000043 CD 00 00 00         A  1410    	CALL	__ishl_b
+000047 DD07FD              A  1411    	LD	BC,(IX+-3)
+00004A 09                  A  1412    	ADD	HL,BC
+00004B DD2FFD              A  1413    	LD	(IX+-3),HL
+                           A  1414    ;   16		linestart = extram;
+                           A  1415    .LINE 16
+                           A  1416    
+00004E DD07FD              A  1417    	LD	BC,(IX+-3)
+000051 DD0FF5              A  1418    	LD	(IX+-11),BC
+                           A  1419    ;   17		extram += tx;                      
+                           A  1420    .LINE 17
+                           A  1421    
+000054 DD7E06              A  1422    	LD	A,(IX+6)
+000057 B7ED62              A  1423    	UEXT	HL
+00005A 6F                  A  1424    	LD	L,A
+00005B DD07FD              A  1425    	LD	BC,(IX+-3)
+00005E 09                  A  1426    	ADD	HL,BC
+00005F DD2FFD              A  1427    	LD	(IX+-3),HL
+                           A  1428    ;   18		
+                           A  1429    ;   19		if ( ! text ) {
+                           A  1430    .LINE 19
+                           A  1431    
+000062 DD270C              A  1432    	LD	HL,(IX+12)
+000065 CD 00 00 00         A  1433    	CALL	__icmpzero
+000069 CA 73 01 00 00      A  1434    	JR	Z,L_30
+                           A  1435    ;   20			return;
+                           A  1436    .LINE 20
+                           A  1437    
+                           A  1438    ;   21		}
+                           A  1439    .LINE 21
+                           A  1440    
+                           A  1441    ;   22		
+                           A  1442    ;   23		while ( *text != '\0' ) {
+00006E                     A  1443    L_26:
+                           A  1444    .LINE 23
+                           A  1445    
+00006E DD270C              A  1446    	LD	HL,(IX+12)
+000071 7E                  A  1447    	LD	A,(HL)
+000072 B7                  A  1448    	OR	A,A
+000073 CA 73 01 00 00      A  1449    	JR	Z,L_30
+                           A  1450    ;   24			
+                           A  1451    ;   25			if ( *text == '\n' ) {
+                           A  1452    .LINE 25
+                           A  1453    
+000078 DD270C              A  1454    	LD	HL,(IX+12)
+00007B 7E                  A  1455    	LD	A,(HL)
+00007C 47                  A  1456    	LD	B,A
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  29
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+00007D 17ED62              A  1457    	SEXT	HL
+000080 68                  A  1458    	LD	L,B
+000081 010A0000            A  1459    	LD	BC,10
+000085 B7                  A  1460    	OR	A,A
+000086 ED42                A  1461    	SBC	HL,BC
+000088 20 1F 00            A  1462    	JR	NZ,L_7
+                           A  1463    ;   26				text++;
+                           A  1464    .LINE 26
+                           A  1465    
+00008B DD070C              A  1466    	LD	BC,(IX+12)
+00008E DD0FF2              A  1467    	LD	(IX+-14),BC
+000091 DD070C              A  1468    	LD	BC,(IX+12)
+000094 03                  A  1469    	INC	BC
+000095 DD0F0C              A  1470    	LD	(IX+12),BC
+                           A  1471    ;   27				linestart += ( 256 * 8 );
+                           A  1472    .LINE 27
+                           A  1473    
+000098 01000800            A  1474    	LD	BC,2048
+00009C DD27F5              A  1475    	LD	HL,(IX+-11)
+00009F 09                  A  1476    	ADD	HL,BC
+0000A0 DD2FF5              A  1477    	LD	(IX+-11),HL
+                           A  1478    ;   28				extram = linestart;
+                           A  1479    .LINE 28
+                           A  1480    
+0000A3 DD07F5              A  1481    	LD	BC,(IX+-11)
+0000A6 DD0FFD              A  1482    	LD	(IX+-3),BC
+                           A  1483    ;   29			}
+0000A9                     A  1484    L_7:
+                           A  1485    .LINE 29
+                           A  1486    
+                           A  1487    ;   30	
+                           A  1488    ;   31			p = vincent_data [ *text ];
+                           A  1489    .LINE 31
+                           A  1490    
+0000A9 DD270C              A  1491    	LD	HL,(IX+12)
+0000AC 7E                  A  1492    	LD	A,(HL)
+0000AD 47                  A  1493    	LD	B,A
+0000AE 17ED62              A  1494    	SEXT	HL
+0000B1 68                  A  1495    	LD	L,B
+0000B2 29                  A  1496    	ADD	HL,HL
+0000B3 29                  A  1497    	ADD	HL,HL
+0000B4 29                  A  1498    	ADD	HL,HL
+0000B5 01 00 00 00         A  1499    	LD	BC,_vincent_data
+0000B9 09                  A  1500    	ADD	HL,BC
+0000BA DD2FF8              A  1501    	LD	(IX+-8),HL
+0000BD 18 0E 00            A  1502    	JR	L_20
+                           A  1503    ;   32			
+                           A  1504    ;   33			for ( y = 0; y < 8; y++ ) {
+0000C0                     A  1505    L_21:
+                           A  1506    .LINE 33
+                           A  1507    
+0000C0 DD7EFB              A  1508    	LD	A,(IX+-5)
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  30
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+0000C3 FE08                A  1509    	CP	A,8
+0000C5 FA DE 00 00         A  1510    	JP	M,L_14
+0000C9 C3 4D 01 00         A  1511    	JR	L_24
+0000CD                     A  1512    L_20:
+0000CD DD36FB00            A  1513    	LD	(IX+-5),0
+0000D1 18 ED 00            A  1514    	JR	L_21
+                           A  1515    ;   34				
+                           A  1516    ;   35				for ( x = 7; x >= 0; x-- ) 
+0000D4                     A  1517    L_15:
+                           A  1518    .LINE 35
+                           A  1519    
+0000D4 DD7EFC              A  1520    	LD	A,(IX+-4)
+0000D7 B7                  A  1521    	OR	A,A
+0000D8 F2 E5 00 00         A  1522    	JP	P,L_17
+0000DC 18 46               A  1523    	JR	L_18
+0000DE                     A  1524    L_14:
+0000DE DD36FC07            A  1525    	LD	(IX+-4),7
+0000E2 18 F0 00            A  1526    	JR	L_15
+0000E5                     A  1527    L_17:
+                           A  1528    ;   36					
+                           A  1529    ;   37					if ( (*p) & (1<<x) ) {
+                           A  1530    .LINE 37
+                           A  1531    
+0000E5 DD7EFC              A  1532    	LD	A,(IX+-4)
+0000E8 17ED62              A  1533    	SEXT	HL
+0000EB DD6EFC              A  1534    	LD	L,(IX+-4)
+0000EE E5C1                A  1535    	LD	BC,HL
+0000F0 21010000            A  1536    	LD	HL,1
+0000F4 CD 00 00 00         A  1537    	CALL	__ishl
+0000F8 DD31F8              A  1538    	LD	IY,(IX+-8)
+0000FB 7D                  A  1539    	LD	A,L
+0000FC FDA600              A  1540    	AND	A,(IY)
+0000FF 28 0B 00            A  1541    	JR	Z,L_11
+                           A  1542    ;   38						*extram = colour;
+                           A  1543    .LINE 38
+                           A  1544    
+000102 DD27FD              A  1545    	LD	HL,(IX+-3)
+000105 DD7E0F              A  1546    	LD	A,(IX+15)
+000108 77                  A  1547    	LD	(HL),A
+                           A  1548    ;   39					} else {
+                           A  1549    .LINE 39
+                           A  1550    
+000109 18 06 00            A  1551    	JR	L_13
+00010C                     A  1552    L_11:
+                           A  1553    ;   40						*extram = 1;
+                           A  1554    .LINE 40
+                           A  1555    
+00010C DD27FD              A  1556    	LD	HL,(IX+-3)
+00010F 3601                A  1557    	LD	(HL),1
+                           A  1558    ;   41					}
+000111                     A  1559    L_13:
+                           A  1560    .LINE 41
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  31
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+                           A  1561    
+                           A  1562    ;   42					
+                           A  1563    ;   43					extram++; // move over 
+                           A  1564    .LINE 43
+                           A  1565    
+000111 DD07FD              A  1566    	LD	BC,(IX+-3)
+000114 DD0FEF              A  1567    	LD	(IX+-17),BC
+000117 DD07FD              A  1568    	LD	BC,(IX+-3)
+00011A 03                  A  1569    	INC	BC
+00011B DD0FFD              A  1570    	LD	(IX+-3),BC
+00011E DD35FC              A  1571    	DEC	(IX+-4)
+                           A  1572    ;   44				} // x shifter
+                           A  1573    .LINE 44
+                           A  1574    
+000121 18 B1 00            A  1575    	JR	L_15
+000124                     A  1576    L_18:
+                           A  1577    ;   45				
+                           A  1578    ;   46				extram -= 8; // next line, 
+                           A  1579    .LINE 46
+                           A  1580    
+000124 DD31FD              A  1581    	LD	IY,(IX+-3)
+000127 ED33F8              A  1582    	LEA	IY,IY+-8
+00012A DD3EFD              A  1583    	LD	(IX+-3),IY
+                           A  1584    ;   47				extram += 256; // go to nex
+                           A  1585    .LINE 47
+                           A  1586    
+00012D 01000100            A  1587    	LD	BC,256
+000131 DD27FD              A  1588    	LD	HL,(IX+-3)
+000134 09                  A  1589    	ADD	HL,BC
+000135 DD2FFD              A  1590    	LD	(IX+-3),HL
+                           A  1591    ;   48				
+                           A  1592    ;   49				p++;
+                           A  1593    .LINE 49
+                           A  1594    
+000138 DD07F8              A  1595    	LD	BC,(IX+-8)
+00013B DD0FEC              A  1596    	LD	(IX+-20),BC
+00013E DD07F8              A  1597    	LD	BC,(IX+-8)
+000141 03                  A  1598    	INC	BC
+000142 DD0FF8              A  1599    	LD	(IX+-8),BC
+000145 DD34FB              A  1600    	INC	(IX+-5)
+                           A  1601    ;   50			} // y
+                           A  1602    .LINE 50
+                           A  1603    
+000148 C3 C0 00 00 00      A  1604    	JR	L_21
+00014D                     A  1605    L_24:
+                           A  1606    ;   51			
+                           A  1607    ;   52			extram -= (8*256); // rewind ba
+                           A  1608    .LINE 52
+                           A  1609    
+00014D DD27FD              A  1610    	LD	HL,(IX+-3)
+000150 0100F8FF            A  1611    	LD	BC,-2048
+000154 09                  A  1612    	ADD	HL,BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  32
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+000155 DD2FFD              A  1613    	LD	(IX+-3),HL
+                           A  1614    ;   53			extram += 8;
+                           A  1615    .LINE 53
+                           A  1616    
+000158 DD31FD              A  1617    	LD	IY,(IX+-3)
+00015B ED3308              A  1618    	LEA	IY,IY+8
+00015E DD3EFD              A  1619    	LD	(IX+-3),IY
+                           A  1620    ;   54			
+                           A  1621    ;   55			text++;
+                           A  1622    .LINE 55
+                           A  1623    
+000161 DD070C              A  1624    	LD	BC,(IX+12)
+000164 DD0FE9              A  1625    	LD	(IX+-23),BC
+000167 DD070C              A  1626    	LD	BC,(IX+12)
+00016A 03                  A  1627    	INC	BC
+00016B DD0F0C              A  1628    	LD	(IX+12),BC
+                           A  1629    ;   56		} // while not end of string
+                           A  1630    .LINE 56
+                           A  1631    
+00016E C3 6E 00 00 00      A  1632    	JR	L_26
+                           A  1633    ;   57		
+                           A  1634    ;   58		return;
+000173                     A  1635    L_30:
+                           A  1636    .LINE 59
+                           A  1637    
+000173 DDF9                A  1638    	LD	SP,IX
+000175 DDE1                A  1639    	POP	IX
+000177 C9                  A  1640    	RET	
+                           A  1641    
+                           A  1642    
+                           A  1643    ;**************************** _render_font_8x8 
+                           A  1644    ;Name                         Addr/Register   S
+                           A  1645    ;_vincent_data                       STATIC   1
+                           A  1646    ;linestart                            IX-11    
+                           A  1647    ;p                                     IX-8    
+                           A  1648    ;y                                     IX-5    
+                           A  1649    ;x                                     IX-4    
+                           A  1650    ;extram                                IX-3    
+                           A  1651    ;colour                               IX+15    
+                           A  1652    ;text                                 IX+12    
+                           A  1653    ;ty                                    IX+9    
+                           A  1654    ;tx                                    IX+6    
+                           A  1655    
+                           A  1656    
+                           A  1657    ; Stack Frame Size: 41 (bytes)
+                           A  1658    ;       Spill Code: 0 (instruction)
+                           A  1659    
+                           A  1660    
+                           A  1661    .ENDFUNC "render_font_8x8",59,"_render_font_8x8
+                           A  1662    	XREF __ishl:ROM
+                           A  1663    	XREF __stoiu:ROM
+                           A  1664    	XREF __icmpzero:ROM
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:  33
+
+
+PC     Object              I  Line    Source lib_fontrender.src
+                           A  1665    	XREF __ishl_b:ROM
+                           A  1666    	XDEF _render_font_8x8
+                           A  1667    	XDEF _vincent_data
+                           A  1668    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 1669

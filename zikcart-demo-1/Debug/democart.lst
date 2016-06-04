@@ -1,0 +1,436 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)03-Jun-16     22:41:27     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -noglobalopt -nolocalcse -optsize -nomodsect 
+                           A     3    ; -padbranch -debug -peephole -const=ROM 
+                           A     4    	FILE	"..\DEMOCART.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)03-Jun-16     22:41:27     page:   2
+
+
+PC     Object              I  Line    Source democart.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+                           A    95    .BEGREC "NONAME3",6
+                           A    96    .DEFINE "quot"
+                           A    97    .VALUE 0
+                           A    98    .CLASS 8
+                           A    99    .TYPE 4
+                           A   100    .ENDEF
+                           A   101    .DEFINE "rem"
+                           A   102    .VALUE 3
+                           A   103    .CLASS 8
+                           A   104    .TYPE 4
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)03-Jun-16     22:41:27     page:   3
+
+
+PC     Object              I  Line    Source democart.src
+                           A   105    .ENDEF
+                           A   106    .ENDREC "NONAME3"
+                           A   107    .BEGREC "NONAME4",8
+                           A   108    .DEFINE "quot"
+                           A   109    .VALUE 0
+                           A   110    .CLASS 8
+                           A   111    .TYPE 5
+                           A   112    .ENDEF
+                           A   113    .DEFINE "rem"
+                           A   114    .VALUE 4
+                           A   115    .CLASS 8
+                           A   116    .TYPE 5
+                           A   117    .ENDEF
+                           A   118    .ENDREC "NONAME4"
+                           A   119    .BEGREC "header",6
+                           A   120    .DEFINE "s"
+                           A   121    .VALUE 0
+                           A   122    .CLASS 11
+                           A   123    .TAG "NONAME5"
+                           A   124    .TYPE 8
+                           A   125    .ENDEF
+                           A   126    .DEFINE "x"
+                           A   127    .VALUE 0
+                           A   128    .CLASS 11
+                           A   129    .TYPE 2
+                           A   130    .ENDEF
+                           A   131    .ENDREC "header"
+                           A   132    .BEGREC "NONAME5",6
+                           A   133    .DEFINE "ptr"
+                           A   134    .VALUE 0
+                           A   135    .CLASS 8
+                           A   136    .TAG "header"
+                           A   137    .TYPE 40
+                           A   138    .ENDEF
+                           A   139    .DEFINE "size"
+                           A   140    .VALUE 3
+                           A   141    .CLASS 8
+                           A   142    .TYPE 14
+                           A   143    .ENDEF
+                           A   144    .ENDREC "NONAME5"
+                           A   145    ;    1	#include <eZ80.h>
+                           A   146    ;    2	#include <uart.h>
+                           A   147    ;    3	#include <gpio.h>
+                           A   148    ;    4	#include <stdlib.h>
+                           A   149    ;    5	#include <string.h>
+                           A   150    ;    6	
+                           A   151    ;    7	int main ( ) {
+000000                     A   152    _main:
+                           A   153    .DEFINE "_main"
+                           A   154    
+                           A   155    .VALUE _main
+                           A   156    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)03-Jun-16     22:41:27     page:   4
+
+
+PC     Object              I  Line    Source democart.src
+                           A   157    .CLASS 2
+                           A   158    
+                           A   159    .TYPE 68
+                           A   160    
+                           A   161    .ENDEF
+                           A   162    
+                           A   163    .BEGFUNC "main",7,"_main"
+                           A   164    
+                           A   165    .LINE 7
+                           A   166    
+                           A   167    .DEFINE "i"
+                           A   168    
+                           A   169    .CLASS 65
+                           A   170    
+                           A   171    .VALUE -1
+                           A   172    
+                           A   173    .TYPE 12
+                           A   174    
+                           A   175    .ENDEF
+                           A   176    
+                           A   177    .DEFINE "u0"
+                           A   178    
+                           A   179    .CLASS 65
+                           A   180    
+                           A   181    .VALUE -11
+                           A   182    
+                           A   183    .TAG "NONAME1"
+                           A   184    
+                           A   185    .TYPE 8
+                           A   186    
+                           A   187    .ENDEF
+                           A   188    
+                           A   189    .DEFINE "b"
+                           A   190    
+                           A   191    .CLASS 65
+                           A   192    
+                           A   193    .VALUE -27
+                           A   194    
+                           A   195    .DIM 16
+                           A   196    
+                           A   197    .TYPE 98
+                           A   198    
+                           A   199    .ENDEF
+                           A   200    
+000000 DDE5                A   201    	PUSH	IX
+000002 DD210000 00         A   202    	LD	IX,0
+000007 DD39                A   203    	ADD	IX,SP
+000009 ED22E2              A   204    	LEA	HL,IX+-30
+00000C F9                  A   205    	LD	SP,HL
+                           A   206    ;    8	
+                           A   207    ;    9		// enable interupts
+                           A   208    ;   10		_init_default_vectors();
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)03-Jun-16     22:41:27     page:   5
+
+
+PC     Object              I  Line    Source democart.src
+                           A   209    .LINE 10
+                           A   210    
+00000D CD 00 00 00         A   211    	CALL	__init_default_vectors
+                           A   212    ;   11	
+                           A   213    ;   12	#if 1 // uart logger - WORKS
+                           A   214    ;   13		{
+                           A   215    ;   14			// F93 default is 20MHz - happe
+                           A   216    ;   15			// uart0 is on port d
+                           A   217    ;   16			// uart1 is on port c
+                           A   218    ;   17			
+                           A   219    ;   18			UART u0;
+                           A   220    ;   19			char b [ 16 ];
+                           A   221    ;   20			unsigned char i;
+                           A   222    ;   21			
+                           A   223    ;   22			u0.uartMode = POLL; //INTERRUPT
+                           A   224    .LINE 22
+                           A   225    
+000011 DD36F500            A   226    	LD	(IX+-11),0
+                           A   227    ;   23			u0.baudRate =  BAUD_38400; //BA
+                           A   228    .LINE 23
+                           A   229    
+000015 01009600            A   230    	LD	BC,38400
+000019 DD0FF6              A   231    	LD	(IX+-10),BC
+                           A   232    ;   24			u0.dataBits = DATABITS_8;
+                           A   233    .LINE 24
+                           A   234    
+00001C DD36F908            A   235    	LD	(IX+-7),8
+                           A   236    ;   25			u0.stopBits = STOPBITS_1;
+                           A   237    .LINE 25
+                           A   238    
+000020 DD36FA01            A   239    	LD	(IX+-6),1
+                           A   240    ;   26			u0.parity = PAR_NOPARITY;
+                           A   241    .LINE 26
+                           A   242    
+000024 DD36FB00            A   243    	LD	(IX+-5),0
+                           A   244    ;   27			u0.fifoTriggerLevel = FIFO_TRGL
+                           A   245    .LINE 27
+                           A   246    
+000028 DD36FC01            A   247    	LD	(IX+-4),1
+                           A   248    ;   28			u0.hwFlowControl = DISABLE_HWFL
+                           A   249    .LINE 28
+                           A   250    
+00002C DD36FD00            A   251    	LD	(IX+-3),0
+                           A   252    ;   29			u0.swFlowControl = DISABLE_SWFL
+                           A   253    .LINE 29
+                           A   254    
+000030 DD36FE00            A   255    	LD	(IX+-2),0
+                           A   256    ;   30			
+                           A   257    ;   31			open_UART0 ( &u0 );
+                           A   258    .LINE 31
+                           A   259    
+000034 ED65F5              A   260    	PEA	IX+-11
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)03-Jun-16     22:41:27     page:   6
+
+
+PC     Object              I  Line    Source democart.src
+000037 CD 00 00 00         A   261    	CALL	_open_UART0
+00003B C1                  A   262    	POP	BC
+                           A   263    ;   32			
+                           A   264    ;   33			b [ 0 ] = 'D';
+                           A   265    .LINE 33
+                           A   266    
+00003C DD36E544            A   267    	LD	(IX+-27),68
+                           A   268    ;   34			b [ 1 ] = 'R';
+                           A   269    .LINE 34
+                           A   270    
+000040 ED22E5              A   271    	LEA	HL,IX+-27
+000043 23                  A   272    	INC	HL
+000044 3652                A   273    	LD	(HL),82
+                           A   274    ;   35			b [ 2 ] = 'P';
+                           A   275    .LINE 35
+                           A   276    
+000046 ED22E7              A   277    	LEA	HL,IX+-25
+000049 3650                A   278    	LD	(HL),80
+                           A   279    ;   36			b [ 3 ] = '\0';
+                           A   280    .LINE 36
+                           A   281    
+00004B ED22E8              A   282    	LEA	HL,IX+-24
+00004E 3600                A   283    	LD	(HL),0
+000050 18 0A 00            A   284    	JR	L_1
+                           A   285    ;   37			
+                           A   286    ;   38			for ( i = 0; i < 5; i++ ) {
+000053                     A   287    L_2:
+                           A   288    .LINE 38
+                           A   289    
+000053 DD7EFF              A   290    	LD	A,(IX+-1)
+000056 FE05                A   291    	CP	A,5
+000058 38 09               A   292    	JR	C,L_4
+00005A 18 1B               A   293    	JR	L_5
+00005C                     A   294    L_1:
+00005C DD36FF00            A   295    	LD	(IX+-1),0
+000060 18 F1 00            A   296    	JR	L_2
+000063                     A   297    L_4:
+                           A   298    ;   39				write_UART0 ( b, 3 );
+                           A   299    .LINE 39
+                           A   300    
+000063 01030000            A   301    	LD	BC,3
+000067 C5                  A   302    	PUSH	BC
+000068 ED65E5              A   303    	PEA	IX+-27
+00006B CD 00 00 00         A   304    	CALL	_write_UART0
+00006F C1                  A   305    	POP	BC
+000070 C1                  A   306    	POP	BC
+000071 DD34FF              A   307    	INC	(IX+-1)
+                           A   308    ;   40			}
+                           A   309    .LINE 40
+                           A   310    
+000074 18 DD 00            A   311    	JR	L_2
+000077                     A   312    L_5:
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)03-Jun-16     22:41:27     page:   7
+
+
+PC     Object              I  Line    Source democart.src
+                           A   313    ;   41			
+                           A   314    ;   42			lame_itoa ( (int)2, b );
+                           A   315    .LINE 42
+                           A   316    
+000077 ED65E5              A   317    	PEA	IX+-27
+00007A 01020000            A   318    	LD	BC,2
+00007E C5                  A   319    	PUSH	BC
+00007F CD 00 00 00         A   320    	CALL	_lame_itoa
+000083 C1                  A   321    	POP	BC
+000084 C1                  A   322    	POP	BC
+                           A   323    ;   43			
+                           A   324    ;   44			write_UART0 ( b, lame_strlen ( 
+                           A   325    .LINE 44
+                           A   326    
+000085 ED65E5              A   327    	PEA	IX+-27
+000088 CD 00 00 00         A   328    	CALL	_lame_strlen
+00008C C1                  A   329    	POP	BC
+00008D E5                  A   330    	PUSH	HL
+00008E ED65E5              A   331    	PEA	IX+-27
+000091 DD2FE2              A   332    	LD	(IX+-30),HL
+000094 CD 00 00 00         A   333    	CALL	_write_UART0
+000098 DD27E2              A   334    	LD	HL,(IX+-30)
+00009B C1                  A   335    	POP	BC
+00009C C1                  A   336    	POP	BC
+                           A   337    ;   45			write_UART0 ( "\n", 1 );
+                           A   338    .LINE 45
+                           A   339    
+00009D 01010000            A   340    	LD	BC,1
+0000A1 C5                  A   341    	PUSH	BC
+0000A2 01 00 00 00         A   342    	LD	BC,L__1
+0000A6 C5                  A   343    	PUSH	BC
+0000A7 DD2FE2              A   344    	LD	(IX+-30),HL
+0000AA CD 00 00 00         A   345    	CALL	_write_UART0
+0000AE DD27E2              A   346    	LD	HL,(IX+-30)
+0000B1 C1                  A   347    	POP	BC
+0000B2 C1                  A   348    	POP	BC
+                           A   349    ;   46			flush_UART0 ( FLUSHFIFO_ALL );
+                           A   350    .LINE 46
+                           A   351    
+0000B3 01030000            A   352    	LD	BC,3
+0000B7 C5                  A   353    	PUSH	BC
+0000B8 DD2FE2              A   354    	LD	(IX+-30),HL
+0000BB CD 00 00 00         A   355    	CALL	_flush_UART0
+0000BF DD27E2              A   356    	LD	HL,(IX+-30)
+0000C2 C1                  A   357    	POP	BC
+                           A   358    ;   47			
+                           A   359    ;   48		}
+                           A   360    ;   49	
+                           A   361    ;   50	#endif
+                           A   362    ;   51	
+                           A   363    ;   52	}
+                           A   364    .LINE 52
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)03-Jun-16     22:41:27     page:   8
+
+
+PC     Object              I  Line    Source democart.src
+                           A   365    
+0000C3 DDF9                A   366    	LD	SP,IX
+0000C5 DDE1                A   367    	POP	IX
+0000C7 C9                  A   368    	RET	
+                           A   369    
+                           A   370    
+                           A   371    ;**************************** _main ***********
+                           A   372    ;Name                         Addr/Register   S
+                           A   373    ;_flush_UART0                        IMPORT  --
+                           A   374    ;_lame_strlen                        IMPORT  --
+                           A   375    ;_lame_itoa                          IMPORT  --
+                           A   376    ;_write_UART0                        IMPORT  --
+                           A   377    ;_open_UART0                         IMPORT  --
+                           A   378    ;__init_default_vectors              IMPORT  --
+                           A   379    ;b                                    IX-27    
+                           A   380    ;u0                                   IX-11    
+                           A   381    ;i                                     IX-1    
+                           A   382    
+                           A   383    
+                           A   384    ; Stack Frame Size: 36 (bytes)
+                           A   385    ;       Spill Code: 0 (instruction)
+                           A   386    
+                           A   387    
+                           A   388    .ENDFUNC "main",52,"_main"
+                           A   389    	SEGMENT STRSECT
+000000                     A   390    L__1:
+000000 0A00                A   391    	DB	10,0
+                           A   392    	XREF _lame_strlen:ROM
+                           A   393    	XREF _lame_itoa:ROM
+                           A   394    	XREF _write_UART0:ROM
+                           A   395    	XREF _flush_UART0:ROM
+                           A   396    	XREF _open_UART0:ROM
+                           A   397    	XREF __init_default_vectors:ROM
+                           A   398    	XDEF _main
+                           A   399    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 400

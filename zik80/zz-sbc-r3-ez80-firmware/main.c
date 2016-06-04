@@ -27,6 +27,7 @@
 #include "HAL.h"
 #include "bios_video.h"
 #include "demo.h"
+#include "flashtool_menu.h"
 
 int main ( ) {
 
@@ -93,7 +94,7 @@ int main ( ) {
 			write_UART0 ( b, 3 );
 		}
 		
-		lame_itoa ( (int)42, b );
+		lame_itoa ( (int)10, b );
 		
 		write_UART0 ( b, lame_strlen ( b ) );
 		write_UART0 ( "\n", 1 );
@@ -102,6 +103,34 @@ int main ( ) {
 	}
 #endif
 
+#if 0
+	{
+		// write some dummy stuff to cart space
+		
+		// Observation; using no delay_ms_spin() between byte-writes seems to work JUST FINE.
+		// But using 'load from file' in ZDS II IDE seems not to work .. whats with that?
+		// Is fine, we intended to build our own USB->serial cart flasher tool anyway, but still.
+		
+		UINT8 *cart_addr = (UINT8*) 0x1c0000;
+		UINT16 i;
+		
+		for ( i = 0; i < 64; i++ ) {
+			*cart_addr = ( i & 0xFF );
+			cart_addr += 1;
+			//delay_ms_spin(1);
+		}
+		
+		delay_ms_spin(100);
+		
+	}
+#endif
+
+#if 1 // run the flashtool on serial
+	{
+		flashtool_serial_forever();
+	}
+#endif
+	
 #if 1 // keyboard isr interrupt test; show mapped char, and scancode, on serial
 	{
 		uint8_t p;

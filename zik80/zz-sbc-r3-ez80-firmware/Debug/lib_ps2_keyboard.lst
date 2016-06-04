@@ -1,0 +1,1332 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -noglobalopt -nolocalcse -optsize -nomodsect 
+                           A     3    ; -padbranch -debug -peephole -const=ROM 
+                           A     4    	FILE	"..\LIB_PS2_KEYBOARD.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   2
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+                           A    95    .BEGREC "fmt_type",19
+                           A    96    .DEFINE "status"
+                           A    97    .VALUE 0
+                           A    98    .CLASS 8
+                           A    99    .TYPE 12
+                           A   100    .ENDEF
+                           A   101    .DEFINE "flags"
+                           A   102    .VALUE 1
+                           A   103    .CLASS 8
+                           A   104    .TYPE 12
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   3
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   105    .ENDEF
+                           A   106    .DEFINE "size"
+                           A   107    .VALUE 2
+                           A   108    .CLASS 8
+                           A   109    .TYPE 2
+                           A   110    .ENDEF
+                           A   111    .DEFINE "chr"
+                           A   112    .VALUE 3
+                           A   113    .CLASS 8
+                           A   114    .TYPE 2
+                           A   115    .ENDEF
+                           A   116    .DEFINE "type"
+                           A   117    .VALUE 4
+                           A   118    .CLASS 8
+                           A   119    .TYPE 2
+                           A   120    .ENDEF
+                           A   121    .DEFINE "field_width"
+                           A   122    .VALUE 5
+                           A   123    .CLASS 8
+                           A   124    .TYPE 2
+                           A   125    .ENDEF
+                           A   126    .DEFINE "precision"
+                           A   127    .VALUE 6
+                           A   128    .CLASS 8
+                           A   129    .TYPE 2
+                           A   130    .ENDEF
+                           A   131    .DEFINE "set_begin"
+                           A   132    .VALUE 7
+                           A   133    .CLASS 8
+                           A   134    .TYPE 34
+                           A   135    .ENDEF
+                           A   136    .DEFINE "set_end"
+                           A   137    .VALUE 10
+                           A   138    .CLASS 8
+                           A   139    .TYPE 34
+                           A   140    .ENDEF
+                           A   141    .DEFINE "pad_whole"
+                           A   142    .VALUE 13
+                           A   143    .CLASS 8
+                           A   144    .TYPE 12
+                           A   145    .ENDEF
+                           A   146    .DEFINE "pad_pre_fract"
+                           A   147    .VALUE 14
+                           A   148    .CLASS 8
+                           A   149    .TYPE 12
+                           A   150    .ENDEF
+                           A   151    .DEFINE "pad_post_fract"
+                           A   152    .VALUE 15
+                           A   153    .CLASS 8
+                           A   154    .TYPE 12
+                           A   155    .ENDEF
+                           A   156    .DEFINE "pad_at"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   4
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   157    .VALUE 16
+                           A   158    .CLASS 8
+                           A   159    .TYPE 34
+                           A   160    .ENDEF
+                           A   161    .ENDREC "fmt_type"
+                           A   162    .BEGREC "flt_info",12
+                           A   163    .DEFINE "flags"
+                           A   164    .VALUE 0
+                           A   165    .CLASS 8
+                           A   166    .TYPE 12
+                           A   167    .ENDEF
+                           A   168    .DEFINE "exp"
+                           A   169    .VALUE 1
+                           A   170    .CLASS 8
+                           A   171    .TYPE 2
+                           A   172    .ENDEF
+                           A   173    .DEFINE "digits"
+                           A   174    .VALUE 2
+                           A   175    .CLASS 8
+                           A   176    .DIM 10
+                           A   177    .TYPE 108
+                           A   178    .ENDEF
+                           A   179    .ENDREC "flt_info"
+000000                     A   180    _delay_loop:
+                           A   181    .DEFINE "_delay_loop"
+                           A   182    
+                           A   183    .VALUE _delay_loop
+                           A   184    
+                           A   185    .CLASS 3
+                           A   186    
+                           A   187    .TYPE 65
+                           A   188    
+                           A   189    .ENDEF
+                           A   190    
+                           A   191    .BEGFUNC "delay_loop",17,"_delay_loop"
+                           A   192    
+                           A   193    .LINE 17
+                           A   194    
+                           A   195    .DEFINE "c"
+                           A   196    
+                           A   197    .CLASS 65
+                           A   198    
+                           A   199    .VALUE 6
+                           A   200    
+                           A   201    .TYPE 14
+                           A   202    
+000000 DDE5                A   203    	PUSH	IX
+000002 DD210000 00         A   204    	LD	IX,0
+000007 DD39                A   205    	ADD	IX,SP
+                           A   206    .ENDEF
+                           A   207    
+000009                     A   208    L_1:
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   5
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   209    .LINE 18
+                           A   210    
+000009 DD2706              A   211    	LD	HL,(IX+6)
+00000C CD 00 00 00         A   212    	CALL	__icmpzero
+000010 28 0D 00            A   213    	JR	Z,L_3
+                           A   214    .LINE 19
+                           A   215    
+000013 DD3106              A   216    	LD	IY,(IX+6)
+000016 ED33FF              A   217    	LEA	IY,IY+-1
+000019 DD3E06              A   218    	LD	(IX+6),IY
+                           A   219    .LINE 20
+                           A   220    
+00001C 18 EB 00            A   221    	JR	L_1
+00001F                     A   222    L_3:
+                           A   223    .LINE 21
+                           A   224    
+00001F DDF9                A   225    	LD	SP,IX
+000021 DDE1                A   226    	POP	IX
+000023 C9                  A   227    	RET	
+                           A   228    
+                           A   229    
+                           A   230    ;**************************** _delay_loop *****
+                           A   231    ;Name                         Addr/Register   S
+                           A   232    ;c                                     IX+6    
+                           A   233    
+                           A   234    
+                           A   235    ; Stack Frame Size: 9 (bytes)
+                           A   236    ;       Spill Code: 0 (instruction)
+                           A   237    
+                           A   238    
+                           A   239    .ENDFUNC "delay_loop",21,"_delay_loop"
+                           A   240    	SEGMENT TEXT
+000000                     A   241    _keymap:
+000000 3F                  A   242    	DB	63
+000001 3F                  A   243    	DB	63
+000002 3F                  A   244    	DB	63
+000003 3F                  A   245    	DB	63
+000004 3F                  A   246    	DB	63
+000005 3F                  A   247    	DB	63
+000006 3F                  A   248    	DB	63
+000007 3F                  A   249    	DB	63
+000008 3F                  A   250    	DB	63
+000009 3F                  A   251    	DB	63
+00000A 3F                  A   252    	DB	63
+00000B 3F                  A   253    	DB	63
+00000C 3F                  A   254    	DB	63
+00000D 3F                  A   255    	DB	63
+00000E 3F                  A   256    	DB	63
+00000F 3F                  A   257    	DB	63
+000010 3F                  A   258    	DB	63
+000011 3F                  A   259    	DB	63
+000012 3F                  A   260    	DB	63
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   6
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+000013 3F                  A   261    	DB	63
+000014 3F                  A   262    	DB	63
+000015 71                  A   263    	DB	113
+000016 31                  A   264    	DB	49
+000017 3F                  A   265    	DB	63
+000018 3F                  A   266    	DB	63
+000019 3F                  A   267    	DB	63
+00001A 7A                  A   268    	DB	122
+00001B 73                  A   269    	DB	115
+00001C 61                  A   270    	DB	97
+00001D 77                  A   271    	DB	119
+00001E 32                  A   272    	DB	50
+00001F 3F                  A   273    	DB	63
+000020 3F                  A   274    	DB	63
+000021 63                  A   275    	DB	99
+000022 78                  A   276    	DB	120
+000023 64                  A   277    	DB	100
+000024 65                  A   278    	DB	101
+000025 34                  A   279    	DB	52
+000026 33                  A   280    	DB	51
+000027 3F                  A   281    	DB	63
+000028 3F                  A   282    	DB	63
+000029 20                  A   283    	DB	32
+00002A 76                  A   284    	DB	118
+00002B 66                  A   285    	DB	102
+00002C 74                  A   286    	DB	116
+00002D 72                  A   287    	DB	114
+00002E 35                  A   288    	DB	53
+00002F 3F                  A   289    	DB	63
+000030 3F                  A   290    	DB	63
+000031 6E                  A   291    	DB	110
+000032 62                  A   292    	DB	98
+000033 68                  A   293    	DB	104
+000034 67                  A   294    	DB	103
+000035 79                  A   295    	DB	121
+000036 36                  A   296    	DB	54
+000037 3F                  A   297    	DB	63
+000038 3F                  A   298    	DB	63
+000039 3F                  A   299    	DB	63
+00003A 6D                  A   300    	DB	109
+00003B 6A                  A   301    	DB	106
+00003C 75                  A   302    	DB	117
+00003D 37                  A   303    	DB	55
+00003E 38                  A   304    	DB	56
+00003F 3F                  A   305    	DB	63
+000040 3F                  A   306    	DB	63
+000041 3F                  A   307    	DB	63
+000042 6B                  A   308    	DB	107
+000043 69                  A   309    	DB	105
+000044 6F                  A   310    	DB	111
+000045 30                  A   311    	DB	48
+000046 39                  A   312    	DB	57
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   7
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+000047 3F                  A   313    	DB	63
+000048 3F                  A   314    	DB	63
+000049 3F                  A   315    	DB	63
+00004A 3F                  A   316    	DB	63
+00004B 6C                  A   317    	DB	108
+00004C 3F                  A   318    	DB	63
+00004D 70                  A   319    	DB	112
+00004E 3F                  A   320    	DB	63
+00004F 3F                  A   321    	DB	63
+000050 3F                  A   322    	DB	63
+000051 3F                  A   323    	DB	63
+000052 3F                  A   324    	DB	63
+000053 3F                  A   325    	DB	63
+000054 3F                  A   326    	DB	63
+000055 3F                  A   327    	DB	63
+000056 3F                  A   328    	DB	63
+000057 3F                  A   329    	DB	63
+000058 3F                  A   330    	DB	63
+000059 3F                  A   331    	DB	63
+00005A 3F                  A   332    	DB	63
+00005B 3F                  A   333    	DB	63
+00005C 3F                  A   334    	DB	63
+00005D 3F                  A   335    	DB	63
+00005E 3F                  A   336    	DB	63
+00005F 3F                  A   337    	DB	63
+000060 3F                  A   338    	DB	63
+000061 3F                  A   339    	DB	63
+000062 3F                  A   340    	DB	63
+000063 3F                  A   341    	DB	63
+000064 3F                  A   342    	DB	63
+000065 3F                  A   343    	DB	63
+000066 3F                  A   344    	DB	63
+000067 3F                  A   345    	DB	63
+000068 3F                  A   346    	DB	63
+000069 3F                  A   347    	DB	63
+00006A 3F                  A   348    	DB	63
+00006B 3F                  A   349    	DB	63
+00006C 3F                  A   350    	DB	63
+00006D 3F                  A   351    	DB	63
+00006E 3F                  A   352    	DB	63
+00006F 3F                  A   353    	DB	63
+000070 3F                  A   354    	DB	63
+000071 3F                  A   355    	DB	63
+000072 3F                  A   356    	DB	63
+000073 3F                  A   357    	DB	63
+000074 3F                  A   358    	DB	63
+000075 3F                  A   359    	DB	63
+000076 3F                  A   360    	DB	63
+000077 3F                  A   361    	DB	63
+000078 3F                  A   362    	DB	63
+000079 3F                  A   363    	DB	63
+00007A 3F                  A   364    	DB	63
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   8
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+00007B 3F                  A   365    	DB	63
+00007C 3F                  A   366    	DB	63
+00007D 3F                  A   367    	DB	63
+00007E 3F                  A   368    	DB	63
+00007F 3F                  A   369    	DB	63
+                           A   370    .DEFINE "keymap"
+                           A   371    .ALIAS "_keymap"
+                           A   372    .CLASS 84
+                           A   373    .VALUE _keymap
+                           A   374    .DIM 128
+                           A   375    .TYPE 98
+                           A   376    .ENDEF
+                           A   377    	SEGMENT DATA
+000000                     A   378    __g_started:
+000000 00                  A   379    	DB	0
+                           A   380    .DEFINE "_g_started"
+                           A   381    .ALIAS "__g_started"
+                           A   382    .CLASS 69
+                           A   383    .VALUE __g_started
+                           A   384    .TYPE 12
+                           A   385    .ENDEF
+000001                     A   386    __g_bit_count:
+000001 00                  A   387    	DB	0
+                           A   388    .DEFINE "_g_bit_count"
+                           A   389    .ALIAS "__g_bit_count"
+                           A   390    .CLASS 69
+                           A   391    .VALUE __g_bit_count
+                           A   392    .TYPE 12
+                           A   393    .ENDEF
+000002                     A   394    __g_shifted:
+000002 00                  A   395    	DB	0
+                           A   396    .DEFINE "_g_shifted"
+                           A   397    .ALIAS "__g_shifted"
+                           A   398    .CLASS 69
+                           A   399    .VALUE __g_shifted
+                           A   400    .TYPE 12
+                           A   401    .ENDEF
+000003                     A   402    __g_release_event:
+000003 00                  A   403    	DB	0
+                           A   404    .DEFINE "_g_release_event"
+                           A   405    .ALIAS "__g_release_event"
+                           A   406    .CLASS 69
+                           A   407    .VALUE __g_release_event
+                           A   408    .TYPE 12
+                           A   409    .ENDEF
+000004                     A   410    __g_kbd_data:
+000004 00                  A   411    	DB	0
+                           A   412    .DEFINE "_g_kbd_data"
+                           A   413    .ALIAS "__g_kbd_data"
+                           A   414    .CLASS 69
+                           A   415    .VALUE __g_kbd_data
+                           A   416    .TYPE 12
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   9
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   417    .ENDEF
+000005                     A   418    __g_char_waiting:
+000005 00                  A   419    	DB	0
+                           A   420    .DEFINE "_g_char_waiting"
+                           A   421    .ALIAS "__g_char_waiting"
+                           A   422    .CLASS 69
+                           A   423    .VALUE __g_char_waiting
+                           A   424    .TYPE 12
+                           A   425    .ENDEF
+000006                     A   426    __g_databit:
+000006 00                  A   427    	DB	0
+                           A   428    .DEFINE "_g_databit"
+                           A   429    .ALIAS "__g_databit"
+                           A   430    .CLASS 69
+                           A   431    .VALUE __g_databit
+                           A   432    .TYPE 12
+                           A   433    .ENDEF
+                           A   434    ;    1	#include <eZ80.h>
+                           A   435    ;    2	#include <stdio.h>
+                           A   436    ;    3	
+                           A   437    ;    4	#include <gpio.h>
+                           A   438    ;    5	//#include <intvect.h>
+                           A   439    ;    6	
+                           A   440    ;    7	#include "skeelib.h"
+                           A   441    ;    8	#include "lib_ps2_keyboard.h"
+                           A   442    ;    9	#include "lib_ps2_keymap.h"
+                           A   443    ;   10	
+                           A   444    ;   11	// PS/2 keyboard protocol
+                           A   445    ;   12	//
+                           A   446    ;   13	// If a normal key is PRESSED, its scan
+                           A   447    ;   14	// If a normal key is RELEASED, we rece
+                           A   448    ;   15	// For a repeat, the PRESS event, then 
+                           A   449    ;   16	//
+                           A   450    ;   17	// Therefore, typical normal key lifecy
+                           A   451    ;   18	//  ...... scancode ...... 240 scancode
+                           A   452    ;   19	//         < press>        < release  >
+                           A   453    ;   20	//
+                           A   454    ;   21	// Special keys:
+                           A   455    ;   22	// dec 224 (0xE0) comes first, to escap
+                           A   456    ;   23	// Special press: 224 scancode
+                           A   457    ;   24	// Special release: 224 240 scancode
+                           A   458    ;   25	//
+                           A   459    ;   26	// Retarded keys:
+                           A   460    ;   27	// Print screen and Pause do a bunch of
+                           A   461    ;   28	
+                           A   462    ;   29	
+                           A   463    ;   30	// ---[ ISR follows ]------------------
+                           A   464    ;   31	//#define LOGRAM_ON
+                           A   465    ;   32	
+                           A   466    ;   33	uint8_t _g_started = 0;
+                           A   467    ;   34	uint8_t _g_bit_count = 0;
+                           A   468    ;   35	uint8_t _g_shifted = 0;
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  10
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   469    ;   36	uint8_t _g_release_event = 0;
+                           A   470    ;   37	
+                           A   471    ;   38	uint8_t _g_kbd_data = 0;
+                           A   472    ;   39	uint8_t _g_char_waiting = 0;
+                           A   473    ;   40	uint8_t _g_databit = 0;
+                           A   474    	SEGMENT CODE
+                           A   475    ;   41	
+                           A   476    ;   42	#if 0 // hacking around
+                           A   477    ;   43	#define GPIO_DATAPORT    PC_DR
+                           A   478    ;   44	#define GPIO_CLOCK_ISR   PORTC1_IVECT
+                           A   479    ;   45	#define GPIO_CLOCK_PIN   PORTPIN_ONE
+                           A   480    ;   46	#define GPIO_DATA_PIN    PORTPIN_TWO
+                           A   481    ;   47	#define GPIO_OPEN_F		 open_PortC
+                           A   482    ;   48	#define GPIO_CONTROL_F	 control_PortC
+                           A   483    ;   49	#define GPIO_SETMODE_F	 setmode_PortC
+                           A   484    ;   50	#endif
+                           A   485    ;   51	
+                           A   486    ;   52	#if 1 // zikzak sbc rev3 intended
+                           A   487    ;   53	#define GPIO_DATAPORT    PD_DR
+                           A   488    ;   54	#define GPIO_CLOCK_ISR   PORTD7_IVECT
+                           A   489    ;   55	#define GPIO_CLOCK_PIN   PORTPIN_SEVEN
+                           A   490    ;   56	#define GPIO_DATA_PIN    PORTPIN_SIX
+                           A   491    ;   57	#define GPIO_OPEN_F		 open_PortD
+                           A   492    ;   58	#define GPIO_CONTROL_F	 control_PortD
+                           A   493    ;   59	#define GPIO_SETMODE_F	 setmode_PortD
+                           A   494    ;   60	#endif
+                           A   495    ;   61	
+                           A   496    ;   62	#ifdef LOGRAM_ON // DEBUG: populate a r
+                           A   497    ;   63	uint8_t *_g_logram = (uint8_t*) 0x0D000
+                           A   498    ;   64	#endif
+                           A   499    ;   65	
+                           A   500    ;   66	static interrupt void keyb_clock_isr ( 
+000024                     A   501    _keyb_clock_isr:
+000024 00                  A   502    	NOP	
+                           A   503    .DEFINE "_keyb_clock_isr"
+                           A   504    
+                           A   505    .VALUE _keyb_clock_isr
+                           A   506    
+                           A   507    .CLASS 3
+                           A   508    
+                           A   509    .TYPE 65
+                           A   510    
+                           A   511    .ENDEF
+                           A   512    
+                           A   513    .BEGFUNC "keyb_clock_isr",66,"_keyb_clock_isr+1
+                           A   514    
+000025 FDE5                A   515    	PUSH	IY
+000027 D9                  A   516    	EXX	
+000028 08                  A   517    	EX	AF,AF'
+000029 DDE5                A   518    	PUSH	IX
+00002B DD210000 00         A   519    	LD	IX,0
+000030 DD39                A   520    	ADD	IX,SP
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  11
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   521    ;   67	  // simple state machine to determine 
+                           A   522    ;   68	
+                           A   523    ;   69	  _g_databit = GPIO_DATAPORT & GPIO_DAT
+                           A   524    .LINE 69
+                           A   525    
+000032 ED38A2              A   526    	IN0	A,(162)
+000035 E640                A   527    	AND	A,64
+000037 32 06 00 00         A   528    	LD	(__g_databit),A
+                           A   529    ;   70		
+                           A   530    ;   71	  // let ISR trigger again
+                           A   531    ;   72	  GPIO_DATAPORT |= (GPIO_CLOCK_PIN);
+                           A   532    .LINE 72
+                           A   533    
+00003B ED38A2              A   534    	IN0	A,(162)
+00003E CBFF                A   535    	SET	7,A
+000040 ED39A2              A   536    	OUT0	(162),A
+                           A   537    ;   73	  GPIO_DATAPORT &= ~(GPIO_CLOCK_PIN);
+                           A   538    .LINE 73
+                           A   539    
+000043 ED38A2              A   540    	IN0	A,(162)
+000046 CBBF                A   541    	RES	7,A
+000048 ED39A2              A   542    	OUT0	(162),A
+                           A   543    ;   74	
+                           A   544    ;   75	  // make sure clock line is low, if no
+                           A   545    ;   76	  // WTF: If we set to interupt on fall
+                           A   546    ;   77	#if 0
+                           A   547    ;   78	  if ( GPIO_DATAPORT & (GPIO_CLOCK_PIN)
+                           A   548    ;   79	    return;
+                           A   549    ;   80	  }
+                           A   550    ;   81	#endif
+                           A   551    ;   82	
+                           A   552    ;   83	  // if we have not started, check for 
+                           A   553    ;   84	  if ( ! _g_started ) {
+                           A   554    .LINE 84
+                           A   555    
+00004B 3A 00 00 00         A   556    	LD	A,(__g_started)
+00004F B7                  A   557    	OR	A,A
+000050 20 1E 00            A   558    	JR	NZ,L_14
+                           A   559    ;   85	      if ( ! _g_databit ) {
+                           A   560    .LINE 85
+                           A   561    
+000053 3A 06 00 00         A   562    	LD	A,(__g_databit)
+000057 B7                  A   563    	OR	A,A
+000058 20 68 00            A   564    	JR	NZ,L_24
+                           A   565    ;   86			_g_started = 1;
+                           A   566    .LINE 86
+                           A   567    
+00005B 3E01                A   568    	LD	A,1
+00005D 32 00 00 00         A   569    	LD	(__g_started),A
+                           A   570    ;   87			_g_bit_count = 0;
+                           A   571    .LINE 87
+                           A   572    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  12
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+000061 AF                  A   573    	XOR	A,A
+000062 32 01 00 00         A   574    	LD	(__g_bit_count),A
+                           A   575    ;   88			_g_kbd_data = 0;
+                           A   576    .LINE 88
+                           A   577    
+000066 AF                  A   578    	XOR	A,A
+000067 32 04 00 00         A   579    	LD	(__g_kbd_data),A
+                           A   580    ;   89			
+                           A   581    ;   90	#ifdef LOGRAM_ON
+                           A   582    ;   91			_g_logram [ 0 ] = 0; _g_logram 
+                           A   583    ;   92			_g_logram [ 4 ] = 0; _g_logram 
+                           A   584    ;   93	#endif
+                           A   585    ;   94			return;
+                           A   586    .LINE 94
+                           A   587    
+00006B C3 16 01 00 00      A   588    	JR	L_26
+                           A   589    ;   95		  }
+                           A   590    ;   96	
+                           A   591    ;   97	  } else if ( _g_bit_count < 8 ) { // w
+000070                     A   592    L_14:
+                           A   593    .LINE 97
+                           A   594    
+000070 3A 01 00 00         A   595    	LD	A,(__g_bit_count)
+000074 FE08                A   596    	CP	A,8
+000076 30 2B 00            A   597    	JR	NC,L_12
+                           A   598    ;   98	    //put a 1 in the right place of kdb
+                           A   599    ;   99	    //a 0 otherwise
+                           A   600    ;  100	    if ( _g_databit ) {
+                           A   601    .LINE 100
+                           A   602    
+000079 3A 06 00 00         A   603    	LD	A,(__g_databit)
+00007D B7                  A   604    	OR	A,A
+00007E 28 17 00            A   605    	JR	Z,L_7
+                           A   606    ;  101	      _g_kbd_data |= (1<<_g_bit_count);
+                           A   607    .LINE 101
+                           A   608    
+000081 1601                A   609    	LD	D,1
+000083 3A 01 00 00         A   610    	LD	A,(__g_bit_count)
+000087 47                  A   611    	LD	B,A
+000088 7A                  A   612    	LD	A,D
+000089 CD 00 00 00         A   613    	CALL	__bshl
+00008D ED4B 04 00 00       A   614    	LD	BC,(__g_kbd_data)
+000092 B1                  A   615    	OR	A,C
+000093 32 04 00 00         A   616    	LD	(__g_kbd_data),A
+                           A   617    ;  102	#ifdef LOGRAM_ON
+                           A   618    ;  103			_g_logram [ _g_bit_count ] = 1;
+                           A   619    ;  104	#endif
+                           A   620    ;  105	    }
+000097                     A   621    L_7:
+                           A   622    .LINE 105
+                           A   623    
+                           A   624    ;  106	    _g_bit_count++;
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  13
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   625    .LINE 106
+                           A   626    
+000097 3A 01 00 00         A   627    	LD	A,(__g_bit_count)
+00009B 3C                  A   628    	INC	A
+00009C 32 01 00 00         A   629    	LD	(__g_bit_count),A
+                           A   630    ;  107	    return;
+                           A   631    .LINE 107
+                           A   632    
+0000A0 18 74 00            A   633    	JR	L_26
+                           A   634    ;  108	
+                           A   635    ;  109	  } else if ( _g_bit_count == 8 ) { // 
+0000A3                     A   636    L_12:
+                           A   637    .LINE 109
+                           A   638    
+0000A3 3A 01 00 00         A   639    	LD	A,(__g_bit_count)
+0000A7 FE08                A   640    	CP	A,8
+0000A9 20 0D 00            A   641    	JR	NZ,L_10
+                           A   642    ;  110	    // TODO NYI
+                           A   643    ;  111	    _g_bit_count++;
+                           A   644    .LINE 111
+                           A   645    
+0000AC 3A 01 00 00         A   646    	LD	A,(__g_bit_count)
+0000B0 3C                  A   647    	INC	A
+0000B1 32 01 00 00         A   648    	LD	(__g_bit_count),A
+                           A   649    ;  112	    return;
+                           A   650    .LINE 112
+                           A   651    
+0000B5 18 5F 00            A   652    	JR	L_26
+                           A   653    ;  113	
+                           A   654    ;  114	  } else { // stop bit
+0000B8                     A   655    L_10:
+                           A   656    .LINE 114
+                           A   657    
+                           A   658    ;  115	    // should check to make sure DATA l
+                           A   659    ;  116	    _g_started = 0;
+                           A   660    .LINE 116
+                           A   661    
+0000B8 AF                  A   662    	XOR	A,A
+0000B9 32 00 00 00         A   663    	LD	(__g_started),A
+                           A   664    ;  117	    _g_bit_count = 0;
+                           A   665    .LINE 117
+                           A   666    
+0000BD AF                  A   667    	XOR	A,A
+0000BE 32 01 00 00         A   668    	LD	(__g_bit_count),A
+                           A   669    ;  118	  }
+0000C2                     A   670    L_24:
+                           A   671    .LINE 118
+                           A   672    
+                           A   673    ;  119	
+                           A   674    ;  120	  if ( _g_kbd_data == 0xF0) { // releas
+                           A   675    .LINE 120
+                           A   676    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  14
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+0000C2 3A 04 00 00         A   677    	LD	A,(__g_kbd_data)
+0000C6 FEF0                A   678    	CP	A,240
+0000C8 20 0F 00            A   679    	JR	NZ,L_23
+                           A   680    ;  121	    _g_release_event = 1;
+                           A   681    .LINE 121
+                           A   682    
+0000CB 3E01                A   683    	LD	A,1
+0000CD 32 03 00 00         A   684    	LD	(__g_release_event),A
+                           A   685    ;  122	    _g_kbd_data = 0;
+                           A   686    .LINE 122
+                           A   687    
+0000D1 AF                  A   688    	XOR	A,A
+0000D2 32 04 00 00         A   689    	LD	(__g_kbd_data),A
+                           A   690    ;  123	    return;
+                           A   691    .LINE 123
+                           A   692    
+0000D6 18 3E 00            A   693    	JR	L_26
+                           A   694    ;  124	
+                           A   695    ;  125	  } else if ( _g_kbd_data == 0x12 ) { /
+0000D9                     A   696    L_23:
+                           A   697    .LINE 125
+                           A   698    
+0000D9 3A 04 00 00         A   699    	LD	A,(__g_kbd_data)
+0000DD FE12                A   700    	CP	A,18
+0000DF 20 1F 00            A   701    	JR	NZ,L_21
+                           A   702    ;  126	
+                           A   703    ;  127	    if ( _g_release_event == 0 ) {
+                           A   704    .LINE 127
+                           A   705    
+0000E2 3A 03 00 00         A   706    	LD	A,(__g_release_event)
+0000E6 B7                  A   707    	OR	A,A
+0000E7 20 0A 00            A   708    	JR	NZ,L_16
+                           A   709    ;  128	      _g_shifted = 1;
+                           A   710    .LINE 128
+                           A   711    
+0000EA 3E01                A   712    	LD	A,1
+0000EC 32 02 00 00         A   713    	LD	(__g_shifted),A
+                           A   714    ;  129	    } else {
+                           A   715    .LINE 129
+                           A   716    
+0000F0 18 24 00            A   717    	JR	L_26
+0000F3                     A   718    L_16:
+                           A   719    ;  130	      _g_shifted = 0;
+                           A   720    .LINE 130
+                           A   721    
+0000F3 AF                  A   722    	XOR	A,A
+0000F4 32 02 00 00         A   723    	LD	(__g_shifted),A
+                           A   724    ;  131	      _g_release_event = 0;
+                           A   725    .LINE 131
+                           A   726    
+0000F8 AF                  A   727    	XOR	A,A
+0000F9 32 03 00 00         A   728    	LD	(__g_release_event),A
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  15
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   729    ;  132	    }
+                           A   730    .LINE 132
+                           A   731    
+                           A   732    ;  133	
+                           A   733    ;  134	    return;
+                           A   734    .LINE 134
+                           A   735    
+0000FD 18 17 00            A   736    	JR	L_26
+                           A   737    ;  135	
+                           A   738    ;  136	  } else { // not a special character
+000100                     A   739    L_21:
+                           A   740    .LINE 136
+                           A   741    
+                           A   742    ;  137	
+                           A   743    ;  138	    if ( _g_release_event ) { // we wer
+                           A   744    .LINE 138
+                           A   745    
+000100 3A 03 00 00         A   746    	LD	A,(__g_release_event)
+000104 B7                  A   747    	OR	A,A
+000105 28 09 00            A   748    	JR	Z,L_19
+                           A   749    ;  139	      _g_release_event = 0;
+                           A   750    .LINE 139
+                           A   751    
+000108 AF                  A   752    	XOR	A,A
+000109 32 03 00 00         A   753    	LD	(__g_release_event),A
+                           A   754    ;  140	      //ignore that character
+                           A   755    ;  141	    } else {
+                           A   756    .LINE 141
+                           A   757    
+00010D 18 07 00            A   758    	JR	L_25
+000110                     A   759    L_19:
+                           A   760    ;  142	      _g_char_waiting = 1;
+                           A   761    .LINE 142
+                           A   762    
+000110 3E01                A   763    	LD	A,1
+000112 32 05 00 00         A   764    	LD	(__g_char_waiting),A
+                           A   765    ;  143	
+                           A   766    ;  144	#ifdef LOGRAM_ON
+                           A   767    ;  145		  _g_logram [ 9 ] = 0;
+                           A   768    ;  146	#endif
+                           A   769    ;  147	
+                           A   770    ;  148		}
+                           A   771    ;  149	
+                           A   772    ;  150	  }
+000116                     A   773    L_25:
+                           A   774    .LINE 150
+                           A   775    
+                           A   776    ;  151	
+                           A   777    ;  152	  return;
+                           A   778    ;  153	}
+000116                     A   779    L_26:
+                           A   780    .LINE 153
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  16
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   781    
+000116 D9                  A   782    	EXX	
+000117 08                  A   783    	EX	AF,AF'
+000118 DDF9                A   784    	LD	SP,IX
+00011A DDE1                A   785    	POP	IX
+00011C FDE1                A   786    	POP	IY
+00011E FB                  A   787    	EI	
+00011F ED4D                A   788    	RETI	
+                           A   789    
+                           A   790    
+                           A   791    ;**************************** _keyb_clock_isr *
+                           A   792    ;Name                         Addr/Register   S
+                           A   793    ;__g_char_waiting                    STATIC    
+                           A   794    ;__g_shifted                         STATIC    
+                           A   795    ;__g_release_event                   STATIC    
+                           A   796    ;__g_kbd_data                        STATIC    
+                           A   797    ;__g_bit_count                       STATIC    
+                           A   798    ;__g_started                         STATIC    
+                           A   799    ;__g_databit                         STATIC    
+                           A   800    
+                           A   801    
+                           A   802    ; Stack Frame Size: 6 (bytes)
+                           A   803    ;       Spill Code: 0 (instruction)
+                           A   804    
+                           A   805    
+                           A   806    .ENDFUNC "keyb_clock_isr",153,"_keyb_clock_isr"
+                           A   807    ;  154	
+                           A   808    ;  155	
+                           A   809    ;  156	// ---[ setup follows ]----------------
+                           A   810    ;  157	
+                           A   811    ;  158	// Z PD7 -> CLK -> need ISR so it knows
+                           A   812    ;  159	// Z PD6 -> DATA
+                           A   813    ;  160	void keyb_setup ( void ) {
+000121                     A   814    _keyb_setup:
+                           A   815    .DEFINE "_keyb_setup"
+                           A   816    
+                           A   817    .VALUE _keyb_setup
+                           A   818    
+                           A   819    .CLASS 2
+                           A   820    
+                           A   821    .TYPE 65
+                           A   822    
+                           A   823    .ENDEF
+                           A   824    
+                           A   825    .BEGFUNC "keyb_setup",160,"_keyb_setup"
+                           A   826    
+                           A   827    .LINE 160
+                           A   828    
+                           A   829    .DEFINE "err"
+                           A   830    
+                           A   831    .CLASS 65
+                           A   832    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  17
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   833    .VALUE -1
+                           A   834    
+                           A   835    .TYPE 12
+                           A   836    
+                           A   837    .ENDEF
+                           A   838    
+000121 DDE5                A   839    	PUSH	IX
+000123 DD210000 00         A   840    	LD	IX,0
+000128 DD39                A   841    	ADD	IX,SP
+00012A 3B                  A   842    	DEC	SP
+                           A   843    ;  161		UCHAR err;
+                           A   844    ;  162	
+                           A   845    ;  163		_set_vector ( GPIO_CLOCK_ISR, keyb_
+                           A   846    .LINE 163
+                           A   847    
+00012B 01 24 00 00         A   848    	LD	BC,_keyb_clock_isr
+00012F C5                  A   849    	PUSH	BC
+000130 015E0000            A   850    	LD	BC,94
+000134 C5                  A   851    	PUSH	BC
+000135 CD 00 00 00         A   852    	CALL	__set_vector
+000139 C1                  A   853    	POP	BC
+00013A C1                  A   854    	POP	BC
+                           A   855    ;  164		
+                           A   856    ;  165	#ifdef LOGRAM_ON
+                           A   857    ;  166	  _g_logram [ 10 ] = 0;
+                           A   858    ;  167	#endif
+                           A   859    ;  168	
+                           A   860    ;  169		// GPIOMODE_INTERRUPTACTVLOW
+                           A   861    ;  170		// GPIOMODE_INTERRUPTACTVHIGH
+                           A   862    ;  171		// GPIOMODE_INTERRUPTFALLEDGE
+                           A   863    ;  172		// GPIOMODE_INTERRUPTRISEEDGE
+                           A   864    ;  173		// GPIOMODE_INTERRUPTDUALEDGE
+                           A   865    ;  174		GPIO_DATAPORT |= (GPIO_CLOCK_PIN);
+                           A   866    .LINE 174
+                           A   867    
+00013B ED38A2              A   868    	IN0	A,(162)
+00013E CBFF                A   869    	SET	7,A
+000140 ED39A2              A   870    	OUT0	(162),A
+                           A   871    ;  175		err = GPIO_SETMODE_F ( GPIO_CLOCK_P
+                           A   872    .LINE 175
+                           A   873    
+000143 01090000            A   874    	LD	BC,9
+000147 C5                  A   875    	PUSH	BC
+000148 01800000            A   876    	LD	BC,128
+00014C C5                  A   877    	PUSH	BC
+00014D CD 00 00 00         A   878    	CALL	_setmode_PortD
+000151 C1                  A   879    	POP	BC
+000152 C1                  A   880    	POP	BC
+000153 DD77FF              A   881    	LD	(IX+-1),A
+                           A   882    ;  176		GPIO_DATAPORT &= ~(GPIO_CLOCK_PIN);
+                           A   883    .LINE 176
+                           A   884    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  18
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+000156 ED38A2              A   885    	IN0	A,(162)
+000159 CBBF                A   886    	RES	7,A
+00015B ED39A2              A   887    	OUT0	(162),A
+                           A   888    ;  177		err = GPIO_SETMODE_F ( GPIO_DATA_PI
+                           A   889    .LINE 177
+                           A   890    
+00015E 01020000            A   891    	LD	BC,2
+000162 C5                  A   892    	PUSH	BC
+000163 01400000            A   893    	LD	BC,64
+000167 C5                  A   894    	PUSH	BC
+000168 CD 00 00 00         A   895    	CALL	_setmode_PortD
+00016C C1                  A   896    	POP	BC
+00016D C1                  A   897    	POP	BC
+00016E DD77FF              A   898    	LD	(IX+-1),A
+                           A   899    ;  178		
+                           A   900    ;  179		return;
+                           A   901    ;  180	}
+                           A   902    .LINE 180
+                           A   903    
+000171 DDF9                A   904    	LD	SP,IX
+000173 DDE1                A   905    	POP	IX
+000175 C9                  A   906    	RET	
+                           A   907    
+                           A   908    
+                           A   909    ;**************************** _keyb_setup *****
+                           A   910    ;Name                         Addr/Register   S
+                           A   911    ;_setmode_PortD                      IMPORT  --
+                           A   912    ;_keyb_clock_isr                     IMPORT  --
+                           A   913    ;__set_vector                        IMPORT  --
+                           A   914    ;err                                   IX-1    
+                           A   915    
+                           A   916    
+                           A   917    ; Stack Frame Size: 7 (bytes)
+                           A   918    ;       Spill Code: 0 (instruction)
+                           A   919    
+                           A   920    
+                           A   921    .ENDFUNC "keyb_setup",180,"_keyb_setup"
+                           A   922    ;  181	
+                           A   923    ;  182	
+                           A   924    ;  183	char map_scan_code ( uint8_t data ) {
+000176                     A   925    _map_scan_code:
+                           A   926    .DEFINE "_map_scan_code"
+                           A   927    
+                           A   928    .VALUE _map_scan_code
+                           A   929    
+                           A   930    .CLASS 2
+                           A   931    
+                           A   932    .TYPE 66
+                           A   933    
+                           A   934    .ENDEF
+                           A   935    
+                           A   936    .BEGFUNC "map_scan_code",183,"_map_scan_code"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  19
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   937    
+                           A   938    .LINE 183
+                           A   939    
+                           A   940    .DEFINE "data"
+                           A   941    
+                           A   942    .CLASS 65
+                           A   943    
+                           A   944    .VALUE 6
+                           A   945    
+                           A   946    .TYPE 12
+                           A   947    
+                           A   948    .ENDEF
+                           A   949    
+                           A   950    .DEFINE "to_ret"
+                           A   951    
+                           A   952    .CLASS 65
+                           A   953    
+                           A   954    .VALUE -1
+                           A   955    
+                           A   956    .TYPE 2
+                           A   957    
+                           A   958    .ENDEF
+                           A   959    
+000176 DDE5                A   960    	PUSH	IX
+000178 DD210000 00         A   961    	LD	IX,0
+00017D DD39                A   962    	ADD	IX,SP
+00017F 3B                  A   963    	DEC	SP
+                           A   964    ;  184	  char to_ret = keymap[data]; //grab ch
+                           A   965    .LINE 184
+                           A   966    
+000180 DD7E06              A   967    	LD	A,(IX+6)
+000183 B7ED62              A   968    	UEXT	HL
+000186 6F                  A   969    	LD	L,A
+000187 01 00 00 00         A   970    	LD	BC,_keymap
+00018B 09                  A   971    	ADD	HL,BC
+00018C 7E                  A   972    	LD	A,(HL)
+00018D DD77FF              A   973    	LD	(IX+-1),A
+                           A   974    ;  185	  if(_g_shifted){
+                           A   975    .LINE 185
+                           A   976    
+000190 3A 02 00 00         A   977    	LD	A,(__g_shifted)
+000194 B7                  A   978    	OR	A,A
+000195 28 09 00            A   979    	JR	Z,L_29
+                           A   980    ;  186	    to_ret -= 0x20;
+                           A   981    .LINE 186
+                           A   982    
+000198 DD7EFF              A   983    	LD	A,(IX+-1)
+00019B C6E0                A   984    	ADD	A,-32
+00019D DD77FF              A   985    	LD	(IX+-1),A
+                           A   986    ;  187	  }
+0001A0                     A   987    L_29:
+                           A   988    .LINE 187
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  20
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A   989    
+                           A   990    ;  188	  return to_ret;
+                           A   991    .LINE 188
+                           A   992    
+0001A0 DD7EFF              A   993    	LD	A,(IX+-1)
+                           A   994    ;  189	}
+                           A   995    .LINE 189
+                           A   996    
+0001A3 DDF9                A   997    	LD	SP,IX
+0001A5 DDE1                A   998    	POP	IX
+0001A7 C9                  A   999    	RET	
+                           A  1000    
+                           A  1001    
+                           A  1002    ;**************************** _map_scan_code **
+                           A  1003    ;Name                         Addr/Register   S
+                           A  1004    ;__g_shifted                         STATIC    
+                           A  1005    ;_keymap                             STATIC    
+                           A  1006    ;to_ret                                IX-1    
+                           A  1007    ;data                                  IX+6    
+                           A  1008    
+                           A  1009    
+                           A  1010    ; Stack Frame Size: 10 (bytes)
+                           A  1011    ;       Spill Code: 0 (instruction)
+                           A  1012    
+                           A  1013    
+                           A  1014    .ENDFUNC "map_scan_code",189,"_map_scan_code"
+                           A  1015    ;  190	
+                           A  1016    ;  191	uint8_t packet_fetch_blocking() {
+0001A8                     A  1017    _packet_fetch_blocking:
+                           A  1018    .DEFINE "_packet_fetch_blocking"
+                           A  1019    
+                           A  1020    .VALUE _packet_fetch_blocking
+                           A  1021    
+                           A  1022    .CLASS 2
+                           A  1023    
+                           A  1024    .TYPE 76
+                           A  1025    
+                           A  1026    .ENDEF
+                           A  1027    
+0001A8 DDE5                A  1028    	PUSH	IX
+0001AA DD210000 00         A  1029    	LD	IX,0
+0001AF DD39                A  1030    	ADD	IX,SP
+                           A  1031    .BEGFUNC "packet_fetch_blocking",191,"_packet_f
+                           A  1032    
+                           A  1033    ;  192	  while(!_g_char_waiting){
+0001B1                     A  1034    L_31:
+                           A  1035    .LINE 192
+                           A  1036    
+0001B1 3A 05 00 00         A  1037    	LD	A,(__g_char_waiting)
+0001B5 B7                  A  1038    	OR	A,A
+0001B6 28 F9 00            A  1039    	JR	Z,L_31
+                           A  1040    ;  193	     //wait for a character
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  21
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A  1041    ;  194	  }
+                           A  1042    .LINE 194
+                           A  1043    
+                           A  1044    ;  195	  _g_char_waiting = 0;
+                           A  1045    .LINE 195
+                           A  1046    
+0001B9 AF                  A  1047    	XOR	A,A
+0001BA 32 05 00 00         A  1048    	LD	(__g_char_waiting),A
+                           A  1049    ;  196	  return _g_kbd_data;
+                           A  1050    .LINE 196
+                           A  1051    
+0001BE 3A 04 00 00         A  1052    	LD	A,(__g_kbd_data)
+                           A  1053    ;  197	}
+                           A  1054    .LINE 197
+                           A  1055    
+0001C2 DDF9                A  1056    	LD	SP,IX
+0001C4 DDE1                A  1057    	POP	IX
+0001C6 C9                  A  1058    	RET	
+                           A  1059    
+                           A  1060    
+                           A  1061    ;**************************** _packet_fetch_blo
+                           A  1062    ;Name                         Addr/Register   S
+                           A  1063    ;__g_kbd_data                        STATIC    
+                           A  1064    ;__g_char_waiting                    STATIC    
+                           A  1065    
+                           A  1066    
+                           A  1067    ; Stack Frame Size: 6 (bytes)
+                           A  1068    ;       Spill Code: 0 (instruction)
+                           A  1069    
+                           A  1070    
+                           A  1071    .ENDFUNC "packet_fetch_blocking",197,"_packet_f
+                           A  1072    ;  198	
+                           A  1073    ;  199	unsigned char keyb_fetch_nonblocking ( 
+0001C7                     A  1074    _keyb_fetch_nonblocking:
+                           A  1075    .DEFINE "_keyb_fetch_nonblocking"
+                           A  1076    
+                           A  1077    .VALUE _keyb_fetch_nonblocking
+                           A  1078    
+                           A  1079    .CLASS 2
+                           A  1080    
+                           A  1081    .TYPE 76
+                           A  1082    
+                           A  1083    .ENDEF
+                           A  1084    
+                           A  1085    .BEGFUNC "keyb_fetch_nonblocking",199,"_keyb_fe
+                           A  1086    
+                           A  1087    .LINE 199
+                           A  1088    
+                           A  1089    .DEFINE "r_c"
+                           A  1090    
+                           A  1091    .CLASS 65
+                           A  1092    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  22
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A  1093    .VALUE 6
+                           A  1094    
+                           A  1095    .TYPE 34
+                           A  1096    
+                           A  1097    .ENDEF
+                           A  1098    
+                           A  1099    .DEFINE "r_keycode"
+                           A  1100    
+                           A  1101    .CLASS 65
+                           A  1102    
+                           A  1103    .VALUE 9
+                           A  1104    
+                           A  1105    .TYPE 44
+                           A  1106    
+                           A  1107    .ENDEF
+                           A  1108    
+                           A  1109    .DEFINE "key_code"
+                           A  1110    
+                           A  1111    .CLASS 65
+                           A  1112    
+                           A  1113    .VALUE -1
+                           A  1114    
+                           A  1115    .TYPE 12
+                           A  1116    
+                           A  1117    .ENDEF
+                           A  1118    
+0001C7 DDE5                A  1119    	PUSH	IX
+0001C9 DD210000 00         A  1120    	LD	IX,0
+0001CE DD39                A  1121    	ADD	IX,SP
+0001D0 3B                  A  1122    	DEC	SP
+                           A  1123    ;  200	  uint8_t key_code = 0;
+                           A  1124    .LINE 200
+                           A  1125    
+0001D1 DD36FF00            A  1126    	LD	(IX+-1),0
+                           A  1127    ;  201	
+                           A  1128    ;  202	  if ( ! _g_char_waiting ) {
+                           A  1129    .LINE 202
+                           A  1130    
+0001D5 3A 05 00 00         A  1131    	LD	A,(__g_char_waiting)
+0001D9 B7                  A  1132    	OR	A,A
+0001DA 20 05 00            A  1133    	JR	NZ,L_36
+                           A  1134    ;  203	    return ( 0 );
+                           A  1135    .LINE 203
+                           A  1136    
+0001DD AF                  A  1137    	XOR	A,A
+0001DE 18 34 00            A  1138    	JR	L_41
+                           A  1139    ;  204	  }
+0001E1                     A  1140    L_36:
+                           A  1141    .LINE 204
+                           A  1142    
+                           A  1143    ;  205	
+                           A  1144    ;  206	  key_code = packet_fetch_blocking();
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  23
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+                           A  1145    .LINE 206
+                           A  1146    
+0001E1 CD A8 01 00         A  1147    	CALL	_packet_fetch_blocking
+0001E5 DD77FF              A  1148    	LD	(IX+-1),A
+                           A  1149    ;  207	
+                           A  1150    ;  208	  if ( r_keycode ) {
+                           A  1151    .LINE 208
+                           A  1152    
+0001E8 DD2709              A  1153    	LD	HL,(IX+9)
+0001EB CD 00 00 00         A  1154    	CALL	__icmpzero
+0001EF 28 08 00            A  1155    	JR	Z,L_39
+                           A  1156    ;  209	    *r_keycode = key_code;
+                           A  1157    .LINE 209
+                           A  1158    
+0001F2 DD2709              A  1159    	LD	HL,(IX+9)
+0001F5 DD7EFF              A  1160    	LD	A,(IX+-1)
+0001F8 77                  A  1161    	LD	(HL),A
+                           A  1162    ;  210	  }
+0001F9                     A  1163    L_39:
+                           A  1164    .LINE 210
+                           A  1165    
+                           A  1166    ;  211	  if ( r_c ) {
+                           A  1167    .LINE 211
+                           A  1168    
+0001F9 DD2706              A  1169    	LD	HL,(IX+6)
+0001FC CD 00 00 00         A  1170    	CALL	__icmpzero
+000200 28 10 00            A  1171    	JR	Z,L_40
+                           A  1172    ;  212	    *r_c = map_scan_code ( key_code );
+                           A  1173    .LINE 212
+                           A  1174    
+000203 DD4EFF              A  1175    	LD	C,(IX+-1)
+000206 0600                A  1176    	LD	B,0
+000208 C5                  A  1177    	PUSH	BC
+000209 CD 76 01 00         A  1178    	CALL	_map_scan_code
+00020D C1                  A  1179    	POP	BC
+00020E DD2706              A  1180    	LD	HL,(IX+6)
+000211 77                  A  1181    	LD	(HL),A
+                           A  1182    ;  213	  }
+000212                     A  1183    L_40:
+                           A  1184    .LINE 213
+                           A  1185    
+                           A  1186    ;  214	
+                           A  1187    ;  215	  return ( 1 );
+                           A  1188    .LINE 215
+                           A  1189    
+000212 3E01                A  1190    	LD	A,1
+                           A  1191    ;  216	}
+000214                     A  1192    L_41:
+                           A  1193    .LINE 216
+                           A  1194    
+000214 DDF9                A  1195    	LD	SP,IX
+000216 DDE1                A  1196    	POP	IX
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  24
+
+
+PC     Object              I  Line    Source lib_ps2_keyboard.src
+000218 C9                  A  1197    	RET	
+                           A  1198    
+                           A  1199    
+                           A  1200    ;**************************** _keyb_fetch_nonbl
+                           A  1201    ;Name                         Addr/Register   S
+                           A  1202    ;_map_scan_code                      IMPORT  --
+                           A  1203    ;_packet_fetch_blocking              IMPORT  --
+                           A  1204    ;__g_char_waiting                    STATIC    
+                           A  1205    ;key_code                              IX-1    
+                           A  1206    ;r_keycode                             IX+9    
+                           A  1207    ;r_c                                   IX+6    
+                           A  1208    
+                           A  1209    
+                           A  1210    ; Stack Frame Size: 13 (bytes)
+                           A  1211    ;       Spill Code: 0 (instruction)
+                           A  1212    
+                           A  1213    
+                           A  1214    .ENDFUNC "keyb_fetch_nonblocking",216,"_keyb_fe
+                           A  1215    	XREF _setmode_PortD:ROM
+                           A  1216    	XREF __set_vector:ROM
+                           A  1217    	XREF __bshl:ROM
+                           A  1218    	XREF __icmpzero:ROM
+                           A  1219    	XDEF _keyb_fetch_nonblocking
+                           A  1220    	XDEF _packet_fetch_blocking
+                           A  1221    	XDEF _map_scan_code
+                           A  1222    	XDEF _keyb_setup
+                           A  1223    	XDEF __g_databit
+                           A  1224    	XDEF __g_char_waiting
+                           A  1225    	XDEF __g_kbd_data
+                           A  1226    	XDEF __g_release_event
+                           A  1227    	XDEF __g_shifted
+                           A  1228    	XDEF __g_bit_count
+                           A  1229    	XDEF __g_started
+                           A  1230    	XDEF _keymap
+                           A  1231    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 1232

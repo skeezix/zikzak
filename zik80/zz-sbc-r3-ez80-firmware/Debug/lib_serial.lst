@@ -1,0 +1,633 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -noglobalopt -nolocalcse -optsize -nomodsect 
+                           A     3    ; -padbranch -debug -peephole -const=ROM 
+                           A     4    	FILE	"..\LIB_SERIAL.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   2
+
+
+PC     Object              I  Line    Source lib_serial.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+                           A    95    .BEGREC "NONAME3",6
+                           A    96    .DEFINE "quot"
+                           A    97    .VALUE 0
+                           A    98    .CLASS 8
+                           A    99    .TYPE 4
+                           A   100    .ENDEF
+                           A   101    .DEFINE "rem"
+                           A   102    .VALUE 3
+                           A   103    .CLASS 8
+                           A   104    .TYPE 4
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   3
+
+
+PC     Object              I  Line    Source lib_serial.src
+                           A   105    .ENDEF
+                           A   106    .ENDREC "NONAME3"
+                           A   107    .BEGREC "NONAME4",8
+                           A   108    .DEFINE "quot"
+                           A   109    .VALUE 0
+                           A   110    .CLASS 8
+                           A   111    .TYPE 5
+                           A   112    .ENDEF
+                           A   113    .DEFINE "rem"
+                           A   114    .VALUE 4
+                           A   115    .CLASS 8
+                           A   116    .TYPE 5
+                           A   117    .ENDEF
+                           A   118    .ENDREC "NONAME4"
+                           A   119    .BEGREC "header",6
+                           A   120    .DEFINE "s"
+                           A   121    .VALUE 0
+                           A   122    .CLASS 11
+                           A   123    .TAG "NONAME5"
+                           A   124    .TYPE 8
+                           A   125    .ENDEF
+                           A   126    .DEFINE "x"
+                           A   127    .VALUE 0
+                           A   128    .CLASS 11
+                           A   129    .TYPE 2
+                           A   130    .ENDEF
+                           A   131    .ENDREC "header"
+                           A   132    .BEGREC "NONAME5",6
+                           A   133    .DEFINE "ptr"
+                           A   134    .VALUE 0
+                           A   135    .CLASS 8
+                           A   136    .TAG "header"
+                           A   137    .TYPE 40
+                           A   138    .ENDEF
+                           A   139    .DEFINE "size"
+                           A   140    .VALUE 3
+                           A   141    .CLASS 8
+                           A   142    .TYPE 14
+                           A   143    .ENDEF
+                           A   144    .ENDREC "NONAME5"
+000000                     A   145    _delay_loop:
+                           A   146    .DEFINE "_delay_loop"
+                           A   147    
+                           A   148    .VALUE _delay_loop
+                           A   149    
+                           A   150    .CLASS 3
+                           A   151    
+                           A   152    .TYPE 65
+                           A   153    
+                           A   154    .ENDEF
+                           A   155    
+                           A   156    .BEGFUNC "delay_loop",17,"_delay_loop"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   4
+
+
+PC     Object              I  Line    Source lib_serial.src
+                           A   157    
+                           A   158    .LINE 17
+                           A   159    
+                           A   160    .DEFINE "c"
+                           A   161    
+                           A   162    .CLASS 65
+                           A   163    
+                           A   164    .VALUE 6
+                           A   165    
+                           A   166    .TYPE 14
+                           A   167    
+000000 DDE5                A   168    	PUSH	IX
+000002 DD210000 00         A   169    	LD	IX,0
+000007 DD39                A   170    	ADD	IX,SP
+                           A   171    .ENDEF
+                           A   172    
+000009                     A   173    L_1:
+                           A   174    .LINE 18
+                           A   175    
+000009 DD2706              A   176    	LD	HL,(IX+6)
+00000C CD 00 00 00         A   177    	CALL	__icmpzero
+000010 28 0D 00            A   178    	JR	Z,L_3
+                           A   179    .LINE 19
+                           A   180    
+000013 DD3106              A   181    	LD	IY,(IX+6)
+000016 ED33FF              A   182    	LEA	IY,IY+-1
+000019 DD3E06              A   183    	LD	(IX+6),IY
+                           A   184    .LINE 20
+                           A   185    
+00001C 18 EB 00            A   186    	JR	L_1
+00001F                     A   187    L_3:
+                           A   188    .LINE 21
+                           A   189    
+00001F DDF9                A   190    	LD	SP,IX
+000021 DDE1                A   191    	POP	IX
+000023 C9                  A   192    	RET	
+                           A   193    
+                           A   194    
+                           A   195    ;**************************** _delay_loop *****
+                           A   196    ;Name                         Addr/Register   S
+                           A   197    ;c                                     IX+6    
+                           A   198    
+                           A   199    
+                           A   200    ; Stack Frame Size: 9 (bytes)
+                           A   201    ;       Spill Code: 0 (instruction)
+                           A   202    
+                           A   203    
+                           A   204    .ENDFUNC "delay_loop",21,"_delay_loop"
+                           A   205    ;    1	
+                           A   206    ;    2	#include <eZ80.h>
+                           A   207    ;    3	#include <uart.h>
+                           A   208    ;    4	#include <gpio.h>
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   5
+
+
+PC     Object              I  Line    Source lib_serial.src
+                           A   209    ;    5	#include <stdlib.h>
+                           A   210    ;    6	#include <string.h>
+                           A   211    ;    7	
+                           A   212    ;    8	#include "lib_serial.h"
+                           A   213    ;    9	#include "skeelib.h"
+                           A   214    ;   10	
+                           A   215    ;   11	void uart_putstring ( char *foo ) {
+000024                     A   216    _uart_putstring:
+                           A   217    .DEFINE "_uart_putstring"
+                           A   218    
+                           A   219    .VALUE _uart_putstring
+                           A   220    
+                           A   221    .CLASS 2
+                           A   222    
+                           A   223    .TYPE 65
+                           A   224    
+                           A   225    .ENDEF
+                           A   226    
+                           A   227    .BEGFUNC "uart_putstring",11,"_uart_putstring"
+                           A   228    
+                           A   229    .LINE 11
+                           A   230    
+                           A   231    .DEFINE "foo"
+                           A   232    
+                           A   233    .CLASS 65
+                           A   234    
+                           A   235    .VALUE 6
+                           A   236    
+                           A   237    .TYPE 34
+                           A   238    
+                           A   239    .ENDEF
+                           A   240    
+                           A   241    ;   12	  write_UART0 ( foo, lame_strlen ( foo 
+                           A   242    ;   13	  return;
+                           A   243    ;   14	}
+                           A   244    ;   15	
+                           A   245    ;   16	char uart_getchar_block ( void ) {
+                           A   246    ;   17		char b [ 2 ];
+                           A   247    ;   18		UINT24 nbytes = 1;
+                           A   248    ;   19		read_UART0 ( b, &nbytes );
+                           A   249    ;   20		return b [ 0 ];
+                           A   250    ;   21	}
+000024 DDE5                A   251    	PUSH	IX
+000026 DD210000 00         A   252    	LD	IX,0
+00002B DD39                A   253    	ADD	IX,SP
+                           A   254    .LINE 12
+                           A   255    
+00002D DD0706              A   256    	LD	BC,(IX+6)
+000030 C5                  A   257    	PUSH	BC
+000031 CD 00 00 00         A   258    	CALL	_lame_strlen
+000035 C1                  A   259    	POP	BC
+000036 E5C1                A   260    	LD	BC,HL
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   6
+
+
+PC     Object              I  Line    Source lib_serial.src
+000038 CD 00 00 00         A   261    	CALL	__stoiu
+00003C E5                  A   262    	PUSH	HL
+00003D DD0706              A   263    	LD	BC,(IX+6)
+000040 C5                  A   264    	PUSH	BC
+000041 CD 00 00 00         A   265    	CALL	_write_UART0
+000045 C1                  A   266    	POP	BC
+000046 C1                  A   267    	POP	BC
+                           A   268    .LINE 14
+                           A   269    
+000047 DDF9                A   270    	LD	SP,IX
+000049 DDE1                A   271    	POP	IX
+00004B C9                  A   272    	RET	
+                           A   273    
+                           A   274    
+                           A   275    ;**************************** _uart_putstring *
+                           A   276    ;Name                         Addr/Register   S
+                           A   277    ;_lame_strlen                        IMPORT  --
+                           A   278    ;_write_UART0                        IMPORT  --
+                           A   279    ;foo                                   IX+6    
+                           A   280    
+                           A   281    
+                           A   282    ; Stack Frame Size: 9 (bytes)
+                           A   283    ;       Spill Code: 0 (instruction)
+                           A   284    
+                           A   285    
+                           A   286    .ENDFUNC "uart_putstring",14,"_uart_putstring"
+00004C                     A   287    _uart_getchar_block:
+                           A   288    .DEFINE "_uart_getchar_block"
+                           A   289    
+                           A   290    .VALUE _uart_getchar_block
+                           A   291    
+                           A   292    .CLASS 2
+                           A   293    
+                           A   294    .TYPE 66
+                           A   295    
+                           A   296    .ENDEF
+                           A   297    
+                           A   298    .BEGFUNC "uart_getchar_block",16,"_uart_getchar
+                           A   299    
+                           A   300    .LINE 16
+                           A   301    
+                           A   302    .DEFINE "b"
+                           A   303    
+                           A   304    .CLASS 65
+                           A   305    
+                           A   306    .VALUE -2
+                           A   307    
+                           A   308    .DIM 2
+                           A   309    
+                           A   310    .TYPE 98
+                           A   311    
+                           A   312    .ENDEF
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   7
+
+
+PC     Object              I  Line    Source lib_serial.src
+                           A   313    
+                           A   314    .DEFINE "nbytes"
+                           A   315    
+                           A   316    .CLASS 65
+                           A   317    
+                           A   318    .VALUE -5
+                           A   319    
+                           A   320    .TYPE 14
+                           A   321    
+                           A   322    .ENDEF
+                           A   323    
+00004C DDE5                A   324    	PUSH	IX
+00004E DD210000 00         A   325    	LD	IX,0
+000053 DD39                A   326    	ADD	IX,SP
+000055 C5                  A   327    	PUSH	BC
+000056 3B                  A   328    	DEC	SP
+000057 3B                  A   329    	DEC	SP
+                           A   330    .LINE 18
+                           A   331    
+000058 01010000            A   332    	LD	BC,1
+00005C DD0FFB              A   333    	LD	(IX+-5),BC
+                           A   334    .LINE 19
+                           A   335    
+00005F ED65FB              A   336    	PEA	IX+-5
+000062 ED65FE              A   337    	PEA	IX+-2
+000065 CD 00 00 00         A   338    	CALL	_read_UART0
+000069 C1                  A   339    	POP	BC
+00006A C1                  A   340    	POP	BC
+                           A   341    .LINE 20
+                           A   342    
+00006B DD7EFE              A   343    	LD	A,(IX+-2)
+                           A   344    .LINE 21
+                           A   345    
+00006E DDF9                A   346    	LD	SP,IX
+000070 DDE1                A   347    	POP	IX
+000072 C9                  A   348    	RET	
+                           A   349    
+                           A   350    
+                           A   351    ;**************************** _uart_getchar_blo
+                           A   352    ;Name                         Addr/Register   S
+                           A   353    ;_read_UART0                         IMPORT  --
+                           A   354    ;nbytes                                IX-5    
+                           A   355    ;b                                     IX-2    
+                           A   356    
+                           A   357    
+                           A   358    ; Stack Frame Size: 11 (bytes)
+                           A   359    ;       Spill Code: 0 (instruction)
+                           A   360    
+                           A   361    
+                           A   362    .ENDFUNC "uart_getchar_block",21,"_uart_getchar
+                           A   363    ;   22	
+                           A   364    ;   23	void uart_putchar ( char c ) {
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   8
+
+
+PC     Object              I  Line    Source lib_serial.src
+000073                     A   365    _uart_putchar:
+                           A   366    .DEFINE "_uart_putchar"
+                           A   367    
+                           A   368    .VALUE _uart_putchar
+                           A   369    
+                           A   370    .CLASS 2
+                           A   371    
+                           A   372    .TYPE 65
+                           A   373    
+                           A   374    .ENDEF
+                           A   375    
+                           A   376    .BEGFUNC "uart_putchar",23,"_uart_putchar"
+                           A   377    
+                           A   378    .LINE 23
+                           A   379    
+                           A   380    .DEFINE "c"
+                           A   381    
+                           A   382    .CLASS 65
+                           A   383    
+                           A   384    .VALUE 6
+                           A   385    
+                           A   386    .TYPE 2
+                           A   387    
+                           A   388    .ENDEF
+                           A   389    
+                           A   390    .DEFINE "b"
+                           A   391    
+                           A   392    .CLASS 65
+                           A   393    
+                           A   394    .VALUE -2
+                           A   395    
+                           A   396    .DIM 2
+                           A   397    
+                           A   398    .TYPE 98
+                           A   399    
+                           A   400    .ENDEF
+                           A   401    
+000073 DDE5                A   402    	PUSH	IX
+000075 DD210000 00         A   403    	LD	IX,0
+00007A DD39                A   404    	ADD	IX,SP
+00007C 3B                  A   405    	DEC	SP
+00007D 3B                  A   406    	DEC	SP
+                           A   407    ;   24		char b [ 2 ];
+                           A   408    ;   25		b [ 0 ] = c;
+                           A   409    .LINE 25
+                           A   410    
+00007E DD7E06              A   411    	LD	A,(IX+6)
+000081 DD77FE              A   412    	LD	(IX+-2),A
+                           A   413    ;   26		b [ 1 ] = '\0';
+                           A   414    .LINE 26
+                           A   415    
+000084 ED22FE              A   416    	LEA	HL,IX+-2
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:   9
+
+
+PC     Object              I  Line    Source lib_serial.src
+000087 23                  A   417    	INC	HL
+000088 3600                A   418    	LD	(HL),0
+                           A   419    ;   27		write_UART0 ( b, 1 );
+                           A   420    .LINE 27
+                           A   421    
+00008A 01010000            A   422    	LD	BC,1
+00008E C5                  A   423    	PUSH	BC
+00008F ED65FE              A   424    	PEA	IX+-2
+000092 CD 00 00 00         A   425    	CALL	_write_UART0
+000096 C1                  A   426    	POP	BC
+000097 C1                  A   427    	POP	BC
+                           A   428    ;   28	}
+                           A   429    .LINE 28
+                           A   430    
+000098 DDF9                A   431    	LD	SP,IX
+00009A DDE1                A   432    	POP	IX
+00009C C9                  A   433    	RET	
+                           A   434    
+                           A   435    
+                           A   436    ;**************************** _uart_putchar ***
+                           A   437    ;Name                         Addr/Register   S
+                           A   438    ;_write_UART0                        IMPORT  --
+                           A   439    ;b                                     IX-2    
+                           A   440    ;c                                     IX+6    
+                           A   441    
+                           A   442    
+                           A   443    ; Stack Frame Size: 11 (bytes)
+                           A   444    ;       Spill Code: 0 (instruction)
+                           A   445    
+                           A   446    
+                           A   447    .ENDFUNC "uart_putchar",28,"_uart_putchar"
+                           A   448    ;   29	
+                           A   449    ;   30	// rush: test for echo
+                           A   450    ;   31	void uart_echo_loop_forever ( void ) {
+00009D                     A   451    _uart_echo_loop_forever:
+                           A   452    .DEFINE "_uart_echo_loop_forever"
+                           A   453    
+                           A   454    .VALUE _uart_echo_loop_forever
+                           A   455    
+                           A   456    .CLASS 2
+                           A   457    
+                           A   458    .TYPE 65
+                           A   459    
+                           A   460    .ENDEF
+                           A   461    
+                           A   462    .BEGFUNC "uart_echo_loop_forever",31,"_uart_ech
+                           A   463    
+                           A   464    .LINE 31
+                           A   465    
+                           A   466    .DEFINE "e"
+                           A   467    
+                           A   468    .CLASS 65
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  10
+
+
+PC     Object              I  Line    Source lib_serial.src
+                           A   469    
+                           A   470    .VALUE -1
+                           A   471    
+                           A   472    .TYPE 2
+                           A   473    
+                           A   474    .ENDEF
+                           A   475    
+                           A   476    .DEFINE "buffer"
+                           A   477    
+                           A   478    .CLASS 65
+                           A   479    
+                           A   480    .VALUE -31
+                           A   481    
+                           A   482    .DIM 30
+                           A   483    
+                           A   484    .TYPE 98
+                           A   485    
+00009D DDE5                A   486    	PUSH	IX
+00009F DD210000 00         A   487    	LD	IX,0
+0000A4 DD39                A   488    	ADD	IX,SP
+0000A6 ED22E1              A   489    	LEA	HL,IX+-31
+0000A9 F9                  A   490    	LD	SP,HL
+                           A   491    .ENDEF
+                           A   492    
+                           A   493    ;   32	  char buffer [ 30 ];
+                           A   494    ;   33	  char e;
+                           A   495    ;   34	
+                           A   496    ;   35	  while ( 1 ) {
+0000AA                     A   497    L_7:
+                           A   498    .LINE 35
+                           A   499    
+                           A   500    ;   36	
+                           A   501    ;   37	#if 1
+                           A   502    ;   38	    e = uart_getchar_block();
+                           A   503    .LINE 38
+                           A   504    
+0000AA CD 4C 00 00         A   505    	CALL	_uart_getchar_block
+0000AE DD77FF              A   506    	LD	(IX+-1),A
+                           A   507    ;   39	    sprintf ( buffer, "echo: %c\n", e )
+                           A   508    .LINE 39
+                           A   509    
+0000B1 DD7EFF              A   510    	LD	A,(IX+-1)
+0000B4 17ED62              A   511    	SEXT	HL
+0000B7 DD6EFF              A   512    	LD	L,(IX+-1)
+0000BA E5                  A   513    	PUSH	HL
+0000BB 01 00 00 00         A   514    	LD	BC,L__5
+0000BF C5                  A   515    	PUSH	BC
+0000C0 ED65E1              A   516    	PEA	IX+-31
+0000C3 CD 00 00 00         A   517    	CALL	_sprintf
+0000C7 C1                  A   518    	POP	BC
+0000C8 C1                  A   519    	POP	BC
+0000C9 C1                  A   520    	POP	BC
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  11
+
+
+PC     Object              I  Line    Source lib_serial.src
+                           A   521    ;   40	    logit ( buffer );
+                           A   522    .LINE 40
+                           A   523    
+0000CA ED65E1              A   524    	PEA	IX+-31
+0000CD CD 00 00 00         A   525    	CALL	_logit
+0000D1 C1                  A   526    	POP	BC
+                           A   527    ;   41	#endif
+                           A   528    ;   42	#if 0
+                           A   529    ;   43	    if ( uart_is_getchar_avail() ) {
+                           A   530    ;   44	      e = uart_getchar_now();
+                           A   531    ;   45	      sprintf ( buffer, "echo: %c\n", e
+                           A   532    ;   46	      logit ( buffer );
+                           A   533    ;   47	    }
+                           A   534    ;   48	
+                           A   535    ;   49	    _delay_ms ( 1 );
+                           A   536    ;   50	#endif
+                           A   537    ;   51	
+                           A   538    ;   52	  } // while
+                           A   539    .LINE 52
+                           A   540    
+0000D2 18 D6 00            A   541    	JR	L_7
+                           A   542    ;   53	
+                           A   543    ;   54	}
+                           A   544    .LINE 54
+                           A   545    
+0000D5 DDF9                A   546    	LD	SP,IX
+0000D7 DDE1                A   547    	POP	IX
+0000D9 C9                  A   548    	RET	
+                           A   549    
+                           A   550    
+                           A   551    ;**************************** _uart_echo_loop_f
+                           A   552    ;Name                         Addr/Register   S
+                           A   553    ;_logit                              IMPORT  --
+                           A   554    ;_sprintf                            IMPORT  --
+                           A   555    ;_uart_getchar_block                 IMPORT  --
+                           A   556    ;buffer                               IX-31    
+                           A   557    ;e                                     IX-1    
+                           A   558    
+                           A   559    
+                           A   560    ; Stack Frame Size: 37 (bytes)
+                           A   561    ;       Spill Code: 0 (instruction)
+                           A   562    
+                           A   563    
+                           A   564    .ENDFUNC "uart_echo_loop_forever",54,"_uart_ech
+                           A   565    	SEGMENT STRSECT
+000000                     A   566    L__5:
+000000 6563686F 3A202563   A   567    	DB	"echo: %c"
+000008 0A00                A   568    	DB	10,0
+                           A   569    	XREF _logit:ROM
+                           A   570    	XREF _sprintf:ROM
+                           A   571    	XREF _lame_strlen:ROM
+                           A   572    	XREF _read_UART0:ROM
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:21     page:  12
+
+
+PC     Object              I  Line    Source lib_serial.src
+                           A   573    	XREF _write_UART0:ROM
+                           A   574    	XREF __stoiu:ROM
+                           A   575    	XREF __icmpzero:ROM
+                           A   576    	XDEF _uart_echo_loop_forever
+                           A   577    	XDEF _uart_putchar
+                           A   578    	XDEF _uart_getchar_block
+                           A   579    	XDEF _uart_putstring
+                           A   580    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 581

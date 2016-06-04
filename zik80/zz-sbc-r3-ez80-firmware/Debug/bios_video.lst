@@ -1,0 +1,467 @@
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog eZ80 ANSI C Compiler Release 3.4
+                           A     2    ; -noglobalopt -nolocalcse -optsize -nomodsect 
+                           A     3    ; -padbranch -debug -peephole -const=ROM 
+                           A     4    	FILE	"..\BIOS_VIDEO.C"
+                           A     5    	.assume ADL=1
+                           A     6    .DEBUG "C"
+                           A     7    .PADBRANCH CCODE
+                           A     8    	SEGMENT CODE
+                           A     9    .BEGREC "NONAME0",4
+                           A    10    .DEFINE "dr"
+                           A    11    .VALUE 0
+                           A    12    .CLASS 8
+                           A    13    .TYPE 12
+                           A    14    .ENDEF
+                           A    15    .DEFINE "ddr"
+                           A    16    .VALUE 1
+                           A    17    .CLASS 8
+                           A    18    .TYPE 12
+                           A    19    .ENDEF
+                           A    20    .DEFINE "alt1"
+                           A    21    .VALUE 2
+                           A    22    .CLASS 8
+                           A    23    .TYPE 12
+                           A    24    .ENDEF
+                           A    25    .DEFINE "alt2"
+                           A    26    .VALUE 3
+                           A    27    .CLASS 8
+                           A    28    .TYPE 12
+                           A    29    .ENDEF
+                           A    30    .ENDREC "NONAME0"
+                           A    31    .BEGREC "NONAME1",10
+                           A    32    .DEFINE "uartMode"
+                           A    33    .VALUE 0
+                           A    34    .CLASS 8
+                           A    35    .TYPE 2
+                           A    36    .ENDEF
+                           A    37    .DEFINE "baudRate"
+                           A    38    .VALUE 1
+                           A    39    .CLASS 8
+                           A    40    .TYPE 4
+                           A    41    .ENDEF
+                           A    42    .DEFINE "dataBits"
+                           A    43    .VALUE 4
+                           A    44    .CLASS 8
+                           A    45    .TYPE 12
+                           A    46    .ENDEF
+                           A    47    .DEFINE "stopBits"
+                           A    48    .VALUE 5
+                           A    49    .CLASS 8
+                           A    50    .TYPE 12
+                           A    51    .ENDEF
+                           A    52    .DEFINE "parity"
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   2
+
+
+PC     Object              I  Line    Source bios_video.src
+                           A    53    .VALUE 6
+                           A    54    .CLASS 8
+                           A    55    .TYPE 12
+                           A    56    .ENDEF
+                           A    57    .DEFINE "fifoTriggerLevel"
+                           A    58    .VALUE 7
+                           A    59    .CLASS 8
+                           A    60    .TYPE 12
+                           A    61    .ENDEF
+                           A    62    .DEFINE "hwFlowControl"
+                           A    63    .VALUE 8
+                           A    64    .CLASS 8
+                           A    65    .TYPE 12
+                           A    66    .ENDEF
+                           A    67    .DEFINE "swFlowControl"
+                           A    68    .VALUE 9
+                           A    69    .CLASS 8
+                           A    70    .TYPE 12
+                           A    71    .ENDEF
+                           A    72    .ENDREC "NONAME1"
+                           A    73    .BEGREC "NONAME2",9
+                           A    74    .DEFINE "pBuffer"
+                           A    75    .VALUE 0
+                           A    76    .CLASS 8
+                           A    77    .TYPE 44
+                           A    78    .ENDEF
+                           A    79    .DEFINE "next_in"
+                           A    80    .VALUE 3
+                           A    81    .CLASS 8
+                           A    82    .TYPE 13
+                           A    83    .ENDEF
+                           A    84    .DEFINE "next_out"
+                           A    85    .VALUE 5
+                           A    86    .CLASS 8
+                           A    87    .TYPE 13
+                           A    88    .ENDEF
+                           A    89    .DEFINE "size"
+                           A    90    .VALUE 7
+                           A    91    .CLASS 8
+                           A    92    .TYPE 13
+                           A    93    .ENDEF
+                           A    94    .ENDREC "NONAME2"
+                           A    95    	SEGMENT DATA
+000000                     A    96    _vb_saw_vblank:
+000000 00                  A    97    	DB	0
+                           A    98    .DEFINE "vb_saw_vblank"
+                           A    99    .ALIAS "_vb_saw_vblank"
+                           A   100    .CLASS 69
+                           A   101    .VALUE _vb_saw_vblank
+                           A   102    .TYPE 12
+                           A   103    .ENDEF
+000001                     A   104    _vb_is_vblank:
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   3
+
+
+PC     Object              I  Line    Source bios_video.src
+000001 00                  A   105    	DB	0
+                           A   106    .DEFINE "vb_is_vblank"
+                           A   107    .ALIAS "_vb_is_vblank"
+                           A   108    .CLASS 69
+                           A   109    .VALUE _vb_is_vblank
+                           A   110    .TYPE 12
+                           A   111    .ENDEF
+                           A   112    ;    1	
+                           A   113    ;    2	#include <eZ80.h>
+                           A   114    ;    3	#include <gpio.h>
+                           A   115    ;    4	//#include <intvect.h>
+                           A   116    ;    5	
+                           A   117    ;    6	#include "bios_video.h"
+                           A   118    ;    7	#include "bios_cart.h"
+                           A   119    ;    8	
+                           A   120    ;    9	volatile unsigned char vb_saw_vblank = 
+                           A   121    ;   10	volatile unsigned char vb_is_vblank = 0
+                           A   122    	SEGMENT CODE
+                           A   123    ;   11	
+                           A   124    ;   12	static interrupt void ISR_PC6 ( void ) 
+000000                     A   125    _ISR_PC6:
+000000 00                  A   126    	NOP	
+                           A   127    .DEFINE "_ISR_PC6"
+                           A   128    
+                           A   129    .VALUE _ISR_PC6
+                           A   130    
+                           A   131    .CLASS 3
+                           A   132    
+                           A   133    .TYPE 65
+                           A   134    
+                           A   135    .ENDEF
+                           A   136    
+                           A   137    .BEGFUNC "ISR_PC6",12,"_ISR_PC6+1"
+                           A   138    
+000001 FDE5                A   139    	PUSH	IY
+000003 D9                  A   140    	EXX	
+000004 08                  A   141    	EX	AF,AF'
+000005 DDE5                A   142    	PUSH	IX
+000007 DD210000 00         A   143    	LD	IX,0
+00000C DD39                A   144    	ADD	IX,SP
+                           A   145    ;   13	
+                           A   146    ;   14		// default config for gpu is vbl ac
+                           A   147    ;   15		
+                           A   148    ;   16		if ( PC_DR & (1<<6) ) {
+                           A   149    .LINE 16
+                           A   150    
+00000E ED389E              A   151    	IN0	A,(158)
+000011 E640                A   152    	AND	A,64
+000013 28 09 00            A   153    	JR	Z,L_1
+                           A   154    ;   17			vb_is_vblank = 0;
+                           A   155    .LINE 17
+                           A   156    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   4
+
+
+PC     Object              I  Line    Source bios_video.src
+000016 AF                  A   157    	XOR	A,A
+000017 32 01 00 00         A   158    	LD	(_vb_is_vblank),A
+                           A   159    ;   18			return;
+                           A   160    .LINE 18
+                           A   161    
+00001B 18 13 00            A   162    	JR	L_2
+                           A   163    ;   19		}
+00001E                     A   164    L_1:
+                           A   165    .LINE 19
+                           A   166    
+                           A   167    ;   20	
+                           A   168    ;   21		vb_is_vblank = 1;
+                           A   169    .LINE 21
+                           A   170    
+00001E 3E01                A   171    	LD	A,1
+000020 32 01 00 00         A   172    	LD	(_vb_is_vblank),A
+                           A   173    ;   22		vb_saw_vblank = 1;
+                           A   174    .LINE 22
+                           A   175    
+000024 32 00 00 00         A   176    	LD	(_vb_saw_vblank),A
+                           A   177    ;   23		
+                           A   178    ;   24		PC_DR |= (1<<6);
+                           A   179    .LINE 24
+                           A   180    
+000028 ED389E              A   181    	IN0	A,(158)
+00002B CBF7                A   182    	SET	6,A
+00002D ED399E              A   183    	OUT0	(158),A
+                           A   184    ;   25	
+                           A   185    ;   26		return;
+                           A   186    ;   27	}
+000030                     A   187    L_2:
+                           A   188    .LINE 27
+                           A   189    
+000030 D9                  A   190    	EXX	
+000031 08                  A   191    	EX	AF,AF'
+000032 DDF9                A   192    	LD	SP,IX
+000034 DDE1                A   193    	POP	IX
+000036 FDE1                A   194    	POP	IY
+000038 FB                  A   195    	EI	
+000039 ED4D                A   196    	RETI	
+                           A   197    
+                           A   198    
+                           A   199    ;**************************** _ISR_PC6 ********
+                           A   200    ;Name                         Addr/Register   S
+                           A   201    ;_vb_saw_vblank                      STATIC    
+                           A   202    ;_vb_is_vblank                       STATIC    
+                           A   203    
+                           A   204    
+                           A   205    ; Stack Frame Size: 6 (bytes)
+                           A   206    ;       Spill Code: 0 (instruction)
+                           A   207    
+                           A   208    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   5
+
+
+PC     Object              I  Line    Source bios_video.src
+                           A   209    .ENDFUNC "ISR_PC6",27,"_ISR_PC6"
+                           A   210    ;   28	
+                           A   211    ;   29	void vb_enable_vblank_interupt ( void )
+00003B                     A   212    _vb_enable_vblank_interupt:
+                           A   213    .DEFINE "_vb_enable_vblank_interupt"
+                           A   214    
+                           A   215    .VALUE _vb_enable_vblank_interupt
+                           A   216    
+                           A   217    .CLASS 2
+                           A   218    
+                           A   219    .TYPE 65
+                           A   220    
+                           A   221    .ENDEF
+                           A   222    
+                           A   223    .BEGFUNC "vb_enable_vblank_interupt",29,"_vb_en
+                           A   224    
+                           A   225    .LINE 29
+                           A   226    
+                           A   227    .DEFINE "pc"
+                           A   228    
+                           A   229    .CLASS 65
+                           A   230    
+                           A   231    .VALUE -4
+                           A   232    
+                           A   233    .TAG "NONAME0"
+                           A   234    
+                           A   235    .TYPE 8
+                           A   236    
+                           A   237    .ENDEF
+                           A   238    
+                           A   239    .DEFINE "err"
+                           A   240    
+                           A   241    .CLASS 65
+                           A   242    
+                           A   243    .VALUE -5
+                           A   244    
+                           A   245    .TYPE 12
+                           A   246    
+                           A   247    .ENDEF
+                           A   248    
+00003B DDE5                A   249    	PUSH	IX
+00003D DD210000 00         A   250    	LD	IX,0
+000042 DD39                A   251    	ADD	IX,SP
+000044 C5                  A   252    	PUSH	BC
+000045 3B                  A   253    	DEC	SP
+000046 3B                  A   254    	DEC	SP
+                           A   255    ;   30	
+                           A   256    ;   31		PORT pc;
+                           A   257    ;   32		UCHAR err;
+                           A   258    ;   33	
+                           A   259    ;   34		// set handler
+                           A   260    ;   35		_set_vector ( PORTC6_IVECT, ISR_PC6
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   6
+
+
+PC     Object              I  Line    Source bios_video.src
+                           A   261    .LINE 35
+                           A   262    
+000047 01 00 00 00         A   263    	LD	BC,_ISR_PC6
+00004B C5                  A   264    	PUSH	BC
+00004C 014C0000            A   265    	LD	BC,76
+000050 C5                  A   266    	PUSH	BC
+000051 CD 00 00 00         A   267    	CALL	__set_vector
+000055 C1                  A   268    	POP	BC
+000056 C1                  A   269    	POP	BC
+                           A   270    ;   36	
+                           A   271    ;   37		// enable interupt on port	
+                           A   272    ;   38		pc.dr = 1;
+                           A   273    .LINE 38
+                           A   274    
+000057 DD36FC01            A   275    	LD	(IX+-4),1
+                           A   276    ;   39		pc.ddr = 0;
+                           A   277    .LINE 39
+                           A   278    
+00005B DD36FD00            A   279    	LD	(IX+-3),0
+                           A   280    ;   40		//pc.alt0 = 0;  // does not exist f
+                           A   281    ;   41		pc.alt1 = 0;
+                           A   282    .LINE 41
+                           A   283    
+00005F DD36FE00            A   284    	LD	(IX+-2),0
+                           A   285    ;   42		pc.alt2 = 1;
+                           A   286    .LINE 42
+                           A   287    
+000063 DD36FF01            A   288    	LD	(IX+-1),1
+                           A   289    ;   43			
+                           A   290    ;   44		open_PortC ( &pc );
+                           A   291    .LINE 44
+                           A   292    
+000067 ED65FC              A   293    	PEA	IX+-4
+00006A CD 00 00 00         A   294    	CALL	_open_PortC
+00006E C1                  A   295    	POP	BC
+                           A   296    ;   45		//control_PortC ( &pc);
+                           A   297    ;   46	
+                           A   298    ;   47		err = setmode_PortC ( PORTPIN_SIX, 
+                           A   299    .LINE 47
+                           A   300    
+00006F 01050000            A   301    	LD	BC,5
+000073 C5                  A   302    	PUSH	BC
+000074 01400000            A   303    	LD	BC,64
+000078 C5                  A   304    	PUSH	BC
+000079 CD 00 00 00         A   305    	CALL	_setmode_PortC
+00007D C1                  A   306    	POP	BC
+00007E C1                  A   307    	POP	BC
+00007F DD77FB              A   308    	LD	(IX+-5),A
+                           A   309    ;   48		
+                           A   310    ;   49		PC_DR |= (1<<6);
+                           A   311    .LINE 49
+                           A   312    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   7
+
+
+PC     Object              I  Line    Source bios_video.src
+000082 ED389E              A   313    	IN0	A,(158)
+000085 CBF7                A   314    	SET	6,A
+000087 ED399E              A   315    	OUT0	(158),A
+                           A   316    ;   50	
+                           A   317    ;   51		return;
+                           A   318    ;   52	}
+                           A   319    .LINE 52
+                           A   320    
+00008A DDF9                A   321    	LD	SP,IX
+00008C DDE1                A   322    	POP	IX
+00008E C9                  A   323    	RET	
+                           A   324    
+                           A   325    
+                           A   326    ;**************************** _vb_enable_vblank
+                           A   327    ;Name                         Addr/Register   S
+                           A   328    ;_setmode_PortC                      IMPORT  --
+                           A   329    ;_open_PortC                         IMPORT  --
+                           A   330    ;__set_vector                        IMPORT  --
+                           A   331    ;err                                   IX-5    
+                           A   332    ;pc                                    IX-4    
+                           A   333    
+                           A   334    
+                           A   335    ; Stack Frame Size: 11 (bytes)
+                           A   336    ;       Spill Code: 0 (instruction)
+                           A   337    
+                           A   338    
+                           A   339    .ENDFUNC "vb_enable_vblank_interupt",52,"_vb_en
+                           A   340    ;   53	
+                           A   341    ;   54	void vb_wait_for_vblank ( unsigned char
+00008F                     A   342    _vb_wait_for_vblank:
+                           A   343    .DEFINE "_vb_wait_for_vblank"
+                           A   344    
+                           A   345    .VALUE _vb_wait_for_vblank
+                           A   346    
+                           A   347    .CLASS 2
+                           A   348    
+                           A   349    .TYPE 65
+                           A   350    
+                           A   351    .ENDEF
+                           A   352    
+                           A   353    .BEGFUNC "vb_wait_for_vblank",54,"_vb_wait_for_
+                           A   354    
+                           A   355    .LINE 54
+                           A   356    
+                           A   357    .DEFINE "clearit"
+                           A   358    
+                           A   359    .CLASS 65
+                           A   360    
+                           A   361    .VALUE 6
+                           A   362    
+                           A   363    .TYPE 12
+                           A   364    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   8
+
+
+PC     Object              I  Line    Source bios_video.src
+00008F DDE5                A   365    	PUSH	IX
+000091 DD210000 00         A   366    	LD	IX,0
+000096 DD39                A   367    	ADD	IX,SP
+                           A   368    .ENDEF
+                           A   369    
+                           A   370    ;   55	
+                           A   371    ;   56		while ( vb_saw_vblank == 0 ) {
+000098                     A   372    L_4:
+                           A   373    .LINE 56
+                           A   374    
+000098 3A 00 00 00         A   375    	LD	A,(_vb_saw_vblank)
+00009C B7                  A   376    	OR	A,A
+00009D 28 F9 00            A   377    	JR	Z,L_4
+                           A   378    ;   57			// nada
+                           A   379    ;   58		}
+                           A   380    .LINE 58
+                           A   381    
+                           A   382    ;   59		
+                           A   383    ;   60		if ( clearit ) {
+                           A   384    .LINE 60
+                           A   385    
+0000A0 DD7E06              A   386    	LD	A,(IX+6)
+0000A3 B7                  A   387    	OR	A,A
+0000A4 28 06 00            A   388    	JR	Z,L_8
+                           A   389    ;   61			vb_saw_vblank = 0;
+                           A   390    .LINE 61
+                           A   391    
+0000A7 AF                  A   392    	XOR	A,A
+0000A8 32 00 00 00         A   393    	LD	(_vb_saw_vblank),A
+                           A   394    ;   62		}
+0000AC                     A   395    L_8:
+                           A   396    .LINE 62
+                           A   397    
+                           A   398    ;   63	
+                           A   399    ;   64		return;
+                           A   400    ;   65	}
+                           A   401    .LINE 65
+                           A   402    
+0000AC DDF9                A   403    	LD	SP,IX
+0000AE DDE1                A   404    	POP	IX
+0000B0 C9                  A   405    	RET	
+                           A   406    
+                           A   407    
+                           A   408    ;**************************** _vb_wait_for_vbla
+                           A   409    ;Name                         Addr/Register   S
+                           A   410    ;_vb_saw_vblank                      STATIC    
+                           A   411    ;clearit                               IX+6    
+                           A   412    
+                           A   413    
+                           A   414    ; Stack Frame Size: 9 (bytes)
+                           A   415    ;       Spill Code: 0 (instruction)
+                           A   416    
+Zilog eZ80 Macro Assembler Version 4.2 (11121401)04-Jun-16     00:29:20     page:   9
+
+
+PC     Object              I  Line    Source bios_video.src
+                           A   417    
+                           A   418    .ENDFUNC "vb_wait_for_vblank",65,"_vb_wait_for_
+                           A   419    	XREF _setmode_PortC:ROM
+                           A   420    	XREF _open_PortC:ROM
+                           A   421    	XREF __set_vector:ROM
+                           A   422    	XDEF _vb_wait_for_vblank
+                           A   423    	XDEF _vb_enable_vblank_interupt
+                           A   424    	XDEF _vb_is_vblank
+                           A   425    	XDEF _vb_saw_vblank
+                           A   426    	END
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 427
