@@ -88,7 +88,7 @@
  4	8	String[8]	Check String ('LeOnArD!')
  12	4	DWORD		Nb of valid VBL of the file
  16	4	DWORD		Song attributes (see below)
- 20	2	DWORD		Nb of digi-drum sample (can be 0)
+ 20	2	WORD		 Nb of digi-drum sample (can be 0)
  24	4	DWORD		Frame loop start (generally 0)
 
 
@@ -197,6 +197,7 @@
 
 
         r3 free bits are used to code a DD start.
+        r3 b6 must be 1 whenever a DD start, else DD is not heard (empirical observation, this is not in the original documentation).
         r3 b5-b4 is a 2bits code wich means:
 
         00:     No DD
