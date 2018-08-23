@@ -204,6 +204,11 @@
         10:     DD starts on voice B
         11:     DD starts on voice C
 
+        r3 b7-b6 is a 2 bits code which means:
+        00: Nothing
+        01: Digidrum
+        10: Sinus-SID
+        11: Sync-Buzzer
 
  WARNING:
  If a DD starts on voice V, the volume register corresponding to V (Ex r8 for voice A,
